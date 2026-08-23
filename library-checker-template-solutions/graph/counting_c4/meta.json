@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "counting_c4",
+  "title": "Counting $C _ 4$'s",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/counting_c4/main.cpp",
+    "source_sha256": "b95df8519616aed6ae19f4e1a93b9af1518bfe4500d84eb38801f03ab3a43316"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "counting_c4"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "b95df8519616aed6ae19f4e1a93b9af1518bfe4500d84eb38801f03ab3a43316",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_cycles.cpp"
+    ],
+    "checked_at": "2026-08-21T12:59:22.250476Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395629,
+    "current_source_time": 1.093,
+    "current_source_memory": 86630400,
+    "current_source_submission_time": "2026-08-21T12:58:44.364447Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "b95df8519616aed6ae19f4e1a93b9af1518bfe4500d84eb38801f03ab3a43316",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395629,
+      "source_sha256": "b95df8519616aed6ae19f4e1a93b9af1518bfe4500d84eb38801f03ab3a43316",
+      "server_source_sha256": "b95df8519616aed6ae19f4e1a93b9af1518bfe4500d84eb38801f03ab3a43316",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.093,
+      "memory": 86630400,
+      "submission_time": "2026-08-21T12:58:44.364447Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T12:58:44.543044Z",
+      "recorded_at": "2026-08-21T12:59:22.249776Z"
+    }
+  ]
+}

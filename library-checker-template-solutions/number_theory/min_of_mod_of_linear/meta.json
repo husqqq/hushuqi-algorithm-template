@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "min_of_mod_of_linear",
+  "title": "Min of Mod of Linear",
+  "category": "number_theory",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "number_theory/min_of_mod_of_linear/main.cpp",
+    "source_sha256": "c5812fe97eb80dbb8f972bb640d81224286112b3444683db1f38b106a64e96fe"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "number_theory",
+    "problem": "min_of_mod_of_linear"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "c5812fe97eb80dbb8f972bb640d81224286112b3444683db1f38b106a64e96fe",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch07_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T16:51:46.492164Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395726,
+    "current_source_time": 1.582,
+    "current_source_memory": 1552384,
+    "current_source_submission_time": "2026-08-21T16:51:14.217479Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "c5812fe97eb80dbb8f972bb640d81224286112b3444683db1f38b106a64e96fe",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395726,
+      "source_sha256": "c5812fe97eb80dbb8f972bb640d81224286112b3444683db1f38b106a64e96fe",
+      "server_source_sha256": "c5812fe97eb80dbb8f972bb640d81224286112b3444683db1f38b106a64e96fe",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.582,
+      "memory": 1552384,
+      "submission_time": "2026-08-21T16:51:14.217479Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T16:51:14.449463Z",
+      "recorded_at": "2026-08-21T16:51:46.491569Z"
+    }
+  ]
+}

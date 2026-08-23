@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "pfaffian_of_matrix",
+  "title": "Pfaffian of Matrix",
+  "category": "linear_algebra",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "linear_algebra/pfaffian_of_matrix/main.cpp",
+    "source_sha256": "59a2e10306d1153390a52eb4d934e1cf1f6f6c804f9dc0ee709c70fcb2d399ec"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "linear_algebra",
+    "problem": "pfaffian_of_matrix"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "59a2e10306d1153390a52eb4d934e1cf1f6f6c804f9dc0ee709c70fcb2d399ec",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch09_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T19:24:24.582030Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395807,
+    "current_source_time": 1.865,
+    "current_source_memory": 3723264,
+    "current_source_submission_time": "2026-08-21T19:23:36.371239Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "59a2e10306d1153390a52eb4d934e1cf1f6f6c804f9dc0ee709c70fcb2d399ec",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395807,
+      "source_sha256": "59a2e10306d1153390a52eb4d934e1cf1f6f6c804f9dc0ee709c70fcb2d399ec",
+      "server_source_sha256": "59a2e10306d1153390a52eb4d934e1cf1f6f6c804f9dc0ee709c70fcb2d399ec",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.865,
+      "memory": 3723264,
+      "submission_time": "2026-08-21T19:23:36.371239Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T19:23:36.615521Z",
+      "recorded_at": "2026-08-21T19:24:24.581376Z"
+    }
+  ]
+}

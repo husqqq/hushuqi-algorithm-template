@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "zalgorithm",
+    "title":  "Z Algorithm",
+    "category":  "string",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "44738e86de2f0af286671a13ca278f5cb6a1de7162002253580279ed7c687040"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "394c4ce19d8f9c1a8295b4779ba19d00148383633470f16dfd0193b4dc97ccbe",
+                                  "submission_id":  387019,
+                                  "status":  "AC",
+                                  "time":  0.028,
+                                  "memory":  6733824,
+                                  "submission_time":  "2026-07-22T02:27:35.513191Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

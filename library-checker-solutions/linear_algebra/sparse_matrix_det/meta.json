@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "sparse_matrix_det",
+    "title":  "Determinant of Sparse Matrix",
+    "category":  "linear_algebra",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "22e19471b4acf94ce88623ae6e23ffe6073530232549793dc8a3e679cc86789b"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "ab3ceed877a5a1ecbb73e726f128474329bc0a15124bd2347db94715f9a1fbb2",
+                                  "submission_id":  387129,
+                                  "status":  "AC",
+                                  "time":  0.193,
+                                  "memory":  1216512,
+                                  "submission_time":  "2026-07-22T03:12:56.49554Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

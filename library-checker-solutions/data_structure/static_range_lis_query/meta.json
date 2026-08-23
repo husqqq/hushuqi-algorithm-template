@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "static_range_lis_query",
+    "title":  "Static Range LIS Query",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "4b3db0bd56ab973fc1d11be26822e8a357e73d2b5443d244e1d89dbd4037592b"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "23590ee297bb4ddf5ba34b7f3b428efa542122cc77a15b8ed5fc00ac1a870d0e",
+                                  "submission_id":  387184,
+                                  "status":  "AC",
+                                  "time":  0.316,
+                                  "memory":  9756672,
+                                  "submission_time":  "2026-07-22T03:40:27.324449Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

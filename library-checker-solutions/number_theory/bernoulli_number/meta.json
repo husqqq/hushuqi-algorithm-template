@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "bernoulli_number",
+    "title":  "Bernoulli Number",
+    "category":  "number_theory",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "419e45a36af60ac3e9aee7c5cc0e63919240869744238953146597946c695f70"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "db41002e3a765fbccc081fc551c20b1f5a34b6a4a6dbb9b53ca9479382c8c043",
+                                  "submission_id":  387115,
+                                  "status":  "AC",
+                                  "time":  0.569,
+                                  "memory":  27594752,
+                                  "submission_time":  "2026-07-22T03:07:17.524338Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

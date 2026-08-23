@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "three_edge_connected_components",
+  "title": "Three-Edge-Connected Components",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/three_edge_connected_components/main.cpp",
+    "source_sha256": "350f1a18a72b01aed8e0f8dc1487e164d1331d9359065cd32e9a6bcbda17c7e0"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "three_edge_connected_components"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "350f1a18a72b01aed8e0f8dc1487e164d1331d9359065cd32e9a6bcbda17c7e0",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_lc_gap_graph_tree.cpp"
+    ],
+    "checked_at": "2026-08-20T15:59:12.207800Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395255,
+    "current_source_time": 0.159,
+    "current_source_memory": 43814912,
+    "current_source_submission_time": "2026-08-20T15:58:47.2039Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "350f1a18a72b01aed8e0f8dc1487e164d1331d9359065cd32e9a6bcbda17c7e0",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395255,
+      "source_sha256": "350f1a18a72b01aed8e0f8dc1487e164d1331d9359065cd32e9a6bcbda17c7e0",
+      "server_source_sha256": "350f1a18a72b01aed8e0f8dc1487e164d1331d9359065cd32e9a6bcbda17c7e0",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.159,
+      "memory": 43814912,
+      "submission_time": "2026-08-20T15:58:47.2039Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-20T15:58:47.493538Z",
+      "recorded_at": "2026-08-20T15:59:12.207077Z"
+    }
+  ]
+}

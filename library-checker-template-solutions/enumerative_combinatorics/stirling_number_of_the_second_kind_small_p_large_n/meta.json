@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "stirling_number_of_the_second_kind_small_p_large_n",
+  "title": "Stirling Number of the Second Kind (Small p, Large n)",
+  "category": "enumerative_combinatorics",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "enumerative_combinatorics/stirling_number_of_the_second_kind_small_p_large_n/main.cpp",
+    "source_sha256": "c0607d99ac7b36cc194a9cb20401dc68209227d1af6be017ecd3f4127e9321e7"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "enumerative_combinatorics",
+    "problem": "stirling_number_of_the_second_kind_small_p_large_n"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "c0607d99ac7b36cc194a9cb20401dc68209227d1af6be017ecd3f4127e9321e7",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch08_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T18:03:40.141896Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395757,
+    "current_source_time": 0.509,
+    "current_source_memory": 102281216,
+    "current_source_submission_time": "2026-08-21T18:03:07.920695Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "c0607d99ac7b36cc194a9cb20401dc68209227d1af6be017ecd3f4127e9321e7",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395757,
+      "source_sha256": "c0607d99ac7b36cc194a9cb20401dc68209227d1af6be017ecd3f4127e9321e7",
+      "server_source_sha256": "c0607d99ac7b36cc194a9cb20401dc68209227d1af6be017ecd3f4127e9321e7",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.509,
+      "memory": 102281216,
+      "submission_time": "2026-08-21T18:03:07.920695Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T18:03:08.172550Z",
+      "recorded_at": "2026-08-21T18:03:40.141121Z"
+    }
+  ]
+}

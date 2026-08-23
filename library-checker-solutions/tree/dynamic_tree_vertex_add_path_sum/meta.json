@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "dynamic_tree_vertex_add_path_sum",
+    "title":  "Dynamic Tree Vertex Add Path Sum",
+    "category":  "tree",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "46031729c8e29614e9698bab877c6d49d93e1f3b8f83fafaf7ab19fb18a326b1"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "82a5259dbe7c50df16728e748d1adbe74ec6a51c71af589f5a571c91cd5c5874",
+                                  "submission_id":  387079,
+                                  "status":  "AC",
+                                  "time":  0.903,
+                                  "memory":  180383744,
+                                  "submission_time":  "2026-07-22T02:53:40.62335Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

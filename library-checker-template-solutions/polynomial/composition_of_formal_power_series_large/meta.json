@@ -1,0 +1,75 @@
+{
+  "schema_version": 3,
+  "name": "composition_of_formal_power_series_large",
+  "title": "Composition of Formal Power Series (Large)",
+  "category": "polynomial",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "polynomial/composition_of_formal_power_series_large/main.cpp",
+    "source_sha256": "bdb23fb4c1404a6bfaea7d85653a2f26db70c8f118641c8a6daea98d3247026f"
+  },
+  "reference": {
+    "kind": "template",
+    "imported_sha256": "6daeab9bf2f82146001bca9bf18315f1bcbb3a72106af0c01380a5a88963d0fe"
+  },
+  "historical_submission": {
+    "sha256": "e3294096cd37b0a4924b12989410ae20715f1d90e217a7bac5dd8ed269c01696",
+    "submission_id": 387151,
+    "status": "AC",
+    "time": 2.086,
+    "memory": 93282304,
+    "submission_time": "2026-07-22T03:25:25.917804Z"
+  },
+  "validation": {
+    "status": "online_ac",
+    "checked_at": "2026-08-21T13:49:22.882346Z",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch10_fast_composition.cpp"
+    ],
+    "current_source_sha256": "bdb23fb4c1404a6bfaea7d85653a2f26db70c8f118641c8a6daea98d3247026f",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395650,
+    "current_source_time": 0.601,
+    "current_source_memory": 40902656,
+    "current_source_submission_time": "2026-08-21T13:48:42.074298Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "bdb23fb4c1404a6bfaea7d85653a2f26db70c8f118641c8a6daea98d3247026f",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 393992,
+      "source_sha256": "4c3a2385ab35153112b91102e26d65b7aa42c0084524aa1a56de1844e3e225e8",
+      "server_source_sha256": "4c3a2385ab35153112b91102e26d65b7aa42c0084524aa1a56de1844e3e225e8",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.619,
+      "memory": 40906752,
+      "submission_time": "2026-08-16T18:31:51.648834Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-16T18:31:51.800448Z",
+      "recorded_at": "2026-08-16T18:32:55.747356Z"
+    },
+    {
+      "submission_id": 395650,
+      "source_sha256": "bdb23fb4c1404a6bfaea7d85653a2f26db70c8f118641c8a6daea98d3247026f",
+      "server_source_sha256": "bdb23fb4c1404a6bfaea7d85653a2f26db70c8f118641c8a6daea98d3247026f",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.601,
+      "memory": 40902656,
+      "submission_time": "2026-08-21T13:48:42.074298Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T13:48:42.269549Z",
+      "recorded_at": "2026-08-21T13:49:22.881386Z"
+    }
+  ],
+  "notes": [
+    "reference、historical_submission 和旧 submission_attempts 只描述历史源码，不是当前 main.cpp 的在线判定。"
+  ]
+}

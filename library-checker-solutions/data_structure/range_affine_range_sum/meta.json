@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "range_affine_range_sum",
+    "title":  "Range Affine Range Sum",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "6151c0728cf5cffc599eda9de52e99b4e4104643fdd15a900d7eeb191ad5f9d5"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "6de45e77c89da6c0f4c43806e4b21da9b81721eb0f489ca002c1b225ea82cc41",
+                                  "submission_id":  387000,
+                                  "status":  "AC",
+                                  "time":  0.637,
+                                  "memory":  29401088,
+                                  "submission_time":  "2026-07-22T02:17:53.905282Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

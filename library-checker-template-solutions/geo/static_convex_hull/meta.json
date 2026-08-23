@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "static_convex_hull",
+  "title": "Static Convex Hull",
+  "category": "geo",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "geo/static_convex_hull/main.cpp",
+    "source_sha256": "e32a3796bfe0de8e343519e869900cb335c0269e7577c46b14e4212ca98d29e3"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "geo",
+    "problem": "static_convex_hull"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "e32a3796bfe0de8e343519e869900cb335c0269e7577c46b14e4212ca98d29e3",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch11_convex.cpp"
+    ],
+    "checked_at": "2026-08-21T20:57:29.334118Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395849,
+    "current_source_time": 0.133,
+    "current_source_memory": 26198016,
+    "current_source_submission_time": "2026-08-21T20:56:56.819515Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "e32a3796bfe0de8e343519e869900cb335c0269e7577c46b14e4212ca98d29e3",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395849,
+      "source_sha256": "e32a3796bfe0de8e343519e869900cb335c0269e7577c46b14e4212ca98d29e3",
+      "server_source_sha256": "e32a3796bfe0de8e343519e869900cb335c0269e7577c46b14e4212ca98d29e3",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.133,
+      "memory": 26198016,
+      "submission_time": "2026-08-21T20:56:56.819515Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T20:56:57.096617Z",
+      "recorded_at": "2026-08-21T20:57:29.333349Z"
+    }
+  ]
+}

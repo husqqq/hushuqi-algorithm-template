@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "minimum_steiner_tree",
+  "title": "Minimum Steiner Tree",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/minimum_steiner_tree/main.cpp",
+    "source_sha256": "136d0cf35afebe0323d08923a3fb9120a1103a031e6c1dd72066d0ac854ebdb1"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "minimum_steiner_tree"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "136d0cf35afebe0323d08923a3fb9120a1103a031e6c1dd72066d0ac854ebdb1",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_steiner.cpp"
+    ],
+    "checked_at": "2026-08-21T10:41:34.402531Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395590,
+    "current_source_time": 0.116,
+    "current_source_memory": 14520320,
+    "current_source_submission_time": "2026-08-21T10:40:56.226685Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "136d0cf35afebe0323d08923a3fb9120a1103a031e6c1dd72066d0ac854ebdb1",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395590,
+      "source_sha256": "136d0cf35afebe0323d08923a3fb9120a1103a031e6c1dd72066d0ac854ebdb1",
+      "server_source_sha256": "136d0cf35afebe0323d08923a3fb9120a1103a031e6c1dd72066d0ac854ebdb1",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.116,
+      "memory": 14520320,
+      "submission_time": "2026-08-21T10:40:56.226685Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T10:40:56.414761Z",
+      "recorded_at": "2026-08-21T10:41:34.401881Z"
+    }
+  ]
+}

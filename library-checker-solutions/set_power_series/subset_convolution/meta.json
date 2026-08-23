@@ -1,0 +1,21 @@
+{
+    "schema_version":  1,
+    "name":  "subset_convolution",
+    "title":  "Subset Convolution",
+    "category":  "set_power_series",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "6f58d2ce4e43be256698e5a36a7f8042a4ecad8ec043c962167225aac10b2146",
+                       "imported_sha256":  "e4597d7d1e01a40e7bd8864243840513a43a371b647c718ee8ba4b851a3f65f6"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

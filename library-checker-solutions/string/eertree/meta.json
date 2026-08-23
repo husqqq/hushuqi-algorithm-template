@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "eertree",
+    "title":  "Eertree",
+    "category":  "string",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "43bb08571440c76049e9e759ca2cc2d7b52ea6adf5a5cf4267d4d2e03374aa84"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "43bb08571440c76049e9e759ca2cc2d7b52ea6adf5a5cf4267d4d2e03374aa84",
+                                  "submission_id":  387025,
+                                  "status":  "AC",
+                                  "time":  0.251,
+                                  "memory":  146894848,
+                                  "submission_time":  "2026-07-22T02:31:06.606414Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,30 @@
+{
+    "schema_version":  1,
+    "name":  "factorization_of_polynomials",
+    "title":  "Factorization of Polynomial (Mod)",
+    "category":  "polynomial",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "polynomial/factorization_of_polynomials/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "1af5c803ba154bb0c586df7e6e0b5e254558432897086ff28bacf552f061902e"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

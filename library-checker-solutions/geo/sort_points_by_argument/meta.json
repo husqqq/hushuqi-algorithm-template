@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "sort_points_by_argument",
+    "title":  "Sort Points by Argument",
+    "category":  "geo",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "2b0983d8b1180f1c9f3de48b1dd05c8582d2640b6f9f1c37bc460e5d71ce760d"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "69ba1fff8a9f4a59198b4f3a1a2dbd8dd4a46d8d0996de43c280032fbd310370",
+                                  "submission_id":  387154,
+                                  "status":  "AC",
+                                  "time":  0.059,
+                                  "memory":  8130560,
+                                  "submission_time":  "2026-07-22T03:28:09.019082Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

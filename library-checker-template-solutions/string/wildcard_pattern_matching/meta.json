@@ -1,0 +1,80 @@
+{
+  "schema_version": 3,
+  "name": "wildcard_pattern_matching",
+  "title": "Wildcard Pattern Matching",
+  "category": "string",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "string/wildcard_pattern_matching/main.cpp",
+    "source_sha256": "10aaac5b70ae461dcfe12ab2e10fdea0e36dd56bd8c3a944c1468328f0b95b38"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "string",
+    "problem": "wildcard_pattern_matching"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "10aaac5b70ae461dcfe12ab2e10fdea0e36dd56bd8c3a944c1468328f0b95b38",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch04_wildcard.cpp"
+    ],
+    "checked_at": "2026-08-23T06:38:09.780220Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 396262,
+    "current_source_time": 0.231,
+    "current_source_memory": 20246528,
+    "current_source_submission_time": "2026-08-23T06:37:34.919865Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "10aaac5b70ae461dcfe12ab2e10fdea0e36dd56bd8c3a944c1468328f0b95b38",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395557,
+      "source_sha256": "e0fbc72158b2fc58d10929c3a721d0e6b9de0f8a51b76d6eb99354b448de6950",
+      "server_source_sha256": "e0fbc72158b2fc58d10929c3a721d0e6b9de0f8a51b76d6eb99354b448de6950",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.883,
+      "memory": 97878016,
+      "submission_time": "2026-08-21T08:25:27.134878Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T08:25:27.288060Z",
+      "recorded_at": "2026-08-21T08:26:12.672899Z"
+    },
+    {
+      "submission_id": 396261,
+      "source_sha256": "ade7f42ed07f9a905b30206ab210f44b22eb4421efcc7136ad1ff83156036486",
+      "server_source_sha256": "ade7f42ed07f9a905b30206ab210f44b22eb4421efcc7136ad1ff83156036486",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.238,
+      "memory": 21843968,
+      "submission_time": "2026-08-23T06:30:41.350144Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-23T06:30:41.547305Z",
+      "recorded_at": "2026-08-23T06:31:06.620664Z"
+    },
+    {
+      "submission_id": 396262,
+      "source_sha256": "10aaac5b70ae461dcfe12ab2e10fdea0e36dd56bd8c3a944c1468328f0b95b38",
+      "server_source_sha256": "10aaac5b70ae461dcfe12ab2e10fdea0e36dd56bd8c3a944c1468328f0b95b38",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.231,
+      "memory": 20246528,
+      "submission_time": "2026-08-23T06:37:34.919865Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-23T06:37:35.078344Z",
+      "recorded_at": "2026-08-23T06:38:09.779354Z"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "counting_c4",
+    "title":  "Counting $C _ 4$\u0027s",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "4978f0b46c0dc7f1df8066c857c48e22dafa8b8625d06fb599a7388a8c740ef2"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "9c4c98b7fa424b8eef662364e02dd3460e01757218a2232f93124f24df7d1a7e",
+                                  "submission_id":  387061,
+                                  "status":  "AC",
+                                  "time":  1.165,
+                                  "memory":  75689984,
+                                  "submission_time":  "2026-07-22T02:47:03.110373Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

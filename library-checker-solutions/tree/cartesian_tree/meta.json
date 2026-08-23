@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "cartesian_tree",
+    "title":  "Cartesian Tree",
+    "category":  "tree",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "d972041a2718f460c00647e68170d0e964a1cb17830ee115d0d698a1213c72a3"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "4da6fe8af0af5010905f997f4a196a1c8a494e340943f8b673e5b06b7551ab47",
+                                  "submission_id":  387004,
+                                  "status":  "AC",
+                                  "time":  0.092,
+                                  "memory":  15728640,
+                                  "submission_time":  "2026-07-22T02:19:51.60759Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

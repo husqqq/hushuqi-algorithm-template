@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "point_set_range_composite_large_array",
+    "title":  "Point Set Range Composite (Large Array)",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "53d74bd04b89682d49f727575c0a546341c26501736dc610188f999e748ef9ed"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "e2bec05ad0a137a9686cdee0cbbae1cffb31d0b85e196ed15e8021ecaab946d7",
+                                  "submission_id":  387186,
+                                  "status":  "AC",
+                                  "time":  0.501,
+                                  "memory":  145006592,
+                                  "submission_time":  "2026-07-22T03:41:00.321573Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

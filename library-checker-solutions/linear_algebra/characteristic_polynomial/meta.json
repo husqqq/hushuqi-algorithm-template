@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "characteristic_polynomial",
+    "title":  "Characteristic Polynomial",
+    "category":  "linear_algebra",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "4318f9c9d70e3b8d886f759272fad1ac7e177a0f8bf59960f621f1b1ede66250"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "09c606e5ea01258fdd79a73edd232b6a8a33e93c1f81bea39bdece8d1b6a56cc",
+                                  "submission_id":  387128,
+                                  "status":  "AC",
+                                  "time":  0.227,
+                                  "memory":  3903488,
+                                  "submission_time":  "2026-07-22T03:12:10.609942Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

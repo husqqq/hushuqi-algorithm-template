@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "sum_of_multiplicative_function_large",
+    "title":  "Sum of Multiplicative Function(Large)",
+    "category":  "number_theory",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "c5630fe820640943bca353ee2e17c1daee5f981dbffaaa65fd5aa03c8ba83043"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "cf643757f2b6f01ed8291c88b85920423d9e12da4bb0c3d0790aea7975fc3518",
+                                  "submission_id":  387094,
+                                  "status":  "AC",
+                                  "time":  18.848,
+                                  "memory":  65290240,
+                                  "submission_time":  "2026-07-22T02:57:52.407806Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

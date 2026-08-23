@@ -1,0 +1,28 @@
+{
+    "schema_version":  1,
+    "name":  "static_range_frequency",
+    "title":  "Static Range Frequency",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "3205efeb2cbb1d11984b0b057e9921477b76c8a0cf744275697940ae4f44aaad",
+                       "imported_sha256":  "29deb0cb4acdd0c5c40a76e387dfd2ca9aa013b5f449d250938c683f7809a591"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "883dba65fa94ca160cd052eaa63762852273535853607c3ea3f483dbb0aff3f5",
+                                  "submission_id":  387006,
+                                  "status":  "AC",
+                                  "time":  1.279,
+                                  "memory":  65069056,
+                                  "submission_time":  "2026-07-22T02:21:05.308018Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

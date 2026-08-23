@@ -1,0 +1,37 @@
+{
+    "schema_version":  1,
+    "name":  "discrete_logarithm_fixed_mod",
+    "title":  "Discrete Logarithm (Fixed Mod)",
+    "category":  "number_theory",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "number_theory/discrete_logarithm_fixed_mod/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+                                                    "number_theory/discrete_logarithm_fixed_mod/bsdsdblib/basics.hpp",
+                                                    "number_theory/discrete_logarithm_fixed_mod/bsdsdblib/numtheo/modint.hpp",
+                                                    "number_theory/discrete_logarithm_fixed_mod/bsdsdblib/numtheo/farey_tech.hpp",
+                                                    "number_theory/discrete_logarithm_fixed_mod/bsdsdblib/numtheo/dis_log.hpp",
+                                                    "number_theory/discrete_logarithm_fixed_mod/bsdsdblib/ds/hash_table.hpp",
+                                                    "number_theory/discrete_logarithm_fixed_mod/bsdsdblib/numtheo/prod_funcs.hpp",
+                                                    "number_theory/discrete_logarithm_fixed_mod/bsdsdblib/numtheo/pollard_rho.hpp",
+                                                    "number_theory/discrete_logarithm_fixed_mod/bsdsdblib/numtheo/euler_sieve.hpp"
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "55174798a0d1700f42f051e03f706a1ed1305348fa2f38ebf672e425e615d02b"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "two_sat",
+  "title": "2 Sat",
+  "category": "other",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "other/two_sat/main.cpp",
+    "source_sha256": "417595ab7fe1644641e2040a6b1ebba26af06d661e1e06f7d935eebc6358e830"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "other",
+    "problem": "two_sat"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "417595ab7fe1644641e2040a6b1ebba26af06d661e1e06f7d935eebc6358e830",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_two_sat.cpp"
+    ],
+    "checked_at": "2026-08-21T10:14:45.046291Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395581,
+    "current_source_time": 0.547,
+    "current_source_memory": 201457664,
+    "current_source_submission_time": "2026-08-21T10:14:12.825129Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "417595ab7fe1644641e2040a6b1ebba26af06d661e1e06f7d935eebc6358e830",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395581,
+      "source_sha256": "417595ab7fe1644641e2040a6b1ebba26af06d661e1e06f7d935eebc6358e830",
+      "server_source_sha256": "417595ab7fe1644641e2040a6b1ebba26af06d661e1e06f7d935eebc6358e830",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.547,
+      "memory": 201457664,
+      "submission_time": "2026-08-21T10:14:12.825129Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T10:14:12.996124Z",
+      "recorded_at": "2026-08-21T10:14:45.045434Z"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "incremental_scc",
+  "title": "Strongly Connected Components (Incremental)",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/incremental_scc/main.cpp",
+    "source_sha256": "c74064cb2465a534572f8ae5d169781a01520746d4d727c32aef38a655249c41"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "incremental_scc"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "c74064cb2465a534572f8ae5d169781a01520746d4d727c32aef38a655249c41",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_incremental_scc.cpp"
+    ],
+    "checked_at": "2026-08-21T10:33:27.638794Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395588,
+    "current_source_time": 2.16,
+    "current_source_memory": 926830592,
+    "current_source_submission_time": "2026-08-21T10:32:37.541876Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "c74064cb2465a534572f8ae5d169781a01520746d4d727c32aef38a655249c41",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395588,
+      "source_sha256": "c74064cb2465a534572f8ae5d169781a01520746d4d727c32aef38a655249c41",
+      "server_source_sha256": "c74064cb2465a534572f8ae5d169781a01520746d4d727c32aef38a655249c41",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 2.16,
+      "memory": 926830592,
+      "submission_time": "2026-08-21T10:32:37.541876Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T10:32:37.717450Z",
+      "recorded_at": "2026-08-21T10:33:27.638172Z"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "counting_squarefrees",
+  "title": "Counting Square-free Integers",
+  "category": "number_theory",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "number_theory/counting_squarefrees/main.cpp",
+    "source_sha256": "0e666fe5f4cca2668319981a736884da74a7513b289a069f4a724d8b7345872d"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "number_theory",
+    "problem": "counting_squarefrees"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "0e666fe5f4cca2668319981a736884da74a7513b289a069f4a724d8b7345872d",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch07_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T16:37:09.634341Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395716,
+    "current_source_time": 0.335,
+    "current_source_memory": 80089088,
+    "current_source_submission_time": "2026-08-21T16:36:40.793754Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "0e666fe5f4cca2668319981a736884da74a7513b289a069f4a724d8b7345872d",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395716,
+      "source_sha256": "0e666fe5f4cca2668319981a736884da74a7513b289a069f4a724d8b7345872d",
+      "server_source_sha256": "0e666fe5f4cca2668319981a736884da74a7513b289a069f4a724d8b7345872d",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.335,
+      "memory": 80089088,
+      "submission_time": "2026-08-21T16:36:40.793754Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T16:36:41.021102Z",
+      "recorded_at": "2026-08-21T16:37:09.633680Z"
+    }
+  ]
+}

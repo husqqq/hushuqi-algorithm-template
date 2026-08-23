@@ -1,0 +1,25 @@
+#pragma once
+
+// 第 10 章常用多项式与 FPS 聚合入口：10.2 全部接口及 10.3.005 复合逆。
+// 实现以 full/ 下的知识点切片为唯一来源。
+#include "full/10_2_001.hpp"
+#include "full/10_2_002.hpp"
+#include "full/10_2_003.hpp"
+#include "full/10_2_004.hpp"
+#include "full/10_2_005.hpp"
+#include "full/10_2_006.hpp"
+#include "full/10_2_007.hpp"
+#include "full/10_2_008.hpp"
+#include "full/10_2_009.hpp"
+#include "full/10_2_010.hpp"
+#include "full/10_2_011.hpp"
+#include "full/10_2_012.hpp"
+#include "full/10_2_013.hpp"
+#include "full/10_2_014.hpp"
+#include "full/10_2_015.hpp"
+#include "full/10_2_016.hpp"
+#include "full/10_2_017.hpp"
+#include "full/10_2_018.hpp"
+#include "full/10_2_019.hpp"
+#include "full/10_2_020.hpp"
+#include "full/10_3_005.hpp"

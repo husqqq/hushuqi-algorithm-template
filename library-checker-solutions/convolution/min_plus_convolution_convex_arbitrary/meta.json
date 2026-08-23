@@ -1,0 +1,21 @@
+{
+    "schema_version":  1,
+    "name":  "min_plus_convolution_convex_arbitrary",
+    "title":  "Min Plus Convolution (Convex and Arbitrary)",
+    "category":  "convolution",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "11125a66a3fae0ac15ef379fa15bc36dc02ca10ee4e39da9f35243a6cba4aeb8",
+                       "imported_sha256":  "c36509b1a7c998809e15a8c8987d107aff88a37f7513c9d024a737c16fc32d9c"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "ordered_set",
+    "title":  "Ordered Set",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "04b27bfbe382739f0e1ea79f2af7abe7627a490ac2dbb6362fa0aacf015d1018"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "62562a4a59bd240b1c3a7be929b98d63b1b7bd39a8337e33a6f1d16170e1b67d",
+                                  "submission_id":  387010,
+                                  "status":  "AC",
+                                  "time":  0.727,
+                                  "memory":  44883968,
+                                  "submission_time":  "2026-07-22T02:24:06.410818Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

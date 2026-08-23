@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "enumerate_triangles",
+    "title":  "Enumerate Triangles",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "2ba05ad25661009e16640012890312d7ba8d81daeacb5eed44ee6ff604cd01b9"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "43e2baa3b9c6afeb438382d180c9d0de3b0404bd9ba353828fb94d2a25be7aa9",
+                                  "submission_id":  387062,
+                                  "status":  "AC",
+                                  "time":  0.06,
+                                  "memory":  7852032,
+                                  "submission_time":  "2026-07-22T02:47:14.509626Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

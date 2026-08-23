@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "biconnected_components",
+  "title": "Biconnected Components",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/biconnected_components/main.cpp",
+    "source_sha256": "5730eade72b57ea2898b918b3f0e78ed6f6f0a69ba560137b0c2b702871d82de"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "biconnected_components"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "5730eade72b57ea2898b918b3f0e78ed6f6f0a69ba560137b0c2b702871d82de",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_components.cpp"
+    ],
+    "checked_at": "2026-08-21T10:29:27.841523Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395585,
+    "current_source_time": 0.571,
+    "current_source_memory": 178819072,
+    "current_source_submission_time": "2026-08-21T10:28:54.942683Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "5730eade72b57ea2898b918b3f0e78ed6f6f0a69ba560137b0c2b702871d82de",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395585,
+      "source_sha256": "5730eade72b57ea2898b918b3f0e78ed6f6f0a69ba560137b0c2b702871d82de",
+      "server_source_sha256": "5730eade72b57ea2898b918b3f0e78ed6f6f0a69ba560137b0c2b702871d82de",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.571,
+      "memory": 178819072,
+      "submission_time": "2026-08-21T10:28:54.942683Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T10:28:55.115918Z",
+      "recorded_at": "2026-08-21T10:29:27.840827Z"
+    }
+  ]
+}

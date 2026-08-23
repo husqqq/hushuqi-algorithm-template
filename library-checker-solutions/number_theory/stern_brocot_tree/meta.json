@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "stern_brocot_tree",
+    "title":  "Stern–Brocot Tree",
+    "category":  "number_theory",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "feda74560ef7be56c50e620bc6f6518806f5c5d7250489d1913eeffa37ee480d"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "158daecc9d5775f8e39cdc549cab478f7cdb353d51d950abb08bfb94e2dd6c38",
+                                  "submission_id":  387107,
+                                  "status":  "AC",
+                                  "time":  0.104,
+                                  "memory":  8163328,
+                                  "submission_time":  "2026-07-22T03:04:31.108653Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

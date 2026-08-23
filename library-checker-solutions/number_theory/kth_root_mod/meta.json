@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "kth_root_mod",
+    "title":  "Kth Root (Mod)",
+    "category":  "number_theory",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "0eff7459921b032b48337a2ec0acc20ba7b8d5f9dd312f4a621f9a78d51ead9f"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "b973a166fead8e6e431c26e10a66cc403f62696ceed2971574328371243368c4",
+                                  "submission_id":  387104,
+                                  "status":  "AC",
+                                  "time":  0.061,
+                                  "memory":  909312,
+                                  "submission_time":  "2026-07-22T03:04:01.507884Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "pow_of_formal_power_series",
+    "title":  "Pow of Formal Power Series",
+    "category":  "polynomial",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "68b3444dbd900f72a021c097a2c830727bdfb0280a3e22593c8c9426899bf8c1"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "32816165ea3b35a668bd17396be502303106aab94058ff41e1de798e18ba0f43",
+                                  "submission_id":  387195,
+                                  "status":  "AC",
+                                  "time":  2.297,
+                                  "memory":  29908992,
+                                  "submission_time":  "2026-07-22T03:52:19.32372Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

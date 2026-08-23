@@ -1,0 +1,21 @@
+{
+    "schema_version":  1,
+    "name":  "min_plus_convolution_convex_convex",
+    "title":  "Min Plus Convolution (Convex and Convex)",
+    "category":  "convolution",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "c838ec7db28ab5f07e3919113344b0c50f8442560e88f030fc4bb335dd6bfcc1",
+                       "imported_sha256":  "d60c0cf94ad09b04df3f954ad593309d711b105bb3b4a838a5a417ead39d3a17"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

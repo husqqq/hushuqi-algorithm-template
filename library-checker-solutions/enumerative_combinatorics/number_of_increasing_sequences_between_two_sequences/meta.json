@@ -1,0 +1,30 @@
+{
+    "schema_version":  1,
+    "name":  "number_of_increasing_sequences_between_two_sequences",
+    "title":  "Number of Increasing Sequences Between Two Sequences",
+    "category":  "enumerative_combinatorics",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "enumerative_combinatorics/number_of_increasing_sequences_between_two_sequences/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "1c643fc3ec7150cf15e8dde019e57568da84f9ce0cc421231b62d5b8a6cdae8c"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

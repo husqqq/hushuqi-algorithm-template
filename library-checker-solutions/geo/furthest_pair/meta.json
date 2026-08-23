@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "furthest_pair",
+    "title":  "Furthest Pair of Points",
+    "category":  "geo",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "437fb5ea339ab8a12415efa7fab92c30483f91d969168fcb933ebeea427cf156"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "e1c403e185b5328928afb796ea740e9fd0d8675a7ab4b0328d2f82976623dbc9",
+                                  "submission_id":  387156,
+                                  "status":  "AC",
+                                  "time":  0.113,
+                                  "memory":  25051136,
+                                  "submission_time":  "2026-07-22T03:28:12.617479Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

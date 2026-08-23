@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "longest_increasing_subsequence",
+    "title":  "Longest Increasing Subsequence",
+    "category":  "other",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "271465709b6482629860f79ff7786acab7b245e7b738bae44432ae327f25ba9b"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "ae2a4eadb127cc7151c2e47157b8575bf6adacdff5ebc43c4792535a9411764e",
+                                  "submission_id":  386988,
+                                  "status":  "AC",
+                                  "time":  0.057,
+                                  "memory":  20262912,
+                                  "submission_time":  "2026-07-22T02:12:03.806771Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

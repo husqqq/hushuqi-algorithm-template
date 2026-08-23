@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "counting_spanning_tree_undirected",
+    "title":  "Counting Spanning Trees (Undirected)",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "ac58c5d0d36e9244339f24d9ff12b1fcf0f1f15426782392cfc2b06402e82657"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "ac58c5d0d36e9244339f24d9ff12b1fcf0f1f15426782392cfc2b06402e82657",
+                                  "submission_id":  387119,
+                                  "status":  "AC",
+                                  "time":  0.099,
+                                  "memory":  1888256,
+                                  "submission_time":  "2026-07-22T03:08:28.69931Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

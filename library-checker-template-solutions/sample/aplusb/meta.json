@@ -1,0 +1,56 @@
+{
+  "schema_version": 3,
+  "name": "aplusb",
+  "title": "A + B",
+  "category": "sample",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "sample/aplusb/main.cpp",
+    "source_sha256": "46a4955570b3ccc92f79927f89de8673e03a2436f3cfee9878e0a61dbe56bb6c"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "sample",
+    "problem": "aplusb"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "46a4955570b3ccc92f79927f89de8673e03a2436f3cfee9878e0a61dbe56bb6c",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch01_ch02.cpp"
+    ],
+    "boundary_input": "hushuqi算法竞赛模板/tests/lc/ch01_aplusb_boundary.in",
+    "checked_at": "2026-08-21T05:44:34.522040Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395496,
+    "current_source_time": 0.009,
+    "current_source_memory": 835584,
+    "current_source_submission_time": "2026-08-21T05:44:16.043117Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "46a4955570b3ccc92f79927f89de8673e03a2436f3cfee9878e0a61dbe56bb6c",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395496,
+      "source_sha256": "46a4955570b3ccc92f79927f89de8673e03a2436f3cfee9878e0a61dbe56bb6c",
+      "server_source_sha256": "46a4955570b3ccc92f79927f89de8673e03a2436f3cfee9878e0a61dbe56bb6c",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.009,
+      "memory": 835584,
+      "submission_time": "2026-08-21T05:44:16.043117Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T05:44:16.234237Z",
+      "recorded_at": "2026-08-21T05:44:34.521091Z"
+    }
+  ],
+  "reference": {
+    "kind": "read_only_baseline",
+    "source": "library-checker-solutions/sample/aplusb/main.cpp",
+    "source_sha256": "42c0184337d218989f0c54b17aebaddbd1a120b78531e5f3817bcc7795aec35d"
+  }
+}

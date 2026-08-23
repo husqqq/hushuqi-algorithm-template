@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "inv_of_polynomials",
+    "title":  "Inv of Polynomials",
+    "category":  "polynomial",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "8e0d424c2635fb817b4c6ea9d6a7a3b76e2ddc53abf04643eb51968bcabf10b2"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "275ebacc464e74b14515a1d1279b5996a20a5c680bf1dcc9a813a43ad25148d8",
+                                  "submission_id":  387198,
+                                  "status":  "AC",
+                                  "time":  0.682,
+                                  "memory":  7188480,
+                                  "submission_time":  "2026-07-22T03:53:27.10901Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

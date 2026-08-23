@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "st_numbering",
+  "title": "st-Numbering",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/st_numbering/main.cpp",
+    "source_sha256": "f4c0480950bbf3032607fdc5a22b4e7fd10da0705eea94f6eb440d486a5ead1b"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "st_numbering"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "f4c0480950bbf3032607fdc5a22b4e7fd10da0705eea94f6eb440d486a5ead1b",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_st_numbering.cpp"
+    ],
+    "checked_at": "2026-08-21T13:01:00.880175Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395630,
+    "current_source_time": 0.154,
+    "current_source_memory": 50651136,
+    "current_source_submission_time": "2026-08-21T13:00:29.921842Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "f4c0480950bbf3032607fdc5a22b4e7fd10da0705eea94f6eb440d486a5ead1b",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395630,
+      "source_sha256": "f4c0480950bbf3032607fdc5a22b4e7fd10da0705eea94f6eb440d486a5ead1b",
+      "server_source_sha256": "f4c0480950bbf3032607fdc5a22b4e7fd10da0705eea94f6eb440d486a5ead1b",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.154,
+      "memory": 50651136,
+      "submission_time": "2026-08-21T13:00:29.921842Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T13:00:30.097869Z",
+      "recorded_at": "2026-08-21T13:01:00.879628Z"
+    }
+  ]
+}

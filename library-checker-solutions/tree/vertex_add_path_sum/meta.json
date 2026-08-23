@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "vertex_add_path_sum",
+    "title":  "Vertex Add Path Sum",
+    "category":  "tree",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "8b4f1aa6285e0618f4f851a0c5df0a8b6f9916fd418a2b14fb4531c69ad13cca"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "3a16658d7e91f8d65406fac58e606a4e839e9e06189607a32a06842783b3bde8",
+                                  "submission_id":  387074,
+                                  "status":  "AC",
+                                  "time":  0.417,
+                                  "memory":  55447552,
+                                  "submission_time":  "2026-07-22T02:52:09.911179Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,21 @@
+{
+    "schema_version":  1,
+    "name":  "sqrt_of_formal_power_series_sparse",
+    "title":  "Sqrt of Formal Power Series (Sparse)",
+    "category":  "polynomial",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "4fb7515e187979b24d93e8ccc618e0cc917de06ce2126b2cd3af4d0db473cdf0",
+                       "imported_sha256":  "370cff6489a71098ff0e8e291003a3596b81509846537f568b6d13aa7199368a"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

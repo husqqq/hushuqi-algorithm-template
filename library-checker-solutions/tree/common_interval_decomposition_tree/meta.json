@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "common_interval_decomposition_tree",
+    "title":  "Common Interval Decomposition Tree",
+    "category":  "tree",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "b189e76f71f0dd30be5c0acfe0cc3c94a7aae4f6a188f48b6b6b8785268be22c"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "52b326cf5437438c25b97c154b789ccf2e10cc2c47b2b5669dac9e573137c07e",
+                                  "submission_id":  387017,
+                                  "status":  "AC",
+                                  "time":  0.644,
+                                  "memory":  146276352,
+                                  "submission_time":  "2026-07-22T02:27:29.619642Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "addition_of_big_integers",
+    "title":  "Addition of Big Integers",
+    "category":  "big_integer",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "2667e4ed7a200d14ed22de836764df3c0047f0231821f12a68d58db60ceaec9b"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "1093d6de05d1f30b6a020a950d0cfbe818040558439d4693f1b6bd91a6e8567d",
+                                  "submission_id":  387159,
+                                  "status":  "AC",
+                                  "time":  0.058,
+                                  "memory":  18661376,
+                                  "submission_time":  "2026-07-22T03:29:03.204722Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

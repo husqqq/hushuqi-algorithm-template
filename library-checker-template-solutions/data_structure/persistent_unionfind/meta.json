@@ -1,0 +1,139 @@
+{
+  "schema_version": 3,
+  "name": "persistent_unionfind",
+  "title": "Persistent Unionfind",
+  "category": "data_structure",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "data_structure/persistent_unionfind/main.cpp",
+    "source_sha256": "dfb86277d331cb62160baa625d62117b16b191e3594c1ec0315db1f775c7380e",
+    "evidence": {
+      "method": "deterministic_generation",
+      "generator": {
+        "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
+        "sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+        "working_directory": ".",
+        "runner": "Python 3.13.14",
+        "argv": [
+          "--write-index"
+        ],
+        "generation_evidence": {
+          "schema_version": 2,
+          "problem_id": "data_structure/persistent_unionfind",
+          "source_path": "library-checker-template-solutions/data_structure/persistent_unionfind/main.cpp",
+          "source_sha256": "dfb86277d331cb62160baa625d62117b16b191e3594c1ec0315db1f775c7380e",
+          "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
+          "generator_sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+          "working_directory": ".",
+          "runner": "Python 3.13.14",
+          "argv": [
+            "--write-index"
+          ],
+          "inputs": [
+            {
+              "path": "hushuqi算法竞赛模板/03-数据结构.md",
+              "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/include/full/3_1_005.hpp",
+              "sha256": "af4c65f763d75d72211e9004db2fd9ffb16ea89bcf53925fb5fb407e131c4500"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/tests/test_ch03_perdsu.cpp",
+              "sha256": "4e25f503e1c0058e79d8bc79e7538e08a8adff9e41e6e884fad3b274f1d8db4c"
+            }
+          ],
+          "generated_sha256": "dfb86277d331cb62160baa625d62117b16b191e3594c1ec0315db1f775c7380e",
+          "byte_equal": true
+        },
+        "generation_evidence_sha256": "7963d24f00882107f39e6ee5e81006184be3c2cf7713dfdcac64d92f00a50d51"
+      },
+      "adapter_sha256": "80637c5fe5ad4d650e5bb3aed78407c1b62a264d9cda5e9353a3c7743609b5fb",
+      "template_inputs": [
+        {
+          "path": "hushuqi算法竞赛模板/03-数据结构.md",
+          "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/full/3_1_005.hpp",
+          "sha256": "af4c65f763d75d72211e9004db2fd9ffb16ea89bcf53925fb5fb407e131c4500"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/tests/test_ch03_perdsu.cpp",
+          "sha256": "4e25f503e1c0058e79d8bc79e7538e08a8adff9e41e6e884fad3b274f1d8db4c"
+        }
+      ],
+      "temporary_regenerations": 2,
+      "byte_identical": true,
+      "source_sha256": "dfb86277d331cb62160baa625d62117b16b191e3594c1ec0315db1f775c7380e",
+      "evidence_sha256": "d54c61c2adaa1444fe707e765986eef4235d2d824ceee22538b44fb197f575e2"
+    }
+  },
+  "reference": {
+    "kind": "read_only_baseline",
+    "source": "library-checker-solutions/data_structure/persistent_unionfind/main.cpp",
+    "source_sha256": "72baf943fc69f0daf315943f047f9266f4ca0eb85d2486dacb2aef95e82297b7"
+  },
+  "official_reference": {
+    "repository": "https://github.com/yosupo06/library-checker-problems",
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "license": "Apache-2.0",
+    "license_blob": "91554e3bd99da6761c82645d6c740ced590d17bb",
+    "path": "data_structure/persistent_unionfind/sol/correct.cpp",
+    "git_blob": "88e166f67f1890ca864b02c652be6de50827a238",
+    "content_sha256": "aa264438d10008204a1808b6a0f522957d6e7fa20d0739bf61f12b5aefaef65c"
+  },
+  "validation": {
+    "status": "online_ac",
+    "checked_at": "2026-08-20T12:54:58.688823Z",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch03_perdsu.cpp"
+    ],
+    "current_source_sha256": "dfb86277d331cb62160baa625d62117b16b191e3594c1ec0315db1f775c7380e",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395183,
+    "current_source_time": 0.196,
+    "current_source_memory": 53067776,
+    "current_source_submission_time": "2026-08-20T12:54:37.554004Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "dfb86277d331cb62160baa625d62117b16b191e3594c1ec0315db1f775c7380e",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 394402,
+      "source_sha256": "9f898c95a01d95abae0262d5fd453e51f9c7629e8e9bbf53c1bd672778900fe7",
+      "server_source_sha256": "9f898c95a01d95abae0262d5fd453e51f9c7629e8e9bbf53c1bd672778900fe7",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.346,
+      "memory": 137179136,
+      "submission_time": "2026-08-18T18:56:37.824027Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-18T18:56:37.946711Z",
+      "recorded_at": "2026-08-18T18:57:01.447344Z"
+    },
+    {
+      "submission_id": 395183,
+      "source_sha256": "dfb86277d331cb62160baa625d62117b16b191e3594c1ec0315db1f775c7380e",
+      "server_source_sha256": "dfb86277d331cb62160baa625d62117b16b191e3594c1ec0315db1f775c7380e",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.196,
+      "memory": 53067776,
+      "submission_time": "2026-08-20T12:54:37.554004Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-20T12:54:37.787574Z",
+      "recorded_at": "2026-08-20T12:54:58.688096Z"
+    }
+  ],
+  "notes": [
+    "The only submission candidate is this self-contained main.cpp.",
+    "The reference source is read-only comparison material and is not a submission input."
+  ]
+}

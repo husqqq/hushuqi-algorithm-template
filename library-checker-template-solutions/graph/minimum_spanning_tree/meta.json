@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "minimum_spanning_tree",
+  "title": "Minimum Spanning Tree",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/minimum_spanning_tree/main.cpp",
+    "source_sha256": "660cb2f1ed1c48df280a64fe541ce8ec35dbd3e0a058d11c4570b18d5bbe6fe4"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "minimum_spanning_tree"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "660cb2f1ed1c48df280a64fe541ce8ec35dbd3e0a058d11c4570b18d5bbe6fe4",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_foundations.cpp"
+    ],
+    "checked_at": "2026-08-21T10:12:28.701028Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395580,
+    "current_source_time": 0.923,
+    "current_source_memory": 121233408,
+    "current_source_submission_time": "2026-08-21T10:11:39.199566Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "660cb2f1ed1c48df280a64fe541ce8ec35dbd3e0a058d11c4570b18d5bbe6fe4",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395580,
+      "source_sha256": "660cb2f1ed1c48df280a64fe541ce8ec35dbd3e0a058d11c4570b18d5bbe6fe4",
+      "server_source_sha256": "660cb2f1ed1c48df280a64fe541ce8ec35dbd3e0a058d11c4570b18d5bbe6fe4",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.923,
+      "memory": 121233408,
+      "submission_time": "2026-08-21T10:11:39.199566Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T10:11:39.376866Z",
+      "recorded_at": "2026-08-21T10:12:28.700394Z"
+    }
+  ]
+}

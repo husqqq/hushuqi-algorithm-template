@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "matrix_det",
+    "title":  "Determinant of Matrix",
+    "category":  "linear_algebra",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "e95c2963aec64a3101b9109acf03b409d46c204469d4d6caf0de7da4f5f31e80"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "31281aa3d967bd1a31a34daa8bfbc7ccf28d071e5a60a2319ab2e46dfc853ab8",
+                                  "submission_id":  387125,
+                                  "status":  "AC",
+                                  "time":  0.073,
+                                  "memory":  1871872,
+                                  "submission_time":  "2026-07-22T03:10:26.000026Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

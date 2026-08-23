@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "runenumerate",
+    "title":  "Run Enumerate",
+    "category":  "string",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "ae50d03d59fea0f2ede2d8042f2eeada7e21a06ff3b0c058eea5b5bbb3fdaf4b"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "0e1d7e7319adec3db21320ad43b7b09990a6090ef17a3cd0386b589aac6c38a5",
+                                  "submission_id":  387022,
+                                  "status":  "AC",
+                                  "time":  0.242,
+                                  "memory":  37531648,
+                                  "submission_time":  "2026-07-22T02:29:52.206371Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

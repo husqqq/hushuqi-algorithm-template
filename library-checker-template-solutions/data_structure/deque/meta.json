@@ -1,0 +1,116 @@
+{
+  "schema_version": 3,
+  "name": "deque",
+  "title": "Deque",
+  "category": "data_structure",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "data_structure/deque/main.cpp",
+    "source_sha256": "eebe579702aa4578db74f3179a4df810371fd160132247bff83ffde78052cc3e",
+    "evidence": {
+      "method": "deterministic_generation",
+      "generator": {
+        "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
+        "sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+        "working_directory": ".",
+        "runner": "Python 3.13.14",
+        "argv": [
+          "--write-index"
+        ],
+        "generation_evidence": {
+          "schema_version": 2,
+          "problem_id": "data_structure/deque",
+          "source_path": "library-checker-template-solutions/data_structure/deque/main.cpp",
+          "source_sha256": "eebe579702aa4578db74f3179a4df810371fd160132247bff83ffde78052cc3e",
+          "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
+          "generator_sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+          "working_directory": ".",
+          "runner": "Python 3.13.14",
+          "argv": [
+            "--write-index"
+          ],
+          "inputs": [
+            {
+              "path": "hushuqi算法竞赛模板/01-基础与工程.md",
+              "sha256": "c57ac71fd9a60e4713a4920a5058b04f61dd452429bb7eef956f88dc24ae7e63"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/tests/test_ch03_deque.cpp",
+              "sha256": "9d98be292a74ea96567d5d13023bfa48393ff85d08b20f831ec403819c490032"
+            }
+          ],
+          "generated_sha256": "eebe579702aa4578db74f3179a4df810371fd160132247bff83ffde78052cc3e",
+          "byte_equal": true
+        },
+        "generation_evidence_sha256": "9a325cfce1c9141a080f0d10bdc26a0ee23d2c88c38fbce859b5cf4322700f66"
+      },
+      "adapter_sha256": "74291e6f231df6fc6c4620a39646c51011783fe3cb01517d86485c81dfc3fe97",
+      "template_inputs": [
+        {
+          "path": "hushuqi算法竞赛模板/01-基础与工程.md",
+          "sha256": "c57ac71fd9a60e4713a4920a5058b04f61dd452429bb7eef956f88dc24ae7e63"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/tests/test_ch03_deque.cpp",
+          "sha256": "9d98be292a74ea96567d5d13023bfa48393ff85d08b20f831ec403819c490032"
+        }
+      ],
+      "temporary_regenerations": 2,
+      "byte_identical": true,
+      "source_sha256": "eebe579702aa4578db74f3179a4df810371fd160132247bff83ffde78052cc3e",
+      "evidence_sha256": "5db3c027a8b3ec793c34e0d2ef27338b7dcad73e85b56faa303d303ea0028e26"
+    }
+  },
+  "reference": {
+    "kind": "read_only_baseline",
+    "source": "library-checker-solutions/data_structure/deque/main.cpp",
+    "source_sha256": "2973da61b12e54d942039c56c2b98c6c141cff023529fb97c1894cca0367d406"
+  },
+  "official_reference": {
+    "repository": "https://github.com/yosupo06/library-checker-problems",
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "license": "Apache-2.0",
+    "license_blob": "91554e3bd99da6761c82645d6c740ced590d17bb",
+    "path": "data_structure/deque/sol/correct.cpp",
+    "git_blob": "d4c799c108e77d39124fb14665ab144721560ed9",
+    "content_sha256": "0e4a2a922119cb09087f31b04bbfabfd65484edf8162c4785b088d85323aaf73"
+  },
+  "validation": {
+    "status": "online_ac",
+    "checked_at": "2026-08-19T20:50:44.591022Z",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch03_deque.cpp"
+    ],
+    "current_source_sha256": "eebe579702aa4578db74f3179a4df810371fd160132247bff83ffde78052cc3e",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 394863,
+    "current_source_time": 0.059,
+    "current_source_memory": 5521408,
+    "current_source_submission_time": "2026-08-19T18:30:50.209883Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "eebe579702aa4578db74f3179a4df810371fd160132247bff83ffde78052cc3e",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 394863,
+      "source_sha256": "eebe579702aa4578db74f3179a4df810371fd160132247bff83ffde78052cc3e",
+      "server_source_sha256": "eebe579702aa4578db74f3179a4df810371fd160132247bff83ffde78052cc3e",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.059,
+      "memory": 5521408,
+      "submission_time": "2026-08-19T18:30:50.209883Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-19T18:30:50.360070Z",
+      "recorded_at": "2026-08-19T18:31:26.034492Z"
+    }
+  ],
+  "notes": [
+    "The only submission candidate is this self-contained main.cpp.",
+    "The reference source is read-only comparison material and is not a submission input."
+  ]
+}

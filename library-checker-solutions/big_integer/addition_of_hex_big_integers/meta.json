@@ -1,0 +1,31 @@
+{
+    "schema_version":  1,
+    "name":  "addition_of_hex_big_integers",
+    "title":  "Addition of Hex Big Integers",
+    "category":  "big_integer",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "big_integer/addition_of_hex_big_integers/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+                                                    "big_integer/addition_of_hex_big_integers/base.hpp",
+                                                    "virtual:big_integer/addition_of_hex_big_integers/params.h"
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "864f798cd25e7cbcaa5dad84da0fc18dd0b8302809ae115401be6c3f737d0059"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

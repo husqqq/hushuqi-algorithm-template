@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "enumerate_palindromes",
+    "title":  "Enumerate Palindromes",
+    "category":  "string",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "10942b984f218327a5a00868e1ee2f08d67f4e62fa938286093e08f3b0ab77c3"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "adbf7e7ebb856d46febae09219a7975629c67df1eb84e13bb588fd3871370a42",
+                                  "submission_id":  387020,
+                                  "status":  "AC",
+                                  "time":  0.046,
+                                  "memory":  12161024,
+                                  "submission_time":  "2026-07-22T02:28:01.518424Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

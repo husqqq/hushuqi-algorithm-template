@@ -1,0 +1,124 @@
+{
+  "schema_version": 3,
+  "name": "range_chmin_chmax_add_range_sum",
+  "title": "Range Chmin Chmax Add Range Sum",
+  "category": "data_structure",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "data_structure/range_chmin_chmax_add_range_sum/main.cpp",
+    "source_sha256": "a9b7aefcfa5b037fb0f2c15e54c8b282e71047bcb65e65d4d0a265612d5ebb23",
+    "evidence": {
+      "method": "deterministic_generation",
+      "generator": {
+        "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
+        "sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+        "working_directory": ".",
+        "runner": "Python 3.13.14",
+        "argv": [
+          "--write-index"
+        ],
+        "generation_evidence": {
+          "schema_version": 2,
+          "problem_id": "data_structure/range_chmin_chmax_add_range_sum",
+          "source_path": "library-checker-template-solutions/data_structure/range_chmin_chmax_add_range_sum/main.cpp",
+          "source_sha256": "a9b7aefcfa5b037fb0f2c15e54c8b282e71047bcb65e65d4d0a265612d5ebb23",
+          "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
+          "generator_sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+          "working_directory": ".",
+          "runner": "Python 3.13.14",
+          "argv": [
+            "--write-index"
+          ],
+          "inputs": [
+            {
+              "path": "hushuqi算法竞赛模板/03-数据结构.md",
+              "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/include/full/3_3_011.hpp",
+              "sha256": "2dd052c910fa5fbc8aa23420a1cc4e4d73202e3161b8cdfd38febcc43ac31e9e"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/tests/test_ch03_beats.cpp",
+              "sha256": "c1aab73c00c87453ba5dea20d1b6f73563e7d437ccdf15362314c658ac2fb95a"
+            }
+          ],
+          "generated_sha256": "a9b7aefcfa5b037fb0f2c15e54c8b282e71047bcb65e65d4d0a265612d5ebb23",
+          "byte_equal": true
+        },
+        "generation_evidence_sha256": "a87b589eba9cfaca106e1e8c74acde9e2bc6bffde7588e13efaeca48e716d1e0"
+      },
+      "adapter_sha256": "649a493e0b7a2ad85f72ac6fc14b40df6525bc9a63a80e2bff03e3babeb1752c",
+      "template_inputs": [
+        {
+          "path": "hushuqi算法竞赛模板/03-数据结构.md",
+          "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/full/3_3_011.hpp",
+          "sha256": "2dd052c910fa5fbc8aa23420a1cc4e4d73202e3161b8cdfd38febcc43ac31e9e"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/tests/test_ch03_beats.cpp",
+          "sha256": "c1aab73c00c87453ba5dea20d1b6f73563e7d437ccdf15362314c658ac2fb95a"
+        }
+      ],
+      "temporary_regenerations": 2,
+      "byte_identical": true,
+      "source_sha256": "a9b7aefcfa5b037fb0f2c15e54c8b282e71047bcb65e65d4d0a265612d5ebb23",
+      "evidence_sha256": "e8be93a017213895d4a3b93ae8ceb27213c1e2f3d79bad6af869231e6a7296f5"
+    }
+  },
+  "reference": {
+    "kind": "read_only_baseline",
+    "source": "library-checker-solutions/data_structure/range_chmin_chmax_add_range_sum/main.cpp",
+    "source_sha256": "80528f71442ed0140af6779a1b9d12162a9e9c419470670b847edc0eb1318a1e"
+  },
+  "official_reference": {
+    "repository": "https://github.com/yosupo06/library-checker-problems",
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "license": "Apache-2.0",
+    "license_blob": "91554e3bd99da6761c82645d6c740ced590d17bb",
+    "path": "data_structure/range_chmin_chmax_add_range_sum/sol/correct.cpp",
+    "git_blob": "37929f49990dbe04b9f7e70d3b05bd894833289a",
+    "content_sha256": "7841cbf028e9cb5fb709d57a3d52a88170e96775113d3df46a38dde4b1e30fe2"
+  },
+  "validation": {
+    "status": "online_ac",
+    "checked_at": "2026-08-19T20:50:44.682016Z",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch03_beats.cpp"
+    ],
+    "current_source_sha256": "a9b7aefcfa5b037fb0f2c15e54c8b282e71047bcb65e65d4d0a265612d5ebb23",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 394405,
+    "current_source_time": 0.492,
+    "current_source_memory": 67514368,
+    "current_source_submission_time": "2026-08-18T18:58:42.860533Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "a9b7aefcfa5b037fb0f2c15e54c8b282e71047bcb65e65d4d0a265612d5ebb23",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 394405,
+      "source_sha256": "a9b7aefcfa5b037fb0f2c15e54c8b282e71047bcb65e65d4d0a265612d5ebb23",
+      "server_source_sha256": "a9b7aefcfa5b037fb0f2c15e54c8b282e71047bcb65e65d4d0a265612d5ebb23",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.492,
+      "memory": 67514368,
+      "submission_time": "2026-08-18T18:58:42.860533Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-18T18:58:42.974520Z",
+      "recorded_at": "2026-08-18T18:59:23.232796Z"
+    }
+  ],
+  "notes": [
+    "The only submission candidate is this self-contained main.cpp.",
+    "The reference source is read-only comparison material and is not a submission input."
+  ]
+}

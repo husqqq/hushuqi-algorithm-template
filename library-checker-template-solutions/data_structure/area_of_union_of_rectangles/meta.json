@@ -1,0 +1,124 @@
+{
+  "schema_version": 3,
+  "name": "area_of_union_of_rectangles",
+  "title": "Area of Union of Rectangles",
+  "category": "data_structure",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "data_structure/area_of_union_of_rectangles/main.cpp",
+    "source_sha256": "695561f839fc147fd70e0a41cb52dfe619b63b2a6d3b6d1561a3024206de1866",
+    "evidence": {
+      "method": "deterministic_generation",
+      "generator": {
+        "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
+        "sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+        "working_directory": ".",
+        "runner": "Python 3.13.14",
+        "argv": [
+          "--write-index"
+        ],
+        "generation_evidence": {
+          "schema_version": 2,
+          "problem_id": "data_structure/area_of_union_of_rectangles",
+          "source_path": "library-checker-template-solutions/data_structure/area_of_union_of_rectangles/main.cpp",
+          "source_sha256": "695561f839fc147fd70e0a41cb52dfe619b63b2a6d3b6d1561a3024206de1866",
+          "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
+          "generator_sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+          "working_directory": ".",
+          "runner": "Python 3.13.14",
+          "argv": [
+            "--write-index"
+          ],
+          "inputs": [
+            {
+              "path": "hushuqi算法竞赛模板/03-数据结构.md",
+              "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/include/full/3_3_012.hpp",
+              "sha256": "bd6315e9bda12d49001194a46cdab41f5d859259c2feef8cc0ff8d7a345ec165"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/tests/test_ch03_rect_union.cpp",
+              "sha256": "e299aa30cdf141eb292925301f72ecaf9e5d4f3a36ac5387ec2921e2ab5441c4"
+            }
+          ],
+          "generated_sha256": "695561f839fc147fd70e0a41cb52dfe619b63b2a6d3b6d1561a3024206de1866",
+          "byte_equal": true
+        },
+        "generation_evidence_sha256": "a342c5e31498176aec946796746f8ac31d5aca7daf4fea60a35d0d4449bc0970"
+      },
+      "adapter_sha256": "e92495d6f8a7e62d3e8c493735d21609baf9f17ca4bfa50a57bb587105ed7e18",
+      "template_inputs": [
+        {
+          "path": "hushuqi算法竞赛模板/03-数据结构.md",
+          "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/full/3_3_012.hpp",
+          "sha256": "bd6315e9bda12d49001194a46cdab41f5d859259c2feef8cc0ff8d7a345ec165"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/tests/test_ch03_rect_union.cpp",
+          "sha256": "e299aa30cdf141eb292925301f72ecaf9e5d4f3a36ac5387ec2921e2ab5441c4"
+        }
+      ],
+      "temporary_regenerations": 2,
+      "byte_identical": true,
+      "source_sha256": "695561f839fc147fd70e0a41cb52dfe619b63b2a6d3b6d1561a3024206de1866",
+      "evidence_sha256": "bbec90f18fbc7cae5b00764b00eae494b3b5a06ddac52ed10f10e822745c9f11"
+    }
+  },
+  "reference": {
+    "kind": "read_only_baseline",
+    "source": "library-checker-solutions/data_structure/area_of_union_of_rectangles/main.cpp",
+    "source_sha256": "ee268ba66083234a7173ed4219a6c325126568721670cb6b1aa145e822d50425"
+  },
+  "official_reference": {
+    "repository": "https://github.com/yosupo06/library-checker-problems",
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "license": "Apache-2.0",
+    "license_blob": "91554e3bd99da6761c82645d6c740ced590d17bb",
+    "path": "data_structure/area_of_union_of_rectangles/sol/correct.cpp",
+    "git_blob": "137b84c08d3da20b0ccf3d8c79d94ddabe745fe0",
+    "content_sha256": "109b27fbeaaf510144565d42bee032bcbf46b728998ee00264132d84aab71361"
+  },
+  "validation": {
+    "status": "online_ac",
+    "checked_at": "2026-08-19T20:50:44.582545Z",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch03_rect_union.cpp"
+    ],
+    "current_source_sha256": "695561f839fc147fd70e0a41cb52dfe619b63b2a6d3b6d1561a3024206de1866",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 394860,
+    "current_source_time": 1.559,
+    "current_source_memory": 225660928,
+    "current_source_submission_time": "2026-08-19T18:22:03.37889Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "695561f839fc147fd70e0a41cb52dfe619b63b2a6d3b6d1561a3024206de1866",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 394860,
+      "source_sha256": "695561f839fc147fd70e0a41cb52dfe619b63b2a6d3b6d1561a3024206de1866",
+      "server_source_sha256": "695561f839fc147fd70e0a41cb52dfe619b63b2a6d3b6d1561a3024206de1866",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.559,
+      "memory": 225660928,
+      "submission_time": "2026-08-19T18:22:03.37889Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-19T18:22:03.516532Z",
+      "recorded_at": "2026-08-19T18:22:49.932804Z"
+    }
+  ],
+  "notes": [
+    "The only submission candidate is this self-contained main.cpp.",
+    "The reference source is read-only comparison material and is not a submission input."
+  ]
+}

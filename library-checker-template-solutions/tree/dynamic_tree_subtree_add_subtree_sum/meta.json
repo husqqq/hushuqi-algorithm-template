@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "dynamic_tree_subtree_add_subtree_sum",
+  "title": "Dynamic Tree Subtree Add Subtree Sum",
+  "category": "tree",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "tree/dynamic_tree_subtree_add_subtree_sum/main.cpp",
+    "source_sha256": "03eb2530894fe787f882a691220baa830bf1b093ccad7773ea1d4ea0ab9deb64"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "tree",
+    "problem": "dynamic_tree_subtree_add_subtree_sum"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "03eb2530894fe787f882a691220baa830bf1b093ccad7773ea1d4ea0ab9deb64",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch06_dynamic_subtree_add.cpp"
+    ],
+    "checked_at": "2026-08-21T23:41:59.331767Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395921,
+    "current_source_time": 0.791,
+    "current_source_memory": 21086208,
+    "current_source_submission_time": "2026-08-21T23:41:29.552337Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "03eb2530894fe787f882a691220baa830bf1b093ccad7773ea1d4ea0ab9deb64",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395921,
+      "source_sha256": "03eb2530894fe787f882a691220baa830bf1b093ccad7773ea1d4ea0ab9deb64",
+      "server_source_sha256": "03eb2530894fe787f882a691220baa830bf1b093ccad7773ea1d4ea0ab9deb64",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.791,
+      "memory": 21086208,
+      "submission_time": "2026-08-21T23:41:29.552337Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T23:41:29.910416Z",
+      "recorded_at": "2026-08-21T23:41:59.330997Z"
+    }
+  ]
+}

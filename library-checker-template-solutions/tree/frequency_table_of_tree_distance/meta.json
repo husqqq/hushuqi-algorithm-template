@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "frequency_table_of_tree_distance",
+  "title": "Frequency Table of Tree Distance",
+  "category": "tree",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "tree/frequency_table_of_tree_distance/main.cpp",
+    "source_sha256": "fb607e6b75a270a745cf16ea769d20590caf5e2fe7078fe5155dca69c8c6d56b"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "tree",
+    "problem": "frequency_table_of_tree_distance"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "fb607e6b75a270a745cf16ea769d20590caf5e2fe7078fe5155dca69c8c6d56b",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch06_distance_frequency.cpp"
+    ],
+    "checked_at": "2026-08-21T23:33:08.414382Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395913,
+    "current_source_time": 1.544,
+    "current_source_memory": 25931776,
+    "current_source_submission_time": "2026-08-21T23:32:39.297766Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "fb607e6b75a270a745cf16ea769d20590caf5e2fe7078fe5155dca69c8c6d56b",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395913,
+      "source_sha256": "fb607e6b75a270a745cf16ea769d20590caf5e2fe7078fe5155dca69c8c6d56b",
+      "server_source_sha256": "fb607e6b75a270a745cf16ea769d20590caf5e2fe7078fe5155dca69c8c6d56b",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.544,
+      "memory": 25931776,
+      "submission_time": "2026-08-21T23:32:39.297766Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T23:32:39.644998Z",
+      "recorded_at": "2026-08-21T23:33:08.413667Z"
+    }
+  ]
+}

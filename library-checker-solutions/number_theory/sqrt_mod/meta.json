@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "sqrt_mod",
+    "title":  "Sqrt Mod",
+    "category":  "number_theory",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "9baadedc3fe801e45d795b0ded87389e56fda7e06ea6ceb9148c883b148667e1"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "9baadedc3fe801e45d795b0ded87389e56fda7e06ea6ceb9148c883b148667e1",
+                                  "submission_id":  387100,
+                                  "status":  "AC",
+                                  "time":  0.071,
+                                  "memory":  1425408,
+                                  "submission_time":  "2026-07-22T03:00:44.017236Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

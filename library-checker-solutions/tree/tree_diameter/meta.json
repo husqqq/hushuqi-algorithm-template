@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "tree_diameter",
+    "title":  "Tree Diameter",
+    "category":  "tree",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "11732e2e565474089d35912f2ed7156981229be75240f505a60087428248d1fb"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "c779ed0e15707ea8cc411a24cad4018de2c0651d63c5a04476e560527e12e10f",
+                                  "submission_id":  387066,
+                                  "status":  "AC",
+                                  "time":  0.211,
+                                  "memory":  42991616,
+                                  "submission_time":  "2026-07-22T02:49:28.105483Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

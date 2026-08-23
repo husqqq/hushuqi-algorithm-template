@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "matrix_det_arbitrary_mod",
+    "title":  "Determinant of Matrix (Arbitrary Mod)",
+    "category":  "linear_algebra",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "b6ab52f2e74ee3e7d4babcca5b9f6e2ace8e8ab15a0c024596b44066edbe78ca"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "a546d527e60cb3182daff6743d727e2715aec32e069b764a137b49dac30a3985",
+                                  "submission_id":  387127,
+                                  "status":  "AC",
+                                  "time":  0.178,
+                                  "memory":  1892352,
+                                  "submission_time":  "2026-07-22T03:11:40.510372Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

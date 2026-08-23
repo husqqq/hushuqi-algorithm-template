@@ -1,0 +1,68 @@
+{
+  "schema_version": 3,
+  "name": "polynomial_taylor_shift",
+  "title": "Polynomial Taylor Shift",
+  "category": "polynomial",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "polynomial/polynomial_taylor_shift/main.cpp",
+    "source_sha256": "d1d9e36bebffcdb0c583548ec12b44ef112fb77c6dddfc50be45d77339a9e25e"
+  },
+  "reference": {
+    "kind": "template",
+    "upstream_sha256": "2c1d932f3fa763dd79c72fd938ccabac239a62b9ed508c3a612e842092721631",
+    "imported_sha256": "73db27de236f9327301ed83999398803d5b79905f03383a2992f312bea59c7ca"
+  },
+  "validation": {
+    "status": "online_ac",
+    "checked_at": "2026-08-21T14:01:01.230112Z",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch10_poly_points.cpp"
+    ],
+    "current_source_sha256": "d1d9e36bebffcdb0c583548ec12b44ef112fb77c6dddfc50be45d77339a9e25e",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395667,
+    "current_source_time": 0.13,
+    "current_source_memory": 21880832,
+    "current_source_submission_time": "2026-08-21T14:00:22.098389Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "d1d9e36bebffcdb0c583548ec12b44ef112fb77c6dddfc50be45d77339a9e25e",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 394013,
+      "source_sha256": "1b9cccf6357f5a28c37cbc1a08a2792440ac691511a4e821b3149a8ec0aefc8e",
+      "server_source_sha256": "1b9cccf6357f5a28c37cbc1a08a2792440ac691511a4e821b3149a8ec0aefc8e",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.144,
+      "memory": 21540864,
+      "submission_time": "2026-08-16T18:42:04.243816Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-16T18:42:04.389419Z",
+      "recorded_at": "2026-08-16T18:43:18.195327Z"
+    },
+    {
+      "submission_id": 395667,
+      "source_sha256": "d1d9e36bebffcdb0c583548ec12b44ef112fb77c6dddfc50be45d77339a9e25e",
+      "server_source_sha256": "d1d9e36bebffcdb0c583548ec12b44ef112fb77c6dddfc50be45d77339a9e25e",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.13,
+      "memory": 21880832,
+      "submission_time": "2026-08-21T14:00:22.098389Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T14:00:22.312805Z",
+      "recorded_at": "2026-08-21T14:01:01.229308Z"
+    }
+  ],
+  "notes": [
+    "reference、historical_submission 和旧 submission_attempts 只描述历史源码，不是当前 main.cpp 的在线判定。"
+  ]
+}

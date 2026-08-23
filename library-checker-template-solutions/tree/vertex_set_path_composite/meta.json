@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "vertex_set_path_composite",
+  "title": "Vertex Set Path Composite",
+  "category": "tree",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "tree/vertex_set_path_composite/main.cpp",
+    "source_sha256": "855d0e43f83274b2a64d77bf2fdb45b86bddb6b5273973980bc7e5238553c9c0"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "tree",
+    "problem": "vertex_set_path_composite"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "855d0e43f83274b2a64d77bf2fdb45b86bddb6b5273973980bc7e5238553c9c0",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch06_path_composite.cpp"
+    ],
+    "checked_at": "2026-08-21T23:03:20.880942Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395903,
+    "current_source_time": 0.883,
+    "current_source_memory": 44720128,
+    "current_source_submission_time": "2026-08-21T23:02:47.815584Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "855d0e43f83274b2a64d77bf2fdb45b86bddb6b5273973980bc7e5238553c9c0",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395903,
+      "source_sha256": "855d0e43f83274b2a64d77bf2fdb45b86bddb6b5273973980bc7e5238553c9c0",
+      "server_source_sha256": "855d0e43f83274b2a64d77bf2fdb45b86bddb6b5273973980bc7e5238553c9c0",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.883,
+      "memory": 44720128,
+      "submission_time": "2026-08-21T23:02:47.815584Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T23:02:48.167174Z",
+      "recorded_at": "2026-08-21T23:03:20.880010Z"
+    }
+  ]
+}

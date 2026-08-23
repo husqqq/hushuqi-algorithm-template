@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "dirichlet_convolution_and_prefix_sums",
+  "title": "Dirichlet Convolution and Prefix Sums",
+  "category": "number_theory",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "number_theory/dirichlet_convolution_and_prefix_sums/main.cpp",
+    "source_sha256": "b44f203098cdc52d720df8a3212e117c87bf29783f7ee90a16260c7d2d2c626b"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "number_theory",
+    "problem": "dirichlet_convolution_and_prefix_sums"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "b44f203098cdc52d720df8a3212e117c87bf29783f7ee90a16260c7d2d2c626b",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch07_quotient_dirichlet.cpp"
+    ],
+    "checked_at": "2026-08-21T16:58:51.869490Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395731,
+    "current_source_time": 4.438,
+    "current_source_memory": 112893952,
+    "current_source_submission_time": "2026-08-21T16:57:19.559417Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "b44f203098cdc52d720df8a3212e117c87bf29783f7ee90a16260c7d2d2c626b",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395731,
+      "source_sha256": "b44f203098cdc52d720df8a3212e117c87bf29783f7ee90a16260c7d2d2c626b",
+      "server_source_sha256": "b44f203098cdc52d720df8a3212e117c87bf29783f7ee90a16260c7d2d2c626b",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 4.438,
+      "memory": 112893952,
+      "submission_time": "2026-08-21T16:57:19.559417Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T16:57:19.793266Z",
+      "recorded_at": "2026-08-21T16:58:51.868830Z"
+    }
+  ]
+}

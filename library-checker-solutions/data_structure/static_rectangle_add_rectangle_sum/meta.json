@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "static_rectangle_add_rectangle_sum",
+    "title":  "Static Rectangle Add Rectangle Sum",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "20a91ddebf5c8c168a00a4dfde0e464db8f289076a10049a1790b2b94b425127"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "216601b0c9fbbdffb173b30a785e9e7dd7e80a8329065dd0fc6d5757f1da9813",
+                                  "submission_id":  386996,
+                                  "status":  "AC",
+                                  "time":  0.855,
+                                  "memory":  81424384,
+                                  "submission_time":  "2026-07-22T02:16:44.60357Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "k_shortest_walk",
+  "title": "K-Shortest Walk",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/k_shortest_walk/main.cpp",
+    "source_sha256": "fa48c665e0dba33562a11907b87feb83be08fa10b0695013bf4eefaace34d1ef"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "k_shortest_walk"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "fa48c665e0dba33562a11907b87feb83be08fa10b0695013bf4eefaace34d1ef",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_shortest.cpp"
+    ],
+    "checked_at": "2026-08-21T10:26:58.360635Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395584,
+    "current_source_time": 0.365,
+    "current_source_memory": 140210176,
+    "current_source_submission_time": "2026-08-21T10:26:23.33067Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "fa48c665e0dba33562a11907b87feb83be08fa10b0695013bf4eefaace34d1ef",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395584,
+      "source_sha256": "fa48c665e0dba33562a11907b87feb83be08fa10b0695013bf4eefaace34d1ef",
+      "server_source_sha256": "fa48c665e0dba33562a11907b87feb83be08fa10b0695013bf4eefaace34d1ef",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.365,
+      "memory": 140210176,
+      "submission_time": "2026-08-21T10:26:23.33067Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T10:26:23.510601Z",
+      "recorded_at": "2026-08-21T10:26:58.360005Z"
+    }
+  ]
+}

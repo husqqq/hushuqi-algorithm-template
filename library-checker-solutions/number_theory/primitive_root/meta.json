@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "primitive_root",
+    "title":  "Primitive Root",
+    "category":  "number_theory",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "88aaff708a5063e3dab5d374237f408f18687632fdbd36e9a9ae5e800579aa86"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "eba30310a896c02cb91b8816781d7304cad13634af10c8fb5e8e6844910f213f",
+                                  "submission_id":  387202,
+                                  "status":  "AC",
+                                  "time":  0.021,
+                                  "memory":  839680,
+                                  "submission_time":  "2026-07-22T04:01:17.810139Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

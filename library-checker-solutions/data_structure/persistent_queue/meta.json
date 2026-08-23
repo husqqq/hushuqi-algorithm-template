@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "persistent_queue",
+    "title":  "Persistent Queue",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "af90cc4d4f23a17f4c029a0a67886e20924417e20d98d55d36f7732af59906ac"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "af90cc4d4f23a17f4c029a0a67886e20924417e20d98d55d36f7732af59906ac",
+                                  "submission_id":  387009,
+                                  "status":  "AC",
+                                  "time":  0.157,
+                                  "memory":  49930240,
+                                  "submission_time":  "2026-07-22T02:24:06.006521Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

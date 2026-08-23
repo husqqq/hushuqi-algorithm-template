@@ -1,0 +1,783 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+unsigned long long kthRoot(unsigned long long n, int k)
+{
+    // n 是被开方的非负整数，k 是正整数次数；返回 floor(n^(1/k))。
+    assert(k > 0); // 调试检查，可删
+    if (k == 1 || n <= 1)
+    {
+        return n;
+    }
+    if (k >= 64)
+    {
+        return 1;
+    }
+    auto ok = [&](unsigned long long x)
+    {
+        unsigned __int128 y = 1;
+        for (int i = 0; i < k; i++)
+        {
+            y *= x;
+            if (y > n)
+            {
+                return false;
+            }
+        }
+        return true;
+    };
+    unsigned long long l = 1;
+    unsigned long long r = min(n, 1ULL << (64 / k + 1));
+    while (l < r)
+    {
+        unsigned long long m = l + (r - l + 1) / 2;
+        if (ok(m))
+        {
+            l = m;
+        }
+        else
+        {
+            r = m - 1;
+        }
+    }
+    return l;
+}
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+unsigned long long mul64(unsigned long long a, unsigned long long b,
+                         unsigned long long mod)
+{
+    // a、b 是乘数，mod 是正模数；返回 a*b mod mod。
+    assert(mod > 0); // 调试检查，可删
+    return (unsigned __int128)a * b % mod;
+}
+
+unsigned long long pow64(unsigned long long a, unsigned long long b,
+                         unsigned long long mod)
+{
+    // 返回 a^b 对正模数 mod 的最小非负余数。
+    assert(mod > 0); // 调试检查，可删
+    unsigned long long ans = 1 % mod;
+    a %= mod;
+    while (b)
+    {
+        if (b & 1)
+        {
+            ans = mul64(ans, a, mod);
+        }
+        a = mul64(a, a, mod);
+        b >>= 1;
+    }
+    return ans;
+}
+
+bool isPrime(unsigned long long n)
+{
+    // 返回 n 是否为质数；本底数集合在完整无符号 64 位范围内确定。
+    if (n < 2)
+    {
+        return false;
+    }
+    for (auto p : {2ULL, 3ULL, 5ULL, 7ULL, 11ULL, 13ULL, 17ULL, 19ULL,
+                   23ULL, 29ULL, 31ULL, 37ULL})
+    {
+        if (n % p == 0)
+        {
+            return n == p;
+        }
+    }
+    int s = countr_zero(n - 1);
+    auto d = (n - 1) >> s;
+    for (auto a : {2ULL, 325ULL, 9375ULL, 28178ULL, 450775ULL, 9780504ULL,
+                   1795265022ULL})
+    {
+        if (a % n == 0)
+        {
+            continue;
+        }
+        auto x = pow64(a % n, d, n);
+        if (x == 1 || x == n - 1)
+        {
+            continue;
+        }
+        bool ok = false;
+        for (int r = 1; r < s; r++)
+        {
+            x = mul64(x, x, n);
+            if (x == n - 1)
+            {
+                ok = true;
+                break;
+            }
+        }
+        if (!ok)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+unsigned long long pollard(unsigned long long n)
+{
+    // n 是大于 1 的合数；返回 n 的一个非平凡因子。
+    if (n % 2 == 0)
+    {
+        return 2;
+    }
+    static mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
+    while (true)
+    {
+        auto c = rng() % (n - 1) + 1;
+        auto x = rng() % n;
+        auto y = x;
+        auto d = 1ULL;
+        auto f = [&](unsigned long long z)
+        {
+            return (unsigned long long)(((unsigned __int128)mul64(z, z, n) + c) % n);
+        };
+        while (d == 1)
+        {
+            x = f(x);
+            y = f(f(y));
+            d = gcd(x > y ? x - y : y - x, n);
+        }
+        if (d != n)
+        {
+            return d;
+        }
+    }
+}
+
+vector<unsigned long long> factor64(unsigned long long n)
+{
+    // n 是正整数；返回升序质因子表并保留重数，n=1 返回空表。
+    assert(n > 0); // 调试检查，可删
+    vector<unsigned long long> ans;
+    auto dfs = [&](auto &&self, unsigned long long x) -> void
+    {
+        if (x == 1)
+        {
+            return;
+        }
+        if (isPrime(x))
+        {
+            ans.push_back(x);
+            return;
+        }
+        auto d = pollard(x);
+        self(self, d);
+        self(self, x / d);
+    };
+    dfs(dfs, n);
+    sort(ans.begin(), ans.end());
+    return ans;
+}
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+constexpr int inf = 1E9;
+constexpr long long INF = numeric_limits<long long>::max() / 4;
+constexpr long double eps = 1E-12L;
+
+template <class T> bool chmin(T &a, const T &b)
+{
+    if (b < a)
+    {
+        a = b;
+        return true;
+    }
+    return false;
+}
+
+template <class T> bool chmax(T &a, const T &b)
+{
+    if (a < b)
+    {
+        a = b;
+        return true;
+    }
+    return false;
+}
+
+long long mulMod(long long a, long long b, long long m)
+{
+    // a、b 是乘数，m 是正模数；返回 a*b mod m 的最小非负余数。
+    assert(m > 0); // 调试检查，可删
+    a %= m;
+    b %= m;
+    if (a < 0)
+    {
+        a += m;
+    }
+    if (b < 0)
+    {
+        b += m;
+    }
+    constexpr long long limit = 3037000499LL;
+    if (m <= limit)
+    {
+        return a * b % m;
+    }
+    return (__int128)a * b % m;
+}
+
+long long powerMod(long long a, unsigned long long b, long long m)
+{
+    // a 是可为负的底数，b 是非负指数，m 是正模数；返回 a^b mod m。
+    assert(m > 0); // 调试检查，可删
+    long long r = 1 % m;
+    a %= m;
+    if (a < 0)
+    {
+        a += m;
+    }
+    while (b)
+    {
+        if (b & 1)
+        {
+            r = mulMod(r, a, m);
+        }
+        a = mulMod(a, a, m);
+        b >>= 1;
+    }
+    return r;
+}
+
+unsigned long long magnitude(long long x)
+{
+    // 返回 x 的无符号幅值，最小负数也可表示。
+    auto u = (unsigned long long)x;
+    return x < 0 ? 0ULL - u : u;
+}
+
+unsigned long long binaryGcd(long long a, long long b)
+{
+    // 返回 gcd(|a|,|b|)，约定 gcd(0,0)=0。
+    auto x = magnitude(a);
+    auto y = magnitude(b);
+    if (x == 0)
+    {
+        return y;
+    }
+    if (y == 0)
+    {
+        return x;
+    }
+    int z = countr_zero(x | y);
+    x >>= countr_zero(x);
+    do
+    {
+        y >>= countr_zero(y);
+        if (x > y)
+        {
+            swap(x, y);
+        }
+        y -= x;
+    } while (y != 0);
+    return x << z;
+}
+
+optional<unsigned long long> safeLcm(long long a, long long b)
+{
+    // 返回非负 lcm(|a|,|b|)，超过无符号 64 位范围时返回空。
+    if (a == 0 || b == 0)
+    {
+        return 0;
+    }
+    auto x = magnitude(a);
+    auto y = magnitude(b);
+    auto g = gcd(x, y);
+    unsigned __int128 v = (unsigned __int128)(x / g) * y;
+    if (v > numeric_limits<unsigned long long>::max())
+    {
+        return nullopt;
+    }
+    return (unsigned long long)v;
+}
+
+using Exgcd = array<__int128, 3>; // [0]=gcd(a,b)，[1]=x，[2]=y，后二者是一组 Bézout 系数
+
+Exgcd exgcd(long long a, long long b)
+{
+    // a、b 是原方程系数；返回 {gcd(a,b),x,y}，满足 a*x+b*y=gcd(a,b)。
+    __int128 r0 = a;
+    __int128 r1 = b;
+    __int128 x0 = 1;
+    __int128 x1 = 0;
+    __int128 y0 = 0;
+    __int128 y1 = 1;
+    while (r1)
+    {
+        __int128 q = r0 / r1;
+        __int128 nr = r0 - q * r1;
+        __int128 nx = x0 - q * x1;
+        __int128 ny = y0 - q * y1;
+        r0 = r1;
+        r1 = nr;
+        x0 = x1;
+        x1 = nx;
+        y0 = y1;
+        y1 = ny;
+    }
+    if (r0 < 0)
+    {
+        r0 = -r0;
+        x0 = -x0;
+        y0 = -y0;
+    }
+    return {r0, x0, y0};
+}
+
+optional<long long> invMod(long long a, long long m)
+{
+    // a 是待求逆整数，m 是大于 1 的模数；返回最小非负逆元，不可逆时返回空。
+    assert(m > 1); // 调试检查，可删
+    auto [g, x, y] = exgcd(a, m);
+    if (g != 1)
+    {
+        return nullopt;
+    }
+    x %= m;
+    if (x < 0)
+    {
+        x += m;
+    }
+    return (long long)x;
+}
+
+using Cong = array<int, 2>; // [0]=最小非负余数，[1]=正周期
+
+optional<Cong> congruence(long long a, long long b, long long m)
+{
+    // 解 ax=b (mod m)，返回 {最小非负解,周期}；无解返回空。
+    assert(m > 0); // 调试检查，可删
+    long long g = (long long)binaryGcd(a, m);
+    if (b % g)
+    {
+        return nullopt;
+    }
+    long long q = m / g;
+    if (q == 1)
+    {
+        return Cong{0, 1};
+    }
+    long long r = mulMod(b / g, *invMod(a / g, q), q);
+    return Cong{r, q};
+}
+
+optional<Cong> crt(Cong a, Cong b)
+{
+    // 合并 x≡a[0] (mod a[1]) 与 x≡b[0] (mod b[1])；返回 {最小非负解,lcm 模}，无解或新模越界时返回空。
+    assert(a[1] > 0 && b[1] > 0); // 调试检查，可删
+    auto [g, x, y] = exgcd(a[1], b[1]);
+    __int128 d = (__int128)b[0] - a[0];
+    if (d % g)
+    {
+        return nullopt;
+    }
+    long long q = (long long)((__int128)b[1] / g);
+    __int128 k = 0;
+    if (q > 1)
+    {
+        k = d / g * x % q;
+        if (k < 0)
+        {
+            k += q;
+        }
+    }
+    __int128 m = (__int128)a[1] / g * b[1];
+    if (m > numeric_limits<long long>::max())
+    {
+        return nullopt;
+    }
+    __int128 r = ((__int128)a[1] * k + a[0]) % m;
+    if (r < 0)
+    {
+        r += m;
+    }
+    return Cong{(long long)r, (long long)m};
+}
+
+int invPrime(int a, int mod)
+{
+    // 返回非零剩余 a 在素数模 mod 下的逆元。
+    assert(0 < a && a < mod); // 调试检查，可删
+    int ans = 1;
+    int b = mod - 2;
+    while (b)
+    {
+        if (b & 1)
+        {
+            ans = mulMod(ans, a, mod);
+        }
+        a = mulMod(a, a, mod);
+        b >>= 1;
+    }
+    return ans;
+}
+
+vector<int> invTable(int n, int mod)
+{
+    // 返回 1..n 在素数模 mod 下的逆元表，位置 0 保持 0。
+    assert(0 <= n && n < mod); // 调试检查，可删
+    vector<int> inv(n + 1);
+    if (n >= 1)
+    {
+        inv[1] = 1;
+    }
+    for (int i = 2; i <= n; i++)
+    {
+        inv[i] = mod - mulMod(mod / i, inv[mod % i], mod);
+    }
+    return inv;
+}
+
+vector<int> batchInv(const vector<int> &a, int mod)
+{
+    // 返回 a 中每个非零剩余在素数模 mod 下的逆元。
+    int n = a.size();
+    vector<int> pre(n + 1, 1);
+    for (int i = 0; i < n; i++)
+    {
+        assert(0 < a[i] && a[i] < mod); // 调试检查，可删
+        pre[i + 1] = mulMod(pre[i], a[i], mod);
+    }
+    int cur = invPrime(pre[n], mod);
+    vector<int> ans(n);
+    for (int i = n - 1; i >= 0; i--)
+    {
+        ans[i] = mulMod(cur, pre[i], mod);
+        cur = mulMod(cur, a[i], mod);
+    }
+    return ans;
+}
+
+optional<long long> bsgs(long long a, long long b, long long m,
+                         long long ord = -1)
+{
+    // 在 [0,ord) 内求最小解；ord=-1 时使用通用上界 m，无解返回空。
+    assert(m > 0); // 调试检查，可删
+    if (m == 1)
+    {
+        return 0;
+    }
+    a %= m;
+    b %= m;
+    if (a < 0)
+    {
+        a += m;
+    }
+    if (b < 0)
+    {
+        b += m;
+    }
+    assert(binaryGcd(a, m) == 1); // 调试检查，可删
+    if (ord == -1)
+    {
+        ord = m;
+    }
+    assert(ord > 0); // 调试检查，可删
+    long long n = kthRoot((unsigned long long)ord, 2);
+    if (n <= (ord - 1) / n && n * n < ord)
+    {
+        n++;
+    }
+    unordered_map<long long, long long> baby;
+    long long x = 1;
+    for (long long j = 0; j < n; j++)
+    {
+        if (!baby.contains(x))
+        {
+            baby[x] = j;
+        }
+        x = mulMod(x, a, m);
+    }
+    long long step = powerMod(*invMod(a, m), n, m);
+    x = b;
+    long long rounds = ord / n + (ord % n != 0);
+    for (long long i = 0; i < rounds; i++)
+    {
+        if (auto it = baby.find(x); it != baby.end())
+        {
+            long long j = it->second;
+            if (j < ord && i <= (ord - 1 - j) / n)
+            {
+                return i * n + j;
+            }
+        }
+        x = mulMod(x, step, m);
+    }
+    return nullopt;
+}
+
+optional<long long> exbsgs(long long a, long long b, long long m)
+{
+    // 求 a^x=b (mod m) 的最小非负解，不要求 a 与 m 互素。
+    assert(m > 0); // 调试检查，可删
+    a %= m;
+    b %= m;
+    if (a < 0)
+    {
+        a += m;
+    }
+    if (b < 0)
+    {
+        b += m;
+    }
+    if (m == 1 || b == 1 % m)
+    {
+        return 0;
+    }
+    long long k = 1;
+    long long z = 0;
+    while (true)
+    {
+        long long g = (long long)binaryGcd(a, m);
+        if (g == 1)
+        {
+            break;
+        }
+        if (b == k)
+        {
+            return z;
+        }
+        if (b % g)
+        {
+            return nullopt;
+        }
+        b /= g;
+        m /= g;
+        z++;
+        k = mulMod(k, a / g, m);
+    }
+    if (m == 1)
+    {
+        return z;
+    }
+    auto x = bsgs(a, mulMod(b, *invMod(k, m), m), m);
+    if (!x)
+    {
+        return nullopt;
+    }
+    return *x + z;
+}
+
+optional<long long> sqrtMod(long long n, long long p)
+{
+    // n 是被开方数，p 是素数模；返回较小平方根，非二次剩余返回空。
+    assert(p >= 2); // 调试检查，可删
+    n %= p;
+    if (n < 0)
+    {
+        n += p;
+    }
+    if (n == 0)
+    {
+        return 0;
+    }
+    if (p == 2)
+    {
+        return n;
+    }
+    if (powerMod(n, (p - 1) / 2, p) != 1)
+    {
+        return nullopt;
+    }
+    if (p % 4 == 3)
+    {
+        long long x = powerMod(n, (p + 1) / 4, p);
+        return min(x, p - x);
+    }
+    long long q = p - 1;
+    long long s = 0;
+    while (!(q & 1))
+    {
+        q >>= 1;
+        s++;
+    }
+    long long z = 2;
+    while (powerMod(z, (p - 1) / 2, p) != p - 1)
+    {
+        z++;
+    }
+    long long c = powerMod(z, q, p);
+    long long x = powerMod(n, (q + 1) / 2, p);
+    long long t = powerMod(n, q, p);
+    long long m = s;
+    while (t != 1)
+    {
+        long long i = 1;
+        long long y = mulMod(t, t, p);
+        while (y != 1)
+        {
+            y = mulMod(y, y, p);
+            i++;
+        }
+        long long b = powerMod(c, 1ULL << (m - i - 1), p);
+        x = mulMod(x, b, p);
+        c = mulMod(b, b, p);
+        t = mulMod(t, c, p);
+        m = i;
+    }
+    return min(x, p - x);
+}
+
+vector<pair<long long, long long>> circlePoints(long long n)
+{
+    // n 是非负半径平方；返回满足 x*x+y*y=n 的全部整数点，按字典序排列。
+    assert(n >= 0); // 调试检查，可删
+    set<pair<long long, long long>> s;
+    for (long long x = 0; x == 0 || x <= n / x; x++)
+    {
+        long long y2 = n - x * x;
+        long long y = kthRoot((unsigned long long)y2, 2);
+        if (y * y != y2)
+        {
+            continue;
+        }
+        for (int sx : {-1, 1})
+        {
+            for (int sy : {-1, 1})
+            {
+                s.insert({sx * x, sy * y});
+                s.insert({sx * y, sy * x});
+            }
+        }
+    }
+    return {s.begin(), s.end()};
+}
+
+vector<pair<long long, long long>> twoSquareRepresentations(long long n)
+{
+    // n 是非负整数；返回全部非负有序对 (x,y) 使 x^2+y^2=n。
+    assert(n >= 0); // 调试检查，可删
+    if (n == 0)
+    {
+        return {{0, 0}};
+    }
+    auto raw = factor64(n);
+    vector<pair<long long, int>> factors;
+    for (auto p : raw)
+    {
+        if (factors.empty() || factors.back().first != (long long)p)
+        {
+            factors.push_back({p, 1});
+        }
+        else
+        {
+            factors.back().second++;
+        }
+    }
+    using G = pair<__int128, __int128>;
+    auto mul = [](G a, G b)
+    {
+        return G{a.first * b.first - a.second * b.second,
+                 a.first * b.second + a.second * b.first};
+    };
+    auto power = [&](G a, int e)
+    {
+        G r{1, 0};
+        while (e)
+        {
+            if (e & 1)
+            {
+                r = mul(r, a);
+            }
+            a = mul(a, a);
+            e >>= 1;
+        }
+        return r;
+    };
+    auto primeRepresentation = [&](long long p)
+    {
+        if (p == 2)
+        {
+            return G{1, 1};
+        }
+        long long r = *sqrtMod(p - 1, p);
+        long long a = p, b = r;
+        while (b > p / b)
+        {
+            long long c = a % b;
+            a = b;
+            b = c;
+        }
+        long long y2 = p - b * b;
+        long long y = kthRoot((unsigned long long)y2, 2);
+        assert(y * y == y2);
+        return G{b, y};
+    };
+
+    vector<G> reps{{1, 0}};
+    for (auto [p, e] : factors)
+    {
+        if (p % 4 == 3)
+        {
+            if (e & 1)
+            {
+                return {};
+            }
+            __int128 scale = 1;
+            for (int i = 0; i < e / 2; i++) scale *= p;
+            for (auto &z : reps) z.first *= scale, z.second *= scale;
+            continue;
+        }
+        G pi = primeRepresentation(p);
+        if (p == 2)
+        {
+            G z = power(pi, e);
+            for (auto &v : reps) v = mul(v, z);
+            continue;
+        }
+        vector<G> left(e + 1), right(e + 1);
+        left[0] = right[0] = {1, 0};
+        G conjugate{pi.first, -pi.second};
+        for (int i = 0; i < e; i++)
+        {
+            left[i + 1] = mul(left[i], pi);
+            right[i + 1] = mul(right[i], conjugate);
+        }
+        vector<G> next;
+        for (G base : reps)
+        {
+            for (int j = 0; j <= e; j++)
+            {
+                next.push_back(mul(base, mul(left[j], right[e - j])));
+            }
+        }
+        reps.swap(next);
+    }
+    set<pair<long long, long long>> answer;
+    for (auto [x0, y0] : reps)
+    {
+        __int128 x = x0, y = y0;
+        for (int i = 0; i < 4; i++)
+        {
+            __int128 nx = -y, ny = x;
+            x = nx;
+            y = ny;
+            if (x >= 0 && y >= 0)
+            {
+                answer.insert({(long long)x, (long long)y});
+            }
+        }
+    }
+    return {answer.begin(), answer.end()};
+}
+
+signed main()
+{
+    int t; cin >> t;
+    while (t--)
+    {
+        long long n; cin >> n;
+        auto ans = twoSquareRepresentations(n);
+        cout << ans.size() << '\n';
+        for (auto [x, y] : ans) cout << x << ' ' << y << '\n';
+    }
+}

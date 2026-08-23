@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "maximum_independent_set",
+  "title": "Maximum Independent Set",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/maximum_independent_set/main.cpp",
+    "source_sha256": "01f3aa8a027b5d615b7479cecac0cf5e6beb46c54f4ee124dd8fd3b668b2b18e"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "maximum_independent_set"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "01f3aa8a027b5d615b7479cecac0cf5e6beb46c54f4ee124dd8fd3b668b2b18e",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_maximum_independent_set.cpp"
+    ],
+    "checked_at": "2026-08-21T11:23:04.977657Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395599,
+    "current_source_time": 0.001,
+    "current_source_memory": 823296,
+    "current_source_submission_time": "2026-08-21T11:22:42.893836Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "01f3aa8a027b5d615b7479cecac0cf5e6beb46c54f4ee124dd8fd3b668b2b18e",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395599,
+      "source_sha256": "01f3aa8a027b5d615b7479cecac0cf5e6beb46c54f4ee124dd8fd3b668b2b18e",
+      "server_source_sha256": "01f3aa8a027b5d615b7479cecac0cf5e6beb46c54f4ee124dd8fd3b668b2b18e",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.001,
+      "memory": 823296,
+      "submission_time": "2026-08-21T11:22:42.893836Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T11:22:43.085207Z",
+      "recorded_at": "2026-08-21T11:23:04.977105Z"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "rectangle_sum",
+    "title":  "Rectangle Sum",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "94007fa8c44172acb4016a9999c9d61f47d596da07cd8d1adcd1b069b4f7aa82"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "827eee4d588f6b7487ff16a56f0b295fcbdc0cb196cd051eff95d4a99e5a483d",
+                                  "submission_id":  386989,
+                                  "status":  "AC",
+                                  "time":  0.244,
+                                  "memory":  18882560,
+                                  "submission_time":  "2026-07-22T02:12:04.20175Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,30 @@
+{
+    "schema_version":  1,
+    "name":  "range_linear_add_range_min",
+    "title":  "Range Linear Add Range Min",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "data_structure/range_linear_add_range_min/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "d27995ad17131fc8e8a40bfaede746288e07ac55e1772323ac149cfd7cd4fe84"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

@@ -1,0 +1,21 @@
+{
+    "schema_version":  1,
+    "name":  "exp_of_formal_power_series_sparse",
+    "title":  "Exp of Formal Power Series (Sparse)",
+    "category":  "polynomial",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "f1fd0131f53808e905cd8dad2d25e236cf76cec6e74ecb83779fd4f4ee2270e5",
+                       "imported_sha256":  "a6098af89ec42bc259d97f8d1226beb85fab6f2ba2485aec9fe522ed113e326e"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

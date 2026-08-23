@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "lca",
+    "title":  "Lowest Common Ancestor",
+    "category":  "tree",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "2eed117546ca8455c20af696fa3d3adf023a7b38aed3cb9e341cc83f9adea03d"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "1d88cd1ddd4763e157ba3a9c59e6a1aacdd6665875b3070b43c8d9d359d3677d",
+                                  "submission_id":  387068,
+                                  "status":  "AC",
+                                  "time":  0.48,
+                                  "memory":  46284800,
+                                  "submission_time":  "2026-07-22T02:50:22.502761Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

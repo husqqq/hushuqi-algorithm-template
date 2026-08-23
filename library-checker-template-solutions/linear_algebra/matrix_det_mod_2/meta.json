@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "matrix_det_mod_2",
+  "title": "Determinant of Matrix (Mod 2)",
+  "category": "linear_algebra",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "linear_algebra/matrix_det_mod_2/main.cpp",
+    "source_sha256": "6de5febafbacd6577e25173543a2ea1c8800687e9c35ac94ca976925ee07d22d"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "linear_algebra",
+    "problem": "matrix_det_mod_2"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "6de5febafbacd6577e25173543a2ea1c8800687e9c35ac94ca976925ee07d22d",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch09_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T19:03:34.757276Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395792,
+    "current_source_time": 0.407,
+    "current_source_memory": 5279744,
+    "current_source_submission_time": "2026-08-21T19:02:55.459631Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "6de5febafbacd6577e25173543a2ea1c8800687e9c35ac94ca976925ee07d22d",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395792,
+      "source_sha256": "6de5febafbacd6577e25173543a2ea1c8800687e9c35ac94ca976925ee07d22d",
+      "server_source_sha256": "6de5febafbacd6577e25173543a2ea1c8800687e9c35ac94ca976925ee07d22d",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.407,
+      "memory": 5279744,
+      "submission_time": "2026-08-21T19:02:55.459631Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T19:02:55.698868Z",
+      "recorded_at": "2026-08-21T19:03:34.756603Z"
+    }
+  ]
+}

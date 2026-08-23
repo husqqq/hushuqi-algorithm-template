@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "polynomial_interpolation",
+    "title":  "Polynomial Interpolation",
+    "category":  "polynomial",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "48361dfe6438cb8da41c6c7005136b7f8f52a5ba427c02d7a35d628502291cb5"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "937dd0444fb923f976fcaecc90da97492a0b8ab529ad88479c01aa32d5c389a0",
+                                  "submission_id":  387144,
+                                  "status":  "AC",
+                                  "time":  2.042,
+                                  "memory":  36147200,
+                                  "submission_time":  "2026-07-22T03:20:14.713476Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

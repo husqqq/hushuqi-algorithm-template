@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "range_affine_range_sum_large_array",
+    "title":  "Range Affine Range Sum (Large Array)",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "1a3b04547e1eae74dc37cf6a89a097149b622915cb3ce0406fc70cc44c653e07"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "fe77e4409233209b8ee7293103f02b8929148f95f9711466cc6f84964123740c",
+                                  "submission_id":  387187,
+                                  "status":  "AC",
+                                  "time":  0.298,
+                                  "memory":  148492288,
+                                  "submission_time":  "2026-07-22T03:41:13.907992Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

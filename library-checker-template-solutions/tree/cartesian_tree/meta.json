@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "cartesian_tree",
+  "title": "Cartesian Tree",
+  "category": "tree",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "tree/cartesian_tree/main.cpp",
+    "source_sha256": "6e41680f89c79a76098079878f3f48bd42769c366a62f5665a57bedd3c87916a"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "tree",
+    "problem": "cartesian_tree"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "6e41680f89c79a76098079878f3f48bd42769c366a62f5665a57bedd3c87916a",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch03_cartesian.cpp"
+    ],
+    "checked_at": "2026-08-21T16:03:52.170731Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395693,
+    "current_source_time": 0.291,
+    "current_source_memory": 41230336,
+    "current_source_submission_time": "2026-08-21T16:03:18.832658Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "6e41680f89c79a76098079878f3f48bd42769c366a62f5665a57bedd3c87916a",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395693,
+      "source_sha256": "6e41680f89c79a76098079878f3f48bd42769c366a62f5665a57bedd3c87916a",
+      "server_source_sha256": "6e41680f89c79a76098079878f3f48bd42769c366a62f5665a57bedd3c87916a",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.291,
+      "memory": 41230336,
+      "submission_time": "2026-08-21T16:03:18.832658Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T16:03:19.572578Z",
+      "recorded_at": "2026-08-21T16:03:52.170097Z"
+    }
+  ]
+}

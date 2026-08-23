@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "enumerate_quotients",
+    "title":  "Enumerate Quotients",
+    "category":  "number_theory",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "40506a05972b17dfd6e169f7c516018f14568940eb21ffd3e5e1c14a86d157ff"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "40506a05972b17dfd6e169f7c516018f14568940eb21ffd3e5e1c14a86d157ff",
+                                  "submission_id":  387096,
+                                  "status":  "AC",
+                                  "time":  0.098,
+                                  "memory":  32096256,
+                                  "submission_time":  "2026-07-22T02:58:20.297111Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

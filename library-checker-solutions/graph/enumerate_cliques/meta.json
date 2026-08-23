@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "enumerate_cliques",
+    "title":  "Enumerate Cliques",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "b5ab137966dec36f05d860250df73731076e89b069d5286ae8dd2aa9669762f5"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "6521c45a107085a3fb706326fa2bce68661ec9fa8f0c0bdd2db2304177b40b21",
+                                  "submission_id":  387031,
+                                  "status":  "AC",
+                                  "time":  0.011,
+                                  "memory":  843776,
+                                  "submission_time":  "2026-07-22T02:33:25.911412Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": 3,
+  "name": "many_aplusb_128bit",
+  "title": "Many A + B (128 bit)",
+  "category": "sample",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "sample/many_aplusb_128bit/main.cpp",
+    "source_sha256": "e40327a60c1dba90e62c3eb0f69352cabdbbf5fe161464ec3dc70462d01957e2"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "sample",
+    "problem": "many_aplusb_128bit"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "e40327a60c1dba90e62c3eb0f69352cabdbbf5fe161464ec3dc70462d01957e2",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch01_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T05:47:16.423488Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395499,
+    "current_source_time": 0.36,
+    "current_source_memory": 20508672,
+    "current_source_submission_time": "2026-08-21T05:46:50.996185Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "e40327a60c1dba90e62c3eb0f69352cabdbbf5fe161464ec3dc70462d01957e2",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395499,
+      "source_sha256": "e40327a60c1dba90e62c3eb0f69352cabdbbf5fe161464ec3dc70462d01957e2",
+      "server_source_sha256": "e40327a60c1dba90e62c3eb0f69352cabdbbf5fe161464ec3dc70462d01957e2",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.36,
+      "memory": 20508672,
+      "submission_time": "2026-08-21T05:46:50.996185Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T05:46:51.198349Z",
+      "recorded_at": "2026-08-21T05:47:16.422755Z"
+    }
+  ],
+  "reference": {
+    "kind": "read_only_baseline",
+    "source": "library-checker-solutions/sample/many_aplusb_128bit/main.cpp",
+    "source_sha256": "36f8387d8b2f041f3eb0685982725a375bce43a4e390ed803b191c816470f90c"
+  }
+}

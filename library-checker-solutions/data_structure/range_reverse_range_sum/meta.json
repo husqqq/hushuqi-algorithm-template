@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "range_reverse_range_sum",
+    "title":  "Range Reverse Range Sum",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "201140b033d066f03ab7f862c192ee2af9a9fdb736f0fb3eca9a25db38bebd37"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "2bd9aaa8ce239d9c147c45c9278d283cf46a709342cf8df1105b69a39a8299eb",
+                                  "submission_id":  387007,
+                                  "status":  "AC",
+                                  "time":  0.338,
+                                  "memory":  16527360,
+                                  "submission_time":  "2026-07-22T02:21:33.608556Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

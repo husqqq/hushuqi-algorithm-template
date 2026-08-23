@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "manhattanmst",
+    "title":  "Manhattan MST",
+    "category":  "geo",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "93f3b3e1b66bb1c90646a091734fe91808a0712a8e48d5afdb0144cc6aecce7c"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "1306ce5f6118b5846713fc6a6ef64098743400e3f717796510994a726d57a4b7",
+                                  "submission_id":  387158,
+                                  "status":  "AC",
+                                  "time":  0.306,
+                                  "memory":  28082176,
+                                  "submission_time":  "2026-07-22T03:28:48.406562Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

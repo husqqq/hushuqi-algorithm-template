@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "convex_layers",
+  "title": "Convex Layers",
+  "category": "geo",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "geo/convex_layers/main.cpp",
+    "source_sha256": "040cbf7f5e962aedf81bef734350f496d00b3e51a257602407b1589d9f733cfc"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "geo",
+    "problem": "convex_layers"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "040cbf7f5e962aedf81bef734350f496d00b3e51a257602407b1589d9f733cfc",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch11_convex_layers.cpp"
+    ],
+    "checked_at": "2026-08-21T20:59:45.537761Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395851,
+    "current_source_time": 1.478,
+    "current_source_memory": 59973632,
+    "current_source_submission_time": "2026-08-21T20:59:08.960214Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "040cbf7f5e962aedf81bef734350f496d00b3e51a257602407b1589d9f733cfc",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395851,
+      "source_sha256": "040cbf7f5e962aedf81bef734350f496d00b3e51a257602407b1589d9f733cfc",
+      "server_source_sha256": "040cbf7f5e962aedf81bef734350f496d00b3e51a257602407b1589d9f733cfc",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.478,
+      "memory": 59973632,
+      "submission_time": "2026-08-21T20:59:08.960214Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T20:59:09.232979Z",
+      "recorded_at": "2026-08-21T20:59:45.537106Z"
+    }
+  ]
+}

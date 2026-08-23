@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "chromatic_polynomial",
+  "title": "Chromatic Polynomial",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/chromatic_polynomial/main.cpp",
+    "source_sha256": "944ce138a57c1b78427d28e50955aa6fa66ea7bdcc0c6d96f67544abdd4a094c"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "chromatic_polynomial"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "944ce138a57c1b78427d28e50955aa6fa66ea7bdcc0c6d96f67544abdd4a094c",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_chromatic_poly.cpp"
+    ],
+    "checked_at": "2026-08-21T12:57:53.437650Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395628,
+    "current_source_time": 1.445,
+    "current_source_memory": 111140864,
+    "current_source_submission_time": "2026-08-21T12:56:49.958348Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "944ce138a57c1b78427d28e50955aa6fa66ea7bdcc0c6d96f67544abdd4a094c",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395628,
+      "source_sha256": "944ce138a57c1b78427d28e50955aa6fa66ea7bdcc0c6d96f67544abdd4a094c",
+      "server_source_sha256": "944ce138a57c1b78427d28e50955aa6fa66ea7bdcc0c6d96f67544abdd4a094c",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.445,
+      "memory": 111140864,
+      "submission_time": "2026-08-21T12:56:49.958348Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T12:56:50.144816Z",
+      "recorded_at": "2026-08-21T12:57:53.436768Z"
+    }
+  ]
+}

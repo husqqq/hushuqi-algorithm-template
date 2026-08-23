@@ -1,0 +1,21 @@
+{
+    "schema_version":  1,
+    "name":  "inverse_matrix_mod_2",
+    "title":  "Inverse Matrix (Mod 2)",
+    "category":  "linear_algebra",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "069aaa900510098c86eb6138e7aee4cf1d19fedbd20ab93a95b1912acfa2027f",
+                       "imported_sha256":  "d6471ddc049524f34a9aceffd8aba9ba1b05e75d65244acd0cce0a0b49d633c2"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

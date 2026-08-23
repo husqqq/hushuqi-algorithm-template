@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "point_add_rectangle_sum",
+    "title":  "Point Add Rectangle Sum",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "2efb4549499c26790bdca28db4ea6f3396d999f3646d05536d6be41b4a241ea2"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "a21f8e2c6b24ed4e6087d756c7da5129031d396f86bb17319973bc37b75cab6e",
+                                  "submission_id":  386995,
+                                  "status":  "AC",
+                                  "time":  0.625,
+                                  "memory":  31068160,
+                                  "submission_time":  "2026-07-22T02:16:16.417524Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

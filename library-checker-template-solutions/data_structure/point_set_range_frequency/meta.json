@@ -1,0 +1,147 @@
+{
+  "schema_version": 3,
+  "name": "point_set_range_frequency",
+  "title": "Point Set Range Frequency",
+  "category": "data_structure",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "data_structure/point_set_range_frequency/main.cpp",
+    "source_sha256": "1e15224a0dce9bb3282f8082e25526f4b94c8a1c9945f5d349812e06c03122cf",
+    "evidence": {
+      "method": "deterministic_generation",
+      "generator": {
+        "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
+        "sha256": "ee86e2a494663a36c7af724dd39147f5552cea4aa03cbf68787eac8e112562fa",
+        "working_directory": ".",
+        "runner": "Python 3.13.14",
+        "argv": [
+          "--write-index"
+        ],
+        "generation_evidence": {
+          "schema_version": 2,
+          "problem_id": "data_structure/point_set_range_frequency",
+          "source_path": "library-checker-template-solutions/data_structure/point_set_range_frequency/main.cpp",
+          "source_sha256": "1e15224a0dce9bb3282f8082e25526f4b94c8a1c9945f5d349812e06c03122cf",
+          "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
+          "generator_sha256": "ee86e2a494663a36c7af724dd39147f5552cea4aa03cbf68787eac8e112562fa",
+          "working_directory": ".",
+          "runner": "Python 3.13.14",
+          "argv": [
+            "--write-index"
+          ],
+          "inputs": [
+            {
+              "path": "hushuqi算法竞赛模板/03-数据结构.md",
+              "sha256": "713045b818794d62e6aeb18614a68b2660f8e1090676d80d889461bf5f75df1d"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/include/base.hpp",
+              "sha256": "06c13006169e21c2b5409d12db370ca7c7c37a63538cac68f0cbc13ae6ed0b40"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/include/full/3_6_009.hpp",
+              "sha256": "afebc256199202cf99a7ebd6825ebc9e482cb353db49c2fa620ecca0fd15014b"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/tests/test_ch03_freq.cpp",
+              "sha256": "666469adca77c5eb8b9d8d3734e2c4a6fbd6b7fd740b26b2fd4729b6e103f2a0"
+            }
+          ],
+          "generated_sha256": "1e15224a0dce9bb3282f8082e25526f4b94c8a1c9945f5d349812e06c03122cf",
+          "byte_equal": true
+        },
+        "generation_evidence_sha256": "316adeb2b001301843750db007dffcc56b9d2965509f55e43dc644574fb29b67"
+      },
+      "adapter_sha256": "1c329eb998e61dbabd23921002ca93bd0bbaa061bfa80b90d052123c5a25f981",
+      "template_inputs": [
+        {
+          "path": "hushuqi算法竞赛模板/03-数据结构.md",
+          "sha256": "713045b818794d62e6aeb18614a68b2660f8e1090676d80d889461bf5f75df1d"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/base.hpp",
+          "sha256": "06c13006169e21c2b5409d12db370ca7c7c37a63538cac68f0cbc13ae6ed0b40"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/full/3_6_009.hpp",
+          "sha256": "afebc256199202cf99a7ebd6825ebc9e482cb353db49c2fa620ecca0fd15014b"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/tests/test_ch03_freq.cpp",
+          "sha256": "666469adca77c5eb8b9d8d3734e2c4a6fbd6b7fd740b26b2fd4729b6e103f2a0"
+        }
+      ],
+      "temporary_regenerations": 2,
+      "byte_identical": true,
+      "source_sha256": "1e15224a0dce9bb3282f8082e25526f4b94c8a1c9945f5d349812e06c03122cf",
+      "evidence_sha256": "85cca8c2f36ba5ddbc97ccb05ca9f452269c5562bbc7d4bd650d7fbc967e50f8"
+    }
+  },
+  "reference": {
+    "kind": "read_only_baseline",
+    "source": "library-checker-solutions/data_structure/point_set_range_frequency/main.cpp",
+    "source_sha256": "15fc64b166910f85569329c74e97ddb0b49f76c618a227ea12846a1aee9ed1cc"
+  },
+  "official_reference": {
+    "repository": "https://github.com/yosupo06/library-checker-problems",
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "license": "Apache-2.0",
+    "license_blob": "91554e3bd99da6761c82645d6c740ced590d17bb",
+    "path": "data_structure/point_set_range_frequency/sol/correct.cpp",
+    "git_blob": "908842a9cb81fdd5d3717d79441a259708f2fa9b",
+    "content_sha256": "c9af225da3a551010d0d51972b32eda2077fb0b67fb4ca17edff1e6ab6c7d4bf"
+  },
+  "validation": {
+    "status": "online_ac",
+    "checked_at": "2026-08-21T07:33:30.024123Z",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch03_freq.cpp"
+    ],
+    "current_source_sha256": "1e15224a0dce9bb3282f8082e25526f4b94c8a1c9945f5d349812e06c03122cf",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395542,
+    "current_source_time": 0.212,
+    "current_source_memory": 68743168,
+    "current_source_submission_time": "2026-08-21T07:33:00.470275Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "1e15224a0dce9bb3282f8082e25526f4b94c8a1c9945f5d349812e06c03122cf",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 394884,
+      "source_sha256": "6ce9391d70d1e816bb0d38c44cf277a8e5335e8f219a442ceddb0e9e1b186d3a",
+      "server_source_sha256": "6ce9391d70d1e816bb0d38c44cf277a8e5335e8f219a442ceddb0e9e1b186d3a",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.208,
+      "memory": 68784128,
+      "submission_time": "2026-08-19T19:37:29.36658Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-19T19:37:29.488655Z",
+      "recorded_at": "2026-08-19T19:37:58.394869Z"
+    },
+    {
+      "submission_id": 395542,
+      "source_sha256": "1e15224a0dce9bb3282f8082e25526f4b94c8a1c9945f5d349812e06c03122cf",
+      "server_source_sha256": "1e15224a0dce9bb3282f8082e25526f4b94c8a1c9945f5d349812e06c03122cf",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.212,
+      "memory": 68743168,
+      "submission_time": "2026-08-21T07:33:00.470275Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T07:33:00.658903Z",
+      "recorded_at": "2026-08-21T07:33:30.023259Z"
+    }
+  ],
+  "notes": [
+    "The only submission candidate is this self-contained main.cpp.",
+    "The reference source is read-only comparison material and is not a submission input."
+  ]
+}

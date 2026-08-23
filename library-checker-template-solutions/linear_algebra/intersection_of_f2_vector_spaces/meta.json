@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "intersection_of_f2_vector_spaces",
+  "title": "Intersection of $\\mathbb{F}_{2}$ vector spaces",
+  "category": "linear_algebra",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "linear_algebra/intersection_of_f2_vector_spaces/main.cpp",
+    "source_sha256": "532f16efd7d309cecfefe30b968e73562c048d8a6baf137c74ef7eb49df870fc"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "linear_algebra",
+    "problem": "intersection_of_f2_vector_spaces"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "532f16efd7d309cecfefe30b968e73562c048d8a6baf137c74ef7eb49df870fc",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch09_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T19:23:30.620407Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395806,
+    "current_source_time": 2.618,
+    "current_source_memory": 31117312,
+    "current_source_submission_time": "2026-08-21T19:22:04.023508Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "532f16efd7d309cecfefe30b968e73562c048d8a6baf137c74ef7eb49df870fc",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395806,
+      "source_sha256": "532f16efd7d309cecfefe30b968e73562c048d8a6baf137c74ef7eb49df870fc",
+      "server_source_sha256": "532f16efd7d309cecfefe30b968e73562c048d8a6baf137c74ef7eb49df870fc",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 2.618,
+      "memory": 31117312,
+      "submission_time": "2026-08-21T19:22:04.023508Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T19:22:04.269194Z",
+      "recorded_at": "2026-08-21T19:23:30.619773Z"
+    }
+  ]
+}

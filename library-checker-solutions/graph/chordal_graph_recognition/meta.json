@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "chordal_graph_recognition",
+    "title":  "Chordal Graph Recognition",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "4d2c59a29b4069946e77299d24ef9fe0bc3e67fed23478544818b8e46e58ab3c"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "4d2c59a29b4069946e77299d24ef9fe0bc3e67fed23478544818b8e46e58ab3c",
+                                  "submission_id":  387029,
+                                  "status":  "AC",
+                                  "time":  0.27,
+                                  "memory":  43151360,
+                                  "submission_time":  "2026-07-22T02:33:08.102474Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

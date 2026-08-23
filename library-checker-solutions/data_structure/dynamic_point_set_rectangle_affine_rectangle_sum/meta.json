@@ -1,0 +1,30 @@
+{
+    "schema_version":  1,
+    "name":  "dynamic_point_set_rectangle_affine_rectangle_sum",
+    "title":  "Dynamic Point Rectangle Affine Rectangle Sum",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "data_structure/dynamic_point_set_rectangle_affine_rectangle_sum/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+                                                    "data_structure/dynamic_point_set_rectangle_affine_rectangle_sum/sol/modint.hpp"
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "54332705d4d743cca597fb537f5cf917e7a573cc6b76397b1e7bd82e030bfd8a"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

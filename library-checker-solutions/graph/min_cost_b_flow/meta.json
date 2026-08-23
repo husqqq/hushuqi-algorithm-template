@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "min_cost_b_flow",
+    "title":  "Minimum Cost b-flow",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "128afeb897703fb07ac687b05d1b859f76aae993b78ff1b50e604360c4f2fe45"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "d085d436bb967660ca46be0c14aa4d2a15ab2d4ea3c9f7631a8b07c994d7ae78",
+                                  "submission_id":  387054,
+                                  "status":  "AC",
+                                  "time":  0.014,
+                                  "memory":  1060864,
+                                  "submission_time":  "2026-07-22T02:43:11.906794Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

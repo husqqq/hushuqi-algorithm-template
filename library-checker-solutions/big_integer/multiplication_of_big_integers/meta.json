@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "multiplication_of_big_integers",
+    "title":  "Multiplication of Big Integers",
+    "category":  "big_integer",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "d2ec760cc52afa8140057d8563ae64272ec035c5b7c1d18d9b19c97624c769a0"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "bcd3181f9a98a8bbb992e7ee116bf61addc4c41a473385292509a3b0590f9265",
+                                  "submission_id":  387161,
+                                  "status":  "AC",
+                                  "time":  0.131,
+                                  "memory":  24150016,
+                                  "submission_time":  "2026-07-22T03:29:48.113439Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "bipartitematching",
+  "title": "Matching on Bipartite Graph",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/bipartitematching/main.cpp",
+    "source_sha256": "33671f81b91b624ae84122b686188aee4230546c908380c4f75baaeb6687690c"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "bipartitematching"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "33671f81b91b624ae84122b686188aee4230546c908380c4f75baaeb6687690c",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_matching_variants.cpp"
+    ],
+    "checked_at": "2026-08-21T10:05:22.100853Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395577,
+    "current_source_time": 0.997,
+    "current_source_memory": 12619776,
+    "current_source_submission_time": "2026-08-21T10:04:27.869647Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "33671f81b91b624ae84122b686188aee4230546c908380c4f75baaeb6687690c",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395577,
+      "source_sha256": "33671f81b91b624ae84122b686188aee4230546c908380c4f75baaeb6687690c",
+      "server_source_sha256": "33671f81b91b624ae84122b686188aee4230546c908380c4f75baaeb6687690c",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.997,
+      "memory": 12619776,
+      "submission_time": "2026-08-21T10:04:27.869647Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T10:04:30.023409Z",
+      "recorded_at": "2026-08-21T10:05:22.100091Z"
+    }
+  ]
+}

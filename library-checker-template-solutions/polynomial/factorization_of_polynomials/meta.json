@@ -1,0 +1,73 @@
+{
+  "schema_version": 3,
+  "name": "factorization_of_polynomials",
+  "title": "Factorization of Polynomial (Mod)",
+  "category": "polynomial",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "polynomial/factorization_of_polynomials/main.cpp",
+    "source_sha256": "2eac36d67e0d01a75d6149d24371847a28298b2151c505d3ce4a3be26aba6bd9"
+  },
+  "reference": {
+    "kind": "official_adapted",
+    "repository": "https://github.com/yosupo06/library-checker-problems",
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "path": "polynomial/factorization_of_polynomials/sol/correct.cpp",
+    "license": "Apache-2.0",
+    "dependencies_inlined": [],
+    "adaptations": [],
+    "imported_sha256": "1af5c803ba154bb0c586df7e6e0b5e254558432897086ff28bacf552f061902e"
+  },
+  "validation": {
+    "status": "online_ac",
+    "checked_at": "2026-08-21T13:53:45.274417Z",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch10_dynamic_factor.cpp"
+    ],
+    "current_source_sha256": "2eac36d67e0d01a75d6149d24371847a28298b2151c505d3ce4a3be26aba6bd9",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395656,
+    "current_source_time": 1.008,
+    "current_source_memory": 933888,
+    "current_source_submission_time": "2026-08-21T13:52:41.642306Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "2eac36d67e0d01a75d6149d24371847a28298b2151c505d3ce4a3be26aba6bd9",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 394001,
+      "source_sha256": "2f26517572c805bc2fe6d73f3d5eab34cbee25dbc67c381ba94665f4ddb5a2a5",
+      "server_source_sha256": "2f26517572c805bc2fe6d73f3d5eab34cbee25dbc67c381ba94665f4ddb5a2a5",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.01,
+      "memory": 929792,
+      "submission_time": "2026-08-16T18:35:49.243291Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-16T18:35:49.390659Z",
+      "recorded_at": "2026-08-16T18:37:35.407445Z"
+    },
+    {
+      "submission_id": 395656,
+      "source_sha256": "2eac36d67e0d01a75d6149d24371847a28298b2151c505d3ce4a3be26aba6bd9",
+      "server_source_sha256": "2eac36d67e0d01a75d6149d24371847a28298b2151c505d3ce4a3be26aba6bd9",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.008,
+      "memory": 933888,
+      "submission_time": "2026-08-21T13:52:41.642306Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T13:52:41.977565Z",
+      "recorded_at": "2026-08-21T13:53:45.273275Z"
+    }
+  ],
+  "notes": [
+    "reference、historical_submission 和旧 submission_attempts 只描述历史源码，不是当前 main.cpp 的在线判定。"
+  ]
+}

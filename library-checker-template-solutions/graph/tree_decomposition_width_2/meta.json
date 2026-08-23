@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "tree_decomposition_width_2",
+  "title": "Tree Decomposition (Width 2)",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/tree_decomposition_width_2/main.cpp",
+    "source_sha256": "d0ba56b0289ba889bb23eec1f289dc020a6c8d2c5d5bab9b2f4dba0764f46df9"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "tree_decomposition_width_2"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "d0ba56b0289ba889bb23eec1f289dc020a6c8d2c5d5bab9b2f4dba0764f46df9",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_tree_decomposition.cpp"
+    ],
+    "checked_at": "2026-08-21T13:04:12.324516Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395631,
+    "current_source_time": 1.326,
+    "current_source_memory": 209334272,
+    "current_source_submission_time": "2026-08-21T13:02:56.12137Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "d0ba56b0289ba889bb23eec1f289dc020a6c8d2c5d5bab9b2f4dba0764f46df9",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395631,
+      "source_sha256": "d0ba56b0289ba889bb23eec1f289dc020a6c8d2c5d5bab9b2f4dba0764f46df9",
+      "server_source_sha256": "d0ba56b0289ba889bb23eec1f289dc020a6c8d2c5d5bab9b2f4dba0764f46df9",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.326,
+      "memory": 209334272,
+      "submission_time": "2026-08-21T13:02:56.12137Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T13:02:56.299513Z",
+      "recorded_at": "2026-08-21T13:04:12.323777Z"
+    }
+  ]
+}

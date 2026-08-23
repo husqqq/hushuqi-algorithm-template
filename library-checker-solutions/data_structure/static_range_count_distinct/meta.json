@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "static_range_count_distinct",
+    "title":  "Static Range Count Distinct",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "7f4486e9bdaf0ebdfbdc76c6e4029f8568a8cc6b80e7687e2d77c1f080558c28"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "b482593b9a7a277e9b19ac1111558e31cd31d462b07128c57753579881809404",
+                                  "submission_id":  387182,
+                                  "status":  "AC",
+                                  "time":  0.253,
+                                  "memory":  35143680,
+                                  "submission_time":  "2026-07-22T03:39:30.111555Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "assignment",
+  "title": "Assignment Problem",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/assignment/main.cpp",
+    "source_sha256": "d0a8e3856f6adcc12ee6bd4b8291a54c877f52b2c2d66a96da877f2a15b8ac32"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "assignment"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "d0a8e3856f6adcc12ee6bd4b8291a54c877f52b2c2d66a96da877f2a15b8ac32",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_assignment.cpp"
+    ],
+    "checked_at": "2026-08-21T11:10:02.756097Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395596,
+    "current_source_time": 0.324,
+    "current_source_memory": 2899968,
+    "current_source_submission_time": "2026-08-21T11:09:41.157757Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "d0a8e3856f6adcc12ee6bd4b8291a54c877f52b2c2d66a96da877f2a15b8ac32",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395596,
+      "source_sha256": "d0a8e3856f6adcc12ee6bd4b8291a54c877f52b2c2d66a96da877f2a15b8ac32",
+      "server_source_sha256": "d0a8e3856f6adcc12ee6bd4b8291a54c877f52b2c2d66a96da877f2a15b8ac32",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.324,
+      "memory": 2899968,
+      "submission_time": "2026-08-21T11:09:41.157757Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T11:09:41.335920Z",
+      "recorded_at": "2026-08-21T11:10:02.755505Z"
+    }
+  ]
+}

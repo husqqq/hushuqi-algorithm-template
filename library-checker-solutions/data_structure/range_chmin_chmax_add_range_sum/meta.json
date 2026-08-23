@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "range_chmin_chmax_add_range_sum",
+    "title":  "Range Chmin Chmax Add Range Sum",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "80528f71442ed0140af6779a1b9d12162a9e9c419470670b847edc0eb1318a1e"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "7ec5ac0e8b74bc7d48e5cc42bfeb4180e945c816df1569aa569e947117b8cb07",
+                                  "submission_id":  387001,
+                                  "status":  "AC",
+                                  "time":  0.437,
+                                  "memory":  53088256,
+                                  "submission_time":  "2026-07-22T02:18:15.924402Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

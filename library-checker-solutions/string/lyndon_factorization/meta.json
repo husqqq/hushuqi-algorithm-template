@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "lyndon_factorization",
+    "title":  "Lyndon Factorization",
+    "category":  "string",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "a6e1447ddd663cf2669287d8ae1df4cb16babe0a27679ac26704eaa858387931"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "8c6ff5760a919a53a9cba358e63c2f4c69a1a92672c6d16543713d4d90ef51cc",
+                                  "submission_id":  387021,
+                                  "status":  "AC",
+                                  "time":  0.021,
+                                  "memory":  6758400,
+                                  "submission_time":  "2026-07-22T02:28:48.423962Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

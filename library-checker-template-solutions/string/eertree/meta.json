@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "eertree",
+  "title": "Eertree",
+  "category": "string",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "string/eertree/main.cpp",
+    "source_sha256": "414953a745298f2c626d37b0473e3fc3e0ca7af102f8f212b004e2f1c86e2576"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "string",
+    "problem": "eertree"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "414953a745298f2c626d37b0473e3fc3e0ca7af102f8f212b004e2f1c86e2576",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch04_pam.cpp"
+    ],
+    "checked_at": "2026-08-21T08:27:59.851948Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395558,
+    "current_source_time": 0.446,
+    "current_source_memory": 285106176,
+    "current_source_submission_time": "2026-08-21T08:27:20.717977Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "414953a745298f2c626d37b0473e3fc3e0ca7af102f8f212b004e2f1c86e2576",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395558,
+      "source_sha256": "414953a745298f2c626d37b0473e3fc3e0ca7af102f8f212b004e2f1c86e2576",
+      "server_source_sha256": "414953a745298f2c626d37b0473e3fc3e0ca7af102f8f212b004e2f1c86e2576",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.446,
+      "memory": 285106176,
+      "submission_time": "2026-08-21T08:27:20.717977Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T08:27:20.879789Z",
+      "recorded_at": "2026-08-21T08:27:59.851260Z"
+    }
+  ]
+}

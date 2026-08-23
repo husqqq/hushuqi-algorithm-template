@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "point_set_tree_path_composite_sum",
+  "title": "Point Set Tree Path Composite Sum",
+  "category": "tree",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "tree/point_set_tree_path_composite_sum/main.cpp",
+    "source_sha256": "742dc96a5ce100a2b415f367478c662ccf3c2cfd0aba6a647cf2a5e5e640b301"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "tree",
+    "problem": "point_set_tree_path_composite_sum"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "742dc96a5ce100a2b415f367478c662ccf3c2cfd0aba6a647cf2a5e5e640b301",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch06_affine_sum.cpp"
+    ],
+    "checked_at": "2026-08-21T23:38:17.979380Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395917,
+    "current_source_time": 2.111,
+    "current_source_memory": 70189056,
+    "current_source_submission_time": "2026-08-21T23:37:10.082937Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "742dc96a5ce100a2b415f367478c662ccf3c2cfd0aba6a647cf2a5e5e640b301",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395917,
+      "source_sha256": "742dc96a5ce100a2b415f367478c662ccf3c2cfd0aba6a647cf2a5e5e640b301",
+      "server_source_sha256": "742dc96a5ce100a2b415f367478c662ccf3c2cfd0aba6a647cf2a5e5e640b301",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 2.111,
+      "memory": 70189056,
+      "submission_time": "2026-08-21T23:37:10.082937Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T23:37:10.427748Z",
+      "recorded_at": "2026-08-21T23:38:17.978632Z"
+    }
+  ]
+}

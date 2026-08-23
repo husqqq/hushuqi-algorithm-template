@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "consecutive_terms_of_linear_recurrent_sequence",
+    "title":  "Consecutive Terms of Linear Recurrent Sequence",
+    "category":  "other",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "58d9614a7b3c1b0cffd679cc0e001b51559d292435698104a57559e7662b5435"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "ab3b03f6c21c0c4025a5c803a7618e32d37e2f3b5bc2a5424e183d3f3bf0b0a1",
+                                  "submission_id":  387165,
+                                  "status":  "AC",
+                                  "time":  2.213,
+                                  "memory":  108601344,
+                                  "submission_time":  "2026-07-22T03:30:40.609259Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

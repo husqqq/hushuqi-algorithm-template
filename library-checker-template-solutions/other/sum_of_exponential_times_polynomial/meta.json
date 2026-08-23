@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "sum_of_exponential_times_polynomial",
+  "title": "$\\sum_{i=0}^{n-1} r^i i^d$",
+  "category": "other",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "other/sum_of_exponential_times_polynomial/main.cpp",
+    "source_sha256": "ca0c2e82747ffa36f5c04df1a9128c996cc16f39f191294b9035900d5082f4e9"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "other",
+    "problem": "sum_of_exponential_times_polynomial"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "ca0c2e82747ffa36f5c04df1a9128c996cc16f39f191294b9035900d5082f4e9",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch09_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T20:46:43.341064Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395843,
+    "current_source_time": 1.072,
+    "current_source_memory": 241344512,
+    "current_source_submission_time": "2026-08-21T20:46:14.111203Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "ca0c2e82747ffa36f5c04df1a9128c996cc16f39f191294b9035900d5082f4e9",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395843,
+      "source_sha256": "ca0c2e82747ffa36f5c04df1a9128c996cc16f39f191294b9035900d5082f4e9",
+      "server_source_sha256": "ca0c2e82747ffa36f5c04df1a9128c996cc16f39f191294b9035900d5082f4e9",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.072,
+      "memory": 241344512,
+      "submission_time": "2026-08-21T20:46:14.111203Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T20:46:14.379209Z",
+      "recorded_at": "2026-08-21T20:46:43.340213Z"
+    }
+  ]
+}

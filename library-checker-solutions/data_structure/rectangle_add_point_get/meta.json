@@ -1,0 +1,21 @@
+{
+    "schema_version":  1,
+    "name":  "rectangle_add_point_get",
+    "title":  "Rectangle Add Point Get",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "b5c2b7d629a5d90e54514878acb4ae5cc1e1544dd44c4c1e14296e791466a26b",
+                       "imported_sha256":  "0627fed59112adc16e622b1f7d9dd98dbd87fa57b2294fbea6a67f2557534cff"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

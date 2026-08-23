@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "kind": "template_variant",
+  "variant_id": "3_3_008_persistent_seg_kth_cpp20",
+  "name": "range_kth_smallest",
+  "title": "Range Kth Smallest",
+  "category": "data_structure",
+  "language": "cpp20",
+  "source": "data_structure/range_kth_smallest/variants/3_3_008_persistent_seg_kth_cpp20/main.cpp",
+  "source_sha256": "c758a05ba1ec849d50103ee10140034fae14574432d8ddaa3038b2ec92d23b7c",
+  "template_items": [
+    "3.3.008"
+  ],
+  "complexity": "O((N+Q) log N) time and O(N log N) memory",
+  "provenance": {
+    "method": "deterministic_generation",
+    "generator": "library-checker-template-solutions/tools/generate_cpp_variants.py",
+    "generator_sha256": "d3978149aeca2d84607000428f1e01c5fde0c9c70b39e9659cbe4101996ca910",
+    "inputs": [
+      {
+        "path": "hushuqi算法竞赛模板/include/full/3_3_008.hpp",
+        "sha256": "95e9fe45220c9434a5ab25d8eeaf114cc736adc244be749e3d5a0c7c97032a94"
+      },
+      {
+        "path": "hushuqi算法竞赛模板/tests/test_ch03_perseg.cpp",
+        "sha256": "941f929bd9d5db6fd72a5a0d55cbe6652e64256b45c679f66ceefb5d9702e9ac"
+      }
+    ],
+    "generated_sha256": "c758a05ba1ec849d50103ee10140034fae14574432d8ddaa3038b2ec92d23b7c"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "c758a05ba1ec849d50103ee10140034fae14574432d8ddaa3038b2ec92d23b7c",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 396364,
+    "server_source_sha256": "c758a05ba1ec849d50103ee10140034fae14574432d8ddaa3038b2ec92d23b7c",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch03_perseg.cpp"
+    ],
+    "checked_at": "2026-08-23T15:35:30.200163Z",
+    "current_source_time": 0.654,
+    "current_source_memory": 140283904,
+    "current_source_submission_time": "2026-08-23T15:35:00.260812Z",
+    "current_source_is_latest": true,
+    "note": "当前变体源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 396250,
+      "source_sha256": "a37e9f29bc84b410ba807cedcd06ecbb3c432e84f8d4e224ec7e022e20e2049c",
+      "server_source_sha256": "a37e9f29bc84b410ba807cedcd06ecbb3c432e84f8d4e224ec7e022e20e2049c",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.644,
+      "memory": 140267520,
+      "submission_time": "2026-08-23T05:31:56.426575Z",
+      "is_latest": true,
+      "compile_standard": null,
+      "submitted_at": "2026-08-23T05:31:56.572799Z",
+      "recorded_at": "2026-08-23T05:32:35.142192Z"
+    },
+    {
+      "submission_id": 396364,
+      "source_sha256": "c758a05ba1ec849d50103ee10140034fae14574432d8ddaa3038b2ec92d23b7c",
+      "server_source_sha256": "c758a05ba1ec849d50103ee10140034fae14574432d8ddaa3038b2ec92d23b7c",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.654,
+      "memory": 140283904,
+      "submission_time": "2026-08-23T15:35:00.260812Z",
+      "is_latest": true,
+      "compile_standard": null,
+      "submitted_at": "2026-08-23T15:35:00.458148Z",
+      "recorded_at": "2026-08-23T15:35:30.200151Z"
+    }
+  ]
+}

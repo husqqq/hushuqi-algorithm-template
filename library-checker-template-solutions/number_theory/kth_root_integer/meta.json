@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "kth_root_integer",
+  "title": "Kth Root (Integer)",
+  "category": "number_theory",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "number_theory/kth_root_integer/main.cpp",
+    "source_sha256": "7aef7e18ef835f52a362eeeab0f00eb24a3a66969ae6da91c8089bc5c24a4c56"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "number_theory",
+    "problem": "kth_root_integer"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "7aef7e18ef835f52a362eeeab0f00eb24a3a66969ae6da91c8089bc5c24a4c56",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch07_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T16:32:37.608777Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395710,
+    "current_source_time": 1.028,
+    "current_source_memory": 6172672,
+    "current_source_submission_time": "2026-08-21T16:32:02.05253Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "7aef7e18ef835f52a362eeeab0f00eb24a3a66969ae6da91c8089bc5c24a4c56",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395710,
+      "source_sha256": "7aef7e18ef835f52a362eeeab0f00eb24a3a66969ae6da91c8089bc5c24a4c56",
+      "server_source_sha256": "7aef7e18ef835f52a362eeeab0f00eb24a3a66969ae6da91c8089bc5c24a4c56",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.028,
+      "memory": 6172672,
+      "submission_time": "2026-08-21T16:32:02.05253Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T16:32:02.275652Z",
+      "recorded_at": "2026-08-21T16:32:37.608138Z"
+    }
+  ]
+}

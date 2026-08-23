@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "kind": "template_variant",
+  "variant_id": "14_1_012_dinic_pypy3",
+  "name": "bipartitematching",
+  "title": "Matching on Bipartite Graph",
+  "category": "graph",
+  "language": "pypy3",
+  "source": "graph/bipartitematching/variants/14_1_012_dinic_pypy3/main.py",
+  "source_sha256": "d145493d12493268d40eea8a1a5804044f613bd10fa11195847198fdb7ffd115",
+  "template_items": [
+    "14.1.012"
+  ],
+  "complexity": "O(V^2 E) general Dinic bound; unit bipartite instances are faster",
+  "provenance": {
+    "method": "deterministic_generation",
+    "generator": "library-checker-template-solutions/tools/generate_variants.py",
+    "generator_sha256": "c93c7eefeb581216c5842f766ee65d718ed7338888d153e80761ee5c831742f3",
+    "inputs": [
+      {
+        "path": "hushuqi算法竞赛模板/14-其他实用模板.md",
+        "sha256": "29b3fff659b376a14fba25990e42b989a8b004030b58e6b60ef0cd6fe4520577"
+      },
+      {
+        "path": "hushuqi算法竞赛模板/tests/test_python_topics.py",
+        "sha256": "56b59b17bd3783cb15b268b6d0cbc5eb1a0f7bbe46391f34b21927955b958df4"
+      }
+    ],
+    "generated_sha256": "d145493d12493268d40eea8a1a5804044f613bd10fa11195847198fdb7ffd115"
+  },
+  "validation": {
+    "status": "online_failed",
+    "current_source_sha256": "d145493d12493268d40eea8a1a5804044f613bd10fa11195847198fdb7ffd115",
+    "current_source_online_verdict": "TLE",
+    "current_source_submission_id": 396193,
+    "server_source_sha256": "d145493d12493268d40eea8a1a5804044f613bd10fa11195847198fdb7ffd115",
+    "checks": [
+      "source_python_syntax",
+      "hushuqi算法竞赛模板/tests/test_python_topics.py"
+    ],
+    "checked_at": "2026-08-23T03:28:26.388190Z",
+    "current_source_time": 5,
+    "current_source_memory": 267485184,
+    "current_source_submission_time": "2026-08-23T03:27:05.960612Z",
+    "current_source_is_latest": true,
+    "note": "当前变体在线评测未通过。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 396193,
+      "source_sha256": "d145493d12493268d40eea8a1a5804044f613bd10fa11195847198fdb7ffd115",
+      "server_source_sha256": "d145493d12493268d40eea8a1a5804044f613bd10fa11195847198fdb7ffd115",
+      "lang": "pypy3",
+      "verdict": "TLE",
+      "last_status": "TLE",
+      "time": 5,
+      "memory": 267485184,
+      "submission_time": "2026-08-23T03:27:05.960612Z",
+      "is_latest": true,
+      "compile_standard": null,
+      "submitted_at": "2026-08-23T03:27:06.099625Z",
+      "recorded_at": "2026-08-23T03:28:26.388178Z"
+    }
+  ]
+}

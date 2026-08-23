@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "eulerian_trail_directed",
+    "title":  "Eulerian Trail (Directed)",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "5007dee707df26dc3c23a30faaadc488ef4649b4036912dcd682dfad796b3e6c"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "5007dee707df26dc3c23a30faaadc488ef4649b4036912dcd682dfad796b3e6c",
+                                  "submission_id":  387056,
+                                  "status":  "AC",
+                                  "time":  0.061,
+                                  "memory":  16683008,
+                                  "submission_time":  "2026-07-22T02:44:27.409388Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

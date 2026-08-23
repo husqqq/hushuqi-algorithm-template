@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "incremental_minimum_spanning_forest",
+  "title": "Incremental Minimum Spanning Forest",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/incremental_minimum_spanning_forest/main.cpp",
+    "source_sha256": "9d8d2babf4bccd419c30bf08e0238e79df5e73c64c660a3f875b287605911cf2"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "incremental_minimum_spanning_forest"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "9d8d2babf4bccd419c30bf08e0238e79df5e73c64c660a3f875b287605911cf2",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_incremental_msf.cpp"
+    ],
+    "checked_at": "2026-08-21T11:04:09.040232Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395592,
+    "current_source_time": 4.513,
+    "current_source_memory": 134086656,
+    "current_source_submission_time": "2026-08-21T11:02:57.240019Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "9d8d2babf4bccd419c30bf08e0238e79df5e73c64c660a3f875b287605911cf2",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395592,
+      "source_sha256": "9d8d2babf4bccd419c30bf08e0238e79df5e73c64c660a3f875b287605911cf2",
+      "server_source_sha256": "9d8d2babf4bccd419c30bf08e0238e79df5e73c64c660a3f875b287605911cf2",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 4.513,
+      "memory": 134086656,
+      "submission_time": "2026-08-21T11:02:57.240019Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T11:02:57.423509Z",
+      "recorded_at": "2026-08-21T11:04:09.039373Z"
+    }
+  ]
+}

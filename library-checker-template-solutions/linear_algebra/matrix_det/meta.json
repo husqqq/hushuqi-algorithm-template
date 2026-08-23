@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "matrix_det",
+  "title": "Determinant of Matrix",
+  "category": "linear_algebra",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "linear_algebra/matrix_det/main.cpp",
+    "source_sha256": "f34f6d3a76403d40d2f962fa561589b385dbbd7d8320977e1106a3bf65019668"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "linear_algebra",
+    "problem": "matrix_det"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "f34f6d3a76403d40d2f962fa561589b385dbbd7d8320977e1106a3bf65019668",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch09_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T19:02:19.637985Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395790,
+    "current_source_time": 0.158,
+    "current_source_memory": 4820992,
+    "current_source_submission_time": "2026-08-21T19:01:50.811374Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "f34f6d3a76403d40d2f962fa561589b385dbbd7d8320977e1106a3bf65019668",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395790,
+      "source_sha256": "f34f6d3a76403d40d2f962fa561589b385dbbd7d8320977e1106a3bf65019668",
+      "server_source_sha256": "f34f6d3a76403d40d2f962fa561589b385dbbd7d8320977e1106a3bf65019668",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.158,
+      "memory": 4820992,
+      "submission_time": "2026-08-21T19:01:50.811374Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T19:01:51.057795Z",
+      "recorded_at": "2026-08-21T19:02:19.637256Z"
+    }
+  ]
+}

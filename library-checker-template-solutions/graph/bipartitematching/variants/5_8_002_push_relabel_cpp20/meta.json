@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "kind": "template_variant",
+  "variant_id": "5_8_002_push_relabel_cpp20",
+  "name": "bipartitematching",
+  "title": "Matching on Bipartite Graph",
+  "category": "graph",
+  "language": "cpp20",
+  "source": "graph/bipartitematching/variants/5_8_002_push_relabel_cpp20/main.cpp",
+  "source_sha256": "d3c87ae56fceaf2f61422b05f500efeb4634b8771f4b06eb038539df4912c293",
+  "template_items": [
+    "5.8.002"
+  ],
+  "complexity": "O(V^3) generic FIFO push-relabel bound",
+  "provenance": {
+    "method": "deterministic_generation",
+    "generator": "library-checker-template-solutions/tools/generate_cpp_variants.py",
+    "generator_sha256": "d3978149aeca2d84607000428f1e01c5fde0c9c70b39e9659cbe4101996ca910",
+    "inputs": [
+      {
+        "path": "hushuqi算法竞赛模板/include/full/5_8_002.hpp",
+        "sha256": "ca4110444b50e2f743abe967f51b499f470ad93a416b605b4333fe6265e93beb"
+      },
+      {
+        "path": "hushuqi算法竞赛模板/tests/test_ch05_flow.cpp",
+        "sha256": "fc2460283cb270bfedab402126550f54aafb9da66d1a2703ef71084be69c0dbb"
+      }
+    ],
+    "generated_sha256": "d3c87ae56fceaf2f61422b05f500efeb4634b8771f4b06eb038539df4912c293"
+  },
+  "validation": {
+    "status": "online_failed",
+    "current_source_sha256": "d3c87ae56fceaf2f61422b05f500efeb4634b8771f4b06eb038539df4912c293",
+    "current_source_online_verdict": "TLE",
+    "current_source_submission_id": 396205,
+    "server_source_sha256": "d3c87ae56fceaf2f61422b05f500efeb4634b8771f4b06eb038539df4912c293",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_flow.cpp"
+    ],
+    "checked_at": "2026-08-23T03:58:28.338859Z",
+    "current_source_time": 5,
+    "current_source_memory": 25632768,
+    "current_source_submission_time": "2026-08-23T03:58:05.724374Z",
+    "current_source_is_latest": true,
+    "note": "当前变体在线评测未通过。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 396205,
+      "source_sha256": "d3c87ae56fceaf2f61422b05f500efeb4634b8771f4b06eb038539df4912c293",
+      "server_source_sha256": "d3c87ae56fceaf2f61422b05f500efeb4634b8771f4b06eb038539df4912c293",
+      "lang": "cpp20",
+      "verdict": "TLE",
+      "last_status": "TLE",
+      "time": 5,
+      "memory": 25632768,
+      "submission_time": "2026-08-23T03:58:05.724374Z",
+      "is_latest": true,
+      "compile_standard": null,
+      "submitted_at": "2026-08-23T03:58:05.844154Z",
+      "recorded_at": "2026-08-23T03:58:28.338841Z"
+    }
+  ]
+}

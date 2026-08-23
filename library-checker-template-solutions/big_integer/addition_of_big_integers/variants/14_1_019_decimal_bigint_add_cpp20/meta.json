@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "kind": "template_variant",
+  "variant_id": "14_1_019_decimal_bigint_add_cpp20",
+  "name": "addition_of_big_integers",
+  "title": "Addition of Big Integers",
+  "category": "big_integer",
+  "language": "cpp20",
+  "source": "big_integer/addition_of_big_integers/variants/14_1_019_decimal_bigint_add_cpp20/main.cpp",
+  "source_sha256": "40a95aeba65800f6c5117b82089848a5ae54e16743d5405e0410cd3681bdc301",
+  "template_items": [
+    "14.1.019"
+  ],
+  "complexity": "O(N) addition over base-1e9 limbs",
+  "provenance": {
+    "method": "deterministic_generation",
+    "generator": "library-checker-template-solutions/tools/generate_cpp_variants.py",
+    "generator_sha256": "d3978149aeca2d84607000428f1e01c5fde0c9c70b39e9659cbe4101996ca910",
+    "inputs": [
+      {
+        "path": "hushuqi算法竞赛模板/include/full/14_1_019.hpp",
+        "sha256": "33b432ea2ede813f368e207b57397c612fc5dfd1497f760dd0497274f364a22e"
+      },
+      {
+        "path": "hushuqi算法竞赛模板/tests/test_ch14_hex_bigint.cpp",
+        "sha256": "3a029023028a322993f09bff244dfc9f84aa1084a38787cb26c5b87b28d33d45"
+      }
+    ],
+    "generated_sha256": "40a95aeba65800f6c5117b82089848a5ae54e16743d5405e0410cd3681bdc301"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "40a95aeba65800f6c5117b82089848a5ae54e16743d5405e0410cd3681bdc301",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 396363,
+    "server_source_sha256": "40a95aeba65800f6c5117b82089848a5ae54e16743d5405e0410cd3681bdc301",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch14_hex_bigint.cpp"
+    ],
+    "checked_at": "2026-08-23T15:34:49.594593Z",
+    "current_source_time": 0.055,
+    "current_source_memory": 13492224,
+    "current_source_submission_time": "2026-08-23T15:34:22.628169Z",
+    "current_source_is_latest": true,
+    "note": "当前变体源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 396240,
+      "source_sha256": "0db32c1fc51d2d235813020532e9d09c6c613f1a7a7937fbe9a07ed6dd9f3782",
+      "server_source_sha256": "0db32c1fc51d2d235813020532e9d09c6c613f1a7a7937fbe9a07ed6dd9f3782",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.055,
+      "memory": 13246464,
+      "submission_time": "2026-08-23T05:14:11.959005Z",
+      "is_latest": true,
+      "compile_standard": null,
+      "submitted_at": "2026-08-23T05:14:12.096648Z",
+      "recorded_at": "2026-08-23T05:14:45.658296Z"
+    },
+    {
+      "submission_id": 396363,
+      "source_sha256": "40a95aeba65800f6c5117b82089848a5ae54e16743d5405e0410cd3681bdc301",
+      "server_source_sha256": "40a95aeba65800f6c5117b82089848a5ae54e16743d5405e0410cd3681bdc301",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.055,
+      "memory": 13492224,
+      "submission_time": "2026-08-23T15:34:22.628169Z",
+      "is_latest": true,
+      "compile_standard": null,
+      "submitted_at": "2026-08-23T15:34:22.860840Z",
+      "recorded_at": "2026-08-23T15:34:49.594580Z"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "cycle_detection_undirected",
+  "title": "Cycle Detection (Undirected)",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/cycle_detection_undirected/main.cpp",
+    "source_sha256": "6412f3e54b9982c84afbd00c23c9d0cc71959b700c76b622389ed4660fef4f13"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "cycle_detection_undirected"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "6412f3e54b9982c84afbd00c23c9d0cc71959b700c76b622389ed4660fef4f13",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_cycles.cpp"
+    ],
+    "checked_at": "2026-08-21T12:17:59.077492Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395611,
+    "current_source_time": 0.408,
+    "current_source_memory": 64352256,
+    "current_source_submission_time": "2026-08-21T12:17:24.378632Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "6412f3e54b9982c84afbd00c23c9d0cc71959b700c76b622389ed4660fef4f13",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395611,
+      "source_sha256": "6412f3e54b9982c84afbd00c23c9d0cc71959b700c76b622389ed4660fef4f13",
+      "server_source_sha256": "6412f3e54b9982c84afbd00c23c9d0cc71959b700c76b622389ed4660fef4f13",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.408,
+      "memory": 64352256,
+      "submission_time": "2026-08-21T12:17:24.378632Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T12:17:24.572971Z",
+      "recorded_at": "2026-08-21T12:17:59.074142Z"
+    }
+  ]
+}

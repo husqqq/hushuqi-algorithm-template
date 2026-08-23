@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "maximum_independent_set",
+    "title":  "Maximum Independent Set",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "192db013310cf537c15752bc87cb832ec7129ee32356611d33f65b4927422269"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "192db013310cf537c15752bc87cb832ec7129ee32356611d33f65b4927422269",
+                                  "submission_id":  387033,
+                                  "status":  "AC",
+                                  "time":  0.01,
+                                  "memory":  827392,
+                                  "submission_time":  "2026-07-22T02:34:28.904685Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

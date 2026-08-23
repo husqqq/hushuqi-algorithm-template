@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "number_of_increasing_sequences_between_two_sequences",
+  "title": "Number of Increasing Sequences Between Two Sequences",
+  "category": "enumerative_combinatorics",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "enumerative_combinatorics/number_of_increasing_sequences_between_two_sequences/main.cpp",
+    "source_sha256": "8c6a2c348e2ff94541479a9c847efafa8b326af3471b7263effaa02ce2e1f292"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "enumerative_combinatorics",
+    "problem": "number_of_increasing_sequences_between_two_sequences"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "8c6a2c348e2ff94541479a9c847efafa8b326af3471b7263effaa02ce2e1f292",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch10_increasing_sequences.cpp"
+    ],
+    "checked_at": "2026-08-21T21:30:20.318684Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395868,
+    "current_source_time": 1.376,
+    "current_source_memory": 20393984,
+    "current_source_submission_time": "2026-08-21T21:29:47.899885Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "8c6a2c348e2ff94541479a9c847efafa8b326af3471b7263effaa02ce2e1f292",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395868,
+      "source_sha256": "8c6a2c348e2ff94541479a9c847efafa8b326af3471b7263effaa02ce2e1f292",
+      "server_source_sha256": "8c6a2c348e2ff94541479a9c847efafa8b326af3471b7263effaa02ce2e1f292",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.376,
+      "memory": 20393984,
+      "submission_time": "2026-08-21T21:29:47.899885Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T21:29:48.181907Z",
+      "recorded_at": "2026-08-21T21:30:20.317849Z"
+    }
+  ]
+}

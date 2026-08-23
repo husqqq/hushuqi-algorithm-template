@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "composition_of_formal_power_series",
+    "title":  "Composition of Formal Power Series",
+    "category":  "polynomial",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "13a8eed96326cf93481fe3589209138a58b0b0db0820ac0435400a68347b2186"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "cd0e3c33b0964e325b7a1600e6444a6ff339a54f15263f360280637e65781c76",
+                                  "submission_id":  387150,
+                                  "status":  "AC",
+                                  "time":  3.822,
+                                  "memory":  259887104,
+                                  "submission_time":  "2026-07-22T03:22:26.693268Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

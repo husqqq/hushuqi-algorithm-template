@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "eulerian_trail_directed",
+  "title": "Eulerian Trail (Directed)",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/eulerian_trail_directed/main.cpp",
+    "source_sha256": "388a5db3a2cb3e9d35b9569456ef2328d6568d0b37359ac4a3f77d3b18b0d084"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "eulerian_trail_directed"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "388a5db3a2cb3e9d35b9569456ef2328d6568d0b37359ac4a3f77d3b18b0d084",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_euler.cpp"
+    ],
+    "checked_at": "2026-08-21T11:52:55.865586Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395607,
+    "current_source_time": 0.12,
+    "current_source_memory": 30044160,
+    "current_source_submission_time": "2026-08-21T11:52:24.032804Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "388a5db3a2cb3e9d35b9569456ef2328d6568d0b37359ac4a3f77d3b18b0d084",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395607,
+      "source_sha256": "388a5db3a2cb3e9d35b9569456ef2328d6568d0b37359ac4a3f77d3b18b0d084",
+      "server_source_sha256": "388a5db3a2cb3e9d35b9569456ef2328d6568d0b37359ac4a3f77d3b18b0d084",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.12,
+      "memory": 30044160,
+      "submission_time": "2026-08-21T11:52:24.032804Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T11:52:24.202109Z",
+      "recorded_at": "2026-08-21T11:52:55.864665Z"
+    }
+  ]
+}

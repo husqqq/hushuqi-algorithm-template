@@ -1,0 +1,30 @@
+{
+    "schema_version":  1,
+    "name":  "minimum_diameter_spanning_tree",
+    "title":  "Minimum Diameter Spanning Tree",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "graph/minimum_diameter_spanning_tree/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "149e1b0c209149fa5fb613695d2bac683efb5c3e0e5c480a6a98c036ee7b1167"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "convolution_mod_large",
+  "title": "Convolution (Large)",
+  "category": "convolution",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "convolution/convolution_mod_large/main.cpp",
+    "source_sha256": "7c076b91d286334ba64fe6a939d95a2647c2dab697d98c7917ec357d93204106"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "convolution",
+    "problem": "convolution_mod_large"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "7c076b91d286334ba64fe6a939d95a2647c2dab697d98c7917ec357d93204106",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_polynomial.cpp"
+    ],
+    "checked_at": "2026-08-21T20:35:03.565584Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395831,
+    "current_source_time": 6.458,
+    "current_source_memory": 619200512,
+    "current_source_submission_time": "2026-08-21T20:28:16.318079Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "7c076b91d286334ba64fe6a939d95a2647c2dab697d98c7917ec357d93204106",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395831,
+      "source_sha256": "7c076b91d286334ba64fe6a939d95a2647c2dab697d98c7917ec357d93204106",
+      "server_source_sha256": "7c076b91d286334ba64fe6a939d95a2647c2dab697d98c7917ec357d93204106",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 6.458,
+      "memory": 619200512,
+      "submission_time": "2026-08-21T20:28:16.318079Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T20:28:16.606225Z",
+      "recorded_at": "2026-08-21T20:35:03.564760Z"
+    }
+  ]
+}

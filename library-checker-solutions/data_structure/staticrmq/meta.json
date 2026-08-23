@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "staticrmq",
+    "title":  "Static RMQ",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "86125baf28b4011e6f8d53db571337980a5810b3b7bf7458aa9e079c9e5ba744"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "439ec23cc693c9aa757f3cd5442c481843bbdb5b190840e2dd15afe30af2eb42",
+                                  "submission_id":  387003,
+                                  "status":  "AC",
+                                  "time":  0.131,
+                                  "memory":  45121536,
+                                  "submission_time":  "2026-07-22T02:19:25.504987Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "unionfind_with_potential_non_commutative_group",
+    "title":  "Unionfind with Potential (Non-Commutative Group)",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "62c9cfa88e8b0934df254cd12d3c49a770e8354ece4979b199c21a63db3f0df8"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "b97bc73f1d4fb04986c1dd15a2f02eea5e18faf2dfdfa18a098ad88736dde34d",
+                                  "submission_id":  386993,
+                                  "status":  "AC",
+                                  "time":  0.077,
+                                  "memory":  10977280,
+                                  "submission_time":  "2026-07-22T02:16:15.414988Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,21 @@
+{
+    "schema_version":  1,
+    "name":  "number_of_subsequences",
+    "title":  "Number of Subsequences ",
+    "category":  "enumerative_combinatorics",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "c0e81451a8ce365e268374469e04d133c712039f15aeb10d0a0cec0254dfae5b",
+                       "imported_sha256":  "5cb91670bb9c059578d0b4e4f25dcff8fa09cea17a27752f5d608f6f965c821d"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

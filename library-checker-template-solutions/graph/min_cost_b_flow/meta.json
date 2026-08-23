@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "min_cost_b_flow",
+  "title": "Minimum Cost b-flow",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/min_cost_b_flow/main.cpp",
+    "source_sha256": "361970ec768cf691f587dc60a555b3316cc565eb4e2934a9cb9983001bf033d4"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "min_cost_b_flow"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "361970ec768cf691f587dc60a555b3316cc565eb4e2934a9cb9983001bf033d4",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_flow.cpp"
+    ],
+    "checked_at": "2026-08-21T11:48:06.131643Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395606,
+    "current_source_time": 0.105,
+    "current_source_memory": 999424,
+    "current_source_submission_time": "2026-08-21T11:47:17.437371Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "361970ec768cf691f587dc60a555b3316cc565eb4e2934a9cb9983001bf033d4",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395606,
+      "source_sha256": "361970ec768cf691f587dc60a555b3316cc565eb4e2934a9cb9983001bf033d4",
+      "server_source_sha256": "361970ec768cf691f587dc60a555b3316cc565eb4e2934a9cb9983001bf033d4",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.105,
+      "memory": 999424,
+      "submission_time": "2026-08-21T11:47:17.437371Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T11:47:17.655372Z",
+      "recorded_at": "2026-08-21T11:48:06.130596Z"
+    }
+  ]
+}

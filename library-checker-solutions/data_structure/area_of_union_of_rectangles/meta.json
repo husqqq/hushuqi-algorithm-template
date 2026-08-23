@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "area_of_union_of_rectangles",
+    "title":  "Area of Union of Rectangles",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "ee268ba66083234a7173ed4219a6c325126568721670cb6b1aa145e822d50425"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "cab149ee96dc1a351ac67695d6216a60373d89ff2c6d8458d8bcfe568ce3d089",
+                                  "submission_id":  387002,
+                                  "status":  "AC",
+                                  "time":  1.185,
+                                  "memory":  69005312,
+                                  "submission_time":  "2026-07-22T02:19:01.507048Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,81 @@
+# IDE and local build directories
+.idea/
+.vscode/
+.vs/
+cmake-build-*/
+out/
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+
+# Compiled files
+*.exe
+*.dll
+*.so
+*.dylib
+*.o
+*.obj
+*.a
+*.lib
+*.pdb
+*.ilk
+*.out
+
+# Python cache and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Logs, locks and temporary files
+*.log
+*.tmp
+*.temp
+*.lock
+*.bak
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Credentials, browser profiles and local verification state
+/.local/
+/library-checker-template-solutions/.local/
+.env
+.env.*
+!.env.example
+*credential*
+*credentials*
+*cookie*
+*session*
+*token*
+auth.json
+
+# Personal notes and internal editing rules
+/学习整理/
+/hushuqi算法竞赛模板/书写规则.md
+/hushuqi算法竞赛模板/编写规范.md
+/hushuqi算法竞赛模板/重构规范与进度.md
+/网络模板收集/tools/
+/网络模板收集/CirnoNine.version.json
+/*审阅报告*.md
+/*审计报告*.md
+/*检索报告*.md
+
+# Generated test data
+/hushuqi算法竞赛模板/tests/*.json
+
+# Generated book files
+/hushuqi算法竞赛模板/book/_cs/
+/hushuqi算法竞赛模板/book/*.aux
+/hushuqi算法竞赛模板/book/*.toc
+/hushuqi算法竞赛模板/book/hushuqi算法竞赛模板.tex
+/hushuqi算法竞赛模板/book/*-最新.tex
+/hushuqi算法竞赛模板/book/*-合订.md
+/hushuqi算法竞赛模板/book/latest-build/
+/hushuqi算法竞赛模板/book/latest-pages/

@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "sum_of_floor_of_linear",
+  "title": "Sum of Floor of Linear",
+  "category": "number_theory",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "number_theory/sum_of_floor_of_linear/main.cpp",
+    "source_sha256": "966beb1f5df5243d0bd4988042987028d36a277f17b97ec0be628c02b2cba1af"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "number_theory",
+    "problem": "sum_of_floor_of_linear"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "966beb1f5df5243d0bd4988042987028d36a277f17b97ec0be628c02b2cba1af",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch07_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T16:51:09.299697Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395725,
+    "current_source_time": 0.181,
+    "current_source_memory": 2076672,
+    "current_source_submission_time": "2026-08-21T16:50:51.140964Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "966beb1f5df5243d0bd4988042987028d36a277f17b97ec0be628c02b2cba1af",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395725,
+      "source_sha256": "966beb1f5df5243d0bd4988042987028d36a277f17b97ec0be628c02b2cba1af",
+      "server_source_sha256": "966beb1f5df5243d0bd4988042987028d36a277f17b97ec0be628c02b2cba1af",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.181,
+      "memory": 2076672,
+      "submission_time": "2026-08-21T16:50:51.140964Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T16:50:51.367536Z",
+      "recorded_at": "2026-08-21T16:51:09.299150Z"
+    }
+  ]
+}

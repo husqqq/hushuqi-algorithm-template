@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "factorial",
+    "title":  "Factorial",
+    "category":  "enumerative_combinatorics",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "2f033de7c1b08f35c94d9fe0332226988d3a9be548aaf8bc2def58d4cde01744"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "0d132afeb55e6b0e3ad54c7e8e43b4d570ba1563d52d70997ac3312d19ad6415",
+                                  "submission_id":  387163,
+                                  "status":  "AC",
+                                  "time":  0.242,
+                                  "memory":  9158656,
+                                  "submission_time":  "2026-07-22T03:30:25.828733Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

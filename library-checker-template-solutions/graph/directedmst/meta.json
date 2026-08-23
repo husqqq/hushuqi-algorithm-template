@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "directedmst",
+  "title": "Directed MST",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/directedmst/main.cpp",
+    "source_sha256": "81c3d5c06a9fd459f1e7d34d853dc13176fda183e8bf4cf2ba5f237b4f193074"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "directedmst"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "81c3d5c06a9fd459f1e7d34d853dc13176fda183e8bf4cf2ba5f237b4f193074",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_directed_mst.cpp"
+    ],
+    "checked_at": "2026-08-21T10:38:11.096603Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395589,
+    "current_source_time": 0.195,
+    "current_source_memory": 56532992,
+    "current_source_submission_time": "2026-08-21T10:37:49.027318Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "81c3d5c06a9fd459f1e7d34d853dc13176fda183e8bf4cf2ba5f237b4f193074",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395589,
+      "source_sha256": "81c3d5c06a9fd459f1e7d34d853dc13176fda183e8bf4cf2ba5f237b4f193074",
+      "server_source_sha256": "81c3d5c06a9fd459f1e7d34d853dc13176fda183e8bf4cf2ba5f237b4f193074",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.195,
+      "memory": 56532992,
+      "submission_time": "2026-08-21T10:37:49.027318Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T10:37:49.202939Z",
+      "recorded_at": "2026-08-21T10:38:11.095968Z"
+    }
+  ]
+}

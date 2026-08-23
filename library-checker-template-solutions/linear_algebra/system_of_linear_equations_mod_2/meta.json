@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "system_of_linear_equations_mod_2",
+  "title": "System of Linear Equations (Mod 2)",
+  "category": "linear_algebra",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "linear_algebra/system_of_linear_equations_mod_2/main.cpp",
+    "source_sha256": "d40ae221f71cb74d2807bf7783ea5293c5a01c83e35789e577e60cf042310a80"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "linear_algebra",
+    "problem": "system_of_linear_equations_mod_2"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "d40ae221f71cb74d2807bf7783ea5293c5a01c83e35789e577e60cf042310a80",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch09_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T21:34:19.216463Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395872,
+    "current_source_time": 0.582,
+    "current_source_memory": 24018944,
+    "current_source_submission_time": "2026-08-21T21:33:25.639895Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "d40ae221f71cb74d2807bf7783ea5293c5a01c83e35789e577e60cf042310a80",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395872,
+      "source_sha256": "d40ae221f71cb74d2807bf7783ea5293c5a01c83e35789e577e60cf042310a80",
+      "server_source_sha256": "d40ae221f71cb74d2807bf7783ea5293c5a01c83e35789e577e60cf042310a80",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.582,
+      "memory": 24018944,
+      "submission_time": "2026-08-21T21:33:25.639895Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T21:33:25.925673Z",
+      "recorded_at": "2026-08-21T21:34:19.215762Z"
+    }
+  ]
+}

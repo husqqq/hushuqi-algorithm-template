@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "predecessor_problem",
+    "title":  "Predecessor Problem",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "26ce86832e03263cdf5d4c82e449c6b9e13953d264910e5818fe6ed67fdfb625"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "f122ee85d1bd8905f5850d8ff67318c405585ade36b6630109da1a363237d963",
+                                  "submission_id":  387008,
+                                  "status":  "AC",
+                                  "time":  0.168,
+                                  "memory":  19578880,
+                                  "submission_time":  "2026-07-22T02:24:05.608706Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

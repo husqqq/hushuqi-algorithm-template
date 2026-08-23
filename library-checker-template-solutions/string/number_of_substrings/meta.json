@@ -1,0 +1,41 @@
+{
+  "schema_version": 3,
+  "name": "number_of_substrings",
+  "title": "Number of Substrings",
+  "category": "string",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "string/number_of_substrings/main.cpp",
+    "source_sha256": "789c95e523fe54443f2ae6c0368ab53f62886f458e6b57d29cc842452a4e5afc"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "string",
+    "problem": "number_of_substrings"
+  },
+  "validation": {
+    "status": "local_only",
+    "current_source_sha256": "789c95e523fe54443f2ae6c0368ab53f62886f458e6b57d29cc842452a4e5afc",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch04_sam.cpp"
+    ]
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395561,
+      "source_sha256": "a90106788905b301efed2f8300c1fc201d25201bbc319d8d38453be035e85a5b",
+      "server_source_sha256": "a90106788905b301efed2f8300c1fc201d25201bbc319d8d38453be035e85a5b",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.291,
+      "memory": 253640704,
+      "submission_time": "2026-08-21T08:31:23.868635Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T08:31:24.023262Z",
+      "recorded_at": "2026-08-21T08:31:52.733695Z"
+    }
+  ]
+}

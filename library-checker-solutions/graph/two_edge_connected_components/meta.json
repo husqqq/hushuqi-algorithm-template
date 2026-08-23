@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "two_edge_connected_components",
+    "title":  "Two-Edge-Connected Components",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "3e94c514db59f44e99a27fc45131029a42e6e3765e093835601c942ad03dfdff"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "f8e6e2dd15a3200764468fb6bd8340e730b909468278f418db4f9b611f0424df",
+                                  "submission_id":  387039,
+                                  "status":  "AC",
+                                  "time":  0.088,
+                                  "memory":  27176960,
+                                  "submission_time":  "2026-07-22T02:37:35.498447Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

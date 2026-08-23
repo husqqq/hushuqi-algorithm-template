@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "deque_operate_all_composite",
+    "title":  "Deque Operate All Composite",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "7c03d78b8a89788238251fdd174064f5bbff7a5cdc5a14f98ce097dfa7afeb84"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "cc64fdf3c2c96d5c51ccdc705f392f5b3f669e1e1e4fded48904acc872c89033",
+                                  "submission_id":  387015,
+                                  "status":  "AC",
+                                  "time":  0.137,
+                                  "memory":  20094976,
+                                  "submission_time":  "2026-07-22T02:26:03.702223Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

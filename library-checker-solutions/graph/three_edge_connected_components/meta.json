@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "three_edge_connected_components",
+    "title":  "Three-Edge-Connected Components",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "3b9b25e4671897aa8e6b6956ccc829c60c40a6f600be4d243bc5e2b1d3cf71c9"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "e3fedfd1750d642cd7181b3f0ecfd1978766eedbf954690bb8fabfa34130a0b2",
+                                  "submission_id":  387041,
+                                  "status":  "AC",
+                                  "time":  0.091,
+                                  "memory":  31354880,
+                                  "submission_time":  "2026-07-22T02:38:10.524062Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

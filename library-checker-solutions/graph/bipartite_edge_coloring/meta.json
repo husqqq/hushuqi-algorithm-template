@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "bipartite_edge_coloring",
+    "title":  "Edge Coloring of Bipartite Graph",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "8c1d6357694d89dbdd300a3b70c9e696d4ece50f53d845b4312245397027b8d5"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "881000867e6e6c9a10bd8a51d187ee45a392fe0418b60ec7a9bd2ce9e596ffc7",
+                                  "submission_id":  387102,
+                                  "status":  "AC",
+                                  "time":  0.251,
+                                  "memory":  17694720,
+                                  "submission_time":  "2026-07-22T03:04:00.717495Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": 3,
+  "name": "multipoint_evaluation_on_geometric_sequence",
+  "title": "Multipoint Evaluation (Geometric Sequence)",
+  "category": "polynomial",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "polynomial/multipoint_evaluation_on_geometric_sequence/main.cpp",
+    "source_sha256": "f5d3d5197f40d382fbba9238773d6c61ff7ed0625f2d2848d63b34c2b6fa0006"
+  },
+  "reference": {
+    "kind": "official_adapted",
+    "repository": "https://github.com/yosupo06/library-checker-problems",
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "path": "polynomial/multipoint_evaluation_on_geometric_sequence/sol/correct.cpp",
+    "license": "Apache-2.0",
+    "dependencies_inlined": [],
+    "adaptations": [],
+    "imported_sha256": "f2352c9288c34647f992cd88af8c5a3295a55256956c82fce6b3ddfe6f2d2094"
+  },
+  "validation": {
+    "status": "online_ac",
+    "checked_at": "2026-08-21T13:58:23.020600Z",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch10_geom_sequence.cpp"
+    ],
+    "current_source_sha256": "f5d3d5197f40d382fbba9238773d6c61ff7ed0625f2d2848d63b34c2b6fa0006",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395663,
+    "current_source_time": 0.207,
+    "current_source_memory": 30257152,
+    "current_source_submission_time": "2026-08-21T13:57:48.790792Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "f5d3d5197f40d382fbba9238773d6c61ff7ed0625f2d2848d63b34c2b6fa0006",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 394009,
+      "source_sha256": "da2fdf4a911fecf9382aae63881b77a6c3047b86d09d7ef6daabf512bd95b03b",
+      "server_source_sha256": "da2fdf4a911fecf9382aae63881b77a6c3047b86d09d7ef6daabf512bd95b03b",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.216,
+      "memory": 29655040,
+      "submission_time": "2026-08-16T18:40:29.271014Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-16T18:40:29.41426Z",
+      "recorded_at": "2026-08-16T18:41:16.651067Z"
+    },
+    {
+      "submission_id": 395663,
+      "source_sha256": "f5d3d5197f40d382fbba9238773d6c61ff7ed0625f2d2848d63b34c2b6fa0006",
+      "server_source_sha256": "f5d3d5197f40d382fbba9238773d6c61ff7ed0625f2d2848d63b34c2b6fa0006",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.207,
+      "memory": 30257152,
+      "submission_time": "2026-08-21T13:57:48.790792Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T13:57:48.990603Z",
+      "recorded_at": "2026-08-21T13:58:23.019655Z"
+    }
+  ],
+  "notes": [
+    "reference、historical_submission 和旧 submission_attempts 只描述历史源码，不是当前 main.cpp 的在线判定。"
+  ]
+}

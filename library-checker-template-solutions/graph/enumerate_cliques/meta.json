@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "enumerate_cliques",
+  "title": "Enumerate Cliques",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/enumerate_cliques/main.cpp",
+    "source_sha256": "42a2b3899958a4fb795120ba99f33251ce3ca71cc63b8160ea74b1b795fcf06f"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "enumerate_cliques"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "42a2b3899958a4fb795120ba99f33251ce3ca71cc63b8160ea74b1b795fcf06f",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_special.cpp"
+    ],
+    "checked_at": "2026-08-21T12:44:11.754702Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395625,
+    "current_source_time": 0.011,
+    "current_source_memory": 864256,
+    "current_source_submission_time": "2026-08-21T12:43:47.738279Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "42a2b3899958a4fb795120ba99f33251ce3ca71cc63b8160ea74b1b795fcf06f",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395625,
+      "source_sha256": "42a2b3899958a4fb795120ba99f33251ce3ca71cc63b8160ea74b1b795fcf06f",
+      "server_source_sha256": "42a2b3899958a4fb795120ba99f33251ce3ca71cc63b8160ea74b1b795fcf06f",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.011,
+      "memory": 864256,
+      "submission_time": "2026-08-21T12:43:47.738279Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T12:43:47.922891Z",
+      "recorded_at": "2026-08-21T12:44:11.753803Z"
+    }
+  ]
+}

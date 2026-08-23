@@ -1,0 +1,20 @@
+{
+    "schema_version":  1,
+    "name":  "kth_root_integer",
+    "title":  "Kth Root (Integer)",
+    "category":  "number_theory",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "b8edbd83083db325360a94a600ca6eb677d61b82a4bc0b3ced80591dd95476ea"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

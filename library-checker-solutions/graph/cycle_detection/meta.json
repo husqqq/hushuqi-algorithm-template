@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "cycle_detection",
+    "title":  "Cycle Detection (Directed)",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "9c76464dcf01ef3a754f58f4e4f534c46ca470bb100fdf81f1963abdc06d7879"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "1044526d032284b401771424a160332b3a6f36628273f5d839ffa1d621a88902",
+                                  "submission_id":  387063,
+                                  "status":  "AC",
+                                  "time":  0.153,
+                                  "memory":  38912000,
+                                  "submission_time":  "2026-07-22T02:47:42.305337Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

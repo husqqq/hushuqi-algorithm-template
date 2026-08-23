@@ -1,0 +1,958 @@
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+struct DSU
+{
+    // f 是并查集父亲，s 仅在根处保存连通块大小。
+    vector<int> f, s;
+
+    DSU(int n = 0)
+    {
+        // n 是元素个数；建立 n 个单点集合。
+        init(n);
+    }
+
+    void init(int n)
+    {
+        // n 是元素个数；清空旧状态并建立 n 个单点集合，无返回值。
+        f.resize(n);
+        iota(f.begin(), f.end(), 0);
+        s.assign(n, 1);
+    }
+
+    int find(int x)
+    {
+        // x 是元素编号；返回所在集合的根并压缩路径。
+        return x == f[x] ? x : f[x] = find(f[x]);
+    }
+
+    bool merge(int x, int y)
+    {
+        // x、y 是元素编号；合并所在集合，原本不连通时返回 true。
+        x = find(x);
+        y = find(y);
+        if (x == y)
+        {
+            return false;
+        }
+        if (s[x] < s[y])
+        {
+            swap(x, y);
+        }
+        f[y] = x;
+        s[x] += s[y];
+        return true;
+    }
+
+    bool same(int x, int y)
+    {
+        // x、y 是元素编号；返回二者是否属于同一集合。
+        return find(x) == find(y);
+    }
+
+    int size(int x)
+    {
+        // x 是元素编号；返回所在集合的元素个数。
+        return s[find(x)];
+    }
+};
+
+struct MEdge
+{
+    // x、y 是无向边端点，w 是边权。
+    int x, y, w;
+};
+
+optional<pair<int, vector<MEdge>>> kruskal(int n, vector<MEdge> e)
+{
+    // n 是点数，e 是无向边集；返回 MST 总权与所选边，不连通时返回空。
+    sort(e.begin(), e.end(), [](const MEdge &a, const MEdge &b)
+         { return a.w < b.w; });
+    DSU d(n);
+    int ans = 0;
+    vector<MEdge> use;
+    for (auto v : e)
+    {
+        if (!d.merge(v.x, v.y))
+        {
+            continue;
+        }
+        ans += v.w;
+        use.push_back(v);
+    }
+    if ((int)use.size() + 1 != n && n)
+    {
+        return nullopt;
+    }
+    return pair{ans, use};
+}
+
+
+
+
+
+
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+using Real = long double;
+constexpr Real eps = 1E-12L;
+
+template <class T> int sgn(T x)
+{
+    return (x > 0) - (x < 0);
+}
+
+int sgn(Real x)
+{
+    // x 是待判断的浮点数；返回 -1、0、1 表示负、近似零、正。
+    Real t = eps * max<Real>(1, fabsl(x));
+    return (x > t) - (x < -t);
+}
+
+template <class T> bool eq(T x, T y)
+{
+    return x == y;
+}
+
+bool eq(Real x, Real y)
+{
+    // x、y 是两个浮点数；使用相对误差判断是否近似相等。
+    return fabsl(x - y) <= eps * max<Real>(1, max(fabsl(x), fabsl(y)));
+}
+
+template <class T> struct Point
+{
+    T x;
+    T y;
+
+    Point(const T &x = 0, const T &y = 0) : x(x), y(y)
+    {
+    }
+
+    template <class U> explicit operator Point<U>() const
+    {
+        return Point<U>((U)x, (U)y);
+    }
+
+    Point &operator+=(const Point &p)
+    {
+        x += p.x;
+        y += p.y;
+        return *this;
+    }
+
+    Point &operator-=(const Point &p)
+    {
+        x -= p.x;
+        y -= p.y;
+        return *this;
+    }
+
+    Point &operator*=(const T &k)
+    {
+        x *= k;
+        y *= k;
+        return *this;
+    }
+
+    Point &operator/=(const T &k)
+    {
+        assert(k != T(0)); // 调试检查，可删。
+        x /= k;
+        y /= k;
+        return *this;
+    }
+
+    Point operator-() const
+    {
+        return {-x, -y};
+    }
+
+    friend Point operator+(Point a, const Point &b)
+    {
+        return a += b;
+    }
+
+    friend Point operator-(Point a, const Point &b)
+    {
+        return a -= b;
+    }
+
+    friend Point operator*(Point a, const T &k)
+    {
+        return a *= k;
+    }
+
+    friend Point operator*(const T &k, Point a)
+    {
+        return a *= k;
+    }
+
+    friend Point operator/(Point a, const T &k)
+    {
+        return a /= k;
+    }
+
+    friend bool operator<(const Point &a, const Point &b)
+    {
+        return a.x != b.x ? a.x < b.x : a.y < b.y;
+    }
+
+    friend bool operator==(const Point &a, const Point &b)
+    {
+        return a.x == b.x && a.y == b.y;
+    }
+};
+
+using P = Point<Real>;
+
+template <class T> bool eq(Point<T> a, Point<T> b)
+{
+    // a、b 是两个点；整数精确比较，浮点按统一误差比较。
+    return eq(a.x, b.x) && eq(a.y, b.y);
+}
+
+template <class T> T dot(const Point<T> &a, const Point<T> &b)
+{
+    return a.x * b.x + a.y * b.y;
+}
+
+template <class T> T cross(const Point<T> &a, const Point<T> &b)
+{
+    return a.x * b.y - a.y * b.x;
+}
+
+template <class T> T cross(const Point<T> &a, const Point<T> &b, const Point<T> &c)
+{
+    return cross(b - a, c - a);
+}
+
+template <class T> T square(const Point<T> &a)
+{
+    return dot(a, a);
+}
+
+template <class T> Real abs(const Point<T> &a)
+{
+    return sqrtl((Real)square(a));
+}
+
+template <class T> T norm(const Point<T> &a)
+{
+    return square(a);
+}
+
+template <class T> Real angle(const Point<T> &a, const Point<T> &b)
+{
+    assert(a.x != T{} || a.y != T{}); // 调试检查，可删。
+    assert(b.x != T{} || b.y != T{}); // 调试检查，可删。
+    return atan2l(cross(a, b), dot(a, b));
+}
+
+template <class T> Point<Real> rotate(const Point<T> &a, Real t)
+{
+    return {a.x * cosl(t) - a.y * sinl(t), a.x * sinl(t) + a.y * cosl(t)};
+}
+
+template <class T> Point<T> rot(const Point<T> &a)
+{
+    return {-a.y, a.x};
+}
+
+template <class T> struct Line
+{
+    Point<T> a;
+    Point<T> b;
+
+    Line(Point<T> a = {}, Point<T> b = {}) : a(a), b(b)
+    {
+    }
+};
+
+struct DirLine
+{
+    P p;
+    P v;
+
+    P at(Real t) const
+    {
+        return p + v * t;
+    }
+};
+
+using L = DirLine;
+
+template <class T> DirLine toDir(const Line<T> &l)
+{
+    auto v = l.b - l.a;
+    assert(l.a != l.b); // 调试检查，可删。
+    return {(P)l.a, (P)v};
+}
+
+template <class T> bool parallel(const Line<T> &a, const Line<T> &b)
+{
+    return sgn(cross(a.b - a.a, b.b - b.a)) == 0;
+}
+
+template <class T> bool perpendicular(const Line<T> &a, const Line<T> &b)
+{
+    return sgn(dot(a.b - a.a, b.b - b.a)) == 0;
+}
+
+template <class T> int side(const Line<T> &l, const Point<T> &p)
+{
+    return sgn(cross(l.b - l.a, p - l.a));
+}
+
+bool parallel(L a, L b)
+{
+    return sgn(cross(a.v, b.v)) == 0;
+}
+
+template <class T> Point<Real> lineIntersection(const Line<T> &a, const Line<T> &b)
+{
+    auto u = (P)a.a;
+    auto v = (P)(a.b - a.a);
+    auto p = (P)b.a;
+    auto q = (P)(b.b - b.a);
+    assert(sgn(cross(v, q)) != 0); // 调试检查，可删。
+    return u + v * (cross(p - u, q) / cross(v, q));
+}
+
+template <class T> Point<Real> projection(const Line<T> &l, const Point<T> &p)
+{
+    auto a = (P)l.a;
+    auto v = (P)(l.b - l.a);
+    auto q = (P)p;
+    assert(sgn(square(v)) != 0); // 调试检查，可删。
+    return a + v * (dot(q - a, v) / square(v));
+}
+
+template <class T> Point<Real> reflection(const Line<T> &l, const Point<T> &p)
+{
+    return projection(l, p) * 2 - (P)p;
+}
+
+P isect(L a, L b)
+{
+    assert(sgn(cross(a.v, b.v)) != 0); // 调试检查，可删。
+    return a.at(cross(b.p - a.p, b.v) / cross(a.v, b.v));
+}
+
+P proj(L l, P p)
+{
+    assert(sgn(square(l.v)) != 0); // 调试检查，可删。
+    return l.at(dot(p - l.p, l.v) / square(l.v));
+}
+
+P refl(L l, P p)
+{
+    return proj(l, p) * 2 - p;
+}
+
+Real dis(L l, P p)
+{
+    assert(sgn(square(l.v)) != 0); // 调试检查，可删。
+    return fabsl(cross(l.v, p - l.p)) / abs(l.v);
+}
+
+template <class T> Real distancePL(const Point<T> &p, const Line<T> &l)
+{
+    assert(l.a != l.b); // 调试检查，可删。
+    return fabsl((Real)cross(l.b - l.a, p - l.a)) / abs(l.b - l.a);
+}
+
+template <class T> Real distancePS(const Point<T> &p, const Line<T> &l)
+{
+    if (l.a == l.b)
+    {
+        return abs(p - l.a);
+    }
+    if (dot(p - l.a, l.b - l.a) <= 0)
+    {
+        return abs(p - l.a);
+    }
+    if (dot(p - l.b, l.a - l.b) <= 0)
+    {
+        return abs(p - l.b);
+    }
+    return distancePL(p, l);
+}
+
+template <class T> bool pointOnSegment(const Point<T> &p, const Line<T> &l)
+{
+    return sgn(cross(p - l.a, l.b - l.a)) == 0 && sgn(dot(p - l.a, p - l.b)) <= 0;
+}
+
+template <class T> bool segmentIntersection(const Line<T> &a, const Line<T> &b)
+{
+    int c1 = sgn(cross(a.b - a.a, b.a - a.a));
+    int c2 = sgn(cross(a.b - a.a, b.b - a.a));
+    int c3 = sgn(cross(b.b - b.a, a.a - b.a));
+    int c4 = sgn(cross(b.b - b.a, a.b - b.a));
+    if (c1 == 0 && pointOnSegment(b.a, a))
+    {
+        return true;
+    }
+    if (c2 == 0 && pointOnSegment(b.b, a))
+    {
+        return true;
+    }
+    if (c3 == 0 && pointOnSegment(a.a, b))
+    {
+        return true;
+    }
+    if (c4 == 0 && pointOnSegment(a.b, b))
+    {
+        return true;
+    }
+    return ((c1 > 0) != (c2 > 0)) && ((c3 > 0) != (c4 > 0));
+}
+
+template <class T> Real distanceSS(const Line<T> &a, const Line<T> &b)
+{
+    if (segmentIntersection(a, b))
+    {
+        return 0;
+    }
+    return min({distancePS(a.a, b), distancePS(a.b, b),
+                distancePS(b.a, a), distancePS(b.b, a)});
+}
+
+template <class T> bool onSeg(Point<T> p, Point<T> a, Point<T> b)
+{
+    return pointOnSegment(p, Line<T>{a, b});
+}
+
+template <class T> bool segIsect(Point<T> a, Point<T> b, Point<T> c, Point<T> d)
+{
+    return segmentIntersection(Line<T>{a, b}, Line<T>{c, d});
+}
+
+template <class T> Real segDis(Point<T> a, Point<T> b, Point<T> c, Point<T> d)
+{
+    return distanceSS(Line<T>{a, b}, Line<T>{c, d});
+}
+
+using IP = Point<int>;
+using IW = __int128_t;
+
+struct DelaunayGraph
+{
+    struct Edge
+    {
+        int to = 0;          // to 保存有向边终点。
+        int ccw = 0, cw = 0; // ccw、cw 是同起点边的逆时针、顺时针相邻边。
+        int rev = 0;         // rev 保存反向边编号。
+        bool on = false;     // on 表示边当前是否存在。
+    };
+
+    vector<IP> p;      // p 是按 x、y 排序且去重后的点。
+    vector<Edge> e;    // e 保存可回收的旋转边结构。
+    vector<int> free;  // free 保存已删除边的空闲编号。
+
+    DelaunayGraph(vector<IP> p) : p(move(p))
+    {
+        // p 必须按字典序严格递增；构造 Delaunay 平面图。
+        if (this->p.size() >= 2)
+        {
+            build(0, this->p.size());
+        }
+    }
+
+    static bool inCircle(IP a, IP b, IP c, IP d)
+    {
+        // a、b、c、d 是整数点；返回 d 是否严格位于有向圆 abc 内。
+        a -= d, b -= d, c -= d;
+        auto cr = [](IP x, IP y)
+        {
+            return (IW)x.x * y.y - (IW)x.y * y.x;
+        };
+        auto sq = [](IP x)
+        {
+            return (IW)x.x * x.x + (IW)x.y * x.y;
+        };
+        IW z = cr(b, c) * sq(a) + cr(c, a) * sq(b) + cr(a, b) * sq(c);
+        return z > 0;
+    }
+
+    int turn(int a, int b, int c) const
+    {
+        // a、b、c 是点下标；返回三点的精确转向。
+        auto z = cross(p[b] - p[a], p[c] - p[a]);
+        return (z > 0) - (z < 0);
+    }
+
+    int slot()
+    {
+        // 无参数；返回一个可写边编号。
+        if (free.empty())
+        {
+            e.push_back({});
+            return (int)e.size() - 1;
+        }
+        int x = free.back();
+        free.pop_back();
+        return x;
+    }
+
+    pair<int, int> makeEdge(int u, int v)
+    {
+        // u、v 是端点；建立一对反向边并返回编号。
+        int a = slot(), b = slot();
+        e[a] = {v, a, a, b, true};
+        e[b] = {u, b, b, a, true};
+        return {a, b};
+    }
+
+    void eraseOne(int x)
+    {
+        // x 是有向边；从其起点的旋转链中删除它。
+        e[e[x].ccw].cw = e[x].cw;
+        e[e[x].cw].ccw = e[x].ccw;
+        e[x].on = false;
+    }
+
+    void eraseEdge(int x)
+    {
+        // x 是有向边；删除它及其反向边并回收编号。
+        int y = e[x].rev;
+        eraseOne(x);
+        eraseOne(y);
+        free.push_back(x);
+        free.push_back(y);
+    }
+
+    void insertCcw(int x, int at)
+    {
+        // x 是新边，at 是同起点边；把 x 插到 at 的逆时针一侧。
+        int y = e[at].ccw;
+        e[x].ccw = y, e[y].cw = x;
+        e[x].cw = at, e[at].ccw = x;
+    }
+
+    void insertCw(int x, int at)
+    {
+        // x 是新边，at 是同起点边；把 x 插到 at 的顺时针一侧。
+        int y = e[at].cw;
+        e[x].cw = y, e[y].ccw = x;
+        e[x].ccw = at, e[at].cw = x;
+    }
+
+    pair<int, int> next(int x) const
+    {
+        // x 是当前出边；返回逆时针相邻点及对应出边。
+        int v = e[x].to;
+        return {v, e[e[x].rev].ccw};
+    }
+
+    pair<int, int> prev(int x) const
+    {
+        // x 是当前出边；返回顺时针相邻点及对应出边。
+        int y = e[x].cw;
+        return {e[y].to, e[y].rev};
+    }
+
+    tuple<int, int, int, int> bottom(int a, int ea, int b, int eb) const
+    {
+        // a、b 在两个凸壳上，ea、eb 是出边；返回共同下切线状态。
+        while (true)
+        {
+            auto [x, ex] = prev(ea);
+            if (turn(b, a, x) > 0)
+            {
+                a = x, ea = ex;
+                continue;
+            }
+            auto [y, ey] = next(eb);
+            if (turn(a, b, y) < 0)
+            {
+                b = y, eb = ey;
+                continue;
+            }
+            return {a, ea, b, eb};
+        }
+    }
+
+    pair<int, int> extreme(int a, int ea, bool low) const
+    {
+        // a、ea 是凸壳入口，low 控制取最小或最大编号；返回极值点状态。
+        pair<int, int> ans{a, ea};
+        int u = a, x = ea;
+        do
+        {
+            tie(u, x) = next(x);
+            ans = low ? min(ans, pair{u, x}) : max(ans, pair{u, x});
+        } while (x != ea);
+        return ans;
+    }
+
+    pair<int, int> join(int a, int ea, int b, int eb)
+    {
+        // a、b 是左右 Delaunay 图入口；合并两侧并返回新外壳入口。
+        tie(a, ea) = extreme(a, ea, false);
+        tie(b, eb) = extreme(b, eb, true);
+        auto [al, eal, bl, ebl] = bottom(a, ea, b, eb);
+        auto [bu, ebu, au, eau] = bottom(b, eb, a, ea);
+        ebl = e[ebl].cw;
+        ebu = e[ebu].cw;
+        auto [ab, ba] = makeEdge(al, bl);
+        insertCw(ab, eal);
+        insertCcw(ba, ebl);
+        if (al == au)
+        {
+            eau = ab;
+        }
+        if (bl == bu)
+        {
+            ebu = ba;
+        }
+        int ap = al, eap = eal, bp = bl, ebp = ebl;
+        while (ap != au || bp != bu)
+        {
+            int a2 = e[eap].to, b2 = e[ebp].to;
+            int na = e[eap].ccw, nb = e[ebp].cw;
+            if (eap != eau && na != ab)
+            {
+                int a1 = e[na].to;
+                if (inCircle(p[ap], p[bp], p[a2], p[a1]))
+                {
+                    eraseEdge(eap);
+                    eap = na;
+                    continue;
+                }
+            }
+            if (ebp != ebu && nb != ba)
+            {
+                int b1 = e[nb].to;
+                if (inCircle(p[b2], p[ap], p[bp], p[b1]))
+                {
+                    eraseEdge(ebp);
+                    ebp = nb;
+                    continue;
+                }
+            }
+            bool takeA = ebp == ebu;
+            if (eap != eau && ebp != ebu)
+            {
+                if (turn(ap, bp, b2) < 0)
+                {
+                    takeA = true;
+                }
+                else if (turn(a2, ap, bp) < 0)
+                {
+                    takeA = false;
+                }
+                else
+                {
+                    takeA = inCircle(p[ap], p[bp], p[b2], p[a2]);
+                }
+            }
+            if (takeA)
+            {
+                na = e[e[eap].rev].ccw;
+                auto [x, y] = makeEdge(a2, bp);
+                insertCw(x, na);
+                insertCcw(y, ebp);
+                eap = na, ap = a2;
+            }
+            else
+            {
+                nb = e[e[ebp].rev].cw;
+                auto [x, y] = makeEdge(b2, ap);
+                insertCcw(x, nb);
+                insertCw(y, eap);
+                ebp = nb, bp = b2;
+            }
+        }
+        return {al, ab};
+    }
+
+    pair<int, int> build(int l, int r)
+    {
+        // l、r 是有序点的半开区间；递归构造并返回外壳入口。
+        if (r - l == 2)
+        {
+            auto [x, y] = makeEdge(l, l + 1);
+            return {l, x};
+        }
+        if (r - l == 3)
+        {
+            int u = l, v = l + 1, w = l + 2;
+            auto [uv, vu] = makeEdge(u, v);
+            auto [vw, wv] = makeEdge(v, w);
+            int z = turn(u, v, w);
+            if (!z)
+            {
+                insertCcw(vu, vw);
+                return {u, uv};
+            }
+            auto [uw, wu] = makeEdge(u, w);
+            if (z > 0)
+            {
+                insertCw(uv, uw), insertCw(vw, vu), insertCw(wu, wv);
+                return {u, uv};
+            }
+            insertCcw(uv, uw), insertCcw(vw, vu), insertCcw(wu, wv);
+            return {v, vu};
+        }
+        int m = (l + r) / 2;
+        auto [a, ea] = build(l, m);
+        auto [b, eb] = build(m, r);
+        return join(a, ea, b, eb);
+    }
+
+    vector<pair<int, int>> edges() const
+    {
+        // 无参数；返回每条当前无向边一次。
+        vector<pair<int, int>> ans;
+        for (int i = 0; i < (int)e.size(); i++)
+        {
+            if (e[i].on && i > e[i].rev)
+            {
+                ans.push_back(minmax(e[i].to, e[e[i].rev].to));
+            }
+        }
+        sort(ans.begin(), ans.end());
+        return ans;
+    }
+};
+
+struct DelaunayResult
+{
+    struct VorEdge
+    {
+        P a;     // a 是线段端点或射线、直线上的一点。
+        P b;     // type=0 时 b 是另一端点，否则 b 是方向向量。
+        int type; // type 为 0、1、2 时分别表示线段、射线、直线。
+    };
+
+    vector<pair<int, int>> edge; // edge 保存 Delaunay 无向边原下标。
+    vector<array<int, 3>> tri;   // tri 保存逆时针三角面原下标。
+    vector<P> center;            // center 保存与 tri 同序的外心。
+    vector<VorEdge> vor;         // vor 保存完整 Voronoi 边。
+};
+
+DelaunayResult delaunay(const vector<IP> &input)
+{
+    // input 是整数点集；返回 Delaunay 三角剖分及其 Voronoi 对偶。
+    vector<int> ord(input.size());
+    iota(ord.begin(), ord.end(), 0);
+    sort(ord.begin(), ord.end(), [&](int x, int y)
+    {
+        return input[x] != input[y] ? input[x] < input[y] : x < y;
+    });
+    vector<IP> p;
+    vector<int> id;
+    for (int x : ord)
+    {
+        if (p.empty() || p.back() != input[x])
+        {
+            p.push_back(input[x]);
+            id.push_back(x);
+        }
+    }
+    DelaunayResult ans;
+    if (p.size() < 2)
+    {
+        return ans;
+    }
+    DelaunayGraph g(p);
+    auto es = g.edges();
+    int n = p.size();
+    vector<vector<int>> adj(n);
+    for (auto [u, v] : es)
+    {
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+    auto halfInt = [](IP x)
+    {
+        return x.y < 0 || (x.y == 0 && x.x < 0);
+    };
+    map<pair<int, int>, int> pos;
+    for (int u = 0; u < n; u++)
+    {
+        sort(adj[u].begin(), adj[u].end(), [&](int x, int y)
+        {
+            IP a = p[x] - p[u], b = p[y] - p[u];
+            int ha = halfInt(a), hb = halfInt(b);
+            auto z = cross(a, b);
+            return ha != hb ? ha < hb : (z ? z > 0 : norm(a) < norm(b));
+        });
+        for (int i = 0; i < (int)adj[u].size(); i++)
+        {
+            pos[{u, adj[u][i]}] = i;
+        }
+    }
+    set<pair<int, int>> used;
+    vector<array<int, 3>> tri;
+    for (auto [s, t] : es)
+    {
+        for (auto [u0, v0] : {pair{s, t}, pair{t, s}})
+        {
+            if (used.contains({u0, v0}))
+            {
+                continue;
+            }
+            vector<int> face;
+            int u = u0, v = v0;
+            while (!used.contains({u, v}))
+            {
+                used.insert({u, v});
+                face.push_back(u);
+                int k = pos[{v, u}];
+                int w = adj[v][(k - 1 + adj[v].size()) % adj[v].size()];
+                u = v, v = w;
+            }
+            IW area = 0;
+            for (int i = 0; i < (int)face.size(); i++)
+            {
+                area += cross(p[face[i]], p[face[(i + 1) % face.size()]]);
+            }
+            if (area > 0)
+            {
+                assert(face.size() == 3);
+                tri.push_back({face[0], face[1], face[2]});
+            }
+        }
+    }
+    map<pair<int, int>, vector<int>> side;
+    for (auto e : es)
+    {
+        side[e];
+        ans.edge.push_back(minmax(id[e.first], id[e.second]));
+    }
+    for (int i = 0; i < (int)tri.size(); i++)
+    {
+        auto x = tri[i];
+        for (int k = 0; k < 3; k++)
+        {
+            side[minmax(x[k], x[(k + 1) % 3])].push_back(i);
+        }
+        P a = (P)p[x[0]], u = (P)(p[x[1]] - p[x[0]]), v = (P)(p[x[2]] - p[x[0]]);
+        P c = a + (rot(u) * norm(v) - rot(v) * norm(u)) / (2 * cross(u, v));
+        ans.center.push_back(c);
+        ans.tri.push_back({id[x[0]], id[x[1]], id[x[2]]});
+    }
+    for (auto [e, f] : side)
+    {
+        if (f.size() == 2)
+        {
+            ans.vor.push_back({ans.center[f[0]], ans.center[f[1]], 0});
+        }
+        else if (f.size() == 1)
+        {
+            int u = e.first, v = e.second;
+            auto x = tri[f[0]];
+            bool forward = false;
+            for (int k = 0; k < 3; k++)
+            {
+                forward |= x[k] == u && x[(k + 1) % 3] == v;
+            }
+            if (!forward)
+            {
+                swap(u, v);
+            }
+            P d{(Real)(p[v].y - p[u].y), (Real)(p[u].x - p[v].x)};
+            ans.vor.push_back({ans.center[f[0]], d, 1});
+        }
+        else
+        {
+            P a = (P)p[e.first], b = (P)p[e.second];
+            ans.vor.push_back({(a + b) / 2, rot(b - a), 2});
+        }
+    }
+    sort(ans.edge.begin(), ans.edge.end());
+    return ans;
+}
+
+long double euclideanMST(const vector<array<long double, 2>> &p)
+{
+    // p[i][0..1] 依次是第 i 个点的 x、y 坐标；返回完全图欧氏距离最小生成树总长。
+    int n = p.size();
+    if (n == 0)
+    {
+        return 0;
+    }
+    vector<long double> dis(n, numeric_limits<long double>::infinity());
+    vector<bool> vis(n);
+    dis[0] = 0;
+    long double ans = 0;
+    for (int t = 0; t < n; t++)
+    {
+        int u = -1;
+        for (int i = 0; i < n; i++)
+        {
+            if (!vis[i] && (u == -1 || dis[i] < dis[u]))
+            {
+                u = i;
+            }
+        }
+        vis[u] = true;
+        ans += sqrtl(dis[u]);
+        for (int v = 0; v < n; v++)
+        {
+            if (vis[v])
+            {
+                continue;
+            }
+            long double dx = p[u][0] - p[v][0], dy = p[u][1] - p[v][1];
+            dis[v] = min(dis[v], dx * dx + dy * dy);
+        }
+    }
+    return ans;
+}
+
+vector<pair<int, int>> euclideanMSTEdges(const vector<array<long long, 2>> &p)
+{
+    // p[i][0..1] 是整数点坐标；返回完全图欧氏距离 MST 的原点编号边集。
+    int n = p.size();
+    if (n <= 1)
+    {
+        return {};
+    }
+    map<pair<long long, long long>, int> first;
+    vector<IP> unique;
+    vector<int> rep;
+    vector<MEdge> edge;
+    for (int i = 0; i < n; i++)
+    {
+        pair key{p[i][0], p[i][1]};
+        auto [it, fresh] = first.emplace(key, i);
+        if (!fresh)
+        {
+            edge.push_back({it->second, i, 0});
+        }
+        else
+        {
+            unique.push_back({p[i][0], p[i][1]});
+            rep.push_back(i);
+        }
+    }
+    auto tri = delaunay(unique);
+    for (auto [x, y] : tri.edge)
+    {
+        long long dx = unique[x].x - unique[y].x;
+        long long dy = unique[x].y - unique[y].y;
+        edge.push_back({rep[x], rep[y], dx * dx + dy * dy});
+    }
+    auto mst = kruskal(n, move(edge));
+    assert(mst.has_value()); // 调试检查，可删；Delaunay 边与重合点零边必然连通。
+    vector<pair<int, int>> ans;
+    for (auto [x, y, w] : mst->second)
+    {
+        ans.push_back({x, y});
+    }
+    return ans;
+}
+
+signed main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n;vector<array<long long,2>>p(n);for(auto&x:p)cin>>x[0]>>x[1];for(auto[u,v]:euclideanMSTEdges(p))cout<<u<<' '<<v<<'\n';}

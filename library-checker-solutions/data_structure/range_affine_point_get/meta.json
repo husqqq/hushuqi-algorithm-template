@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "range_affine_point_get",
+    "title":  "Range Affine Point Get",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "7a687ea5b2326618d7c7f09f4d55c6c7b0773afd0e5966fca47f81f976bb1e57"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "e18599f7c7b72488eb063fdcee25e178707e08f48f7cacdba15fd5324d4167a8",
+                                  "submission_id":  386999,
+                                  "status":  "AC",
+                                  "time":  0.315,
+                                  "memory":  21254144,
+                                  "submission_time":  "2026-07-22T02:17:28.917748Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

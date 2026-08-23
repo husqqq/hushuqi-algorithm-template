@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "many_aplusb_128bit",
+    "title":  "Many A + B (128 bit)",
+    "category":  "sample",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "36f8387d8b2f041f3eb0685982725a375bce43a4e390ed803b191c816470f90c"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "36f8387d8b2f041f3eb0685982725a375bce43a4e390ed803b191c816470f90c",
+                                  "submission_id":  386986,
+                                  "status":  "AC",
+                                  "time":  0.344,
+                                  "memory":  20639744,
+                                  "submission_time":  "2026-07-22T02:12:02.82913Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,30 @@
+{
+    "schema_version":  1,
+    "name":  "many_aplusb",
+    "title":  "Many A + B",
+    "category":  "sample",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "sample/many_aplusb/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "19b213f4a63ee16c53b7b280081942fd31576a1d9e979dcc80e07a06ccf11e94"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

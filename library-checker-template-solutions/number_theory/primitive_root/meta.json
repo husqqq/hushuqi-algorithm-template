@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "primitive_root",
+  "title": "Primitive Root",
+  "category": "number_theory",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "number_theory/primitive_root/main.cpp",
+    "source_sha256": "cfa9a23dfe200fb788fd7030f8f815db02b488971d5bb19bc5b19115a6c96bf7"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "number_theory",
+    "problem": "primitive_root"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "cfa9a23dfe200fb788fd7030f8f815db02b488971d5bb19bc5b19115a6c96bf7",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch07_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T16:40:16.395952Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395719,
+    "current_source_time": 0.176,
+    "current_source_memory": 872448,
+    "current_source_submission_time": "2026-08-21T16:39:54.456638Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "cfa9a23dfe200fb788fd7030f8f815db02b488971d5bb19bc5b19115a6c96bf7",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395719,
+      "source_sha256": "cfa9a23dfe200fb788fd7030f8f815db02b488971d5bb19bc5b19115a6c96bf7",
+      "server_source_sha256": "cfa9a23dfe200fb788fd7030f8f815db02b488971d5bb19bc5b19115a6c96bf7",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.176,
+      "memory": 872448,
+      "submission_time": "2026-08-21T16:39:54.456638Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T16:39:54.679199Z",
+      "recorded_at": "2026-08-21T16:40:16.395160Z"
+    }
+  ]
+}

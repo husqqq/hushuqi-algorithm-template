@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "general_weighted_matching",
+    "title":  "General Weighted Matching",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "0ba0e4a8b244163ebe4e6c5d5cfd3fc93e3ca07769942c4ee3762e1e8f0c5f6d"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "a4d73daa431a725c76bcfdf655e51b9b34eb1a69a19f6a61e0cd74c48faddc37",
+                                  "submission_id":  387052,
+                                  "status":  "AC",
+                                  "time":  0.513,
+                                  "memory":  5107712,
+                                  "submission_time":  "2026-07-22T02:42:32.929225Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "euclidean_mst",
+    "title":  "Euclidean MST",
+    "category":  "geo",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "063719d4b4a5db249a3bec3f6869d02c587577fbed82e4e170388963ecbd62b0"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "67d4f56b8d3a2144f49046049b8bc34868f488a78b9edc8931c296949af1e892",
+                                  "submission_id":  387044,
+                                  "status":  "AC",
+                                  "time":  0.334,
+                                  "memory":  54755328,
+                                  "submission_time":  "2026-07-22T02:39:46.22011Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

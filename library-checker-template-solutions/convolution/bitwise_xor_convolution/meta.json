@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "bitwise_xor_convolution",
+  "title": "Bitwise Xor Convolution",
+  "category": "convolution",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "convolution/bitwise_xor_convolution/main.cpp",
+    "source_sha256": "49b26dd2cf41896d06f5f2ca5b8b1cc7278847db57f9c93ad390b8138acf3284"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "convolution",
+    "problem": "bitwise_xor_convolution"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "49b26dd2cf41896d06f5f2ca5b8b1cc7278847db57f9c93ad390b8138acf3284",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch10_fwt.cpp"
+    ],
+    "checked_at": "2026-08-21T20:08:19.932819Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395821,
+    "current_source_time": 0.65,
+    "current_source_memory": 23826432,
+    "current_source_submission_time": "2026-08-21T20:07:50.858151Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "49b26dd2cf41896d06f5f2ca5b8b1cc7278847db57f9c93ad390b8138acf3284",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395821,
+      "source_sha256": "49b26dd2cf41896d06f5f2ca5b8b1cc7278847db57f9c93ad390b8138acf3284",
+      "server_source_sha256": "49b26dd2cf41896d06f5f2ca5b8b1cc7278847db57f9c93ad390b8138acf3284",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.65,
+      "memory": 23826432,
+      "submission_time": "2026-08-21T20:07:50.858151Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T20:07:51.118745Z",
+      "recorded_at": "2026-08-21T20:08:19.932235Z"
+    }
+  ]
+}

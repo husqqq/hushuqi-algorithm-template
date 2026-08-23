@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "dominatortree",
+  "title": "Dominator Tree",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/dominatortree/main.cpp",
+    "source_sha256": "ac0c8506261f1beb1df2e139a22e2ff7ae0ec54435b7ca9d6636bbda0c2b62d6"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "dominatortree"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "ac0c8506261f1beb1df2e139a22e2ff7ae0ec54435b7ca9d6636bbda0c2b62d6",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_dominator.cpp"
+    ],
+    "checked_at": "2026-08-21T12:41:28.606207Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395624,
+    "current_source_time": 0.131,
+    "current_source_memory": 30588928,
+    "current_source_submission_time": "2026-08-21T12:41:08.124789Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "ac0c8506261f1beb1df2e139a22e2ff7ae0ec54435b7ca9d6636bbda0c2b62d6",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395624,
+      "source_sha256": "ac0c8506261f1beb1df2e139a22e2ff7ae0ec54435b7ca9d6636bbda0c2b62d6",
+      "server_source_sha256": "ac0c8506261f1beb1df2e139a22e2ff7ae0ec54435b7ca9d6636bbda0c2b62d6",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.131,
+      "memory": 30588928,
+      "submission_time": "2026-08-21T12:41:08.124789Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T12:41:08.307408Z",
+      "recorded_at": "2026-08-21T12:41:28.605419Z"
+    }
+  ]
+}

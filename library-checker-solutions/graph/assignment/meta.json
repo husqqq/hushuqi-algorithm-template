@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "assignment",
+    "title":  "Assignment Problem",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "c736f6dafd48bab4419b1ac71cc3835602e1f734a27d7df96439d4a2d6bae4fb"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "e5d1dd8d806b3ac9fce1a6eea89fa96877feaf34c7114c808c57598776c5ffd0",
+                                  "submission_id":  387047,
+                                  "status":  "AC",
+                                  "time":  0.141,
+                                  "memory":  2924544,
+                                  "submission_time":  "2026-07-22T02:40:33.00637Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

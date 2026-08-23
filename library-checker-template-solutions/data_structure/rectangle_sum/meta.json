@@ -1,0 +1,128 @@
+{
+  "schema_version": 3,
+  "name": "rectangle_sum",
+  "title": "Rectangle Sum",
+  "category": "data_structure",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "data_structure/rectangle_sum/main.cpp",
+    "source_sha256": "b39b86802b7890b7312756d3ad8fce5d0e111484278b44cc55d6341e1eda801b",
+    "evidence": {
+      "method": "deterministic_generation",
+      "generator": {
+        "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
+        "sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+        "working_directory": ".",
+        "runner": "Python 3.13.14",
+        "argv": [
+          "--only",
+          "rectangle_sum",
+          "--write-index"
+        ],
+        "generation_evidence": {
+          "schema_version": 2,
+          "problem_id": "data_structure/rectangle_sum",
+          "source_path": "library-checker-template-solutions/data_structure/rectangle_sum/main.cpp",
+          "source_sha256": "b39b86802b7890b7312756d3ad8fce5d0e111484278b44cc55d6341e1eda801b",
+          "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
+          "generator_sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+          "working_directory": ".",
+          "runner": "Python 3.13.14",
+          "argv": [
+            "--only",
+            "rectangle_sum",
+            "--write-index"
+          ],
+          "inputs": [
+            {
+              "path": "hushuqi算法竞赛模板/03-数据结构.md",
+              "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/include/full/3_2_010.hpp",
+              "sha256": "34a7cf9252aa38a5d32dcf40847f609813c82b730071ec17e83eede128f5633f"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/tests/test_ch03_static_rect_sum.cpp",
+              "sha256": "7a4a8efa850e0f921a64949eb1f708667c2eb5190a7a05b0c388f3bd7af2005f"
+            }
+          ],
+          "generated_sha256": "b39b86802b7890b7312756d3ad8fce5d0e111484278b44cc55d6341e1eda801b",
+          "byte_equal": true
+        },
+        "generation_evidence_sha256": "af2033946d7196d338f9292d48ea92888d7387bc1bcd38930390ea9ce57b239a"
+      },
+      "adapter_sha256": "454babaef169c7ad903cb77ca86072b6cf397faa5a5678004c48b09827d007d5",
+      "template_inputs": [
+        {
+          "path": "hushuqi算法竞赛模板/03-数据结构.md",
+          "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/full/3_2_010.hpp",
+          "sha256": "34a7cf9252aa38a5d32dcf40847f609813c82b730071ec17e83eede128f5633f"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/tests/test_ch03_static_rect_sum.cpp",
+          "sha256": "7a4a8efa850e0f921a64949eb1f708667c2eb5190a7a05b0c388f3bd7af2005f"
+        }
+      ],
+      "temporary_regenerations": 2,
+      "byte_identical": true,
+      "source_sha256": "b39b86802b7890b7312756d3ad8fce5d0e111484278b44cc55d6341e1eda801b",
+      "evidence_sha256": "61688cd008d6b52534779348d72f03699be8877357cf8a8ee46b394e74d57061"
+    }
+  },
+  "reference": {
+    "kind": "read_only_baseline",
+    "source": "library-checker-solutions/data_structure/rectangle_sum/main.cpp",
+    "source_sha256": "94007fa8c44172acb4016a9999c9d61f47d596da07cd8d1adcd1b069b4f7aa82"
+  },
+  "official_reference": {
+    "repository": "https://github.com/yosupo06/library-checker-problems",
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "license": "Apache-2.0",
+    "license_blob": "91554e3bd99da6761c82645d6c740ced590d17bb",
+    "path": "data_structure/rectangle_sum/sol/correct.cpp",
+    "git_blob": "847130b796cc900320f6e6be36480e2519522760",
+    "content_sha256": "e070667b659441496d08244bede4bbf379fdff6d2fa0fe95eb5ba15f756bf5ef"
+  },
+  "validation": {
+    "status": "local_only",
+    "checked_at": null,
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch03_static_rect_sum.cpp"
+    ],
+    "current_source_sha256": "b39b86802b7890b7312756d3ad8fce5d0e111484278b44cc55d6341e1eda801b",
+    "current_source_online_verdict": null,
+    "current_source_submission_id": null,
+    "current_source_time": null,
+    "current_source_memory": null,
+    "current_source_submission_time": null,
+    "current_source_is_latest": null,
+    "server_source_sha256": null,
+    "note": "Generated from the current chapter 03 template; online verification has not run for this source."
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395194,
+      "source_sha256": "04e568fe025a65eb42a0698b7e149ced634627927c8ef358c6e960ce1dfdb100",
+      "server_source_sha256": "04e568fe025a65eb42a0698b7e149ced634627927c8ef358c6e960ce1dfdb100",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.272,
+      "memory": 37617664,
+      "submission_time": "2026-08-20T13:29:07.585766Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-20T13:29:07.819630Z",
+      "recorded_at": "2026-08-20T13:29:39.365103Z"
+    }
+  ],
+  "notes": [
+    "The only submission candidate is this self-contained main.cpp.",
+    "The reference source is read-only comparison material and is not a submission input."
+  ]
+}

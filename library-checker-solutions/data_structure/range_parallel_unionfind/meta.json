@@ -1,0 +1,21 @@
+{
+    "schema_version":  1,
+    "name":  "range_parallel_unionfind",
+    "title":  "Range Parallel Unionfind",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "b9e5ae76e1350b8ee6de254f4fb518ccbd949cf5b543242ccbc86974d142ed95",
+                       "imported_sha256":  "d9f4a446cc3a8d0db2fb5a18e9d4d9af852272c4141dd34318e2edb1222f8a52"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

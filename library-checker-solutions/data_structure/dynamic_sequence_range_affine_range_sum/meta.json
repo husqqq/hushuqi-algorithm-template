@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "dynamic_sequence_range_affine_range_sum",
+    "title":  "Dynamic Sequence Range Affine Range Sum",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "5e4b49c3a15c21e4d2db78cde11ef1dd86bd0fff047eb4dec1c450cb6cd28989"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "edbd002655b8711ca30721d572584d2a90d183d311c254d95173fffa7f44683b",
+                                  "submission_id":  387177,
+                                  "status":  "AC",
+                                  "time":  1.279,
+                                  "memory":  80973824,
+                                  "submission_time":  "2026-07-22T03:36:28.927197Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

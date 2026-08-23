@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "suffixarray",
+  "title": "Suffix Array",
+  "category": "string",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "string/suffixarray/main.cpp",
+    "source_sha256": "2f030184edb6322e6dd4debcdf2d45bfb34a456ff2cdcf72b01220e81549c569"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "string",
+    "problem": "suffixarray"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "2f030184edb6322e6dd4debcdf2d45bfb34a456ff2cdcf72b01220e81549c569",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch04_suffix_array.cpp"
+    ],
+    "checked_at": "2026-08-21T08:29:23.480341Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395559,
+    "current_source_time": 0.081,
+    "current_source_memory": 33103872,
+    "current_source_submission_time": "2026-08-21T08:28:38.424959Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "2f030184edb6322e6dd4debcdf2d45bfb34a456ff2cdcf72b01220e81549c569",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395559,
+      "source_sha256": "2f030184edb6322e6dd4debcdf2d45bfb34a456ff2cdcf72b01220e81549c569",
+      "server_source_sha256": "2f030184edb6322e6dd4debcdf2d45bfb34a456ff2cdcf72b01220e81549c569",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.081,
+      "memory": 33103872,
+      "submission_time": "2026-08-21T08:28:38.424959Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T08:28:38.581040Z",
+      "recorded_at": "2026-08-21T08:29:23.479583Z"
+    }
+  ]
+}

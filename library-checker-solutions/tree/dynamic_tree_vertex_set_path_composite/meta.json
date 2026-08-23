@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "dynamic_tree_vertex_set_path_composite",
+    "title":  "Dynamic Tree Vertex Set Path Composite",
+    "category":  "tree",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "d7fd1cf748ccbdc0dbec54fa4436ecec5d4c7e55a26b4a2b08f7da59c4620888"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "995125a0528f548a1ddc623d2e206c8a2ff31990e06c30f2e4d214c01aff3906",
+                                  "submission_id":  387080,
+                                  "status":  "AC",
+                                  "time":  0.848,
+                                  "memory":  27578368,
+                                  "submission_time":  "2026-07-22T02:54:08.214935Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

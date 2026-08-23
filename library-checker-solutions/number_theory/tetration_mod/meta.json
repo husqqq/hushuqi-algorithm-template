@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "tetration_mod",
+    "title":  "Tetration Mod",
+    "category":  "number_theory",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "9ecaa9ddba8402484a57395e9d6f055b053892fd05ccc6f5c43c2bd975acbb33"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "646061ee1b15ace1988876aed9e257683f526cc28cba86367a1115d34a02723f",
+                                  "submission_id":  387085,
+                                  "status":  "AC",
+                                  "time":  0.068,
+                                  "memory":  905216,
+                                  "submission_time":  "2026-07-22T02:56:30.726722Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

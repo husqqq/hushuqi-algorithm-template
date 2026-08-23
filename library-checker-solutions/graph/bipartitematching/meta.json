@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "bipartitematching",
+    "title":  "Matching on Bipartite Graph",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "e3db176fbe12ae7302df96054b7598df0acdd4fd8aaf91c7731727671a610234"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "f797892f0e581b2c93d7024810530a2ce1a20fe2a24ad7841ef5f4ba65739e58",
+                                  "submission_id":  387053,
+                                  "status":  "AC",
+                                  "time":  2.088,
+                                  "memory":  30011392,
+                                  "submission_time":  "2026-07-22T02:42:47.202368Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

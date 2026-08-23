@@ -1,0 +1,80 @@
+{
+  "schema_version": 3,
+  "name": "division_of_big_integers",
+  "title": "Division of Big Integers",
+  "category": "big_integer",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "big_integer/division_of_big_integers/main.cpp",
+    "source_sha256": "9ff1b3d12ec565967527ea2bf0bca7443ae9fd6b24c7f43766177373fcc8e936"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "big_integer",
+    "problem": "division_of_big_integers"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "9ff1b3d12ec565967527ea2bf0bca7443ae9fd6b24c7f43766177373fcc8e936",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch14_hex_bigint.cpp"
+    ],
+    "checked_at": "2026-08-22T00:42:58.619595Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395927,
+    "current_source_time": 1.152,
+    "current_source_memory": 24633344,
+    "current_source_submission_time": "2026-08-22T00:42:16.932192Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "9ff1b3d12ec565967527ea2bf0bca7443ae9fd6b24c7f43766177373fcc8e936",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395887,
+      "source_sha256": "3ffc53b39329d2a0a3a9f683aaf0c45429cbec18a595adeb55c4c41427fbbfb8",
+      "server_source_sha256": "3ffc53b39329d2a0a3a9f683aaf0c45429cbec18a595adeb55c4c41427fbbfb8",
+      "lang": "cpp20",
+      "verdict": "TLE",
+      "last_status": "TLE",
+      "time": 10,
+      "memory": 18874368,
+      "submission_time": "2026-08-21T21:57:50.396566Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T21:57:50.689527Z",
+      "recorded_at": "2026-08-21T21:59:26.741930Z"
+    },
+    {
+      "submission_id": 395890,
+      "source_sha256": "9d0d2eed18a46d015667e2e5c4447bd9a1c9d30a0b12e1d38f51f76d6f513a47",
+      "server_source_sha256": "9d0d2eed18a46d015667e2e5c4447bd9a1c9d30a0b12e1d38f51f76d6f513a47",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.14,
+      "memory": 24469504,
+      "submission_time": "2026-08-21T22:35:14.099329Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T22:35:14.456692Z",
+      "recorded_at": "2026-08-21T22:35:55.081785Z"
+    },
+    {
+      "submission_id": 395927,
+      "source_sha256": "9ff1b3d12ec565967527ea2bf0bca7443ae9fd6b24c7f43766177373fcc8e936",
+      "server_source_sha256": "9ff1b3d12ec565967527ea2bf0bca7443ae9fd6b24c7f43766177373fcc8e936",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.152,
+      "memory": 24633344,
+      "submission_time": "2026-08-22T00:42:16.932192Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-22T00:42:17.331191Z",
+      "recorded_at": "2026-08-22T00:42:58.618575Z"
+    }
+  ]
+}

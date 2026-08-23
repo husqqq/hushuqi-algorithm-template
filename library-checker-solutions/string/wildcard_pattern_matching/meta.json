@@ -1,0 +1,21 @@
+{
+    "schema_version":  1,
+    "name":  "wildcard_pattern_matching",
+    "title":  "Wildcard Pattern Matching",
+    "category":  "string",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "f504d3af23c88ff6bb7e23bb3ad44586291d653e516c5cacb29ed3721bb3c9b8",
+                       "imported_sha256":  "0f44d22339a50512c048705c6e4bdcc6b29c2c8dc003d1f7eee99ca1db8c5e99"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

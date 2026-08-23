@@ -1,0 +1,21 @@
+{
+    "schema_version":  1,
+    "name":  "lcm_convolution",
+    "title":  "Lcm Convolution",
+    "category":  "convolution",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "2e1db510fb8bfb5b2bfa9119d1bd28a100e559439a864388754586df95a7c28e",
+                       "imported_sha256":  "e388ebec41c388553ad124aa10a9d0b856bd58d009d4a6a7668ce6051b7a75d4"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

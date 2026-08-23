@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "kind": "template_variant",
+  "variant_id": "5_6_004_csr_hopcroft_karp_cpp20",
+  "name": "bipartitematching",
+  "title": "Matching on Bipartite Graph",
+  "category": "graph",
+  "language": "cpp20",
+  "source": "graph/bipartitematching/variants/5_6_004_csr_hopcroft_karp_cpp20/main.cpp",
+  "source_sha256": "2066d8855cab8c6c16c388dca8393de59a28312b83571a4b3463550e23fcc8ef",
+  "template_items": [
+    "5.6.004"
+  ],
+  "complexity": "O(E sqrt(V))",
+  "provenance": {
+    "method": "deterministic_generation",
+    "generator": "library-checker-template-solutions/tools/generate_cpp_variants.py",
+    "generator_sha256": "d3978149aeca2d84607000428f1e01c5fde0c9c70b39e9659cbe4101996ca910",
+    "inputs": [
+      {
+        "path": "hushuqi算法竞赛模板/include/full/5_6_004.hpp",
+        "sha256": "ecf971331c47e4de9ba0c973f393ce55e1100fad1357f6c25f602f8bfad01993"
+      },
+      {
+        "path": "hushuqi算法竞赛模板/tests/test_ch05_matching_variants.cpp",
+        "sha256": "942979be350246e312e2185641c6c90a63eab3147286ca7db2343ef029811cfd"
+      }
+    ],
+    "generated_sha256": "2066d8855cab8c6c16c388dca8393de59a28312b83571a4b3463550e23fcc8ef"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "2066d8855cab8c6c16c388dca8393de59a28312b83571a4b3463550e23fcc8ef",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 396367,
+    "server_source_sha256": "2066d8855cab8c6c16c388dca8393de59a28312b83571a4b3463550e23fcc8ef",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_matching_variants.cpp"
+    ],
+    "checked_at": "2026-08-23T15:38:21.391168Z",
+    "current_source_time": 0.959,
+    "current_source_memory": 13787136,
+    "current_source_submission_time": "2026-08-23T15:37:28.226992Z",
+    "current_source_is_latest": true,
+    "note": "当前变体源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 396203,
+      "source_sha256": "5a50bfa1bde66a22f563fffa692092138cc5cc8ce038c1529daa15da52599cbd",
+      "server_source_sha256": "5a50bfa1bde66a22f563fffa692092138cc5cc8ce038c1529daa15da52599cbd",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.961,
+      "memory": 13922304,
+      "submission_time": "2026-08-23T03:55:31.466451Z",
+      "is_latest": true,
+      "compile_standard": null,
+      "submitted_at": "2026-08-23T03:55:31.596340Z",
+      "recorded_at": "2026-08-23T03:56:20.945702Z"
+    },
+    {
+      "submission_id": 396367,
+      "source_sha256": "2066d8855cab8c6c16c388dca8393de59a28312b83571a4b3463550e23fcc8ef",
+      "server_source_sha256": "2066d8855cab8c6c16c388dca8393de59a28312b83571a4b3463550e23fcc8ef",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.959,
+      "memory": 13787136,
+      "submission_time": "2026-08-23T15:37:28.226992Z",
+      "is_latest": true,
+      "compile_standard": null,
+      "submitted_at": "2026-08-23T15:37:28.443158Z",
+      "recorded_at": "2026-08-23T15:38:21.391155Z"
+    }
+  ]
+}

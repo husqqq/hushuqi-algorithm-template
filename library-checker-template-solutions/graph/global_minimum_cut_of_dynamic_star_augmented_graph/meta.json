@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "global_minimum_cut_of_dynamic_star_augmented_graph",
+  "title": "Global Minimum Cut of Dynamic Star Augmented Graph",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/global_minimum_cut_of_dynamic_star_augmented_graph/main.cpp",
+    "source_sha256": "c3ae4e0053fefc092256cc421e325fb405267529f173f22a7b3ef9801d62f4de"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "global_minimum_cut_of_dynamic_star_augmented_graph"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "c3ae4e0053fefc092256cc421e325fb405267529f173f22a7b3ef9801d62f4de",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_lc_gap_graph_tree.cpp"
+    ],
+    "checked_at": "2026-08-20T16:00:13.750692Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395257,
+    "current_source_time": 1.637,
+    "current_source_memory": 23367680,
+    "current_source_submission_time": "2026-08-20T15:59:28.647235Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "c3ae4e0053fefc092256cc421e325fb405267529f173f22a7b3ef9801d62f4de",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395257,
+      "source_sha256": "c3ae4e0053fefc092256cc421e325fb405267529f173f22a7b3ef9801d62f4de",
+      "server_source_sha256": "c3ae4e0053fefc092256cc421e325fb405267529f173f22a7b3ef9801d62f4de",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.637,
+      "memory": 23367680,
+      "submission_time": "2026-08-20T15:59:28.647235Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-20T15:59:28.934865Z",
+      "recorded_at": "2026-08-20T16:00:13.750014Z"
+    }
+  ]
+}

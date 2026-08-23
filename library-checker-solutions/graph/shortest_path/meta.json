@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "shortest_path",
+    "title":  "Shortest Path",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "49bf6ed928cab60024fab465c869aa02c8a1d71a76cc7cdcc75ad648bcc90993"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "49bf6ed928cab60024fab465c869aa02c8a1d71a76cc7cdcc75ad648bcc90993",
+                                  "submission_id":  387035,
+                                  "status":  "AC",
+                                  "time":  0.218,
+                                  "memory":  43671552,
+                                  "submission_time":  "2026-07-22T02:35:20.003942Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

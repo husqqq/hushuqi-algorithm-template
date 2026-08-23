@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "kind": "template_variant",
+  "variant_id": "5_4_001_tarjan_two_sat_cpp20",
+  "name": "two_sat",
+  "title": "2 Sat",
+  "category": "other",
+  "language": "cpp20",
+  "source": "other/two_sat/variants/5_4_001_tarjan_two_sat_cpp20/main.cpp",
+  "source_sha256": "880b5ce2b184e6fb7e0303fd675e350df999e62d4662f8c97ab16a534750bee8",
+  "template_items": [
+    "5.4.001"
+  ],
+  "complexity": "O(V+E)",
+  "provenance": {
+    "method": "deterministic_generation",
+    "generator": "library-checker-template-solutions/tools/generate_cpp_variants.py",
+    "generator_sha256": "d3978149aeca2d84607000428f1e01c5fde0c9c70b39e9659cbe4101996ca910",
+    "inputs": [
+      {
+        "path": "hushuqi算法竞赛模板/include/full/5_4_001.hpp",
+        "sha256": "49a9c4f77f2fbb0b2d469ec33eee7871bd86f02fb7e924f2f080abb5bd78d293"
+      },
+      {
+        "path": "hushuqi算法竞赛模板/tests/test_ch05_two_sat.cpp",
+        "sha256": "37c2f63518cbf14eb7d51fe0f75be6202e2cde76aff6f6f155a665c4631ddd92"
+      }
+    ],
+    "generated_sha256": "880b5ce2b184e6fb7e0303fd675e350df999e62d4662f8c97ab16a534750bee8"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "880b5ce2b184e6fb7e0303fd675e350df999e62d4662f8c97ab16a534750bee8",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 396235,
+    "server_source_sha256": "880b5ce2b184e6fb7e0303fd675e350df999e62d4662f8c97ab16a534750bee8",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_two_sat.cpp"
+    ],
+    "checked_at": "2026-08-23T04:38:33.308820Z",
+    "current_source_time": 0.36,
+    "current_source_memory": 201474048,
+    "current_source_submission_time": "2026-08-23T04:38:00.439058Z",
+    "current_source_is_latest": true,
+    "note": "当前变体源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 396235,
+      "source_sha256": "880b5ce2b184e6fb7e0303fd675e350df999e62d4662f8c97ab16a534750bee8",
+      "server_source_sha256": "880b5ce2b184e6fb7e0303fd675e350df999e62d4662f8c97ab16a534750bee8",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.36,
+      "memory": 201474048,
+      "submission_time": "2026-08-23T04:38:00.439058Z",
+      "is_latest": true,
+      "compile_standard": null,
+      "submitted_at": "2026-08-23T04:38:00.542599Z",
+      "recorded_at": "2026-08-23T04:38:33.308807Z"
+    }
+  ]
+}

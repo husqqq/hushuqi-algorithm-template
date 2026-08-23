@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "multipoint_evaluation",
+    "title":  "Multipoint Evaluation",
+    "category":  "polynomial",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "1adf0e26c2942989195d7cd600796cb56c17a63eb5df1240cce063a3ec6d94ee"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "0fa7286752dc35312e46022631a87979ab2d3985bb63793b228c7186d225945e",
+                                  "submission_id":  387143,
+                                  "status":  "AC",
+                                  "time":  1.765,
+                                  "memory":  35528704,
+                                  "submission_time":  "2026-07-22T03:19:31.599267Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

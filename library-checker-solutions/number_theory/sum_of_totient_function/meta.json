@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "sum_of_totient_function",
+    "title":  "Sum of Totient Function",
+    "category":  "number_theory",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "6086c9207303bce82b8ab94bb6b3ad1490f09a5eb984ea46a6710113b2a7df1e"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "ea3b2f4d17f63b3e915f77d59d000c78b026f109e0b318609a0f23e8349e11e7",
+                                  "submission_id":  387093,
+                                  "status":  "AC",
+                                  "time":  0.186,
+                                  "memory":  67547136,
+                                  "submission_time":  "2026-07-22T02:57:51.112514Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

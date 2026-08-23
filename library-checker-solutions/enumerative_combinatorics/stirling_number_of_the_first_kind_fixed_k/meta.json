@@ -1,0 +1,30 @@
+{
+    "schema_version":  1,
+    "name":  "stirling_number_of_the_first_kind_fixed_k",
+    "title":  "Stirling Number of the First Kind (Fixed K)",
+    "category":  "enumerative_combinatorics",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+
+                                                ],
+                       "adaptations":  [
+                                           "Qualified the integral() call as ::integral() to avoid a C++20 name collision with std::integral."
+                                       ],
+                       "imported_sha256":  "7516b5cdd90dc8e030419242eabd1ca3c6896cb0f6b5f07c770c5aabc8c5fff6"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

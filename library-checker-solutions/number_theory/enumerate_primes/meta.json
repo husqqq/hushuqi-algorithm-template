@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "enumerate_primes",
+    "title":  "Enumerate Primes",
+    "category":  "number_theory",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "4619a43b485fcaeb77a086fcf1e5fb3e6353672db5ee0f3129c9ec1132c27f47"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "4619a43b485fcaeb77a086fcf1e5fb3e6353672db5ee0f3129c9ec1132c27f47",
+                                  "submission_id":  387103,
+                                  "status":  "AC",
+                                  "time":  1.527,
+                                  "memory":  41721856,
+                                  "submission_time":  "2026-07-22T03:04:01.102637Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

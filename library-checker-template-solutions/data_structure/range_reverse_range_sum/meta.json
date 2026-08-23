@@ -1,0 +1,128 @@
+{
+  "schema_version": 3,
+  "name": "range_reverse_range_sum",
+  "title": "Range Reverse Range Sum",
+  "category": "data_structure",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "data_structure/range_reverse_range_sum/main.cpp",
+    "source_sha256": "8605b8ac0e1a541fb1f4e02183cfa85ce7b10e0656964233bd657beced97743c",
+    "evidence": {
+      "method": "deterministic_generation",
+      "generator": {
+        "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
+        "sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+        "working_directory": ".",
+        "runner": "Python 3.13.14",
+        "argv": [
+          "--only",
+          "range_reverse_range_sum",
+          "--write-index"
+        ],
+        "generation_evidence": {
+          "schema_version": 2,
+          "problem_id": "data_structure/range_reverse_range_sum",
+          "source_path": "library-checker-template-solutions/data_structure/range_reverse_range_sum/main.cpp",
+          "source_sha256": "8605b8ac0e1a541fb1f4e02183cfa85ce7b10e0656964233bd657beced97743c",
+          "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
+          "generator_sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+          "working_directory": ".",
+          "runner": "Python 3.13.14",
+          "argv": [
+            "--only",
+            "range_reverse_range_sum",
+            "--write-index"
+          ],
+          "inputs": [
+            {
+              "path": "hushuqi算法竞赛模板/03-数据结构.md",
+              "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/include/full/3_5_011.hpp",
+              "sha256": "becb4e08ed043a92727b3f3dd9dbaca345a004fabe583cfba74f3a581e89ac4b"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/tests/test_ch03_implicit_treap.cpp",
+              "sha256": "0a4cc3d921da50e8637d99b226cfc352d2a9d3760c3d055e3de3ccb73246db55"
+            }
+          ],
+          "generated_sha256": "8605b8ac0e1a541fb1f4e02183cfa85ce7b10e0656964233bd657beced97743c",
+          "byte_equal": true
+        },
+        "generation_evidence_sha256": "f9b6ef518c5add21fc54b5883fee2d3ec45b649c19add91dc2fdcbc480bd217b"
+      },
+      "adapter_sha256": "cbfaa36d9c3f690c868763de25ecd9b59058e5f75c3f9ba5912433d8db26b403",
+      "template_inputs": [
+        {
+          "path": "hushuqi算法竞赛模板/03-数据结构.md",
+          "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/full/3_5_011.hpp",
+          "sha256": "becb4e08ed043a92727b3f3dd9dbaca345a004fabe583cfba74f3a581e89ac4b"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/tests/test_ch03_implicit_treap.cpp",
+          "sha256": "0a4cc3d921da50e8637d99b226cfc352d2a9d3760c3d055e3de3ccb73246db55"
+        }
+      ],
+      "temporary_regenerations": 2,
+      "byte_identical": true,
+      "source_sha256": "8605b8ac0e1a541fb1f4e02183cfa85ce7b10e0656964233bd657beced97743c",
+      "evidence_sha256": "9ccbf22a8ccc2185e7b306cd89c42197ca63d369d816f9c3ffba9a40a7c0d5f6"
+    }
+  },
+  "reference": {
+    "kind": "read_only_baseline",
+    "source": "library-checker-solutions/data_structure/range_reverse_range_sum/main.cpp",
+    "source_sha256": "201140b033d066f03ab7f862c192ee2af9a9fdb736f0fb3eca9a25db38bebd37"
+  },
+  "official_reference": {
+    "repository": "https://github.com/yosupo06/library-checker-problems",
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "license": "Apache-2.0",
+    "license_blob": "91554e3bd99da6761c82645d6c740ced590d17bb",
+    "path": "data_structure/range_reverse_range_sum/sol/correct.cpp",
+    "git_blob": "ead88e2478927b12ec2d9ebf03d698f540422079",
+    "content_sha256": "11730061e95bcd9fd49da114a2a6434339e06d43e2f326e174eded00470652b2"
+  },
+  "validation": {
+    "status": "local_only",
+    "checked_at": null,
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch03_implicit_treap.cpp"
+    ],
+    "current_source_sha256": "8605b8ac0e1a541fb1f4e02183cfa85ce7b10e0656964233bd657beced97743c",
+    "current_source_online_verdict": null,
+    "current_source_submission_id": null,
+    "current_source_time": null,
+    "current_source_memory": null,
+    "current_source_submission_time": null,
+    "current_source_is_latest": null,
+    "server_source_sha256": null,
+    "note": "Generated from the current chapter 03 template; online verification has not run for this source."
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395190,
+      "source_sha256": "a65b89591a8b999176d3c55f42bed75cfe5ffa70850342d1e505487bfe4ce45f",
+      "server_source_sha256": "a65b89591a8b999176d3c55f42bed75cfe5ffa70850342d1e505487bfe4ce45f",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.376,
+      "memory": 19697664,
+      "submission_time": "2026-08-20T13:12:47.360291Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-20T13:12:47.605729Z",
+      "recorded_at": "2026-08-20T13:13:15.352574Z"
+    }
+  ],
+  "notes": [
+    "The only submission candidate is this self-contained main.cpp.",
+    "The reference source is read-only comparison material and is not a submission input."
+  ]
+}

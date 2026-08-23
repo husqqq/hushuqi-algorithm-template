@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "dynamic_tree_subtree_add_subtree_sum",
+    "title":  "Dynamic Tree Subtree Add Subtree Sum",
+    "category":  "tree",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "7856f94efcc7344f8b6f9ab7879a4b7f735593b5c0ad96b5ca8616c0403b0892"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "5010c8b37b6dfe47f6fe5010f09434cac2cc47213edbad1293513db6565ae292",
+                                  "submission_id":  387081,
+                                  "status":  "AC",
+                                  "time":  0.51,
+                                  "memory":  17997824,
+                                  "submission_time":  "2026-07-22T02:54:37.109272Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

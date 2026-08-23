@@ -1,0 +1,30 @@
+{
+    "schema_version":  1,
+    "name":  "mul_mod2n_convolution",
+    "title":  "Convolution on the Multiplicative Monoid of $\\mathbb{Z} / 2^N\\mathbb{Z}$",
+    "category":  "convolution",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "convolution/mul_mod2n_convolution/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+                                                    "convolution/mul_mod2n_convolution/acl.h"
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "973aa96880787318dece81da01d754896854bf18e01e777278c7b2b2682d2128"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

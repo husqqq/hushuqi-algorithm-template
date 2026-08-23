@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "rooted_tree_topological_order_with_minimum_inversions",
+  "title": "Rooted Tree Topological Order with Minimum Inversions",
+  "category": "tree",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "tree/rooted_tree_topological_order_with_minimum_inversions/main.cpp",
+    "source_sha256": "a8a5daef34319eb9f25b4b8f906bc720761300ab59004b792660abeb8212aec8"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "tree",
+    "problem": "rooted_tree_topological_order_with_minimum_inversions"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "a8a5daef34319eb9f25b4b8f906bc720761300ab59004b792660abeb8212aec8",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch06_min_inversion_order.cpp"
+    ],
+    "checked_at": "2026-08-21T16:07:55.920330Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395698,
+    "current_source_time": 0.239,
+    "current_source_memory": 34996224,
+    "current_source_submission_time": "2026-08-21T16:07:19.853461Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "a8a5daef34319eb9f25b4b8f906bc720761300ab59004b792660abeb8212aec8",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395698,
+      "source_sha256": "a8a5daef34319eb9f25b4b8f906bc720761300ab59004b792660abeb8212aec8",
+      "server_source_sha256": "a8a5daef34319eb9f25b4b8f906bc720761300ab59004b792660abeb8212aec8",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.239,
+      "memory": 34996224,
+      "submission_time": "2026-08-21T16:07:19.853461Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T16:07:20.074165Z",
+      "recorded_at": "2026-08-21T16:07:55.919727Z"
+    }
+  ]
+}

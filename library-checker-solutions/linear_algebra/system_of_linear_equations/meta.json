@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "system_of_linear_equations",
+    "title":  "System of Linear Equations",
+    "category":  "linear_algebra",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "dd4f0213be7c0c2624658cd27003a277bf790d53ba7f99ca0da7b0fae635d5ef"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "f73b7af2ba5999fc471ddf5ac0b454e0eebb64f56226ff0c310345d95874adf7",
+                                  "submission_id":  387131,
+                                  "status":  "AC",
+                                  "time":  0.105,
+                                  "memory":  3104768,
+                                  "submission_time":  "2026-07-22T03:13:40.20391Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

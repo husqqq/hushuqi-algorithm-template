@@ -1,0 +1,124 @@
+{
+  "schema_version": 3,
+  "name": "range_linear_add_range_min",
+  "title": "Range Linear Add Range Min",
+  "category": "data_structure",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "data_structure/range_linear_add_range_min/main.cpp",
+    "source_sha256": "36832b5e610e1be7a12807b312c03fa41ffa99988a1ddb39ad7d52d504138534",
+    "evidence": {
+      "method": "deterministic_generation",
+      "generator": {
+        "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
+        "sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+        "working_directory": ".",
+        "runner": "Python 3.13.14",
+        "argv": [
+          "--write-index"
+        ],
+        "generation_evidence": {
+          "schema_version": 2,
+          "problem_id": "data_structure/range_linear_add_range_min",
+          "source_path": "library-checker-template-solutions/data_structure/range_linear_add_range_min/main.cpp",
+          "source_sha256": "36832b5e610e1be7a12807b312c03fa41ffa99988a1ddb39ad7d52d504138534",
+          "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
+          "generator_sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+          "working_directory": ".",
+          "runner": "Python 3.13.14",
+          "argv": [
+            "--write-index"
+          ],
+          "inputs": [
+            {
+              "path": "hushuqi算法竞赛模板/03-数据结构.md",
+              "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/include/full/3_3_019.hpp",
+              "sha256": "571a040e4d368a929730f2bb25afcc5791921b04f1b6cec4b783f5aaec0c024d"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/tests/test_ch03_revised.cpp",
+              "sha256": "668462995fa6277c5f03c8e6f86ecba974a84be54e2a000f95cb0ef4dbbd2696"
+            }
+          ],
+          "generated_sha256": "36832b5e610e1be7a12807b312c03fa41ffa99988a1ddb39ad7d52d504138534",
+          "byte_equal": true
+        },
+        "generation_evidence_sha256": "f9aeb934fef8be0140c54ac547ea1e2943842b9431a6732b6fd4ea2ceb48f5d2"
+      },
+      "adapter_sha256": "a4acc29645f7d4303608cff1d28d29972833e1ac19137bd4877cd0876175f151",
+      "template_inputs": [
+        {
+          "path": "hushuqi算法竞赛模板/03-数据结构.md",
+          "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/full/3_3_019.hpp",
+          "sha256": "571a040e4d368a929730f2bb25afcc5791921b04f1b6cec4b783f5aaec0c024d"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/tests/test_ch03_revised.cpp",
+          "sha256": "668462995fa6277c5f03c8e6f86ecba974a84be54e2a000f95cb0ef4dbbd2696"
+        }
+      ],
+      "temporary_regenerations": 2,
+      "byte_identical": true,
+      "source_sha256": "36832b5e610e1be7a12807b312c03fa41ffa99988a1ddb39ad7d52d504138534",
+      "evidence_sha256": "badc936109433723d9ef13e100f86e8b8786b479b67400c3f85affcbaf252863"
+    }
+  },
+  "reference": {
+    "kind": "read_only_baseline",
+    "source": "library-checker-solutions/data_structure/range_linear_add_range_min/main.cpp",
+    "source_sha256": "d27995ad17131fc8e8a40bfaede746288e07ac55e1772323ac149cfd7cd4fe84"
+  },
+  "official_reference": {
+    "repository": "https://github.com/yosupo06/library-checker-problems",
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "license": "Apache-2.0",
+    "license_blob": "91554e3bd99da6761c82645d6c740ced590d17bb",
+    "path": "data_structure/range_linear_add_range_min/sol/correct.cpp",
+    "git_blob": "58564fbfebf3c61e6f360b113506ccaf5650bb9e",
+    "content_sha256": "0c8ad35bc020666c6c590bcd6f90750407f0887eea0e2d3c03b3d318287ce241"
+  },
+  "validation": {
+    "status": "online_ac",
+    "checked_at": "2026-08-19T20:50:44.690202Z",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch03_revised.cpp"
+    ],
+    "current_source_sha256": "36832b5e610e1be7a12807b312c03fa41ffa99988a1ddb39ad7d52d504138534",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 394406,
+    "current_source_time": 0.885,
+    "current_source_memory": 19664896,
+    "current_source_submission_time": "2026-08-18T18:59:42.292839Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "36832b5e610e1be7a12807b312c03fa41ffa99988a1ddb39ad7d52d504138534",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 394406,
+      "source_sha256": "36832b5e610e1be7a12807b312c03fa41ffa99988a1ddb39ad7d52d504138534",
+      "server_source_sha256": "36832b5e610e1be7a12807b312c03fa41ffa99988a1ddb39ad7d52d504138534",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.885,
+      "memory": 19664896,
+      "submission_time": "2026-08-18T18:59:42.292839Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-18T18:59:42.407855Z",
+      "recorded_at": "2026-08-18T19:00:16.446492Z"
+    }
+  ],
+  "notes": [
+    "The only submission candidate is this self-contained main.cpp.",
+    "The reference source is read-only comparison material and is not a submission input."
+  ]
+}

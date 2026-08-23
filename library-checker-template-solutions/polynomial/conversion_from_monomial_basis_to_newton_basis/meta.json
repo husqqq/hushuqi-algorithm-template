@@ -1,0 +1,73 @@
+{
+  "schema_version": 3,
+  "name": "conversion_from_monomial_basis_to_newton_basis",
+  "title": "Conversion from Monomial Basis to Newton Basis",
+  "category": "polynomial",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "polynomial/conversion_from_monomial_basis_to_newton_basis/main.cpp",
+    "source_sha256": "be5571ee98b2316829535f998fd2df33992d37b2f9c998bf6c7e68a6a6b14b68"
+  },
+  "reference": {
+    "kind": "official_adapted",
+    "repository": "https://github.com/yosupo06/library-checker-problems",
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "path": "polynomial/conversion_from_monomial_basis_to_newton_basis/sol/correct.cpp",
+    "license": "Apache-2.0",
+    "dependencies_inlined": [],
+    "adaptations": [],
+    "imported_sha256": "33a2d33bacffd5382e59428b068afbc584c034a5a73efe2a28f7f7d4da752132"
+  },
+  "validation": {
+    "status": "online_ac",
+    "checked_at": "2026-08-21T13:51:15.628667Z",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch10_poly_conversions.cpp"
+    ],
+    "current_source_sha256": "be5571ee98b2316829535f998fd2df33992d37b2f9c998bf6c7e68a6a6b14b68",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395653,
+    "current_source_time": 0.334,
+    "current_source_memory": 29782016,
+    "current_source_submission_time": "2026-08-21T13:50:50.851019Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "be5571ee98b2316829535f998fd2df33992d37b2f9c998bf6c7e68a6a6b14b68",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 393995,
+      "source_sha256": "b5f37e77deb9e5b826e63c81f1e09492856df19fd07f0e55a13d97a76d80ad3b",
+      "server_source_sha256": "b5f37e77deb9e5b826e63c81f1e09492856df19fd07f0e55a13d97a76d80ad3b",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.349,
+      "memory": 29798400,
+      "submission_time": "2026-08-16T18:33:19.776423Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-16T18:33:19.932269Z",
+      "recorded_at": "2026-08-16T18:34:17.416939Z"
+    },
+    {
+      "submission_id": 395653,
+      "source_sha256": "be5571ee98b2316829535f998fd2df33992d37b2f9c998bf6c7e68a6a6b14b68",
+      "server_source_sha256": "be5571ee98b2316829535f998fd2df33992d37b2f9c998bf6c7e68a6a6b14b68",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.334,
+      "memory": 29782016,
+      "submission_time": "2026-08-21T13:50:50.851019Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T13:50:51.036762Z",
+      "recorded_at": "2026-08-21T13:51:15.627737Z"
+    }
+  ],
+  "notes": [
+    "reference、historical_submission 和旧 submission_attempts 只描述历史源码，不是当前 main.cpp 的在线判定。"
+  ]
+}

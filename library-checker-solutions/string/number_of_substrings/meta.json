@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "number_of_substrings",
+    "title":  "Number of Substrings",
+    "category":  "string",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "a5a1400358c4c5ddb9beaa9a7f5a0bb2713b194be6f68640eee3092a531f427f"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "cc71b199d61d841bbba455c3caf1389828eadce6ac55598eb4b6290045f7dffd",
+                                  "submission_id":  387023,
+                                  "status":  "AC",
+                                  "time":  0.056,
+                                  "memory":  13602816,
+                                  "submission_time":  "2026-07-22T02:30:41.00109Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

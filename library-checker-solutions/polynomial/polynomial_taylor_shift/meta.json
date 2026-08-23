@@ -1,0 +1,21 @@
+{
+    "schema_version":  1,
+    "name":  "polynomial_taylor_shift",
+    "title":  "Polynomial Taylor Shift",
+    "category":  "polynomial",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "2c1d932f3fa763dd79c72fd938ccabac239a62b9ed508c3a612e842092721631",
+                       "imported_sha256":  "73db27de236f9327301ed83999398803d5b79905f03383a2992f312bea59c7ca"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "composition_of_formal_power_series_large",
+    "title":  "Composition of Formal Power Series (Large)",
+    "category":  "polynomial",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "6daeab9bf2f82146001bca9bf18315f1bcbb3a72106af0c01380a5a88963d0fe"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "e3294096cd37b0a4924b12989410ae20715f1d90e217a7bac5dd8ed269c01696",
+                                  "submission_id":  387151,
+                                  "status":  "AC",
+                                  "time":  2.086,
+                                  "memory":  93282304,
+                                  "submission_time":  "2026-07-22T03:25:25.917804Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

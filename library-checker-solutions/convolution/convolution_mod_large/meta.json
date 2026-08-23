@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "convolution_mod_large",
+    "title":  "Convolution (Large)",
+    "category":  "convolution",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "6c8a1e14fd02b8dfb1147ba86308af2fbadce7ae24bc2c09de666b7ec0081cf7"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "d01c6e8c0528c16ebdfcb8cc1ca114d48c7c190c8ef8996e08ec0a5ac6db2c97",
+                                  "submission_id":  387167,
+                                  "status":  "AC",
+                                  "time":  4.104,
+                                  "memory":  791150592,
+                                  "submission_time":  "2026-07-22T03:31:04.909653Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

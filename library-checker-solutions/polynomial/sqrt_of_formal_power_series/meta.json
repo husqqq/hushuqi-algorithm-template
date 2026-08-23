@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "sqrt_of_formal_power_series",
+    "title":  "Sqrt of Formal Power Series",
+    "category":  "polynomial",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "fd73c8a2f3290874e46b7a119f537a86a4be36a0cd9c671c854ef186ebad9bb8"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "fc415ef01a5f00b3d0c5bf15788ff67cd0f52c54720608997cded25f2bbed94b",
+                                  "submission_id":  387139,
+                                  "status":  "AC",
+                                  "time":  1.2,
+                                  "memory":  25554944,
+                                  "submission_time":  "2026-07-22T03:17:52.502353Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

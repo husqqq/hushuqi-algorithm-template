@@ -1,0 +1,56 @@
+{
+  "schema_version": 3,
+  "name": "runenumerate",
+  "title": "Run Enumerate",
+  "category": "string",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "string/runenumerate/main.cpp",
+    "source_sha256": "b101dfdd6f97483fc8591e8fa075aae395a0cebb2c4f39271b3daef60d85c115"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "string",
+    "problem": "runenumerate"
+  },
+  "validation": {
+    "status": "local_only",
+    "current_source_sha256": "b101dfdd6f97483fc8591e8fa075aae395a0cebb2c4f39271b3daef60d85c115",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch04_runs.cpp"
+    ]
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395550,
+      "source_sha256": "660d8edeac4380cb5d0652cdcddaba9ad304a6112a0fe01231d5e802367c62ec",
+      "server_source_sha256": "660d8edeac4380cb5d0652cdcddaba9ad304a6112a0fe01231d5e802367c62ec",
+      "lang": "cpp20",
+      "verdict": "TLE",
+      "last_status": "TLE",
+      "time": 5,
+      "memory": 20475904,
+      "submission_time": "2026-08-21T07:49:55.469033Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T07:49:55.637644Z",
+      "recorded_at": "2026-08-21T07:50:24.373090Z"
+    },
+    {
+      "submission_id": 395556,
+      "source_sha256": "97f35ef7863d2e0808cf03d9e4d7486a77d834fb040fdc464f012cfeaf5d503e",
+      "server_source_sha256": "97f35ef7863d2e0808cf03d9e4d7486a77d834fb040fdc464f012cfeaf5d503e",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.248,
+      "memory": 38338560,
+      "submission_time": "2026-08-21T08:23:27.333306Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T08:23:27.526239Z",
+      "recorded_at": "2026-08-21T08:23:56.105430Z"
+    }
+  ]
+}

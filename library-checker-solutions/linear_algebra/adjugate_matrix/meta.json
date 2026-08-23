@@ -1,0 +1,30 @@
+{
+    "schema_version":  1,
+    "name":  "adjugate_matrix",
+    "title":  "Adjugate Matrix",
+    "category":  "linear_algebra",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "linear_algebra/adjugate_matrix/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "9ffc68ecb0c44a5da2519b8f0106f32e07f73ca37401e620ef3e643e9ac1a974"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

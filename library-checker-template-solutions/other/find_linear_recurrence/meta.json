@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "find_linear_recurrence",
+  "title": "Find Linear Recurrence",
+  "category": "other",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "other/find_linear_recurrence/main.cpp",
+    "source_sha256": "b39340b8c50d200d5db24bdcebd4fe4e8371522fabe0a72e974b86bfaba0ad95"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "other",
+    "problem": "find_linear_recurrence"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "b39340b8c50d200d5db24bdcebd4fe4e8371522fabe0a72e974b86bfaba0ad95",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch10_recurrence.cpp"
+    ],
+    "checked_at": "2026-08-21T20:44:56.024381Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395841,
+    "current_source_time": 0.09,
+    "current_source_memory": 1060864,
+    "current_source_submission_time": "2026-08-21T20:44:34.154901Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "b39340b8c50d200d5db24bdcebd4fe4e8371522fabe0a72e974b86bfaba0ad95",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395841,
+      "source_sha256": "b39340b8c50d200d5db24bdcebd4fe4e8371522fabe0a72e974b86bfaba0ad95",
+      "server_source_sha256": "b39340b8c50d200d5db24bdcebd4fe4e8371522fabe0a72e974b86bfaba0ad95",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.09,
+      "memory": 1060864,
+      "submission_time": "2026-08-21T20:44:34.154901Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T20:44:34.424810Z",
+      "recorded_at": "2026-08-21T20:44:56.023747Z"
+    }
+  ]
+}

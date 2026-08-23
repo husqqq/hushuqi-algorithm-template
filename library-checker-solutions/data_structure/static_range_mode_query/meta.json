@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "static_range_mode_query",
+    "title":  "Static Range Mode Query",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "01479749a95cf6abec7b40d679a628c868758b24dd0f708675d7cbae13fa3b42"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "08e0c38f2a627a8967f22263d3611d7509d791b03b7abc89827235c79be859bc",
+                                  "submission_id":  387185,
+                                  "status":  "AC",
+                                  "time":  2.033,
+                                  "memory":  6201344,
+                                  "submission_time":  "2026-07-22T03:40:57.313225Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

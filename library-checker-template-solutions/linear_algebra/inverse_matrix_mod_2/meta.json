@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "inverse_matrix_mod_2",
+  "title": "Inverse Matrix (Mod 2)",
+  "category": "linear_algebra",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "linear_algebra/inverse_matrix_mod_2/main.cpp",
+    "source_sha256": "f0dabfb6c36dd175aeaafb0468f806b3cb7d8c9e24ab1c2e4f02b827c91576a7"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "linear_algebra",
+    "problem": "inverse_matrix_mod_2"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "f0dabfb6c36dd175aeaafb0468f806b3cb7d8c9e24ab1c2e4f02b827c91576a7",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch09_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T19:01:45.631784Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395789,
+    "current_source_time": 0.842,
+    "current_source_memory": 24420352,
+    "current_source_submission_time": "2026-08-21T19:00:59.012824Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "f0dabfb6c36dd175aeaafb0468f806b3cb7d8c9e24ab1c2e4f02b827c91576a7",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395789,
+      "source_sha256": "f0dabfb6c36dd175aeaafb0468f806b3cb7d8c9e24ab1c2e4f02b827c91576a7",
+      "server_source_sha256": "f0dabfb6c36dd175aeaafb0468f806b3cb7d8c9e24ab1c2e4f02b827c91576a7",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.842,
+      "memory": 24420352,
+      "submission_time": "2026-08-21T19:00:59.012824Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T19:00:59.266556Z",
+      "recorded_at": "2026-08-21T19:01:45.631057Z"
+    }
+  ]
+}

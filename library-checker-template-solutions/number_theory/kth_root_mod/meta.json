@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "kth_root_mod",
+  "title": "Kth Root (Mod)",
+  "category": "number_theory",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "number_theory/kth_root_mod/main.cpp",
+    "source_sha256": "9091dd60bf9fe2da9ca78d6fff117359a25b4bdfe64ce1ed3b6d9e8d84e829bd"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "number_theory",
+    "problem": "kth_root_mod"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "9091dd60bf9fe2da9ca78d6fff117359a25b4bdfe64ce1ed3b6d9e8d84e829bd",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch07_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T16:45:48.020282Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395722,
+    "current_source_time": 0.072,
+    "current_source_memory": 888832,
+    "current_source_submission_time": "2026-08-21T16:45:22.555496Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "9091dd60bf9fe2da9ca78d6fff117359a25b4bdfe64ce1ed3b6d9e8d84e829bd",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395722,
+      "source_sha256": "9091dd60bf9fe2da9ca78d6fff117359a25b4bdfe64ce1ed3b6d9e8d84e829bd",
+      "server_source_sha256": "9091dd60bf9fe2da9ca78d6fff117359a25b4bdfe64ce1ed3b6d9e8d84e829bd",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.072,
+      "memory": 888832,
+      "submission_time": "2026-08-21T16:45:22.555496Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T16:45:22.798670Z",
+      "recorded_at": "2026-08-21T16:45:48.019595Z"
+    }
+  ]
+}

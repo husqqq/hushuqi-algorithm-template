@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "matrix_product",
+    "title":  "Matrix Product",
+    "category":  "linear_algebra",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "502e15fa371ebd040227741404824320cd0be13dd5212e5179ba077484c55352"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "0ab6bfaab64f8e05efce849a9b3bf025e28ba5bd85b16863805497eebbf18869",
+                                  "submission_id":  387121,
+                                  "status":  "AC",
+                                  "time":  1.669,
+                                  "memory":  23842816,
+                                  "submission_time":  "2026-07-22T03:08:49.021134Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

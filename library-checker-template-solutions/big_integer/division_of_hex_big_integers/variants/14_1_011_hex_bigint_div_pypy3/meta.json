@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "kind": "template_variant",
+  "variant_id": "14_1_011_hex_bigint_div_pypy3",
+  "name": "division_of_hex_big_integers",
+  "title": "Division of Hex Big Integers",
+  "category": "big_integer",
+  "language": "pypy3",
+  "source": "big_integer/division_of_hex_big_integers/variants/14_1_011_hex_bigint_div_pypy3/main.py",
+  "source_sha256": "888fd4cd0486bd36050e878288299dc704bbb11d15475c7b47458141c2cbb185",
+  "template_items": [
+    "14.1.011"
+  ],
+  "complexity": "Python arbitrary-precision division with hexadecimal conversion",
+  "provenance": {
+    "method": "deterministic_generation",
+    "generator": "library-checker-template-solutions/tools/generate_variants.py",
+    "generator_sha256": "c93c7eefeb581216c5842f766ee65d718ed7338888d153e80761ee5c831742f3",
+    "inputs": [
+      {
+        "path": "hushuqi算法竞赛模板/14-其他实用模板.md",
+        "sha256": "29b3fff659b376a14fba25990e42b989a8b004030b58e6b60ef0cd6fe4520577"
+      },
+      {
+        "path": "hushuqi算法竞赛模板/tests/test_python_topics.py",
+        "sha256": "56b59b17bd3783cb15b268b6d0cbc5eb1a0f7bbe46391f34b21927955b958df4"
+      }
+    ],
+    "generated_sha256": "888fd4cd0486bd36050e878288299dc704bbb11d15475c7b47458141c2cbb185"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "888fd4cd0486bd36050e878288299dc704bbb11d15475c7b47458141c2cbb185",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 396244,
+    "server_source_sha256": "888fd4cd0486bd36050e878288299dc704bbb11d15475c7b47458141c2cbb185",
+    "checks": [
+      "source_python_syntax",
+      "hushuqi算法竞赛模板/tests/test_python_topics.py"
+    ],
+    "checked_at": "2026-08-23T05:22:35.900001Z",
+    "current_source_time": 4.182,
+    "current_source_memory": 140693504,
+    "current_source_submission_time": "2026-08-23T05:21:44.603124Z",
+    "current_source_is_latest": true,
+    "note": "当前变体源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 396244,
+      "source_sha256": "888fd4cd0486bd36050e878288299dc704bbb11d15475c7b47458141c2cbb185",
+      "server_source_sha256": "888fd4cd0486bd36050e878288299dc704bbb11d15475c7b47458141c2cbb185",
+      "lang": "pypy3",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 4.182,
+      "memory": 140693504,
+      "submission_time": "2026-08-23T05:21:44.603124Z",
+      "is_latest": true,
+      "compile_standard": null,
+      "submitted_at": "2026-08-23T05:21:44.711091Z",
+      "recorded_at": "2026-08-23T05:22:35.899987Z"
+    }
+  ]
+}

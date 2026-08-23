@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "shortest_path",
+  "title": "Shortest Path",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/shortest_path/main.cpp",
+    "source_sha256": "13f3c949aa9b76e9cdd036a1f0333389b26e5c7bc519f4f62a8b007f91440d09"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "shortest_path"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "13f3c949aa9b76e9cdd036a1f0333389b26e5c7bc519f4f62a8b007f91440d09",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_shortest.cpp"
+    ],
+    "checked_at": "2026-08-21T09:18:30.381819Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395563,
+    "current_source_time": 0.557,
+    "current_source_memory": 55832576,
+    "current_source_submission_time": "2026-08-21T09:17:37.98315Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "13f3c949aa9b76e9cdd036a1f0333389b26e5c7bc519f4f62a8b007f91440d09",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395563,
+      "source_sha256": "13f3c949aa9b76e9cdd036a1f0333389b26e5c7bc519f4f62a8b007f91440d09",
+      "server_source_sha256": "13f3c949aa9b76e9cdd036a1f0333389b26e5c7bc519f4f62a8b007f91440d09",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.557,
+      "memory": 55832576,
+      "submission_time": "2026-08-21T09:17:37.98315Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T09:17:38.240918Z",
+      "recorded_at": "2026-08-21T09:18:30.381102Z"
+    }
+  ]
+}

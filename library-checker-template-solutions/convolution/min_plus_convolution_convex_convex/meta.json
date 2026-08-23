@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "min_plus_convolution_convex_convex",
+  "title": "Min Plus Convolution (Convex and Convex)",
+  "category": "convolution",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "convolution/min_plus_convolution_convex_convex/main.cpp",
+    "source_sha256": "ed27d774c297df1fb805eac3a3ae8b1df43a30f6e55e2231c48d30f7f6fa6fd9"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "convolution",
+    "problem": "min_plus_convolution_convex_convex"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "ed27d774c297df1fb805eac3a3ae8b1df43a30f6e55e2231c48d30f7f6fa6fd9",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch10_minplus.cpp"
+    ],
+    "checked_at": "2026-08-21T21:37:52.140271Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395875,
+    "current_source_time": 0.301,
+    "current_source_memory": 29356032,
+    "current_source_submission_time": "2026-08-21T21:37:09.290507Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "ed27d774c297df1fb805eac3a3ae8b1df43a30f6e55e2231c48d30f7f6fa6fd9",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395875,
+      "source_sha256": "ed27d774c297df1fb805eac3a3ae8b1df43a30f6e55e2231c48d30f7f6fa6fd9",
+      "server_source_sha256": "ed27d774c297df1fb805eac3a3ae8b1df43a30f6e55e2231c48d30f7f6fa6fd9",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.301,
+      "memory": 29356032,
+      "submission_time": "2026-08-21T21:37:09.290507Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T21:37:09.574885Z",
+      "recorded_at": "2026-08-21T21:37:52.139589Z"
+    }
+  ]
+}

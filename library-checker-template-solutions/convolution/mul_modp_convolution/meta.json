@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "mul_modp_convolution",
+  "title": "Convolution on the Multiplicative Monoid of $\\mathbb{Z} / P\\mathbb{Z}$",
+  "category": "convolution",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "convolution/mul_modp_convolution/main.cpp",
+    "source_sha256": "2ad6395d9a444de7a7b9090c606bbd81dea0e2abb1fdf56e031632eacfda2fa5"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "convolution",
+    "problem": "mul_modp_convolution"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "2ad6395d9a444de7a7b9090c606bbd81dea0e2abb1fdf56e031632eacfda2fa5",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_lc_gap_convolution.cpp"
+    ],
+    "checked_at": "2026-08-21T21:31:21.346564Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395869,
+    "current_source_time": 0.362,
+    "current_source_memory": 27873280,
+    "current_source_submission_time": "2026-08-21T21:30:41.720713Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "2ad6395d9a444de7a7b9090c606bbd81dea0e2abb1fdf56e031632eacfda2fa5",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395869,
+      "source_sha256": "2ad6395d9a444de7a7b9090c606bbd81dea0e2abb1fdf56e031632eacfda2fa5",
+      "server_source_sha256": "2ad6395d9a444de7a7b9090c606bbd81dea0e2abb1fdf56e031632eacfda2fa5",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.362,
+      "memory": 27873280,
+      "submission_time": "2026-08-21T21:30:41.720713Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T21:30:42.030976Z",
+      "recorded_at": "2026-08-21T21:31:21.345735Z"
+    }
+  ]
+}

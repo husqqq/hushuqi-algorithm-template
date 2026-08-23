@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "characteristic_polynomial",
+  "title": "Characteristic Polynomial",
+  "category": "linear_algebra",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "linear_algebra/characteristic_polynomial/main.cpp",
+    "source_sha256": "0895f6bad74d7c474f2fa8af4b9bac2b654e718334bacd7a8f5adc08b8db4d3d"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "linear_algebra",
+    "problem": "characteristic_polynomial"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "0895f6bad74d7c474f2fa8af4b9bac2b654e718334bacd7a8f5adc08b8db4d3d",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch09_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T19:04:12.326866Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395793,
+    "current_source_time": 0.287,
+    "current_source_memory": 3420160,
+    "current_source_submission_time": "2026-08-21T19:03:39.936198Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "0895f6bad74d7c474f2fa8af4b9bac2b654e718334bacd7a8f5adc08b8db4d3d",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395793,
+      "source_sha256": "0895f6bad74d7c474f2fa8af4b9bac2b654e718334bacd7a8f5adc08b8db4d3d",
+      "server_source_sha256": "0895f6bad74d7c474f2fa8af4b9bac2b654e718334bacd7a8f5adc08b8db4d3d",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.287,
+      "memory": 3420160,
+      "submission_time": "2026-08-21T19:03:39.936198Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T19:03:40.187393Z",
+      "recorded_at": "2026-08-21T19:04:12.326199Z"
+    }
+  ]
+}

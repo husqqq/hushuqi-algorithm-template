@@ -1,0 +1,51 @@
+{
+  "schema_version": 3,
+  "name": "bernoulli_number",
+  "title": "Bernoulli Number",
+  "category": "number_theory",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "number_theory/bernoulli_number/main.cpp",
+    "source_sha256": "06138cb62a4000c1cff4785e544bfaee92747d014ec2a9e9121803f0a96db50a"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "number_theory",
+    "problem": "bernoulli_number"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "06138cb62a4000c1cff4785e544bfaee92747d014ec2a9e9121803f0a96db50a",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch08_sequences.cpp"
+    ],
+    "boundary_input": "hushuqi算法竞赛模板/tests/lc/ch07_bernoulli_boundary.in",
+    "checked_at": "2026-08-21T21:24:23.180313Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395860,
+    "current_source_time": 0.133,
+    "current_source_memory": 10809344,
+    "current_source_submission_time": "2026-08-21T21:24:04.676674Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "06138cb62a4000c1cff4785e544bfaee92747d014ec2a9e9121803f0a96db50a",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395860,
+      "source_sha256": "06138cb62a4000c1cff4785e544bfaee92747d014ec2a9e9121803f0a96db50a",
+      "server_source_sha256": "06138cb62a4000c1cff4785e544bfaee92747d014ec2a9e9121803f0a96db50a",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.133,
+      "memory": 10809344,
+      "submission_time": "2026-08-21T21:24:04.676674Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T21:24:04.963741Z",
+      "recorded_at": "2026-08-21T21:24:23.179479Z"
+    }
+  ]
+}

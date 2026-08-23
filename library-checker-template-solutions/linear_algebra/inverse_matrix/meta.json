@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "inverse_matrix",
+  "title": "Inverse Matrix",
+  "category": "linear_algebra",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "linear_algebra/inverse_matrix/main.cpp",
+    "source_sha256": "4c9d4b519ad816bf505d1cc8acbd5a04f18ed7ba8157d9d5b12093b296be432a"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "linear_algebra",
+    "problem": "inverse_matrix"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "4c9d4b519ad816bf505d1cc8acbd5a04f18ed7ba8157d9d5b12093b296be432a",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch09_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T19:00:53.636271Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395788,
+    "current_source_time": 1.586,
+    "current_source_memory": 9297920,
+    "current_source_submission_time": "2026-08-21T19:00:10.63127Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "4c9d4b519ad816bf505d1cc8acbd5a04f18ed7ba8157d9d5b12093b296be432a",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395788,
+      "source_sha256": "4c9d4b519ad816bf505d1cc8acbd5a04f18ed7ba8157d9d5b12093b296be432a",
+      "server_source_sha256": "4c9d4b519ad816bf505d1cc8acbd5a04f18ed7ba8157d9d5b12093b296be432a",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.586,
+      "memory": 9297920,
+      "submission_time": "2026-08-21T19:00:10.63127Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T19:00:10.874385Z",
+      "recorded_at": "2026-08-21T19:00:53.635567Z"
+    }
+  ]
+}

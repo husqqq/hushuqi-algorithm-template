@@ -1,0 +1,85 @@
+% ---- 字体：正文思源宋体（Noto Serif SC），代码 Cascadia Code ----
+\usepackage{fontspec}
+% 思源/Noto 在本机是可变字体(VF)，按「族名」加载会让 xdvipdfmx 崩(Invalid font -1)，
+% 必须按「文件名」加载。
+% 西文正文用思源宋体自带的拉丁衬线，与中文同源、观感统一。
+\setmainfont{NotoSerifSC-VF.ttf}[AutoFakeSlant=0.15]
+% 中文正文：思源宋体
+\setCJKmainfont{NotoSerifSC-VF.ttf}[AutoFakeSlant=0.15]
+% 无衬线：思源黑体
+\setCJKsansfont{NotoSansSC-VF.ttf}
+% 等宽（代码）：Cascadia Code，符号覆盖广（∈ ≠ ≡ ⌊ ⌋ ∘ 等），顺带消掉缺字警告。
+% 【务必按文件名从 TeX Live 静态 OTF 加载】：本机同时装了 Windows 版可变字体
+% CascadiaCode.ttf，按族名 {Cascadia Code} 会命中偏粗默认实例。Path 必须 Windows
+% 盘符风格（xelatex 原生 Windows 程序，读不懂 MSYS 的 /d/...）。
+% 【字重取 SemiLight 且把 Bold 也映射到 SemiLight】：Cascadia 的 Regular 相对思源宋体
+% 偏重，行内代码 `vector` 挨着正文时会显得“加粗”；标题是 \bfseries，若 Bold face 更粗，
+% 标题里的行内代码会真加粗并顺带污染目录。统一用 SemiLight 且不给独立 Bold face，
+% 让行内代码在正文/标题/目录里都与宋体粗细相称、任何语境都不再变粗。
+% （jblight 主题仅 Alert 一个 token 用到 bold，C++ 代码里几乎不出现，无损。）
+\setmonofont{CascadiaCode}[
+  Path=D:/texlive/2026/texmf-dist/fonts/opentype/public/cascadia-code/,
+  Extension=.otf,
+  UprightFont=*-SemiLight,
+  BoldFont=*-SemiLight,
+  ItalicFont=*-SemiLightItalic,
+  BoldItalicFont=*-SemiLightItalic,
+  Scale=0.90]
+% 代码块里的中文注释回退到思源宋体
+\setCJKmonofont{NotoSerifSC-VF.ttf}[Scale=0.95]
+
+% ---- 代码块：长行自动折断、缩小字号；中文注释回退到主 CJK 字体正常显示 ----
+\usepackage{fvextra}
+\fvset{breaklines=true,breakanywhere=true,fontsize=\small,numbersep=8pt}
+
+% ---- 代码块外观：圆角边框 + 行号排在框内左侧 gutter、竖线分隔（对标 IDE / 截图） ----
+% pandoc 生成的代码块外层是 Shaded 环境（默认 framed 的 snugshade）。header-includes
+% 在 pandoc 的高亮宏之后插入，故此处 \renewenvironment 覆盖生效，shadecolor 也已由
+% pandoc 按主题背景色定义好，直接拿来做底色。
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{codeframe}{HTML}{D9DDE3}
+\definecolor{coderule}{HTML}{CBD0D7}
+\definecolor{codenum}{HTML}{9AA0A8}
+% 行号：浅灰、小一号
+\renewcommand{\theFancyVerbLine}{\color{codenum}\footnotesize\arabic{FancyVerbLine}}
+% gutter 宽度：容纳行号 + 与代码的间距
+\newlength{\codegutter}\setlength{\codegutter}{2.7em}
+\renewenvironment{Shaded}{%
+  \begin{tcolorbox}[breakable, enhanced, colback=shadecolor, colframe=codeframe,
+    boxrule=0.4pt, arc=3pt, outer arc=3pt, boxsep=0pt,
+    left=\codegutter, right=6pt, top=4pt, bottom=4pt,
+    underlay unbroken and first={\draw[coderule, line width=0.5pt]
+      ([xshift=2.05em]interior.north west) -- ([xshift=2.05em]interior.south west);},
+    underlay middle and last={\draw[coderule, line width=0.5pt]
+      ([xshift=2.05em]interior.north west) -- ([xshift=2.05em]interior.south west);}]%
+}{\end{tcolorbox}}
+
+% ---- 段落用间距代替首行缩进，贴近 WIDA 的紧凑观感 ----
+\usepackage{parskip}
+
+% 页眉只显示当前一级章节；进入新章时清空旧的右标记。
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+\renewcommand{\subsectionmark}[1]{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{14pt}
+\usepackage{etoolbox}
+\pretocmd{\section}{\clearpage}{}{}
+
+% 目录已超过一千页，默认页码盒只够三位数；扩宽后四位页码不会越过右边界。
+\makeatletter
+\renewcommand{\@pnumwidth}{2.4em}
+\renewcommand{\@tocrmarg}{3.2em}
+\makeatother
+
+% ---- 拉丁扩展字符兜底：思源宋体缺匈牙利语 ő（Erdős-Gallai 定理里的人名），
+%      正文（非代码）里遇到就回退到 Latin Modern（TeX Live 必带，覆盖全）。----
+\usepackage{newunicodechar}
+\newfontfamily\latinfallback{Latin Modern Roman}
+\newunicodechar{ő}{{\latinfallback ő}}
+\newunicodechar{Ő}{{\latinfallback Ő}}

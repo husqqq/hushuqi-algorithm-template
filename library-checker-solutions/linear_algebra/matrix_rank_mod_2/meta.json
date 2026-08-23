@@ -1,0 +1,21 @@
+{
+    "schema_version":  1,
+    "name":  "matrix_rank_mod_2",
+    "title":  "Rank of Matrix (Mod 2)",
+    "category":  "linear_algebra",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "cf4a1359ef383e62fe03de657ac68feee15957c40a57b6032f3b8c08e2bbf7fc",
+                       "imported_sha256":  "d366320aa73d1e11931276f2f693fec43d13e9bc06d7178141a70e69425196b0"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

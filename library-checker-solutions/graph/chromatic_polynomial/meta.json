@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "chromatic_polynomial",
+    "title":  "Chromatic Polynomial",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "a4f4f5642202881b36a0eab042bed90e3544214dfb1b8a31ca10d9f81d1902db"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "8c865d7597ba7feac5986a26576890c33feb02df092bf146f494d0cd2d3d3e62",
+                                  "submission_id":  387034,
+                                  "status":  "AC",
+                                  "time":  1.253,
+                                  "memory":  126967808,
+                                  "submission_time":  "2026-07-22T02:34:50.129905Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

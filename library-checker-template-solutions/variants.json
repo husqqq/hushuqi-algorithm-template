@@ -1,0 +1,726 @@
+{
+  "schema_version": 1,
+  "kind": "template_variants",
+  "official_repository": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "url": "https://github.com/yosupo06/library-checker-problems"
+  },
+  "variant_count": 52,
+  "variants": [
+    {
+      "variant_id": "10_1_003_plain_ntt_cpp20",
+      "problem": "convolution_mod",
+      "title": "Convolution",
+      "category": "convolution",
+      "language": "cpp20",
+      "source": "convolution/convolution_mod/variants/10_1_003_plain_ntt_cpp20/main.cpp",
+      "source_sha256": "3637d7e78bf8cfc46575d11d69092871b1fb78e37ce459bfe81fa621a19f264b",
+      "meta": "convolution/convolution_mod/variants/10_1_003_plain_ntt_cpp20/meta.json",
+      "template_items": [
+        "10.1.003"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch10_convolution.cpp"
+    },
+    {
+      "variant_id": "10_1_006_fixed_fwt_and_cpp20",
+      "problem": "bitwise_and_convolution",
+      "title": "Bitwise And Convolution",
+      "category": "convolution",
+      "language": "cpp20",
+      "source": "convolution/bitwise_and_convolution/variants/10_1_006_fixed_fwt_and_cpp20/main.cpp",
+      "source_sha256": "3a94c57e53c73de320a6aa54f94c0c3bd59d999d63e178afb96d565d3ef2c828",
+      "meta": "convolution/bitwise_and_convolution/variants/10_1_006_fixed_fwt_and_cpp20/meta.json",
+      "template_items": [
+        "10.1.006"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch10_transform_edges.cpp"
+    },
+    {
+      "variant_id": "12_2_007_lis_values_cpp20",
+      "problem": "longest_increasing_subsequence",
+      "title": "Longest Increasing Subsequence",
+      "category": "other",
+      "language": "cpp20",
+      "source": "other/longest_increasing_subsequence/variants/12_2_007_lis_values_cpp20/main.cpp",
+      "source_sha256": "fa8e2f30ad698b926474ebd06ec1a71da3f129c205c59e712b8164b63cb05f8d",
+      "meta": "other/longest_increasing_subsequence/variants/12_2_007_lis_values_cpp20/meta.json",
+      "template_items": [
+        "12.2.007"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch12_dp.cpp"
+    },
+    {
+      "variant_id": "14_1_011_bigint_add_pypy3",
+      "problem": "addition_of_big_integers",
+      "title": "Addition of Big Integers",
+      "category": "big_integer",
+      "language": "pypy3",
+      "source": "big_integer/addition_of_big_integers/variants/14_1_011_bigint_add_pypy3/main.py",
+      "source_sha256": "533780153582b63df9ca85b371a0931c573c2eac7cfe417f039a20deb25663c8",
+      "meta": "big_integer/addition_of_big_integers/variants/14_1_011_bigint_add_pypy3/meta.json",
+      "template_items": [
+        "14.1.011"
+      ]
+    },
+    {
+      "variant_id": "14_1_011_bigint_div_pypy3",
+      "problem": "division_of_big_integers",
+      "title": "Division of Big Integers",
+      "category": "big_integer",
+      "language": "pypy3",
+      "source": "big_integer/division_of_big_integers/variants/14_1_011_bigint_div_pypy3/main.py",
+      "source_sha256": "f4a2666e9ee83a75bf31e0cbb7f3e03bc0e9b6147ff78746c4c903055b344613",
+      "meta": "big_integer/division_of_big_integers/variants/14_1_011_bigint_div_pypy3/meta.json",
+      "template_items": [
+        "14.1.011"
+      ]
+    },
+    {
+      "variant_id": "14_1_011_bigint_mul_pypy3",
+      "problem": "multiplication_of_big_integers",
+      "title": "Multiplication of Big Integers",
+      "category": "big_integer",
+      "language": "pypy3",
+      "source": "big_integer/multiplication_of_big_integers/variants/14_1_011_bigint_mul_pypy3/main.py",
+      "source_sha256": "32bebfd7a5e4a40a987ab560f29daf33cd60fb6c3695ce0c2bcfba7b6717ef43",
+      "meta": "big_integer/multiplication_of_big_integers/variants/14_1_011_bigint_mul_pypy3/meta.json",
+      "template_items": [
+        "14.1.011"
+      ]
+    },
+    {
+      "variant_id": "14_1_011_deque_pypy3",
+      "problem": "deque",
+      "title": "Deque",
+      "category": "data_structure",
+      "language": "pypy3",
+      "source": "data_structure/deque/variants/14_1_011_deque_pypy3/main.py",
+      "source_sha256": "f6ebcc9c06e1304ddd9a5cea22b93d67019cd77ea45324cc2bcdc22790885247",
+      "meta": "data_structure/deque/variants/14_1_011_deque_pypy3/meta.json",
+      "template_items": [
+        "14.1.011"
+      ]
+    },
+    {
+      "variant_id": "14_1_011_dict_pypy3",
+      "problem": "associative_array",
+      "title": "Associative Array",
+      "category": "data_structure",
+      "language": "pypy3",
+      "source": "data_structure/associative_array/variants/14_1_011_dict_pypy3/main.py",
+      "source_sha256": "fc109edec4ebb08ad7ea6cda9d2d2172e0baad514a2cab168c5a9159cdd006f7",
+      "meta": "data_structure/associative_array/variants/14_1_011_dict_pypy3/meta.json",
+      "template_items": [
+        "14.1.011"
+      ]
+    },
+    {
+      "variant_id": "14_1_011_hex_bigint_add_pypy3",
+      "problem": "addition_of_hex_big_integers",
+      "title": "Addition of Hex Big Integers",
+      "category": "big_integer",
+      "language": "pypy3",
+      "source": "big_integer/addition_of_hex_big_integers/variants/14_1_011_hex_bigint_add_pypy3/main.py",
+      "source_sha256": "9ed49ec8f407c4e98c744207317f5d6d68e50d10b850c92646e2d9dadc1f7f37",
+      "meta": "big_integer/addition_of_hex_big_integers/variants/14_1_011_hex_bigint_add_pypy3/meta.json",
+      "template_items": [
+        "14.1.011"
+      ]
+    },
+    {
+      "variant_id": "14_1_011_hex_bigint_div_pypy3",
+      "problem": "division_of_hex_big_integers",
+      "title": "Division of Hex Big Integers",
+      "category": "big_integer",
+      "language": "pypy3",
+      "source": "big_integer/division_of_hex_big_integers/variants/14_1_011_hex_bigint_div_pypy3/main.py",
+      "source_sha256": "888fd4cd0486bd36050e878288299dc704bbb11d15475c7b47458141c2cbb185",
+      "meta": "big_integer/division_of_hex_big_integers/variants/14_1_011_hex_bigint_div_pypy3/meta.json",
+      "template_items": [
+        "14.1.011"
+      ]
+    },
+    {
+      "variant_id": "14_1_011_hex_bigint_mul_pypy3",
+      "problem": "multiplication_of_hex_big_integers",
+      "title": "Multiplication of Hex Big Integers",
+      "category": "big_integer",
+      "language": "pypy3",
+      "source": "big_integer/multiplication_of_hex_big_integers/variants/14_1_011_hex_bigint_mul_pypy3/main.py",
+      "source_sha256": "7a2e5ec276fe25545bdb6c771af243c920610702459dda4800d5fa2360aee26f",
+      "meta": "big_integer/multiplication_of_hex_big_integers/variants/14_1_011_hex_bigint_mul_pypy3/meta.json",
+      "template_items": [
+        "14.1.011"
+      ]
+    },
+    {
+      "variant_id": "14_1_012_dinic_pypy3",
+      "problem": "bipartitematching",
+      "title": "Matching on Bipartite Graph",
+      "category": "graph",
+      "language": "pypy3",
+      "source": "graph/bipartitematching/variants/14_1_012_dinic_pypy3/main.py",
+      "source_sha256": "d145493d12493268d40eea8a1a5804044f613bd10fa11195847198fdb7ffd115",
+      "meta": "graph/bipartitematching/variants/14_1_012_dinic_pypy3/meta.json",
+      "template_items": [
+        "14.1.012"
+      ]
+    },
+    {
+      "variant_id": "14_1_012_dsu_pypy3",
+      "problem": "unionfind",
+      "title": "Unionfind",
+      "category": "data_structure",
+      "language": "pypy3",
+      "source": "data_structure/unionfind/variants/14_1_012_dsu_pypy3/main.py",
+      "source_sha256": "8aa2c9385cb948dfc206e190b4320831dacfe2216ca8347ae7ecc0ec1903f574",
+      "meta": "data_structure/unionfind/variants/14_1_012_dsu_pypy3/meta.json",
+      "template_items": [
+        "14.1.012"
+      ]
+    },
+    {
+      "variant_id": "14_1_012_mincostflow_pypy3",
+      "problem": "assignment",
+      "title": "Assignment Problem",
+      "category": "graph",
+      "language": "pypy3",
+      "source": "graph/assignment/variants/14_1_012_mincostflow_pypy3/main.py",
+      "source_sha256": "26a88403fc9ecd25507e077fa1b0a77bbeb82df56203c2737e23b9397d0af489",
+      "meta": "graph/assignment/variants/14_1_012_mincostflow_pypy3/meta.json",
+      "template_items": [
+        "14.1.012"
+      ]
+    },
+    {
+      "variant_id": "14_1_012_ntt_pypy3",
+      "problem": "convolution_mod",
+      "title": "Convolution",
+      "category": "convolution",
+      "language": "pypy3",
+      "source": "convolution/convolution_mod/variants/14_1_012_ntt_pypy3/main.py",
+      "source_sha256": "7f16de08288e63a3602e5b9ed8b966f03461988ff8843af89064a2740cbd8043",
+      "meta": "convolution/convolution_mod/variants/14_1_012_ntt_pypy3/meta.json",
+      "template_items": [
+        "14.1.012"
+      ]
+    },
+    {
+      "variant_id": "14_1_012_segtree_pypy3",
+      "problem": "point_add_range_sum",
+      "title": "Point Add Range Sum",
+      "category": "data_structure",
+      "language": "pypy3",
+      "source": "data_structure/point_add_range_sum/variants/14_1_012_segtree_pypy3/main.py",
+      "source_sha256": "d81ce10e2474e708f39d6ec82a49e08011805129ff23719b6192028e253867fe",
+      "meta": "data_structure/point_add_range_sum/variants/14_1_012_segtree_pypy3/meta.json",
+      "template_items": [
+        "14.1.012"
+      ]
+    },
+    {
+      "variant_id": "14_1_013_splay_pypy3",
+      "problem": "ordered_set",
+      "title": "Ordered Set",
+      "category": "data_structure",
+      "language": "pypy3",
+      "source": "data_structure/ordered_set/variants/14_1_013_splay_pypy3/main.py",
+      "source_sha256": "70dcffcb2fe516bd413d670301bcb9c957a1ad86a6f66e12f581631f122c0fa2",
+      "meta": "data_structure/ordered_set/variants/14_1_013_splay_pypy3/meta.json",
+      "template_items": [
+        "14.1.013"
+      ]
+    },
+    {
+      "variant_id": "14_1_019_decimal_bigint_add_cpp20",
+      "problem": "addition_of_big_integers",
+      "title": "Addition of Big Integers",
+      "category": "big_integer",
+      "language": "cpp20",
+      "source": "big_integer/addition_of_big_integers/variants/14_1_019_decimal_bigint_add_cpp20/main.cpp",
+      "source_sha256": "40a95aeba65800f6c5117b82089848a5ae54e16743d5405e0410cd3681bdc301",
+      "meta": "big_integer/addition_of_big_integers/variants/14_1_019_decimal_bigint_add_cpp20/meta.json",
+      "template_items": [
+        "14.1.019"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch14_hex_bigint.cpp"
+    },
+    {
+      "variant_id": "3_2_001_fast_bit_cpp20",
+      "problem": "point_add_range_sum",
+      "title": "Point Add Range Sum",
+      "category": "data_structure",
+      "language": "cpp20",
+      "source": "data_structure/point_add_range_sum/variants/3_2_001_fast_bit_cpp20/main.cpp",
+      "source_sha256": "34ea2b7776b6810c286013d8ec049f91da61c322244ab5d2fe4a45cc9b23faf7",
+      "meta": "data_structure/point_add_range_sum/variants/3_2_001_fast_bit_cpp20/meta.json",
+      "template_items": [
+        "3.2.001"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch03_fast_variants.cpp"
+    },
+    {
+      "variant_id": "3_3_001_seg_cpp20",
+      "problem": "point_add_range_sum",
+      "title": "Point Add Range Sum",
+      "category": "data_structure",
+      "language": "cpp20",
+      "source": "data_structure/point_add_range_sum/variants/3_3_001_seg_cpp20/main.cpp",
+      "source_sha256": "58e49d41793ccb1dfed7e92dbaff096f93918dbe74008972b9bdc245510e2aa7",
+      "meta": "data_structure/point_add_range_sum/variants/3_3_001_seg_cpp20/meta.json",
+      "template_items": [
+        "3.3.001"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch03_seg.cpp"
+    },
+    {
+      "variant_id": "3_3_005_zkw_seg_cpp20",
+      "problem": "point_add_range_sum",
+      "title": "Point Add Range Sum",
+      "category": "data_structure",
+      "language": "cpp20",
+      "source": "data_structure/point_add_range_sum/variants/3_3_005_zkw_seg_cpp20/main.cpp",
+      "source_sha256": "e2f0948817ef18e5501dbed1da33a0d74a9356a44d570c210d6ad81eec3c7c91",
+      "meta": "data_structure/point_add_range_sum/variants/3_3_005_zkw_seg_cpp20/meta.json",
+      "template_items": [
+        "3.3.005"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch03_zkw_seg.cpp"
+    },
+    {
+      "variant_id": "3_3_008_persistent_seg_kth_cpp20",
+      "problem": "range_kth_smallest",
+      "title": "Range Kth Smallest",
+      "category": "data_structure",
+      "language": "cpp20",
+      "source": "data_structure/range_kth_smallest/variants/3_3_008_persistent_seg_kth_cpp20/main.cpp",
+      "source_sha256": "c758a05ba1ec849d50103ee10140034fae14574432d8ddaa3038b2ec92d23b7c",
+      "meta": "data_structure/range_kth_smallest/variants/3_3_008_persistent_seg_kth_cpp20/meta.json",
+      "template_items": [
+        "3.3.008"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch03_perseg.cpp"
+    },
+    {
+      "variant_id": "3_4_001_block_st_cpp20",
+      "problem": "staticrmq",
+      "title": "Static RMQ",
+      "category": "data_structure",
+      "language": "cpp20",
+      "source": "data_structure/staticrmq/variants/3_4_001_block_st_cpp20/main.cpp",
+      "source_sha256": "c82d4dc803f50e05bdce823fcc407379ba4ce22b194281861b29daddb97d05fc",
+      "meta": "data_structure/staticrmq/variants/3_4_001_block_st_cpp20/meta.json",
+      "template_items": [
+        "3.4.001"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch03_block_st.cpp"
+    },
+    {
+      "variant_id": "3_4_003_dst_cpp20",
+      "problem": "staticrmq",
+      "title": "Static RMQ",
+      "category": "data_structure",
+      "language": "cpp20",
+      "source": "data_structure/staticrmq/variants/3_4_003_dst_cpp20/main.cpp",
+      "source_sha256": "90aa073ca0274e8a21bbfc5bc604132b7b2c645deda6cdb077953477940c501e",
+      "meta": "data_structure/staticrmq/variants/3_4_003_dst_cpp20/meta.json",
+      "template_items": [
+        "3.4.003"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch03_dst.cpp"
+    },
+    {
+      "variant_id": "3_5_001_treap_cpp20",
+      "problem": "ordered_set",
+      "title": "Ordered Set",
+      "category": "data_structure",
+      "language": "cpp20",
+      "source": "data_structure/ordered_set/variants/3_5_001_treap_cpp20/main.cpp",
+      "source_sha256": "039e7c1880c31ba9e8d120ff91679a373354e4ac5b0f3c7c563a17f45c3bc5f0",
+      "meta": "data_structure/ordered_set/variants/3_5_001_treap_cpp20/meta.json",
+      "template_items": [
+        "3.5.001"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch03_treap.cpp"
+    },
+    {
+      "variant_id": "3_5_001_treap_depq_cpp20",
+      "problem": "double_ended_priority_queue",
+      "title": "Double-Ended Priority Queue",
+      "category": "data_structure",
+      "language": "cpp20",
+      "source": "data_structure/double_ended_priority_queue/variants/3_5_001_treap_depq_cpp20/main.cpp",
+      "source_sha256": "7aa2f132f28f0a85178f9c7051899d64fd0115277caef00d299b828cae43fbf4",
+      "meta": "data_structure/double_ended_priority_queue/variants/3_5_001_treap_depq_cpp20/meta.json",
+      "template_items": [
+        "3.5.001"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch03_treap.cpp"
+    },
+    {
+      "variant_id": "3_5_002_fhq_cpp20",
+      "problem": "ordered_set",
+      "title": "Ordered Set",
+      "category": "data_structure",
+      "language": "cpp20",
+      "source": "data_structure/ordered_set/variants/3_5_002_fhq_cpp20/main.cpp",
+      "source_sha256": "c0e3f921fa0967cd26a795f9a5fd329a19eef7a3c462745c5ee966bbd6aacfdb",
+      "meta": "data_structure/ordered_set/variants/3_5_002_fhq_cpp20/meta.json",
+      "template_items": [
+        "3.5.002"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch03_fhq.cpp"
+    },
+    {
+      "variant_id": "3_5_002_fhq_depq_cpp20",
+      "problem": "double_ended_priority_queue",
+      "title": "Double-Ended Priority Queue",
+      "category": "data_structure",
+      "language": "cpp20",
+      "source": "data_structure/double_ended_priority_queue/variants/3_5_002_fhq_depq_cpp20/main.cpp",
+      "source_sha256": "559a1ed2cfdf6158d7a929c542be188d8467cea25b332b79eb7450590c756419",
+      "meta": "data_structure/double_ended_priority_queue/variants/3_5_002_fhq_depq_cpp20/meta.json",
+      "template_items": [
+        "3.5.002"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch03_fhq.cpp"
+    },
+    {
+      "variant_id": "3_5_004_splay_cpp20",
+      "problem": "ordered_set",
+      "title": "Ordered Set",
+      "category": "data_structure",
+      "language": "cpp20",
+      "source": "data_structure/ordered_set/variants/3_5_004_splay_cpp20/main.cpp",
+      "source_sha256": "a1236d1706ac833d3a3f4068f82543b6803fd23233debb724680df4390893f5b",
+      "meta": "data_structure/ordered_set/variants/3_5_004_splay_cpp20/meta.json",
+      "template_items": [
+        "3.5.004"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch03_splay.cpp"
+    },
+    {
+      "variant_id": "3_5_004_splay_depq_cpp20",
+      "problem": "double_ended_priority_queue",
+      "title": "Double-Ended Priority Queue",
+      "category": "data_structure",
+      "language": "cpp20",
+      "source": "data_structure/double_ended_priority_queue/variants/3_5_004_splay_depq_cpp20/main.cpp",
+      "source_sha256": "04ebc7f81b5a1f0bbe5dd34fa478156974c5825593abe7df503da586f53660ba",
+      "meta": "data_structure/double_ended_priority_queue/variants/3_5_004_splay_depq_cpp20/meta.json",
+      "template_items": [
+        "3.5.004"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch03_splay.cpp"
+    },
+    {
+      "variant_id": "3_6_006_fixed_hash_cpp20",
+      "problem": "associative_array",
+      "title": "Associative Array",
+      "category": "data_structure",
+      "language": "cpp20",
+      "source": "data_structure/associative_array/variants/3_6_006_fixed_hash_cpp20/main.cpp",
+      "source_sha256": "99d83410fc2940ea5a3c93480550d701b6b0037bf521c8dc43cf2572860795d2",
+      "meta": "data_structure/associative_array/variants/3_6_006_fixed_hash_cpp20/meta.json",
+      "template_items": [
+        "3.6.006"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch03_fixed_hash.cpp"
+    },
+    {
+      "variant_id": "3_9_011_gp_hash_cpp20",
+      "problem": "associative_array",
+      "title": "Associative Array",
+      "category": "data_structure",
+      "language": "cpp20",
+      "source": "data_structure/associative_array/variants/3_9_011_gp_hash_cpp20/main.cpp",
+      "source_sha256": "3a21246828b8a3169efc8fcdb8785f93abe71749b1513250369707d5efbe78eb",
+      "meta": "data_structure/associative_array/variants/3_9_011_gp_hash_cpp20/meta.json",
+      "template_items": [
+        "3.9.011"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch03_pbds_hash.cpp"
+    },
+    {
+      "variant_id": "4_3_001_sa_double_cpp20",
+      "problem": "suffixarray",
+      "title": "Suffix Array",
+      "category": "string",
+      "language": "cpp20",
+      "source": "string/suffixarray/variants/4_3_001_sa_double_cpp20/main.cpp",
+      "source_sha256": "b012f3b78cc6834e85a7416ffe2217ad2f6e6bc3ba62e6822b9eaa86f230b6ca",
+      "meta": "string/suffixarray/variants/4_3_001_sa_double_cpp20/meta.json",
+      "template_items": [
+        "4.3.001"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch04_sa_double.cpp"
+    },
+    {
+      "variant_id": "5_3_001_tarjan_cpp20",
+      "problem": "scc",
+      "title": "Strongly Connected Components",
+      "category": "graph",
+      "language": "cpp20",
+      "source": "graph/scc/variants/5_3_001_tarjan_cpp20/main.cpp",
+      "source_sha256": "6c6b50a39e102a46a3a8d8e39e9749a57ee570635a46ff4370090a169ac5b973",
+      "meta": "graph/scc/variants/5_3_001_tarjan_cpp20/meta.json",
+      "template_items": [
+        "5.3.001"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch05_components.cpp"
+    },
+    {
+      "variant_id": "5_3_002_kosaraju_cpp20",
+      "problem": "scc",
+      "title": "Strongly Connected Components",
+      "category": "graph",
+      "language": "cpp20",
+      "source": "graph/scc/variants/5_3_002_kosaraju_cpp20/main.cpp",
+      "source_sha256": "6b3304b357063efd270fba6f05599c55f49990a1f7a6fa45230aa897adba93d9",
+      "meta": "graph/scc/variants/5_3_002_kosaraju_cpp20/meta.json",
+      "template_items": [
+        "5.3.002"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch05_components.cpp"
+    },
+    {
+      "variant_id": "5_4_001_tarjan_two_sat_cpp20",
+      "problem": "two_sat",
+      "title": "2 Sat",
+      "category": "other",
+      "language": "cpp20",
+      "source": "other/two_sat/variants/5_4_001_tarjan_two_sat_cpp20/main.cpp",
+      "source_sha256": "880b5ce2b184e6fb7e0303fd675e350df999e62d4662f8c97ab16a534750bee8",
+      "meta": "other/two_sat/variants/5_4_001_tarjan_two_sat_cpp20/meta.json",
+      "template_items": [
+        "5.4.001"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch05_two_sat.cpp"
+    },
+    {
+      "variant_id": "5_4_002_kosaraju_two_sat_cpp20",
+      "problem": "two_sat",
+      "title": "2 Sat",
+      "category": "other",
+      "language": "cpp20",
+      "source": "other/two_sat/variants/5_4_002_kosaraju_two_sat_cpp20/main.cpp",
+      "source_sha256": "5408b066308b7556b3eb1d7e55d3e785e66f885d9b41efdb6e3ca8ca28b5dc71",
+      "meta": "other/two_sat/variants/5_4_002_kosaraju_two_sat_cpp20/meta.json",
+      "template_items": [
+        "5.4.002"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch05_two_sat.cpp"
+    },
+    {
+      "variant_id": "5_5_001_kruskal_cpp20",
+      "problem": "minimum_spanning_tree",
+      "title": "Minimum Spanning Tree",
+      "category": "graph",
+      "language": "cpp20",
+      "source": "graph/minimum_spanning_tree/variants/5_5_001_kruskal_cpp20/main.cpp",
+      "source_sha256": "e3df47b6947a4c60d8e1f08dcd029bbce66a2f7c427a0193dbbd8f2e50583b06",
+      "meta": "graph/minimum_spanning_tree/variants/5_5_001_kruskal_cpp20/meta.json",
+      "template_items": [
+        "5.5.001"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch05_foundations.cpp"
+    },
+    {
+      "variant_id": "5_5_013_prim_cpp20",
+      "problem": "minimum_spanning_tree",
+      "title": "Minimum Spanning Tree",
+      "category": "graph",
+      "language": "cpp20",
+      "source": "graph/minimum_spanning_tree/variants/5_5_013_prim_cpp20/main.cpp",
+      "source_sha256": "6055e85a96ef960a796056fa697b2314849ab789d6bc9d549dd451f358b61063",
+      "meta": "graph/minimum_spanning_tree/variants/5_5_013_prim_cpp20/meta.json",
+      "template_items": [
+        "5.5.013"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch05_foundations.cpp"
+    },
+    {
+      "variant_id": "5_6_003_hopcroft_karp_cpp20",
+      "problem": "bipartitematching",
+      "title": "Matching on Bipartite Graph",
+      "category": "graph",
+      "language": "cpp20",
+      "source": "graph/bipartitematching/variants/5_6_003_hopcroft_karp_cpp20/main.cpp",
+      "source_sha256": "f51e5d1ec1b3ba6a357e36757d030b794ec51de8080ccb08929822d2eecfc05c",
+      "meta": "graph/bipartitematching/variants/5_6_003_hopcroft_karp_cpp20/meta.json",
+      "template_items": [
+        "5.6.003"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch05_matching_variants.cpp"
+    },
+    {
+      "variant_id": "5_6_004_csr_hopcroft_karp_cpp20",
+      "problem": "bipartitematching",
+      "title": "Matching on Bipartite Graph",
+      "category": "graph",
+      "language": "cpp20",
+      "source": "graph/bipartitematching/variants/5_6_004_csr_hopcroft_karp_cpp20/main.cpp",
+      "source_sha256": "2066d8855cab8c6c16c388dca8393de59a28312b83571a4b3463550e23fcc8ef",
+      "meta": "graph/bipartitematching/variants/5_6_004_csr_hopcroft_karp_cpp20/meta.json",
+      "template_items": [
+        "5.6.004"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch05_matching_variants.cpp"
+    },
+    {
+      "variant_id": "5_7_006_weighted_blossom_unweighted_cpp20",
+      "problem": "general_matching",
+      "title": "Matching on General Graph",
+      "category": "graph",
+      "language": "cpp20",
+      "source": "graph/general_matching/variants/5_7_006_weighted_blossom_unweighted_cpp20/main.cpp",
+      "source_sha256": "4477f80f3c0a5f579f3c260754013bbc99f5373837aeb0db85cc8b1be57a17e2",
+      "meta": "graph/general_matching/variants/5_7_006_weighted_blossom_unweighted_cpp20/meta.json",
+      "template_items": [
+        "5.7.006"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/check_weighted_blossom.cpp"
+    },
+    {
+      "variant_id": "5_8_001_dinic_cpp20",
+      "problem": "bipartitematching",
+      "title": "Matching on Bipartite Graph",
+      "category": "graph",
+      "language": "cpp20",
+      "source": "graph/bipartitematching/variants/5_8_001_dinic_cpp20/main.cpp",
+      "source_sha256": "2a4339e5bdbbccfee281a4e3d8508d8f7620206f5e73a05e6f14499bdf1c0e57",
+      "meta": "graph/bipartitematching/variants/5_8_001_dinic_cpp20/meta.json",
+      "template_items": [
+        "5.8.001"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch05_flow.cpp"
+    },
+    {
+      "variant_id": "5_8_002_push_relabel_cpp20",
+      "problem": "bipartitematching",
+      "title": "Matching on Bipartite Graph",
+      "category": "graph",
+      "language": "cpp20",
+      "source": "graph/bipartitematching/variants/5_8_002_push_relabel_cpp20/main.cpp",
+      "source_sha256": "d3c87ae56fceaf2f61422b05f500efeb4634b8771f4b06eb038539df4912c293",
+      "meta": "graph/bipartitematching/variants/5_8_002_push_relabel_cpp20/meta.json",
+      "template_items": [
+        "5.8.002"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch05_flow.cpp"
+    },
+    {
+      "variant_id": "5_8_003_spfa_cost_flow_cpp20",
+      "problem": "assignment",
+      "title": "Assignment Problem",
+      "category": "graph",
+      "language": "cpp20",
+      "source": "graph/assignment/variants/5_8_003_spfa_cost_flow_cpp20/main.cpp",
+      "source_sha256": "9ca9aeac3cf5d36c95806b11594b334f555009c74dba23e4a9a5be61c29badea",
+      "meta": "graph/assignment/variants/5_8_003_spfa_cost_flow_cpp20/meta.json",
+      "template_items": [
+        "5.8.003"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch05_flow.cpp"
+    },
+    {
+      "variant_id": "5_8_004_primal_dual_cost_flow_cpp20",
+      "problem": "assignment",
+      "title": "Assignment Problem",
+      "category": "graph",
+      "language": "cpp20",
+      "source": "graph/assignment/variants/5_8_004_primal_dual_cost_flow_cpp20/main.cpp",
+      "source_sha256": "046b15bea00e6651735dd92cb5a96a8bdff307cd9ff2dac35800d606002fe7d6",
+      "meta": "graph/assignment/variants/5_8_004_primal_dual_cost_flow_cpp20/meta.json",
+      "template_items": [
+        "5.8.004"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch05_flow.cpp"
+    },
+    {
+      "variant_id": "5_8_009_isap_cpp20",
+      "problem": "bipartitematching",
+      "title": "Matching on Bipartite Graph",
+      "category": "graph",
+      "language": "cpp20",
+      "source": "graph/bipartitematching/variants/5_8_009_isap_cpp20/main.cpp",
+      "source_sha256": "7aa56ecbe35c1a0ab77d79a5750487aac9a68541a04fbf5a9506630dc52f7a9b",
+      "meta": "graph/bipartitematching/variants/5_8_009_isap_cpp20/meta.json",
+      "template_items": [
+        "5.8.009"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch05_flow.cpp"
+    },
+    {
+      "variant_id": "6_1_003_hld_lca_cpp20",
+      "problem": "lca",
+      "title": "Lowest Common Ancestor",
+      "category": "tree",
+      "language": "cpp20",
+      "source": "tree/lca/variants/6_1_003_hld_lca_cpp20/main.cpp",
+      "source_sha256": "84addf215be4fcbbde0cf0cb688cf0865be65294e285e149d24971aaa4cf7e34",
+      "meta": "tree/lca/variants/6_1_003_hld_lca_cpp20/meta.json",
+      "template_items": [
+        "6.1.003"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch06_hld.cpp"
+    },
+    {
+      "variant_id": "6_1_004_lcarmq_cpp20",
+      "problem": "lca",
+      "title": "Lowest Common Ancestor",
+      "category": "tree",
+      "language": "cpp20",
+      "source": "tree/lca/variants/6_1_004_lcarmq_cpp20/main.cpp",
+      "source_sha256": "ad083c0d6501b370936c234cbff97e8bf7715b69881ead7e30c3887079164a60",
+      "meta": "tree/lca/variants/6_1_004_lcarmq_cpp20/meta.json",
+      "template_items": [
+        "6.1.004"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch06_uncovered.cpp"
+    },
+    {
+      "variant_id": "6_1_005_offline_lca_cpp20",
+      "problem": "lca",
+      "title": "Lowest Common Ancestor",
+      "category": "tree",
+      "language": "cpp20",
+      "source": "tree/lca/variants/6_1_005_offline_lca_cpp20/main.cpp",
+      "source_sha256": "d06070cbdbf03774d55ee92f2114c34a38ff6f7cb819999e8aca689745919ff8",
+      "meta": "tree/lca/variants/6_1_005_offline_lca_cpp20/meta.json",
+      "template_items": [
+        "6.1.005"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch06_uncovered.cpp"
+    },
+    {
+      "variant_id": "6_3_002_reroot_hld_lca_cpp20",
+      "problem": "lca",
+      "title": "Lowest Common Ancestor",
+      "category": "tree",
+      "language": "cpp20",
+      "source": "tree/lca/variants/6_3_002_reroot_hld_lca_cpp20/main.cpp",
+      "source_sha256": "30a5957e5d5e5d3ef7698c5a2d4eaa415e4229a43cfec2879fd33d7e27f64d5d",
+      "meta": "tree/lca/variants/6_3_002_reroot_hld_lca_cpp20/meta.json",
+      "template_items": [
+        "6.3.002"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch06_uncovered.cpp"
+    },
+    {
+      "variant_id": "9_1_006_fast_det_cpp20",
+      "problem": "matrix_det",
+      "title": "Determinant of Matrix",
+      "category": "linear_algebra",
+      "language": "cpp20",
+      "source": "linear_algebra/matrix_det/variants/9_1_006_fast_det_cpp20/main.cpp",
+      "source_sha256": "d28b8fa3b9bdc76764b3e8ab8a3b352d4b526d035180265f5c3bc09193c1f502",
+      "meta": "linear_algebra/matrix_det/variants/9_1_006_fast_det_cpp20/meta.json",
+      "template_items": [
+        "9.1.006"
+      ],
+      "test": "hushuqi算法竞赛模板/tests/test_ch09_revised.cpp"
+    }
+  ],
+  "updated_at": "2026-08-23T15:32:01.671067Z"
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "furthest_pair",
+  "title": "Furthest Pair of Points",
+  "category": "geo",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "geo/furthest_pair/main.cpp",
+    "source_sha256": "81458f9d0155a4061c91760c83e5529ea0971e496adc6304e16a35915cef8ac0"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "geo",
+    "problem": "furthest_pair"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "81458f9d0155a4061c91760c83e5529ea0971e496adc6304e16a35915cef8ac0",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch11_convex.cpp"
+    ],
+    "checked_at": "2026-08-21T20:58:48.071958Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395850,
+    "current_source_time": 0.32,
+    "current_source_memory": 56999936,
+    "current_source_submission_time": "2026-08-21T20:57:50.31818Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "81458f9d0155a4061c91760c83e5529ea0971e496adc6304e16a35915cef8ac0",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395850,
+      "source_sha256": "81458f9d0155a4061c91760c83e5529ea0971e496adc6304e16a35915cef8ac0",
+      "server_source_sha256": "81458f9d0155a4061c91760c83e5529ea0971e496adc6304e16a35915cef8ac0",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.32,
+      "memory": 56999936,
+      "submission_time": "2026-08-21T20:57:50.31818Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T20:57:50.594060Z",
+      "recorded_at": "2026-08-21T20:58:48.071250Z"
+    }
+  ]
+}

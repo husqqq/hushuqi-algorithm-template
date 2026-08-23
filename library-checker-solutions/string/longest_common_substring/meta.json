@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "longest_common_substring",
+    "title":  "Longest Common Substring",
+    "category":  "string",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "976fbfc405c089ab7a51cc08ffb8fb80e76c1e42d17eed91981c23842b4a5d0d"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "ebfe71ef502d07c772e9558d379fc9af4e79703ac6de146106f8123ca1b09494",
+                                  "submission_id":  387027,
+                                  "status":  "AC",
+                                  "time":  0.323,
+                                  "memory":  29872128,
+                                  "submission_time":  "2026-07-22T02:31:55.604124Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

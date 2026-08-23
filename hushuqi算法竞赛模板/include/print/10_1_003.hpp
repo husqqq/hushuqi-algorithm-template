@@ -1,0 +1,551 @@
+#pragma once
+
+#include "7_1_007.hpp"
+
+constexpr int NTT_LIM = 1 << 23;
+
+bool nttFit(int n, int m)
+{
+    // n、m 是两输入序列长度；返回一次不超过 NTT_LIM 的变换能否覆盖其线性卷积。
+    assert(n >= 0 && m >= 0); // 调试检查，可删。
+    return n == 0 || m == 0 || (__int128)n + m - 1 <= NTT_LIM;
+}
+
+bool convFit(int n, int m)
+{
+    // n、m 是两输入序列长度；返回公共 conv 能否计算其线性卷积。
+    // 结果只超上限一至两项时，conv 会拆掉两端最高项再做一次较短卷积。
+    assert(n >= 0 && m >= 0); // 调试检查，可删。
+    return n == 0 || m == 0 || min(n, m) <= 64 ||
+           (__int128)n + m - 1 <= NTT_LIM + 2;
+}
+
+class FastNTT
+{
+    // root[i]、iroot[i] 分别保存 2 的 i 次单位根及其逆元。
+    static inline array<int, 24> root;
+    static inline array<int, 24> iroot;
+    // rate2、irate2 保存二进制蝶形跨块时的旋转因子更新量。
+    static inline array<int, 22> rate2;
+    static inline array<int, 22> irate2;
+    // rate3、irate3 保存四进制蝶形跨块时的旋转因子更新量。
+    static inline array<int, 21> rate3;
+    static inline array<int, 21> irate3;
+    // ready 标记单位根表是否已经初始化。
+    static inline bool ready = false;
+
+    static void init()
+    {
+        // 无参数；首次调用时预处理各阶单位根和跨块旋转因子，后续调用直接复用。
+        if (ready)
+        {
+            return;
+        }
+        ready = true;
+        root[23] = 31;
+        iroot[23] = Z(root[23]).inv().val();
+        for (int i = 22; i >= 0; i--)
+        {
+            root[i] = (unsigned long long)root[i + 1] * root[i + 1] % mod;
+            iroot[i] = (unsigned long long)iroot[i + 1] * iroot[i + 1] % mod;
+        }
+        int prod = 1;
+        int iprod = 1;
+        for (int i = 0; i <= 21; i++)
+        {
+            rate2[i] = (unsigned long long)root[i + 2] * prod % mod;
+            irate2[i] = (unsigned long long)iroot[i + 2] * iprod % mod;
+            prod = (unsigned long long)prod * iroot[i + 2] % mod;
+            iprod = (unsigned long long)iprod * root[i + 2] % mod;
+        }
+        prod = 1;
+        iprod = 1;
+        for (int i = 0; i <= 20; i++)
+        {
+            rate3[i] = (unsigned long long)root[i + 3] * prod % mod;
+            irate3[i] = (unsigned long long)iroot[i + 3] * iprod % mod;
+            prod = (unsigned long long)prod * iroot[i + 3] % mod;
+            iprod = (unsigned long long)iprod * root[i + 3] % mod;
+        }
+    }
+
+  public:
+    static void dft(Z *a, int n)
+    {
+        // a 指向长度 n 的连续系数，n 是至多 2^23 的正 2 的幂；原地完成正变换。
+        // 长度 n 的相邻位置 2i、2i+1 对应 z、-z；前者与长度 n/2 变换的第 i 个频点对应同一个 z^2。
+        assert(n > 0 && has_single_bit((unsigned long long)n) && n <= NTT_LIM); // 调试检查，可删。
+        init();
+        int z = n;
+        int h = countr_zero((uint32_t)z);
+        int len = 0;
+        while (len < h)
+        {
+            if (h - len == 1)
+            {
+                int p = 1 << (h - len - 1);
+                int rot = 1;
+                for (int s = 0; s < (1 << len); s++)
+                {
+                    int off = s << (h - len);
+                    for (int i = 0; i < p; i++)
+                    {
+                        int l = a[off + i].x;
+                        int r = (unsigned long long)a[off + i + p].x * rot % mod;
+                        a[off + i].x = l + r < mod ? l + r : l + r - mod;
+                        a[off + i + p].x = l >= r ? l - r : l + mod - r;
+                    }
+                    if (s + 1 != (1 << len))
+                    {
+                        rot = (unsigned long long)rot * rate2[countr_zero((uint32_t)~s)] % mod;
+                    }
+                }
+                len++;
+            }
+            else
+            {
+                int p = 1 << (h - len - 2);
+                int rot = 1;
+                int imag = root[2];
+                for (int s = 0; s < (1 << len); s++)
+                {
+                    int rot2 = (unsigned long long)rot * rot % mod;
+                    int rot3 = (unsigned long long)rot2 * rot % mod;
+                    int off = s << (h - len);
+                    for (int i = 0; i < p; i++)
+                    {
+                        unsigned long long m2 = (unsigned long long)mod * mod;
+                        unsigned long long a0 = a[off + i].x;
+                        unsigned long long a1 = (unsigned long long)a[off + i + p].x * rot;
+                        unsigned long long a2 = (unsigned long long)a[off + i + 2 * p].x * rot2;
+                        unsigned long long a3 = (unsigned long long)a[off + i + 3 * p].x * rot3;
+                        unsigned long long x = (unsigned long long)Z(a1 + m2 - a3).val() * imag;
+                        unsigned long long na2 = m2 - a2;
+                        a[off + i].x = (a0 + a2 + a1 + a3) % mod;
+                        a[off + i + p].x = (a0 + a2 + 2 * m2 - a1 - a3) % mod;
+                        a[off + i + 2 * p].x = (a0 + na2 + x) % mod;
+                        a[off + i + 3 * p].x = (a0 + na2 + m2 - x) % mod;
+                    }
+                    if (s + 1 != (1 << len))
+                    {
+                        rot = (unsigned long long)rot * rate3[countr_zero((uint32_t)~s)] % mod;
+                    }
+                }
+                len += 2;
+            }
+        }
+    }
+
+    static void dft(vector<Z> &a)
+    {
+        // a 的长度是至多 2^23 的正 2 的幂；转发到连续内存正变换，无返回值。
+        dft(a.data(), a.size());
+    }
+
+    static void idft(Z *a, int n)
+    {
+        // a 指向本类 dft 产生的 n 个频域值；原地逆变换、除以 n 并恢复自然顺序系数。
+        assert(n > 0 && has_single_bit((unsigned long long)n) && n <= NTT_LIM); // 调试检查，可删。
+        init();
+        int z = n;
+        int h = countr_zero((uint32_t)z);
+        int len = h;
+        while (len)
+        {
+            if (len == 1)
+            {
+                int p = 1 << (h - len);
+                int rot = 1;
+                for (int s = 0; s < (1 << (len - 1)); s++)
+                {
+                    int off = s << (h - len + 1);
+                    for (int i = 0; i < p; i++)
+                    {
+                        int l = a[off + i].x;
+                        int r = a[off + i + p].x;
+                        a[off + i].x = l + r < mod ? l + r : l + r - mod;
+                        a[off + i + p].x = (unsigned long long)(l + mod - r) * rot % mod;
+                    }
+                    if (s + 1 != (1 << (len - 1)))
+                    {
+                        rot = (unsigned long long)rot * irate2[countr_zero((uint32_t)~s)] % mod;
+                    }
+                }
+                len--;
+            }
+            else
+            {
+                int p = 1 << (h - len);
+                int rot = 1;
+                int imag = iroot[2];
+                for (int s = 0; s < (1 << (len - 2)); s++)
+                {
+                    int rot2 = (unsigned long long)rot * rot % mod;
+                    int rot3 = (unsigned long long)rot2 * rot % mod;
+                    int off = s << (h - len + 2);
+                    for (int i = 0; i < p; i++)
+                    {
+                        unsigned long long a0 = a[off + i].x;
+                        unsigned long long a1 = a[off + i + p].x;
+                        unsigned long long a2 = a[off + i + 2 * p].x;
+                        unsigned long long a3 = a[off + i + 3 * p].x;
+                        unsigned long long x = Z((mod + a2 - a3) * imag).val();
+                        a[off + i].x = (a0 + a1 + a2 + a3) % mod;
+                        a[off + i + p].x = (a0 + mod - a1 + x) % mod * rot % mod;
+                        a[off + i + 2 * p].x = (a0 + a1 + 2 * mod - a2 - a3) % mod * rot2 % mod;
+                        a[off + i + 3 * p].x = (a0 + 2 * mod - a1 - x) % mod * rot3 % mod;
+                    }
+                    if (s + 1 != (1 << (len - 2)))
+                    {
+                        rot = (unsigned long long)rot * irate3[countr_zero((uint32_t)~s)] % mod;
+                    }
+                }
+                len -= 2;
+            }
+        }
+        Z iv = Z(n).inv();
+        for (int i = 0; i < z; i++)
+        {
+            a[i] *= iv;
+        }
+    }
+
+    static void idft(vector<Z> &a)
+    {
+        // a 必须来自本类 dft；转发到连续内存逆变换，无返回值。
+        idft(a.data(), a.size());
+    }
+
+    static vector<Z> conv(vector<Z> a, vector<Z> b)
+    {
+        // a、b 按低次到高次保存系数；返回普通线性卷积，任一输入为空时返回空。
+        if (a.empty() || b.empty())
+        {
+            return {};
+        }
+        int n = a.size();
+        int m = b.size();
+        int s = n + m - 1;
+        if (min(n, m) <= 64)
+        {
+            vector<Z> c(s);
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    c[i + j] += a[i] * b[j];
+                }
+            }
+            return c;
+        }
+        assert(convFit(n, m)); // 调试检查，可删。
+        int z = bit_ceil((unsigned long long)s);
+        if (s - 2 <= z / 2)
+        {
+            Z al = a.back();
+            Z bl = b.back();
+            a.pop_back();
+            b.pop_back();
+            auto x = a;
+            auto y = b;
+            auto c = conv(move(a), move(b));
+            c.resize(s);
+            c[s - 1] = al * bl;
+            for (int i = 0; i < n - 1; i++)
+            {
+                c[i + m - 1] += x[i] * bl;
+            }
+            for (int i = 0; i < m - 1; i++)
+            {
+                c[i + n - 1] += y[i] * al;
+            }
+            return c;
+        }
+        bool same = a == b;
+        a.resize(z);
+        b.resize(z);
+        dft(a);
+        if (same)
+        {
+            b = a;
+        }
+        else
+        {
+            dft(b);
+        }
+        for (int i = 0; i < z; i++)
+        {
+            a[i] *= b[i];
+        }
+        idft(a);
+        a.resize(s);
+        return a;
+    }
+};
+
+class NTT32
+{
+    // 本类服务原始 int 切片，复用位逆序表与 unsigned long long 工作区，并延迟蝶形加减结果的归一化。
+    // 它与 FastNTT 的 Z 容器接口用途不同；2^17 上限保证最终归一化乘法不会溢出 unsigned long long。
+    int mx = 0; // 允许的最大变换长度，所有实际长度必须整除 mx。
+    vector<int> w; // w[l..2l) 保存长度 2l 蝶形使用的正单位根。
+    vector<unsigned long long> buf; // 蝶形使用的延迟取模工作区。
+    array<vector<int>, 24> rev; // rev[k] 保存长度 2^k 的二进制翻转下标。
+
+    const vector<int> &getRev(int n)
+    {
+        // n 是不超过 mx 的二次幂；返回对应二进制翻转下标表的引用。
+        int k = countr_zero((unsigned long long)n);
+        auto &r = rev[k];
+        if (r.empty())
+        {
+            r.resize(n);
+            for (int i = 1; i < n; i++)
+            {
+                r[i] = (r[i >> 1] >> 1) | ((int)(i & 1) << (k - 1));
+            }
+        }
+        return r;
+    }
+
+    void trans(int *a, int n, bool inv)
+    {
+        // a 指向长度 n 且各项在 [0,mod) 内的预分配切片，inv 表示是否逆变换；使用 unsigned long long 工作区原地完成变换。
+        assert(n > 0 && has_single_bit((unsigned long long)n) && n <= mx && mx % n == 0); // 调试检查，可删。
+        const auto &r = getRev(n);
+        for (int i = 0; i < n; i++)
+        {
+            buf[i] = a[r[i]];
+        }
+        for (int h = 1; h < n; h <<= 1)
+        {
+            const int *o = w.data() + h;
+            for (int l = 0; l < n; l += 2 * h)
+            {
+                for (int j = 0; j < h; j++)
+                {
+                    unsigned long long x = buf[l + j];
+                    unsigned long long y = buf[l + j + h] * o[j] % mod;
+                    buf[l + j] = x + y;
+                    buf[l + j + h] = x + mod - y;
+                }
+            }
+        }
+        if (!inv)
+        {
+            for (int i = 0; i < n; i++)
+            {
+                a[i] = buf[i] % mod;
+            }
+            return;
+        }
+        int k = countr_zero((unsigned long long)n);
+        int iv = mod - ((mod - 1) >> k);
+        a[0] = buf[0] * iv % mod;
+        for (int i = 1; i < n; i++)
+        {
+            a[i] = buf[n - i] * iv % mod;
+        }
+    }
+
+  public:
+    NTT32(int n = 0) : mx(n), w(n), buf(n)
+    {
+        // n 是最大变换长度，必须为 0 或不超过 2^17 的二次幂；预处理各级连续单位根。
+        assert(n == 0 || (has_single_bit((unsigned long long)n) && n <= (1 << 17))); // 调试检查，可删。
+        if (n == 0)
+        {
+            return;
+        }
+        if (n == 1)
+        {
+            w[0] = 1;
+            return;
+        }
+        int r = Z(3).pow((mod - 1) / n).val();
+        w[n / 2] = 1;
+        for (int i = n / 2 + 1; i < n; i++)
+        {
+            w[i] = (unsigned long long)w[i - 1] * r % mod;
+        }
+        for (int i = n / 2 - 1; i; i--)
+        {
+            w[i] = w[i << 1];
+        }
+    }
+
+    void dft(int *a, int n)
+    {
+        // a 指向长度 n 且各项在 [0,mod) 内的预分配切片；原地完成自然频点顺序的正变换，无返回值。
+        trans(a, n, false);
+    }
+
+    void idft(int *a, int n)
+    {
+        // a 指向本对象 dft 产生的 n 个频域值；原地完成逆变换并除以 n，无返回值。
+        trans(a, n, true);
+    }
+};
+
+void dft(vector<Z> &a)
+{
+    // a 的长度是至多 2^23 的正 2 的幂；调用卡常正变换，结果满足 FastNTT 的递归配对排列。
+    FastNTT::dft(a);
+}
+
+void dft(Z *a, int n)
+{
+    // a 指向长度 n 的连续系数；调用卡常正变换，结果满足 FastNTT 的递归配对排列。
+    FastNTT::dft(a, n);
+}
+
+void idft(vector<Z> &a)
+{
+    // a 必须来自全局 dft；调用卡常逆变换并恢复自然顺序系数。
+    FastNTT::idft(a);
+}
+
+void idft(Z *a, int n)
+{
+    // a 指向长度 n 且来自全局 dft 的频域值；调用卡常逆变换并恢复自然顺序系数。
+    FastNTT::idft(a, n);
+}
+
+vector<Z> conv(vector<Z> a, vector<Z> b)
+{
+    // a、b 按低次到高次保存系数；返回卡常 NTT 计算的普通线性卷积。
+    return FastNTT::conv(move(a), move(b));
+}
+
+vector<Z> convLarge(const vector<Z> &a, const vector<Z> &b)
+{
+    // a、b 是总长可超过单次 NTT 上限的序列；返回分块线性卷积。
+    if (a.empty() || b.empty()) return {};
+    if (convFit(a.size(), b.size())) return conv(a, b);
+    constexpr int block = NTT_LIM / 2;
+    vector<Z> ans(a.size() + b.size() - 1);
+    vector<vector<Z>> x, y;
+    for (int i = 0; i < (int)a.size(); i += block)
+    {
+        vector<Z> v(a.begin() + i, a.begin() + min<int>(a.size(), i + block));
+        v.resize(NTT_LIM);
+        dft(v);
+        x.push_back(move(v));
+    }
+    for (int i = 0; i < (int)b.size(); i += block)
+    {
+        vector<Z> v(b.begin() + i, b.begin() + min<int>(b.size(), i + block));
+        v.resize(NTT_LIM);
+        dft(v);
+        y.push_back(move(v));
+    }
+    for (int s = 0; s + 1 < (int)x.size() + (int)y.size(); s++)
+    {
+        vector<Z> z(NTT_LIM);
+        for (int i = max<int>(0, s - (int)y.size() + 1);
+             i <= s && i < (int)x.size(); i++)
+        {
+            int j = s - i;
+            for (int k = 0; k < NTT_LIM; k++)
+            {
+                z[k] += x[i][k] * y[j][k];
+            }
+        }
+        idft(z);
+        int offset = s * block;
+        int len = min<int>(NTT_LIM, ans.size() - offset);
+        for (int k = 0; k < len; k++)
+        {
+            ans[offset + k] += z[k];
+        }
+    }
+    return ans;
+}
+
+namespace plain_ntt
+{
+void dft(vector<Z> &a)
+{
+    // a 的长度是至多 2^23 的正 2 的幂；原地完成自然顺序的正 NTT。
+    int n = a.size();
+    assert(n > 0 && has_single_bit((unsigned long long)n) && n <= NTT_LIM); // 调试检查，可删。
+    int rev = 0;
+    for (int i = 1; i < n; i++)
+    {
+        int b = n >> 1;
+        for (; rev & b; b >>= 1)
+        {
+            rev ^= b;
+        }
+        rev ^= b;
+        if (i < rev)
+        {
+            swap(a[i], a[rev]);
+        }
+    }
+    for (int len = 2; len <= n; len <<= 1)
+    {
+        Z w = Z(3).pow((mod - 1) / len);
+        for (int i = 0; i < n; i += len)
+        {
+            Z x = 1;
+            for (int j = 0; j < len / 2; j++)
+            {
+                Z u = a[i + j];
+                Z v = a[i + j + len / 2] * x;
+                a[i + j] = u + v;
+                a[i + j + len / 2] = u - v;
+                x *= w;
+            }
+        }
+    }
+}
+
+void idft(vector<Z> &a)
+{
+    // a 是自然顺序的频域值；原地完成逆 NTT 并除以长度。
+    assert(!a.empty() && has_single_bit((unsigned long long)a.size()) && a.size() <= NTT_LIM); // 调试检查，可删。
+    reverse(a.begin() + 1, a.end());
+    plain_ntt::dft(a);
+    Z iv = Z(a.size()).inv();
+    for (auto &x : a)
+    {
+        x *= iv;
+    }
+}
+
+vector<Z> conv(vector<Z> a, vector<Z> b)
+{
+    // a、b 按低次到高次保存系数；返回普通线性卷积，任一输入为空时返回空。
+    if (a.empty() || b.empty())
+    {
+        return {};
+    }
+    int s = a.size() + b.size() - 1;
+    if (min(a.size(), b.size()) <= 32)
+    {
+        vector<Z> c(s);
+        for (int i = 0; i < (int)a.size(); i++)
+        {
+            for (int j = 0; j < (int)b.size(); j++)
+            {
+                c[i + j] += a[i] * b[j];
+            }
+        }
+        return c;
+    }
+    assert(nttFit(a.size(), b.size())); // 调试检查，可删。
+    int n = bit_ceil((unsigned long long)s);
+    a.resize(n);
+    b.resize(n);
+    plain_ntt::dft(a);
+    plain_ntt::dft(b);
+    for (int i = 0; i < n; i++)
+    {
+        a[i] *= b[i];
+    }
+    plain_ntt::idft(a);
+    a.resize(s);
+    return a;
+}
+}

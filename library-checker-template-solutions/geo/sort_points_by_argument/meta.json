@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "sort_points_by_argument",
+  "title": "Sort Points by Argument",
+  "category": "geo",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "geo/sort_points_by_argument/main.cpp",
+    "source_sha256": "a3705e2262a0e9867eb53632f85e12203f3c4a086e4e4608e59f2feeb2a3ee22"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "geo",
+    "problem": "sort_points_by_argument"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "a3705e2262a0e9867eb53632f85e12203f3c4a086e4e4608e59f2feeb2a3ee22",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch11_basic.cpp"
+    ],
+    "checked_at": "2026-08-21T20:55:49.521353Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395847,
+    "current_source_time": 0.144,
+    "current_source_memory": 8134656,
+    "current_source_submission_time": "2026-08-21T20:55:16.09057Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "a3705e2262a0e9867eb53632f85e12203f3c4a086e4e4608e59f2feeb2a3ee22",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395847,
+      "source_sha256": "a3705e2262a0e9867eb53632f85e12203f3c4a086e4e4608e59f2feeb2a3ee22",
+      "server_source_sha256": "a3705e2262a0e9867eb53632f85e12203f3c4a086e4e4608e59f2feeb2a3ee22",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.144,
+      "memory": 8134656,
+      "submission_time": "2026-08-21T20:55:16.09057Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T20:55:16.373131Z",
+      "recorded_at": "2026-08-21T20:55:49.520639Z"
+    }
+  ]
+}

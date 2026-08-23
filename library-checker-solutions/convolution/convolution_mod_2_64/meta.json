@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "convolution_mod_2_64",
+    "title":  "Convolution (Mod 2^64)",
+    "category":  "convolution",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "fb7a614ebf03d232978b281efa617b235c73a5d63fbe11613790f70be8a5727d"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "d8b975ead9bf1741148ba1390b78bc7a9248e150b9e8321ac005f8e44c3c473c",
+                                  "submission_id":  387169,
+                                  "status":  "AC",
+                                  "time":  0.575,
+                                  "memory":  68116480,
+                                  "submission_time":  "2026-07-22T03:31:56.707613Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

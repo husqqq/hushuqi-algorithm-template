@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "stirling_number_of_the_first_kind_fixed_k",
+  "title": "Stirling Number of the First Kind (Fixed K)",
+  "category": "enumerative_combinatorics",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k/main.cpp",
+    "source_sha256": "76d884364efa1f4ee66012b6c8f593ce69262db2f6abaede0f2b49f4097b07c1"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "enumerative_combinatorics",
+    "problem": "stirling_number_of_the_first_kind_fixed_k"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "76d884364efa1f4ee66012b6c8f593ce69262db2f6abaede0f2b49f4097b07c1",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch08_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T21:28:41.477946Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395866,
+    "current_source_time": 0.372,
+    "current_source_memory": 30035968,
+    "current_source_submission_time": "2026-08-21T21:28:15.975411Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "76d884364efa1f4ee66012b6c8f593ce69262db2f6abaede0f2b49f4097b07c1",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395866,
+      "source_sha256": "76d884364efa1f4ee66012b6c8f593ce69262db2f6abaede0f2b49f4097b07c1",
+      "server_source_sha256": "76d884364efa1f4ee66012b6c8f593ce69262db2f6abaede0f2b49f4097b07c1",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.372,
+      "memory": 30035968,
+      "submission_time": "2026-08-21T21:28:15.975411Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T21:28:16.268802Z",
+      "recorded_at": "2026-08-21T21:28:41.476874Z"
+    }
+  ]
+}

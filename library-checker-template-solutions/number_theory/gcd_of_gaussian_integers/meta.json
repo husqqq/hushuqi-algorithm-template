@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "gcd_of_gaussian_integers",
+  "title": "Gcd of Gaussian Integers",
+  "category": "number_theory",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "number_theory/gcd_of_gaussian_integers/main.cpp",
+    "source_sha256": "7cc41284d2012837763a6ab7ef325215dff47c487bba604a99f74481f7b2d11d"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "number_theory",
+    "problem": "gcd_of_gaussian_integers"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "7cc41284d2012837763a6ab7ef325215dff47c487bba604a99f74481f7b2d11d",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_lc_gap_gaussian.cpp"
+    ],
+    "checked_at": "2026-08-20T15:58:26.948592Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395254,
+    "current_source_time": 0.293,
+    "current_source_memory": 2211840,
+    "current_source_submission_time": "2026-08-20T15:58:02.44752Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "7cc41284d2012837763a6ab7ef325215dff47c487bba604a99f74481f7b2d11d",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395254,
+      "source_sha256": "7cc41284d2012837763a6ab7ef325215dff47c487bba604a99f74481f7b2d11d",
+      "server_source_sha256": "7cc41284d2012837763a6ab7ef325215dff47c487bba604a99f74481f7b2d11d",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.293,
+      "memory": 2211840,
+      "submission_time": "2026-08-20T15:58:02.44752Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-20T15:58:02.730282Z",
+      "recorded_at": "2026-08-20T15:58:26.947912Z"
+    }
+  ]
+}

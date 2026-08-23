@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "counting_primes",
+    "title":  "Counting Primes",
+    "category":  "number_theory",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "9f33a4b31f0eb087e89fdfb5b278c2e95644c8ad95cf0b4eec06a22c9a8dde2d"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "ce98a46c27a68843f63ed901eff8b7ba8b72b2ee9da7db44dcacd5cad13c2438",
+                                  "submission_id":  387095,
+                                  "status":  "AC",
+                                  "time":  0.412,
+                                  "memory":  121507840,
+                                  "submission_time":  "2026-07-22T02:58:09.31346Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

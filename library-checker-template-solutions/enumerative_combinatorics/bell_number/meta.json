@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "bell_number",
+  "title": "Bell Number",
+  "category": "enumerative_combinatorics",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "enumerative_combinatorics/bell_number/main.cpp",
+    "source_sha256": "b0bb3e23753ef771ba665d7aee2c557a865b93a77f76a08873a25ed6fbf8fef5"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "enumerative_combinatorics",
+    "problem": "bell_number"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "b0bb3e23753ef771ba665d7aee2c557a865b93a77f76a08873a25ed6fbf8fef5",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch08_sequences.cpp"
+    ],
+    "checked_at": "2026-08-21T21:25:04.500835Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395861,
+    "current_source_time": 0.139,
+    "current_source_memory": 26943488,
+    "current_source_submission_time": "2026-08-21T21:24:42.342802Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "b0bb3e23753ef771ba665d7aee2c557a865b93a77f76a08873a25ed6fbf8fef5",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395861,
+      "source_sha256": "b0bb3e23753ef771ba665d7aee2c557a865b93a77f76a08873a25ed6fbf8fef5",
+      "server_source_sha256": "b0bb3e23753ef771ba665d7aee2c557a865b93a77f76a08873a25ed6fbf8fef5",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.139,
+      "memory": 26943488,
+      "submission_time": "2026-08-21T21:24:42.342802Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T21:24:42.636198Z",
+      "recorded_at": "2026-08-21T21:25:04.499842Z"
+    }
+  ]
+}

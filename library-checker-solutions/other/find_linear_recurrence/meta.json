@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "find_linear_recurrence",
+    "title":  "Find Linear Recurrence",
+    "category":  "other",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "df5e93196aec91ed0717c9213fc4f2ab70a586f6251a59e3991f25c5fbc6a8d6"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "9a5c09a050fa69a46cda4a20637823d12505f78afd4d1a10d667ad8784d7130f",
+                                  "submission_id":  387152,
+                                  "status":  "AC",
+                                  "time":  0.124,
+                                  "memory":  1204224,
+                                  "submission_time":  "2026-07-22T03:26:01.205112Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,21 @@
+{
+    "schema_version":  1,
+    "name":  "minimum_enclosing_circle",
+    "title":  "Minimum Enclosing Circle",
+    "category":  "geo",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "24e4e414e3af4f58f64592718c438f2f0c9fec2b0efd56c49a76bc099468fa54",
+                       "imported_sha256":  "39c8a115fa212a6d19a2c43e1acda3d65466faa6ba09e94807480ee290487080"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

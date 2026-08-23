@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "lyndon_factorization",
+  "title": "Lyndon Factorization",
+  "category": "string",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "string/lyndon_factorization/main.cpp",
+    "source_sha256": "34392a20a0d24e7f06046c3390b7511cd0997f22e320f3c88c2a6259ed63eedf"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "string",
+    "problem": "lyndon_factorization"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "34392a20a0d24e7f06046c3390b7511cd0997f22e320f3c88c2a6259ed63eedf",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch04_lyndon.cpp"
+    ],
+    "checked_at": "2026-08-21T07:39:58.390817Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395547,
+    "current_source_time": 0.034,
+    "current_source_memory": 8880128,
+    "current_source_submission_time": "2026-08-21T07:39:33.179279Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "34392a20a0d24e7f06046c3390b7511cd0997f22e320f3c88c2a6259ed63eedf",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395547,
+      "source_sha256": "34392a20a0d24e7f06046c3390b7511cd0997f22e320f3c88c2a6259ed63eedf",
+      "server_source_sha256": "34392a20a0d24e7f06046c3390b7511cd0997f22e320f3c88c2a6259ed63eedf",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.034,
+      "memory": 8880128,
+      "submission_time": "2026-08-21T07:39:33.179279Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T07:39:33.329668Z",
+      "recorded_at": "2026-08-21T07:39:58.390037Z"
+    }
+  ]
+}

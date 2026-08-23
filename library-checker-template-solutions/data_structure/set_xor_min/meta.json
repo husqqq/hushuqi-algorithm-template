@@ -1,0 +1,136 @@
+{
+  "schema_version": 3,
+  "name": "set_xor_min",
+  "title": "Set Xor-Min",
+  "category": "data_structure",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "data_structure/set_xor_min/main.cpp",
+    "source_sha256": "9be6764f9eb2cbf88182ef750be18b051e64f658fe6a44c157e30ca9dde73525",
+    "evidence": {
+      "method": "deterministic_generation",
+      "generator": {
+        "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
+        "sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+        "working_directory": ".",
+        "runner": "Python 3.13.14",
+        "argv": [
+          "--only",
+          "set_xor_min",
+          "--write-index"
+        ],
+        "generation_evidence": {
+          "schema_version": 2,
+          "problem_id": "data_structure/set_xor_min",
+          "source_path": "library-checker-template-solutions/data_structure/set_xor_min/main.cpp",
+          "source_sha256": "9be6764f9eb2cbf88182ef750be18b051e64f658fe6a44c157e30ca9dde73525",
+          "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
+          "generator_sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+          "working_directory": ".",
+          "runner": "Python 3.13.14",
+          "argv": [
+            "--only",
+            "set_xor_min",
+            "--write-index"
+          ],
+          "inputs": [
+            {
+              "path": "hushuqi算法竞赛模板/03-数据结构.md",
+              "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/include/full/3_6_002.hpp",
+              "sha256": "86761b7fb0c93cace07147aabb8ca8d661c63384b50c05189eaeb46af1b4e8d5"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/include/full/3_6_003.hpp",
+              "sha256": "2776434cc3958796ecdfb22d71dd8d6b0dc34ffc19f89cd9a213655383ac76e6"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/tests/test_ch03_erasable_trie.cpp",
+              "sha256": "efbadfb5e2127dcfa31b6659495337cfe40bff64d85fdf63218fa8f14d791fbe"
+            }
+          ],
+          "generated_sha256": "9be6764f9eb2cbf88182ef750be18b051e64f658fe6a44c157e30ca9dde73525",
+          "byte_equal": true
+        },
+        "generation_evidence_sha256": "62ddda0e9b1732b4bf31279f9fa3f2ed2ce49a23758a245a3d0aec660bf50f6a"
+      },
+      "adapter_sha256": "4100f3df10e143bc5ee1681d3e28e334db67275490d7f68b783b0487cafe9ac0",
+      "template_inputs": [
+        {
+          "path": "hushuqi算法竞赛模板/03-数据结构.md",
+          "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/full/3_6_002.hpp",
+          "sha256": "86761b7fb0c93cace07147aabb8ca8d661c63384b50c05189eaeb46af1b4e8d5"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/full/3_6_003.hpp",
+          "sha256": "2776434cc3958796ecdfb22d71dd8d6b0dc34ffc19f89cd9a213655383ac76e6"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/tests/test_ch03_erasable_trie.cpp",
+          "sha256": "efbadfb5e2127dcfa31b6659495337cfe40bff64d85fdf63218fa8f14d791fbe"
+        }
+      ],
+      "temporary_regenerations": 2,
+      "byte_identical": true,
+      "source_sha256": "9be6764f9eb2cbf88182ef750be18b051e64f658fe6a44c157e30ca9dde73525",
+      "evidence_sha256": "7799b4808c22124db665a910465ec2a7a769f9cd93f3f9db0074f04054f335f9"
+    }
+  },
+  "reference": {
+    "kind": "read_only_baseline",
+    "source": "library-checker-solutions/data_structure/set_xor_min/main.cpp",
+    "source_sha256": "d5662b45cbc46382c9bdd048c658abbfaa084165a453daa20a68a845435ec657"
+  },
+  "official_reference": {
+    "repository": "https://github.com/yosupo06/library-checker-problems",
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "license": "Apache-2.0",
+    "license_blob": "91554e3bd99da6761c82645d6c740ced590d17bb",
+    "path": "data_structure/set_xor_min/sol/correct.cpp",
+    "git_blob": "1b04323e8a0d7eadd239a7be518f9d1b09ba93ab",
+    "content_sha256": "7769a0117a6947e584956fb2d337a6bc05d17ed68d23aecf739e04371226ac07"
+  },
+  "validation": {
+    "status": "local_only",
+    "checked_at": null,
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch03_erasable_trie.cpp"
+    ],
+    "current_source_sha256": "9be6764f9eb2cbf88182ef750be18b051e64f658fe6a44c157e30ca9dde73525",
+    "current_source_online_verdict": null,
+    "current_source_submission_id": null,
+    "current_source_time": null,
+    "current_source_memory": null,
+    "current_source_submission_time": null,
+    "current_source_is_latest": null,
+    "server_source_sha256": null,
+    "note": "Generated from the current chapter 03 template; online verification has not run for this source."
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 394415,
+      "source_sha256": "304bae1802e474070b838c0e36dcc72bde00dc77934e3b53219f933380489523",
+      "server_source_sha256": "304bae1802e474070b838c0e36dcc72bde00dc77934e3b53219f933380489523",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.253,
+      "memory": 147079168,
+      "submission_time": "2026-08-18T19:20:07.48183Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-18T19:20:07.712030Z",
+      "recorded_at": "2026-08-18T19:20:28.114070Z"
+    }
+  ],
+  "notes": [
+    "The only submission candidate is this self-contained main.cpp.",
+    "The reference source is read-only comparison material and is not a submission input."
+  ]
+}

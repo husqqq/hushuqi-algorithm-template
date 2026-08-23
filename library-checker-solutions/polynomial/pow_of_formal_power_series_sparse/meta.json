@@ -1,0 +1,21 @@
+{
+    "schema_version":  1,
+    "name":  "pow_of_formal_power_series_sparse",
+    "title":  "Pow of Formal Power Series (Sparse)",
+    "category":  "polynomial",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "5ad598fad2efd2ca3eb10ad7497a9be8770fe8049edd682b1c18acb7dbba0185",
+                       "imported_sha256":  "a2505a9c36d8b0a76076040c0e0eda01d550459845e0fd0eb4e26f1618187b90"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

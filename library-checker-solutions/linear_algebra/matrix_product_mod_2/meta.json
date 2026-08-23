@@ -1,0 +1,21 @@
+{
+    "schema_version":  1,
+    "name":  "matrix_product_mod_2",
+    "title":  "Matrix Product (Mod 2)",
+    "category":  "linear_algebra",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "439b048d8a4faf40d670387a87e3f45e2673a3bb3e571ed448f9a689fbc27fca",
+                       "imported_sha256":  "acda4a0d635e9f5b1fd0108a989007a5ea1b8b4b8f8b83cf3123623208192d05"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

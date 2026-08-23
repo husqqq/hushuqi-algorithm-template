@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "bitwise_xor_convolution",
+    "title":  "Bitwise Xor Convolution",
+    "category":  "convolution",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "cc0075ceee4980600c9d2baa00acbc0cd9f59e25f010dbbdc9637ff0e3d7f4bb"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "546c044f59ea8a4f55d663493daa912fc9019ce8aa8d4ae2dc496e8988655c59",
+                                  "submission_id":  387134,
+                                  "status":  "AC",
+                                  "time":  0.222,
+                                  "memory":  19529728,
+                                  "submission_time":  "2026-07-22T03:15:33.013875Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

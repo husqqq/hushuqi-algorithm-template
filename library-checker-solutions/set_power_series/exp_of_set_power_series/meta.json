@@ -1,0 +1,30 @@
+{
+    "schema_version":  1,
+    "name":  "exp_of_set_power_series",
+    "title":  "Exp of Set Power Series",
+    "category":  "set_power_series",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "set_power_series/exp_of_set_power_series/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "6a806d2a64dfe05dbf6e3c59e01145223ceeab3a5a655a91a9b024ba5f6251c8"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

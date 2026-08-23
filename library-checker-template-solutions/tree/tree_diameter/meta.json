@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "tree_diameter",
+  "title": "Tree Diameter",
+  "category": "tree",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "tree/tree_diameter/main.cpp",
+    "source_sha256": "f81916d9160151029ed868357205593eb3a33752057dc7cf70e6b357cb27d9df"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "tree",
+    "problem": "tree_diameter"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "f81916d9160151029ed868357205593eb3a33752057dc7cf70e6b357cb27d9df",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch06_tree_pack.cpp"
+    ],
+    "checked_at": "2026-08-21T16:04:39.425759Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395694,
+    "current_source_time": 0.537,
+    "current_source_memory": 86134784,
+    "current_source_submission_time": "2026-08-21T16:04:10.38756Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "f81916d9160151029ed868357205593eb3a33752057dc7cf70e6b357cb27d9df",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395694,
+      "source_sha256": "f81916d9160151029ed868357205593eb3a33752057dc7cf70e6b357cb27d9df",
+      "server_source_sha256": "f81916d9160151029ed868357205593eb3a33752057dc7cf70e6b357cb27d9df",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.537,
+      "memory": 86134784,
+      "submission_time": "2026-08-21T16:04:10.38756Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T16:04:10.611018Z",
+      "recorded_at": "2026-08-21T16:04:39.425162Z"
+    }
+  ]
+}

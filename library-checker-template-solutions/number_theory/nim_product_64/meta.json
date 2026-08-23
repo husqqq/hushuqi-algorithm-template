@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "nim_product_64",
+  "title": "Nim Product ($\\mathbb{F}_{2^{64}}$)",
+  "category": "number_theory",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "number_theory/nim_product_64/main.cpp",
+    "source_sha256": "6a5acbcbdb682728be45c39e3378f141b654e0a5fce6c42d4c000a1416c76018"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "number_theory",
+    "problem": "nim_product_64"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "6a5acbcbdb682728be45c39e3378f141b654e0a5fce6c42d4c000a1416c76018",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch13_nim_product.cpp"
+    ],
+    "checked_at": "2026-08-21T16:52:23.680375Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395727,
+    "current_source_time": 2.196,
+    "current_source_memory": 21729280,
+    "current_source_submission_time": "2026-08-21T16:51:51.436325Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "6a5acbcbdb682728be45c39e3378f141b654e0a5fce6c42d4c000a1416c76018",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395727,
+      "source_sha256": "6a5acbcbdb682728be45c39e3378f141b654e0a5fce6c42d4c000a1416c76018",
+      "server_source_sha256": "6a5acbcbdb682728be45c39e3378f141b654e0a5fce6c42d4c000a1416c76018",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 2.196,
+      "memory": 21729280,
+      "submission_time": "2026-08-21T16:51:51.436325Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T16:51:51.663080Z",
+      "recorded_at": "2026-08-21T16:52:23.679777Z"
+    }
+  ]
+}

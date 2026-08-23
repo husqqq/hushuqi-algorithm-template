@@ -1,0 +1,21 @@
+{
+    "schema_version":  1,
+    "name":  "static_range_sum_with_upper_bound",
+    "title":  "Static Range Sum with Upper Bound",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "3889d1659f51aaac35c2cb7e11bd2b07fedccb96da72480b03af5c5b5fd94ccc",
+                       "imported_sha256":  "a3813395836b9bd9c159371712c54ddb489eba4f8c3b8751b4f1156aa6a745d8"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

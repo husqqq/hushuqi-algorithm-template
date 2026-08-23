@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "intersection_of_f2_vector_spaces",
+    "title":  "Intersection of $\\mathbb{F}_{2}$ vector spaces",
+    "category":  "linear_algebra",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "d49f243de7908da82089231054f3b043774db823aa1eb49ecd0fddc96f72eaa1"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "b2e11acf3c3d3d0f18742a24bd712b8a284669d55650d6d17f5bee45380c4f62",
+                                  "submission_id":  387018,
+                                  "status":  "AC",
+                                  "time":  1.109,
+                                  "memory":  19292160,
+                                  "submission_time":  "2026-07-22T02:27:34.105651Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

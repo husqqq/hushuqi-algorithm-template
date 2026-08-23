@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "dynamic_graph_vertex_add_component_sum",
+  "title": "Dynamic Graph Vertex Add Component Sum",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/dynamic_graph_vertex_add_component_sum/main.cpp",
+    "source_sha256": "340edffe99a50e89d72366ffa646b2bf3d4b05f239f3e0d75b8debfe34e8cfc2"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "dynamic_graph_vertex_add_component_sum"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "340edffe99a50e89d72366ffa646b2bf3d4b05f239f3e0d75b8debfe34e8cfc2",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch06_dynamic_component_sum.cpp"
+    ],
+    "checked_at": "2026-08-21T13:09:46.178982Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395634,
+    "current_source_time": 0.567,
+    "current_source_memory": 180834304,
+    "current_source_submission_time": "2026-08-21T13:09:17.358808Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "340edffe99a50e89d72366ffa646b2bf3d4b05f239f3e0d75b8debfe34e8cfc2",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395634,
+      "source_sha256": "340edffe99a50e89d72366ffa646b2bf3d4b05f239f3e0d75b8debfe34e8cfc2",
+      "server_source_sha256": "340edffe99a50e89d72366ffa646b2bf3d4b05f239f3e0d75b8debfe34e8cfc2",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.567,
+      "memory": 180834304,
+      "submission_time": "2026-08-21T13:09:17.358808Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T13:09:17.547240Z",
+      "recorded_at": "2026-08-21T13:09:46.177979Z"
+    }
+  ]
+}

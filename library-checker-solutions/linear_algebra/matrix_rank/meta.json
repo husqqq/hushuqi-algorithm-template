@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "matrix_rank",
+    "title":  "Rank of Matrix",
+    "category":  "linear_algebra",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "6bd450baca96847551267fa71ee0da42783a2ff7d1def8531f581b96bc6ff5c8"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "63237fd6e76902543baadb1b4aeab4a212f4004d650e5b4d6b47b4238ded3eb4",
+                                  "submission_id":  387130,
+                                  "status":  "AC",
+                                  "time":  0.076,
+                                  "memory":  14663680,
+                                  "submission_time":  "2026-07-22T03:13:12.832939Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

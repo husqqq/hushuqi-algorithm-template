@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "dominatortree",
+    "title":  "Dominator Tree",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "34a3bb51d255817f41ddb1da6d2dcc398c75d051aa4016c322893e117b8c8ee0"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "1528323d8c222f654310b69036fbfea032850b2b29675a7b1bad250fd4eb6439",
+                                  "submission_id":  387030,
+                                  "status":  "AC",
+                                  "time":  0.072,
+                                  "memory":  23756800,
+                                  "submission_time":  "2026-07-22T02:33:14.326717Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

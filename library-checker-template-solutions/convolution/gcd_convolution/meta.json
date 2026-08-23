@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "gcd_convolution",
+  "title": "Gcd Convolution",
+  "category": "convolution",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "convolution/gcd_convolution/main.cpp",
+    "source_sha256": "fb606012ff11fd12a74b98c9bc6a6093a61028c588d0ba0e24be005131430f7e"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "convolution",
+    "problem": "gcd_convolution"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "fb606012ff11fd12a74b98c9bc6a6093a61028c588d0ba0e24be005131430f7e",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch10_divisor_transform.cpp"
+    ],
+    "checked_at": "2026-08-21T20:36:47.451431Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395833,
+    "current_source_time": 0.564,
+    "current_source_memory": 18632704,
+    "current_source_submission_time": "2026-08-21T20:36:07.995566Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "fb606012ff11fd12a74b98c9bc6a6093a61028c588d0ba0e24be005131430f7e",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395833,
+      "source_sha256": "fb606012ff11fd12a74b98c9bc6a6093a61028c588d0ba0e24be005131430f7e",
+      "server_source_sha256": "fb606012ff11fd12a74b98c9bc6a6093a61028c588d0ba0e24be005131430f7e",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.564,
+      "memory": 18632704,
+      "submission_time": "2026-08-21T20:36:07.995566Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T20:36:08.273354Z",
+      "recorded_at": "2026-08-21T20:36:47.450786Z"
+    }
+  ]
+}

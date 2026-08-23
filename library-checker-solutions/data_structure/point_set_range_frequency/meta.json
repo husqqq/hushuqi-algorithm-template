@@ -1,0 +1,21 @@
+{
+    "schema_version":  1,
+    "name":  "point_set_range_frequency",
+    "title":  "Point Set Range Frequency",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "1d179be8b7569a478e3ba7d926405da341c823f92f61a0b548a535e2ce4fd9c6",
+                       "imported_sha256":  "15fc64b166910f85569329c74e97ddb0b49f76c618a227ea12846a1aee9ed1cc"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "vertex_add_range_contour_sum_on_tree",
+  "title": "Vertex Add Range Contour Sum on Tree",
+  "category": "tree",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "tree/vertex_add_range_contour_sum_on_tree/main.cpp",
+    "source_sha256": "bcbe409038e6bd431e3d56fd9c89bf8233c6f95620f89e55456311575c8f9222"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "tree",
+    "problem": "vertex_add_range_contour_sum_on_tree"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "bcbe409038e6bd431e3d56fd9c89bf8233c6f95620f89e55456311575c8f9222",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch06_contour.cpp"
+    ],
+    "checked_at": "2026-08-21T23:34:41.073646Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395914,
+    "current_source_time": 1.86,
+    "current_source_memory": 205914112,
+    "current_source_submission_time": "2026-08-21T23:33:49.35884Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "bcbe409038e6bd431e3d56fd9c89bf8233c6f95620f89e55456311575c8f9222",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395914,
+      "source_sha256": "bcbe409038e6bd431e3d56fd9c89bf8233c6f95620f89e55456311575c8f9222",
+      "server_source_sha256": "bcbe409038e6bd431e3d56fd9c89bf8233c6f95620f89e55456311575c8f9222",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.86,
+      "memory": 205914112,
+      "submission_time": "2026-08-21T23:33:49.35884Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T23:33:49.734874Z",
+      "recorded_at": "2026-08-21T23:34:41.072899Z"
+    }
+  ]
+}

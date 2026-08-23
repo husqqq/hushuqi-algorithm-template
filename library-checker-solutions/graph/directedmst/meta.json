@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "directedmst",
+    "title":  "Directed MST",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "da07edf09de893da71cad317ae225f10235b0390b1c673e356e1c35365dfea3d"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "21b034e37f9a2fa1ec41a5465a0e14e476221c0854ee9ba3b71efb4f00ab0db3",
+                                  "submission_id":  387045,
+                                  "status":  "AC",
+                                  "time":  0.1,
+                                  "memory":  42364928,
+                                  "submission_time":  "2026-07-22T02:40:08.415091Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

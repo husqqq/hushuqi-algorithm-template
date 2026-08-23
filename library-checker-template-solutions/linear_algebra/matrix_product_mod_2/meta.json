@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "matrix_product_mod_2",
+  "title": "Matrix Product (Mod 2)",
+  "category": "linear_algebra",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "linear_algebra/matrix_product_mod_2/main.cpp",
+    "source_sha256": "48459c92a3cc24117713ce11c4fa8562ec38f69c6cd0be83dd2c780a27015526"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "linear_algebra",
+    "problem": "matrix_product_mod_2"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "48459c92a3cc24117713ce11c4fa8562ec38f69c6cd0be83dd2c780a27015526",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch09_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T18:58:52.520091Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395786,
+    "current_source_time": 0.466,
+    "current_source_memory": 24580096,
+    "current_source_submission_time": "2026-08-21T18:58:16.575505Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "48459c92a3cc24117713ce11c4fa8562ec38f69c6cd0be83dd2c780a27015526",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395786,
+      "source_sha256": "48459c92a3cc24117713ce11c4fa8562ec38f69c6cd0be83dd2c780a27015526",
+      "server_source_sha256": "48459c92a3cc24117713ce11c4fa8562ec38f69c6cd0be83dd2c780a27015526",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.466,
+      "memory": 24580096,
+      "submission_time": "2026-08-21T18:58:16.575505Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T18:58:16.816316Z",
+      "recorded_at": "2026-08-21T18:58:52.519363Z"
+    }
+  ]
+}

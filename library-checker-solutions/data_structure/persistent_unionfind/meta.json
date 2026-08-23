@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "persistent_unionfind",
+    "title":  "Persistent Unionfind",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "72baf943fc69f0daf315943f047f9266f4ca0eb85d2486dacb2aef95e82297b7"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "74ac0e8e941632f1890985e31605599421ff83ecc6d29170840b061a03054e61",
+                                  "submission_id":  387175,
+                                  "status":  "AC",
+                                  "time":  0.165,
+                                  "memory":  46854144,
+                                  "submission_time":  "2026-07-22T03:35:07.103542Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

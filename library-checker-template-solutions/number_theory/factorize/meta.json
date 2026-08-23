@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "factorize",
+  "title": "Factorize",
+  "category": "number_theory",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "number_theory/factorize/main.cpp",
+    "source_sha256": "c2151b801e40dca36c9e0beaf8ce8a172baeedc31514ffea2d55a5d2e72c9b84"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "number_theory",
+    "problem": "factorize"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "c2151b801e40dca36c9e0beaf8ce8a172baeedc31514ffea2d55a5d2e72c9b84",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch07_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T16:33:48.073858Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395712,
+    "current_source_time": 0.431,
+    "current_source_memory": 868352,
+    "current_source_submission_time": "2026-08-21T16:33:15.906037Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "c2151b801e40dca36c9e0beaf8ce8a172baeedc31514ffea2d55a5d2e72c9b84",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395712,
+      "source_sha256": "c2151b801e40dca36c9e0beaf8ce8a172baeedc31514ffea2d55a5d2e72c9b84",
+      "server_source_sha256": "c2151b801e40dca36c9e0beaf8ce8a172baeedc31514ffea2d55a5d2e72c9b84",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.431,
+      "memory": 868352,
+      "submission_time": "2026-08-21T16:33:15.906037Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T16:33:16.130952Z",
+      "recorded_at": "2026-08-21T16:33:48.073240Z"
+    }
+  ]
+}

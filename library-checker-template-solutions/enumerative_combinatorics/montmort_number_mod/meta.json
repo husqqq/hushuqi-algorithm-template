@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "montmort_number_mod",
+  "title": "Montmort Number",
+  "category": "enumerative_combinatorics",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "enumerative_combinatorics/montmort_number_mod/main.cpp",
+    "source_sha256": "e323725bf9b0f3225c2b17446a0d86094f77033b94355590e1977d79da4f7103"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "enumerative_combinatorics",
+    "problem": "montmort_number_mod"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "e323725bf9b0f3225c2b17446a0d86094f77033b94355590e1977d79da4f7103",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch08_sequences.cpp"
+    ],
+    "checked_at": "2026-08-21T18:30:44.458708Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395772,
+    "current_source_time": 0.058,
+    "current_source_memory": 18632704,
+    "current_source_submission_time": "2026-08-21T18:30:25.939877Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "e323725bf9b0f3225c2b17446a0d86094f77033b94355590e1977d79da4f7103",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395772,
+      "source_sha256": "e323725bf9b0f3225c2b17446a0d86094f77033b94355590e1977d79da4f7103",
+      "server_source_sha256": "e323725bf9b0f3225c2b17446a0d86094f77033b94355590e1977d79da4f7103",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.058,
+      "memory": 18632704,
+      "submission_time": "2026-08-21T18:30:25.939877Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T18:30:26.184881Z",
+      "recorded_at": "2026-08-21T18:30:44.458070Z"
+    }
+  ]
+}

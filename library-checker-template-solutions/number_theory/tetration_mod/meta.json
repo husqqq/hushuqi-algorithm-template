@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "tetration_mod",
+  "title": "Tetration Mod",
+  "category": "number_theory",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "number_theory/tetration_mod/main.cpp",
+    "source_sha256": "b32f7a642e4b718808d660e44625ff4c2d77c85011e8a4c3f395fab70e61119e"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "number_theory",
+    "problem": "tetration_mod"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "b32f7a642e4b718808d660e44625ff4c2d77c85011e8a4c3f395fab70e61119e",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch07_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T16:48:22.936950Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395723,
+    "current_source_time": 0.135,
+    "current_source_memory": 880640,
+    "current_source_submission_time": "2026-08-21T16:48:00.892321Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "b32f7a642e4b718808d660e44625ff4c2d77c85011e8a4c3f395fab70e61119e",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395723,
+      "source_sha256": "b32f7a642e4b718808d660e44625ff4c2d77c85011e8a4c3f395fab70e61119e",
+      "server_source_sha256": "b32f7a642e4b718808d660e44625ff4c2d77c85011e8a4c3f395fab70e61119e",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.135,
+      "memory": 880640,
+      "submission_time": "2026-08-21T16:48:00.892321Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T16:48:01.122634Z",
+      "recorded_at": "2026-08-21T16:48:22.936189Z"
+    }
+  ]
+}

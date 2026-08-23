@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "many_factorials",
+  "title": "Many Factorials",
+  "category": "enumerative_combinatorics",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "enumerative_combinatorics/many_factorials/main.cpp",
+    "source_sha256": "74bd2f5aa69185c3aaeb45276b04fb3e2ee737080338cba4e0ddf6b7f1fdfbd0"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "enumerative_combinatorics",
+    "problem": "many_factorials"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "74bd2f5aa69185c3aaeb45276b04fb3e2ee737080338cba4e0ddf6b7f1fdfbd0",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch10_poly_misc.cpp"
+    ],
+    "checked_at": "2026-08-21T21:21:41.385625Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395858,
+    "current_source_time": 0.74,
+    "current_source_memory": 73998336,
+    "current_source_submission_time": "2026-08-21T21:21:12.322515Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "74bd2f5aa69185c3aaeb45276b04fb3e2ee737080338cba4e0ddf6b7f1fdfbd0",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395858,
+      "source_sha256": "74bd2f5aa69185c3aaeb45276b04fb3e2ee737080338cba4e0ddf6b7f1fdfbd0",
+      "server_source_sha256": "74bd2f5aa69185c3aaeb45276b04fb3e2ee737080338cba4e0ddf6b7f1fdfbd0",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.74,
+      "memory": 73998336,
+      "submission_time": "2026-08-21T21:21:12.322515Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T21:21:12.648802Z",
+      "recorded_at": "2026-08-21T21:21:41.384685Z"
+    }
+  ]
+}

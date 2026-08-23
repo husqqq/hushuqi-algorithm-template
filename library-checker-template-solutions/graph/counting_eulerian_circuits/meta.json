@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "counting_eulerian_circuits",
+  "title": "Counting Eulerian Circuits",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/counting_eulerian_circuits/main.cpp",
+    "source_sha256": "89c4b01028cfd89c4f2b27aa0473cb2bb990f6b399e1718f0e88d7dd921b2e8d"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "counting_eulerian_circuits"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "89c4b01028cfd89c4f2b27aa0473cb2bb990f6b399e1718f0e88d7dd921b2e8d",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_cycles.cpp"
+    ],
+    "checked_at": "2026-08-21T12:21:31.635306Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395612,
+    "current_source_time": 0.124,
+    "current_source_memory": 8282112,
+    "current_source_submission_time": "2026-08-21T12:21:01.840137Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "89c4b01028cfd89c4f2b27aa0473cb2bb990f6b399e1718f0e88d7dd921b2e8d",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395612,
+      "source_sha256": "89c4b01028cfd89c4f2b27aa0473cb2bb990f6b399e1718f0e88d7dd921b2e8d",
+      "server_source_sha256": "89c4b01028cfd89c4f2b27aa0473cb2bb990f6b399e1718f0e88d7dd921b2e8d",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.124,
+      "memory": 8282112,
+      "submission_time": "2026-08-21T12:21:01.840137Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T12:21:02.094342Z",
+      "recorded_at": "2026-08-21T12:21:31.634036Z"
+    }
+  ]
+}

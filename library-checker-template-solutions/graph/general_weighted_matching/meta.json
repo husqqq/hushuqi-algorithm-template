@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "general_weighted_matching",
+  "title": "General Weighted Matching",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/general_weighted_matching/main.cpp",
+    "source_sha256": "5c69f1abb3203a26dbf9ddf5d415567d0017b4f08d951e597e619da737d8886d"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "general_weighted_matching"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "5c69f1abb3203a26dbf9ddf5d415567d0017b4f08d951e597e619da737d8886d",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_general_matching.cpp"
+    ],
+    "checked_at": "2026-08-21T11:29:00.777859Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395601,
+    "current_source_time": 0.333,
+    "current_source_memory": 36368384,
+    "current_source_submission_time": "2026-08-21T11:28:29.428872Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "5c69f1abb3203a26dbf9ddf5d415567d0017b4f08d951e597e619da737d8886d",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395601,
+      "source_sha256": "5c69f1abb3203a26dbf9ddf5d415567d0017b4f08d951e597e619da737d8886d",
+      "server_source_sha256": "5c69f1abb3203a26dbf9ddf5d415567d0017b4f08d951e597e619da737d8886d",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.333,
+      "memory": 36368384,
+      "submission_time": "2026-08-21T11:28:29.428872Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T11:28:29.608569Z",
+      "recorded_at": "2026-08-21T11:29:00.776291Z"
+    }
+  ]
+}

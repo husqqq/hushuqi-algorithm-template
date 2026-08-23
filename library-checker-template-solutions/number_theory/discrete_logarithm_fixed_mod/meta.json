@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "discrete_logarithm_fixed_mod",
+  "title": "Discrete Logarithm (Fixed Mod)",
+  "category": "number_theory",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "number_theory/discrete_logarithm_fixed_mod/main.cpp",
+    "source_sha256": "7c7fb583ea862b6282f7da3c7645a066c7277bdd38a3d3613a5669092f5e52e9"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "number_theory",
+    "problem": "discrete_logarithm_fixed_mod"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "7c7fb583ea862b6282f7da3c7645a066c7277bdd38a3d3613a5669092f5e52e9",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch07_batch_dlog.cpp"
+    ],
+    "checked_at": "2026-08-21T16:50:45.757710Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395724,
+    "current_source_time": 6.035,
+    "current_source_memory": 374755328,
+    "current_source_submission_time": "2026-08-21T16:48:27.98215Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "7c7fb583ea862b6282f7da3c7645a066c7277bdd38a3d3613a5669092f5e52e9",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395724,
+      "source_sha256": "7c7fb583ea862b6282f7da3c7645a066c7277bdd38a3d3613a5669092f5e52e9",
+      "server_source_sha256": "7c7fb583ea862b6282f7da3c7645a066c7277bdd38a3d3613a5669092f5e52e9",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 6.035,
+      "memory": 374755328,
+      "submission_time": "2026-08-21T16:48:27.98215Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T16:48:28.209542Z",
+      "recorded_at": "2026-08-21T16:50:45.757117Z"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "chromatic_number",
+    "title":  "Chromatic Number",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "eb5d3e5fd448ed3a6be2c404e54678ba19032bd4255acb1f60d3f25ebd0012fd"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "eb5d3e5fd448ed3a6be2c404e54678ba19032bd4255acb1f60d3f25ebd0012fd",
+                                  "submission_id":  387032,
+                                  "status":  "AC",
+                                  "time":  2.725,
+                                  "memory":  6148096,
+                                  "submission_time":  "2026-07-22T02:33:53.802697Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

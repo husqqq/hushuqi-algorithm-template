@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "enumerate_quotients",
+  "title": "Enumerate Quotients",
+  "category": "number_theory",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "number_theory/enumerate_quotients/main.cpp",
+    "source_sha256": "7d499c70d1d84a588802d5db53622100e35c5f87b1bbf7ec2b6a7b1e7b1bfb65"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "number_theory",
+    "problem": "enumerate_quotients"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "7d499c70d1d84a588802d5db53622100e35c5f87b1bbf7ec2b6a7b1e7b1bfb65",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch07_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T16:36:25.980269Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395715,
+    "current_source_time": 0.168,
+    "current_source_memory": 81801216,
+    "current_source_submission_time": "2026-08-21T16:35:56.900614Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "7d499c70d1d84a588802d5db53622100e35c5f87b1bbf7ec2b6a7b1e7b1bfb65",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395715,
+      "source_sha256": "7d499c70d1d84a588802d5db53622100e35c5f87b1bbf7ec2b6a7b1e7b1bfb65",
+      "server_source_sha256": "7d499c70d1d84a588802d5db53622100e35c5f87b1bbf7ec2b6a7b1e7b1bfb65",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.168,
+      "memory": 81801216,
+      "submission_time": "2026-08-21T16:35:56.900614Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T16:35:57.120784Z",
+      "recorded_at": "2026-08-21T16:36:25.979696Z"
+    }
+  ]
+}

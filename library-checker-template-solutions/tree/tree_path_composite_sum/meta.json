@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "tree_path_composite_sum",
+  "title": "Tree Path Composite Sum",
+  "category": "tree",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "tree/tree_path_composite_sum/main.cpp",
+    "source_sha256": "49d53919fc43e22dc4bce0cd9e81e8ac440472cbbb2ce3322825ce99fe9d52f4"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "tree",
+    "problem": "tree_path_composite_sum"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "49d53919fc43e22dc4bce0cd9e81e8ac440472cbbb2ce3322825ce99fe9d52f4",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch06_affine_sum.cpp"
+    ],
+    "checked_at": "2026-08-21T23:41:15.275813Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395920,
+    "current_source_time": 0.289,
+    "current_source_memory": 35360768,
+    "current_source_submission_time": "2026-08-21T23:39:40.984177Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "49d53919fc43e22dc4bce0cd9e81e8ac440472cbbb2ce3322825ce99fe9d52f4",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395920,
+      "source_sha256": "49d53919fc43e22dc4bce0cd9e81e8ac440472cbbb2ce3322825ce99fe9d52f4",
+      "server_source_sha256": "49d53919fc43e22dc4bce0cd9e81e8ac440472cbbb2ce3322825ce99fe9d52f4",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.289,
+      "memory": 35360768,
+      "submission_time": "2026-08-21T23:39:40.984177Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T23:39:41.321601Z",
+      "recorded_at": "2026-08-21T23:41:15.274908Z"
+    }
+  ]
+}

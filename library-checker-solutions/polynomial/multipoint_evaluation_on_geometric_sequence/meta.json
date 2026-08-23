@@ -1,0 +1,30 @@
+{
+    "schema_version":  1,
+    "name":  "multipoint_evaluation_on_geometric_sequence",
+    "title":  "Multipoint Evaluation (Geometric Sequence)",
+    "category":  "polynomial",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "polynomial/multipoint_evaluation_on_geometric_sequence/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "f2352c9288c34647f992cd88af8c5a3295a55256956c82fce6b3ddfe6f2d2094"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

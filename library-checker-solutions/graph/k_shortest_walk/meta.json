@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "k_shortest_walk",
+    "title":  "K-Shortest Walk",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "d06cc19a487abdceef5310e80b236c425fa348619741fb86cb381a56e185538c"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "47e3a3e011667d679ec7a4f2f503cf8ce2850d867f8650b31c60e7245e91607d",
+                                  "submission_id":  387036,
+                                  "status":  "AC",
+                                  "time":  0.692,
+                                  "memory":  233742336,
+                                  "submission_time":  "2026-07-22T02:35:57.111589Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

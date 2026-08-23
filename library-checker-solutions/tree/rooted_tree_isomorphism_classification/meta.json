@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "rooted_tree_isomorphism_classification",
+    "title":  "Rooted Tree Isomorphism Classification",
+    "category":  "tree",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "6577d0df640d2fcc79ad69329653283bbd081764794871b048e6ad3212c4c53d"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "6577d0df640d2fcc79ad69329653283bbd081764794871b048e6ad3212c4c53d",
+                                  "submission_id":  387071,
+                                  "status":  "AC",
+                                  "time":  0.186,
+                                  "memory":  90157056,
+                                  "submission_time":  "2026-07-22T02:51:39.102953Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

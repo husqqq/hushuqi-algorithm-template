@@ -1,0 +1,80 @@
+{
+  "schema_version": 3,
+  "name": "convolution_mod_2_64",
+  "title": "Convolution (Mod 2^64)",
+  "category": "convolution",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "convolution/convolution_mod_2_64/main.cpp",
+    "source_sha256": "dbe5684eb20d8c6f91ba72b6ea8fea19890057e2ef2010d9abd19d2d5988db69"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "convolution",
+    "problem": "convolution_mod_2_64"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "dbe5684eb20d8c6f91ba72b6ea8fea19890057e2ef2010d9abd19d2d5988db69",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_lc_gap_convolution.cpp"
+    ],
+    "checked_at": "2026-08-21T22:55:23.282163Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395899,
+    "current_source_time": 2.938,
+    "current_source_memory": 43442176,
+    "current_source_submission_time": "2026-08-21T22:53:46.699616Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "dbe5684eb20d8c6f91ba72b6ea8fea19890057e2ef2010d9abd19d2d5988db69",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395881,
+      "source_sha256": "434635104c8083ad775013c74c1caa5579ad2ad18ffb073411068be8c1ca7540",
+      "server_source_sha256": "434635104c8083ad775013c74c1caa5579ad2ad18ffb073411068be8c1ca7540",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 2.965,
+      "memory": 43405312,
+      "submission_time": "2026-08-21T21:44:36.275025Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T21:44:36.561501Z",
+      "recorded_at": "2026-08-21T21:46:15.540986Z"
+    },
+    {
+      "submission_id": 395896,
+      "source_sha256": "b029a63f17ea2312e3b7a57d9b6eab004b0a69368117e38eaef96f7fdc32201f",
+      "server_source_sha256": "b029a63f17ea2312e3b7a57d9b6eab004b0a69368117e38eaef96f7fdc32201f",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 2.959,
+      "memory": 43380736,
+      "submission_time": "2026-08-21T22:48:04.058364Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T22:48:04.389482Z",
+      "recorded_at": "2026-08-21T22:49:40.506793Z"
+    },
+    {
+      "submission_id": 395899,
+      "source_sha256": "dbe5684eb20d8c6f91ba72b6ea8fea19890057e2ef2010d9abd19d2d5988db69",
+      "server_source_sha256": "dbe5684eb20d8c6f91ba72b6ea8fea19890057e2ef2010d9abd19d2d5988db69",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 2.938,
+      "memory": 43442176,
+      "submission_time": "2026-08-21T22:53:46.699616Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T22:53:47.023978Z",
+      "recorded_at": "2026-08-21T22:55:23.281447Z"
+    }
+  ]
+}

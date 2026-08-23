@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "two_sat",
+    "title":  "2 Sat",
+    "category":  "other",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "cd088e5e82afa43617a7f4a931639879bdf15033a83b58099ae2df7e73389b3b"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "99b73d13aad7c24f4ffda69ceffcbfd57f1b3379f25c07f54acdf8929a8b5095",
+                                  "submission_id":  387042,
+                                  "status":  "AC",
+                                  "time":  0.251,
+                                  "memory":  213258240,
+                                  "submission_time":  "2026-07-22T02:38:29.904181Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "segment_add_get_min",
+    "title":  "Segment Add Get Min",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "2cd2a569ec89b6c797d427e293c9c23807f4b2f46586dd45db82170a385e01a5"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "aad36885c319e34a784cde0f05eebf536fce9920c8008cd409a24b88e8577bc5",
+                                  "submission_id":  387178,
+                                  "status":  "AC",
+                                  "time":  0.481,
+                                  "memory":  36356096,
+                                  "submission_time":  "2026-07-22T03:37:27.715643Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

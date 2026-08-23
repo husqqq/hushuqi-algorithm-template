@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "queue_operate_all_composite",
+    "title":  "Queue Operate All Composite",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "9f588bedf6fff4257053193832ca8ef955f62ed7e316ef257ac868f7dcb9fe90"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "988a2f9ae770137c71edf073f8ef830a566577779ee951700b57d0378f718fea",
+                                  "submission_id":  387016,
+                                  "status":  "AC",
+                                  "time":  0.07,
+                                  "memory":  10399744,
+                                  "submission_time":  "2026-07-22T02:26:24.519857Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

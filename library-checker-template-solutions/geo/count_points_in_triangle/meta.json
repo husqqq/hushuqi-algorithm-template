@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "count_points_in_triangle",
+  "title": "Count Points in Triangles",
+  "category": "geo",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "geo/count_points_in_triangle/main.cpp",
+    "source_sha256": "e69b4f5d66c37f91bdf33d6a89c4082c8184f8aaf8fd1b0c6f38818566d48f7d"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "geo",
+    "problem": "count_points_in_triangle"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "e69b4f5d66c37f91bdf33d6a89c4082c8184f8aaf8fd1b0c6f38818566d48f7d",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch11_triangle_counter.cpp"
+    ],
+    "checked_at": "2026-08-21T20:56:27.112987Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395848,
+    "current_source_time": 0.24,
+    "current_source_memory": 5820416,
+    "current_source_submission_time": "2026-08-21T20:56:08.442093Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "e69b4f5d66c37f91bdf33d6a89c4082c8184f8aaf8fd1b0c6f38818566d48f7d",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395848,
+      "source_sha256": "e69b4f5d66c37f91bdf33d6a89c4082c8184f8aaf8fd1b0c6f38818566d48f7d",
+      "server_source_sha256": "e69b4f5d66c37f91bdf33d6a89c4082c8184f8aaf8fd1b0c6f38818566d48f7d",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.24,
+      "memory": 5820416,
+      "submission_time": "2026-08-21T20:56:08.442093Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T20:56:08.720044Z",
+      "recorded_at": "2026-08-21T20:56:27.112350Z"
+    }
+  ]
+}

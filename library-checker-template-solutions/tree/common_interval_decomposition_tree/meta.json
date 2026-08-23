@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "common_interval_decomposition_tree",
+  "title": "Common Interval Decomposition Tree",
+  "category": "tree",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "tree/common_interval_decomposition_tree/main.cpp",
+    "source_sha256": "e7f8dd07c1ee922c793bcd14338c96b71a92589c483be39ff0298228792f325e"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "tree",
+    "problem": "common_interval_decomposition_tree"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "e7f8dd07c1ee922c793bcd14338c96b71a92589c483be39ff0298228792f325e",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_lc_gap_graph_tree.cpp"
+    ],
+    "checked_at": "2026-08-20T16:01:25.524251Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395259,
+    "current_source_time": 0.593,
+    "current_source_memory": 154898432,
+    "current_source_submission_time": "2026-08-20T16:00:31.038327Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "e7f8dd07c1ee922c793bcd14338c96b71a92589c483be39ff0298228792f325e",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395259,
+      "source_sha256": "e7f8dd07c1ee922c793bcd14338c96b71a92589c483be39ff0298228792f325e",
+      "server_source_sha256": "e7f8dd07c1ee922c793bcd14338c96b71a92589c483be39ff0298228792f325e",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.593,
+      "memory": 154898432,
+      "submission_time": "2026-08-20T16:00:31.038327Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-20T16:00:31.321840Z",
+      "recorded_at": "2026-08-20T16:01:25.523248Z"
+    }
+  ]
+}

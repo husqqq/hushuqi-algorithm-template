@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "sqrt_mod",
+  "title": "Sqrt Mod",
+  "category": "number_theory",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "number_theory/sqrt_mod/main.cpp",
+    "source_sha256": "6e2d04a9a65f358b4923a3df0a4a29d51fc7b8fb9056bc3a6da7dfc7419fd581"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "number_theory",
+    "problem": "sqrt_mod"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "6e2d04a9a65f358b4923a3df0a4a29d51fc7b8fb9056bc3a6da7dfc7419fd581",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch07_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T16:42:53.569868Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395720,
+    "current_source_time": 0.294,
+    "current_source_memory": 1359872,
+    "current_source_submission_time": "2026-08-21T16:42:31.570449Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "6e2d04a9a65f358b4923a3df0a4a29d51fc7b8fb9056bc3a6da7dfc7419fd581",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395720,
+      "source_sha256": "6e2d04a9a65f358b4923a3df0a4a29d51fc7b8fb9056bc3a6da7dfc7419fd581",
+      "server_source_sha256": "6e2d04a9a65f358b4923a3df0a4a29d51fc7b8fb9056bc3a6da7dfc7419fd581",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.294,
+      "memory": 1359872,
+      "submission_time": "2026-08-21T16:42:31.570449Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T16:42:31.801983Z",
+      "recorded_at": "2026-08-21T16:42:53.568939Z"
+    }
+  ]
+}

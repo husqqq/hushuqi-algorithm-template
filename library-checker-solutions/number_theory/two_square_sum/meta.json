@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "two_square_sum",
+    "title":  "Represent A Number As Two Square Sum",
+    "category":  "number_theory",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "04a01bc407fa9448bd1c4617a63bfa90eb538378e979a976736bb4dd1a95f1f3"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "43a7b9ce4c781a7e027495d11df3bbb5c93015757759f121fb832e29b216c0f9",
+                                  "submission_id":  387109,
+                                  "status":  "AC",
+                                  "time":  0.384,
+                                  "memory":  7282688,
+                                  "submission_time":  "2026-07-22T03:05:17.020287Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

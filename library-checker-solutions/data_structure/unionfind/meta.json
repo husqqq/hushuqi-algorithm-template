@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "unionfind",
+    "title":  "Unionfind",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "edc3335b934a8cf90ff8b1b564efc81acd99e50f3fa9087320c21e0ce6094f58"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "3fb8d210e04a637e5a10ba58ddfa2c1e9bc01437a4acbcff070ae46b029bcd11",
+                                  "submission_id":  386991,
+                                  "status":  "AC",
+                                  "time":  0.035,
+                                  "memory":  1691648,
+                                  "submission_time":  "2026-07-22T02:12:43.216084Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

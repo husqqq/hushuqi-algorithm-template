@@ -1,0 +1,65 @@
+{
+  "schema_version": 3,
+  "name": "multivariate_convolution_cyclic",
+  "title": "Multidimensional Convolution (Circular)",
+  "category": "convolution",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "convolution/multivariate_convolution_cyclic/main.cpp",
+    "source_sha256": "3ecd6e5a59cf49935564977e2c72e0c39b04adb8f28b4e2598e2da119524c324"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "convolution",
+    "problem": "multivariate_convolution_cyclic"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "3ecd6e5a59cf49935564977e2c72e0c39b04adb8f28b4e2598e2da119524c324",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch10_missing_convolution.cpp"
+    ],
+    "checked_at": "2026-08-21T22:58:54.706810Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395901,
+    "current_source_time": 3.204,
+    "current_source_memory": 46964736,
+    "current_source_submission_time": "2026-08-21T22:58:09.944806Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "3ecd6e5a59cf49935564977e2c72e0c39b04adb8f28b4e2598e2da119524c324",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395877,
+      "source_sha256": "2e7bd0eb52b74e6f509c68207efb6924169f4797e5f1ebf2d1c717817d0c3c5e",
+      "server_source_sha256": "2e7bd0eb52b74e6f509c68207efb6924169f4797e5f1ebf2d1c717817d0c3c5e",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 3.215,
+      "memory": 47099904,
+      "submission_time": "2026-08-21T21:39:06.013474Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T21:39:06.301855Z",
+      "recorded_at": "2026-08-21T21:39:54.418572Z"
+    },
+    {
+      "submission_id": 395901,
+      "source_sha256": "3ecd6e5a59cf49935564977e2c72e0c39b04adb8f28b4e2598e2da119524c324",
+      "server_source_sha256": "3ecd6e5a59cf49935564977e2c72e0c39b04adb8f28b4e2598e2da119524c324",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 3.204,
+      "memory": 46964736,
+      "submission_time": "2026-08-21T22:58:09.944806Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T22:58:10.274325Z",
+      "recorded_at": "2026-08-21T22:58:54.705793Z"
+    }
+  ]
+}

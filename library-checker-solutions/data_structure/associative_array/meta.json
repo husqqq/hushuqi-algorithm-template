@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "associative_array",
+    "title":  "Associative Array",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "ea5e56ba847f30c2018ae8886cd4304802b5468dbf25a8aca06409a0e573682e"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "ea5e56ba847f30c2018ae8886cd4304802b5468dbf25a8aca06409a0e573682e",
+                                  "submission_id":  387013,
+                                  "status":  "AC",
+                                  "time":  0.318,
+                                  "memory":  65855488,
+                                  "submission_time":  "2026-07-22T02:24:59.620583Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

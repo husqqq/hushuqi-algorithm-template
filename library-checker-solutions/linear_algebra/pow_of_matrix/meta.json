@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "pow_of_matrix",
+    "title":  "Pow of Matrix",
+    "category":  "linear_algebra",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "3fb188f7d5be0fd6ed5e2ef5279a09545d550966d8fb69aadc9bea8ff5ee20d4"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "058ccd52f5fd18d1a4e5e244e59c02f4ccfd9ec1add37b2b121887c1e54008d9",
+                                  "submission_id":  387123,
+                                  "status":  "AC",
+                                  "time":  1.431,
+                                  "memory":  1912832,
+                                  "submission_time":  "2026-07-22T03:09:10.509429Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "jump_on_tree",
+    "title":  "Jump on Tree",
+    "category":  "tree",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "1d5f7b7cd2a861e94eec30b0f54d01c2105ff6465c7162d30532423af6fde417"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "824628505878071762b433caa4e897b4842c606f377aa3fbd156bc0f9f61268c",
+                                  "submission_id":  387067,
+                                  "status":  "AC",
+                                  "time":  0.778,
+                                  "memory":  75575296,
+                                  "submission_time":  "2026-07-22T02:49:46.799156Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "bitwise_and_convolution",
+  "title": "Bitwise And Convolution",
+  "category": "convolution",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "convolution/bitwise_and_convolution/main.cpp",
+    "source_sha256": "68f447e96b69914f968890761a2977fb2acad230bc4eb0a29294da0a04361170"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "convolution",
+    "problem": "bitwise_and_convolution"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "68f447e96b69914f968890761a2977fb2acad230bc4eb0a29294da0a04361170",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch10_fwt.cpp"
+    ],
+    "checked_at": "2026-08-21T20:07:34.684004Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395819,
+    "current_source_time": 0.63,
+    "current_source_memory": 23842816,
+    "current_source_submission_time": "2026-08-21T20:07:12.446092Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "68f447e96b69914f968890761a2977fb2acad230bc4eb0a29294da0a04361170",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395819,
+      "source_sha256": "68f447e96b69914f968890761a2977fb2acad230bc4eb0a29294da0a04361170",
+      "server_source_sha256": "68f447e96b69914f968890761a2977fb2acad230bc4eb0a29294da0a04361170",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.63,
+      "memory": 23842816,
+      "submission_time": "2026-08-21T20:07:12.446092Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T20:07:12.722370Z",
+      "recorded_at": "2026-08-21T20:07:34.683332Z"
+    }
+  ]
+}

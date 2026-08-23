@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "frequency_table_of_tree_distance",
+    "title":  "Frequency Table of Tree Distance",
+    "category":  "tree",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "7bb5fc66985a0759ec99d8fb72c0626e97f1c8c4dcc700f25dc0a7309fb89bbd"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "78e938d3bc51d167e32f12ef944612f13c9673642e9c4a227ed71afb442b7a11",
+                                  "submission_id":  387072,
+                                  "status":  "AC",
+                                  "time":  1.034,
+                                  "memory":  54214656,
+                                  "submission_time":  "2026-07-22T02:51:47.01572Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

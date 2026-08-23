@@ -1,0 +1,124 @@
+{
+  "schema_version": 3,
+  "name": "queue_operate_all_composite",
+  "title": "Queue Operate All Composite",
+  "category": "data_structure",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "data_structure/queue_operate_all_composite/main.cpp",
+    "source_sha256": "f490597b8dae6bc3d1d6af6d4a9e3c5187b392c039c7371b5249a38e1bb7ef18",
+    "evidence": {
+      "method": "deterministic_generation",
+      "generator": {
+        "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
+        "sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+        "working_directory": ".",
+        "runner": "Python 3.13.14",
+        "argv": [
+          "--write-index"
+        ],
+        "generation_evidence": {
+          "schema_version": 2,
+          "problem_id": "data_structure/queue_operate_all_composite",
+          "source_path": "library-checker-template-solutions/data_structure/queue_operate_all_composite/main.cpp",
+          "source_sha256": "f490597b8dae6bc3d1d6af6d4a9e3c5187b392c039c7371b5249a38e1bb7ef18",
+          "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
+          "generator_sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+          "working_directory": ".",
+          "runner": "Python 3.13.14",
+          "argv": [
+            "--write-index"
+          ],
+          "inputs": [
+            {
+              "path": "hushuqi算法竞赛模板/03-数据结构.md",
+              "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/include/full/3_7_007.hpp",
+              "sha256": "31551e806dead2a4a7b19f8cef5be2d9bfb01bf19787da184e03f6a1dfe35618"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/tests/test_ch03_agg_deque.cpp",
+              "sha256": "abcacc0da235b3315b1b9c3b5a221304771ed5c50df11522dd469593e0040968"
+            }
+          ],
+          "generated_sha256": "f490597b8dae6bc3d1d6af6d4a9e3c5187b392c039c7371b5249a38e1bb7ef18",
+          "byte_equal": true
+        },
+        "generation_evidence_sha256": "7e25426b7d3a709894998953f6ed438efde25a0e322b3a8ea8a402020e706fa8"
+      },
+      "adapter_sha256": "5aa82b05e730fb0c5e8dd977ea7b86b35cfec8b6763608534bba7c25b685fe94",
+      "template_inputs": [
+        {
+          "path": "hushuqi算法竞赛模板/03-数据结构.md",
+          "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/full/3_7_007.hpp",
+          "sha256": "31551e806dead2a4a7b19f8cef5be2d9bfb01bf19787da184e03f6a1dfe35618"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/tests/test_ch03_agg_deque.cpp",
+          "sha256": "abcacc0da235b3315b1b9c3b5a221304771ed5c50df11522dd469593e0040968"
+        }
+      ],
+      "temporary_regenerations": 2,
+      "byte_identical": true,
+      "source_sha256": "f490597b8dae6bc3d1d6af6d4a9e3c5187b392c039c7371b5249a38e1bb7ef18",
+      "evidence_sha256": "d23576f5b40f5598157002a1dd01e2218ca70dcf5542f7ff0657ca59ecee4f0f"
+    }
+  },
+  "reference": {
+    "kind": "read_only_baseline",
+    "source": "library-checker-solutions/data_structure/queue_operate_all_composite/main.cpp",
+    "source_sha256": "9f588bedf6fff4257053193832ca8ef955f62ed7e316ef257ac868f7dcb9fe90"
+  },
+  "official_reference": {
+    "repository": "https://github.com/yosupo06/library-checker-problems",
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "license": "Apache-2.0",
+    "license_blob": "91554e3bd99da6761c82645d6c740ced590d17bb",
+    "path": "data_structure/queue_operate_all_composite/sol/correct.cpp",
+    "git_blob": "42b73594117e2014769813d7c263114313795da6",
+    "content_sha256": "3d63aff8cf53a674668776a5a7395ff586d70a2b6f2d57c58583019ee6f8fe5c"
+  },
+  "validation": {
+    "status": "online_ac",
+    "checked_at": "2026-08-19T20:50:44.663086Z",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch03_agg_deque.cpp"
+    ],
+    "current_source_sha256": "f490597b8dae6bc3d1d6af6d4a9e3c5187b392c039c7371b5249a38e1bb7ef18",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 394888,
+    "current_source_time": 0.076,
+    "current_source_memory": 21860352,
+    "current_source_submission_time": "2026-08-19T19:50:30.846262Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "f490597b8dae6bc3d1d6af6d4a9e3c5187b392c039c7371b5249a38e1bb7ef18",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 394888,
+      "source_sha256": "f490597b8dae6bc3d1d6af6d4a9e3c5187b392c039c7371b5249a38e1bb7ef18",
+      "server_source_sha256": "f490597b8dae6bc3d1d6af6d4a9e3c5187b392c039c7371b5249a38e1bb7ef18",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.076,
+      "memory": 21860352,
+      "submission_time": "2026-08-19T19:50:30.846262Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-19T19:50:30.961850Z",
+      "recorded_at": "2026-08-19T19:50:55.882822Z"
+    }
+  ],
+  "notes": [
+    "The only submission candidate is this self-contained main.cpp.",
+    "The reference source is read-only comparison material and is not a submission input."
+  ]
+}

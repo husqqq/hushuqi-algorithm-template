@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "range_set_range_composite",
+    "title":  "Range Set Range Composite",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "af3b11d79d3384e39209b7012f76e9807b758647157bca53a97a2ffb4dc490d7"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "f1ad746d884e92082755190b0798ce6b8c37bc366dadb2b7d1303d1cc800dbf5",
+                                  "submission_id":  387188,
+                                  "status":  "AC",
+                                  "time":  1.525,
+                                  "memory":  69500928,
+                                  "submission_time":  "2026-07-22T03:41:32.398166Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,97 @@
+{
+  "schema_version": 3,
+  "name": "longest_increasing_subsequence",
+  "title": "Longest Increasing Subsequence",
+  "category": "other",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "other/longest_increasing_subsequence/main.cpp",
+    "source_sha256": "a2a0b54c74f6ad10789615250edabe502d0cd58f6bf98924ee0995199ebf215f",
+    "evidence": {
+      "method": "deterministic_generation",
+      "generator": {
+        "path": "library-checker-template-solutions/tools/generate_ch02_lc.py",
+        "sha256": "9a14939734847310b1c6ee88d475278c0ae4356eefd9daf9589d4c610bbb4a90",
+        "working_directory": ".",
+        "runner": "Python 3.13.14 (tags/v3.13.14:fd17997, Jun 10 2026, 13:03:48) [MSC v.1944 64 bit (AMD64)]",
+        "argv": [
+          "--write"
+        ],
+        "generation_evidence": {
+          "schema_version": 2,
+          "problem_id": "other/longest_increasing_subsequence",
+          "source_path": "library-checker-template-solutions/other/longest_increasing_subsequence/main.cpp",
+          "source_sha256": "a2a0b54c74f6ad10789615250edabe502d0cd58f6bf98924ee0995199ebf215f",
+          "generator_path": "library-checker-template-solutions/tools/generate_ch02_lc.py",
+          "generator_sha256": "9a14939734847310b1c6ee88d475278c0ae4356eefd9daf9589d4c610bbb4a90",
+          "working_directory": ".",
+          "runner": "Python 3.13.14 (tags/v3.13.14:fd17997, Jun 10 2026, 13:03:48) [MSC v.1944 64 bit (AMD64)]",
+          "argv": [
+            "--write"
+          ],
+          "inputs": [
+            {
+              "path": "hushuqi算法竞赛模板/include/base.hpp",
+              "sha256": "db8a1f8bb5fc45f321a21bb31a8a80bdf36dd6b6f93a320c5199d84515c3560c"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/include/full/2_2_010.hpp",
+              "sha256": "145fda7499b13c90d34b5f48e3d9c50c6a943baa9be64b8f88e800725e28c012"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/tests/test_ch02_lis.cpp",
+              "sha256": "f14300f6cf92911ffc0d35c5314c039eefedf080474f7bfbba35869ae7fe1943"
+            }
+          ],
+          "generated_sha256": "a2a0b54c74f6ad10789615250edabe502d0cd58f6bf98924ee0995199ebf215f",
+          "byte_equal": true
+        },
+        "generation_evidence_sha256": "e549eeb61eefb5bc9da60ce5ca837bd49c9545789e73731e02857500be71c3e3"
+      }
+    }
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "other",
+    "problem": "longest_increasing_subsequence"
+  },
+  "reference": {
+    "kind": "read_only_baseline",
+    "source": "library-checker-solutions/other/longest_increasing_subsequence/main.cpp",
+    "source_sha256": "271465709b6482629860f79ff7786acab7b245e7b738bae44432ae327f25ba9b"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "a2a0b54c74f6ad10789615250edabe502d0cd58f6bf98924ee0995199ebf215f",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch02_lis.cpp"
+    ],
+    "checked_at": "2026-08-21T05:56:42.654139Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395500,
+    "current_source_time": 0.059,
+    "current_source_memory": 22118400,
+    "current_source_submission_time": "2026-08-21T05:56:16.742727Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "a2a0b54c74f6ad10789615250edabe502d0cd58f6bf98924ee0995199ebf215f",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395500,
+      "source_sha256": "a2a0b54c74f6ad10789615250edabe502d0cd58f6bf98924ee0995199ebf215f",
+      "server_source_sha256": "a2a0b54c74f6ad10789615250edabe502d0cd58f6bf98924ee0995199ebf215f",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.059,
+      "memory": 22118400,
+      "submission_time": "2026-08-21T05:56:16.742727Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T05:56:16.940138Z",
+      "recorded_at": "2026-08-21T05:56:42.653403Z"
+    }
+  ]
+}

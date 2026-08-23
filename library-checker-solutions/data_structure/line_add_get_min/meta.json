@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "line_add_get_min",
+    "title":  "Line Add Get Min",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "a8039c00169bfa22b057131410238a8ad41cb8d710c9fe04683eb08aaf5f6996"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "077d6a7d34c4fed45dcf6639e0d8a1b6e1131f5bd1282e6731b16d637ffb1590",
+                                  "submission_id":  387014,
+                                  "status":  "AC",
+                                  "time":  0.171,
+                                  "memory":  27811840,
+                                  "submission_time":  "2026-07-22T02:25:45.722372Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

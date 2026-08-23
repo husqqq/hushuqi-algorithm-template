@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "dynamic_tree_vertex_add_path_sum",
+  "title": "Dynamic Tree Vertex Add Path Sum",
+  "category": "tree",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "tree/dynamic_tree_vertex_add_path_sum/main.cpp",
+    "source_sha256": "ced082c4d0e8167f7981345dab7c175c83b95ce3ad8a5874b3877bca0229290c"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "tree",
+    "problem": "dynamic_tree_vertex_add_path_sum"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "ced082c4d0e8167f7981345dab7c175c83b95ce3ad8a5874b3877bca0229290c",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_dynamic_tree.cpp"
+    ],
+    "checked_at": "2026-08-21T16:14:13.273752Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395703,
+    "current_source_time": 0.735,
+    "current_source_memory": 15302656,
+    "current_source_submission_time": "2026-08-21T16:13:33.594291Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "ced082c4d0e8167f7981345dab7c175c83b95ce3ad8a5874b3877bca0229290c",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395703,
+      "source_sha256": "ced082c4d0e8167f7981345dab7c175c83b95ce3ad8a5874b3877bca0229290c",
+      "server_source_sha256": "ced082c4d0e8167f7981345dab7c175c83b95ce3ad8a5874b3877bca0229290c",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.735,
+      "memory": 15302656,
+      "submission_time": "2026-08-21T16:13:33.594291Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T16:13:33.810680Z",
+      "recorded_at": "2026-08-21T16:14:13.272773Z"
+    }
+  ]
+}

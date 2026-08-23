@@ -1,0 +1,30 @@
+{
+    "schema_version":  1,
+    "name":  "polynomial_root_finding",
+    "title":  "Polynomial Root Finding (Mod 998244353)",
+    "category":  "polynomial",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "polynomial/polynomial_root_finding/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "927444a157dbac6e6be833f3275e37328392bd2246ac97aa3e7b8b9f5ff0a997"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

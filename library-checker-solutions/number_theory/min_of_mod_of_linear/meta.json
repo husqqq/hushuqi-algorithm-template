@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "min_of_mod_of_linear",
+    "title":  "Min of Mod of Linear",
+    "category":  "number_theory",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "59d38bfb676a61aebae32fb7ac86697a7c6aa80c7fdd7975d7436b29d1a504b1"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "59d38bfb676a61aebae32fb7ac86697a7c6aa80c7fdd7975d7436b29d1a504b1",
+                                  "submission_id":  387106,
+                                  "status":  "AC",
+                                  "time":  0.069,
+                                  "memory":  1396736,
+                                  "submission_time":  "2026-07-22T03:04:27.315788Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

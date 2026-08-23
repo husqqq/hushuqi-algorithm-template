@@ -1,0 +1,55 @@
+{
+  "schema_version": 3,
+  "name": "many_aplusb",
+  "title": "Many A + B",
+  "category": "sample",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "sample/many_aplusb/main.cpp",
+    "source_sha256": "810705898261696efe89534762235dea8208561d302671198520b8df34cad655"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "sample",
+    "problem": "many_aplusb"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "810705898261696efe89534762235dea8208561d302671198520b8df34cad655",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch01_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T05:46:25.145850Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395498,
+    "current_source_time": 0.121,
+    "current_source_memory": 20754432,
+    "current_source_submission_time": "2026-08-21T05:44:59.36033Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "810705898261696efe89534762235dea8208561d302671198520b8df34cad655",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395498,
+      "source_sha256": "810705898261696efe89534762235dea8208561d302671198520b8df34cad655",
+      "server_source_sha256": "810705898261696efe89534762235dea8208561d302671198520b8df34cad655",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.121,
+      "memory": 20754432,
+      "submission_time": "2026-08-21T05:44:59.36033Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T05:44:59.543952Z",
+      "recorded_at": "2026-08-21T05:46:25.144981Z"
+    }
+  ],
+  "reference": {
+    "kind": "read_only_baseline",
+    "source": "library-checker-solutions/sample/many_aplusb/main.cpp",
+    "source_sha256": "19b213f4a63ee16c53b7b280081942fd31576a1d9e979dcc80e07a06ccf11e94"
+  }
+}

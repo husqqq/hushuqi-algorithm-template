@@ -1,0 +1,31 @@
+{
+    "schema_version":  1,
+    "name":  "division_of_hex_big_integers",
+    "title":  "Division of Hex Big Integers",
+    "category":  "big_integer",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "big_integer/division_of_hex_big_integers/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+                                                    "big_integer/division_of_hex_big_integers/base.hpp",
+                                                    "virtual:big_integer/division_of_hex_big_integers/params.h"
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "3821921719c867d99ed4e1df90ce7b41a5531bc5b12095f48f0a4a91f73141c2"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

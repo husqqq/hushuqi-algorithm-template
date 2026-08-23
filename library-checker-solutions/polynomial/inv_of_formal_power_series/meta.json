@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "inv_of_formal_power_series",
+    "title":  "Inv of Formal Power Series",
+    "category":  "polynomial",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "b25993610a408c16fd7679ee1c68e589123b77e62dcde408c3cc76097f188081"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "9f7a8a49dd41a13ae1068b142b5883f575fd7b74a8e2d6f77c5c1f2d4d43e2af",
+                                  "submission_id":  387171,
+                                  "status":  "AC",
+                                  "time":  0.587,
+                                  "memory":  24416256,
+                                  "submission_time":  "2026-07-22T03:33:54.812868Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

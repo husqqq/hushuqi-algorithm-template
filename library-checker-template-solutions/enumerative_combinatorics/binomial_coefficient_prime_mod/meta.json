@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "binomial_coefficient_prime_mod",
+  "title": "Binomial Coefficient (Prime Mod)",
+  "category": "enumerative_combinatorics",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "enumerative_combinatorics/binomial_coefficient_prime_mod/main.cpp",
+    "source_sha256": "f6e4ea76d704fbf809f4ee87fe69dabd5354e771a4e07f4e0876512a0f6a3b37"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "enumerative_combinatorics",
+    "problem": "binomial_coefficient_prime_mod"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "f6e4ea76d704fbf809f4ee87fe69dabd5354e771a4e07f4e0876512a0f6a3b37",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch08_combinations.cpp"
+    ],
+    "checked_at": "2026-08-21T18:27:25.011521Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395767,
+    "current_source_time": 0.73,
+    "current_source_memory": 186961920,
+    "current_source_submission_time": "2026-08-21T18:26:47.324401Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "f6e4ea76d704fbf809f4ee87fe69dabd5354e771a4e07f4e0876512a0f6a3b37",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395767,
+      "source_sha256": "f6e4ea76d704fbf809f4ee87fe69dabd5354e771a4e07f4e0876512a0f6a3b37",
+      "server_source_sha256": "f6e4ea76d704fbf809f4ee87fe69dabd5354e771a4e07f4e0876512a0f6a3b37",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.73,
+      "memory": 186961920,
+      "submission_time": "2026-08-21T18:26:47.324401Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T18:26:47.564278Z",
+      "recorded_at": "2026-08-21T18:27:25.010777Z"
+    }
+  ]
+}

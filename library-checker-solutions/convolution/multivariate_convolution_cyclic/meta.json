@@ -1,0 +1,30 @@
+{
+    "schema_version":  1,
+    "name":  "multivariate_convolution_cyclic",
+    "title":  "Multidimensional Convolution (Circular)",
+    "category":  "convolution",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "convolution/multivariate_convolution_cyclic/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "adb110c9126023ffbd93caf7990d7f11de487a5604edb59e15b3deb236d4134c"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

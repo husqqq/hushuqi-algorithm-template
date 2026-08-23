@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "sum_of_floor_of_linear",
+    "title":  "Sum of Floor of Linear",
+    "category":  "number_theory",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "b7c30e7d5aa8ca7fe291184c37c34f0458423f7c4ef0478740552298e67eec3e"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "b7c30e7d5aa8ca7fe291184c37c34f0458423f7c4ef0478740552298e67eec3e",
+                                  "submission_id":  387105,
+                                  "status":  "AC",
+                                  "time":  0.028,
+                                  "memory":  1863680,
+                                  "submission_time":  "2026-07-22T03:04:01.912895Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

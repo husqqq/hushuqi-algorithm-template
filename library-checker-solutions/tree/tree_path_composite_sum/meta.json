@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "tree_path_composite_sum",
+    "title":  "Tree Path Composite Sum",
+    "category":  "tree",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "bc30242efa837d83f468c02ff3cc32a5aba262638b4d7b3e78572992b3b9c8c8"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "720771d2be585c81a8bb9d9b4a59a6fc87f8ba734d10a31cc136ff8df2cc38d4",
+                                  "submission_id":  387189,
+                                  "status":  "AC",
+                                  "time":  0.13,
+                                  "memory":  33685504,
+                                  "submission_time":  "2026-07-22T03:42:09.00885Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

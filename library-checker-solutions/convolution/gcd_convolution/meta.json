@@ -1,0 +1,21 @@
+{
+    "schema_version":  1,
+    "name":  "gcd_convolution",
+    "title":  "Gcd Convolution",
+    "category":  "convolution",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "eb6ddc86bdfec0b737b0f495c6fa55802888ca2b7596204cff3bb1d2f217a385",
+                       "imported_sha256":  "03e4709f41104a85bd19c94eaa71885797dd6b451f7f0e8d3d3f4d73ad7f07b3"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

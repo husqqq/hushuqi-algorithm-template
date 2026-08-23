@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "general_matching",
+    "title":  "Matching on General Graph",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "ba007777b951dd77c3c4b96534371164fd43e394b273541e5ec3f774b8ba00f2"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "ba007777b951dd77c3c4b96534371164fd43e394b273541e5ec3f774b8ba00f2",
+                                  "submission_id":  387049,
+                                  "status":  "AC",
+                                  "time":  0.011,
+                                  "memory":  1609728,
+                                  "submission_time":  "2026-07-22T02:42:09.102717Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

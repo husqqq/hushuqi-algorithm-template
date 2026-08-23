@@ -1,0 +1,21 @@
+{
+    "schema_version":  1,
+    "name":  "system_of_linear_equations_mod_2",
+    "title":  "System of Linear Equations (Mod 2)",
+    "category":  "linear_algebra",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "fca4bfd903a737b496778a7a3390e05962322ac70124fefdb5296da7e67fdb55",
+                       "imported_sha256":  "386db2aa4e43c584e8922fdc7c1cba2d435be5f55789c90894ca9e2de83391ad"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

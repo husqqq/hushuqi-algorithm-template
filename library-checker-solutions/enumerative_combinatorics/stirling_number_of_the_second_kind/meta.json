@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "stirling_number_of_the_second_kind",
+    "title":  "Stirling Number of the Second Kind",
+    "category":  "enumerative_combinatorics",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "b39545d793f665318ec3d437b9749bcee56c13a8e596d635524b4bfa152744f1"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "df09e36261f357e6ff38617381b2226844b69947810a8f95dca244dfa2847a1c",
+                                  "submission_id":  387114,
+                                  "status":  "AC",
+                                  "time":  0.205,
+                                  "memory":  19034112,
+                                  "submission_time":  "2026-07-22T03:07:04.916353Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

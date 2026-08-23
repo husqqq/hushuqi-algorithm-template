@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "kind": "template_variant",
+  "variant_id": "3_5_004_splay_depq_cpp20",
+  "name": "double_ended_priority_queue",
+  "title": "Double-Ended Priority Queue",
+  "category": "data_structure",
+  "language": "cpp20",
+  "source": "data_structure/double_ended_priority_queue/variants/3_5_004_splay_depq_cpp20/main.cpp",
+  "source_sha256": "04ebc7f81b5a1f0bbe5dd34fa478156974c5825593abe7df503da586f53660ba",
+  "template_items": [
+    "3.5.004"
+  ],
+  "complexity": "O(log N) amortized per operation",
+  "provenance": {
+    "method": "deterministic_generation",
+    "generator": "library-checker-template-solutions/tools/generate_cpp_variants.py",
+    "generator_sha256": "d3978149aeca2d84607000428f1e01c5fde0c9c70b39e9659cbe4101996ca910",
+    "inputs": [
+      {
+        "path": "hushuqi算法竞赛模板/include/full/3_5_004.hpp",
+        "sha256": "3692df65ef75623a71c60cbae29482ddfe503e708e2ad1d5d21d786ecaa952b2"
+      },
+      {
+        "path": "hushuqi算法竞赛模板/tests/test_ch03_splay.cpp",
+        "sha256": "c7e19121f04b29f710917f2cb8cf1c5b498d60fbbbf6d1dc8a8c2e8841f70884"
+      }
+    ],
+    "generated_sha256": "04ebc7f81b5a1f0bbe5dd34fa478156974c5825593abe7df503da586f53660ba"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "04ebc7f81b5a1f0bbe5dd34fa478156974c5825593abe7df503da586f53660ba",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 396253,
+    "server_source_sha256": "04ebc7f81b5a1f0bbe5dd34fa478156974c5825593abe7df503da586f53660ba",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch03_splay.cpp"
+    ],
+    "checked_at": "2026-08-23T05:35:00.281376Z",
+    "current_source_time": 0.615,
+    "current_source_memory": 52260864,
+    "current_source_submission_time": "2026-08-23T05:34:34.772327Z",
+    "current_source_is_latest": true,
+    "note": "当前变体源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 396253,
+      "source_sha256": "04ebc7f81b5a1f0bbe5dd34fa478156974c5825593abe7df503da586f53660ba",
+      "server_source_sha256": "04ebc7f81b5a1f0bbe5dd34fa478156974c5825593abe7df503da586f53660ba",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.615,
+      "memory": 52260864,
+      "submission_time": "2026-08-23T05:34:34.772327Z",
+      "is_latest": true,
+      "compile_standard": null,
+      "submitted_at": "2026-08-23T05:34:34.910038Z",
+      "recorded_at": "2026-08-23T05:35:00.281363Z"
+    }
+  ]
+}

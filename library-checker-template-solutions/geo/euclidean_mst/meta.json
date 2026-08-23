@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "euclidean_mst",
+  "title": "Euclidean MST",
+  "category": "geo",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "geo/euclidean_mst/main.cpp",
+    "source_sha256": "2e1d8b06fadf1b5e152fffbca02eab75f1a5028c1c228c979b89f04f83dfbb84"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "geo",
+    "problem": "euclidean_mst"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "2e1d8b06fadf1b5e152fffbca02eab75f1a5028c1c228c979b89f04f83dfbb84",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_euclidean_mst.cpp"
+    ],
+    "checked_at": "2026-08-21T20:54:58.682476Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395846,
+    "current_source_time": 1.884,
+    "current_source_memory": 502616064,
+    "current_source_submission_time": "2026-08-21T20:53:57.262341Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "2e1d8b06fadf1b5e152fffbca02eab75f1a5028c1c228c979b89f04f83dfbb84",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395846,
+      "source_sha256": "2e1d8b06fadf1b5e152fffbca02eab75f1a5028c1c228c979b89f04f83dfbb84",
+      "server_source_sha256": "2e1d8b06fadf1b5e152fffbca02eab75f1a5028c1c228c979b89f04f83dfbb84",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.884,
+      "memory": 502616064,
+      "submission_time": "2026-08-21T20:53:57.262341Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T20:53:57.550266Z",
+      "recorded_at": "2026-08-21T20:54:58.681649Z"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "vertex_set_path_composite",
+    "title":  "Vertex Set Path Composite",
+    "category":  "tree",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "80c1c201d1405c4f1294b1f032642f7d2a60c10b0f42279e2974c44eec378114"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "f837a590062a158ed6245c6d6658391be08c388d25d8a4586e586750c268d4c6",
+                                  "submission_id":  387190,
+                                  "status":  "AC",
+                                  "time":  0.442,
+                                  "memory":  39862272,
+                                  "submission_time":  "2026-07-22T03:42:43.106811Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

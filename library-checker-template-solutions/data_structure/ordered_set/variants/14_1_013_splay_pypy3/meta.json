@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "kind": "template_variant",
+  "variant_id": "14_1_013_splay_pypy3",
+  "name": "ordered_set",
+  "title": "Ordered Set",
+  "category": "data_structure",
+  "language": "pypy3",
+  "source": "data_structure/ordered_set/variants/14_1_013_splay_pypy3/main.py",
+  "source_sha256": "70dcffcb2fe516bd413d670301bcb9c957a1ad86a6f66e12f581631f122c0fa2",
+  "template_items": [
+    "14.1.013"
+  ],
+  "complexity": "O(log N) amortized per operation, O(N) memory",
+  "provenance": {
+    "method": "deterministic_generation",
+    "generator": "library-checker-template-solutions/tools/generate_variants.py",
+    "generator_sha256": "c93c7eefeb581216c5842f766ee65d718ed7338888d153e80761ee5c831742f3",
+    "inputs": [
+      {
+        "path": "hushuqi算法竞赛模板/14-其他实用模板.md",
+        "sha256": "29b3fff659b376a14fba25990e42b989a8b004030b58e6b60ef0cd6fe4520577"
+      },
+      {
+        "path": "hushuqi算法竞赛模板/tests/test_python_topics.py",
+        "sha256": "56b59b17bd3783cb15b268b6d0cbc5eb1a0f7bbe46391f34b21927955b958df4"
+      }
+    ],
+    "generated_sha256": "70dcffcb2fe516bd413d670301bcb9c957a1ad86a6f66e12f581631f122c0fa2"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "70dcffcb2fe516bd413d670301bcb9c957a1ad86a6f66e12f581631f122c0fa2",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 396195,
+    "server_source_sha256": "70dcffcb2fe516bd413d670301bcb9c957a1ad86a6f66e12f581631f122c0fa2",
+    "checks": [
+      "source_python_syntax",
+      "hushuqi算法竞赛模板/tests/test_python_topics.py"
+    ],
+    "checked_at": "2026-08-23T03:32:35.225253Z",
+    "current_source_time": 3.997,
+    "current_source_memory": 241422336,
+    "current_source_submission_time": "2026-08-23T03:30:39.050964Z",
+    "current_source_is_latest": true,
+    "note": "当前变体源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 396195,
+      "source_sha256": "70dcffcb2fe516bd413d670301bcb9c957a1ad86a6f66e12f581631f122c0fa2",
+      "server_source_sha256": "70dcffcb2fe516bd413d670301bcb9c957a1ad86a6f66e12f581631f122c0fa2",
+      "lang": "pypy3",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 3.997,
+      "memory": 241422336,
+      "submission_time": "2026-08-23T03:30:39.050964Z",
+      "is_latest": true,
+      "compile_standard": null,
+      "submitted_at": "2026-08-23T03:30:39.171760Z",
+      "recorded_at": "2026-08-23T03:32:35.225235Z"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "rational_approximation",
+  "title": "Rational Approximation",
+  "category": "number_theory",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "number_theory/rational_approximation/main.cpp",
+    "source_sha256": "59bc2e1731f6ecea8c4dea9dd3d5de1b8346ac0ad673c48c52e4f4edc3295040"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "number_theory",
+    "problem": "rational_approximation"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "59bc2e1731f6ecea8c4dea9dd3d5de1b8346ac0ad673c48c52e4f4edc3295040",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch07_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T17:19:47.784067Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395741,
+    "current_source_time": 0.273,
+    "current_source_memory": 4825088,
+    "current_source_submission_time": "2026-08-21T17:14:17.159897Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "59bc2e1731f6ecea8c4dea9dd3d5de1b8346ac0ad673c48c52e4f4edc3295040",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395741,
+      "source_sha256": "59bc2e1731f6ecea8c4dea9dd3d5de1b8346ac0ad673c48c52e4f4edc3295040",
+      "server_source_sha256": "59bc2e1731f6ecea8c4dea9dd3d5de1b8346ac0ad673c48c52e4f4edc3295040",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.273,
+      "memory": 4825088,
+      "submission_time": "2026-08-21T17:14:17.159897Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T17:14:17.391878Z",
+      "recorded_at": "2026-08-21T17:19:47.783325Z"
+    }
+  ]
+}

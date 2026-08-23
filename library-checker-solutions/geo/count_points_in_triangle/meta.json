@@ -1,0 +1,30 @@
+{
+    "schema_version":  1,
+    "name":  "count_points_in_triangle",
+    "title":  "Count Points in Triangles",
+    "category":  "geo",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "geo/count_points_in_triangle/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+                                                    "geo/count_points_in_triangle/sol/fastio.hpp"
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "1f6b4746c93e89afa1e0cf4e842b54873a0988257a052145478a1e7c8ab3326b"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

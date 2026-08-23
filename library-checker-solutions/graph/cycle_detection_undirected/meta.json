@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "cycle_detection_undirected",
+    "title":  "Cycle Detection (Undirected)",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "10893c396fec4a5da8c8275d0dc35db8ba97d105a6a10a44a1caeb5ecaf5bf91"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "787ffe18126cb3835d6caddc8c3410c1fdae6132e4c31814ee2b8f571bb0ed06",
+                                  "submission_id":  387065,
+                                  "status":  "AC",
+                                  "time":  0.183,
+                                  "memory":  37105664,
+                                  "submission_time":  "2026-07-22T02:48:50.701774Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

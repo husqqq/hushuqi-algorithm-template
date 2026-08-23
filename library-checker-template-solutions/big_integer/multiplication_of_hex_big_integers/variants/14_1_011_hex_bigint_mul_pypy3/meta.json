@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "kind": "template_variant",
+  "variant_id": "14_1_011_hex_bigint_mul_pypy3",
+  "name": "multiplication_of_hex_big_integers",
+  "title": "Multiplication of Hex Big Integers",
+  "category": "big_integer",
+  "language": "pypy3",
+  "source": "big_integer/multiplication_of_hex_big_integers/variants/14_1_011_hex_bigint_mul_pypy3/main.py",
+  "source_sha256": "7a2e5ec276fe25545bdb6c771af243c920610702459dda4800d5fa2360aee26f",
+  "template_items": [
+    "14.1.011"
+  ],
+  "complexity": "Python arbitrary-precision multiplication with hexadecimal conversion",
+  "provenance": {
+    "method": "deterministic_generation",
+    "generator": "library-checker-template-solutions/tools/generate_variants.py",
+    "generator_sha256": "c93c7eefeb581216c5842f766ee65d718ed7338888d153e80761ee5c831742f3",
+    "inputs": [
+      {
+        "path": "hushuqi算法竞赛模板/14-其他实用模板.md",
+        "sha256": "29b3fff659b376a14fba25990e42b989a8b004030b58e6b60ef0cd6fe4520577"
+      },
+      {
+        "path": "hushuqi算法竞赛模板/tests/test_python_topics.py",
+        "sha256": "56b59b17bd3783cb15b268b6d0cbc5eb1a0f7bbe46391f34b21927955b958df4"
+      }
+    ],
+    "generated_sha256": "7a2e5ec276fe25545bdb6c771af243c920610702459dda4800d5fa2360aee26f"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "7a2e5ec276fe25545bdb6c771af243c920610702459dda4800d5fa2360aee26f",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 396243,
+    "server_source_sha256": "7a2e5ec276fe25545bdb6c771af243c920610702459dda4800d5fa2360aee26f",
+    "checks": [
+      "source_python_syntax",
+      "hushuqi算法竞赛模板/tests/test_python_topics.py"
+    ],
+    "checked_at": "2026-08-23T05:21:34.939337Z",
+    "current_source_time": 2.293,
+    "current_source_memory": 70262784,
+    "current_source_submission_time": "2026-08-23T05:20:56.121572Z",
+    "current_source_is_latest": true,
+    "note": "当前变体源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 396243,
+      "source_sha256": "7a2e5ec276fe25545bdb6c771af243c920610702459dda4800d5fa2360aee26f",
+      "server_source_sha256": "7a2e5ec276fe25545bdb6c771af243c920610702459dda4800d5fa2360aee26f",
+      "lang": "pypy3",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 2.293,
+      "memory": 70262784,
+      "submission_time": "2026-08-23T05:20:56.121572Z",
+      "is_latest": true,
+      "compile_standard": null,
+      "submitted_at": "2026-08-23T05:20:56.392910Z",
+      "recorded_at": "2026-08-23T05:21:34.939322Z"
+    }
+  ]
+}

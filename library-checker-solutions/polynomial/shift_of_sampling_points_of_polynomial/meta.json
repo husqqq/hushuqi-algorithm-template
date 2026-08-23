@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "shift_of_sampling_points_of_polynomial",
+    "title":  "Shift of Sampling Points of Polynomial",
+    "category":  "polynomial",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "f8a1d9ca6adc4733ed8d051ad1561a85749e5dc548938c9ca9de1632c291f7fb"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "9328055d0406363d13bf0c8e25cbdddf8c93bd2aaa6288883f2bd28aea4251cd",
+                                  "submission_id":  387196,
+                                  "status":  "AC",
+                                  "time":  0.388,
+                                  "memory":  40833024,
+                                  "submission_time":  "2026-07-22T03:52:20.419655Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

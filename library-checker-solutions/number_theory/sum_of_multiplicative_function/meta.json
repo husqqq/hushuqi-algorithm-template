@@ -1,0 +1,30 @@
+{
+    "schema_version":  1,
+    "name":  "sum_of_multiplicative_function",
+    "title":  "Sum of Multiplicative Function",
+    "category":  "number_theory",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "number_theory/sum_of_multiplicative_function/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "e0d5d636ff73fbcf07ec2fbe1f9e610f4b2e9849495270d09531025932deb552"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

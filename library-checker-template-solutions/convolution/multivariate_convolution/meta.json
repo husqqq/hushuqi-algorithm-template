@@ -1,0 +1,65 @@
+{
+  "schema_version": 3,
+  "name": "multivariate_convolution",
+  "title": "Multidimensional Convolution (Truncated)",
+  "category": "convolution",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "convolution/multivariate_convolution/main.cpp",
+    "source_sha256": "be29c51fc0e93fd48248723c32d943ba4b1c52daeaa787f529c93edbe4ad3b5c"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "convolution",
+    "problem": "multivariate_convolution"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "be29c51fc0e93fd48248723c32d943ba4b1c52daeaa787f529c93edbe4ad3b5c",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch10_missing_convolution.cpp"
+    ],
+    "checked_at": "2026-08-21T22:57:02.818137Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395900,
+    "current_source_time": 1.038,
+    "current_source_memory": 118460416,
+    "current_source_submission_time": "2026-08-21T22:56:36.140154Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "be29c51fc0e93fd48248723c32d943ba4b1c52daeaa787f529c93edbe4ad3b5c",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395876,
+      "source_sha256": "50e152339c862362bd57dcc4f07182357d260ded9e0e163c098bad0c84d6fcbb",
+      "server_source_sha256": "50e152339c862362bd57dcc4f07182357d260ded9e0e163c098bad0c84d6fcbb",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.036,
+      "memory": 118550528,
+      "submission_time": "2026-08-21T21:38:14.573089Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T21:38:14.874177Z",
+      "recorded_at": "2026-08-21T21:38:41.479184Z"
+    },
+    {
+      "submission_id": 395900,
+      "source_sha256": "be29c51fc0e93fd48248723c32d943ba4b1c52daeaa787f529c93edbe4ad3b5c",
+      "server_source_sha256": "be29c51fc0e93fd48248723c32d943ba4b1c52daeaa787f529c93edbe4ad3b5c",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.038,
+      "memory": 118460416,
+      "submission_time": "2026-08-21T22:56:36.140154Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T22:56:36.472286Z",
+      "recorded_at": "2026-08-21T22:57:02.817097Z"
+    }
+  ]
+}

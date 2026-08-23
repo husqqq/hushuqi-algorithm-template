@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "static_convex_hull",
+    "title":  "Static Convex Hull",
+    "category":  "geo",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "7951de4c253f572ac9957169bd8c0c434838f415ff0915e78a5e8192aa76f2ed"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "6d2eb44cc6788011229324cffe079e0cead1a83d4befc9d6262abe312acc0002",
+                                  "submission_id":  387155,
+                                  "status":  "AC",
+                                  "time":  0.133,
+                                  "memory":  18305024,
+                                  "submission_time":  "2026-07-22T03:28:10.226844Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

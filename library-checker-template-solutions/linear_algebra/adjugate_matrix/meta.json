@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "adjugate_matrix",
+  "title": "Adjugate Matrix",
+  "category": "linear_algebra",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "linear_algebra/adjugate_matrix/main.cpp",
+    "source_sha256": "daef008a8810b22e4e153ce2237964de87a708247cc33df11b00a45279fa9834"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "linear_algebra",
+    "problem": "adjugate_matrix"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "daef008a8810b22e4e153ce2237964de87a708247cc33df11b00a45279fa9834",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch09_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T19:08:36.062253Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395795,
+    "current_source_time": 2.569,
+    "current_source_memory": 17096704,
+    "current_source_submission_time": "2026-08-21T19:04:52.297271Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "daef008a8810b22e4e153ce2237964de87a708247cc33df11b00a45279fa9834",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395795,
+      "source_sha256": "daef008a8810b22e4e153ce2237964de87a708247cc33df11b00a45279fa9834",
+      "server_source_sha256": "daef008a8810b22e4e153ce2237964de87a708247cc33df11b00a45279fa9834",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 2.569,
+      "memory": 17096704,
+      "submission_time": "2026-08-21T19:04:52.297271Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T19:04:52.551755Z",
+      "recorded_at": "2026-08-21T19:08:36.061480Z"
+    }
+  ]
+}

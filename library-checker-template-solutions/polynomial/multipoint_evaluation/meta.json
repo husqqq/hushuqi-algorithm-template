@@ -1,0 +1,74 @@
+{
+  "schema_version": 3,
+  "name": "multipoint_evaluation",
+  "title": "Multipoint Evaluation",
+  "category": "polynomial",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "polynomial/multipoint_evaluation/main.cpp",
+    "source_sha256": "690128cfbb6c811b83cadf17d5b3d350cfe9642f7da031832c0ecc3069f8d127"
+  },
+  "reference": {
+    "kind": "template",
+    "imported_sha256": "1adf0e26c2942989195d7cd600796cb56c17a63eb5df1240cce063a3ec6d94ee"
+  },
+  "historical_submission": {
+    "sha256": "0fa7286752dc35312e46022631a87979ab2d3985bb63793b228c7186d225945e",
+    "submission_id": 387143,
+    "status": "AC",
+    "time": 1.765,
+    "memory": 35528704,
+    "submission_time": "2026-07-22T03:19:31.599267Z"
+  },
+  "validation": {
+    "status": "local_only",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch10_poly_points.cpp"
+    ],
+    "current_source_sha256": "690128cfbb6c811b83cadf17d5b3d350cfe9642f7da031832c0ecc3069f8d127",
+    "current_source_online_verdict": null,
+    "current_source_submission_id": null,
+    "current_source_time": null,
+    "current_source_memory": null,
+    "current_source_submission_time": null,
+    "current_source_is_latest": null,
+    "server_source_sha256": null,
+    "note": "当前频域乘积树源码只完成本地验证，尚未在线提交。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 394008,
+      "source_sha256": "783fc54fe9d59ddd515ed070c4e6aaaeffb24ccf750e746ff30cf263dcef42e0",
+      "server_source_sha256": "783fc54fe9d59ddd515ed070c4e6aaaeffb24ccf750e746ff30cf263dcef42e0",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.645,
+      "memory": 30994432,
+      "submission_time": "2026-08-16T18:40:02.30009Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-16T18:40:02.456454Z",
+      "recorded_at": "2026-08-16T18:40:49.686108Z"
+    },
+    {
+      "submission_id": 395662,
+      "source_sha256": "2378e58ad4201dc10f777335148d1f9a9d6a2dfe45cdb9285130adf5b93fc205",
+      "server_source_sha256": "2378e58ad4201dc10f777335148d1f9a9d6a2dfe45cdb9285130adf5b93fc205",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.602,
+      "memory": 31039488,
+      "submission_time": "2026-08-21T13:57:22.994366Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T13:57:23.219835Z",
+      "recorded_at": "2026-08-21T13:57:43.993852Z"
+    }
+  ],
+  "notes": [
+    "reference、historical_submission 和旧 submission_attempts 只描述历史源码，不是当前 main.cpp 的在线判定。"
+  ]
+}

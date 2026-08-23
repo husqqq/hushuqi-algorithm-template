@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "inv_of_formal_power_series_sparse",
+    "title":  "Inv of Formal Power Series (Sparse)",
+    "category":  "polynomial",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "c4250d7203134d3a70de7781bd58e140ba2e8a35e8a859b08806b270c58aa411"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "2f3d0026c10057fa1edb8876c0f4166bf0f94c0ca8eabc01d980b883ed2b4569",
+                                  "submission_id":  387141,
+                                  "status":  "AC",
+                                  "time":  0.059,
+                                  "memory":  14647296,
+                                  "submission_time":  "2026-07-22T03:18:36.9271Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

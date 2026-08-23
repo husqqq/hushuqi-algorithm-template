@@ -1,0 +1,21 @@
+{
+    "schema_version":  1,
+    "name":  "range_add_range_min",
+    "title":  "Range Add Range Min",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "ed6827e25e7189d47ae8c5f1383048423c2a61e8e5e032b0dc780a66ae56a9eb",
+                       "imported_sha256":  "272bdfd3b0163120315964498823c93f09d8de7738bfb34352df5f7ca9d16658"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

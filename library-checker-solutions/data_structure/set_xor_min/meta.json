@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "set_xor_min",
+    "title":  "Set Xor-Min",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "d5662b45cbc46382c9bdd048c658abbfaa084165a453daa20a68a845435ec657"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "f14a1455ee7b789c38747a8ae0486f2e1b2f0c433a2c839376edac10223784aa",
+                                  "submission_id":  387012,
+                                  "status":  "AC",
+                                  "time":  0.301,
+                                  "memory":  101752832,
+                                  "submission_time":  "2026-07-22T02:24:39.8098Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

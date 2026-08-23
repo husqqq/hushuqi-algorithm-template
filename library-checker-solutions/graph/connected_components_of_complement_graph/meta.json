@@ -1,0 +1,20 @@
+{
+    "schema_version":  1,
+    "name":  "connected_components_of_complement_graph",
+    "title":  "Connected Components of Complement Graph",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "f788861d245d11f67adc6ef2f1d5ae8323530613eb673876a981708399a9c3ac"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

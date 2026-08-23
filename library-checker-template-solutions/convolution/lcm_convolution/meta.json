@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "lcm_convolution",
+  "title": "Lcm Convolution",
+  "category": "convolution",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "convolution/lcm_convolution/main.cpp",
+    "source_sha256": "97adcfeddbd86935eaa9276d7aba6e42e69a6b154fc3bb3d1849909d63d2f9d4"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "convolution",
+    "problem": "lcm_convolution"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "97adcfeddbd86935eaa9276d7aba6e42e69a6b154fc3bb3d1849909d63d2f9d4",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch10_divisor_transform.cpp"
+    ],
+    "checked_at": "2026-08-21T20:37:43.153585Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395834,
+    "current_source_time": 0.568,
+    "current_source_memory": 18665472,
+    "current_source_submission_time": "2026-08-21T20:37:03.679415Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "97adcfeddbd86935eaa9276d7aba6e42e69a6b154fc3bb3d1849909d63d2f9d4",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395834,
+      "source_sha256": "97adcfeddbd86935eaa9276d7aba6e42e69a6b154fc3bb3d1849909d63d2f9d4",
+      "server_source_sha256": "97adcfeddbd86935eaa9276d7aba6e42e69a6b154fc3bb3d1849909d63d2f9d4",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.568,
+      "memory": 18665472,
+      "submission_time": "2026-08-21T20:37:03.679415Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T20:37:03.940130Z",
+      "recorded_at": "2026-08-21T20:37:43.152834Z"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "schema_version": 3,
+  "name": "addition_of_hex_big_integers",
+  "title": "Addition of Hex Big Integers",
+  "category": "big_integer",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "big_integer/addition_of_hex_big_integers/main.cpp",
+    "source_sha256": "7cee3d8067b7ec9053becc074dbd5a07f76250c8fe59f7925faa0fcb0726a274"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "big_integer",
+    "problem": "addition_of_hex_big_integers"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "7cee3d8067b7ec9053becc074dbd5a07f76250c8fe59f7925faa0fcb0726a274",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch14_hex_bigint.cpp"
+    ],
+    "checked_at": "2026-08-22T00:41:26.427991Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395926,
+    "current_source_time": 0.321,
+    "current_source_memory": 9465856,
+    "current_source_submission_time": "2026-08-22T00:40:56.428371Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "7cee3d8067b7ec9053becc074dbd5a07f76250c8fe59f7925faa0fcb0726a274",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395892,
+      "source_sha256": "42612894a6a4f7d73dcbe4b9db069f11b7ae25dfa6d1ad114e9f94c806413d1b",
+      "server_source_sha256": "42612894a6a4f7d73dcbe4b9db069f11b7ae25dfa6d1ad114e9f94c806413d1b",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.319,
+      "memory": 9695232,
+      "submission_time": "2026-08-21T22:41:29.747706Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T22:41:30.085822Z",
+      "recorded_at": "2026-08-21T22:42:00.003966Z"
+    },
+    {
+      "submission_id": 395926,
+      "source_sha256": "7cee3d8067b7ec9053becc074dbd5a07f76250c8fe59f7925faa0fcb0726a274",
+      "server_source_sha256": "7cee3d8067b7ec9053becc074dbd5a07f76250c8fe59f7925faa0fcb0726a274",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.321,
+      "memory": 9465856,
+      "submission_time": "2026-08-22T00:40:56.428371Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-22T00:40:56.879549Z",
+      "recorded_at": "2026-08-22T00:41:26.426978Z"
+    }
+  ]
+}

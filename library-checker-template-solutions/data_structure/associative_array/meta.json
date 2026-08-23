@@ -1,0 +1,147 @@
+{
+  "schema_version": 3,
+  "name": "associative_array",
+  "title": "Associative Array",
+  "category": "data_structure",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "data_structure/associative_array/main.cpp",
+    "source_sha256": "8b7ca978e538691b1f131426630c9d39a926ebbd5f3ea51a14ffab9d5bff32ff",
+    "evidence": {
+      "method": "deterministic_generation",
+      "generator": {
+        "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
+        "sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+        "working_directory": ".",
+        "runner": "Python 3.13.14",
+        "argv": [
+          "--write-index"
+        ],
+        "generation_evidence": {
+          "schema_version": 2,
+          "problem_id": "data_structure/associative_array",
+          "source_path": "library-checker-template-solutions/data_structure/associative_array/main.cpp",
+          "source_sha256": "8b7ca978e538691b1f131426630c9d39a926ebbd5f3ea51a14ffab9d5bff32ff",
+          "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
+          "generator_sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+          "working_directory": ".",
+          "runner": "Python 3.13.14",
+          "argv": [
+            "--write-index"
+          ],
+          "inputs": [
+            {
+              "path": "hushuqi算法竞赛模板/03-数据结构.md",
+              "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/include/base.hpp",
+              "sha256": "db8a1f8bb5fc45f321a21bb31a8a80bdf36dd6b6f93a320c5199d84515c3560c"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/include/full/3_6_006.hpp",
+              "sha256": "158e11126a80e70ee08f4a355e18e333c51eb42bdaa65d8fdd29d804454a0bac"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/tests/test_ch03_hash_map.cpp",
+              "sha256": "dee099951bfb2b40c460e15ba9aa2e61fbcc2e6211a76935389b071deb826d84"
+            }
+          ],
+          "generated_sha256": "8b7ca978e538691b1f131426630c9d39a926ebbd5f3ea51a14ffab9d5bff32ff",
+          "byte_equal": true
+        },
+        "generation_evidence_sha256": "53a492aa640887e9268e9f539b080e590524a517f97a72baf9d57b8678a5916e"
+      },
+      "adapter_sha256": "97fb0bd509781224a89537d646ff62867f41a32c6e1a6de9e21ca4084a7fa3e5",
+      "template_inputs": [
+        {
+          "path": "hushuqi算法竞赛模板/03-数据结构.md",
+          "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/base.hpp",
+          "sha256": "db8a1f8bb5fc45f321a21bb31a8a80bdf36dd6b6f93a320c5199d84515c3560c"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/full/3_6_006.hpp",
+          "sha256": "158e11126a80e70ee08f4a355e18e333c51eb42bdaa65d8fdd29d804454a0bac"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/tests/test_ch03_hash_map.cpp",
+          "sha256": "dee099951bfb2b40c460e15ba9aa2e61fbcc2e6211a76935389b071deb826d84"
+        }
+      ],
+      "temporary_regenerations": 2,
+      "byte_identical": true,
+      "source_sha256": "8b7ca978e538691b1f131426630c9d39a926ebbd5f3ea51a14ffab9d5bff32ff",
+      "evidence_sha256": "326aeb8f1a91555d6312707ffd3bbb5ee6df5c7b2fe15dae51536e8e435d0e67"
+    }
+  },
+  "reference": {
+    "kind": "read_only_baseline",
+    "source": "library-checker-solutions/data_structure/associative_array/main.cpp",
+    "source_sha256": "ea5e56ba847f30c2018ae8886cd4304802b5468dbf25a8aca06409a0e573682e"
+  },
+  "official_reference": {
+    "repository": "https://github.com/yosupo06/library-checker-problems",
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "license": "Apache-2.0",
+    "license_blob": "91554e3bd99da6761c82645d6c740ced590d17bb",
+    "path": "data_structure/associative_array/sol/correct.cpp",
+    "git_blob": "f9cfda678230074b704ab7d51c910eb8f89db9ce",
+    "content_sha256": "8f3c2b6f6e2e489b1bf385e1363a27e80a247e98f47a17fae947abb70fff2da0"
+  },
+  "validation": {
+    "status": "local_only",
+    "checked_at": null,
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch03_hash_map.cpp"
+    ],
+    "current_source_sha256": "8b7ca978e538691b1f131426630c9d39a926ebbd5f3ea51a14ffab9d5bff32ff",
+    "current_source_online_verdict": null,
+    "current_source_submission_id": null,
+    "current_source_time": null,
+    "current_source_memory": null,
+    "current_source_submission_time": null,
+    "current_source_is_latest": null,
+    "server_source_sha256": null,
+    "note": "Generated from the current chapter 03 template; online verification has not run for this source."
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 394862,
+      "source_sha256": "059c3fb9d57f1fa9684f48d6575644d385f4af4ec32a357fa1f4d9180a2833a9",
+      "server_source_sha256": "059c3fb9d57f1fa9684f48d6575644d385f4af4ec32a357fa1f4d9180a2833a9",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.316,
+      "memory": 72126464,
+      "submission_time": "2026-08-19T18:29:01.585074Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-19T18:29:01.718280Z",
+      "recorded_at": "2026-08-19T18:29:34.212959Z"
+    },
+    {
+      "submission_id": 395510,
+      "source_sha256": "c5e284be8562a76b82956cf6d61c05577e9259c40ee5c1c9d40db3333a6cec2c",
+      "server_source_sha256": "c5e284be8562a76b82956cf6d61c05577e9259c40ee5c1c9d40db3333a6cec2c",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.322,
+      "memory": 72126464,
+      "submission_time": "2026-08-21T06:18:42.637391Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T06:18:42.833665Z",
+      "recorded_at": "2026-08-21T06:19:15.578944Z"
+    }
+  ],
+  "notes": [
+    "The only submission candidate is this self-contained main.cpp.",
+    "The reference source is read-only comparison material and is not a submission input."
+  ]
+}

@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "bitwise_and_convolution",
+    "title":  "Bitwise And Convolution",
+    "category":  "convolution",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "1fba9ef3dfe330ea529e974f038a579803a75f4625ddda99c68e5472b4e2a6b1"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "596c971937ce163524ca90db0f219c399ca7ee142ad35b565a2429d326783cb0",
+                                  "submission_id":  387133,
+                                  "status":  "AC",
+                                  "time":  0.261,
+                                  "memory":  19525632,
+                                  "submission_time":  "2026-07-22T03:14:39.303418Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

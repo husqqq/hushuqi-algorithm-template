@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "closest_pair",
+  "title": "Closest Pair of Points",
+  "category": "geo",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "geo/closest_pair/main.cpp",
+    "source_sha256": "383ee2e714f3193e9a2971dce3a4dcea47800a3b403d4d127b65fd6a884cf7f0"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "geo",
+    "problem": "closest_pair"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "383ee2e714f3193e9a2971dce3a4dcea47800a3b403d4d127b65fd6a884cf7f0",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch11_distance.cpp"
+    ],
+    "checked_at": "2026-08-21T21:01:27.368562Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395853,
+    "current_source_time": 0.172,
+    "current_source_memory": 32862208,
+    "current_source_submission_time": "2026-08-21T21:00:51.436811Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "383ee2e714f3193e9a2971dce3a4dcea47800a3b403d4d127b65fd6a884cf7f0",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395853,
+      "source_sha256": "383ee2e714f3193e9a2971dce3a4dcea47800a3b403d4d127b65fd6a884cf7f0",
+      "server_source_sha256": "383ee2e714f3193e9a2971dce3a4dcea47800a3b403d4d127b65fd6a884cf7f0",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.172,
+      "memory": 32862208,
+      "submission_time": "2026-08-21T21:00:51.436811Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T21:00:51.710204Z",
+      "recorded_at": "2026-08-21T21:01:27.367790Z"
+    }
+  ]
+}

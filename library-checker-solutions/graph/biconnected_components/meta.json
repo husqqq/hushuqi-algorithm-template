@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "biconnected_components",
+    "title":  "Biconnected Components",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "9a6de4e04a828d485b067de559572c8f9a47b3c77a613663b6cdfa6f70cfc970"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "7ef9ef725f2c24e81f971263ab1241517485abb5e89ef3842ce67427b4415ad9",
+                                  "submission_id":  387040,
+                                  "status":  "AC",
+                                  "time":  0.405,
+                                  "memory":  145973248,
+                                  "submission_time":  "2026-07-22T02:37:36.417153Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,30 @@
+{
+    "schema_version":  1,
+    "name":  "conversion_from_monomial_basis_to_newton_basis",
+    "title":  "Conversion from Monomial Basis to Newton Basis",
+    "category":  "polynomial",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "polynomial/conversion_from_monomial_basis_to_newton_basis/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "33a2d33bacffd5382e59428b068afbc584c034a5a73efe2a28f7f7d4da752132"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

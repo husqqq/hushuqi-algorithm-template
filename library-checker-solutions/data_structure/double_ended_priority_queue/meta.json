@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "double_ended_priority_queue",
+    "title":  "Double-Ended Priority Queue",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "af7a70cca9c9858ca482c871f1450ccb48a1d52b1de646aa9b722f28f2fd48d8"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "af7a70cca9c9858ca482c871f1450ccb48a1d52b1de646aa9b722f28f2fd48d8",
+                                  "submission_id":  387011,
+                                  "status":  "AC",
+                                  "time":  0.334,
+                                  "memory":  29106176,
+                                  "submission_time":  "2026-07-22T02:24:06.804887Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "kind": "template_variant",
+  "variant_id": "9_1_006_fast_det_cpp20",
+  "name": "matrix_det",
+  "title": "Determinant of Matrix",
+  "category": "linear_algebra",
+  "language": "cpp20",
+  "source": "linear_algebra/matrix_det/variants/9_1_006_fast_det_cpp20/main.cpp",
+  "source_sha256": "d28b8fa3b9bdc76764b3e8ab8a3b352d4b526d035180265f5c3bc09193c1f502",
+  "template_items": [
+    "9.1.006"
+  ],
+  "complexity": "O(N^3 + N log P) time and O(N^2) memory",
+  "provenance": {
+    "method": "deterministic_generation",
+    "generator": "library-checker-template-solutions/tools/generate_cpp_variants.py",
+    "generator_sha256": "d3978149aeca2d84607000428f1e01c5fde0c9c70b39e9659cbe4101996ca910",
+    "inputs": [
+      {
+        "path": "hushuqi算法竞赛模板/include/full/9_1_006.hpp",
+        "sha256": "ceca04417e185214b8388c8522fe0e7cf95c67a277573a1bfc0ea554580c2a9e"
+      },
+      {
+        "path": "hushuqi算法竞赛模板/tests/test_ch09_revised.cpp",
+        "sha256": "b078181d54cfc85a90cdbac29daf91b571e44aaad2add0fc9a84a9abf3287a28"
+      }
+    ],
+    "generated_sha256": "d28b8fa3b9bdc76764b3e8ab8a3b352d4b526d035180265f5c3bc09193c1f502"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "d28b8fa3b9bdc76764b3e8ab8a3b352d4b526d035180265f5c3bc09193c1f502",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 396362,
+    "server_source_sha256": "d28b8fa3b9bdc76764b3e8ab8a3b352d4b526d035180265f5c3bc09193c1f502",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch09_revised.cpp"
+    ],
+    "checked_at": "2026-08-23T15:28:16.202923Z",
+    "current_source_time": 0.033,
+    "current_source_memory": 4771840,
+    "current_source_submission_time": "2026-08-23T15:27:49.424433Z",
+    "current_source_is_latest": true,
+    "note": "当前变体源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 396362,
+      "source_sha256": "d28b8fa3b9bdc76764b3e8ab8a3b352d4b526d035180265f5c3bc09193c1f502",
+      "server_source_sha256": "d28b8fa3b9bdc76764b3e8ab8a3b352d4b526d035180265f5c3bc09193c1f502",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.033,
+      "memory": 4771840,
+      "submission_time": "2026-08-23T15:27:49.424433Z",
+      "is_latest": true,
+      "compile_standard": null,
+      "submitted_at": "2026-08-23T15:27:49.648820Z",
+      "recorded_at": "2026-08-23T15:28:16.202904Z"
+    }
+  ]
+}

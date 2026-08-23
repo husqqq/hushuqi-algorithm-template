@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "static_range_inversions_query",
+    "title":  "Static Range Inversions Query",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "94543edda4e3ff6d8f919c7a02925c0655cceb1916b7e80db56099043d950d84"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "7626f18a0dbd85c5078ac49090cef3c3b93053b20e1b318b4e2796e1dcf529de",
+                                  "submission_id":  387183,
+                                  "status":  "AC",
+                                  "time":  0.592,
+                                  "memory":  4898816,
+                                  "submission_time":  "2026-07-22T03:40:17.121693Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

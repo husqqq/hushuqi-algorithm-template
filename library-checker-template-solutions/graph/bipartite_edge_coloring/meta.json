@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "bipartite_edge_coloring",
+  "title": "Edge Coloring of Bipartite Graph",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/bipartite_edge_coloring/main.cpp",
+    "source_sha256": "9e0d1a794d9343acbc488e891fda0526a6746c86d89a5296c46a657785cafa73"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "bipartite_edge_coloring"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "9e0d1a794d9343acbc488e891fda0526a6746c86d89a5296c46a657785cafa73",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_bipartite_edge_coloring.cpp"
+    ],
+    "checked_at": "2026-08-21T11:15:18.886627Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395598,
+    "current_source_time": 0.285,
+    "current_source_memory": 31965184,
+    "current_source_submission_time": "2026-08-21T11:14:18.692103Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "9e0d1a794d9343acbc488e891fda0526a6746c86d89a5296c46a657785cafa73",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395598,
+      "source_sha256": "9e0d1a794d9343acbc488e891fda0526a6746c86d89a5296c46a657785cafa73",
+      "server_source_sha256": "9e0d1a794d9343acbc488e891fda0526a6746c86d89a5296c46a657785cafa73",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.285,
+      "memory": 31965184,
+      "submission_time": "2026-08-21T11:14:18.692103Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T11:14:22.013511Z",
+      "recorded_at": "2026-08-21T11:15:18.885849Z"
+    }
+  ]
+}

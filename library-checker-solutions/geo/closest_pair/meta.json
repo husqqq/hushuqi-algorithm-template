@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "closest_pair",
+    "title":  "Closest Pair of Points",
+    "category":  "geo",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "f8ca42c8b9ddda7bfe971403268e69c3f2968ac1a6d953a013be95515f84dedc"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "4d5dec93a748f80c929bf9d2fe806b3f11c9d6f89e1ab31b42930507a205094e",
+                                  "submission_id":  387197,
+                                  "status":  "AC",
+                                  "time":  0.182,
+                                  "memory":  24961024,
+                                  "submission_time":  "2026-07-22T03:52:22.51274Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

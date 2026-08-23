@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "division_of_polynomials",
+    "title":  "Division of Polynomials",
+    "category":  "polynomial",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "f8112c4b0dbb686188b0b8efe79479fc173a9f95c125bea56d811e530d39e8c2"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "a6facb9595ec0be4bb9a25b8473a8ca1f86ebfc1e67dbf8fca65e2918396edc0",
+                                  "submission_id":  387170,
+                                  "status":  "AC",
+                                  "time":  0.684,
+                                  "memory":  23977984,
+                                  "submission_time":  "2026-07-22T03:32:00.40362Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

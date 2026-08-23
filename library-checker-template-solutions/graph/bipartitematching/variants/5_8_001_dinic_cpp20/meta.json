@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "kind": "template_variant",
+  "variant_id": "5_8_001_dinic_cpp20",
+  "name": "bipartitematching",
+  "title": "Matching on Bipartite Graph",
+  "category": "graph",
+  "language": "cpp20",
+  "source": "graph/bipartitematching/variants/5_8_001_dinic_cpp20/main.cpp",
+  "source_sha256": "2a4339e5bdbbccfee281a4e3d8508d8f7620206f5e73a05e6f14499bdf1c0e57",
+  "template_items": [
+    "5.8.001"
+  ],
+  "complexity": "O(V^2 E) general Dinic bound",
+  "provenance": {
+    "method": "deterministic_generation",
+    "generator": "library-checker-template-solutions/tools/generate_cpp_variants.py",
+    "generator_sha256": "d3978149aeca2d84607000428f1e01c5fde0c9c70b39e9659cbe4101996ca910",
+    "inputs": [
+      {
+        "path": "hushuqi算法竞赛模板/include/full/5_8_001.hpp",
+        "sha256": "a12394dfacac3bc529821454c007d46fe4321b408fdf54ae834777f3471d161a"
+      },
+      {
+        "path": "hushuqi算法竞赛模板/tests/test_ch05_flow.cpp",
+        "sha256": "fc2460283cb270bfedab402126550f54aafb9da66d1a2703ef71084be69c0dbb"
+      }
+    ],
+    "generated_sha256": "2a4339e5bdbbccfee281a4e3d8508d8f7620206f5e73a05e6f14499bdf1c0e57"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "2a4339e5bdbbccfee281a4e3d8508d8f7620206f5e73a05e6f14499bdf1c0e57",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 396204,
+    "server_source_sha256": "2a4339e5bdbbccfee281a4e3d8508d8f7620206f5e73a05e6f14499bdf1c0e57",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_flow.cpp"
+    ],
+    "checked_at": "2026-08-23T03:57:54.222715Z",
+    "current_source_time": 2.824,
+    "current_source_memory": 52031488,
+    "current_source_submission_time": "2026-08-23T03:56:40.524767Z",
+    "current_source_is_latest": true,
+    "note": "当前变体源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 396204,
+      "source_sha256": "2a4339e5bdbbccfee281a4e3d8508d8f7620206f5e73a05e6f14499bdf1c0e57",
+      "server_source_sha256": "2a4339e5bdbbccfee281a4e3d8508d8f7620206f5e73a05e6f14499bdf1c0e57",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 2.824,
+      "memory": 52031488,
+      "submission_time": "2026-08-23T03:56:40.524767Z",
+      "is_latest": true,
+      "compile_standard": null,
+      "submitted_at": "2026-08-23T03:56:40.629272Z",
+      "recorded_at": "2026-08-23T03:57:54.222701Z"
+    }
+  ]
+}

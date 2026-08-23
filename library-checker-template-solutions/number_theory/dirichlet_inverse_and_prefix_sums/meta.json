@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "dirichlet_inverse_and_prefix_sums",
+  "title": "Dirichlet Inverse and Prefix Sums",
+  "category": "number_theory",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "number_theory/dirichlet_inverse_and_prefix_sums/main.cpp",
+    "source_sha256": "863bd171c86c5379a61362d344c9dbd4a4e2396cf7a257dc11c4e9f06b04580c"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "number_theory",
+    "problem": "dirichlet_inverse_and_prefix_sums"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "863bd171c86c5379a61362d344c9dbd4a4e2396cf7a257dc11c4e9f06b04580c",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch07_quotient_dirichlet.cpp"
+    ],
+    "checked_at": "2026-08-21T17:00:11.645908Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395733,
+    "current_source_time": 3.801,
+    "current_source_memory": 129097728,
+    "current_source_submission_time": "2026-08-21T16:58:57.207362Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "863bd171c86c5379a61362d344c9dbd4a4e2396cf7a257dc11c4e9f06b04580c",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395733,
+      "source_sha256": "863bd171c86c5379a61362d344c9dbd4a4e2396cf7a257dc11c4e9f06b04580c",
+      "server_source_sha256": "863bd171c86c5379a61362d344c9dbd4a4e2396cf7a257dc11c4e9f06b04580c",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 3.801,
+      "memory": 129097728,
+      "submission_time": "2026-08-21T16:58:57.207362Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T16:58:57.442158Z",
+      "recorded_at": "2026-08-21T17:00:11.645209Z"
+    }
+  ]
+}

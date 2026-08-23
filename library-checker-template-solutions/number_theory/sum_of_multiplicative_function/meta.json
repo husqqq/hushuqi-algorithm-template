@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "sum_of_multiplicative_function",
+  "title": "Sum of Multiplicative Function",
+  "category": "number_theory",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "number_theory/sum_of_multiplicative_function/main.cpp",
+    "source_sha256": "7428b1cbcc0e55a6ee6c16fa8e6fbc43c70923499716051edb15e5a2c7744793"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "number_theory",
+    "problem": "sum_of_multiplicative_function"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "7428b1cbcc0e55a6ee6c16fa8e6fbc43c70923499716051edb15e5a2c7744793",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch07_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T21:44:12.337590Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395880,
+    "current_source_time": 0.909,
+    "current_source_memory": 8773632,
+    "current_source_submission_time": "2026-08-21T21:43:29.315624Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "7428b1cbcc0e55a6ee6c16fa8e6fbc43c70923499716051edb15e5a2c7744793",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395880,
+      "source_sha256": "7428b1cbcc0e55a6ee6c16fa8e6fbc43c70923499716051edb15e5a2c7744793",
+      "server_source_sha256": "7428b1cbcc0e55a6ee6c16fa8e6fbc43c70923499716051edb15e5a2c7744793",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.909,
+      "memory": 8773632,
+      "submission_time": "2026-08-21T21:43:29.315624Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T21:43:29.609131Z",
+      "recorded_at": "2026-08-21T21:44:12.336942Z"
+    }
+  ]
+}

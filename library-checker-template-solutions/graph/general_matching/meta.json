@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "general_matching",
+  "title": "Matching on General Graph",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/general_matching/main.cpp",
+    "source_sha256": "966cfcd18a68ec47b126212aeb0078c401d25cbe3c61f62698695f1f491561a2"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "general_matching"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "966cfcd18a68ec47b126212aeb0078c401d25cbe3c61f62698695f1f491561a2",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_general_matching.cpp"
+    ],
+    "checked_at": "2026-08-21T11:27:04.309759Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395600,
+    "current_source_time": 0.019,
+    "current_source_memory": 2924544,
+    "current_source_submission_time": "2026-08-21T11:26:45.661859Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "966cfcd18a68ec47b126212aeb0078c401d25cbe3c61f62698695f1f491561a2",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395600,
+      "source_sha256": "966cfcd18a68ec47b126212aeb0078c401d25cbe3c61f62698695f1f491561a2",
+      "server_source_sha256": "966cfcd18a68ec47b126212aeb0078c401d25cbe3c61f62698695f1f491561a2",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.019,
+      "memory": 2924544,
+      "submission_time": "2026-08-21T11:26:45.661859Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T11:26:45.825958Z",
+      "recorded_at": "2026-08-21T11:27:04.308845Z"
+    }
+  ]
+}

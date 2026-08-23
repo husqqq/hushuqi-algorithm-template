@@ -1,0 +1,28 @@
+{
+    "schema_version":  1,
+    "name":  "range_kth_smallest",
+    "title":  "Range Kth Smallest",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "11e2d30c2a80864e5e9c62b511234622c9b432254b23bbff3ae15e6ebcdd6add",
+                       "imported_sha256":  "7a83686a06c639b888da5aca88dc098d1e043ea9e3e5969b234ccbe413ae174a"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "75a6c95c4f77a307c31841adab18b9ae0315994a08b0575f2969bce7e51d9456",
+                                  "submission_id":  387005,
+                                  "status":  "AC",
+                                  "time":  0.275,
+                                  "memory":  26972160,
+                                  "submission_time":  "2026-07-22T02:20:26.604227Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

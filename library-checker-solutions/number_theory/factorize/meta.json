@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "factorize",
+    "title":  "Factorize",
+    "category":  "number_theory",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "fd8e4b9c83d09853221139fa46c219e82e053f93e93880cafda7ca1185b94415"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "69923d267721c9191e3441c2876549eddd520186958f2e5c32ec8b6d9797b37a",
+                                  "submission_id":  387091,
+                                  "status":  "AC",
+                                  "time":  0.442,
+                                  "memory":  839680,
+                                  "submission_time":  "2026-07-22T02:57:40.417062Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

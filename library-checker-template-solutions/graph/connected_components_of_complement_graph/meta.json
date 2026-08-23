@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "connected_components_of_complement_graph",
+  "title": "Connected Components of Complement Graph",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/connected_components_of_complement_graph/main.cpp",
+    "source_sha256": "d1f50986498a937e0974b1a39a72ece8fc9b331bece2a65615a5a3b7091a2429"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "connected_components_of_complement_graph"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "d1f50986498a937e0974b1a39a72ece8fc9b331bece2a65615a5a3b7091a2429",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_components.cpp"
+    ],
+    "checked_at": "2026-08-21T10:31:27.053680Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395587,
+    "current_source_time": 0.408,
+    "current_source_memory": 60932096,
+    "current_source_submission_time": "2026-08-21T10:30:54.870367Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "d1f50986498a937e0974b1a39a72ece8fc9b331bece2a65615a5a3b7091a2429",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395587,
+      "source_sha256": "d1f50986498a937e0974b1a39a72ece8fc9b331bece2a65615a5a3b7091a2429",
+      "server_source_sha256": "d1f50986498a937e0974b1a39a72ece8fc9b331bece2a65615a5a3b7091a2429",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.408,
+      "memory": 60932096,
+      "submission_time": "2026-08-21T10:30:54.870367Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T10:30:55.044664Z",
+      "recorded_at": "2026-08-21T10:31:27.053053Z"
+    }
+  ]
+}

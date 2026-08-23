@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "kth_term_of_linearly_recurrent_sequence",
+    "title":  "Kth term of Linearly Recurrent Sequence",
+    "category":  "other",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "93ba4f439c8001a79f0701176bd9ccc333b0c316528fcab0bce3d5ad3319af99"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "868e026e89976a66ac0c44b9d749f775dc8518871f41b47534412d944f694ec1",
+                                  "submission_id":  387166,
+                                  "status":  "AC",
+                                  "time":  3.806,
+                                  "memory":  9138176,
+                                  "submission_time":  "2026-07-22T03:30:52.703023Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

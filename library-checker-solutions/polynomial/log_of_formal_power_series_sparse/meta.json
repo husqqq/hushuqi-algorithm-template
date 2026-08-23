@@ -1,0 +1,21 @@
+{
+    "schema_version":  1,
+    "name":  "log_of_formal_power_series_sparse",
+    "title":  "Log of Formal Power Series (Sparse)",
+    "category":  "polynomial",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "1246ca96eaa01df42c06911e90855c02cfa8a8af33dade7a4eafcafa0cd30ccf",
+                       "imported_sha256":  "7a1b5eafe65d13391ff712f4d3d862add9095bfb47a672f1518ea36476953e32"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

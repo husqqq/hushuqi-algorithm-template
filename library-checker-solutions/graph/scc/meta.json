@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "scc",
+    "title":  "Strongly Connected Components",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "b488831af9a66e37cb5ffa484cfab64a5668eb2c2c562b75a3502b2706447f92"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "7ed5326560a595390b26ac84d9765d5c379069f6ce048b2940c3237f658b04c8",
+                                  "submission_id":  387037,
+                                  "status":  "AC",
+                                  "time":  0.134,
+                                  "memory":  80900096,
+                                  "submission_time":  "2026-07-22T02:36:13.714771Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

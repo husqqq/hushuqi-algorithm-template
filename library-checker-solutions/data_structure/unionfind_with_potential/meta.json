@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "unionfind_with_potential",
+    "title":  "Unionfind with Potential",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "770fedac2bfb44978d311bd0537321d752f2d3b2124bed98183845fd27718c5f"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "0605973643e1002f091a0ace32d0ecc92573f6efa7e28b487862438142a24131",
+                                  "submission_id":  386992,
+                                  "status":  "AC",
+                                  "time":  0.057,
+                                  "memory":  3964928,
+                                  "submission_time":  "2026-07-22T02:16:14.899309Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

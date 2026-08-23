@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "stirling_number_of_the_first_kind",
+  "title": "Stirling Number of the First Kind",
+  "category": "enumerative_combinatorics",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "enumerative_combinatorics/stirling_number_of_the_first_kind/main.cpp",
+    "source_sha256": "eb1c2dd1e3dbcee11db79bcd7c33c6569318781953ce8318238cb25e4e5cbe4e"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "enumerative_combinatorics",
+    "problem": "stirling_number_of_the_first_kind"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "eb1c2dd1e3dbcee11db79bcd7c33c6569318781953ce8318238cb25e4e5cbe4e",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch08_sequences.cpp"
+    ],
+    "checked_at": "2026-08-21T21:25:40.924564Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395862,
+    "current_source_time": 0.385,
+    "current_source_memory": 7823360,
+    "current_source_submission_time": "2026-08-21T21:25:22.264855Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "eb1c2dd1e3dbcee11db79bcd7c33c6569318781953ce8318238cb25e4e5cbe4e",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395862,
+      "source_sha256": "eb1c2dd1e3dbcee11db79bcd7c33c6569318781953ce8318238cb25e4e5cbe4e",
+      "server_source_sha256": "eb1c2dd1e3dbcee11db79bcd7c33c6569318781953ce8318238cb25e4e5cbe4e",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.385,
+      "memory": 7823360,
+      "submission_time": "2026-08-21T21:25:22.264855Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T21:25:22.550930Z",
+      "recorded_at": "2026-08-21T21:25:40.923763Z"
+    }
+  ]
+}

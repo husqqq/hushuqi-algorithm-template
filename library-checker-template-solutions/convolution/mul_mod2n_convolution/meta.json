@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "mul_mod2n_convolution",
+  "title": "Convolution on the Multiplicative Monoid of $\\mathbb{Z} / 2^N\\mathbb{Z}$",
+  "category": "convolution",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "convolution/mul_mod2n_convolution/main.cpp",
+    "source_sha256": "e0ad25ff590f11c4315a040b74523267aa9387a362adc17b12156da665884aeb"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "convolution",
+    "problem": "mul_mod2n_convolution"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "e0ad25ff590f11c4315a040b74523267aa9387a362adc17b12156da665884aeb",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch10_missing_convolution.cpp"
+    ],
+    "checked_at": "2026-08-21T21:40:59.719634Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395878,
+    "current_source_time": 0.585,
+    "current_source_memory": 26931200,
+    "current_source_submission_time": "2026-08-21T21:40:16.416151Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "e0ad25ff590f11c4315a040b74523267aa9387a362adc17b12156da665884aeb",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395878,
+      "source_sha256": "e0ad25ff590f11c4315a040b74523267aa9387a362adc17b12156da665884aeb",
+      "server_source_sha256": "e0ad25ff590f11c4315a040b74523267aa9387a362adc17b12156da665884aeb",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.585,
+      "memory": 26931200,
+      "submission_time": "2026-08-21T21:40:16.416151Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T21:40:16.712300Z",
+      "recorded_at": "2026-08-21T21:40:59.718839Z"
+    }
+  ]
+}

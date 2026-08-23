@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "kind": "template_variant",
+  "variant_id": "14_1_011_bigint_mul_pypy3",
+  "name": "multiplication_of_big_integers",
+  "title": "Multiplication of Big Integers",
+  "category": "big_integer",
+  "language": "pypy3",
+  "source": "big_integer/multiplication_of_big_integers/variants/14_1_011_bigint_mul_pypy3/main.py",
+  "source_sha256": "32bebfd7a5e4a40a987ab560f29daf33cd60fb6c3695ce0c2bcfba7b6717ef43",
+  "template_items": [
+    "14.1.011"
+  ],
+  "complexity": "Python arbitrary-precision multiplication plus decimal conversion",
+  "provenance": {
+    "method": "deterministic_generation",
+    "generator": "library-checker-template-solutions/tools/generate_variants.py",
+    "generator_sha256": "c93c7eefeb581216c5842f766ee65d718ed7338888d153e80761ee5c831742f3",
+    "inputs": [
+      {
+        "path": "hushuqi算法竞赛模板/14-其他实用模板.md",
+        "sha256": "29b3fff659b376a14fba25990e42b989a8b004030b58e6b60ef0cd6fe4520577"
+      },
+      {
+        "path": "hushuqi算法竞赛模板/tests/test_python_topics.py",
+        "sha256": "56b59b17bd3783cb15b268b6d0cbc5eb1a0f7bbe46391f34b21927955b958df4"
+      }
+    ],
+    "generated_sha256": "32bebfd7a5e4a40a987ab560f29daf33cd60fb6c3695ce0c2bcfba7b6717ef43"
+  },
+  "validation": {
+    "status": "online_failed",
+    "current_source_sha256": "32bebfd7a5e4a40a987ab560f29daf33cd60fb6c3695ce0c2bcfba7b6717ef43",
+    "current_source_online_verdict": "TLE",
+    "current_source_submission_id": 396246,
+    "server_source_sha256": "32bebfd7a5e4a40a987ab560f29daf33cd60fb6c3695ce0c2bcfba7b6717ef43",
+    "checks": [
+      "source_python_syntax",
+      "hushuqi算法竞赛模板/tests/test_python_topics.py"
+    ],
+    "checked_at": "2026-08-23T05:24:07.188754Z",
+    "current_source_time": 5,
+    "current_source_memory": 81760256,
+    "current_source_submission_time": "2026-08-23T05:23:32.954375Z",
+    "current_source_is_latest": true,
+    "note": "当前变体在线评测未通过。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 396246,
+      "source_sha256": "32bebfd7a5e4a40a987ab560f29daf33cd60fb6c3695ce0c2bcfba7b6717ef43",
+      "server_source_sha256": "32bebfd7a5e4a40a987ab560f29daf33cd60fb6c3695ce0c2bcfba7b6717ef43",
+      "lang": "pypy3",
+      "verdict": "TLE",
+      "last_status": "TLE",
+      "time": 5,
+      "memory": 81760256,
+      "submission_time": "2026-08-23T05:23:32.954375Z",
+      "is_latest": true,
+      "compile_standard": null,
+      "submitted_at": "2026-08-23T05:23:33.151816Z",
+      "recorded_at": "2026-08-23T05:24:07.188742Z"
+    }
+  ]
+}

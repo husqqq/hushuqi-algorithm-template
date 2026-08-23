@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "kind": "template_variant",
+  "variant_id": "5_8_004_primal_dual_cost_flow_cpp20",
+  "name": "assignment",
+  "title": "Assignment Problem",
+  "category": "graph",
+  "language": "cpp20",
+  "source": "graph/assignment/variants/5_8_004_primal_dual_cost_flow_cpp20/main.cpp",
+  "source_sha256": "046b15bea00e6651735dd92cb5a96a8bdff307cd9ff2dac35800d606002fe7d6",
+  "template_items": [
+    "5.8.004"
+  ],
+  "complexity": "O(VE + F E log V) including initial potentials",
+  "provenance": {
+    "method": "deterministic_generation",
+    "generator": "library-checker-template-solutions/tools/generate_cpp_variants.py",
+    "generator_sha256": "d3978149aeca2d84607000428f1e01c5fde0c9c70b39e9659cbe4101996ca910",
+    "inputs": [
+      {
+        "path": "hushuqi算法竞赛模板/include/full/5_8_004.hpp",
+        "sha256": "b90da7b00c0b24b1dda106fd7561486e314683da7d12de3bdb1222a1352438c3"
+      },
+      {
+        "path": "hushuqi算法竞赛模板/tests/test_ch05_flow.cpp",
+        "sha256": "fc2460283cb270bfedab402126550f54aafb9da66d1a2703ef71084be69c0dbb"
+      }
+    ],
+    "generated_sha256": "046b15bea00e6651735dd92cb5a96a8bdff307cd9ff2dac35800d606002fe7d6"
+  },
+  "validation": {
+    "status": "online_failed",
+    "current_source_sha256": "046b15bea00e6651735dd92cb5a96a8bdff307cd9ff2dac35800d606002fe7d6",
+    "current_source_online_verdict": "TLE",
+    "current_source_submission_id": 396211,
+    "server_source_sha256": "046b15bea00e6651735dd92cb5a96a8bdff307cd9ff2dac35800d606002fe7d6",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_flow.cpp"
+    ],
+    "checked_at": "2026-08-23T04:03:07.646268Z",
+    "current_source_time": 5,
+    "current_source_memory": 27840512,
+    "current_source_submission_time": "2026-08-23T04:02:40.548532Z",
+    "current_source_is_latest": true,
+    "note": "当前变体在线评测未通过。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 396211,
+      "source_sha256": "046b15bea00e6651735dd92cb5a96a8bdff307cd9ff2dac35800d606002fe7d6",
+      "server_source_sha256": "046b15bea00e6651735dd92cb5a96a8bdff307cd9ff2dac35800d606002fe7d6",
+      "lang": "cpp20",
+      "verdict": "TLE",
+      "last_status": "TLE",
+      "time": 5,
+      "memory": 27840512,
+      "submission_time": "2026-08-23T04:02:40.548532Z",
+      "is_latest": true,
+      "compile_standard": null,
+      "submitted_at": "2026-08-23T04:02:40.653737Z",
+      "recorded_at": "2026-08-23T04:03:07.646253Z"
+    }
+  ]
+}

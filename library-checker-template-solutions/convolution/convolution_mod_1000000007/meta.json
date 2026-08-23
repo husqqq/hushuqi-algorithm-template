@@ -1,0 +1,65 @@
+{
+  "schema_version": 3,
+  "name": "convolution_mod_1000000007",
+  "title": "Convolution (Mod 1,000,000,007)",
+  "category": "convolution",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "convolution/convolution_mod_1000000007/main.cpp",
+    "source_sha256": "f53e5163f558c4126b7735bb3dbf690725a1e9719f009b7ee49574a79576231d"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "convolution",
+    "problem": "convolution_mod_1000000007"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "f53e5163f558c4126b7735bb3dbf690725a1e9719f009b7ee49574a79576231d",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch10_convolution.cpp"
+    ],
+    "checked_at": "2026-08-21T22:53:33.817359Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395898,
+    "current_source_time": 1.303,
+    "current_source_memory": 51298304,
+    "current_source_submission_time": "2026-08-21T22:52:19.237726Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "f53e5163f558c4126b7735bb3dbf690725a1e9719f009b7ee49574a79576231d",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395828,
+      "source_sha256": "dd07612575bbf15416d5111e5a8c430e029aaface6f7ee1d0cdccca50595ab5d",
+      "server_source_sha256": "dd07612575bbf15416d5111e5a8c430e029aaface6f7ee1d0cdccca50595ab5d",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.317,
+      "memory": 51310592,
+      "submission_time": "2026-08-21T20:20:17.19477Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T20:20:17.457220Z",
+      "recorded_at": "2026-08-21T20:21:35.758947Z"
+    },
+    {
+      "submission_id": 395898,
+      "source_sha256": "f53e5163f558c4126b7735bb3dbf690725a1e9719f009b7ee49574a79576231d",
+      "server_source_sha256": "f53e5163f558c4126b7735bb3dbf690725a1e9719f009b7ee49574a79576231d",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.303,
+      "memory": 51298304,
+      "submission_time": "2026-08-21T22:52:19.237726Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T22:52:19.554873Z",
+      "recorded_at": "2026-08-21T22:53:33.816642Z"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "minimum_spanning_tree",
+    "title":  "Minimum Spanning Tree",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "bec6d12e0619a2fe7b2b68ae000dc02837f4b56b37f1cf82c6b504887de669c9"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "7081ae7eab6c725ebb3d08fefde2102631072cc5ce07b605f570989f3c748fa6",
+                                  "submission_id":  387043,
+                                  "status":  "AC",
+                                  "time":  0.128,
+                                  "memory":  18243584,
+                                  "submission_time":  "2026-07-22T02:39:26.202788Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,30 @@
+{
+    "schema_version":  1,
+    "name":  "inv_of_formal_power_series_2d",
+    "title":  "Inv of Bivariate Formal Power Series",
+    "category":  "polynomial",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "polynomial/inv_of_formal_power_series_2d/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "d0f770245c9bed3d09b6193f7b8b99ecae663ff2002cad43cabc1d900c99cff3"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

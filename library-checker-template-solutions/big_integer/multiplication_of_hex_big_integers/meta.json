@@ -1,0 +1,65 @@
+{
+  "schema_version": 3,
+  "name": "multiplication_of_hex_big_integers",
+  "title": "Multiplication of Hex Big Integers",
+  "category": "big_integer",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "big_integer/multiplication_of_hex_big_integers/main.cpp",
+    "source_sha256": "790837e6ff6fe6e8d3849e2820d4e045525585399bb145a2a0d255d9ba31474a"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "big_integer",
+    "problem": "multiplication_of_hex_big_integers"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "790837e6ff6fe6e8d3849e2820d4e045525585399bb145a2a0d255d9ba31474a",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch14_hex_bigint.cpp"
+    ],
+    "checked_at": "2026-08-22T00:47:21.789933Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395930,
+    "current_source_time": 1.247,
+    "current_source_memory": 13836288,
+    "current_source_submission_time": "2026-08-22T00:46:37.223882Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "790837e6ff6fe6e8d3849e2820d4e045525585399bb145a2a0d255d9ba31474a",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395894,
+      "source_sha256": "8d54e26f7c8e67ede8514bca27519573b8f6becae75b92044ddde276d43e3e90",
+      "server_source_sha256": "8d54e26f7c8e67ede8514bca27519573b8f6becae75b92044ddde276d43e3e90",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.244,
+      "memory": 13586432,
+      "submission_time": "2026-08-21T22:43:07.221536Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T22:43:07.550752Z",
+      "recorded_at": "2026-08-21T22:43:51.795934Z"
+    },
+    {
+      "submission_id": 395930,
+      "source_sha256": "790837e6ff6fe6e8d3849e2820d4e045525585399bb145a2a0d255d9ba31474a",
+      "server_source_sha256": "790837e6ff6fe6e8d3849e2820d4e045525585399bb145a2a0d255d9ba31474a",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.247,
+      "memory": 13836288,
+      "submission_time": "2026-08-22T00:46:37.223882Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-22T00:46:37.593658Z",
+      "recorded_at": "2026-08-22T00:47:21.788940Z"
+    }
+  ]
+}

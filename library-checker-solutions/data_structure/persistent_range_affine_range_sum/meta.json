@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "persistent_range_affine_range_sum",
+    "title":  "Persistent Range Affine Range Sum",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "d07dd84186e71b7b0ac4313dda3bda3a7b7fb047de903dc61cbba87058ff1d32"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "12989a0b6c6a53ac118afbb3ad84892f14882d11ca1d41da81cd8381612a092d",
+                                  "submission_id":  387179,
+                                  "status":  "AC",
+                                  "time":  0.354,
+                                  "memory":  291270656,
+                                  "submission_time":  "2026-07-22T03:37:45.005226Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

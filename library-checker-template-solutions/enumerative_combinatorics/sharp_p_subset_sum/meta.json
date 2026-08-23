@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "sharp_p_subset_sum",
+  "title": "$\\#_p$ Subset Sum",
+  "category": "enumerative_combinatorics",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "enumerative_combinatorics/sharp_p_subset_sum/main.cpp",
+    "source_sha256": "fe6a32524c897245197da5e020196668d77f186eb00ee84549baee82261b8671"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "enumerative_combinatorics",
+    "problem": "sharp_p_subset_sum"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "fe6a32524c897245197da5e020196668d77f186eb00ee84549baee82261b8671",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch10_poly_misc.cpp"
+    ],
+    "checked_at": "2026-08-21T21:27:53.485085Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395865,
+    "current_source_time": 0.324,
+    "current_source_memory": 39821312,
+    "current_source_submission_time": "2026-08-21T21:27:20.633157Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "fe6a32524c897245197da5e020196668d77f186eb00ee84549baee82261b8671",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395865,
+      "source_sha256": "fe6a32524c897245197da5e020196668d77f186eb00ee84549baee82261b8671",
+      "server_source_sha256": "fe6a32524c897245197da5e020196668d77f186eb00ee84549baee82261b8671",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.324,
+      "memory": 39821312,
+      "submission_time": "2026-08-21T21:27:20.633157Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T21:27:20.936199Z",
+      "recorded_at": "2026-08-21T21:27:53.483942Z"
+    }
+  ]
+}

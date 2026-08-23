@@ -1,0 +1,128 @@
+{
+  "schema_version": 3,
+  "name": "double_ended_priority_queue",
+  "title": "Double-Ended Priority Queue",
+  "category": "data_structure",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "data_structure/double_ended_priority_queue/main.cpp",
+    "source_sha256": "6f30b56031e37746ebecdf08ff9bf8c410030dab3c4652b5c5dc554f2cb7dc5a",
+    "evidence": {
+      "method": "deterministic_generation",
+      "generator": {
+        "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
+        "sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+        "working_directory": ".",
+        "runner": "Python 3.13.14",
+        "argv": [
+          "--only",
+          "double_ended_priority_queue",
+          "--write-index"
+        ],
+        "generation_evidence": {
+          "schema_version": 2,
+          "problem_id": "data_structure/double_ended_priority_queue",
+          "source_path": "library-checker-template-solutions/data_structure/double_ended_priority_queue/main.cpp",
+          "source_sha256": "6f30b56031e37746ebecdf08ff9bf8c410030dab3c4652b5c5dc554f2cb7dc5a",
+          "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
+          "generator_sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+          "working_directory": ".",
+          "runner": "Python 3.13.14",
+          "argv": [
+            "--only",
+            "double_ended_priority_queue",
+            "--write-index"
+          ],
+          "inputs": [
+            {
+              "path": "hushuqi算法竞赛模板/03-数据结构.md",
+              "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/include/full/3_5_007.hpp",
+              "sha256": "713f2dfcc7087cd48c754c840b5d7c1ec35b5e65d2538ec91d4af92f2940c7df"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/tests/test_ch03_ordered_multiset.cpp",
+              "sha256": "3bf8622180f1e314d823274cd7c2d73bff7d4a4f74cc40a58c4478da635f26c1"
+            }
+          ],
+          "generated_sha256": "6f30b56031e37746ebecdf08ff9bf8c410030dab3c4652b5c5dc554f2cb7dc5a",
+          "byte_equal": true
+        },
+        "generation_evidence_sha256": "794615045430f67131198216591d1363a6c409f116026eac9b398c2db354c3b2"
+      },
+      "adapter_sha256": "e9821a8c65dc5116b3b457a6d2225d67a1a599f2548b647022016dccd563475d",
+      "template_inputs": [
+        {
+          "path": "hushuqi算法竞赛模板/03-数据结构.md",
+          "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/full/3_5_007.hpp",
+          "sha256": "713f2dfcc7087cd48c754c840b5d7c1ec35b5e65d2538ec91d4af92f2940c7df"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/tests/test_ch03_ordered_multiset.cpp",
+          "sha256": "3bf8622180f1e314d823274cd7c2d73bff7d4a4f74cc40a58c4478da635f26c1"
+        }
+      ],
+      "temporary_regenerations": 2,
+      "byte_identical": true,
+      "source_sha256": "6f30b56031e37746ebecdf08ff9bf8c410030dab3c4652b5c5dc554f2cb7dc5a",
+      "evidence_sha256": "037b7fcebccf276b2b0441df246e31c8dc65d997d2dc630876a4d6cabaad87ca"
+    }
+  },
+  "reference": {
+    "kind": "read_only_baseline",
+    "source": "library-checker-solutions/data_structure/double_ended_priority_queue/main.cpp",
+    "source_sha256": "af7a70cca9c9858ca482c871f1450ccb48a1d52b1de646aa9b722f28f2fd48d8"
+  },
+  "official_reference": {
+    "repository": "https://github.com/yosupo06/library-checker-problems",
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "license": "Apache-2.0",
+    "license_blob": "91554e3bd99da6761c82645d6c740ced590d17bb",
+    "path": "data_structure/double_ended_priority_queue/sol/correct.cpp",
+    "git_blob": "3cfa2b0571a7abe54380a8955c7c291e4f485c98",
+    "content_sha256": "3b7ed27eb2ba87abee8fc0772b34c97181c792c7851124f3be18c58efc7529bd"
+  },
+  "validation": {
+    "status": "local_only",
+    "checked_at": null,
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch03_ordered_multiset.cpp"
+    ],
+    "current_source_sha256": "6f30b56031e37746ebecdf08ff9bf8c410030dab3c4652b5c5dc554f2cb7dc5a",
+    "current_source_online_verdict": null,
+    "current_source_submission_id": null,
+    "current_source_time": null,
+    "current_source_memory": null,
+    "current_source_submission_time": null,
+    "current_source_is_latest": null,
+    "server_source_sha256": null,
+    "note": "Generated from the current chapter 03 template; online verification has not run for this source."
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 394870,
+      "source_sha256": "9d263eeb46ca7ec00b2e9d968149308f74bb1421a5289efbc3d074949ae8ac65",
+      "server_source_sha256": "9d263eeb46ca7ec00b2e9d968149308f74bb1421a5289efbc3d074949ae8ac65",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.316,
+      "memory": 29138944,
+      "submission_time": "2026-08-19T19:02:00.685676Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-19T19:02:00.810779Z",
+      "recorded_at": "2026-08-19T19:02:29.052542Z"
+    }
+  ],
+  "notes": [
+    "The only submission candidate is this self-contained main.cpp.",
+    "The reference source is read-only comparison material and is not a submission input."
+  ]
+}

@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "static_range_sum",
+    "title":  "Static Range Sum",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "91b9018552b00b62afd73bf3cdf134bddfbb99859d55b02a8ab5dcd5e060f458"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "91b9018552b00b62afd73bf3cdf134bddfbb99859d55b02a8ab5dcd5e060f458",
+                                  "submission_id":  386990,
+                                  "status":  "AC",
+                                  "time":  0.095,
+                                  "memory":  12505088,
+                                  "submission_time":  "2026-07-22T02:12:15.014461Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

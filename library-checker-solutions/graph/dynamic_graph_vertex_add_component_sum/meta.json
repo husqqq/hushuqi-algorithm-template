@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "dynamic_graph_vertex_add_component_sum",
+    "title":  "Dynamic Graph Vertex Add Component Sum",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "5d1051f31e365fcec71cef956dfb2b85f76031b46bca89798615e8b8ed61330d"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "43c7faba60bfb748b768da4d701a6fe1790bed3d271b440c190b1ae87691daf9",
+                                  "submission_id":  387174,
+                                  "status":  "AC",
+                                  "time":  0.407,
+                                  "memory":  142127104,
+                                  "submission_time":  "2026-07-22T03:34:36.701955Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

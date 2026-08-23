@@ -1,0 +1,30 @@
+{
+    "schema_version":  1,
+    "name":  "mul_modp_convolution",
+    "title":  "Convolution on the Multiplicative Monoid of $\\mathbb{Z} / P\\mathbb{Z}$",
+    "category":  "convolution",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "convolution/mul_modp_convolution/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+                                                    "convolution/mul_modp_convolution/acl.h"
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "5c29ee4c1fb20adb8d75bc3a4e5f7f7d803ef481ada0b4c2e606b8b132e8180e"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

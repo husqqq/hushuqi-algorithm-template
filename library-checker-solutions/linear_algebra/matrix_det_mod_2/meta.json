@@ -1,0 +1,21 @@
+{
+    "schema_version":  1,
+    "name":  "matrix_det_mod_2",
+    "title":  "Determinant of Matrix (Mod 2)",
+    "category":  "linear_algebra",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "8a9eac8de0457100d2a3ec759289c583d2fb36385efb7a3ff0c5b838d06f10da",
+                       "imported_sha256":  "f7baae1985e67991864119c74fbb0f9e176f5039661e1156aa4ad5e96b93c4af"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "chromatic_number",
+  "title": "Chromatic Number",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/chromatic_number/main.cpp",
+    "source_sha256": "04b9f4bb9027f6ffd78dcb12b13e1c7ec9f73a957de360e7eaaa9ceabd1ea2b7"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "chromatic_number"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "04b9f4bb9027f6ffd78dcb12b13e1c7ec9f73a957de360e7eaaa9ceabd1ea2b7",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_coloring.cpp"
+    ],
+    "checked_at": "2026-08-21T12:45:57.965423Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395626,
+    "current_source_time": 0.009,
+    "current_source_memory": 847872,
+    "current_source_submission_time": "2026-08-21T12:45:30.636133Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "04b9f4bb9027f6ffd78dcb12b13e1c7ec9f73a957de360e7eaaa9ceabd1ea2b7",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395626,
+      "source_sha256": "04b9f4bb9027f6ffd78dcb12b13e1c7ec9f73a957de360e7eaaa9ceabd1ea2b7",
+      "server_source_sha256": "04b9f4bb9027f6ffd78dcb12b13e1c7ec9f73a957de360e7eaaa9ceabd1ea2b7",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.009,
+      "memory": 847872,
+      "submission_time": "2026-08-21T12:45:30.636133Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T12:45:30.825518Z",
+      "recorded_at": "2026-08-21T12:45:57.964497Z"
+    }
+  ]
+}

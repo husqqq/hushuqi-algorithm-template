@@ -1,0 +1,34 @@
+{
+    "schema_version":  1,
+    "name":  "point_set_range_sort_range_composite",
+    "title":  "Point Set Range Sort Range Composite",
+    "category":  "data_structure",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "data_structure/point_set_range_sort_range_composite/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+                                                    "data_structure/point_set_range_sort_range_composite/sol/segtree.hpp",
+                                                    "data_structure/point_set_range_sort_range_composite/sol/fastset.hpp",
+                                                    "data_structure/point_set_range_sort_range_composite/sol/sortable_segtree.hpp",
+                                                    "data_structure/point_set_range_sort_range_composite/sol/modint.hpp",
+                                                    "data_structure/point_set_range_sort_range_composite/sol/group_affine.hpp"
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "93a7e13d760cbd12af6467bb5a58e813b892997576c2cf62c19fb5e9b0015994"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "gcd_of_gaussian_integers",
+    "title":  "Gcd of Gaussian Integers",
+    "category":  "number_theory",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "77a5a672c186f194a7c11d6b330ca27d66f378ec9799c115855322a1425b4d3a"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "6f67936b021ea96cd7cf7cd276a4d1e370bd3c578b33ba298ab69f301ed7ce79",
+                                  "submission_id":  387086,
+                                  "status":  "AC",
+                                  "time":  0.073,
+                                  "memory":  2347008,
+                                  "submission_time":  "2026-07-22T02:56:31.517837Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

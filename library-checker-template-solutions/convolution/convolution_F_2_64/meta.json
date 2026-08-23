@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "convolution_F_2_64",
+  "title": "Convolution ($\\mathbb{F}_{2^{64}}$)",
+  "category": "convolution",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "convolution/convolution_F_2_64/main.cpp",
+    "source_sha256": "481c2cdf8dd53a9271c271f3fdcc793e65cb1e303263ca9d1bb6d701fc27ee41"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "convolution",
+    "problem": "convolution_F_2_64"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "481c2cdf8dd53a9271c271f3fdcc793e65cb1e303263ca9d1bb6d701fc27ee41",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch10_gf64_conv.cpp"
+    ],
+    "checked_at": "2026-08-21T21:11:35.969736Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395857,
+    "current_source_time": 0.411,
+    "current_source_memory": 64229376,
+    "current_source_submission_time": "2026-08-21T21:10:31.440818Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "481c2cdf8dd53a9271c271f3fdcc793e65cb1e303263ca9d1bb6d701fc27ee41",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395857,
+      "source_sha256": "481c2cdf8dd53a9271c271f3fdcc793e65cb1e303263ca9d1bb6d701fc27ee41",
+      "server_source_sha256": "481c2cdf8dd53a9271c271f3fdcc793e65cb1e303263ca9d1bb6d701fc27ee41",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.411,
+      "memory": 64229376,
+      "submission_time": "2026-08-21T21:10:31.440818Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T21:10:31.758590Z",
+      "recorded_at": "2026-08-21T21:11:35.968928Z"
+    }
+  ]
+}

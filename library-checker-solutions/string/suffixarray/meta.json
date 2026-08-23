@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "suffixarray",
+    "title":  "Suffix Array",
+    "category":  "string",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "80113cb175e9c2e37c38ae7bec75c237a35633ba50b5f162a4ca1e2bb59fcbd3"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "8248c55a03b5b37a2ac2fcbd7dcd130decebe0952b805fb9a836fa2f2eb4f496",
+                                  "submission_id":  387024,
+                                  "status":  "AC",
+                                  "time":  0.063,
+                                  "memory":  17199104,
+                                  "submission_time":  "2026-07-22T02:30:45.036565Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

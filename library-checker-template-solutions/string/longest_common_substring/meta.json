@@ -1,0 +1,41 @@
+{
+  "schema_version": 3,
+  "name": "longest_common_substring",
+  "title": "Longest Common Substring",
+  "category": "string",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "string/longest_common_substring/main.cpp",
+    "source_sha256": "a43a94697b91f803512b77366278194119ddae4b7b14f67f68e85d4c45ff32ba"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "string",
+    "problem": "longest_common_substring"
+  },
+  "validation": {
+    "status": "local_only",
+    "current_source_sha256": "a43a94697b91f803512b77366278194119ddae4b7b14f67f68e85d4c45ff32ba",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch04_longest_common_substring.cpp"
+    ]
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395560,
+      "source_sha256": "9cc556c89b6088894ed13378ac153a78dc05c0447f3c653841e4d8dfcee8f735",
+      "server_source_sha256": "9cc556c89b6088894ed13378ac153a78dc05c0447f3c653841e4d8dfcee8f735",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.403,
+      "memory": 254169088,
+      "submission_time": "2026-08-21T08:30:06.087253Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T08:30:06.256548Z",
+      "recorded_at": "2026-08-21T08:30:38.417131Z"
+    }
+  ]
+}

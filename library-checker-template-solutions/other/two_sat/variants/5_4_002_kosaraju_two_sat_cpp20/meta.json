@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "kind": "template_variant",
+  "variant_id": "5_4_002_kosaraju_two_sat_cpp20",
+  "name": "two_sat",
+  "title": "2 Sat",
+  "category": "other",
+  "language": "cpp20",
+  "source": "other/two_sat/variants/5_4_002_kosaraju_two_sat_cpp20/main.cpp",
+  "source_sha256": "5408b066308b7556b3eb1d7e55d3e785e66f885d9b41efdb6e3ca8ca28b5dc71",
+  "template_items": [
+    "5.4.002"
+  ],
+  "complexity": "O(V+E)",
+  "provenance": {
+    "method": "deterministic_generation",
+    "generator": "library-checker-template-solutions/tools/generate_cpp_variants.py",
+    "generator_sha256": "d3978149aeca2d84607000428f1e01c5fde0c9c70b39e9659cbe4101996ca910",
+    "inputs": [
+      {
+        "path": "hushuqi算法竞赛模板/include/full/5_4_002.hpp",
+        "sha256": "65ac91ad5ef645911a2547cd63a58f2b48c99013593a438fff0a3144e03143bb"
+      },
+      {
+        "path": "hushuqi算法竞赛模板/tests/test_ch05_two_sat.cpp",
+        "sha256": "37c2f63518cbf14eb7d51fe0f75be6202e2cde76aff6f6f155a665c4631ddd92"
+      }
+    ],
+    "generated_sha256": "5408b066308b7556b3eb1d7e55d3e785e66f885d9b41efdb6e3ca8ca28b5dc71"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "5408b066308b7556b3eb1d7e55d3e785e66f885d9b41efdb6e3ca8ca28b5dc71",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 396365,
+    "server_source_sha256": "5408b066308b7556b3eb1d7e55d3e785e66f885d9b41efdb6e3ca8ca28b5dc71",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_two_sat.cpp"
+    ],
+    "checked_at": "2026-08-23T15:36:16.700545Z",
+    "current_source_time": 0.681,
+    "current_source_memory": 225816576,
+    "current_source_submission_time": "2026-08-23T15:35:43.6976Z",
+    "current_source_is_latest": true,
+    "note": "当前变体源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 396209,
+      "source_sha256": "13125bdc6b84c8ccd0a863a3d3ceb5c791226b491a3d729058c356b504315b18",
+      "server_source_sha256": "13125bdc6b84c8ccd0a863a3d3ceb5c791226b491a3d729058c356b504315b18",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.698,
+      "memory": 225566720,
+      "submission_time": "2026-08-23T04:01:11.645331Z",
+      "is_latest": true,
+      "compile_standard": null,
+      "submitted_at": "2026-08-23T04:01:11.770566Z",
+      "recorded_at": "2026-08-23T04:01:42.907982Z"
+    },
+    {
+      "submission_id": 396365,
+      "source_sha256": "5408b066308b7556b3eb1d7e55d3e785e66f885d9b41efdb6e3ca8ca28b5dc71",
+      "server_source_sha256": "5408b066308b7556b3eb1d7e55d3e785e66f885d9b41efdb6e3ca8ca28b5dc71",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.681,
+      "memory": 225816576,
+      "submission_time": "2026-08-23T15:35:43.6976Z",
+      "is_latest": true,
+      "compile_standard": null,
+      "submitted_at": "2026-08-23T15:35:43.911296Z",
+      "recorded_at": "2026-08-23T15:36:16.700531Z"
+    }
+  ]
+}

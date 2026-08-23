@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "vertex_add_subtree_sum",
+    "title":  "Vertex Add Subtree Sum",
+    "category":  "tree",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "5fc1f70745349c33df331e73c9c6c98f00c479d706ef6b45227a32f3e00bde1f"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "621507ad2f1c0b3e7cee77777c3aee4b575c920b07ff6cce8e24e9633fecf81e",
+                                  "submission_id":  387076,
+                                  "status":  "AC",
+                                  "time":  0.222,
+                                  "memory":  48889856,
+                                  "submission_time":  "2026-07-22T02:52:37.334776Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

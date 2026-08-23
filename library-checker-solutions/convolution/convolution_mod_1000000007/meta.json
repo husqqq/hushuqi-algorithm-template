@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "convolution_mod_1000000007",
+    "title":  "Convolution (Mod 1,000,000,007)",
+    "category":  "convolution",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "40cdeeed6920918ddfb029c69eddf47929957845be798300ba72e85088687656"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "a7cf46697cfbc220eaac3cf25db9358083e4a24f71a350d8eed290b6f61af288",
+                                  "submission_id":  387168,
+                                  "status":  "AC",
+                                  "time":  0.441,
+                                  "memory":  39309312,
+                                  "submission_time":  "2026-07-22T03:31:15.206831Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

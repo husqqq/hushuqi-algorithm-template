@@ -1,0 +1,76 @@
+{
+  "schema_version": 3,
+  "name": "consecutive_terms_of_linear_recurrent_sequence",
+  "title": "Consecutive Terms of Linear Recurrent Sequence",
+  "category": "other",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "other/consecutive_terms_of_linear_recurrent_sequence/main.cpp",
+    "source_sha256": "e1531012e24317706c81c3a71995fb189588c9f633f8ad20bed5dac0d69d58a8"
+  },
+  "reference": {
+    "kind": "template",
+    "imported_sha256": "58d9614a7b3c1b0cffd679cc0e001b51559d292435698104a57559e7662b5435"
+  },
+  "historical_submission": {
+    "sha256": "ab3b03f6c21c0c4025a5c803a7618e32d37e2f3b5bc2a5424e183d3f3bf0b0a1",
+    "submission_id": 387165,
+    "status": "AC",
+    "time": 2.213,
+    "memory": 108601344,
+    "submission_time": "2026-07-22T03:30:40.609259Z"
+  },
+  "validation": {
+    "status": "online_ac",
+    "checked_at": "2026-08-21T21:48:58.251027Z",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch10_recurrence.cpp",
+      "hushuqi算法竞赛模板/tests/test_ch10_rational_block.cpp"
+    ],
+    "current_source_sha256": "e1531012e24317706c81c3a71995fb189588c9f633f8ad20bed5dac0d69d58a8",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395884,
+    "current_source_time": 2.397,
+    "current_source_memory": 28651520,
+    "current_source_submission_time": "2026-08-21T21:48:03.506824Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "e1531012e24317706c81c3a71995fb189588c9f633f8ad20bed5dac0d69d58a8",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 393991,
+      "source_sha256": "18fbf4b79291e584a833203a5c5128d43595154c525f2f2fbd03af6321e2a92c",
+      "server_source_sha256": "18fbf4b79291e584a833203a5c5128d43595154c525f2f2fbd03af6321e2a92c",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 2.542,
+      "memory": 28590080,
+      "submission_time": "2026-08-16T18:30:53.645682Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-16T18:30:53.805748Z",
+      "recorded_at": "2026-08-16T18:31:51.398054Z"
+    },
+    {
+      "submission_id": 395884,
+      "source_sha256": "e1531012e24317706c81c3a71995fb189588c9f633f8ad20bed5dac0d69d58a8",
+      "server_source_sha256": "e1531012e24317706c81c3a71995fb189588c9f633f8ad20bed5dac0d69d58a8",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 2.397,
+      "memory": 28651520,
+      "submission_time": "2026-08-21T21:48:03.506824Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T21:48:03.797387Z",
+      "recorded_at": "2026-08-21T21:48:58.250135Z"
+    }
+  ],
+  "notes": [
+    "reference、historical_submission 和旧 submission_attempts 只描述历史源码，不是当前 main.cpp 的在线判定。"
+  ]
+}

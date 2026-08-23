@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "min_plus_convolution_concave_arbitrary",
+  "title": "Min Plus Convolution (Concave and Arbitrary)",
+  "category": "convolution",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "convolution/min_plus_convolution_concave_arbitrary/main.cpp",
+    "source_sha256": "e5e5984349fc0292953e6b3f59fa49fe0c60c4c7db2f21fbf14f83566087227f"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "convolution",
+    "problem": "min_plus_convolution_concave_arbitrary"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "e5e5984349fc0292953e6b3f59fa49fe0c60c4c7db2f21fbf14f83566087227f",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch10_minplus.cpp"
+    ],
+    "checked_at": "2026-08-21T20:41:07.300002Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395837,
+    "current_source_time": 0.814,
+    "current_source_memory": 30703616,
+    "current_source_submission_time": "2026-08-21T20:40:10.534778Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "e5e5984349fc0292953e6b3f59fa49fe0c60c4c7db2f21fbf14f83566087227f",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395837,
+      "source_sha256": "e5e5984349fc0292953e6b3f59fa49fe0c60c4c7db2f21fbf14f83566087227f",
+      "server_source_sha256": "e5e5984349fc0292953e6b3f59fa49fe0c60c4c7db2f21fbf14f83566087227f",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.814,
+      "memory": 30703616,
+      "submission_time": "2026-08-21T20:40:10.534778Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T20:40:10.808906Z",
+      "recorded_at": "2026-08-21T20:41:07.299382Z"
+    }
+  ]
+}

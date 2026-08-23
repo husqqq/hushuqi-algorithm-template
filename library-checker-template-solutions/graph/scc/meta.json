@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "scc",
+  "title": "Strongly Connected Components",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/scc/main.cpp",
+    "source_sha256": "ab809facfb78e4d461eff0faf47d54bb73bdd4dd1d0ad41edb86a048e0648b3f"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "scc"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "ab809facfb78e4d461eff0faf47d54bb73bdd4dd1d0ad41edb86a048e0648b3f",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_components.cpp"
+    ],
+    "checked_at": "2026-08-21T09:54:53.839757Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395572,
+    "current_source_time": 0.344,
+    "current_source_memory": 77004800,
+    "current_source_submission_time": "2026-08-21T09:54:25.123097Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "ab809facfb78e4d461eff0faf47d54bb73bdd4dd1d0ad41edb86a048e0648b3f",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395572,
+      "source_sha256": "ab809facfb78e4d461eff0faf47d54bb73bdd4dd1d0ad41edb86a048e0648b3f",
+      "server_source_sha256": "ab809facfb78e4d461eff0faf47d54bb73bdd4dd1d0ad41edb86a048e0648b3f",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.344,
+      "memory": 77004800,
+      "submission_time": "2026-08-21T09:54:25.123097Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T09:54:25.304178Z",
+      "recorded_at": "2026-08-21T09:54:53.839080Z"
+    }
+  ]
+}

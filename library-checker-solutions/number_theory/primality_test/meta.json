@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "primality_test",
+    "title":  "Primality Test",
+    "category":  "number_theory",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "4f7fa3c1dce002af82c74196f1fbbf136fb4c4156be2ed57830d028112711ad7"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "4f7fa3c1dce002af82c74196f1fbbf136fb4c4156be2ed57830d028112711ad7",
+                                  "submission_id":  387090,
+                                  "status":  "AC",
+                                  "time":  0.33,
+                                  "memory":  1204224,
+                                  "submission_time":  "2026-07-22T02:57:11.909645Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

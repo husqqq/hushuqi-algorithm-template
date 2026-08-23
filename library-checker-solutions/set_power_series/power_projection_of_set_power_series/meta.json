@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "power_projection_of_set_power_series",
+    "title":  "Power Projection of Set Power Series",
+    "category":  "set_power_series",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "e9e4afbef64a12a47f867f01aac8385bff8f181c077aa9c237b1e895a3759af0"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "a6a9830283ef5eebfc1dd3a8f10399f1613ff62d54ecad8a75ed3c2ddaed107f",
+                                  "submission_id":  387148,
+                                  "status":  "AC",
+                                  "time":  1.409,
+                                  "memory":  122793984,
+                                  "submission_time":  "2026-07-22T03:21:52.518811Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

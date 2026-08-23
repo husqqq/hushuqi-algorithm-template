@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "global_minimum_cut_of_dynamic_star_augmented_graph",
+    "title":  "Global Minimum Cut of Dynamic Star Augmented Graph",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "377168ee95a6d30e873831e79348ab4c32c6ee05c1226036b2600a60cfbe43ac"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "d66397a04431295133d1e720753b76ea3d1a26efda12fc68665c3910c42871db",
+                                  "submission_id":  387055,
+                                  "status":  "AC",
+                                  "time":  1.333,
+                                  "memory":  13799424,
+                                  "submission_time":  "2026-07-22T02:43:27.527197Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

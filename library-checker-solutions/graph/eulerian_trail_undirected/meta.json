@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "eulerian_trail_undirected",
+    "title":  "Eulerian Trail (Undirected)",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "aa0750d1682cd1e5d096ac4a76693366f6db3e3aa4cd41fb519150b0248e4733"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "aa0750d1682cd1e5d096ac4a76693366f6db3e3aa4cd41fb519150b0248e4733",
+                                  "submission_id":  387057,
+                                  "status":  "AC",
+                                  "time":  0.07,
+                                  "memory":  19030016,
+                                  "submission_time":  "2026-07-22T02:45:28.299801Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

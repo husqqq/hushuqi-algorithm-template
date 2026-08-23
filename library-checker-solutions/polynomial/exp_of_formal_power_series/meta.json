@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "exp_of_formal_power_series",
+    "title":  "Exp of Formal Power Series",
+    "category":  "polynomial",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "6521d539e8005a00788c614027a3fe559921011079f967449d7d170c38e31b1a"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "575f57c424a66b7ef92c7a851bad3d5b9170977074749f8bab75a562ae3416e5",
+                                  "submission_id":  387136,
+                                  "status":  "AC",
+                                  "time":  1.577,
+                                  "memory":  25993216,
+                                  "submission_time":  "2026-07-22T03:16:00.903997Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

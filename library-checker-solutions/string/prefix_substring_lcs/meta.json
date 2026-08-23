@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "prefix_substring_lcs",
+    "title":  "Prefix-Substring LCS",
+    "category":  "string",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "62e3e0b0bdc5c7f3d36b33a5f215a656c22aecc121e1eeaeece3825923fd8f34"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "06381fa464c98653bfff9648cd69fb1cf7d76fdef25f56953803ba5bd51c94f4",
+                                  "submission_id":  387026,
+                                  "status":  "AC",
+                                  "time":  0.132,
+                                  "memory":  16814080,
+                                  "submission_time":  "2026-07-22T02:31:30.806899Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

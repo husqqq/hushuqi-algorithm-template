@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "discrete_logarithm_mod",
+    "title":  "Discrete Logarithm",
+    "category":  "number_theory",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "2c85ff8ef0de0076253ada035bf30ee8319a99d44092103fdf2e479c8e9a5cf0"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "d9d65e341bd17169b710876204b31cb2cf430ea68b506482a93fa275a9af0940",
+                                  "submission_id":  387098,
+                                  "status":  "AC",
+                                  "time":  0.176,
+                                  "memory":  2924544,
+                                  "submission_time":  "2026-07-22T02:59:04.907317Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

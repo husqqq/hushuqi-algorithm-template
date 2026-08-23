@@ -1,0 +1,30 @@
+{
+    "schema_version":  1,
+    "name":  "sum_of_exponential_times_polynomial",
+    "title":  "$\\sum_{i=0}^{n-1} r^i i^d$",
+    "category":  "other",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "other/sum_of_exponential_times_polynomial/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "3fd5a835c2c8ec07b635da0498503a8a1bdfbe6dfb0b71a002b47ef08bdd225d"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

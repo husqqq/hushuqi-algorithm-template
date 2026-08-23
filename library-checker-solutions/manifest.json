@@ -1,0 +1,2276 @@
+{
+    "schema_version":  1,
+    "generated_at":  "2026-08-03T22:16:21.962353+00:00",
+    "official_repository":  {
+                                "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                                "url":  "https://github.com/yosupo06/library-checker-problems"
+                            },
+    "problem_count":  251,
+    "counts":  {
+                   "historical_ac_same_source":  23,
+                   "historical_ac_source_changed":  144,
+                   "new_official_adaptation":  57,
+                   "unsubmitted_existing_source":  27
+               },
+    "problems":  [
+                     {
+                         "name":  "addition_of_big_integers",
+                         "title":  "Addition of Big Integers",
+                         "category":  "big_integer",
+                         "source":  "big_integer/addition_of_big_integers/main.cpp",
+                         "source_sha256":  "2667e4ed7a200d14ed22de836764df3c0047f0231821f12a68d58db60ceaec9b",
+                         "meta":  "big_integer/addition_of_big_integers/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "addition_of_hex_big_integers",
+                         "title":  "Addition of Hex Big Integers",
+                         "category":  "big_integer",
+                         "source":  "big_integer/addition_of_hex_big_integers/main.cpp",
+                         "source_sha256":  "864f798cd25e7cbcaa5dad84da0fc18dd0b8302809ae115401be6c3f737d0059",
+                         "meta":  "big_integer/addition_of_hex_big_integers/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "adjugate_matrix",
+                         "title":  "Adjugate Matrix",
+                         "category":  "linear_algebra",
+                         "source":  "linear_algebra/adjugate_matrix/main.cpp",
+                         "source_sha256":  "9ffc68ecb0c44a5da2519b8f0106f32e07f73ca37401e620ef3e643e9ac1a974",
+                         "meta":  "linear_algebra/adjugate_matrix/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "aho_corasick",
+                         "title":  "Aho Corasick",
+                         "category":  "string",
+                         "source":  "string/aho_corasick/main.cpp",
+                         "source_sha256":  "c46d85872cc51c51932982815f20822e2bc473404206f504dd1d2db3f52ead0d",
+                         "meta":  "string/aho_corasick/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "aplusb",
+                         "title":  "A + B",
+                         "category":  "sample",
+                         "source":  "sample/aplusb/main.cpp",
+                         "source_sha256":  "42c0184337d218989f0c54b17aebaddbd1a120b78531e5f3817bcc7795aec35d",
+                         "meta":  "sample/aplusb/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "area_of_union_of_rectangles",
+                         "title":  "Area of Union of Rectangles",
+                         "category":  "data_structure",
+                         "source":  "data_structure/area_of_union_of_rectangles/main.cpp",
+                         "source_sha256":  "ee268ba66083234a7173ed4219a6c325126568721670cb6b1aa145e822d50425",
+                         "meta":  "data_structure/area_of_union_of_rectangles/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "assignment",
+                         "title":  "Assignment Problem",
+                         "category":  "graph",
+                         "source":  "graph/assignment/main.cpp",
+                         "source_sha256":  "c736f6dafd48bab4419b1ac71cc3835602e1f734a27d7df96439d4a2d6bae4fb",
+                         "meta":  "graph/assignment/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "associative_array",
+                         "title":  "Associative Array",
+                         "category":  "data_structure",
+                         "source":  "data_structure/associative_array/main.cpp",
+                         "source_sha256":  "ea5e56ba847f30c2018ae8886cd4304802b5468dbf25a8aca06409a0e573682e",
+                         "meta":  "data_structure/associative_array/meta.json",
+                         "state":  "historical_ac_same_source"
+                     },
+                     {
+                         "name":  "bell_number",
+                         "title":  "Bell Number",
+                         "category":  "enumerative_combinatorics",
+                         "source":  "enumerative_combinatorics/bell_number/main.cpp",
+                         "source_sha256":  "d27ba5ebfae8ac861dea118c4005e1e439f9ba1616b5e58788147c57c48ea00a",
+                         "meta":  "enumerative_combinatorics/bell_number/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "bernoulli_number",
+                         "title":  "Bernoulli Number",
+                         "category":  "number_theory",
+                         "source":  "number_theory/bernoulli_number/main.cpp",
+                         "source_sha256":  "419e45a36af60ac3e9aee7c5cc0e63919240869744238953146597946c695f70",
+                         "meta":  "number_theory/bernoulli_number/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "biconnected_components",
+                         "title":  "Biconnected Components",
+                         "category":  "graph",
+                         "source":  "graph/biconnected_components/main.cpp",
+                         "source_sha256":  "9a6de4e04a828d485b067de559572c8f9a47b3c77a613663b6cdfa6f70cfc970",
+                         "meta":  "graph/biconnected_components/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "binomial_coefficient",
+                         "title":  "Binomial Coefficient",
+                         "category":  "enumerative_combinatorics",
+                         "source":  "enumerative_combinatorics/binomial_coefficient/main.cpp",
+                         "source_sha256":  "5468f0fe7078d89945cf20c2d4a7810d65caf9c66c1791714d33970182495699",
+                         "meta":  "enumerative_combinatorics/binomial_coefficient/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "binomial_coefficient_prime_mod",
+                         "title":  "Binomial Coefficient (Prime Mod)",
+                         "category":  "enumerative_combinatorics",
+                         "source":  "enumerative_combinatorics/binomial_coefficient_prime_mod/main.cpp",
+                         "source_sha256":  "b624f2cbe7a69b6edcb89366c3f28a071de66eaa6cfbacd8bbb092dc1a134c39",
+                         "meta":  "enumerative_combinatorics/binomial_coefficient_prime_mod/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "bipartite_edge_coloring",
+                         "title":  "Edge Coloring of Bipartite Graph",
+                         "category":  "graph",
+                         "source":  "graph/bipartite_edge_coloring/main.cpp",
+                         "source_sha256":  "8c1d6357694d89dbdd300a3b70c9e696d4ece50f53d845b4312245397027b8d5",
+                         "meta":  "graph/bipartite_edge_coloring/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "bipartitematching",
+                         "title":  "Matching on Bipartite Graph",
+                         "category":  "graph",
+                         "source":  "graph/bipartitematching/main.cpp",
+                         "source_sha256":  "e3db176fbe12ae7302df96054b7598df0acdd4fd8aaf91c7731727671a610234",
+                         "meta":  "graph/bipartitematching/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "bitwise_and_convolution",
+                         "title":  "Bitwise And Convolution",
+                         "category":  "convolution",
+                         "source":  "convolution/bitwise_and_convolution/main.cpp",
+                         "source_sha256":  "1fba9ef3dfe330ea529e974f038a579803a75f4625ddda99c68e5472b4e2a6b1",
+                         "meta":  "convolution/bitwise_and_convolution/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "bitwise_xor_convolution",
+                         "title":  "Bitwise Xor Convolution",
+                         "category":  "convolution",
+                         "source":  "convolution/bitwise_xor_convolution/main.cpp",
+                         "source_sha256":  "cc0075ceee4980600c9d2baa00acbc0cd9f59e25f010dbbdc9637ff0e3d7f4bb",
+                         "meta":  "convolution/bitwise_xor_convolution/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "cartesian_tree",
+                         "title":  "Cartesian Tree",
+                         "category":  "tree",
+                         "source":  "tree/cartesian_tree/main.cpp",
+                         "source_sha256":  "d972041a2718f460c00647e68170d0e964a1cb17830ee115d0d698a1213c72a3",
+                         "meta":  "tree/cartesian_tree/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "characteristic_polynomial",
+                         "title":  "Characteristic Polynomial",
+                         "category":  "linear_algebra",
+                         "source":  "linear_algebra/characteristic_polynomial/main.cpp",
+                         "source_sha256":  "4318f9c9d70e3b8d886f759272fad1ac7e177a0f8bf59960f621f1b1ede66250",
+                         "meta":  "linear_algebra/characteristic_polynomial/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "chordal_graph_recognition",
+                         "title":  "Chordal Graph Recognition",
+                         "category":  "graph",
+                         "source":  "graph/chordal_graph_recognition/main.cpp",
+                         "source_sha256":  "4d2c59a29b4069946e77299d24ef9fe0bc3e67fed23478544818b8e46e58ab3c",
+                         "meta":  "graph/chordal_graph_recognition/meta.json",
+                         "state":  "historical_ac_same_source"
+                     },
+                     {
+                         "name":  "chromatic_number",
+                         "title":  "Chromatic Number",
+                         "category":  "graph",
+                         "source":  "graph/chromatic_number/main.cpp",
+                         "source_sha256":  "eb5d3e5fd448ed3a6be2c404e54678ba19032bd4255acb1f60d3f25ebd0012fd",
+                         "meta":  "graph/chromatic_number/meta.json",
+                         "state":  "historical_ac_same_source"
+                     },
+                     {
+                         "name":  "chromatic_polynomial",
+                         "title":  "Chromatic Polynomial",
+                         "category":  "graph",
+                         "source":  "graph/chromatic_polynomial/main.cpp",
+                         "source_sha256":  "a4f4f5642202881b36a0eab042bed90e3544214dfb1b8a31ca10d9f81d1902db",
+                         "meta":  "graph/chromatic_polynomial/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "closest_pair",
+                         "title":  "Closest Pair of Points",
+                         "category":  "geo",
+                         "source":  "geo/closest_pair/main.cpp",
+                         "source_sha256":  "f8ca42c8b9ddda7bfe971403268e69c3f2968ac1a6d953a013be95515f84dedc",
+                         "meta":  "geo/closest_pair/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "common_interval_decomposition_tree",
+                         "title":  "Common Interval Decomposition Tree",
+                         "category":  "tree",
+                         "source":  "tree/common_interval_decomposition_tree/main.cpp",
+                         "source_sha256":  "b189e76f71f0dd30be5c0acfe0cc3c94a7aae4f6a188f48b6b6b8785268be22c",
+                         "meta":  "tree/common_interval_decomposition_tree/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "compositional_inverse_of_formal_power_series",
+                         "title":  "Compositional Inverse of Formal Power Series",
+                         "category":  "polynomial",
+                         "source":  "polynomial/compositional_inverse_of_formal_power_series/main.cpp",
+                         "source_sha256":  "0f624ccd8f5df1276a26b8c4cb338dfb3d6bb8abab26d6a5cf2b951bebca2596",
+                         "meta":  "polynomial/compositional_inverse_of_formal_power_series/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "compositional_inverse_of_formal_power_series_large",
+                         "title":  "Compositional Inverse of Formal Power Series (Large)",
+                         "category":  "polynomial",
+                         "source":  "polynomial/compositional_inverse_of_formal_power_series_large/main.cpp",
+                         "source_sha256":  "c4cb5b9828714efbbd38e82882196cc13bd429ecb350bcfd738bfe9240cdd914",
+                         "meta":  "polynomial/compositional_inverse_of_formal_power_series_large/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "composition_of_formal_power_series",
+                         "title":  "Composition of Formal Power Series",
+                         "category":  "polynomial",
+                         "source":  "polynomial/composition_of_formal_power_series/main.cpp",
+                         "source_sha256":  "13a8eed96326cf93481fe3589209138a58b0b0db0820ac0435400a68347b2186",
+                         "meta":  "polynomial/composition_of_formal_power_series/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "composition_of_formal_power_series_large",
+                         "title":  "Composition of Formal Power Series (Large)",
+                         "category":  "polynomial",
+                         "source":  "polynomial/composition_of_formal_power_series_large/main.cpp",
+                         "source_sha256":  "6daeab9bf2f82146001bca9bf18315f1bcbb3a72106af0c01380a5a88963d0fe",
+                         "meta":  "polynomial/composition_of_formal_power_series_large/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "connected_components_of_complement_graph",
+                         "title":  "Connected Components of Complement Graph",
+                         "category":  "graph",
+                         "source":  "graph/connected_components_of_complement_graph/main.cpp",
+                         "source_sha256":  "f788861d245d11f67adc6ef2f1d5ae8323530613eb673876a981708399a9c3ac",
+                         "meta":  "graph/connected_components_of_complement_graph/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "consecutive_terms_of_linear_recurrent_sequence",
+                         "title":  "Consecutive Terms of Linear Recurrent Sequence",
+                         "category":  "other",
+                         "source":  "other/consecutive_terms_of_linear_recurrent_sequence/main.cpp",
+                         "source_sha256":  "58d9614a7b3c1b0cffd679cc0e001b51559d292435698104a57559e7662b5435",
+                         "meta":  "other/consecutive_terms_of_linear_recurrent_sequence/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "conversion_from_monomial_basis_to_newton_basis",
+                         "title":  "Conversion from Monomial Basis to Newton Basis",
+                         "category":  "polynomial",
+                         "source":  "polynomial/conversion_from_monomial_basis_to_newton_basis/main.cpp",
+                         "source_sha256":  "33a2d33bacffd5382e59428b068afbc584c034a5a73efe2a28f7f7d4da752132",
+                         "meta":  "polynomial/conversion_from_monomial_basis_to_newton_basis/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "convex_layers",
+                         "title":  "Convex Layers",
+                         "category":  "geo",
+                         "source":  "geo/convex_layers/main.cpp",
+                         "source_sha256":  "f266315e07151528c4b7c6c218a8b1feb692adb10ac427aaf94b4810b2c1473a",
+                         "meta":  "geo/convex_layers/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "convolution_F_2_64",
+                         "title":  "Convolution ($\\mathbb{F}_{2^{64}}$)",
+                         "category":  "convolution",
+                         "source":  "convolution/convolution_F_2_64/main.cpp",
+                         "source_sha256":  "743624e2f0706862cd8a476026306828ea2fce2429296c3e55cd4247934a0b69",
+                         "meta":  "convolution/convolution_F_2_64/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "convolution_mod",
+                         "title":  "Convolution",
+                         "category":  "convolution",
+                         "source":  "convolution/convolution_mod/main.cpp",
+                         "source_sha256":  "99f6dd6c02881043c6f11f65e0df9f59ea7eb24d420f622dbe6032ef853bd5bf",
+                         "meta":  "convolution/convolution_mod/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "convolution_mod_1000000007",
+                         "title":  "Convolution (Mod 1,000,000,007)",
+                         "category":  "convolution",
+                         "source":  "convolution/convolution_mod_1000000007/main.cpp",
+                         "source_sha256":  "40cdeeed6920918ddfb029c69eddf47929957845be798300ba72e85088687656",
+                         "meta":  "convolution/convolution_mod_1000000007/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "convolution_mod_2_64",
+                         "title":  "Convolution (Mod 2^64)",
+                         "category":  "convolution",
+                         "source":  "convolution/convolution_mod_2_64/main.cpp",
+                         "source_sha256":  "fb7a614ebf03d232978b281efa617b235c73a5d63fbe11613790f70be8a5727d",
+                         "meta":  "convolution/convolution_mod_2_64/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "convolution_mod_large",
+                         "title":  "Convolution (Large)",
+                         "category":  "convolution",
+                         "source":  "convolution/convolution_mod_large/main.cpp",
+                         "source_sha256":  "6c8a1e14fd02b8dfb1147ba86308af2fbadce7ae24bc2c09de666b7ec0081cf7",
+                         "meta":  "convolution/convolution_mod_large/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "counting_c4",
+                         "title":  "Counting $C _ 4$\u0027s",
+                         "category":  "graph",
+                         "source":  "graph/counting_c4/main.cpp",
+                         "source_sha256":  "4978f0b46c0dc7f1df8066c857c48e22dafa8b8625d06fb599a7388a8c740ef2",
+                         "meta":  "graph/counting_c4/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "counting_eulerian_circuits",
+                         "title":  "Counting Eulerian Circuits",
+                         "category":  "graph",
+                         "source":  "graph/counting_eulerian_circuits/main.cpp",
+                         "source_sha256":  "1c90902daa0189106527bddde3a2e432db84c71c70424003cd9dec12afb0ef44",
+                         "meta":  "graph/counting_eulerian_circuits/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "counting_primes",
+                         "title":  "Counting Primes",
+                         "category":  "number_theory",
+                         "source":  "number_theory/counting_primes/main.cpp",
+                         "source_sha256":  "9f33a4b31f0eb087e89fdfb5b278c2e95644c8ad95cf0b4eec06a22c9a8dde2d",
+                         "meta":  "number_theory/counting_primes/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "counting_spanning_tree_directed",
+                         "title":  "Counting Spanning Trees (Directed)",
+                         "category":  "graph",
+                         "source":  "graph/counting_spanning_tree_directed/main.cpp",
+                         "source_sha256":  "e46d35372a2c1d97b27767ed66d750c2510668b40f73408b19fd631d500fe3bb",
+                         "meta":  "graph/counting_spanning_tree_directed/meta.json",
+                         "state":  "historical_ac_same_source"
+                     },
+                     {
+                         "name":  "counting_spanning_tree_undirected",
+                         "title":  "Counting Spanning Trees (Undirected)",
+                         "category":  "graph",
+                         "source":  "graph/counting_spanning_tree_undirected/main.cpp",
+                         "source_sha256":  "ac58c5d0d36e9244339f24d9ff12b1fcf0f1f15426782392cfc2b06402e82657",
+                         "meta":  "graph/counting_spanning_tree_undirected/meta.json",
+                         "state":  "historical_ac_same_source"
+                     },
+                     {
+                         "name":  "counting_squarefrees",
+                         "title":  "Counting Square-free Integers",
+                         "category":  "number_theory",
+                         "source":  "number_theory/counting_squarefrees/main.cpp",
+                         "source_sha256":  "4c560a84ef9188c12d61cacce8a43a63ab0a9d453228b0756e6ea81d478fe689",
+                         "meta":  "number_theory/counting_squarefrees/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "count_points_in_triangle",
+                         "title":  "Count Points in Triangles",
+                         "category":  "geo",
+                         "source":  "geo/count_points_in_triangle/main.cpp",
+                         "source_sha256":  "1f6b4746c93e89afa1e0cf4e842b54873a0988257a052145478a1e7c8ab3326b",
+                         "meta":  "geo/count_points_in_triangle/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "cycle_detection",
+                         "title":  "Cycle Detection (Directed)",
+                         "category":  "graph",
+                         "source":  "graph/cycle_detection/main.cpp",
+                         "source_sha256":  "9c76464dcf01ef3a754f58f4e4f534c46ca470bb100fdf81f1963abdc06d7879",
+                         "meta":  "graph/cycle_detection/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "cycle_detection_undirected",
+                         "title":  "Cycle Detection (Undirected)",
+                         "category":  "graph",
+                         "source":  "graph/cycle_detection_undirected/main.cpp",
+                         "source_sha256":  "10893c396fec4a5da8c8275d0dc35db8ba97d105a6a10a44a1caeb5ecaf5bf91",
+                         "meta":  "graph/cycle_detection_undirected/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "deque",
+                         "title":  "Deque",
+                         "category":  "data_structure",
+                         "source":  "data_structure/deque/main.cpp",
+                         "source_sha256":  "2973da61b12e54d942039c56c2b98c6c141cff023529fb97c1894cca0367d406",
+                         "meta":  "data_structure/deque/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "deque_operate_all_composite",
+                         "title":  "Deque Operate All Composite",
+                         "category":  "data_structure",
+                         "source":  "data_structure/deque_operate_all_composite/main.cpp",
+                         "source_sha256":  "7c03d78b8a89788238251fdd174064f5bbff7a5cdc5a14f98ce097dfa7afeb84",
+                         "meta":  "data_structure/deque_operate_all_composite/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "directedmst",
+                         "title":  "Directed MST",
+                         "category":  "graph",
+                         "source":  "graph/directedmst/main.cpp",
+                         "source_sha256":  "da07edf09de893da71cad317ae225f10235b0390b1c673e356e1c35365dfea3d",
+                         "meta":  "graph/directedmst/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "dirichlet_convolution_and_prefix_sums",
+                         "title":  "Dirichlet Convolution and Prefix Sums",
+                         "category":  "number_theory",
+                         "source":  "number_theory/dirichlet_convolution_and_prefix_sums/main.cpp",
+                         "source_sha256":  "ec611c9498599bd26abfdf7eed8905f8af11e4aa49f3793a3b3a42a6a963fd60",
+                         "meta":  "number_theory/dirichlet_convolution_and_prefix_sums/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "dirichlet_inverse_and_prefix_sums",
+                         "title":  "Dirichlet Inverse and Prefix Sums",
+                         "category":  "number_theory",
+                         "source":  "number_theory/dirichlet_inverse_and_prefix_sums/main.cpp",
+                         "source_sha256":  "f875d889b1b72909e9966c3fe77f3f6a5e7e04ff2eccb237617787281467edb6",
+                         "meta":  "number_theory/dirichlet_inverse_and_prefix_sums/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "discrete_logarithm_fixed_mod",
+                         "title":  "Discrete Logarithm (Fixed Mod)",
+                         "category":  "number_theory",
+                         "source":  "number_theory/discrete_logarithm_fixed_mod/main.cpp",
+                         "source_sha256":  "55174798a0d1700f42f051e03f706a1ed1305348fa2f38ebf672e425e615d02b",
+                         "meta":  "number_theory/discrete_logarithm_fixed_mod/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "discrete_logarithm_mod",
+                         "title":  "Discrete Logarithm",
+                         "category":  "number_theory",
+                         "source":  "number_theory/discrete_logarithm_mod/main.cpp",
+                         "source_sha256":  "2c85ff8ef0de0076253ada035bf30ee8319a99d44092103fdf2e479c8e9a5cf0",
+                         "meta":  "number_theory/discrete_logarithm_mod/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "division_of_big_integers",
+                         "title":  "Division of Big Integers",
+                         "category":  "big_integer",
+                         "source":  "big_integer/division_of_big_integers/main.cpp",
+                         "source_sha256":  "b18ac5659c6dfe1e097a930d564cabecb9813e6c40b561c0e4db9e2b0620bd64",
+                         "meta":  "big_integer/division_of_big_integers/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "division_of_hex_big_integers",
+                         "title":  "Division of Hex Big Integers",
+                         "category":  "big_integer",
+                         "source":  "big_integer/division_of_hex_big_integers/main.cpp",
+                         "source_sha256":  "3821921719c867d99ed4e1df90ce7b41a5531bc5b12095f48f0a4a91f73141c2",
+                         "meta":  "big_integer/division_of_hex_big_integers/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "division_of_polynomials",
+                         "title":  "Division of Polynomials",
+                         "category":  "polynomial",
+                         "source":  "polynomial/division_of_polynomials/main.cpp",
+                         "source_sha256":  "f8112c4b0dbb686188b0b8efe79479fc173a9f95c125bea56d811e530d39e8c2",
+                         "meta":  "polynomial/division_of_polynomials/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "dominatortree",
+                         "title":  "Dominator Tree",
+                         "category":  "graph",
+                         "source":  "graph/dominatortree/main.cpp",
+                         "source_sha256":  "34a3bb51d255817f41ddb1da6d2dcc398c75d051aa4016c322893e117b8c8ee0",
+                         "meta":  "graph/dominatortree/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "double_ended_priority_queue",
+                         "title":  "Double-Ended Priority Queue",
+                         "category":  "data_structure",
+                         "source":  "data_structure/double_ended_priority_queue/main.cpp",
+                         "source_sha256":  "af7a70cca9c9858ca482c871f1450ccb48a1d52b1de646aa9b722f28f2fd48d8",
+                         "meta":  "data_structure/double_ended_priority_queue/meta.json",
+                         "state":  "historical_ac_same_source"
+                     },
+                     {
+                         "name":  "dynamic_graph_vertex_add_component_sum",
+                         "title":  "Dynamic Graph Vertex Add Component Sum",
+                         "category":  "graph",
+                         "source":  "graph/dynamic_graph_vertex_add_component_sum/main.cpp",
+                         "source_sha256":  "5d1051f31e365fcec71cef956dfb2b85f76031b46bca89798615e8b8ed61330d",
+                         "meta":  "graph/dynamic_graph_vertex_add_component_sum/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "dynamic_point_set_rectangle_affine_rectangle_sum",
+                         "title":  "Dynamic Point Rectangle Affine Rectangle Sum",
+                         "category":  "data_structure",
+                         "source":  "data_structure/dynamic_point_set_rectangle_affine_rectangle_sum/main.cpp",
+                         "source_sha256":  "54332705d4d743cca597fb537f5cf917e7a573cc6b76397b1e7bd82e030bfd8a",
+                         "meta":  "data_structure/dynamic_point_set_rectangle_affine_rectangle_sum/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "dynamic_sequence_range_affine_range_sum",
+                         "title":  "Dynamic Sequence Range Affine Range Sum",
+                         "category":  "data_structure",
+                         "source":  "data_structure/dynamic_sequence_range_affine_range_sum/main.cpp",
+                         "source_sha256":  "5e4b49c3a15c21e4d2db78cde11ef1dd86bd0fff047eb4dec1c450cb6cd28989",
+                         "meta":  "data_structure/dynamic_sequence_range_affine_range_sum/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "dynamic_tree_subtree_add_subtree_sum",
+                         "title":  "Dynamic Tree Subtree Add Subtree Sum",
+                         "category":  "tree",
+                         "source":  "tree/dynamic_tree_subtree_add_subtree_sum/main.cpp",
+                         "source_sha256":  "7856f94efcc7344f8b6f9ab7879a4b7f735593b5c0ad96b5ca8616c0403b0892",
+                         "meta":  "tree/dynamic_tree_subtree_add_subtree_sum/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "dynamic_tree_vertex_add_path_sum",
+                         "title":  "Dynamic Tree Vertex Add Path Sum",
+                         "category":  "tree",
+                         "source":  "tree/dynamic_tree_vertex_add_path_sum/main.cpp",
+                         "source_sha256":  "46031729c8e29614e9698bab877c6d49d93e1f3b8f83fafaf7ab19fb18a326b1",
+                         "meta":  "tree/dynamic_tree_vertex_add_path_sum/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "dynamic_tree_vertex_add_subtree_sum",
+                         "title":  "Dynamic Tree Vertex Add Subtree Sum",
+                         "category":  "tree",
+                         "source":  "tree/dynamic_tree_vertex_add_subtree_sum/main.cpp",
+                         "source_sha256":  "fe84a8d0d6af38b5d25416ebba1779e9de4ce914072094afe5ff4735b37ebc34",
+                         "meta":  "tree/dynamic_tree_vertex_add_subtree_sum/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "dynamic_tree_vertex_set_path_composite",
+                         "title":  "Dynamic Tree Vertex Set Path Composite",
+                         "category":  "tree",
+                         "source":  "tree/dynamic_tree_vertex_set_path_composite/main.cpp",
+                         "source_sha256":  "d7fd1cf748ccbdc0dbec54fa4436ecec5d4c7e55a26b4a2b08f7da59c4620888",
+                         "meta":  "tree/dynamic_tree_vertex_set_path_composite/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "eertree",
+                         "title":  "Eertree",
+                         "category":  "string",
+                         "source":  "string/eertree/main.cpp",
+                         "source_sha256":  "43bb08571440c76049e9e759ca2cc2d7b52ea6adf5a5cf4267d4d2e03374aa84",
+                         "meta":  "string/eertree/meta.json",
+                         "state":  "historical_ac_same_source"
+                     },
+                     {
+                         "name":  "enumerate_cliques",
+                         "title":  "Enumerate Cliques",
+                         "category":  "graph",
+                         "source":  "graph/enumerate_cliques/main.cpp",
+                         "source_sha256":  "b5ab137966dec36f05d860250df73731076e89b069d5286ae8dd2aa9669762f5",
+                         "meta":  "graph/enumerate_cliques/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "enumerate_palindromes",
+                         "title":  "Enumerate Palindromes",
+                         "category":  "string",
+                         "source":  "string/enumerate_palindromes/main.cpp",
+                         "source_sha256":  "10942b984f218327a5a00868e1ee2f08d67f4e62fa938286093e08f3b0ab77c3",
+                         "meta":  "string/enumerate_palindromes/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "enumerate_primes",
+                         "title":  "Enumerate Primes",
+                         "category":  "number_theory",
+                         "source":  "number_theory/enumerate_primes/main.cpp",
+                         "source_sha256":  "4619a43b485fcaeb77a086fcf1e5fb3e6353672db5ee0f3129c9ec1132c27f47",
+                         "meta":  "number_theory/enumerate_primes/meta.json",
+                         "state":  "historical_ac_same_source"
+                     },
+                     {
+                         "name":  "enumerate_quotients",
+                         "title":  "Enumerate Quotients",
+                         "category":  "number_theory",
+                         "source":  "number_theory/enumerate_quotients/main.cpp",
+                         "source_sha256":  "40506a05972b17dfd6e169f7c516018f14568940eb21ffd3e5e1c14a86d157ff",
+                         "meta":  "number_theory/enumerate_quotients/meta.json",
+                         "state":  "historical_ac_same_source"
+                     },
+                     {
+                         "name":  "enumerate_triangles",
+                         "title":  "Enumerate Triangles",
+                         "category":  "graph",
+                         "source":  "graph/enumerate_triangles/main.cpp",
+                         "source_sha256":  "2ba05ad25661009e16640012890312d7ba8d81daeacb5eed44ee6ff604cd01b9",
+                         "meta":  "graph/enumerate_triangles/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "euclidean_mst",
+                         "title":  "Euclidean MST",
+                         "category":  "geo",
+                         "source":  "geo/euclidean_mst/main.cpp",
+                         "source_sha256":  "063719d4b4a5db249a3bec3f6869d02c587577fbed82e4e170388963ecbd62b0",
+                         "meta":  "geo/euclidean_mst/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "eulerian_trail_directed",
+                         "title":  "Eulerian Trail (Directed)",
+                         "category":  "graph",
+                         "source":  "graph/eulerian_trail_directed/main.cpp",
+                         "source_sha256":  "5007dee707df26dc3c23a30faaadc488ef4649b4036912dcd682dfad796b3e6c",
+                         "meta":  "graph/eulerian_trail_directed/meta.json",
+                         "state":  "historical_ac_same_source"
+                     },
+                     {
+                         "name":  "eulerian_trail_undirected",
+                         "title":  "Eulerian Trail (Undirected)",
+                         "category":  "graph",
+                         "source":  "graph/eulerian_trail_undirected/main.cpp",
+                         "source_sha256":  "aa0750d1682cd1e5d096ac4a76693366f6db3e3aa4cd41fb519150b0248e4733",
+                         "meta":  "graph/eulerian_trail_undirected/meta.json",
+                         "state":  "historical_ac_same_source"
+                     },
+                     {
+                         "name":  "exp_of_formal_power_series",
+                         "title":  "Exp of Formal Power Series",
+                         "category":  "polynomial",
+                         "source":  "polynomial/exp_of_formal_power_series/main.cpp",
+                         "source_sha256":  "6521d539e8005a00788c614027a3fe559921011079f967449d7d170c38e31b1a",
+                         "meta":  "polynomial/exp_of_formal_power_series/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "exp_of_formal_power_series_sparse",
+                         "title":  "Exp of Formal Power Series (Sparse)",
+                         "category":  "polynomial",
+                         "source":  "polynomial/exp_of_formal_power_series_sparse/main.cpp",
+                         "source_sha256":  "a6098af89ec42bc259d97f8d1226beb85fab6f2ba2485aec9fe522ed113e326e",
+                         "meta":  "polynomial/exp_of_formal_power_series_sparse/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "exp_of_set_power_series",
+                         "title":  "Exp of Set Power Series",
+                         "category":  "set_power_series",
+                         "source":  "set_power_series/exp_of_set_power_series/main.cpp",
+                         "source_sha256":  "6a806d2a64dfe05dbf6e3c59e01145223ceeab3a5a655a91a9b024ba5f6251c8",
+                         "meta":  "set_power_series/exp_of_set_power_series/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "factorial",
+                         "title":  "Factorial",
+                         "category":  "enumerative_combinatorics",
+                         "source":  "enumerative_combinatorics/factorial/main.cpp",
+                         "source_sha256":  "2f033de7c1b08f35c94d9fe0332226988d3a9be548aaf8bc2def58d4cde01744",
+                         "meta":  "enumerative_combinatorics/factorial/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "factorization_of_polynomials",
+                         "title":  "Factorization of Polynomial (Mod)",
+                         "category":  "polynomial",
+                         "source":  "polynomial/factorization_of_polynomials/main.cpp",
+                         "source_sha256":  "1af5c803ba154bb0c586df7e6e0b5e254558432897086ff28bacf552f061902e",
+                         "meta":  "polynomial/factorization_of_polynomials/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "factorize",
+                         "title":  "Factorize",
+                         "category":  "number_theory",
+                         "source":  "number_theory/factorize/main.cpp",
+                         "source_sha256":  "fd8e4b9c83d09853221139fa46c219e82e053f93e93880cafda7ca1185b94415",
+                         "meta":  "number_theory/factorize/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "find_linear_recurrence",
+                         "title":  "Find Linear Recurrence",
+                         "category":  "other",
+                         "source":  "other/find_linear_recurrence/main.cpp",
+                         "source_sha256":  "df5e93196aec91ed0717c9213fc4f2ab70a586f6251a59e3991f25c5fbc6a8d6",
+                         "meta":  "other/find_linear_recurrence/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "frequency_table_of_tree_distance",
+                         "title":  "Frequency Table of Tree Distance",
+                         "category":  "tree",
+                         "source":  "tree/frequency_table_of_tree_distance/main.cpp",
+                         "source_sha256":  "7bb5fc66985a0759ec99d8fb72c0626e97f1c8c4dcc700f25dc0a7309fb89bbd",
+                         "meta":  "tree/frequency_table_of_tree_distance/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "furthest_pair",
+                         "title":  "Furthest Pair of Points",
+                         "category":  "geo",
+                         "source":  "geo/furthest_pair/main.cpp",
+                         "source_sha256":  "437fb5ea339ab8a12415efa7fab92c30483f91d969168fcb933ebeea427cf156",
+                         "meta":  "geo/furthest_pair/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "gcd_convolution",
+                         "title":  "Gcd Convolution",
+                         "category":  "convolution",
+                         "source":  "convolution/gcd_convolution/main.cpp",
+                         "source_sha256":  "03e4709f41104a85bd19c94eaa71885797dd6b451f7f0e8d3d3f4d73ad7f07b3",
+                         "meta":  "convolution/gcd_convolution/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "gcd_of_gaussian_integers",
+                         "title":  "Gcd of Gaussian Integers",
+                         "category":  "number_theory",
+                         "source":  "number_theory/gcd_of_gaussian_integers/main.cpp",
+                         "source_sha256":  "77a5a672c186f194a7c11d6b330ca27d66f378ec9799c115855322a1425b4d3a",
+                         "meta":  "number_theory/gcd_of_gaussian_integers/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "general_matching",
+                         "title":  "Matching on General Graph",
+                         "category":  "graph",
+                         "source":  "graph/general_matching/main.cpp",
+                         "source_sha256":  "ba007777b951dd77c3c4b96534371164fd43e394b273541e5ec3f774b8ba00f2",
+                         "meta":  "graph/general_matching/meta.json",
+                         "state":  "historical_ac_same_source"
+                     },
+                     {
+                         "name":  "general_weighted_matching",
+                         "title":  "General Weighted Matching",
+                         "category":  "graph",
+                         "source":  "graph/general_weighted_matching/main.cpp",
+                         "source_sha256":  "0ba0e4a8b244163ebe4e6c5d5cfd3fc93e3ca07769942c4ee3762e1e8f0c5f6d",
+                         "meta":  "graph/general_weighted_matching/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "global_minimum_cut_of_dynamic_star_augmented_graph",
+                         "title":  "Global Minimum Cut of Dynamic Star Augmented Graph",
+                         "category":  "graph",
+                         "source":  "graph/global_minimum_cut_of_dynamic_star_augmented_graph/main.cpp",
+                         "source_sha256":  "377168ee95a6d30e873831e79348ab4c32c6ee05c1226036b2600a60cfbe43ac",
+                         "meta":  "graph/global_minimum_cut_of_dynamic_star_augmented_graph/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "hafnian_of_matrix",
+                         "title":  "Hafnian of Matrix",
+                         "category":  "linear_algebra",
+                         "source":  "linear_algebra/hafnian_of_matrix/main.cpp",
+                         "source_sha256":  "a9f32aea6a0d373ff45cae02069bec619b70def267e3ba69f3d6c4b35ae64210",
+                         "meta":  "linear_algebra/hafnian_of_matrix/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "incremental_minimum_spanning_forest",
+                         "title":  "Incremental Minimum Spanning Forest",
+                         "category":  "graph",
+                         "source":  "graph/incremental_minimum_spanning_forest/main.cpp",
+                         "source_sha256":  "ce0ab918d0aac9a1944ee1c4204665e4d2bb5f36384d8cffba453a66351b763f",
+                         "meta":  "graph/incremental_minimum_spanning_forest/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "incremental_scc",
+                         "title":  "Strongly Connected Components (Incremental)",
+                         "category":  "graph",
+                         "source":  "graph/incremental_scc/main.cpp",
+                         "source_sha256":  "a7316504a7d0e9ba9f53c2115b2bdd1213da60277705b0d77f8e2b5105ba2c3d",
+                         "meta":  "graph/incremental_scc/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "intersection_of_f2_vector_spaces",
+                         "title":  "Intersection of $\\mathbb{F}_{2}$ vector spaces",
+                         "category":  "linear_algebra",
+                         "source":  "linear_algebra/intersection_of_f2_vector_spaces/main.cpp",
+                         "source_sha256":  "d49f243de7908da82089231054f3b043774db823aa1eb49ecd0fddc96f72eaa1",
+                         "meta":  "linear_algebra/intersection_of_f2_vector_spaces/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "inverse_matrix",
+                         "title":  "Inverse Matrix",
+                         "category":  "linear_algebra",
+                         "source":  "linear_algebra/inverse_matrix/main.cpp",
+                         "source_sha256":  "1dd07aee596bbf9d23b55bedd615e8dc43837c41ffdb7bfcc794f0f37ae55ab2",
+                         "meta":  "linear_algebra/inverse_matrix/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "inverse_matrix_mod_2",
+                         "title":  "Inverse Matrix (Mod 2)",
+                         "category":  "linear_algebra",
+                         "source":  "linear_algebra/inverse_matrix_mod_2/main.cpp",
+                         "source_sha256":  "d6471ddc049524f34a9aceffd8aba9ba1b05e75d65244acd0cce0a0b49d633c2",
+                         "meta":  "linear_algebra/inverse_matrix_mod_2/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "inv_of_formal_power_series",
+                         "title":  "Inv of Formal Power Series",
+                         "category":  "polynomial",
+                         "source":  "polynomial/inv_of_formal_power_series/main.cpp",
+                         "source_sha256":  "b25993610a408c16fd7679ee1c68e589123b77e62dcde408c3cc76097f188081",
+                         "meta":  "polynomial/inv_of_formal_power_series/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "inv_of_formal_power_series_2d",
+                         "title":  "Inv of Bivariate Formal Power Series",
+                         "category":  "polynomial",
+                         "source":  "polynomial/inv_of_formal_power_series_2d/main.cpp",
+                         "source_sha256":  "d0f770245c9bed3d09b6193f7b8b99ecae663ff2002cad43cabc1d900c99cff3",
+                         "meta":  "polynomial/inv_of_formal_power_series_2d/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "inv_of_formal_power_series_sparse",
+                         "title":  "Inv of Formal Power Series (Sparse)",
+                         "category":  "polynomial",
+                         "source":  "polynomial/inv_of_formal_power_series_sparse/main.cpp",
+                         "source_sha256":  "c4250d7203134d3a70de7781bd58e140ba2e8a35e8a859b08806b270c58aa411",
+                         "meta":  "polynomial/inv_of_formal_power_series_sparse/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "inv_of_polynomials",
+                         "title":  "Inv of Polynomials",
+                         "category":  "polynomial",
+                         "source":  "polynomial/inv_of_polynomials/main.cpp",
+                         "source_sha256":  "8e0d424c2635fb817b4c6ea9d6a7a3b76e2ddc53abf04643eb51968bcabf10b2",
+                         "meta":  "polynomial/inv_of_polynomials/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "jump_on_tree",
+                         "title":  "Jump on Tree",
+                         "category":  "tree",
+                         "source":  "tree/jump_on_tree/main.cpp",
+                         "source_sha256":  "1d5f7b7cd2a861e94eec30b0f54d01c2105ff6465c7162d30532423af6fde417",
+                         "meta":  "tree/jump_on_tree/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "k_shortest_walk",
+                         "title":  "K-Shortest Walk",
+                         "category":  "graph",
+                         "source":  "graph/k_shortest_walk/main.cpp",
+                         "source_sha256":  "d06cc19a487abdceef5310e80b236c425fa348619741fb86cb381a56e185538c",
+                         "meta":  "graph/k_shortest_walk/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "kth_root_integer",
+                         "title":  "Kth Root (Integer)",
+                         "category":  "number_theory",
+                         "source":  "number_theory/kth_root_integer/main.cpp",
+                         "source_sha256":  "b8edbd83083db325360a94a600ca6eb677d61b82a4bc0b3ced80591dd95476ea",
+                         "meta":  "number_theory/kth_root_integer/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "kth_root_mod",
+                         "title":  "Kth Root (Mod)",
+                         "category":  "number_theory",
+                         "source":  "number_theory/kth_root_mod/main.cpp",
+                         "source_sha256":  "0eff7459921b032b48337a2ec0acc20ba7b8d5f9dd312f4a621f9a78d51ead9f",
+                         "meta":  "number_theory/kth_root_mod/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "kth_term_of_linearly_recurrent_sequence",
+                         "title":  "Kth term of Linearly Recurrent Sequence",
+                         "category":  "other",
+                         "source":  "other/kth_term_of_linearly_recurrent_sequence/main.cpp",
+                         "source_sha256":  "93ba4f439c8001a79f0701176bd9ccc333b0c316528fcab0bce3d5ad3319af99",
+                         "meta":  "other/kth_term_of_linearly_recurrent_sequence/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "lca",
+                         "title":  "Lowest Common Ancestor",
+                         "category":  "tree",
+                         "source":  "tree/lca/main.cpp",
+                         "source_sha256":  "2eed117546ca8455c20af696fa3d3adf023a7b38aed3cb9e341cc83f9adea03d",
+                         "meta":  "tree/lca/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "lcm_convolution",
+                         "title":  "Lcm Convolution",
+                         "category":  "convolution",
+                         "source":  "convolution/lcm_convolution/main.cpp",
+                         "source_sha256":  "e388ebec41c388553ad124aa10a9d0b856bd58d009d4a6a7668ce6051b7a75d4",
+                         "meta":  "convolution/lcm_convolution/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "line_add_get_min",
+                         "title":  "Line Add Get Min",
+                         "category":  "data_structure",
+                         "source":  "data_structure/line_add_get_min/main.cpp",
+                         "source_sha256":  "a8039c00169bfa22b057131410238a8ad41cb8d710c9fe04683eb08aaf5f6996",
+                         "meta":  "data_structure/line_add_get_min/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "log_of_formal_power_series",
+                         "title":  "Log of Formal Power Series",
+                         "category":  "polynomial",
+                         "source":  "polynomial/log_of_formal_power_series/main.cpp",
+                         "source_sha256":  "6c40a1d7ce67254e802d07923712d8836eae297821f562c893af2a37d73e2b4f",
+                         "meta":  "polynomial/log_of_formal_power_series/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "log_of_formal_power_series_sparse",
+                         "title":  "Log of Formal Power Series (Sparse)",
+                         "category":  "polynomial",
+                         "source":  "polynomial/log_of_formal_power_series_sparse/main.cpp",
+                         "source_sha256":  "7a1b5eafe65d13391ff712f4d3d862add9095bfb47a672f1518ea36476953e32",
+                         "meta":  "polynomial/log_of_formal_power_series_sparse/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "log_of_set_power_series",
+                         "title":  "Log of Set Power Series",
+                         "category":  "set_power_series",
+                         "source":  "set_power_series/log_of_set_power_series/main.cpp",
+                         "source_sha256":  "feeb22ebdccb670ae8186b04f46ffebf58d37de9f3a78602594d03e7ca11c381",
+                         "meta":  "set_power_series/log_of_set_power_series/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "longest_common_substring",
+                         "title":  "Longest Common Substring",
+                         "category":  "string",
+                         "source":  "string/longest_common_substring/main.cpp",
+                         "source_sha256":  "976fbfc405c089ab7a51cc08ffb8fb80e76c1e42d17eed91981c23842b4a5d0d",
+                         "meta":  "string/longest_common_substring/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "longest_increasing_subsequence",
+                         "title":  "Longest Increasing Subsequence",
+                         "category":  "other",
+                         "source":  "other/longest_increasing_subsequence/main.cpp",
+                         "source_sha256":  "271465709b6482629860f79ff7786acab7b245e7b738bae44432ae327f25ba9b",
+                         "meta":  "other/longest_increasing_subsequence/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "lyndon_factorization",
+                         "title":  "Lyndon Factorization",
+                         "category":  "string",
+                         "source":  "string/lyndon_factorization/main.cpp",
+                         "source_sha256":  "a6e1447ddd663cf2669287d8ae1df4cb16babe0a27679ac26704eaa858387931",
+                         "meta":  "string/lyndon_factorization/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "majority_voting",
+                         "title":  "Majority Voting",
+                         "category":  "data_structure",
+                         "source":  "data_structure/majority_voting/main.cpp",
+                         "source_sha256":  "6ce563ad1d55d7f62a577c4b2ec8b699dc9ab47b54ece9be15178f7059ac25b1",
+                         "meta":  "data_structure/majority_voting/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "manhattanmst",
+                         "title":  "Manhattan MST",
+                         "category":  "geo",
+                         "source":  "geo/manhattanmst/main.cpp",
+                         "source_sha256":  "93f3b3e1b66bb1c90646a091734fe91808a0712a8e48d5afdb0144cc6aecce7c",
+                         "meta":  "geo/manhattanmst/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "many_aplusb",
+                         "title":  "Many A + B",
+                         "category":  "sample",
+                         "source":  "sample/many_aplusb/main.cpp",
+                         "source_sha256":  "19b213f4a63ee16c53b7b280081942fd31576a1d9e979dcc80e07a06ccf11e94",
+                         "meta":  "sample/many_aplusb/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "many_aplusb_128bit",
+                         "title":  "Many A + B (128 bit)",
+                         "category":  "sample",
+                         "source":  "sample/many_aplusb_128bit/main.cpp",
+                         "source_sha256":  "36f8387d8b2f041f3eb0685982725a375bce43a4e390ed803b191c816470f90c",
+                         "meta":  "sample/many_aplusb_128bit/meta.json",
+                         "state":  "historical_ac_same_source"
+                     },
+                     {
+                         "name":  "many_factorials",
+                         "title":  "Many Factorials",
+                         "category":  "enumerative_combinatorics",
+                         "source":  "enumerative_combinatorics/many_factorials/main.cpp",
+                         "source_sha256":  "1e35162328c6aa360c46cf312cf869cc4bd7cb00df287ab1f0504d8a22cd3478",
+                         "meta":  "enumerative_combinatorics/many_factorials/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "matrix_det",
+                         "title":  "Determinant of Matrix",
+                         "category":  "linear_algebra",
+                         "source":  "linear_algebra/matrix_det/main.cpp",
+                         "source_sha256":  "e95c2963aec64a3101b9109acf03b409d46c204469d4d6caf0de7da4f5f31e80",
+                         "meta":  "linear_algebra/matrix_det/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "matrix_det_arbitrary_mod",
+                         "title":  "Determinant of Matrix (Arbitrary Mod)",
+                         "category":  "linear_algebra",
+                         "source":  "linear_algebra/matrix_det_arbitrary_mod/main.cpp",
+                         "source_sha256":  "b6ab52f2e74ee3e7d4babcca5b9f6e2ace8e8ab15a0c024596b44066edbe78ca",
+                         "meta":  "linear_algebra/matrix_det_arbitrary_mod/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "matrix_det_mod_2",
+                         "title":  "Determinant of Matrix (Mod 2)",
+                         "category":  "linear_algebra",
+                         "source":  "linear_algebra/matrix_det_mod_2/main.cpp",
+                         "source_sha256":  "f7baae1985e67991864119c74fbb0f9e176f5039661e1156aa4ad5e96b93c4af",
+                         "meta":  "linear_algebra/matrix_det_mod_2/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "matrix_product",
+                         "title":  "Matrix Product",
+                         "category":  "linear_algebra",
+                         "source":  "linear_algebra/matrix_product/main.cpp",
+                         "source_sha256":  "502e15fa371ebd040227741404824320cd0be13dd5212e5179ba077484c55352",
+                         "meta":  "linear_algebra/matrix_product/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "matrix_product_mod_2",
+                         "title":  "Matrix Product (Mod 2)",
+                         "category":  "linear_algebra",
+                         "source":  "linear_algebra/matrix_product_mod_2/main.cpp",
+                         "source_sha256":  "acda4a0d635e9f5b1fd0108a989007a5ea1b8b4b8f8b83cf3123623208192d05",
+                         "meta":  "linear_algebra/matrix_product_mod_2/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "matrix_rank",
+                         "title":  "Rank of Matrix",
+                         "category":  "linear_algebra",
+                         "source":  "linear_algebra/matrix_rank/main.cpp",
+                         "source_sha256":  "6bd450baca96847551267fa71ee0da42783a2ff7d1def8531f581b96bc6ff5c8",
+                         "meta":  "linear_algebra/matrix_rank/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "matrix_rank_mod_2",
+                         "title":  "Rank of Matrix (Mod 2)",
+                         "category":  "linear_algebra",
+                         "source":  "linear_algebra/matrix_rank_mod_2/main.cpp",
+                         "source_sha256":  "d366320aa73d1e11931276f2f693fec43d13e9bc06d7178141a70e69425196b0",
+                         "meta":  "linear_algebra/matrix_rank_mod_2/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "maximum_independent_set",
+                         "title":  "Maximum Independent Set",
+                         "category":  "graph",
+                         "source":  "graph/maximum_independent_set/main.cpp",
+                         "source_sha256":  "192db013310cf537c15752bc87cb832ec7129ee32356611d33f65b4927422269",
+                         "meta":  "graph/maximum_independent_set/meta.json",
+                         "state":  "historical_ac_same_source"
+                     },
+                     {
+                         "name":  "min_cost_b_flow",
+                         "title":  "Minimum Cost b-flow",
+                         "category":  "graph",
+                         "source":  "graph/min_cost_b_flow/main.cpp",
+                         "source_sha256":  "128afeb897703fb07ac687b05d1b859f76aae993b78ff1b50e604360c4f2fe45",
+                         "meta":  "graph/min_cost_b_flow/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "minimum_diameter_spanning_tree",
+                         "title":  "Minimum Diameter Spanning Tree",
+                         "category":  "graph",
+                         "source":  "graph/minimum_diameter_spanning_tree/main.cpp",
+                         "source_sha256":  "149e1b0c209149fa5fb613695d2bac683efb5c3e0e5c480a6a98c036ee7b1167",
+                         "meta":  "graph/minimum_diameter_spanning_tree/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "minimum_enclosing_circle",
+                         "title":  "Minimum Enclosing Circle",
+                         "category":  "geo",
+                         "source":  "geo/minimum_enclosing_circle/main.cpp",
+                         "source_sha256":  "39c8a115fa212a6d19a2c43e1acda3d65466faa6ba09e94807480ee290487080",
+                         "meta":  "geo/minimum_enclosing_circle/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "minimum_spanning_tree",
+                         "title":  "Minimum Spanning Tree",
+                         "category":  "graph",
+                         "source":  "graph/minimum_spanning_tree/main.cpp",
+                         "source_sha256":  "bec6d12e0619a2fe7b2b68ae000dc02837f4b56b37f1cf82c6b504887de669c9",
+                         "meta":  "graph/minimum_spanning_tree/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "minimum_steiner_tree",
+                         "title":  "Minimum Steiner Tree",
+                         "category":  "graph",
+                         "source":  "graph/minimum_steiner_tree/main.cpp",
+                         "source_sha256":  "89e252fa44ebaeaebdaadcd43e808359a5a1b6c83e56fd4330d0998cee61b41d",
+                         "meta":  "graph/minimum_steiner_tree/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "min_of_mod_of_linear",
+                         "title":  "Min of Mod of Linear",
+                         "category":  "number_theory",
+                         "source":  "number_theory/min_of_mod_of_linear/main.cpp",
+                         "source_sha256":  "59d38bfb676a61aebae32fb7ac86697a7c6aa80c7fdd7975d7436b29d1a504b1",
+                         "meta":  "number_theory/min_of_mod_of_linear/meta.json",
+                         "state":  "historical_ac_same_source"
+                     },
+                     {
+                         "name":  "min_plus_convolution_concave_arbitrary",
+                         "title":  "Min Plus Convolution (Concave and Arbitrary)",
+                         "category":  "convolution",
+                         "source":  "convolution/min_plus_convolution_concave_arbitrary/main.cpp",
+                         "source_sha256":  "263ab201cc77a6ca56fa2351d076f65c4705ff4278d45b087b4324c0d574c30d",
+                         "meta":  "convolution/min_plus_convolution_concave_arbitrary/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "min_plus_convolution_convex_arbitrary",
+                         "title":  "Min Plus Convolution (Convex and Arbitrary)",
+                         "category":  "convolution",
+                         "source":  "convolution/min_plus_convolution_convex_arbitrary/main.cpp",
+                         "source_sha256":  "c36509b1a7c998809e15a8c8987d107aff88a37f7513c9d024a737c16fc32d9c",
+                         "meta":  "convolution/min_plus_convolution_convex_arbitrary/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "min_plus_convolution_convex_convex",
+                         "title":  "Min Plus Convolution (Convex and Convex)",
+                         "category":  "convolution",
+                         "source":  "convolution/min_plus_convolution_convex_convex/main.cpp",
+                         "source_sha256":  "d60c0cf94ad09b04df3f954ad593309d711b105bb3b4a838a5a417ead39d3a17",
+                         "meta":  "convolution/min_plus_convolution_convex_convex/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "montmort_number_mod",
+                         "title":  "Montmort Number",
+                         "category":  "enumerative_combinatorics",
+                         "source":  "enumerative_combinatorics/montmort_number_mod/main.cpp",
+                         "source_sha256":  "4e30ff726171b1d51e979328c40441a479a9c22b8e10be8501635ee8d9741790",
+                         "meta":  "enumerative_combinatorics/montmort_number_mod/meta.json",
+                         "state":  "historical_ac_same_source"
+                     },
+                     {
+                         "name":  "mul_mod2n_convolution",
+                         "title":  "Convolution on the Multiplicative Monoid of $\\mathbb{Z} / 2^N\\mathbb{Z}$",
+                         "category":  "convolution",
+                         "source":  "convolution/mul_mod2n_convolution/main.cpp",
+                         "source_sha256":  "973aa96880787318dece81da01d754896854bf18e01e777278c7b2b2682d2128",
+                         "meta":  "convolution/mul_mod2n_convolution/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "mul_modp_convolution",
+                         "title":  "Convolution on the Multiplicative Monoid of $\\mathbb{Z} / P\\mathbb{Z}$",
+                         "category":  "convolution",
+                         "source":  "convolution/mul_modp_convolution/main.cpp",
+                         "source_sha256":  "5c29ee4c1fb20adb8d75bc3a4e5f7f7d803ef481ada0b4c2e606b8b132e8180e",
+                         "meta":  "convolution/mul_modp_convolution/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "multiplication_of_big_integers",
+                         "title":  "Multiplication of Big Integers",
+                         "category":  "big_integer",
+                         "source":  "big_integer/multiplication_of_big_integers/main.cpp",
+                         "source_sha256":  "d2ec760cc52afa8140057d8563ae64272ec035c5b7c1d18d9b19c97624c769a0",
+                         "meta":  "big_integer/multiplication_of_big_integers/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "multiplication_of_hex_big_integers",
+                         "title":  "Multiplication of Hex Big Integers",
+                         "category":  "big_integer",
+                         "source":  "big_integer/multiplication_of_hex_big_integers/main.cpp",
+                         "source_sha256":  "75fb1ec525a73252955f86088bff63001c3ef168c740331761db96a118c06f7f",
+                         "meta":  "big_integer/multiplication_of_hex_big_integers/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "multipoint_evaluation",
+                         "title":  "Multipoint Evaluation",
+                         "category":  "polynomial",
+                         "source":  "polynomial/multipoint_evaluation/main.cpp",
+                         "source_sha256":  "1adf0e26c2942989195d7cd600796cb56c17a63eb5df1240cce063a3ec6d94ee",
+                         "meta":  "polynomial/multipoint_evaluation/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "multipoint_evaluation_on_geometric_sequence",
+                         "title":  "Multipoint Evaluation (Geometric Sequence)",
+                         "category":  "polynomial",
+                         "source":  "polynomial/multipoint_evaluation_on_geometric_sequence/main.cpp",
+                         "source_sha256":  "f2352c9288c34647f992cd88af8c5a3295a55256956c82fce6b3ddfe6f2d2094",
+                         "meta":  "polynomial/multipoint_evaluation_on_geometric_sequence/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "multivariate_convolution",
+                         "title":  "Multidimensional Convolution (Truncated)",
+                         "category":  "convolution",
+                         "source":  "convolution/multivariate_convolution/main.cpp",
+                         "source_sha256":  "3d310943dc7860c33c4e0c2c4521302e825944625902644e694af67a38295438",
+                         "meta":  "convolution/multivariate_convolution/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "multivariate_convolution_cyclic",
+                         "title":  "Multidimensional Convolution (Circular)",
+                         "category":  "convolution",
+                         "source":  "convolution/multivariate_convolution_cyclic/main.cpp",
+                         "source_sha256":  "adb110c9126023ffbd93caf7990d7f11de487a5604edb59e15b3deb236d4134c",
+                         "meta":  "convolution/multivariate_convolution_cyclic/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "nim_product_64",
+                         "title":  "Nim Product ($\\mathbb{F}_{2^{64}}$)",
+                         "category":  "number_theory",
+                         "source":  "number_theory/nim_product_64/main.cpp",
+                         "source_sha256":  "4ea72a458e1231d294791633700798a8d5fe7bb5afb8b6540995988c8d963b03",
+                         "meta":  "number_theory/nim_product_64/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "number_of_increasing_sequences_between_two_sequences",
+                         "title":  "Number of Increasing Sequences Between Two Sequences",
+                         "category":  "enumerative_combinatorics",
+                         "source":  "enumerative_combinatorics/number_of_increasing_sequences_between_two_sequences/main.cpp",
+                         "source_sha256":  "1c643fc3ec7150cf15e8dde019e57568da84f9ce0cc421231b62d5b8a6cdae8c",
+                         "meta":  "enumerative_combinatorics/number_of_increasing_sequences_between_two_sequences/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "number_of_subsequences",
+                         "title":  "Number of Subsequences ",
+                         "category":  "enumerative_combinatorics",
+                         "source":  "enumerative_combinatorics/number_of_subsequences/main.cpp",
+                         "source_sha256":  "5cb91670bb9c059578d0b4e4f25dcff8fa09cea17a27752f5d608f6f965c821d",
+                         "meta":  "enumerative_combinatorics/number_of_subsequences/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "number_of_substrings",
+                         "title":  "Number of Substrings",
+                         "category":  "string",
+                         "source":  "string/number_of_substrings/main.cpp",
+                         "source_sha256":  "a5a1400358c4c5ddb9beaa9a7f5a0bb2713b194be6f68640eee3092a531f427f",
+                         "meta":  "string/number_of_substrings/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "ordered_set",
+                         "title":  "Ordered Set",
+                         "category":  "data_structure",
+                         "source":  "data_structure/ordered_set/main.cpp",
+                         "source_sha256":  "04b27bfbe382739f0e1ea79f2af7abe7627a490ac2dbb6362fa0aacf015d1018",
+                         "meta":  "data_structure/ordered_set/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "palindromes_in_deque",
+                         "title":  "Palindromes in Deque",
+                         "category":  "string",
+                         "source":  "string/palindromes_in_deque/main.cpp",
+                         "source_sha256":  "153419b057a2b1fc05744675743e358a614ea3b7d725afc176fd0a8b4ec24de4",
+                         "meta":  "string/palindromes_in_deque/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "partition_function",
+                         "title":  "Partition Function",
+                         "category":  "enumerative_combinatorics",
+                         "source":  "enumerative_combinatorics/partition_function/main.cpp",
+                         "source_sha256":  "40a18b508468c6750d83415aff90955a9050e94db679543bd594396b508f5d7c",
+                         "meta":  "enumerative_combinatorics/partition_function/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "persistent_queue",
+                         "title":  "Persistent Queue",
+                         "category":  "data_structure",
+                         "source":  "data_structure/persistent_queue/main.cpp",
+                         "source_sha256":  "af90cc4d4f23a17f4c029a0a67886e20924417e20d98d55d36f7732af59906ac",
+                         "meta":  "data_structure/persistent_queue/meta.json",
+                         "state":  "historical_ac_same_source"
+                     },
+                     {
+                         "name":  "persistent_range_affine_range_sum",
+                         "title":  "Persistent Range Affine Range Sum",
+                         "category":  "data_structure",
+                         "source":  "data_structure/persistent_range_affine_range_sum/main.cpp",
+                         "source_sha256":  "d07dd84186e71b7b0ac4313dda3bda3a7b7fb047de903dc61cbba87058ff1d32",
+                         "meta":  "data_structure/persistent_range_affine_range_sum/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "persistent_unionfind",
+                         "title":  "Persistent Unionfind",
+                         "category":  "data_structure",
+                         "source":  "data_structure/persistent_unionfind/main.cpp",
+                         "source_sha256":  "72baf943fc69f0daf315943f047f9266f4ca0eb85d2486dacb2aef95e82297b7",
+                         "meta":  "data_structure/persistent_unionfind/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "pfaffian_of_matrix",
+                         "title":  "Pfaffian of Matrix",
+                         "category":  "linear_algebra",
+                         "source":  "linear_algebra/pfaffian_of_matrix/main.cpp",
+                         "source_sha256":  "dfe93280f66192d28e69a209c0dc78fa25f6ebf0632cffa170d8c6a093be469a",
+                         "meta":  "linear_algebra/pfaffian_of_matrix/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "point_add_range_sum",
+                         "title":  "Point Add Range Sum",
+                         "category":  "data_structure",
+                         "source":  "data_structure/point_add_range_sum/main.cpp",
+                         "source_sha256":  "92f3e746f74e5654df5b7d382f78ee2f778489f16a0c5ed5047fe2b4e70aaec3",
+                         "meta":  "data_structure/point_add_range_sum/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "point_add_rectangle_sum",
+                         "title":  "Point Add Rectangle Sum",
+                         "category":  "data_structure",
+                         "source":  "data_structure/point_add_rectangle_sum/main.cpp",
+                         "source_sha256":  "2efb4549499c26790bdca28db4ea6f3396d999f3646d05536d6be41b4a241ea2",
+                         "meta":  "data_structure/point_add_rectangle_sum/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "point_set_range_composite",
+                         "title":  "Point Set Range Composite",
+                         "category":  "data_structure",
+                         "source":  "data_structure/point_set_range_composite/main.cpp",
+                         "source_sha256":  "5e03f8781bae3e5eb03148a1793e77fd650d9ecd8f50aaa51387f621a47bf47a",
+                         "meta":  "data_structure/point_set_range_composite/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "point_set_range_composite_large_array",
+                         "title":  "Point Set Range Composite (Large Array)",
+                         "category":  "data_structure",
+                         "source":  "data_structure/point_set_range_composite_large_array/main.cpp",
+                         "source_sha256":  "53d74bd04b89682d49f727575c0a546341c26501736dc610188f999e748ef9ed",
+                         "meta":  "data_structure/point_set_range_composite_large_array/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "point_set_range_frequency",
+                         "title":  "Point Set Range Frequency",
+                         "category":  "data_structure",
+                         "source":  "data_structure/point_set_range_frequency/main.cpp",
+                         "source_sha256":  "15fc64b166910f85569329c74e97ddb0b49f76c618a227ea12846a1aee9ed1cc",
+                         "meta":  "data_structure/point_set_range_frequency/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "point_set_range_sort_range_composite",
+                         "title":  "Point Set Range Sort Range Composite",
+                         "category":  "data_structure",
+                         "source":  "data_structure/point_set_range_sort_range_composite/main.cpp",
+                         "source_sha256":  "93a7e13d760cbd12af6467bb5a58e813b892997576c2cf62c19fb5e9b0015994",
+                         "meta":  "data_structure/point_set_range_sort_range_composite/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "point_set_tree_path_composite_sum",
+                         "title":  "Point Set Tree Path Composite Sum",
+                         "category":  "tree",
+                         "source":  "tree/point_set_tree_path_composite_sum/main.cpp",
+                         "source_sha256":  "cf2774e5f9d6fad3b14988435e445e4d5dadd016686ab4a5197db7d42437f4bf",
+                         "meta":  "tree/point_set_tree_path_composite_sum/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "point_set_tree_path_composite_sum_fixed_root",
+                         "title":  "Point Set Tree Path Composite Sum (Fixed Root)",
+                         "category":  "tree",
+                         "source":  "tree/point_set_tree_path_composite_sum_fixed_root/main.cpp",
+                         "source_sha256":  "d9180777faf994f5cec3057dcb172b4af78ed67eae783892bb61ab213cb7048a",
+                         "meta":  "tree/point_set_tree_path_composite_sum_fixed_root/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "polynomial_composite_set_power_series",
+                         "title":  "Polynomial Composite Set Power Series",
+                         "category":  "set_power_series",
+                         "source":  "set_power_series/polynomial_composite_set_power_series/main.cpp",
+                         "source_sha256":  "9d45037a900fe04a814461be0aa8fbc9b8744298e8b5f44cbdae16898ad0a809",
+                         "meta":  "set_power_series/polynomial_composite_set_power_series/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "polynomial_interpolation",
+                         "title":  "Polynomial Interpolation",
+                         "category":  "polynomial",
+                         "source":  "polynomial/polynomial_interpolation/main.cpp",
+                         "source_sha256":  "48361dfe6438cb8da41c6c7005136b7f8f52a5ba427c02d7a35d628502291cb5",
+                         "meta":  "polynomial/polynomial_interpolation/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "polynomial_interpolation_on_geometric_sequence",
+                         "title":  "Polynomial Interpolation (Geometric Sequence)",
+                         "category":  "polynomial",
+                         "source":  "polynomial/polynomial_interpolation_on_geometric_sequence/main.cpp",
+                         "source_sha256":  "07625f95a3010aa488d31f30dcc7e20845cc994cf7b16b1e936e455365e1daae",
+                         "meta":  "polynomial/polynomial_interpolation_on_geometric_sequence/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "polynomial_root_finding",
+                         "title":  "Polynomial Root Finding (Mod 998244353)",
+                         "category":  "polynomial",
+                         "source":  "polynomial/polynomial_root_finding/main.cpp",
+                         "source_sha256":  "927444a157dbac6e6be833f3275e37328392bd2246ac97aa3e7b8b9f5ff0a997",
+                         "meta":  "polynomial/polynomial_root_finding/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "polynomial_taylor_shift",
+                         "title":  "Polynomial Taylor Shift",
+                         "category":  "polynomial",
+                         "source":  "polynomial/polynomial_taylor_shift/main.cpp",
+                         "source_sha256":  "73db27de236f9327301ed83999398803d5b79905f03383a2992f312bea59c7ca",
+                         "meta":  "polynomial/polynomial_taylor_shift/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "power_projection_of_set_power_series",
+                         "title":  "Power Projection of Set Power Series",
+                         "category":  "set_power_series",
+                         "source":  "set_power_series/power_projection_of_set_power_series/main.cpp",
+                         "source_sha256":  "e9e4afbef64a12a47f867f01aac8385bff8f181c077aa9c237b1e895a3759af0",
+                         "meta":  "set_power_series/power_projection_of_set_power_series/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "pow_of_formal_power_series",
+                         "title":  "Pow of Formal Power Series",
+                         "category":  "polynomial",
+                         "source":  "polynomial/pow_of_formal_power_series/main.cpp",
+                         "source_sha256":  "68b3444dbd900f72a021c097a2c830727bdfb0280a3e22593c8c9426899bf8c1",
+                         "meta":  "polynomial/pow_of_formal_power_series/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "pow_of_formal_power_series_sparse",
+                         "title":  "Pow of Formal Power Series (Sparse)",
+                         "category":  "polynomial",
+                         "source":  "polynomial/pow_of_formal_power_series_sparse/main.cpp",
+                         "source_sha256":  "a2505a9c36d8b0a76076040c0e0eda01d550459845e0fd0eb4e26f1618187b90",
+                         "meta":  "polynomial/pow_of_formal_power_series_sparse/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "pow_of_matrix",
+                         "title":  "Pow of Matrix",
+                         "category":  "linear_algebra",
+                         "source":  "linear_algebra/pow_of_matrix/main.cpp",
+                         "source_sha256":  "3fb188f7d5be0fd6ed5e2ef5279a09545d550966d8fb69aadc9bea8ff5ee20d4",
+                         "meta":  "linear_algebra/pow_of_matrix/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "predecessor_problem",
+                         "title":  "Predecessor Problem",
+                         "category":  "data_structure",
+                         "source":  "data_structure/predecessor_problem/main.cpp",
+                         "source_sha256":  "26ce86832e03263cdf5d4c82e449c6b9e13953d264910e5818fe6ed67fdfb625",
+                         "meta":  "data_structure/predecessor_problem/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "prefix_substring_lcs",
+                         "title":  "Prefix-Substring LCS",
+                         "category":  "string",
+                         "source":  "string/prefix_substring_lcs/main.cpp",
+                         "source_sha256":  "62e3e0b0bdc5c7f3d36b33a5f215a656c22aecc121e1eeaeece3825923fd8f34",
+                         "meta":  "string/prefix_substring_lcs/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "primality_test",
+                         "title":  "Primality Test",
+                         "category":  "number_theory",
+                         "source":  "number_theory/primality_test/main.cpp",
+                         "source_sha256":  "4f7fa3c1dce002af82c74196f1fbbf136fb4c4156be2ed57830d028112711ad7",
+                         "meta":  "number_theory/primality_test/meta.json",
+                         "state":  "historical_ac_same_source"
+                     },
+                     {
+                         "name":  "primitive_root",
+                         "title":  "Primitive Root",
+                         "category":  "number_theory",
+                         "source":  "number_theory/primitive_root/main.cpp",
+                         "source_sha256":  "88aaff708a5063e3dab5d374237f408f18687632fdbd36e9a9ae5e800579aa86",
+                         "meta":  "number_theory/primitive_root/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "product_of_polynomial_sequence",
+                         "title":  "Product of Polynomial Sequence",
+                         "category":  "polynomial",
+                         "source":  "polynomial/product_of_polynomial_sequence/main.cpp",
+                         "source_sha256":  "38d88912bcd33d280d0709ac3da98386307d31efb3808f2eae4cc3e3a5aca202",
+                         "meta":  "polynomial/product_of_polynomial_sequence/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "q_binomial_coefficient_prime_mod",
+                         "title":  "$q$-Binomial Coefficient (Prime Mod)",
+                         "category":  "enumerative_combinatorics",
+                         "source":  "enumerative_combinatorics/q_binomial_coefficient_prime_mod/main.cpp",
+                         "source_sha256":  "bfc4a3fc992c2b1970c5e89ecb3ea757da60d3a497edb792bed8bea5bf0765f6",
+                         "meta":  "enumerative_combinatorics/q_binomial_coefficient_prime_mod/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "queue_operate_all_composite",
+                         "title":  "Queue Operate All Composite",
+                         "category":  "data_structure",
+                         "source":  "data_structure/queue_operate_all_composite/main.cpp",
+                         "source_sha256":  "9f588bedf6fff4257053193832ca8ef955f62ed7e316ef257ac868f7dcb9fe90",
+                         "meta":  "data_structure/queue_operate_all_composite/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "range_add_range_min",
+                         "title":  "Range Add Range Min",
+                         "category":  "data_structure",
+                         "source":  "data_structure/range_add_range_min/main.cpp",
+                         "source_sha256":  "272bdfd3b0163120315964498823c93f09d8de7738bfb34352df5f7ca9d16658",
+                         "meta":  "data_structure/range_add_range_min/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "range_affine_point_get",
+                         "title":  "Range Affine Point Get",
+                         "category":  "data_structure",
+                         "source":  "data_structure/range_affine_point_get/main.cpp",
+                         "source_sha256":  "7a687ea5b2326618d7c7f09f4d55c6c7b0773afd0e5966fca47f81f976bb1e57",
+                         "meta":  "data_structure/range_affine_point_get/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "range_affine_range_sum",
+                         "title":  "Range Affine Range Sum",
+                         "category":  "data_structure",
+                         "source":  "data_structure/range_affine_range_sum/main.cpp",
+                         "source_sha256":  "6151c0728cf5cffc599eda9de52e99b4e4104643fdd15a900d7eeb191ad5f9d5",
+                         "meta":  "data_structure/range_affine_range_sum/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "range_affine_range_sum_large_array",
+                         "title":  "Range Affine Range Sum (Large Array)",
+                         "category":  "data_structure",
+                         "source":  "data_structure/range_affine_range_sum_large_array/main.cpp",
+                         "source_sha256":  "1a3b04547e1eae74dc37cf6a89a097149b622915cb3ce0406fc70cc44c653e07",
+                         "meta":  "data_structure/range_affine_range_sum_large_array/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "range_chmin_chmax_add_range_sum",
+                         "title":  "Range Chmin Chmax Add Range Sum",
+                         "category":  "data_structure",
+                         "source":  "data_structure/range_chmin_chmax_add_range_sum/main.cpp",
+                         "source_sha256":  "80528f71442ed0140af6779a1b9d12162a9e9c419470670b847edc0eb1318a1e",
+                         "meta":  "data_structure/range_chmin_chmax_add_range_sum/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "range_kth_smallest",
+                         "title":  "Range Kth Smallest",
+                         "category":  "data_structure",
+                         "source":  "data_structure/range_kth_smallest/main.cpp",
+                         "source_sha256":  "7a83686a06c639b888da5aca88dc098d1e043ea9e3e5969b234ccbe413ae174a",
+                         "meta":  "data_structure/range_kth_smallest/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "range_linear_add_range_min",
+                         "title":  "Range Linear Add Range Min",
+                         "category":  "data_structure",
+                         "source":  "data_structure/range_linear_add_range_min/main.cpp",
+                         "source_sha256":  "d27995ad17131fc8e8a40bfaede746288e07ac55e1772323ac149cfd7cd4fe84",
+                         "meta":  "data_structure/range_linear_add_range_min/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "range_parallel_unionfind",
+                         "title":  "Range Parallel Unionfind",
+                         "category":  "data_structure",
+                         "source":  "data_structure/range_parallel_unionfind/main.cpp",
+                         "source_sha256":  "d9f4a446cc3a8d0db2fb5a18e9d4d9af852272c4141dd34318e2edb1222f8a52",
+                         "meta":  "data_structure/range_parallel_unionfind/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "range_reverse_range_sum",
+                         "title":  "Range Reverse Range Sum",
+                         "category":  "data_structure",
+                         "source":  "data_structure/range_reverse_range_sum/main.cpp",
+                         "source_sha256":  "201140b033d066f03ab7f862c192ee2af9a9fdb736f0fb3eca9a25db38bebd37",
+                         "meta":  "data_structure/range_reverse_range_sum/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "range_set_range_composite",
+                         "title":  "Range Set Range Composite",
+                         "category":  "data_structure",
+                         "source":  "data_structure/range_set_range_composite/main.cpp",
+                         "source_sha256":  "af3b11d79d3384e39209b7012f76e9807b758647157bca53a97a2ffb4dc490d7",
+                         "meta":  "data_structure/range_set_range_composite/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "rational_approximation",
+                         "title":  "Rational Approximation",
+                         "category":  "number_theory",
+                         "source":  "number_theory/rational_approximation/main.cpp",
+                         "source_sha256":  "75c6d64364725b4bfa3bcc9662860d9be5a44f2ba7e13517799553ca82e6dc0c",
+                         "meta":  "number_theory/rational_approximation/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "rectangle_add_point_get",
+                         "title":  "Rectangle Add Point Get",
+                         "category":  "data_structure",
+                         "source":  "data_structure/rectangle_add_point_get/main.cpp",
+                         "source_sha256":  "0627fed59112adc16e622b1f7d9dd98dbd87fa57b2294fbea6a67f2557534cff",
+                         "meta":  "data_structure/rectangle_add_point_get/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "rectangle_sum",
+                         "title":  "Rectangle Sum",
+                         "category":  "data_structure",
+                         "source":  "data_structure/rectangle_sum/main.cpp",
+                         "source_sha256":  "94007fa8c44172acb4016a9999c9d61f47d596da07cd8d1adcd1b069b4f7aa82",
+                         "meta":  "data_structure/rectangle_sum/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "rooted_tree_isomorphism_classification",
+                         "title":  "Rooted Tree Isomorphism Classification",
+                         "category":  "tree",
+                         "source":  "tree/rooted_tree_isomorphism_classification/main.cpp",
+                         "source_sha256":  "6577d0df640d2fcc79ad69329653283bbd081764794871b048e6ad3212c4c53d",
+                         "meta":  "tree/rooted_tree_isomorphism_classification/meta.json",
+                         "state":  "historical_ac_same_source"
+                     },
+                     {
+                         "name":  "rooted_tree_topological_order_with_minimum_inversions",
+                         "title":  "Rooted Tree Topological Order with Minimum Inversions",
+                         "category":  "tree",
+                         "source":  "tree/rooted_tree_topological_order_with_minimum_inversions/main.cpp",
+                         "source_sha256":  "f22738bfad182df5de5a5936922ad814e96f41bb64b5d787038fe483acd05b55",
+                         "meta":  "tree/rooted_tree_topological_order_with_minimum_inversions/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "runenumerate",
+                         "title":  "Run Enumerate",
+                         "category":  "string",
+                         "source":  "string/runenumerate/main.cpp",
+                         "source_sha256":  "ae50d03d59fea0f2ede2d8042f2eeada7e21a06ff3b0c058eea5b5bbb3fdaf4b",
+                         "meta":  "string/runenumerate/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "scc",
+                         "title":  "Strongly Connected Components",
+                         "category":  "graph",
+                         "source":  "graph/scc/main.cpp",
+                         "source_sha256":  "b488831af9a66e37cb5ffa484cfab64a5668eb2c2c562b75a3502b2706447f92",
+                         "meta":  "graph/scc/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "segment_add_get_min",
+                         "title":  "Segment Add Get Min",
+                         "category":  "data_structure",
+                         "source":  "data_structure/segment_add_get_min/main.cpp",
+                         "source_sha256":  "2cd2a569ec89b6c797d427e293c9c23807f4b2f46586dd45db82170a385e01a5",
+                         "meta":  "data_structure/segment_add_get_min/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "set_xor_min",
+                         "title":  "Set Xor-Min",
+                         "category":  "data_structure",
+                         "source":  "data_structure/set_xor_min/main.cpp",
+                         "source_sha256":  "d5662b45cbc46382c9bdd048c658abbfaa084165a453daa20a68a845435ec657",
+                         "meta":  "data_structure/set_xor_min/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "sharp_p_subset_sum",
+                         "title":  "$\\#_p$ Subset Sum",
+                         "category":  "enumerative_combinatorics",
+                         "source":  "enumerative_combinatorics/sharp_p_subset_sum/main.cpp",
+                         "source_sha256":  "76fc86bfb96cb46ea3d1054c19b03df094a00fa5d052998aa9f455bfef808bd8",
+                         "meta":  "enumerative_combinatorics/sharp_p_subset_sum/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "shift_of_sampling_points_of_polynomial",
+                         "title":  "Shift of Sampling Points of Polynomial",
+                         "category":  "polynomial",
+                         "source":  "polynomial/shift_of_sampling_points_of_polynomial/main.cpp",
+                         "source_sha256":  "f8a1d9ca6adc4733ed8d051ad1561a85749e5dc548938c9ca9de1632c291f7fb",
+                         "meta":  "polynomial/shift_of_sampling_points_of_polynomial/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "shortest_path",
+                         "title":  "Shortest Path",
+                         "category":  "graph",
+                         "source":  "graph/shortest_path/main.cpp",
+                         "source_sha256":  "49bf6ed928cab60024fab465c869aa02c8a1d71a76cc7cdcc75ad648bcc90993",
+                         "meta":  "graph/shortest_path/meta.json",
+                         "state":  "historical_ac_same_source"
+                     },
+                     {
+                         "name":  "sort_points_by_argument",
+                         "title":  "Sort Points by Argument",
+                         "category":  "geo",
+                         "source":  "geo/sort_points_by_argument/main.cpp",
+                         "source_sha256":  "2b0983d8b1180f1c9f3de48b1dd05c8582d2640b6f9f1c37bc460e5d71ce760d",
+                         "meta":  "geo/sort_points_by_argument/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "sparse_matrix_det",
+                         "title":  "Determinant of Sparse Matrix",
+                         "category":  "linear_algebra",
+                         "source":  "linear_algebra/sparse_matrix_det/main.cpp",
+                         "source_sha256":  "22e19471b4acf94ce88623ae6e23ffe6073530232549793dc8a3e679cc86789b",
+                         "meta":  "linear_algebra/sparse_matrix_det/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "sqrt_mod",
+                         "title":  "Sqrt Mod",
+                         "category":  "number_theory",
+                         "source":  "number_theory/sqrt_mod/main.cpp",
+                         "source_sha256":  "9baadedc3fe801e45d795b0ded87389e56fda7e06ea6ceb9148c883b148667e1",
+                         "meta":  "number_theory/sqrt_mod/meta.json",
+                         "state":  "historical_ac_same_source"
+                     },
+                     {
+                         "name":  "sqrt_of_formal_power_series",
+                         "title":  "Sqrt of Formal Power Series",
+                         "category":  "polynomial",
+                         "source":  "polynomial/sqrt_of_formal_power_series/main.cpp",
+                         "source_sha256":  "fd73c8a2f3290874e46b7a119f537a86a4be36a0cd9c671c854ef186ebad9bb8",
+                         "meta":  "polynomial/sqrt_of_formal_power_series/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "sqrt_of_formal_power_series_sparse",
+                         "title":  "Sqrt of Formal Power Series (Sparse)",
+                         "category":  "polynomial",
+                         "source":  "polynomial/sqrt_of_formal_power_series_sparse/main.cpp",
+                         "source_sha256":  "370cff6489a71098ff0e8e291003a3596b81509846537f568b6d13aa7199368a",
+                         "meta":  "polynomial/sqrt_of_formal_power_series_sparse/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "static_convex_hull",
+                         "title":  "Static Convex Hull",
+                         "category":  "geo",
+                         "source":  "geo/static_convex_hull/main.cpp",
+                         "source_sha256":  "7951de4c253f572ac9957169bd8c0c434838f415ff0915e78a5e8192aa76f2ed",
+                         "meta":  "geo/static_convex_hull/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "static_range_count_distinct",
+                         "title":  "Static Range Count Distinct",
+                         "category":  "data_structure",
+                         "source":  "data_structure/static_range_count_distinct/main.cpp",
+                         "source_sha256":  "7f4486e9bdaf0ebdfbdc76c6e4029f8568a8cc6b80e7687e2d77c1f080558c28",
+                         "meta":  "data_structure/static_range_count_distinct/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "static_range_frequency",
+                         "title":  "Static Range Frequency",
+                         "category":  "data_structure",
+                         "source":  "data_structure/static_range_frequency/main.cpp",
+                         "source_sha256":  "29deb0cb4acdd0c5c40a76e387dfd2ca9aa013b5f449d250938c683f7809a591",
+                         "meta":  "data_structure/static_range_frequency/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "static_range_inversions_query",
+                         "title":  "Static Range Inversions Query",
+                         "category":  "data_structure",
+                         "source":  "data_structure/static_range_inversions_query/main.cpp",
+                         "source_sha256":  "94543edda4e3ff6d8f919c7a02925c0655cceb1916b7e80db56099043d950d84",
+                         "meta":  "data_structure/static_range_inversions_query/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "static_range_lis_query",
+                         "title":  "Static Range LIS Query",
+                         "category":  "data_structure",
+                         "source":  "data_structure/static_range_lis_query/main.cpp",
+                         "source_sha256":  "4b3db0bd56ab973fc1d11be26822e8a357e73d2b5443d244e1d89dbd4037592b",
+                         "meta":  "data_structure/static_range_lis_query/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "static_range_mode_query",
+                         "title":  "Static Range Mode Query",
+                         "category":  "data_structure",
+                         "source":  "data_structure/static_range_mode_query/main.cpp",
+                         "source_sha256":  "01479749a95cf6abec7b40d679a628c868758b24dd0f708675d7cbae13fa3b42",
+                         "meta":  "data_structure/static_range_mode_query/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "static_range_sum",
+                         "title":  "Static Range Sum",
+                         "category":  "data_structure",
+                         "source":  "data_structure/static_range_sum/main.cpp",
+                         "source_sha256":  "91b9018552b00b62afd73bf3cdf134bddfbb99859d55b02a8ab5dcd5e060f458",
+                         "meta":  "data_structure/static_range_sum/meta.json",
+                         "state":  "historical_ac_same_source"
+                     },
+                     {
+                         "name":  "static_range_sum_with_upper_bound",
+                         "title":  "Static Range Sum with Upper Bound",
+                         "category":  "data_structure",
+                         "source":  "data_structure/static_range_sum_with_upper_bound/main.cpp",
+                         "source_sha256":  "a3813395836b9bd9c159371712c54ddb489eba4f8c3b8751b4f1156aa6a745d8",
+                         "meta":  "data_structure/static_range_sum_with_upper_bound/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "static_rectangle_add_rectangle_sum",
+                         "title":  "Static Rectangle Add Rectangle Sum",
+                         "category":  "data_structure",
+                         "source":  "data_structure/static_rectangle_add_rectangle_sum/main.cpp",
+                         "source_sha256":  "20a91ddebf5c8c168a00a4dfde0e464db8f289076a10049a1790b2b94b425127",
+                         "meta":  "data_structure/static_rectangle_add_rectangle_sum/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "staticrmq",
+                         "title":  "Static RMQ",
+                         "category":  "data_structure",
+                         "source":  "data_structure/staticrmq/main.cpp",
+                         "source_sha256":  "86125baf28b4011e6f8d53db571337980a5810b3b7bf7458aa9e079c9e5ba744",
+                         "meta":  "data_structure/staticrmq/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "stern_brocot_tree",
+                         "title":  "Stern–Brocot Tree",
+                         "category":  "number_theory",
+                         "source":  "number_theory/stern_brocot_tree/main.cpp",
+                         "source_sha256":  "feda74560ef7be56c50e620bc6f6518806f5c5d7250489d1913eeffa37ee480d",
+                         "meta":  "number_theory/stern_brocot_tree/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "stirling_number_of_the_first_kind",
+                         "title":  "Stirling Number of the First Kind",
+                         "category":  "enumerative_combinatorics",
+                         "source":  "enumerative_combinatorics/stirling_number_of_the_first_kind/main.cpp",
+                         "source_sha256":  "434133141e1737da913c26362041bbff9a43cd6921764b06584aa10aac8ce437",
+                         "meta":  "enumerative_combinatorics/stirling_number_of_the_first_kind/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "stirling_number_of_the_first_kind_fixed_k",
+                         "title":  "Stirling Number of the First Kind (Fixed K)",
+                         "category":  "enumerative_combinatorics",
+                         "source":  "enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k/main.cpp",
+                         "source_sha256":  "7516b5cdd90dc8e030419242eabd1ca3c6896cb0f6b5f07c770c5aabc8c5fff6",
+                         "meta":  "enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "stirling_number_of_the_first_kind_small_p_large_n",
+                         "title":  "Stirling Number of the First Kind (Small p, Large n)",
+                         "category":  "enumerative_combinatorics",
+                         "source":  "enumerative_combinatorics/stirling_number_of_the_first_kind_small_p_large_n/main.cpp",
+                         "source_sha256":  "c09b2bcdfa75d7018450d90af413e3855200189038399ac918deb0a388eaf414",
+                         "meta":  "enumerative_combinatorics/stirling_number_of_the_first_kind_small_p_large_n/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "stirling_number_of_the_second_kind",
+                         "title":  "Stirling Number of the Second Kind",
+                         "category":  "enumerative_combinatorics",
+                         "source":  "enumerative_combinatorics/stirling_number_of_the_second_kind/main.cpp",
+                         "source_sha256":  "b39545d793f665318ec3d437b9749bcee56c13a8e596d635524b4bfa152744f1",
+                         "meta":  "enumerative_combinatorics/stirling_number_of_the_second_kind/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "stirling_number_of_the_second_kind_fixed_k",
+                         "title":  "Stirling Number of the Second Kind (Fixed K)",
+                         "category":  "enumerative_combinatorics",
+                         "source":  "enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k/main.cpp",
+                         "source_sha256":  "9beb434be07d863c84aeb5f92164dd7ec4ccb510ba6fe1af4efe991e86ac10e8",
+                         "meta":  "enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "stirling_number_of_the_second_kind_small_p_large_n",
+                         "title":  "Stirling Number of the Second Kind (Small p, Large n)",
+                         "category":  "enumerative_combinatorics",
+                         "source":  "enumerative_combinatorics/stirling_number_of_the_second_kind_small_p_large_n/main.cpp",
+                         "source_sha256":  "f4db2839ba61f5c18f8c48595226f5a295cf790d356d682e926f2123c619d289",
+                         "meta":  "enumerative_combinatorics/stirling_number_of_the_second_kind_small_p_large_n/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "st_numbering",
+                         "title":  "st-Numbering",
+                         "category":  "graph",
+                         "source":  "graph/st_numbering/main.cpp",
+                         "source_sha256":  "6d032b74b209114dae1e0fafa78c365ed6d5166bfffa97c6cc7580a3d1e1f913",
+                         "meta":  "graph/st_numbering/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "subset_convolution",
+                         "title":  "Subset Convolution",
+                         "category":  "set_power_series",
+                         "source":  "set_power_series/subset_convolution/main.cpp",
+                         "source_sha256":  "e4597d7d1e01a40e7bd8864243840513a43a371b647c718ee8ba4b851a3f65f6",
+                         "meta":  "set_power_series/subset_convolution/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "suffixarray",
+                         "title":  "Suffix Array",
+                         "category":  "string",
+                         "source":  "string/suffixarray/main.cpp",
+                         "source_sha256":  "80113cb175e9c2e37c38ae7bec75c237a35633ba50b5f162a4ca1e2bb59fcbd3",
+                         "meta":  "string/suffixarray/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "sum_of_exponential_times_polynomial",
+                         "title":  "$\\sum_{i=0}^{n-1} r^i i^d$",
+                         "category":  "other",
+                         "source":  "other/sum_of_exponential_times_polynomial/main.cpp",
+                         "source_sha256":  "3fd5a835c2c8ec07b635da0498503a8a1bdfbe6dfb0b71a002b47ef08bdd225d",
+                         "meta":  "other/sum_of_exponential_times_polynomial/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "sum_of_exponential_times_polynomial_limit",
+                         "title":  "$\\sum_{i=0}^{\\infty} r^i i^d$",
+                         "category":  "other",
+                         "source":  "other/sum_of_exponential_times_polynomial_limit/main.cpp",
+                         "source_sha256":  "a0b7b26389d6a50315f14894c7e7911dddcaf41c5e9d1bfaee27c09fa63fa681",
+                         "meta":  "other/sum_of_exponential_times_polynomial_limit/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "sum_of_floor_of_linear",
+                         "title":  "Sum of Floor of Linear",
+                         "category":  "number_theory",
+                         "source":  "number_theory/sum_of_floor_of_linear/main.cpp",
+                         "source_sha256":  "b7c30e7d5aa8ca7fe291184c37c34f0458423f7c4ef0478740552298e67eec3e",
+                         "meta":  "number_theory/sum_of_floor_of_linear/meta.json",
+                         "state":  "historical_ac_same_source"
+                     },
+                     {
+                         "name":  "sum_of_multiplicative_function",
+                         "title":  "Sum of Multiplicative Function",
+                         "category":  "number_theory",
+                         "source":  "number_theory/sum_of_multiplicative_function/main.cpp",
+                         "source_sha256":  "e0d5d636ff73fbcf07ec2fbe1f9e610f4b2e9849495270d09531025932deb552",
+                         "meta":  "number_theory/sum_of_multiplicative_function/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "sum_of_multiplicative_function_large",
+                         "title":  "Sum of Multiplicative Function(Large)",
+                         "category":  "number_theory",
+                         "source":  "number_theory/sum_of_multiplicative_function_large/main.cpp",
+                         "source_sha256":  "c5630fe820640943bca353ee2e17c1daee5f981dbffaaa65fd5aa03c8ba83043",
+                         "meta":  "number_theory/sum_of_multiplicative_function_large/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "sum_of_totient_function",
+                         "title":  "Sum of Totient Function",
+                         "category":  "number_theory",
+                         "source":  "number_theory/sum_of_totient_function/main.cpp",
+                         "source_sha256":  "6086c9207303bce82b8ab94bb6b3ad1490f09a5eb984ea46a6710113b2a7df1e",
+                         "meta":  "number_theory/sum_of_totient_function/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "system_of_linear_equations",
+                         "title":  "System of Linear Equations",
+                         "category":  "linear_algebra",
+                         "source":  "linear_algebra/system_of_linear_equations/main.cpp",
+                         "source_sha256":  "dd4f0213be7c0c2624658cd27003a277bf790d53ba7f99ca0da7b0fae635d5ef",
+                         "meta":  "linear_algebra/system_of_linear_equations/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "system_of_linear_equations_mod_2",
+                         "title":  "System of Linear Equations (Mod 2)",
+                         "category":  "linear_algebra",
+                         "source":  "linear_algebra/system_of_linear_equations_mod_2/main.cpp",
+                         "source_sha256":  "386db2aa4e43c584e8922fdc7c1cba2d435be5f55789c90894ca9e2de83391ad",
+                         "meta":  "linear_algebra/system_of_linear_equations_mod_2/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "tetration_mod",
+                         "title":  "Tetration Mod",
+                         "category":  "number_theory",
+                         "source":  "number_theory/tetration_mod/main.cpp",
+                         "source_sha256":  "9ecaa9ddba8402484a57395e9d6f055b053892fd05ccc6f5c43c2bd975acbb33",
+                         "meta":  "number_theory/tetration_mod/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "three_edge_connected_components",
+                         "title":  "Three-Edge-Connected Components",
+                         "category":  "graph",
+                         "source":  "graph/three_edge_connected_components/main.cpp",
+                         "source_sha256":  "3b9b25e4671897aa8e6b6956ccc829c60c40a6f600be4d243bc5e2b1d3cf71c9",
+                         "meta":  "graph/three_edge_connected_components/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "tree_decomposition_width_2",
+                         "title":  "Tree Decomposition (Width 2)",
+                         "category":  "graph",
+                         "source":  "graph/tree_decomposition_width_2/main.cpp",
+                         "source_sha256":  "b892d1935a39b6a243dd0be16ad9d71fb5f104ea30b94c24f91ad6cd84a597f1",
+                         "meta":  "graph/tree_decomposition_width_2/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "tree_diameter",
+                         "title":  "Tree Diameter",
+                         "category":  "tree",
+                         "source":  "tree/tree_diameter/main.cpp",
+                         "source_sha256":  "11732e2e565474089d35912f2ed7156981229be75240f505a60087428248d1fb",
+                         "meta":  "tree/tree_diameter/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "tree_path_composite_sum",
+                         "title":  "Tree Path Composite Sum",
+                         "category":  "tree",
+                         "source":  "tree/tree_path_composite_sum/main.cpp",
+                         "source_sha256":  "bc30242efa837d83f468c02ff3cc32a5aba262638b4d7b3e78572992b3b9c8c8",
+                         "meta":  "tree/tree_path_composite_sum/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "two_edge_connected_components",
+                         "title":  "Two-Edge-Connected Components",
+                         "category":  "graph",
+                         "source":  "graph/two_edge_connected_components/main.cpp",
+                         "source_sha256":  "3e94c514db59f44e99a27fc45131029a42e6e3765e093835601c942ad03dfdff",
+                         "meta":  "graph/two_edge_connected_components/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "two_sat",
+                         "title":  "2 Sat",
+                         "category":  "other",
+                         "source":  "other/two_sat/main.cpp",
+                         "source_sha256":  "cd088e5e82afa43617a7f4a931639879bdf15033a83b58099ae2df7e73389b3b",
+                         "meta":  "other/two_sat/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "two_square_sum",
+                         "title":  "Represent A Number As Two Square Sum",
+                         "category":  "number_theory",
+                         "source":  "number_theory/two_square_sum/main.cpp",
+                         "source_sha256":  "04a01bc407fa9448bd1c4617a63bfa90eb538378e979a976736bb4dd1a95f1f3",
+                         "meta":  "number_theory/two_square_sum/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "unionfind",
+                         "title":  "Unionfind",
+                         "category":  "data_structure",
+                         "source":  "data_structure/unionfind/main.cpp",
+                         "source_sha256":  "edc3335b934a8cf90ff8b1b564efc81acd99e50f3fa9087320c21e0ce6094f58",
+                         "meta":  "data_structure/unionfind/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "unionfind_with_potential",
+                         "title":  "Unionfind with Potential",
+                         "category":  "data_structure",
+                         "source":  "data_structure/unionfind_with_potential/main.cpp",
+                         "source_sha256":  "770fedac2bfb44978d311bd0537321d752f2d3b2124bed98183845fd27718c5f",
+                         "meta":  "data_structure/unionfind_with_potential/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "unionfind_with_potential_non_commutative_group",
+                         "title":  "Unionfind with Potential (Non-Commutative Group)",
+                         "category":  "data_structure",
+                         "source":  "data_structure/unionfind_with_potential_non_commutative_group/main.cpp",
+                         "source_sha256":  "62c9cfa88e8b0934df254cd12d3c49a770e8354ece4979b199c21a63db3f0df8",
+                         "meta":  "data_structure/unionfind_with_potential_non_commutative_group/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "vertex_add_path_sum",
+                         "title":  "Vertex Add Path Sum",
+                         "category":  "tree",
+                         "source":  "tree/vertex_add_path_sum/main.cpp",
+                         "source_sha256":  "8b4f1aa6285e0618f4f851a0c5df0a8b6f9916fd418a2b14fb4531c69ad13cca",
+                         "meta":  "tree/vertex_add_path_sum/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "vertex_add_range_contour_sum_on_tree",
+                         "title":  "Vertex Add Range Contour Sum on Tree",
+                         "category":  "tree",
+                         "source":  "tree/vertex_add_range_contour_sum_on_tree/main.cpp",
+                         "source_sha256":  "f5ee0c51d0487f8c8cc8dc3eff48c9b4400ec92aec97b7a7598b78800882206b",
+                         "meta":  "tree/vertex_add_range_contour_sum_on_tree/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "vertex_add_subtree_sum",
+                         "title":  "Vertex Add Subtree Sum",
+                         "category":  "tree",
+                         "source":  "tree/vertex_add_subtree_sum/main.cpp",
+                         "source_sha256":  "5fc1f70745349c33df331e73c9c6c98f00c479d706ef6b45227a32f3e00bde1f",
+                         "meta":  "tree/vertex_add_subtree_sum/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "vertex_get_range_contour_add_on_tree",
+                         "title":  "Vertex Get Range Contour Add on Tree",
+                         "category":  "tree",
+                         "source":  "tree/vertex_get_range_contour_add_on_tree/main.cpp",
+                         "source_sha256":  "c69c4e3b6d96d9cdb65ad08efa63b7a78dd0c60aa279df2cef8a8883d5cf10ff",
+                         "meta":  "tree/vertex_get_range_contour_add_on_tree/meta.json",
+                         "state":  "new_official_adaptation"
+                     },
+                     {
+                         "name":  "vertex_set_path_composite",
+                         "title":  "Vertex Set Path Composite",
+                         "category":  "tree",
+                         "source":  "tree/vertex_set_path_composite/main.cpp",
+                         "source_sha256":  "80c1c201d1405c4f1294b1f032642f7d2a60c10b0f42279e2974c44eec378114",
+                         "meta":  "tree/vertex_set_path_composite/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     },
+                     {
+                         "name":  "wildcard_pattern_matching",
+                         "title":  "Wildcard Pattern Matching",
+                         "category":  "string",
+                         "source":  "string/wildcard_pattern_matching/main.cpp",
+                         "source_sha256":  "0f44d22339a50512c048705c6e4bdcc6b29c2c8dc003d1f7eee99ca1db8c5e99",
+                         "meta":  "string/wildcard_pattern_matching/meta.json",
+                         "state":  "unsubmitted_existing_source"
+                     },
+                     {
+                         "name":  "zalgorithm",
+                         "title":  "Z Algorithm",
+                         "category":  "string",
+                         "source":  "string/zalgorithm/main.cpp",
+                         "source_sha256":  "44738e86de2f0af286671a13ca278f5cb6a1de7162002253580279ed7c687040",
+                         "meta":  "string/zalgorithm/meta.json",
+                         "state":  "historical_ac_source_changed"
+                     }
+                 ]
+}

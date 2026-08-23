@@ -1,0 +1,30 @@
+{
+    "schema_version":  1,
+    "name":  "incremental_scc",
+    "title":  "Strongly Connected Components (Incremental)",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "graph/incremental_scc/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "a7316504a7d0e9ba9f53c2115b2bdd1213da60277705b0d77f8e2b5105ba2c3d"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

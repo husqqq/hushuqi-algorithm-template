@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "zalgorithm",
+  "title": "Z Algorithm",
+  "category": "string",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "string/zalgorithm/main.cpp",
+    "source_sha256": "acd836116504038e465f05c49b527c1de36390782a5f03285fbd67dbb3d483d4"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "string",
+    "problem": "zalgorithm"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "acd836116504038e465f05c49b527c1de36390782a5f03285fbd67dbb3d483d4",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch04_z.cpp"
+    ],
+    "checked_at": "2026-08-21T07:37:56.173149Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395545,
+    "current_source_time": 0.033,
+    "current_source_memory": 8585216,
+    "current_source_submission_time": "2026-08-21T07:37:27.118807Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "acd836116504038e465f05c49b527c1de36390782a5f03285fbd67dbb3d483d4",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395545,
+      "source_sha256": "acd836116504038e465f05c49b527c1de36390782a5f03285fbd67dbb3d483d4",
+      "server_source_sha256": "acd836116504038e465f05c49b527c1de36390782a5f03285fbd67dbb3d483d4",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.033,
+      "memory": 8585216,
+      "submission_time": "2026-08-21T07:37:27.118807Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T07:37:27.308329Z",
+      "recorded_at": "2026-08-21T07:37:56.172537Z"
+    }
+  ]
+}

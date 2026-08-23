@@ -1,0 +1,30 @@
+{
+    "schema_version":  1,
+    "name":  "dirichlet_inverse_and_prefix_sums",
+    "title":  "Dirichlet Inverse and Prefix Sums",
+    "category":  "number_theory",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "number_theory/dirichlet_inverse_and_prefix_sums/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "f875d889b1b72909e9966c3fe77f3f6a5e7e04ff2eccb237617787281467edb6"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "counting_spanning_tree_directed",
+    "title":  "Counting Spanning Trees (Directed)",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "e46d35372a2c1d97b27767ed66d750c2510668b40f73408b19fd631d500fe3bb"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "e46d35372a2c1d97b27767ed66d750c2510668b40f73408b19fd631d500fe3bb",
+                                  "submission_id":  387118,
+                                  "status":  "AC",
+                                  "time":  0.105,
+                                  "memory":  2924544,
+                                  "submission_time":  "2026-07-22T03:08:15.902441Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "log_of_formal_power_series",
+    "title":  "Log of Formal Power Series",
+    "category":  "polynomial",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "6c40a1d7ce67254e802d07923712d8836eae297821f562c893af2a37d73e2b4f"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "df22b81145b275739fb9e36589e5b6099f5b71809c9569e3c906e58db3db6b71",
+                                  "submission_id":  387137,
+                                  "status":  "AC",
+                                  "time":  0.793,
+                                  "memory":  23810048,
+                                  "submission_time":  "2026-07-22T03:16:52.920599Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

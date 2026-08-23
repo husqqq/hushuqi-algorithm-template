@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "dynamic_tree_vertex_set_path_composite",
+  "title": "Dynamic Tree Vertex Set Path Composite",
+  "category": "tree",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "tree/dynamic_tree_vertex_set_path_composite/main.cpp",
+    "source_sha256": "d1460d780ff06ba9ecdf81458cfca0f3a66149a818d68b9dca9c75ac813bde1f"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "tree",
+    "problem": "dynamic_tree_vertex_set_path_composite"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "d1460d780ff06ba9ecdf81458cfca0f3a66149a818d68b9dca9c75ac813bde1f",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch06_dynamic_composite.cpp"
+    ],
+    "checked_at": "2026-08-21T23:07:21.404875Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395904,
+    "current_source_time": 1.039,
+    "current_source_memory": 22114304,
+    "current_source_submission_time": "2026-08-21T23:06:45.38617Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "d1460d780ff06ba9ecdf81458cfca0f3a66149a818d68b9dca9c75ac813bde1f",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395904,
+      "source_sha256": "d1460d780ff06ba9ecdf81458cfca0f3a66149a818d68b9dca9c75ac813bde1f",
+      "server_source_sha256": "d1460d780ff06ba9ecdf81458cfca0f3a66149a818d68b9dca9c75ac813bde1f",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.039,
+      "memory": 22114304,
+      "submission_time": "2026-08-21T23:06:45.38617Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T23:06:45.710943Z",
+      "recorded_at": "2026-08-21T23:07:21.404135Z"
+    }
+  ]
+}

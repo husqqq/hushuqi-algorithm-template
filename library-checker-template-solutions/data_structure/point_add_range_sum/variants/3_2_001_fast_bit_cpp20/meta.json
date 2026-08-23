@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "kind": "template_variant",
+  "variant_id": "3_2_001_fast_bit_cpp20",
+  "name": "point_add_range_sum",
+  "title": "Point Add Range Sum",
+  "category": "data_structure",
+  "language": "cpp20",
+  "source": "data_structure/point_add_range_sum/variants/3_2_001_fast_bit_cpp20/main.cpp",
+  "source_sha256": "34ea2b7776b6810c286013d8ec049f91da61c322244ab5d2fe4a45cc9b23faf7",
+  "template_items": [
+    "3.2.001"
+  ],
+  "complexity": "O(N) preprocessing, O(log N) per update or query, O(N) memory",
+  "provenance": {
+    "method": "deterministic_generation",
+    "generator": "library-checker-template-solutions/tools/generate_cpp_variants.py",
+    "generator_sha256": "d3978149aeca2d84607000428f1e01c5fde0c9c70b39e9659cbe4101996ca910",
+    "inputs": [
+      {
+        "path": "hushuqi算法竞赛模板/include/full/3_2_001.hpp",
+        "sha256": "e464b9b4ef7dae7f5e2f09ffec5afcb6b9dc063e460c4f3cd12c9099d172185b"
+      },
+      {
+        "path": "hushuqi算法竞赛模板/tests/test_ch03_fast_variants.cpp",
+        "sha256": "202d0922a41d8d4fdb6f840e69e8dbb7520f72e8d7c741d3c2201fdc6a481cd4"
+      }
+    ],
+    "generated_sha256": "34ea2b7776b6810c286013d8ec049f91da61c322244ab5d2fe4a45cc9b23faf7"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "34ea2b7776b6810c286013d8ec049f91da61c322244ab5d2fe4a45cc9b23faf7",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 396359,
+    "server_source_sha256": "34ea2b7776b6810c286013d8ec049f91da61c322244ab5d2fe4a45cc9b23faf7",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch03_fast_variants.cpp"
+    ],
+    "checked_at": "2026-08-23T15:26:25.400340Z",
+    "current_source_time": 0.123,
+    "current_source_memory": 12857344,
+    "current_source_submission_time": "2026-08-23T15:26:02.169747Z",
+    "current_source_is_latest": true,
+    "note": "当前变体源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 396359,
+      "source_sha256": "34ea2b7776b6810c286013d8ec049f91da61c322244ab5d2fe4a45cc9b23faf7",
+      "server_source_sha256": "34ea2b7776b6810c286013d8ec049f91da61c322244ab5d2fe4a45cc9b23faf7",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.123,
+      "memory": 12857344,
+      "submission_time": "2026-08-23T15:26:02.169747Z",
+      "is_latest": true,
+      "compile_standard": null,
+      "submitted_at": "2026-08-23T15:26:02.365416Z",
+      "recorded_at": "2026-08-23T15:26:25.400323Z"
+    }
+  ]
+}

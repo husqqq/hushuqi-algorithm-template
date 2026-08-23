@@ -1,0 +1,41 @@
+{
+  "schema_version": 3,
+  "name": "palindromes_in_deque",
+  "title": "Palindromes in Deque",
+  "category": "string",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "string/palindromes_in_deque/main.cpp",
+    "source_sha256": "eaa7e1ef24a6e3874d9af435c98afbf756ad697437567c1aa6db67497a3bfed6"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "string",
+    "problem": "palindromes_in_deque"
+  },
+  "validation": {
+    "status": "local_only",
+    "current_source_sha256": "eaa7e1ef24a6e3874d9af435c98afbf756ad697437567c1aa6db67497a3bfed6",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch04_deque_pam.cpp"
+    ]
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395562,
+      "source_sha256": "85ada134808487f31bf5c59295d891c37a946b82143d714fdc58f082ceb935d7",
+      "server_source_sha256": "85ada134808487f31bf5c59295d891c37a946b82143d714fdc58f082ceb935d7",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.988,
+      "memory": 151597056,
+      "submission_time": "2026-08-21T08:34:23.620018Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T08:34:23.779689Z",
+      "recorded_at": "2026-08-21T08:35:10.241598Z"
+    }
+  ]
+}

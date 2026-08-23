@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "enumerate_primes",
+  "title": "Enumerate Primes",
+  "category": "number_theory",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "number_theory/enumerate_primes/main.cpp",
+    "source_sha256": "81ed8adf977dc2ff0852c4bdd0f8bc19c515db55dd89a0c10eb3f16187de5ee7"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "number_theory",
+    "problem": "enumerate_primes"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "81ed8adf977dc2ff0852c4bdd0f8bc19c515db55dd89a0c10eb3f16187de5ee7",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch07_revised.cpp"
+    ],
+    "checked_at": "2026-08-21T16:54:59.296764Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395728,
+    "current_source_time": 1.437,
+    "current_source_memory": 301236224,
+    "current_source_submission_time": "2026-08-21T16:54:34.064004Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "81ed8adf977dc2ff0852c4bdd0f8bc19c515db55dd89a0c10eb3f16187de5ee7",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395728,
+      "source_sha256": "81ed8adf977dc2ff0852c4bdd0f8bc19c515db55dd89a0c10eb3f16187de5ee7",
+      "server_source_sha256": "81ed8adf977dc2ff0852c4bdd0f8bc19c515db55dd89a0c10eb3f16187de5ee7",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.437,
+      "memory": 301236224,
+      "submission_time": "2026-08-21T16:54:34.064004Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T16:54:34.294745Z",
+      "recorded_at": "2026-08-21T16:54:59.296169Z"
+    }
+  ]
+}

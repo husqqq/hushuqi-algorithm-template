@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "division_of_big_integers",
+    "title":  "Division of Big Integers",
+    "category":  "big_integer",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "b18ac5659c6dfe1e097a930d564cabecb9813e6c40b561c0e4db9e2b0620bd64"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "0089bc33f0fed087bce05937bc54623e5f0e4c99766bb2a798643bfab3c33057",
+                                  "submission_id":  387160,
+                                  "status":  "AC",
+                                  "time":  0.801,
+                                  "memory":  25522176,
+                                  "submission_time":  "2026-07-22T03:29:41.213532Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

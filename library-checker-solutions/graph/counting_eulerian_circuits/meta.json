@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "counting_eulerian_circuits",
+    "title":  "Counting Eulerian Circuits",
+    "category":  "graph",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "1c90902daa0189106527bddde3a2e432db84c71c70424003cd9dec12afb0ef44"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "7b62ce3372f52f3ae7612b89abf0d84ca16f8bf9cd854863c919f33bc1d6e60c",
+                                  "submission_id":  387060,
+                                  "status":  "AC",
+                                  "time":  0.144,
+                                  "memory":  25182208,
+                                  "submission_time":  "2026-07-22T02:47:02.516152Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

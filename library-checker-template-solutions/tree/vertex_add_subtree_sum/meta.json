@@ -1,0 +1,65 @@
+{
+  "schema_version": 3,
+  "name": "vertex_add_subtree_sum",
+  "title": "Vertex Add Subtree Sum",
+  "category": "tree",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "tree/vertex_add_subtree_sum/main.cpp",
+    "source_sha256": "aaac12c54b62b60ea5609d23cfc1be24c1587ff885f8644666f44c9a7e9f2927"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "tree",
+    "problem": "vertex_add_subtree_sum"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "aaac12c54b62b60ea5609d23cfc1be24c1587ff885f8644666f44c9a7e9f2927",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_dynamic_tree.cpp"
+    ],
+    "checked_at": "2026-08-21T23:44:47.142720Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395923,
+    "current_source_time": 1,
+    "current_source_memory": 184971264,
+    "current_source_submission_time": "2026-08-21T23:44:15.218411Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "aaac12c54b62b60ea5609d23cfc1be24c1587ff885f8644666f44c9a7e9f2927",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395701,
+      "source_sha256": "33ee79940fe50f8a485c0295963837367192d523a7506bac067cd951c42c114b",
+      "server_source_sha256": "33ee79940fe50f8a485c0295963837367192d523a7506bac067cd951c42c114b",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.017,
+      "memory": 185094144,
+      "submission_time": "2026-08-21T16:12:55.482742Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T16:12:55.707381Z",
+      "recorded_at": "2026-08-21T16:13:28.255370Z"
+    },
+    {
+      "submission_id": 395923,
+      "source_sha256": "aaac12c54b62b60ea5609d23cfc1be24c1587ff885f8644666f44c9a7e9f2927",
+      "server_source_sha256": "aaac12c54b62b60ea5609d23cfc1be24c1587ff885f8644666f44c9a7e9f2927",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1,
+      "memory": 184971264,
+      "submission_time": "2026-08-21T23:44:15.218411Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T23:44:15.561993Z",
+      "recorded_at": "2026-08-21T23:44:47.141670Z"
+    }
+  ]
+}

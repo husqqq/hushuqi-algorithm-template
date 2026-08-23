@@ -1,0 +1,30 @@
+{
+    "schema_version":  1,
+    "name":  "rooted_tree_topological_order_with_minimum_inversions",
+    "title":  "Rooted Tree Topological Order with Minimum Inversions",
+    "category":  "tree",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "tree/rooted_tree_topological_order_with_minimum_inversions/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "f22738bfad182df5de5a5936922ad814e96f41bb64b5d787038fe483acd05b55"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

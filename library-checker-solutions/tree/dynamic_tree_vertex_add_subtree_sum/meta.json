@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "name":  "dynamic_tree_vertex_add_subtree_sum",
+    "title":  "Dynamic Tree Vertex Add Subtree Sum",
+    "category":  "tree",
+    "provenance":  {
+                       "kind":  "template",
+                       "imported_sha256":  "fe84a8d0d6af38b5d25416ebba1779e9de4ce914072094afe5ff4735b37ebc34"
+                   },
+    "historical_submission":  {
+                                  "sha256":  "cf68ae4f7464b5ecad700441ca9a6cd31d863a3cda17d65d662c29f1ded25237",
+                                  "submission_id":  387082,
+                                  "status":  "AC",
+                                  "time":  1.052,
+                                  "memory":  178147328,
+                                  "submission_time":  "2026-07-22T02:54:53.906546Z"
+                              },
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

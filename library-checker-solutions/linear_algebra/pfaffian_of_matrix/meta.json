@@ -1,0 +1,30 @@
+{
+    "schema_version":  1,
+    "name":  "pfaffian_of_matrix",
+    "title":  "Pfaffian of Matrix",
+    "category":  "linear_algebra",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "linear_algebra/pfaffian_of_matrix/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "dfe93280f66192d28e69a209c0dc78fa25f6ebf0632cffa170d8c6a093be469a"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

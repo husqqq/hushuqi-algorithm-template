@@ -1,0 +1,30 @@
+{
+    "schema_version":  1,
+    "name":  "vertex_get_range_contour_add_on_tree",
+    "title":  "Vertex Get Range Contour Add on Tree",
+    "category":  "tree",
+    "provenance":  {
+                       "kind":  "official_adapted",
+                       "repository":  "https://github.com/yosupo06/library-checker-problems",
+                       "commit":  "04c8de378bab67be926325de2871f0babb8e6451",
+                       "path":  "tree/vertex_get_range_contour_add_on_tree/sol/correct.cpp",
+                       "license":  "Apache-2.0",
+                       "dependencies_inlined":  [
+
+                                                ],
+                       "adaptations":  [
+
+                                       ],
+                       "imported_sha256":  "c69c4e3b6d96d9cdb65ad08efa63b7a78dd0c60aa279df2cef8a8883d5cf10ff"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+                  "Imported as a standalone verification baseline; review algorithmic style before moving any part into the normal template chapters."
+              ]
+}

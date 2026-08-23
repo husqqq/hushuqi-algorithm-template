@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "enumerate_triangles",
+  "title": "Enumerate Triangles",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/enumerate_triangles/main.cpp",
+    "source_sha256": "061d25f06c2b9a68fcd15c4e14cb3f9818540a246c6521ec4378d20bf691cfb1"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "enumerate_triangles"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "061d25f06c2b9a68fcd15c4e14cb3f9818540a246c6521ec4378d20bf691cfb1",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch05_cycles.cpp"
+    ],
+    "checked_at": "2026-08-21T12:33:05.679037Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395616,
+    "current_source_time": 0.187,
+    "current_source_memory": 9539584,
+    "current_source_submission_time": "2026-08-21T12:32:41.249065Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "061d25f06c2b9a68fcd15c4e14cb3f9818540a246c6521ec4378d20bf691cfb1",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395616,
+      "source_sha256": "061d25f06c2b9a68fcd15c4e14cb3f9818540a246c6521ec4378d20bf691cfb1",
+      "server_source_sha256": "061d25f06c2b9a68fcd15c4e14cb3f9818540a246c6521ec4378d20bf691cfb1",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.187,
+      "memory": 9539584,
+      "submission_time": "2026-08-21T12:32:41.249065Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T12:32:41.434246Z",
+      "recorded_at": "2026-08-21T12:33:05.678202Z"
+    }
+  ]
+}

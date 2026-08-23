@@ -1,0 +1,21 @@
+{
+    "schema_version":  1,
+    "name":  "aho_corasick",
+    "title":  "Aho Corasick",
+    "category":  "string",
+    "provenance":  {
+                       "kind":  "template",
+                       "upstream_sha256":  "9e105c3308ecb67f66a17b0e41dab9454cd7b7a3629199429d7b69d098f58bf2",
+                       "imported_sha256":  "c46d85872cc51c51932982815f20822e2bc473404206f504dd1d2db3f52ead0d"
+                   },
+    "historical_submission":  null,
+    "validation":  {
+
+                   },
+    "submission_attempts":  [
+
+                            ],
+    "notes":  [
+
+              ]
+}

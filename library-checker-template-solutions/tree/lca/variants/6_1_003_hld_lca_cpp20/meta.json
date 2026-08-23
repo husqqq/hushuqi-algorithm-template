@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "kind": "template_variant",
+  "variant_id": "6_1_003_hld_lca_cpp20",
+  "name": "lca",
+  "title": "Lowest Common Ancestor",
+  "category": "tree",
+  "language": "cpp20",
+  "source": "tree/lca/variants/6_1_003_hld_lca_cpp20/main.cpp",
+  "source_sha256": "84addf215be4fcbbde0cf0cb688cf0865be65294e285e149d24971aaa4cf7e34",
+  "template_items": [
+    "6.1.003"
+  ],
+  "complexity": "O(N) preprocessing, O(log N) per query",
+  "provenance": {
+    "method": "deterministic_generation",
+    "generator": "library-checker-template-solutions/tools/generate_cpp_variants.py",
+    "generator_sha256": "d3978149aeca2d84607000428f1e01c5fde0c9c70b39e9659cbe4101996ca910",
+    "inputs": [
+      {
+        "path": "hushuqi算法竞赛模板/include/full/6_3_001.hpp",
+        "sha256": "07fc4c00b88be931d745ac78fa4239e2927fbbf776498c9faab22189042eeba4"
+      },
+      {
+        "path": "hushuqi算法竞赛模板/tests/test_ch06_hld.cpp",
+        "sha256": "35eefce3c19543382a5a4c5acec8b8661634646c75b6a82e8bcb2d3729800eb2"
+      }
+    ],
+    "generated_sha256": "84addf215be4fcbbde0cf0cb688cf0865be65294e285e149d24971aaa4cf7e34"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "84addf215be4fcbbde0cf0cb688cf0865be65294e285e149d24971aaa4cf7e34",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 396222,
+    "server_source_sha256": "84addf215be4fcbbde0cf0cb688cf0865be65294e285e149d24971aaa4cf7e34",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch06_hld.cpp"
+    ],
+    "checked_at": "2026-08-23T04:27:07.355904Z",
+    "current_source_time": 0.529,
+    "current_source_memory": 252489728,
+    "current_source_submission_time": "2026-08-23T04:26:22.351914Z",
+    "current_source_is_latest": true,
+    "note": "当前变体源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 396222,
+      "source_sha256": "84addf215be4fcbbde0cf0cb688cf0865be65294e285e149d24971aaa4cf7e34",
+      "server_source_sha256": "84addf215be4fcbbde0cf0cb688cf0865be65294e285e149d24971aaa4cf7e34",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.529,
+      "memory": 252489728,
+      "submission_time": "2026-08-23T04:26:22.351914Z",
+      "is_latest": true,
+      "compile_standard": null,
+      "submitted_at": "2026-08-23T04:26:22.467645Z",
+      "recorded_at": "2026-08-23T04:27:07.355891Z"
+    }
+  ]
+}

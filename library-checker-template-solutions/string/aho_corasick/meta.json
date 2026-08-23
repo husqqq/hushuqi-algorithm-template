@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "aho_corasick",
+  "title": "Aho Corasick",
+  "category": "string",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "string/aho_corasick/main.cpp",
+    "source_sha256": "9aec32d959e20fa9aa49a3b0f7448a3981642e9d94e61d587b7d54a375205687"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "string",
+    "problem": "aho_corasick"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "9aec32d959e20fa9aa49a3b0f7448a3981642e9d94e61d587b7d54a375205687",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch04_ac.cpp"
+    ],
+    "checked_at": "2026-08-20T18:18:11.797171Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395315,
+    "current_source_time": 0.704,
+    "current_source_memory": 449089536,
+    "current_source_submission_time": "2026-08-20T18:16:26.031036Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "9aec32d959e20fa9aa49a3b0f7448a3981642e9d94e61d587b7d54a375205687",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395315,
+      "source_sha256": "9aec32d959e20fa9aa49a3b0f7448a3981642e9d94e61d587b7d54a375205687",
+      "server_source_sha256": "9aec32d959e20fa9aa49a3b0f7448a3981642e9d94e61d587b7d54a375205687",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.704,
+      "memory": 449089536,
+      "submission_time": "2026-08-20T18:16:26.031036Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-20T18:16:26.243858Z",
+      "recorded_at": "2026-08-20T18:18:11.796370Z"
+    }
+  ]
+}

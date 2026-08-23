@@ -1,0 +1,50 @@
+{
+  "schema_version": 3,
+  "name": "counting_spanning_tree_directed",
+  "title": "Counting Spanning Trees (Directed)",
+  "category": "graph",
+  "provenance": {
+    "kind": "template_solution",
+    "source": "graph/counting_spanning_tree_directed/main.cpp",
+    "source_sha256": "4baff0f38fda7726c634b093d2579c0eece9b8012bfda5f7db4f3b4e7d7c9fbc"
+  },
+  "official_reference": {
+    "commit": "04c8de378bab67be926325de2871f0babb8e6451",
+    "category": "graph",
+    "problem": "counting_spanning_tree_directed"
+  },
+  "validation": {
+    "status": "online_ac",
+    "current_source_sha256": "4baff0f38fda7726c634b093d2579c0eece9b8012bfda5f7db4f3b4e7d7c9fbc",
+    "checks": [
+      "source_cxx20_compile",
+      "hushuqi算法竞赛模板/tests/test_ch08_matrix.cpp"
+    ],
+    "checked_at": "2026-08-21T12:35:18.486173Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 395619,
+    "current_source_time": 0.188,
+    "current_source_memory": 9736192,
+    "current_source_submission_time": "2026-08-21T12:34:54.060209Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "4baff0f38fda7726c634b093d2579c0eece9b8012bfda5f7db4f3b4e7d7c9fbc",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
+  },
+  "submission_attempts": [
+    {
+      "submission_id": 395619,
+      "source_sha256": "4baff0f38fda7726c634b093d2579c0eece9b8012bfda5f7db4f3b4e7d7c9fbc",
+      "server_source_sha256": "4baff0f38fda7726c634b093d2579c0eece9b8012bfda5f7db4f3b4e7d7c9fbc",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.188,
+      "memory": 9736192,
+      "submission_time": "2026-08-21T12:34:54.060209Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-08-21T12:34:54.230109Z",
+      "recorded_at": "2026-08-21T12:35:18.485513Z"
+    }
+  ]
+}
