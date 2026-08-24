@@ -18,7 +18,7 @@ CHAPTERS = sorted(ROOT.glob("[0-9][0-9]-*.md"))
 
 # Fixed machine words, natural overflow, an external ABI, or a fixed bit layout.
 FIXED_TOPICS = {
-    "1.1.006", "1.2.008", "1.3.007", "1.4.004", "2.2.001",
+    "1.1.006", "1.2.008", "1.3.006", "1.4.004", "2.2.001",
     "3.6.008", "7.4.008", "10.1.016", "10.2.015", "13.1.009",
     "14.1.019",
 }
