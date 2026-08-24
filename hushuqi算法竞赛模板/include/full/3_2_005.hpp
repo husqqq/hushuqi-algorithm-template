@@ -19,6 +19,8 @@ template <class T> bool chmax(T &a, const T &b)
 
 template <class T> struct MaxBIT
 {
+    // 当前是“单点只增大、前缀取最大值”版。改成最小值版时，
+    // 将 max/lowest/chmax/maxPrefix 分别换成 min/numeric_limits<T>::max()/chmin/minPrefix，且更新方向改为单点只减小。
     // n 是数组长度，e 是空前缀的幺元，a[i] 是 lowbit 块最大值。
     int n;
     T e;

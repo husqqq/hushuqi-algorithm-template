@@ -20,6 +20,7 @@ template <class T> bool chmax(T &a, const T &b)
 template <class T> vector<int> prevLess(const vector<T> &a)
 {
     // 参数 a 表示 要求每个位置前一个严格更小位置的序列；返回每个位置左侧最近严格更小元素的下标。
+    // 改求最近严格更大时，把弹栈条件 >= 改为 <=；若允许相等，则分别用 > 或 <。
     vector<int> s, p(a.size(), -1);
     for (int i = 0; i < (int)a.size(); i++)
     {
@@ -39,6 +40,7 @@ template <class T> vector<int> prevLess(const vector<T> &a)
 template <class T> vector<T> windowMin(const vector<T> &a, int k)
 {
     // 参数 a 表示 要求每个定长窗口最小值的序列；k 表示 窗口长度；返回每个长度 k 窗口的最小值。
+    // 改最大值时把维护队尾的 >= 改为 <=；过期下标的队首删除条件不变。
     assert(1 <= k && k <= (int)a.size());
     deque<int> q;
     vector<T> ans;

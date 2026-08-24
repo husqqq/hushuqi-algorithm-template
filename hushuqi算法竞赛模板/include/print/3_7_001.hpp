@@ -19,6 +19,8 @@ template <class T> bool chmax(T &a, const T &b)
 
 template <class T, class C = T> class LiChao
 {
+    // 当前实现维护最小值。改成最大值有两种等价方式：反向所有优劣比较并把空值改为负无穷，
+    // 或在 k、b 与函数值都能安全取反（不能是最小负数）时插入 {-k,-b}，再把非空结果取反。
   public:
     static_assert(is_floating_point_v<T> || (is_integral_v<T> && is_signed_v<T>));
 
@@ -72,6 +74,7 @@ template <class T, class C = T> class LiChao
     LiChao(vector<T> xs) : xs(move(xs))
     {
         // xs 是所有可能查询的横坐标；排序去重并建立最小值李超树。
+        // 改最大值时可在系数可安全取反时优先对直线取反再对答案取反，可保留李超树的比较不变量。
         sort(this->xs.begin(), this->xs.end());
         this->xs.erase(unique(this->xs.begin(), this->xs.end()), this->xs.end());
         assert(!this->xs.empty()); // 调试检查，可删
@@ -81,12 +84,14 @@ template <class T, class C = T> class LiChao
     void add(Line f)
     {
         // f 是待加入直线；使其参与全部预存横坐标的最小值查询。
+        // 最大值版可在 -f.k、-f.b 不溢出时调用 add({-f.k, -f.b})，并在 query 的返回值上取负。
         add(1, 0, xs.size(), f);
     }
 
     optional<C> query(T x) const
     {
         // x 必须在构造坐标中；返回最小函数值，尚未加入直线时返回空。
+        // 最大值版若按直线取反，调用者取负即可；空结果仍保持 nullopt。
         int q = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
         assert(q < (int)xs.size() && xs[q] == x); // 调试检查，可删
         optional<C> ans;

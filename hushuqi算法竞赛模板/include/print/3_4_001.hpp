@@ -19,6 +19,7 @@ template <class T> bool chmax(T &a, const T &b)
 
 template <class T, class F> struct ST
 {
+    // 最小值与最大值只由 f 决定：分别传 min 或 max；ST 的建表和查询代码无需修改。
     // n 是数组长度，f 是幂等合并运算，a[k][i] 保存长度 2^k 的区间信息。
     int n;
     F f;
@@ -55,6 +56,7 @@ template <class T, class F> struct ST
 
 template <class T, class F, int B = 16> struct BlockST
 {
+    // 与 ST 相同，最小/最大只切换 f；不要改重叠块的查询结构。
     static_assert(B > 0);
 
     int n = 0, m = 0;

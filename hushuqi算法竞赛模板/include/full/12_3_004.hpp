@@ -5,6 +5,8 @@
 template <class Acc = long long>
 struct MonoHull
 {
+    // 当前凸壳按最小函数值维护。改求最大值可在 k、b 与函数值都能安全取反时同时取反，
+    // 继续调用本结构，最后把非空 query 结果取反；否则必须完整反向交点与比较判定。
     using U128 = unsigned __int128;
 
     struct Line

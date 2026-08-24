@@ -42,6 +42,8 @@ struct Sum
 
 struct MaxInfo
 {
+    // 当前信息取区间最大值。改成最小值信息时，把 lowest 改为 highest、max 改为 min，
+    // 并同步把类型名、查询谓词中的 >= 改成 <=。
     // val 是区间最大值；空区间以 long long 最小值作为 max 的单位元。
     long long val = numeric_limits<long long>::lowest();
 

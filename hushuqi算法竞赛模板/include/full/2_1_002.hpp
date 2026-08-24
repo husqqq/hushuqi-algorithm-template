@@ -20,6 +20,7 @@ template <class T> bool chmax(T &a, const T &b)
 template <class F> long long ternaryInt(long long l, long long r, F f)
 {
     // f 在整数区间 [l,r) 上单峰；返回一个最大值位置。
+    // 求最小值时把两个 f 比较的方向反过来；不要只改最后的扫描，否则收缩方向仍是求最大。
     while (r - l > 3)
     {
         long long x = l + (r - l) / 3;
@@ -48,6 +49,7 @@ template <class F> long long ternaryInt(long long l, long long r, F f)
 template <class F> long double ternary(long double l, long double r, F f, int it = 100)
 {
     // f 在 [l,r] 上单峰；三分 it 次后返回最大点近似。
+    // 求最小值同样只反向两处 f(x)、f(y) 的比较；若改传 -f，先确认取负不会溢出。
     while (it--)
     {
         long double x = (2 * l + r) / 3;

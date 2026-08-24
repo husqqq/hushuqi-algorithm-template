@@ -19,6 +19,8 @@ template <class T> bool chmax(T &a, const T &b)
 
 class AddMinSeg
 {
+    // 当前是区间加、区间最小值版。改成最大值只需把 mn/rangeMin/min/正无穷单位元
+    // 成对换成 mx/rangeMax/max/负无穷；区间加和懒标记逻辑不变。
     // n 是数组长度；mn、lz 分别保存区间最小值与待下传增量。
     int n;
     vector<long long> mn, lz;

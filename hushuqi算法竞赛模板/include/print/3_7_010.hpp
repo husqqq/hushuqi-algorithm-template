@@ -6,6 +6,8 @@ using namespace std;
 
 template <class T, class C = T> class SegLiChao
 {
+    // 当前实现维护最小值。改最大值可直接反向所有优劣比较并把空值改为负无穷，
+    // 或在系数与函数值都能安全取反时对每条线取反后复用本实现，查询非空结果再取反。
   public:
     static_assert(is_floating_point_v<T> || (is_integral_v<T> && is_signed_v<T>));
 
@@ -76,6 +78,7 @@ template <class T, class C = T> class SegLiChao
     SegLiChao(vector<T> xs) : xs(move(xs))
     {
         // xs 是全部可能查询的横坐标；排序去重并建立最小值线段李超树。
+        // 最大值版可对插入线的 k、b 取反，并对 query 返回值取反。
         sort(this->xs.begin(), this->xs.end());
         this->xs.erase(unique(this->xs.begin(), this->xs.end()), this->xs.end());
         assert(!this->xs.empty()); // 调试检查，可删
@@ -97,6 +100,7 @@ template <class T, class C = T> class SegLiChao
     optional<C> query(T x) const
     {
         // x 必须在构造坐标中；返回所有在 x 有效直线的最小值，无线时返回空。
+        // 采用取反线的最大值版仍保留无线时的 nullopt 语义。
         int q = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
         assert(q < (int)xs.size() && xs[q] == x); // 调试检查，可删
         optional<C> ans;

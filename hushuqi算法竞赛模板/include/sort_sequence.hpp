@@ -529,6 +529,7 @@ int rectArea(const vector<Rect> &rs)
 template <class T> vector<int> prevLess(const vector<T> &a)
 {
     // a 是原序列；返回每个位置左侧最近严格更小元素的下标，不存在时为 -1。
+    // 改求最近严格更大时，把弹栈条件 >= 改为 <=；若允许相等，则分别用 > 或 <。
     vector<int> stk, ans(a.size(), -1);
     for (int i = 0; i < (int)a.size(); i++)
     {
@@ -548,6 +549,7 @@ template <class T> vector<int> prevLess(const vector<T> &a)
 template <class T> vector<T> windowMin(const vector<T> &a, int k)
 {
     // a 是原序列，k 是固定窗口长度；返回每个连续窗口的最小值。
+    // 改最大值时把维护队尾的 >= 改为 <=；过期下标的队首删除条件不变。
     assert(1 <= k && k <= (int)a.size()); // 调试检查，可删
     deque<int> q;
     vector<T> ans;
@@ -573,6 +575,7 @@ template <class T> vector<T> windowMin(const vector<T> &a, int k)
 template <class T> vector<T> windowMax(const vector<T> &a, int k)
 {
     // a 是原序列，k 是固定窗口长度；返回每个连续窗口的最大值。
+    // 改最小值时把维护队尾的 <= 改为 >=；过期下标的队首删除条件不变。
     assert(1 <= k && k <= (int)a.size()); // 调试检查，可删
     deque<int> q;
     vector<T> ans;

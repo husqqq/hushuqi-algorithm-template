@@ -111,6 +111,8 @@ template <class T> vector<T> kthDiff(vector<T> a, int k)
 template <class T> T maxSubarray(const vector<T> &a)
 {
     // a 非空；返回最大非空连续子段和。
+    // 改求最小子段和时，保留首元素初始化，把 max 改成 min、chmax 改成 chmin；
+    // 必须同时反向“接上/重新开始”的比较，不能只改最终 ans。
     assert(!a.empty());
     T ans = a[0], cur = a[0];
     for (int i = 1; i < a.size(); i++)
@@ -124,6 +126,7 @@ template <class T> T maxSubarray(const vector<T> &a)
 template <class T> T maxSubmatrix(const vector<vector<T>> &a)
 {
     // a 是非空规则矩阵；返回最大非空子矩形和。
+    // 改求最小子矩形和时，同步使用最小子段版本并把 chmax 改为 chmin；边界仍以 a[0][0] 初始化。
     assert(!a.empty() && !a[0].empty());
     int n = a.size(), m = a[0].size();
     T ans = a[0][0];

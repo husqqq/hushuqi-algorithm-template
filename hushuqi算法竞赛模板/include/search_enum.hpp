@@ -63,6 +63,7 @@ template <class F> long double firstReal(long double l, long double r, F f, int 
 template <class F> int ternaryInt(int l, int r, F f)
 {
     // l、r 是整数闭区间，f 是单峰函数；返回一个最大值位置。
+    // 求最小值要把收缩循环和末尾扫描中的 f 比较同时反向；只改一处会得到错误区间。
     while (r - l > 4)
     {
         auto d = r - l;
@@ -93,6 +94,7 @@ template <class F> int ternaryInt(int l, int r, F f)
 template <class F> long double ternaryReal(long double l, long double r, F f, int it = 120)
 {
     // l、r 是实数区间，f 是单峰函数，it 是迭代轮数；返回最大值位置近似值。
+    // 求最小值时反向循环内的 f(x)、f(y) 比较；若改传 -f，先确认取负不会溢出。
     for (int t = 0; t < it; t++)
     {
         auto x = lerp(l, r, 1.0L / 3);
@@ -112,6 +114,7 @@ template <class F> long double ternaryReal(long double l, long double r, F f, in
 template <class F> long double goldenMax(long double l, long double r, F f, int it = 120)
 {
     // l、r 是实数区间，f 是单峰函数，it 是迭代轮数；返回黄金分割搜索结果。
+    // 求最小值时反向 fx、fy 的比较；其余复用点和区间更新方向不变。
     constexpr long double ratio = 0.6180339887498948482L;
     auto x = lerp(l, r, 1 - ratio);
     auto y = lerp(l, r, ratio);

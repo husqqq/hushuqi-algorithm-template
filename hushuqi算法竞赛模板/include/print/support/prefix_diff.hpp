@@ -141,6 +141,8 @@ template <class T> vector<T> kthDiff(vector<T> a, int k)
 template <class T> T maxSub(const vector<T> &a)
 {
     // a 是非空序列；返回非空最大子段和。
+    // 若要最小子段和，保留“非空、从首元素初始化”的结构，把 max 改成 min、chmax 改成 chmin；
+    // 不要只改最后的答案比较，否则 cur 的“接上或重新开始”不变量会仍然求最大值。
     assert(!a.empty()); // 调试检查，可删
     T ans = a[0];
     T cur = a[0];
@@ -156,6 +158,8 @@ template <class T> T maxSub(const vector<T> &a)
 template <class T> T maxSubMat(const vector<vector<T>> &a)
 {
     // a 是非空规则矩阵；返回非空最大子矩阵和。
+    // 若要最小子矩阵和，同步把内部 maxSub、chmax 改为最小子段版本、chmin；边界仍以 a[0][0] 初始化，
+    // 不需要正负无穷单位元，也不能只把最终 ans 的 max 改成 min。
     assert(!a.empty() && !a[0].empty()); // 调试检查，可删
     auto n = (int)a.size();
     auto m = (int)a[0].size();

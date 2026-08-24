@@ -19,6 +19,8 @@ template <class T> bool chmax(T &a, const T &b)
 
 template <class T, class C = T> struct PerLiChao
 {
+    // 当前实现维护最小值。改最大值可反向所有优劣比较并把空值改为负无穷，
+    // 或在 k、b 与函数值都能安全取反时对插入直线同时取反、再对 query 结果取反；后者不改变持久化不变量。
     struct Line
     {
         // k、b 是一次函数 y=kx+b 的斜率与截距。
@@ -94,6 +96,7 @@ template <class T, class C = T> struct PerLiChao
     optional<C> query(int p, T x) const
     {
         // p 是版本根，x 是查询横坐标；返回最小值，空版本返回空。
+        // 最大值版按直线取反时，对非空返回值取负，空版本仍返回 nullopt。
         assert(lo <= x && x < hi); // 调试检查，可删
         return qval(p, lo, hi, x);
     }
@@ -101,6 +104,7 @@ template <class T, class C = T> struct PerLiChao
     optional<C> qval(int p, T l, T r, T x) const
     {
         // p 是当前节点，[l,r) 是其整数域，x 是横坐标；返回路径最小值。
+        // 若改为直接维护最大值，必须同步反向这里的比较与空值语义。
         if (p < 0)
         {
             return nullopt;
