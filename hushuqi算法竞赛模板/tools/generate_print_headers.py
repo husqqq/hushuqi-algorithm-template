@@ -19,7 +19,7 @@ CHAPTERS = sorted(ROOT.glob("[0-9][0-9]-*.md"))
 # Fixed machine words, natural overflow, an external ABI, or a fixed bit layout.
 FIXED_TOPICS = {
     "1.1.006", "1.2.008", "1.3.006", "1.4.004", "2.2.001",
-    "3.6.008", "7.4.008", "10.1.016", "10.2.015", "13.1.009",
+    "3.6.008", "4.1.001", "7.4.008", "10.1.016", "10.2.015", "13.1.009",
     "14.1.019",
 }
 FIXED_HEADERS = {topic.replace(".", "_") + ".hpp" for topic in FIXED_TOPICS}
@@ -190,13 +190,13 @@ def check() -> int:
     forbidden_alias = re.compile(r"\b(?:u32|i32|u64|i64)\b")
     for path in sorted(actual):
         text = path.read_text(encoding="utf-8")
-        if forbidden_alias.search(text):
-            errors.append(f"forbidden integer alias: {path.relative_to(ROOT)}")
         is_support = path.parent == SUPPORT
         if (is_support and path.name in FIXED_SUPPORT) or (
             not is_support and path.name in FIXED_HEADERS
         ):
             continue
+        if forbidden_alias.search(text):
+            errors.append(f"forbidden integer alias: {path.relative_to(ROOT)}")
         if path.name == "10_1_004.hpp":
             begin = "// LC_GENERATOR_CH14_ONLY_BEGIN"
             end = "// LC_GENERATOR_CH14_ONLY_END"

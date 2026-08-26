@@ -56,6 +56,14 @@ signed main()
     }
     assert(dynamic.size() == 11 && dynamic.get(0, 3) == h.get(0, 3));
     assert(dynamic.concat(dynamic.get(0, 4), 4, 7) == h.get(0, 7));
+    hash_topic::ShortHash shortHash("abracadabra");
+    assert(shortHash.get(0, 3) == shortHash.get(7, 10));
+    assert(shortHash.get(0, 0) == 0 && shortHash.get(0, 11) != 0);
+    string rs = "abracadabra";
+    reverse(rs.begin(), rs.end());
+    hash_topic::ShortHash reverseHash(rs);
+    hash_topic::ShortHash reversedPart("arba");
+    assert(reverseHash.get(7, 11) == reversedPart.get(0, 4));
     mt19937_64 rng(712367);
     constexpr unsigned long long mod = hash_topic::HashValue::mod;
     for (int tc = 0; tc < 10000; tc++)
@@ -65,6 +73,7 @@ signed main()
         assert((a + b).x == (x + y) % mod);
         assert((a - b).x == (x + mod - y) % mod);
         assert((a * b).x == (unsigned long long)((__uint128_t)x * y % mod));
+        assert(hash_topic::ShortHash::mul(x, y) == (unsigned long long)((__uint128_t)x * y % mod));
         unsigned long long z = rng();
         assert(hash_topic::HashValue(z).x == z % mod);
     }
@@ -84,6 +93,7 @@ signed main()
         }
         assert(hash_topic::StrHash::match(s, t) == expected);
         hash_topic::StrHash hs(s);
+        hash_topic::ShortHash shs(s);
         for (int q = 0; q < 20; q++)
         {
             int l = n ? rng() % (n + 1) : 0;
@@ -93,6 +103,7 @@ signed main()
             reverse(reversed.begin(), reversed.end());
             assert(hs.get(l, r) == hash_topic::StrHash(part).get(0, part.size()));
             assert(hs.getrev(l, r) == hash_topic::StrHash(reversed).get(0, reversed.size()));
+            assert(shs.get(l, r) == hash_topic::ShortHash(part).get(0, part.size()));
         }
     }
     assert(rotation_topic::minRepr(vector<int>{2, 1, 2, 1}) == 1);
