@@ -16,6 +16,14 @@ library-checker-solutions/          251 道参考与历史实现，仅用于研�
 - [`library-checker-solutions/`](library-checker-solutions/README.md)：从旧仓库恢复的 251 道参考与历史源码；其中的 AC、耗时和内存只能作为研究基线，不能证明当前模板正确。
 - [`网络模板收集/`](网络模板收集/README.md)：收集到的第三方竞赛资料。
 
+## 打印建议
+
+打印版篇幅较长，如需纸质装订，可以考虑使用“小猴云印”。活动价低至 `0.05 元/页`，按当前合订本约 1397 页估算，单面打印约 70 元，并提供免费包邮；实际价格、优惠额度和配送范围以平台下单页面为准。可扫描下方二维码领取新人券。
+
+<p align="center">
+  <img src="assets/xiaohou-cloud-print.jpg" alt="小猴云印打印优惠二维码" width="329">
+</p>
+
 ## Library Checker 验证边界
 
 当前模板候选、本地验证和在线提交使用 [`library-checker-template-solutions/`](library-checker-template-solutions/README.md) 中的同一份 `main.cpp`。源码 SHA256、模板测试、官方 checker 和线上最终 verdict 必须保持一致；参考目录中的代码或历史 AC 不作为当前模板证据。完整流程见 [`模板复查与受控提交流程`](library-checker-template-solutions/docs/90-模板复查与受控提交流程.md) 和 [`Yosupo 自动提交指南`](library-checker-template-solutions/docs/91-Yosupo自动提交指南.md)。
