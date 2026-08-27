@@ -7,6 +7,7 @@ import json
 import re
 import shutil
 from pathlib import Path
+from urllib.parse import quote
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -100,10 +101,11 @@ def write_index(problems: list[dict[str, object]]) -> None:
     ]
     for problem in problems:
         name = safe_name(str(problem["label"]), str(problem["title"]))
+        link = quote(name, safe="")
         kind = "main.cpp + template.hpp" if problem.get("lc_source") else "template.hpp"
         topics = ", ".join(str(topic) for topic in problem.get("topics", [])) or "-"
         lines.append(
-            f"| {problem['label']} | [{problem['title']}]({name}/) | {problem['id']} | {topics} | {kind} |"
+            f"| {problem['label']} | [{problem['title']}]({link}/) | {problem['id']} | {topics} | {kind} |"
         )
     (CATALOG / "README.md").write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
 
