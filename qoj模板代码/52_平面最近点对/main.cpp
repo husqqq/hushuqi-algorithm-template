@@ -270,4 +270,4 @@ template <class T> struct ClosestPair
     }
 };
 
-signed main(){ios::sync_with_stdio(false);cin.tie(nullptr);int t;cin>>t;while(t--){int n;cin>>n;vector<Point<long long>>p(n);for(auto&x:p)cin>>x.x>>x.y;auto r=ClosestPair<long long>().work(p);cout<<r->second.first<<' '<<r->second.second<<'\n';}}
+signed main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n;vector<Point<long long>>p(n);for(auto&x:p)cin>>x.x>>x.y;auto r=ClosestPair<long long>().work(p);cout<<setprecision(20)<<sqrtl((long double)r->first)<<'\n';}

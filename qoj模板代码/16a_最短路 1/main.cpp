@@ -111,22 +111,22 @@ pair<vector<optional<Dist>>, vector<int>> shortestPathTree(
 
 signed main()
 {
-    int n, m, s, t; cin >> n >> m >> s >> t;
+    int n, m, s; cin >> n >> m >> s;
+    --s;
     vector<vector<WEdge>> g(n);
     while (m--)
     {
         int u, v, w; cin >> u >> v >> w;
+        --u;
+        --v;
         g[u].push_back({v, w});
     }
-    auto [d, par] = shortestPathTree(g, s);
-    if (!d[t].has_value())
+    auto d = dijkstraSparse(g, s);
+    for (int i = 0; i < n; i++)
     {
-        cout << -1 << '\n';
-        return 0;
+        if (i) cout << ' ';
+        if (d[i].has_value()) cout << *d[i];
+        else cout << -1;
     }
-    vector<int> path;
-    for (int u = t; u != -1; u = par[u]) path.push_back(u);
-    reverse(path.begin(), path.end());
-    cout << *d[t] << ' ' << (int)path.size() - 1 << '\n';
-    for (int i = 1; i < (int)path.size(); i++) cout << path[i - 1] << ' ' << path[i] << '\n';
+    cout << '\n';
 }

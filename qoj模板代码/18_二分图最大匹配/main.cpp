@@ -126,9 +126,11 @@ signed main()
     while (m--)
     {
         int u, v; cin >> u >> v;
+        --u;
+        --v;
         match.addEdge(u, v);
     }
     cout << match.matching() << '\n';
     for (int u = 0; u < l; u++) if (match.leftMatch()[u] != -1)
-        cout << u << ' ' << match.leftMatch()[u] << '\n';
+        cout << u + 1 << ' ' << match.leftMatch()[u] + 1 << '\n';
 }

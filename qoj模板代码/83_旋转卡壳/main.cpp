@@ -268,4 +268,4 @@ template <class T> pair<int, int> farthestPair(const vector<Point<T>> &p)
     return ans;
 }
 
-signed main(){ios::sync_with_stdio(false);cin.tie(nullptr);int t;cin>>t;while(t--){int n;cin>>n;vector<Point<long long>>p(n);for(auto&x:p)cin>>x.x>>x.y;auto[a,b]=farthestPair(p);cout<<a<<' '<<b<<'\n';}}
+signed main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n;vector<Point<long long>>p(n);for(auto&x:p)cin>>x.x>>x.y;cout<<setprecision(20)<<sqrtl((long double)diameter2(p))<<'\n';}

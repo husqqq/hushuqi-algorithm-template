@@ -201,4 +201,28 @@ template <class T> void polarSort(vector<Point<T>> &a, Point<T> o = {0, 0})
          });
 }
 
-signed main(){int n;cin>>n;vector<Point<long long>>p(n);for(auto&x:p)cin>>x.x>>x.y;polarSort(p);auto it=find_if(p.begin(),p.end(),[](auto x){return x.y<0;});rotate(p.begin(),it,p.end());for(auto x:p)cout<<x.x<<' '<<x.y<<'\n';}
+signed main()
+{
+    int n;
+    cin >> n;
+    vector<Point<long long>> p(n);
+    for (auto &x : p) cin >> x.x >> x.y;
+    vector<int> id(n);
+    iota(id.begin(), id.end(), 0);
+    auto group = [&](int i)
+    {
+        if (p[i].y < 0) return 0;
+        if (p[i].y == 0 && p[i].x >= 0) return 1;
+        if (p[i].y > 0) return 2;
+        return 3;
+    };
+    sort(id.begin(), id.end(), [&](int i, int j)
+    {
+        int gi = group(i), gj = group(j);
+        if (gi != gj) return gi < gj;
+        __int128 c = (__int128)p[i].x * p[j].y - (__int128)p[i].y * p[j].x;
+        if (c != 0) return c > 0;
+        return i < j;
+    });
+    for (int i = 0; i < n; i++) cout << id[i] + 1 << " \n"[i + 1 == n];
+}

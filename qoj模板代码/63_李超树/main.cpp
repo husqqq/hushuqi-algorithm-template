@@ -189,7 +189,7 @@ signed main()
             }
             else
             {
-                cout << "INFINITY\n";
+                cout << "NO\n";
             }
         }
     }

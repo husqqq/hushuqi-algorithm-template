@@ -369,9 +369,21 @@ inline optional<ModLinearSol> gaussMod(vector<vector<long long>> a, int n, long 
 
 signed main()
 {
-    int n, m; cin >> n >> m; vector<F2Vector> a(n, F2Vector(m)); string s;
-    for (int i = 0; i < n; i++) { cin >> s; for (int j = 0; j < m; j++) a[i].set(j, s[j] == '1'); }
-    cin >> s; F2Vector b(n); for (int i = 0; i < n; i++) b.set(i, s[i] == '1');
-    auto ans = gaussF2(a, b); if (!ans) return cout << -1 << '\n', 0;
-    cout << ans->basis.size() << '\n' << ans->particular.str() << '\n'; for (auto &r : ans->basis) cout << r.str() << '\n';
+    int n, m;
+    cin >> n >> m;
+    vector<F2Vector> a(m, F2Vector(n));
+    F2Vector b(m);
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            int x; cin >> x;
+            if (x & 1) a[i].set(j);
+        }
+        int x; cin >> x;
+        if (x & 1) b.set(i);
+    }
+    auto ans = gaussF2(a, b);
+    assert(ans.has_value());
+    for (int i = 0; i < n; i++) cout << ans->particular.get(i) << " \n"[i + 1 == n];
 }

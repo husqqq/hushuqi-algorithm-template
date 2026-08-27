@@ -89,11 +89,11 @@ struct Manacher
 signed main()
 {
     string s; cin >> s; Manacher m(s);
+    int ans = 0;
     for (int i = 0; i < (int)s.size(); i++)
     {
-        if (i) cout << ' ';
-        cout << 2 * m.odd[i] - 1;
-        if (i + 1 < (int)s.size()) cout << ' ' << 2 * m.even[i + 1];
+        ans = max(ans, 2 * m.odd[i] - 1);
+        ans = max(ans, 2 * m.even[i]);
     }
-    cout << '\n';
+    cout << ans << '\n';
 }

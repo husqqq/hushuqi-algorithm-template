@@ -93,24 +93,14 @@ signed main()
 {
     int n, m; cin >> n >> m;
     vector<MEdge> e(m);
-    map<array<int, 3>, vector<int>> pos;
     for (int i = 0; i < m; i++)
     {
         auto &x = e[i];
         cin >> x.x >> x.y >> x.w;
-        pos[{x.x, x.y, x.w}].push_back(i);
+        --x.x;
+        --x.y;
     }
     auto ans = kruskal(n, e);
     assert(ans.has_value());
-    vector<bool> used(m);
-    vector<int> id;
-    for (auto x : ans->second)
-    {
-        auto &v = pos[{x.x, x.y, x.w}];
-        id.push_back(v.back());
-        v.pop_back();
-    }
     cout << ans->first << '\n';
-    for (int i = 0; i < (int)id.size(); i++) cout << (i ? " " : "") << id[i];
-    cout << '\n';
 }

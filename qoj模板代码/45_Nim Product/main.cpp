@@ -87,10 +87,25 @@ unsigned long long nimProduct(unsigned long long a, unsigned long long b)
 
 signed main()
 {
-    int t; cin >> t;
+    uint32_t t, sa, sb, sc;
+    cin >> t >> sa >> sb >> sc;
+    auto rng = [&]() -> uint32_t
+    {
+        sa ^= sa << 16;
+        sa ^= sa >> 5;
+        sa ^= sa << 1;
+        uint32_t z = sa;
+        sa = sb;
+        sb = sc;
+        sc ^= z ^ sa;
+        return sc;
+    };
+    uint32_t last = 0;
     while (t--)
     {
-        unsigned long long a, b; cin >> a >> b;
-        cout << nimProduct(a, b) << '\n';
+        uint32_t x = rng() + last;
+        uint32_t y = rng();
+        last = (uint32_t)nimProduct(x, y);
     }
+    cout << last << '\n';
 }

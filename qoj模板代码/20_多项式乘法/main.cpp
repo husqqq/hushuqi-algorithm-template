@@ -705,4 +705,4 @@ vector<Z> conv(vector<Z> a, vector<Z> b)
 }
 }
 
-signed main(){ int n,m; cin>>n>>m; vector<Z>a(n),b(m); for(auto&x:a){int v;cin>>v;x=v;} for(auto&x:b){int v;cin>>v;x=v;} auto c=conv(a,b); for(int i=0;i<(int)c.size();i++) cout<<c[i].val()<<" \n"[i+1==(int)c.size()]; }
+signed main(){ int n,m; cin>>n>>m; vector<Z>a(n+1),b(m+1); for(auto&x:a){int v;cin>>v;x=v;} for(auto&x:b){int v;cin>>v;x=v;} auto c=conv(a,b); for(int i=0;i<(int)c.size();i++) cout<<c[i].val()<<" \n"[i+1==(int)c.size()]; }

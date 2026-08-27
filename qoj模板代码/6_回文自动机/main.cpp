@@ -108,13 +108,17 @@ template <int A = 26, char S = 'a'> struct PAM
 
 signed main()
 {
-    string s; cin >> s; PAM<26, 'a'> pam; vector<int> last;
-    for (char c : s) last.push_back(pam.add(c));
-    vector<int> par(pam.t.size(), -1);
-    for (int u = 0; u < (int)pam.t.size(); u++)
-        for (int c = 0; c < 26; c++) if (pam.t[u].ch[c]) par[pam.t[u].ch[c]] = u;
-    cout << pam.t.size() - 2 << '\n';
-    for (int u = 2; u < (int)pam.t.size(); u++) cout << par[u] - 1 << ' ' << pam.t[u].link - 1 << '\n';
-    for (int i = 0; i < (int)s.size(); i++) cout << (i ? " " : "") << last[i] - 1;
-    cout << '\n';
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    string s;
+    cin >> s;
+    PAM<26, 'a'> pam;
+    pam.build(s);
+    pam.count();
+    long long ans = 0;
+    for (int u = 2; u < (int)pam.t.size(); u++)
+    {
+        ans = max(ans, pam.t[u].cnt * pam.t[u].len * pam.t[u].len);
+    }
+    cout << ans << '\n';
 }

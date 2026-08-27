@@ -92,21 +92,19 @@ class TarjanTwoSAT
 
 signed main()
 {
-    string p, cnf;
-    int n, m; cin >> p >> cnf >> n >> m;
+    int n, m; cin >> n >> m;
     TarjanTwoSAT sat(n);
     while (m--)
     {
-        int x, y, zero; cin >> x >> y >> zero;
-        sat.addOr(abs(x) - 1, x > 0, abs(y) - 1, y > 0);
+        int a, b, c, d; cin >> a >> b >> c >> d;
+        sat.addOr(a - 1, b, c - 1, d);
     }
     auto ans = sat.solve();
     if (!ans)
     {
-        cout << "s UNSATISFIABLE\n";
+        cout << "No\n";
         return 0;
     }
-    cout << "s SATISFIABLE\nv";
-    for (int i = 0; i < n; i++) cout << ' ' << ((*ans)[i] ? i + 1 : -i - 1);
-    cout << " 0\n";
+    cout << "Yes\n";
+    for (int i = 0; i < n; i++) cout << (*ans)[i] << " \n"[i + 1 == n];
 }

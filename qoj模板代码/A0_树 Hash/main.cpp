@@ -236,16 +236,29 @@ struct TreeIso
 
 signed main()
 {
-    int n; cin >> n;
-    vector<vector<int>> g(n);
-    for (int v = 1; v < n; v++)
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int test;
+    cin >> test;
+    while (test--)
     {
-        int p; cin >> p;
-        g[p].push_back(v);
-        g[v].push_back(p);
+        int n;
+        cin >> n;
+        vector<vector<int>> a(n), b(n);
+        for (int which = 0; which < 2; which++)
+        {
+            auto &g = which ? b : a;
+            for (int i = 1; i < n; i++)
+            {
+                int u, v;
+                cin >> u >> v;
+                --u;
+                --v;
+                g[u].push_back(v);
+                g[v].push_back(u);
+            }
+        }
+        TreeIso iso;
+        cout << (iso.rooted(a, 0) == iso.rooted(b, 0) ? "Isomorphism" : "No") << '\n';
     }
-    TreeIso iso;
-    auto id = iso.ids(g, 0);
-    cout << iso.mp.size() << '\n';
-    for (int i = 0; i < n; i++) cout << id[i] - 1 << " \n"[i + 1 == n];
 }

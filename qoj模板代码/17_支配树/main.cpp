@@ -143,13 +143,22 @@ struct Dominator
 
 signed main()
 {
-    int n, m, s; cin >> n >> m >> s;
+    int n, m; cin >> n >> m;
     vector<vector<int>> g(n);
     while (m--)
     {
         int u, v; cin >> u >> v;
+        --u;
+        --v;
         g[u].push_back(v);
     }
-    auto ans = Dominator(g).work(s);
-    for (int i = 0; i < n; i++) cout << ans[i] << " \n"[i + 1 == n];
+    auto parent = Dominator(g).work(0);
+    vector<vector<int>> tree(n);
+    for (int v = 1; v < n; v++) tree[parent[v]].push_back(v);
+    vector<int> order{0};
+    for (int i = 0; i < (int)order.size(); i++)
+        for (int v : tree[order[i]]) order.push_back(v);
+    vector<int> size(n, 1);
+    for (int i = n - 1; i > 0; i--) size[parent[order[i]]] += size[order[i]];
+    for (int i = 0; i < n; i++) cout << size[i] << " \n"[i + 1 == n];
 }

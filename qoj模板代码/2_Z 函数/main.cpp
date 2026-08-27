@@ -36,7 +36,7 @@ vector<int> zfunc(const string &s)
     {
         return z;
     }
-    z[0] = n;
+    z[0] = 0;
     for (int i = 1, l = 0, r = 0; i < n; ++i)
     {
         if (i < r)

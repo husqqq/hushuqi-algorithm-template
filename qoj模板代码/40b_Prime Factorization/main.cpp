@@ -118,6 +118,15 @@ vector<unsigned long long> factor64(unsigned long long n)
         {
             return;
         }
+        for (unsigned long long p : {2ULL, 3ULL, 5ULL, 7ULL, 11ULL, 13ULL, 17ULL, 19ULL, 23ULL, 29ULL, 31ULL, 37ULL})
+        {
+            if (x % p == 0)
+            {
+                ans.push_back(p);
+                self(self, x / p);
+                return;
+            }
+        }
         if (isPrime(x))
         {
             ans.push_back(x);
@@ -139,8 +148,11 @@ signed main()
     {
         unsigned long long n; cin >> n;
         auto a = factor64(n);
-        cout << a.size();
-        for (auto p : a) cout << ' ' << p;
+        for (int i = 0; i < (int)a.size(); i++)
+        {
+            if (i) cout << ' ';
+            cout << a[i];
+        }
         cout << '\n';
     }
 }

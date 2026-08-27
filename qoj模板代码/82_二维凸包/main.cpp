@@ -198,4 +198,4 @@ template <class T> vector<Point<T>> hull(vector<Point<T>> a)
     return h;
 }
 
-signed main(){ios::sync_with_stdio(false);cin.tie(nullptr);int t;cin>>t;while(t--){int n;cin>>n;vector<Point<long long>>p(n);for(auto&x:p)cin>>x.x>>x.y;auto h=hull(p);cout<<h.size()<<'\n';for(auto x:h)cout<<x.x<<' '<<x.y<<'\n';}}
+signed main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n;vector<Point<long long>>p(n);for(auto&x:p)cin>>x.x>>x.y;auto h=hull(p);long double ans=0;for(int i=0;i<(int)h.size();i++)ans+=abs(h[i]-h[(i+1)%h.size()]);cout<<setprecision(20)<<ans<<'\n';}

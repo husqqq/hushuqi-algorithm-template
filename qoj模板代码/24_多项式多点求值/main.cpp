@@ -1148,6 +1148,9 @@ signed main()
         cin >> a;
         v = a;
     }
-    printPoly(multiEval(f, x));
+    for (Z v : multiEval(f, x))
+    {
+        cout << v.val() << '\n';
+    }
     return 0;
 }

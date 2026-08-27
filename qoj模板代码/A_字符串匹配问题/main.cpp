@@ -757,7 +757,15 @@ vector<bool> wildcard(const string &s, string t, char any = '*')
 
 signed main()
 {
-    string s, t; cin >> s >> t; auto a = wildcard(s, t);
-    for (bool x : a) cout << x;
+    string pattern, text;
+    cin >> pattern >> text;
+    auto a = wildcard(text, pattern);
+    bool first = true;
+    for (int i = 0; i < (int)a.size(); i++) if (a[i])
+    {
+        if (!first) cout << ' ';
+        first = false;
+        cout << i + 1;
+    }
     cout << '\n';
 }

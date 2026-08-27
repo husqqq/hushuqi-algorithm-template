@@ -150,6 +150,11 @@ vector<Run> runs(const string &s)
 
 signed main()
 {
-    string s; cin >> s; auto a = runs(s); cout << a.size() << '\n';
-    for (auto x : a) cout << x.p << ' ' << x.l << ' ' << x.r << '\n';
+    string s; cin >> s; auto a = runs(s);
+    sort(a.begin(), a.end(), [](const Run &x, const Run &y)
+    {
+        return tie(x.l, x.r, x.p) < tie(y.l, y.r, y.p);
+    });
+    cout << a.size() << '\n';
+    for (auto x : a) cout << x.l + 1 << ' ' << x.r << ' ' << x.p << '\n';
 }

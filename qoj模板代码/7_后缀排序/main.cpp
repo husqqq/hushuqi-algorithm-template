@@ -304,6 +304,6 @@ vector<int> lcpArray(const string &s, const vector<int> &sa)
 signed main()
 {
     string s; cin >> s; auto a = suffixArray(s);
-    for (int i = 0; i < (int)a.size(); i++) cout << (i ? " " : "") << a[i];
+    for (int i = 0; i < (int)a.size(); i++) cout << (i ? " " : "") << a[i] + 1;
     cout << '\n';
 }

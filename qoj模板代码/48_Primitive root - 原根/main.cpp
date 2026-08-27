@@ -398,6 +398,15 @@ vector<unsigned long long> factor64(unsigned long long n)
         {
             return;
         }
+        for (unsigned long long p : {2ULL, 3ULL, 5ULL, 7ULL, 11ULL, 13ULL, 17ULL, 19ULL, 23ULL, 29ULL, 31ULL, 37ULL})
+        {
+            if (x % p == 0)
+            {
+                ans.push_back(p);
+                self(self, x / p);
+                return;
+            }
+        }
         if (isPrime(x))
         {
             ans.push_back(x);
@@ -459,10 +468,56 @@ vector<long long> primitiveRoots(long long p)
 
 signed main()
 {
-    int q; cin >> q;
-    while (q--)
+    long long n;
+    cin >> n;
+    if (n == 1) return cout << 0 << '\n', 0;
+    if (n == 2) return cout << 1 << '\n', 0;
+    if (n == 4) return cout << 3 << '\n', 0;
+    auto trialFactor = [](unsigned long long x)
     {
-        long long p; cin >> p;
-        cout << primitiveRoot(p) << '\n';
+        vector<unsigned long long> a;
+        for (unsigned long long p = 2; p * p <= x; p += p == 2 ? 1 : 2)
+        {
+            while (x % p == 0)
+            {
+                a.push_back(p);
+                x /= p;
+            }
+        }
+        if (x > 1) a.push_back(x);
+        return a;
+    };
+    auto fac = n <= 1000000000000LL ? trialFactor(n) : factor64(n);
+    int twos = count(fac.begin(), fac.end(), 2ULL);
+    vector<unsigned long long> odd;
+    for (auto p : fac) if (p != 2) odd.push_back(p);
+    if (twos > 1 || odd.empty() || !all_of(odd.begin(), odd.end(), [&](auto p){ return p == odd[0]; }))
+    {
+        cout << -1 << '\n';
+        return 0;
+    }
+    long long p = odd[0];
+    long long oddPart = n / (twos ? 2 : 1);
+    long long phi = oddPart / p * (p - 1);
+    auto pf = p - 1 <= 1000000000000LL ? trialFactor(p - 1) : factor64(p - 1);
+    if (oddPart / p > 1) pf.push_back(p);
+    sort(pf.begin(), pf.end());
+    pf.erase(unique(pf.begin(), pf.end()), pf.end());
+    auto power = [&](long long a, unsigned long long b)
+    {
+        unsigned long long x = a % n, ans = 1 % n;
+        while (b)
+        {
+            if (b & 1) ans = (unsigned __int128)ans * x % n;
+            x = (unsigned __int128)x * x % n;
+            b >>= 1;
+        }
+        return ans;
+    };
+    for (long long g = 2;; g++) if (gcd(g, n) == 1)
+    {
+        bool ok = true;
+        for (auto q : pf) if (power(g, phi / q) == 1) ok = false;
+        if (ok) return cout << g << '\n', 0;
     }
 }

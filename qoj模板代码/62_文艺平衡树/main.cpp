@@ -312,23 +312,20 @@ signed main()
     int n, q;
     cin >> n >> q;
     vector<long long> a(n);
-    for (auto &x : a)
-    {
-        cin >> x;
-    }
+    iota(a.begin(), a.end(), 1);
     ImpTreap<long long> seq(a, n);
     while (q--)
     {
-        int type, l, r;
-        cin >> type >> l >> r;
-        if (type == 0)
-        {
-            seq.reverse(l, r);
-        }
-        else
-        {
-            cout << seq.sum(l, r) << '\n';
-        }
+        int l, r;
+        cin >> l >> r;
+        seq.reverse(l - 1, r);
     }
+    auto ans = seq.values();
+    for (int i = 0; i < n; i++)
+    {
+        if (i) cout << ' ';
+        cout << ans[i];
+    }
+    cout << '\n';
     return 0;
 }

@@ -5,7 +5,6 @@ from __future__ import annotations
 
 import json
 import re
-import shutil
 from pathlib import Path
 from urllib.parse import quote
 
@@ -13,7 +12,6 @@ from urllib.parse import quote
 ROOT = Path(__file__).resolve().parents[2]
 CATALOG = ROOT / "qoj模板代码"
 TEMPLATE_ROOT = ROOT / "hushuqi算法竞赛模板" / "include" / "full"
-LC_ROOT = ROOT / "library-checker-template-solutions"
 MANIFEST = CATALOG / "manifest.json"
 
 LOCAL_INCLUDE = re.compile(r'^\s*#include\s+"([^"]+)"\s*$')
@@ -66,11 +64,17 @@ def write_problem(entry: dict[str, object]) -> None:
         pieces.append(bundle(TEMPLATE_ROOT / f"{topic.replace('.', '_')}.hpp", seen))
     (destination / "template.hpp").write_text("\n".join(pieces), encoding="utf-8", newline="\n")
 
-    source = entry.get("lc_source")
-    if source:
-        shutil.copyfile(LC_ROOT / str(source) / "main.cpp", destination / "main.cpp")
+    # QOJ 的题意和 Library Checker 经常只有算法相同、I/O 协议不同。
+    # main.cpp 必须逐题按 QOJ 题面适配；生成器只更新模板和索引，
+    # 既不覆盖已有入口，也不自动复制 Library Checker 的提交源码。
 
-    status = "附同题型的已验证 main.cpp；提交 QOJ 前仍需核对输入输出" if source else "提供自包含算法模板，仍需按 QOJ 题面补适配层"
+    has_main = (destination / "main.cpp").exists()
+    if has_main:
+        status = "main.cpp 已按 QOJ 题面适配输入输出"
+    elif str(entry["label"]) == "46":
+        status = "函数接口题：按题面实现 init(p) 与 inv(x)，不应提供 main.cpp"
+    else:
+        status = "仅有相关算法模板，尚无完整 QOJ 提交实现"
     readme = (
         f"# {entry['label']}. {entry['title']}\n\n"
         f"- QOJ: {entry['url']}\n"
@@ -83,16 +87,21 @@ def write_problem(entry: dict[str, object]) -> None:
 
 
 def write_index(problems: list[dict[str, object]]) -> None:
-    ready = sum(bool(problem.get("lc_source")) for problem in problems)
+    def has_main(problem: dict[str, object]) -> bool:
+        name = safe_name(str(problem["label"]), str(problem["title"]))
+        return (CATALOG / name / "main.cpp").exists()
+
+    ready = sum(has_main(problem) for problem in problems)
     lines = [
         "# QOJ 3936 模板代码",
         "",
         "本目录对应 [XXIV 赛前模板训练赛](https://qoj.ac/contest/3936) 的 75 道题。",
         "每题目录中的 `template.hpp` 是从本仓库权威模板依赖展开得到的自包含代码；",
-        "存在 `main.cpp` 时，它来自 `library-checker-template-solutions` 中同题型、已验证的独立提交源码。",
+        "算法主体可复用本仓库模板或 Library Checker 实现，但 `main.cpp` 的输入输出、下标和特殊约定均逐题按 QOJ 题面适配。",
         "",
-        f"当前共有 {ready} 道附同题型已验证实现，{len(problems) - ready} 道仅提供算法模板。",
-        "`main.cpp` 的输入输出仍以对应 Library Checker 题为准；题目 README 标注了需要适配的差异。",
+        f"当前共有 {ready} 道提供按 QOJ 题面适配的 `main.cpp`。",
+        "不存在 `main.cpp` 的目录只提供相关算法模板，不能直接提交；46 为函数接口题，本来就不应包含 main。",
+        "EX1 按计划不做适配。其余未完成项及原因见 `未完成清单.md`。",
         "",
         "生成命令：`python qoj模板代码/tools/generate.py`",
         "",
@@ -102,7 +111,7 @@ def write_index(problems: list[dict[str, object]]) -> None:
     for problem in problems:
         name = safe_name(str(problem["label"]), str(problem["title"]))
         link = quote(name, safe="")
-        kind = "main.cpp + template.hpp" if problem.get("lc_source") else "template.hpp"
+        kind = "QOJ main.cpp + template.hpp" if has_main(problem) else ("函数接口 template.hpp" if str(problem["label"]) == "46" else "仅 template.hpp")
         topics = ", ".join(str(topic) for topic in problem.get("topics", [])) or "-"
         lines.append(
             f"| {problem['label']} | [{problem['title']}]({link}/) | {problem['id']} | {topics} | {kind} |"
