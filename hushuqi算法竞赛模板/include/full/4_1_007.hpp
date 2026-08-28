@@ -29,121 +29,148 @@ template <class T> bool chmax(T &a, const T &b)
 
 struct Run
 {
-    // p 是最小周期，[l,r) 是极大周期区间。
+    // p 是最小周期，[l,r) 是极大周期区间；32 位字段用于降低百万规模候选的内存占用。
     int32_t p, l, r;
     auto operator<=>(const Run &) const = default;
 };
 
-using RunIndex = int32_t;
-
-vector<RunIndex> runZ(const vector<RunIndex> &a)
+struct RunHash
 {
-    // a 是整数序列；返回带一个尾哨兵的 Z 数组，供 Runs 计算 LCE。
-    RunIndex n = a.size();
-    vector<RunIndex> z(n + 1);
-    for (RunIndex i = 1, l = 0; i <= n; i++)
-    {
-        z[i] = l + z[l] <= i ? 0 : min(l + z[l] - i, z[i - l]);
-        while (i + z[i] < n && a[z[i]] == a[i + z[i]])
-        {
-            z[i]++;
-        }
-        if (l + z[l] < i + z[i])
-        {
-            l = i;
-        }
-    }
-    return z;
-}
+    // a 是 1 下标字符串值；h、pw 用于单模哈希 LCE。
+    int32_t n;
+    vector<int32_t> a, h, pw;
 
-struct RunEnum
-{
-    // all[p] 收集最小周期候选为 p 的极大区间。
-    vector<vector<pair<RunIndex, RunIndex>>> all;
-    vector<RunIndex> a;
-
-    vector<RunIndex> rev(vector<RunIndex> v)
+    explicit RunHash(const string &s) : n(s.size()), a(n + 1), h(n + 1), pw(n + 1, 1)
     {
-        reverse(v.begin(), v.end());
-        return v;
+        for (int32_t i = 1; i <= n; i++)
+        {
+            a[i] = s[i - 1] - 'a' + 1;
+        }
+        build();
     }
 
-    vector<RunIndex> sub(RunIndex l, RunIndex r)
+    void build()
     {
-        return {a.begin() + l, a.begin() + r};
+        // 根据当前 a 建立前缀哈希。
+        constexpr int32_t mod = 998244353, bs = 31;
+        h[0] = 0;
+        pw[0] = 1;
+        for (int32_t i = 1; i <= n; i++)
+        {
+            pw[i] = 1LL * pw[i - 1] * bs % mod;
+            h[i] = (1LL * h[i - 1] * bs + a[i]) % mod;
+        }
     }
 
-    void solve(RunIndex l, RunIndex r, RunIndex rounding)
+    int32_t get(int32_t l, int32_t len) const
     {
-        if (r - l <= 1)
+        // 返回 1 下标区间 a[l..l+len) 的哈希值。
+        constexpr int32_t mod = 998244353;
+        return (h[l + len - 1] - 1LL * h[l - 1] * pw[len] % mod + mod) % mod;
+    }
+
+    int32_t lcp(int32_t x, int32_t y, int32_t up) const
+    {
+        // 返回从 x、y 开始的最长公共前缀，长度不超过 up。
+        if (x > n || y > n || a[x] != a[y])
         {
-            return;
+            return 0;
         }
-        RunIndex m = (l + r + rounding) / 2;
-        solve(l, m, rounding);
-        solve(m, r, rounding);
-        auto zl = runZ(rev(sub(l, m)));
-        auto y = sub(m, r), suffix = sub(l, r);
-        y.insert(y.end(), suffix.begin(), suffix.end());
-        auto zr = runZ(y);
-        for (RunIndex i = m - 1; i >= l; i--)
+        int32_t l = 0, r = min({up, n - x + 1, n - y + 1});
+        while (l < r)
         {
-            RunIndex le = min(i - l, zl[m - i]);
-            RunIndex ri = min(r - m, zr[r - l - (m - i)]);
-            RunIndex p = m - i, ql = i - le, qr = m + ri;
-            if (qr - ql >= 2 * p)
+            int32_t m = (l + r + 1) / 2;
+            if (get(x, m) == get(y, m))
             {
-                all[p].push_back({ql, qr});
+                l = m;
+            }
+            else
+            {
+                r = m - 1;
             }
         }
+        return l;
     }
 
-    explicit RunEnum(const string &s) : all(s.size() / 2 + 1), a(s.begin(), s.end())
+    int32_t lcs(int32_t x, int32_t y, int32_t up) const
     {
-        RunIndex n = a.size();
-        reverse(a.begin(), a.end());
-        solve(0, n, 0);
-        for (auto &v : all)
+        // 返回以 x、y 结尾的最长公共后缀，长度不超过 up。
+        if (x <= 0 || y <= 0 || a[x] != a[y])
         {
-            for (auto &[l, r] : v)
+            return 0;
+        }
+        int32_t l = 0, r = min({up, x, y});
+        while (l < r)
+        {
+            int32_t m = (l + r + 1) / 2;
+            if (get(x - m + 1, m) == get(y - m + 1, m))
             {
-                tie(l, r) = pair{n - r, n - l};
+                l = m;
+            }
+            else
+            {
+                r = m - 1;
             }
         }
-        reverse(a.begin(), a.end());
-        solve(0, n, 1);
+        return l;
+    }
+
+    void flip()
+    {
+        // 互补字符值，枚举另一种 Lyndon 方向。
+        for (int32_t i = 1; i <= n; i++)
+        {
+            a[i] = 27 - a[i];
+        }
+        build();
+    }
+
+    void getRuns(vector<Run> &ans)
+    {
+        // 用 Lyndon 单调栈枚举当前方向的全部 Runs。
+        vector<int32_t> st(n + 1);
+        st[0] = n + 1;
+        for (int32_t i = n, top = 0, lt = 0; i >= 1; i--)
+        {
+            while (top)
+            {
+                int32_t x = min(st[top] - i, st[top - 1] - st[top]);
+                lt = lcp(i, st[top], x);
+                if ((lt == x && st[top] - i < st[top - 1] - st[top]) ||
+                    (lt < x && a[i + lt] < a[st[top] + lt]))
+                {
+                    top--;
+                    lt = 0;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            int32_t j = st[top];
+            st[++top] = i;
+            int32_t x = lcs(i - 1, j - 1, j - i), y;
+            if (x < j - i)
+            {
+                y = lt + lcp(i + lt, j + lt, n);
+                if (x + y >= j - i)
+                {
+                    ans.push_back({j - i, i - x - 1, j + y - 1});
+                }
+            }
+        }
     }
 };
 
 vector<Run> runs(const string &s)
 {
-    // s 是原字符串；返回全部极大周期区间及其最小周期。
-    RunEnum e(s);
-    set<pair<RunIndex, RunIndex>> seen;
+    // s 是原字符串；返回全部极大周期区间及其最小周期。哈希碰撞概率极低。
+    RunHash e(s);
     vector<Run> ans;
-    for (RunIndex p = 1; p < (RunIndex)e.all.size(); p++)
-    {
-        auto &v = e.all[p];
-        sort(v.begin(), v.end(), [](auto x, auto y)
-        {
-            return x.first != y.first ? x.first < y.first : x.second > y.second;
-        });
-        vector<pair<RunIndex, RunIndex>> filtered;
-        for (auto [l, r] : v)
-        {
-            if (filtered.empty() || filtered.back().second < r)
-            {
-                filtered.push_back({l, r});
-            }
-        }
-        for (auto [l, r] : filtered)
-        {
-            if (seen.insert({l, r}).second)
-            {
-                ans.push_back({p, l, r});
-            }
-        }
-    }
+    e.getRuns(ans);
+    e.flip();
+    e.getRuns(ans);
     sort(ans.begin(), ans.end());
+    ans.erase(unique(ans.begin(), ans.end()), ans.end());
     return ans;
 }

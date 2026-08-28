@@ -1,4 +1,7 @@
-// Generated from hushuqi算法竞赛模板. Do not edit by hand.
+#pragma once
+
+// Candidate template based on hushuqi算法竞赛模板 5.9.006.
+// Keep this file in the QOJ candidate area until it is approved.
 
 // QOJ contest 3936: 1G 三元环枚举
 
@@ -9,6 +12,7 @@ using namespace std;
 
 unsigned long long triangles(int n, const vector<pair<int, int>> &e)
 {
+    // n 是点数，e 是不含重边和自环的无向边；返回三元环数量。
     // e 是简单无向图边集；返回三元环数量。
     vector<int> d(n);
     for (auto [u, v] : e)
@@ -51,6 +55,7 @@ unsigned long long triangles(int n, const vector<pair<int, int>> &e)
 
 long long weightedTri(int n, const vector<long long> &val, const vector<pair<int, int>> &e, long long mod)
 {
+    // n 是点数，val 是点权，e 是简单无向边，mod 是正模数；返回加权三元环和。
     // n 是点数，val 是每点权值，e 是简单无向边集，mod 是正模数；返回所有三元环三点权乘积之和模 mod。
     assert((int)val.size() == n && mod > 0); // 调试检查，可删。
     vector<int> d(n);
@@ -88,8 +93,65 @@ long long weightedTri(int n, const vector<long long> &val, const vector<pair<int
     return (ans + mod) % mod;
 }
 
+int triWeight998(
+    int n,
+    const vector<int> &value,
+    const vector<pair<int, int>> &edges)
+{
+    // 针对固定模数的批量加权三元环计数；输入必须是简单无向图，点权已在 [0,mod) 内。
+    constexpr int mod = 998244353;
+    assert((int)value.size() == n);
+    vector<int> degree(n), order(n), rank(n);
+    for (auto [u, v] : edges)
+    {
+        assert(0 <= u && u < n && 0 <= v && v < n && u != v);
+        degree[u]++;
+        degree[v]++;
+    }
+    iota(order.begin(), order.end(), 0);
+    sort(order.begin(), order.end(), [&](int u, int v)
+    {
+        return pair{degree[u], u} < pair{degree[v], v};
+    });
+
+    vector<int> reorderedValue(n);
+    for (int i = 0; i < n; i++)
+    {
+        rank[order[i]] = i;
+        reorderedValue[i] = value[order[i]];
+    }
+    vector<vector<int>> graph(n);
+    for (auto [u, v] : edges)
+    {
+        u = rank[u];
+        v = rank[v];
+        if (u > v) swap(u, v);
+        graph[v].push_back(u);
+    }
+
+    vector<int> marked(n, -1);
+    __int128 answer = 0;
+    for (int u = 0; u < n; u++)
+    {
+        for (int v : graph[u]) marked[v] = u;
+        unsigned __int128 middleSum = 0;
+        for (int v : graph[u])
+        {
+            long long commonWeight = 0;
+            for (int w : graph[v])
+            {
+                if (marked[w] == u) commonWeight += reorderedValue[w];
+            }
+            middleSum += (__int128)commonWeight * reorderedValue[v];
+        }
+        answer += middleSum * reorderedValue[u];
+    }
+    return (int)(answer % mod);
+}
+
 unsigned long long fourCycles(int n, const vector<pair<int, int>> &e)
 {
+    // n 是点数，e 是简单无向边；返回四元环数量。
     // e 是简单无向图边集；返回四元环数量。
     int blocks = (n + 63) / 64;
     vector a(n, vector<unsigned long long>(blocks));
@@ -117,6 +179,7 @@ unsigned long long fourCycles(int n, const vector<pair<int, int>> &e)
 
 vector<long long> fourCycleCnt(int n, const vector<pair<int, int>> &edges)
 {
+    // n 是点数，edges 是允许重边的无向边；返回每条输入边参与的四元环数。
     // n 是点数，edges 是允许重边的无向边；返回每条原边参与的四元环数量。
     int m = edges.size();
     vector<int> deg(n), ord(n), rk(n);

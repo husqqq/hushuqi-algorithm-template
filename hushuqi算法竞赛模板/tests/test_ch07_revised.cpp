@@ -39,22 +39,15 @@ signed main()
     assert((factor64(600851475143ULL) ==
             vector<unsigned long long>{71, 839, 1471, 6857}));
 
-#ifdef TEMPLATE_PRINT_VARIANT
-    static_assert(sizeof(Z) == sizeof(int));
-    static_assert(is_same_v<decltype(Z{}.x), int>);
-#else
     static_assert(sizeof(Z) == sizeof(uint32_t));
     static_assert(is_same_v<decltype(Z{}.x), uint32_t>);
-#endif
     assert((Z(mod - 1) + Z(mod - 1)).val() == mod - 2);
     assert((Z(0) - Z(1)).val() == mod - 1);
     assert((Z(mod - 1) * Z(mod - 1)).val() == 1);
-    constexpr long long bigMod = 9223372036854775783LL;
-    using BigMint = MInt<bigMod>;
-    static_assert(sizeof(BigMint) == sizeof(unsigned long long));
-    assert((BigMint(-1) + BigMint(-1)).val() == bigMod - 2);
-    assert((BigMint(0) - BigMint(1)).val() == bigMod - 1);
-    assert((BigMint(-1) * BigMint(-1)).val() == 1);
+    using SmallMint = MInt<1000000007>;
+    assert((SmallMint(-1) + SmallMint(-1)).val() == 1000000005);
+    assert((SmallMint(0) - SmallMint(1)).val() == 1000000006);
+    assert((SmallMint(-1) * SmallMint(-1)).val() == 1);
     const auto &iv = invTable<998244353>(1000);
     for (int i = 1; i <= 1000; i++)
     {

@@ -400,3 +400,405 @@ vector<uint32_t> bitConvMod(vector<uint32_t> a, vector<uint32_t> b)
     fwtMod<P, Op, true>(a);
     return a;
 }
+
+// 稀疏 XOR 卷积使用的固定大素数；其乘积必须用 __int128 承载。
+constexpr uint64_t sparseXorMod = 1000000000000125953ULL;
+
+class SparseXorMint
+{
+private:
+    uint64_t x = 0;
+
+    static uint64_t mulRaw(uint64_t a, uint64_t b)
+    {
+        return (uint64_t)((unsigned __int128)a * b % sparseXorMod);
+    }
+
+public:
+    SparseXorMint() = default;
+
+    // v 是任意有符号整数；返回其在 sparseXorMod 下的最小非负代表元。
+    SparseXorMint(long long v)
+    {
+        v %= (long long)sparseXorMod;
+        if (v < 0)
+        {
+            v += sparseXorMod;
+        }
+        x = (uint64_t)v;
+    }
+
+    // v 是已在 [0,sparseXorMod) 中的代表元；用于内部运算避免重复取模。
+    static SparseXorMint raw(uint64_t v)
+    {
+        SparseXorMint r;
+        r.x = v;
+        return r;
+    }
+
+    uint64_t val() const
+    {
+        return x;
+    }
+
+    SparseXorMint operator-() const
+    {
+        return raw(x ? sparseXorMod - x : 0);
+    }
+
+    SparseXorMint &operator+=(const SparseXorMint &o)
+    {
+        x += o.x;
+        if (x >= sparseXorMod)
+        {
+            x -= sparseXorMod;
+        }
+        return *this;
+    }
+
+    SparseXorMint &operator-=(const SparseXorMint &o)
+    {
+        x += sparseXorMod - o.x;
+        if (x >= sparseXorMod)
+        {
+            x -= sparseXorMod;
+        }
+        return *this;
+    }
+
+    SparseXorMint &operator*=(const SparseXorMint &o)
+    {
+        x = mulRaw(x, o.x);
+        return *this;
+    }
+
+    friend SparseXorMint operator+(SparseXorMint a, const SparseXorMint &b)
+    {
+        return a += b;
+    }
+
+    friend SparseXorMint operator-(SparseXorMint a, const SparseXorMint &b)
+    {
+        return a -= b;
+    }
+
+    friend SparseXorMint operator*(SparseXorMint a, const SparseXorMint &b)
+    {
+        return a *= b;
+    }
+
+    friend bool operator==(const SparseXorMint &a, const SparseXorMint &b)
+    {
+        return a.x == b.x;
+    }
+
+    friend bool operator!=(const SparseXorMint &a, const SparseXorMint &b)
+    {
+        return a.x != b.x;
+    }
+
+    // e 是非负指数；返回当前值的 e 次幂。
+    SparseXorMint pow(uint64_t e) const
+    {
+        SparseXorMint a = *this, r = 1;
+        while (e)
+        {
+            if (e & 1)
+            {
+                r *= a;
+            }
+            a *= a;
+            e >>= 1;
+        }
+        return r;
+    }
+
+    // 当前值非零且模数为素数；返回乘法逆元。
+    SparseXorMint inv() const
+    {
+        assert(x != 0); // 调试检查，可删
+        return pow(sparseXorMod - 2);
+    }
+};
+
+class SparseXorInfo
+{
+private:
+    // t 是固定的二次非剩余，invt 是其逆元。
+    static SparseXorMint t, invt;
+    static int maxBit;
+
+    static int legendre(const SparseXorMint &x)
+    {
+        SparseXorMint z = x.pow((sparseXorMod - 1) / 2);
+        if (z == SparseXorMint(1))
+        {
+            return 1;
+        }
+        if (z == SparseXorMint(0))
+        {
+            return 0;
+        }
+        return -1;
+    }
+
+    static SparseXorMint sqrt(const SparseXorMint &x)
+    {
+        assert(legendre(x) >= 0); // 调试检查，可删
+        if (x == SparseXorMint(0))
+        {
+            return 0;
+        }
+        // Cipolla：在 F_p[sqrt(w)] 中做 (a+sqrt(w))^((p+1)/2)。
+        SparseXorMint w2;
+        SparseXorMint a = 0;
+        while (true)
+        {
+            w2 = a * a - x;
+            if (legendre(w2) == -1)
+            {
+                break;
+            }
+            a += SparseXorMint(1);
+        }
+        auto mul = [w2](pair<SparseXorMint, SparseXorMint> u,
+                        pair<SparseXorMint, SparseXorMint> v)
+        {
+            return make_pair(u.first * v.first + u.second * v.second * w2,
+                             u.first * v.second + u.second * v.first);
+        };
+        pair<SparseXorMint, SparseXorMint> r{1, 0}, b{a, 1};
+        uint64_t e = (sparseXorMod + 1) / 2;
+        while (e)
+        {
+            if (e & 1)
+            {
+                r = mul(r, b);
+            }
+            b = mul(b, b);
+            e >>= 1;
+        }
+        return r.first;
+    }
+
+    SparseXorInfo(SparseXorMint p, SparseXorMint q, long long e, int zero)
+        : xp(p), xq(q), power(e), zeroCount(zero) {}
+
+public:
+    SparseXorMint xp = 1, xq = 1;
+    long long power = 0;
+    int zeroCount = 0;
+
+    SparseXorInfo() = default;
+
+    // maxBit 是所有稀疏因子中 d-1 的最大值，决定 power 的位权缩放。
+    static void setMaxBit(int k)
+    {
+        maxBit = k;
+    }
+
+    // x 是一次局部 Walsh 变换值，bits 是该因子的有效维数。
+    SparseXorInfo(SparseXorMint x, int bits) : xp(x)
+    {
+        if (x == SparseXorMint(0))
+        {
+            xp = 1;
+            zeroCount = 1;
+            return;
+        }
+        for (int i = 0; i < bits; i++)
+        {
+            if (legendre(xp) == 1)
+            {
+                xp = sqrt(xp);
+            }
+            else
+            {
+                xp = sqrt(xp * invt);
+                power |= 1LL << i;
+            }
+        }
+        power <<= maxBit - bits;
+    }
+
+    SparseXorInfo operator*(const SparseXorInfo &o) const
+    {
+        return {xp * o.xp, xq * o.xq, power + o.power, zeroCount + o.zeroCount};
+    }
+
+    SparseXorInfo operator/(const SparseXorInfo &o) const
+    {
+        return {xp * o.xq, xq * o.xp, power - o.power, zeroCount - o.zeroCount};
+    }
+
+    SparseXorInfo &operator*=(const SparseXorInfo &o)
+    {
+        xp *= o.xp;
+        xq *= o.xq;
+        power += o.power;
+        zeroCount += o.zeroCount;
+        return *this;
+    }
+
+    SparseXorInfo &operator/=(const SparseXorInfo &o)
+    {
+        xp *= o.xq;
+        xq *= o.xp;
+        power -= o.power;
+        zeroCount -= o.zeroCount;
+        return *this;
+    }
+
+    // 把内部平方根分解还原成模 sparseXorMod 下的值。
+    SparseXorMint value() const
+    {
+        if (zeroCount)
+        {
+            return 0;
+        }
+        SparseXorMint r = xp * xq.inv();
+        if (power > 0)
+        {
+            r *= t.pow(power >> maxBit);
+        }
+        else if (power < 0)
+        {
+            r *= invt.pow((-power) >> maxBit);
+        }
+        return r;
+    }
+
+    static void init()
+    {
+        SparseXorMint a = 0, w2;
+        while (true)
+        {
+            w2 = a * a - SparseXorMint(1);
+            if (legendre(w2) == -1)
+            {
+                t = w2;
+                break;
+            }
+            a += SparseXorMint(1);
+        }
+        invt = t.inv();
+    }
+};
+
+inline SparseXorMint SparseXorInfo::t;
+inline SparseXorMint SparseXorInfo::invt;
+inline int SparseXorInfo::maxBit = 0;
+
+// factors 每项是一个稀疏 Walsh 因子，pair 为 {掩码,系数}，最后一项作为基准项。
+// 返回长度 2^n 的异或卷积结果，所有系数均按 sparseXorMod 取模。
+inline vector<uint64_t> sparseXorConvolution(int n,
+                                             const vector<vector<pair<int, long long>>> &factors)
+{
+    assert(0 <= n && n < 30); // 调试检查，可删
+    int size = 1LL << n;
+    int maxBit = 0;
+    for (const auto &factor : factors)
+    {
+        assert(!factor.empty());
+        maxBit = max(maxBit, (int)factor.size() - 1);
+    }
+    assert(maxBit < 60); // power 使用有符号 64 位位集保存平方根分支。
+    SparseXorInfo::setMaxBit(maxBit);
+    SparseXorInfo::init();
+    vector<SparseXorInfo> all(size);
+    int delta = 0;
+    for (const auto &factor : factors)
+    {
+        int bits = factor.size() - 1;
+        assert(bits < 60); // 调试检查，可删
+        int base = factor.back().first;
+        SparseXorMint offset = factor.back().second;
+        delta ^= base;
+        int localSize = 1LL << bits;
+        vector<int> mask(localSize);
+        vector<SparseXorMint> walsh(localSize);
+        for (int i = 0; i < bits; i++)
+        {
+            mask[1LL << i] = factor[i].first ^ base;
+            walsh[1LL << i] = factor[i].second;
+        }
+        for (int s = 1; s < localSize; s++)
+        {
+            int b = s & -s;
+            mask[s] = mask[s ^ b] ^ mask[b];
+        }
+        for (int h = 1; h < localSize; h <<= 1)
+        {
+            for (int l = 0; l < localSize; l += h << 1)
+            {
+                for (int j = 0; j < h; j++)
+                {
+                    auto x = walsh[l + j], y = walsh[l + j + h];
+                    walsh[l + j] = x + y;
+                    walsh[l + j + h] = x - y;
+                }
+            }
+        }
+        for (auto &x : walsh)
+        {
+            x += offset;
+        }
+        vector<SparseXorInfo> local(localSize);
+        for (int s = 0; s < localSize; s++)
+        {
+            local[s] = SparseXorInfo(walsh[s], bits);
+        }
+        for (int h = 1; h < localSize; h <<= 1)
+        {
+            for (int l = 0; l < localSize; l += h << 1)
+            {
+                for (int j = 0; j < h; j++)
+                {
+                    auto x = local[l + j], y = local[l + j + h];
+                    local[l + j] = x * y;
+                    local[l + j + h] = x / y;
+                }
+            }
+        }
+        for (int s = 0; s < localSize; s++)
+        {
+            all[mask[s]] *= local[s];
+        }
+    }
+    for (int h = 1; h < size; h <<= 1)
+    {
+        for (int l = 0; l < size; l += h << 1)
+        {
+            for (int j = 0; j < h; j++)
+            {
+                auto x = all[l + j], y = all[l + j + h];
+                all[l + j] = x * y;
+                all[l + j + h] = x / y;
+            }
+        }
+    }
+    vector<SparseXorMint> ans(size);
+    for (int i = 0; i < size; i++)
+    {
+        ans[i] = all[i].value();
+    }
+    SparseXorMint inv2 = SparseXorMint(2).inv();
+    for (int h = 1; h < size; h <<= 1)
+    {
+        for (int l = 0; l < size; l += h << 1)
+        {
+            for (int j = 0; j < h; j++)
+            {
+                auto x = ans[l + j], y = ans[l + j + h];
+                ans[l + j] = (x + y) * inv2;
+                ans[l + j + h] = (x - y) * inv2;
+            }
+        }
+    }
+    vector<uint64_t> result(size);
+    for (int i = 0; i < size; i++)
+    {
+        result[i] = ans[i ^ delta].val();
+    }
+    return result;
+}

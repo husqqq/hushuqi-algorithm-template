@@ -3,34 +3,29 @@
 using namespace std;
 #define int long long
 
-template <long long P> struct MInt
+template <uint32_t P> struct MInt
 {
-    static_assert(P > 1);
-    using V = conditional_t<(P <= numeric_limits<int32_t>::max()),
-                            uint32_t, unsigned long long>;
-    static constexpr V M = (V)P; // 与 x 同宽的模数，避免热路径被 P 提升为有符号 64 位
-    V x = 0; // 当前剩余类在 [0,P) 内的代表元；常见小模使用无符号 32 位
+    static_assert(1 < P && P <= 1000000007);
+    uint32_t x = 0; // 固定 32 位以保证对象为 4 字节，提高大数组的缓存密度。
 
-    MInt() = default;
-
-    MInt(long long v)
+    MInt(long long v = 0)
     {
         // v 是要转入模 P 剩余类的整数；构造其最小非负代表元。
-        v %= P;
+        v %= (long long)P;
         if (v < 0)
         {
             v += P;
         }
-        x = (V)v;
+        x = (uint32_t)v;
     }
 
-    static constexpr long long mod()
+    static constexpr uint32_t mod()
     {
         // 无参数；返回编译期模数 P。
         return P;
     }
 
-    long long val() const
+    uint32_t val() const
     {
         // 无参数；返回当前剩余类的最小非负代表元。
         return x;
@@ -40,7 +35,7 @@ template <long long P> struct MInt
     {
         // 无参数；返回当前剩余类的加法逆元。
         MInt ans;
-        ans.x = x ? M - x : 0;
+        ans.x = x ? P - x : 0;
         return ans;
     }
 
@@ -48,9 +43,9 @@ template <long long P> struct MInt
     {
         // o 是要加到当前值上的同模剩余类；原地完成模加并返回当前对象引用。
         x += o.x;
-        if (x >= M)
+        if (x >= P)
         {
-            x -= M;
+            x -= P;
         }
         return *this;
     }
@@ -58,10 +53,10 @@ template <long long P> struct MInt
     MInt &operator-=(const MInt &o)
     {
         // o 是要从当前值减去的同模剩余类；原地完成模减并返回当前对象引用。
-        x += M - o.x;
-        if (x >= M)
+        x += P - o.x;
+        if (x >= P)
         {
-            x -= M;
+            x -= P;
         }
         return *this;
     }
@@ -69,14 +64,8 @@ template <long long P> struct MInt
     MInt &operator*=(const MInt &o)
     {
         // o 是要乘到当前值上的同模剩余类；原地完成模乘并返回当前对象引用。
-        if constexpr (P <= 2147483647LL)
-        {
-            x = (unsigned long long)x * o.x % M;
-        }
-        else
-        {
-            x = (unsigned __int128)x * o.x % M;
-        }
+        // 乘积可能超过 32 位，显式提升到无符号 64 位。
+        x = (uint64_t)x * o.x % P;
         return *this;
     }
 
@@ -112,7 +101,7 @@ template <long long P> struct MInt
 
     friend bool operator==(const MInt &, const MInt &) = default;
 
-    MInt pow(unsigned long long b) const
+    MInt pow(uint64_t b) const
     {
         // b 是非负指数；返回当前剩余类的 b 次幂。
         MInt a = *this;
@@ -137,10 +126,10 @@ template <long long P> struct MInt
     }
 };
 
-template <long long P> const vector<MInt<P>> &invTable(int n)
+template <uint32_t P> const vector<MInt<P>> &invTable(int n)
 {
     // n 是需要的最大下标且 0<=n<P；返回至少覆盖 0..n 的共享模逆元表，其中位置 0 为 0。
-    assert(0 <= n && n < P); // 调试检查，可删
+    assert(0 <= n && (uint64_t)n < P); // 调试检查，可删
     static vector<MInt<P>> iv{0, 1};
     int old = iv.size();
     if (old <= n)
@@ -154,5 +143,5 @@ template <long long P> const vector<MInt<P>> &invTable(int n)
     return iv;
 }
 
-constexpr int mod = 998244353;
+constexpr uint32_t mod = 998244353;
 using Z = MInt<mod>;

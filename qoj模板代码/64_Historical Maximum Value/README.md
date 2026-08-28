@@ -1,6 +1,6 @@
 # 64. Historical Maximum Value
 
 - QOJ: https://qoj.ac/contest/3936/problem/785
-- 状态：仅有相关算法模板，尚无完整 QOJ 提交实现
+- 状态：性能版 `main.cpp` 已保留用于 QOJ；打印版候选 `template.hpp` 待批准写入正式模板
 - 模板条目：3.3.003
-- 备注：QOJ 还要求历史最大值，需给懒标记额外维护历史峰值。
+- 实现：`SegmentTree` 使用可组合懒标记同时维护当前值与历史峰值，区间接口采用 0 下标左闭右开。

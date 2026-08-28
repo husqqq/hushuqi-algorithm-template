@@ -1,7 +1,4 @@
-// Generated from hushuqi算法竞赛模板. Do not edit by hand.
-
-// QOJ contest 3936: 18 二分图最大匹配
-
+#pragma once
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -9,97 +6,132 @@ using namespace std;
 
 class HopcroftKarp
 {
-    // nl、nr 是左右部点数，g 是从左部出发的邻接表。
+    // nl、nr 是左右部点数；es 暂存加边，off、to 是建成后的 CSR 邻接表。
     int nl, nr;
-    vector<vector<int>> g;
-    // ml、mr 是左右匹配点，dep 是左点层数，lim 是本轮最短增广路长度。
-    vector<int> ml, mr, dep;
-    int lim = -1;
+    vector<array<int, 2>> es; // 每项依次为左点和右点。
+    vector<int32_t> off, to;
+    // ml、mr 是匹配，dep 是分层距离，it 是当前弧，que 是复用的 BFS 队列。
+    vector<int32_t> ml, mr, dep, it, que;
+    int32_t lim;
+
+    void build()
+    {
+        // 无参数；把暂存边建成连续 CSR 邻接表。
+        off.assign(nl + 1, 0);
+        for (auto [u, v] : es)
+        {
+            off[u + 1]++;
+        }
+        for (int i = 1; i <= nl; i++)
+        {
+            off[i] += off[i - 1];
+        }
+        to.resize(es.size());
+        vector<int32_t> cur = off;
+        for (auto [u, v] : es)
+        {
+            to[cur[u]++] = v;
+        }
+    }
 
     bool bfs()
     {
-        // 无参数；给全部最短增广路分层，存在增广路时返回 true。
-        queue<int> q;
+        // 无参数；建立最短增广路分层，返回是否存在增广路。
         fill(dep.begin(), dep.end(), -1);
+        int32_t ql = 0, qr = 0;
         lim = -1;
-        for (int u = 0; u < nl; u++)
+        for (int32_t u = 0; u < nl; u++)
         {
             if (ml[u] == -1)
             {
                 dep[u] = 0;
-                q.push(u);
+                que[qr++] = u;
             }
         }
-        while (!q.empty())
+        while (ql < qr)
         {
-            int u = q.front();
-            q.pop();
+            int32_t u = que[ql++];
             if (lim != -1 && dep[u] >= lim)
             {
                 continue;
             }
-            for (auto v : g[u])
+            for (int32_t i = off[u]; i < off[u + 1]; i++)
             {
-                int x = mr[v];
-                if (x == -1)
+                int32_t w = mr[to[i]];
+                if (w == -1)
                 {
                     lim = dep[u] + 1;
                 }
-                else if (dep[x] == -1 && (lim == -1 || dep[u] + 1 < lim))
+                else if (dep[w] == -1)
                 {
-                    dep[x] = dep[u] + 1;
-                    q.push(x);
+                    dep[w] = dep[u] + 1;
+                    que[qr++] = w;
                 }
             }
         }
         return lim != -1;
     }
 
-    bool dfs(int u)
+    bool dfs(int32_t u)
     {
-        // u 是当前左点；沿 BFS 层寻找最短增广路，成功时返回 true。
-        for (auto v : g[u])
+        // u 是左部点；沿分层图寻找增广路，返回是否成功。
+        for (int32_t &i = it[u]; i < off[u + 1]; i++)
         {
-            int x = mr[v];
-            if (x == -1 && dep[u] + 1 == lim)
+            int32_t v = to[i], w = mr[v];
+            if (w == -1)
             {
-                ml[u] = v;
-                mr[v] = u;
-                return true;
+                if (dep[u] + 1 != lim)
+                {
+                    continue;
+                }
             }
-            if (x != -1 && dep[x] == dep[u] + 1 && dfs(x))
+            else if (dep[w] != dep[u] + 1 || !dfs(w))
             {
-                ml[u] = v;
-                mr[v] = u;
-                return true;
+                continue;
             }
+            ml[u] = v;
+            mr[v] = u;
+            return true;
         }
         dep[u] = -1;
         return false;
     }
 
   public:
-    HopcroftKarp(int nl, int nr) : nl(nl), nr(nr), g(nl), ml(nl, -1), mr(nr, -1), dep(nl)
+    HopcroftKarp(int nl, int nr)
+        : nl(nl), nr(nr), ml(nl, -1), mr(nr, -1), dep(nl),
+          it(nl), que(nl)
     {
-        // nl、nr 是左右部点数；构造空二分图，无返回值。
+        // nl、nr 是左右部点数；建立空二分图。
+        assert(nl >= 0 && nr >= 0);
+        assert(nl <= INT32_MAX && nr <= INT32_MAX);
+    }
+
+    void reserve(int m)
+    {
+        // m 是预计边数；预留暂存空间，不改变图。
+        assert(m >= 0);
+        es.reserve(m);
     }
 
     void addEdge(int u, int v)
     {
-        // u 是左点，v 是右点；加入一条边，无返回值。
-        assert(0 <= u && u < nl && 0 <= v && v < nr); // 调试检查，可删。
-        g[u].push_back(v);
+        // u、v 是左右部点编号；加入一条边。
+        assert(0 <= u && u < nl && 0 <= v && v < nr);
+        es.push_back({u, v});
     }
 
     int matching()
     {
-        // 无参数；从空匹配重算并返回最大匹配边数。
+        // 无参数；清空匹配并返回最大匹配边数。
+        build();
         fill(ml.begin(), ml.end(), -1);
         fill(mr.begin(), mr.end(), -1);
         int ans = 0;
         while (bfs())
         {
-            for (int u = 0; u < nl; u++)
+            copy(off.begin(), off.begin() + nl, it.begin());
+            for (int32_t u = 0; u < nl; u++)
             {
                 if (ml[u] == -1)
                 {
@@ -110,15 +142,15 @@ class HopcroftKarp
         return ans;
     }
 
-    const vector<int> &leftMatch() const
+    vector<int> leftMatch() const
     {
-        // 无参数；返回左点到右点的匹配数组，未匹配为 -1。
-        return ml;
+        // 无参数；返回左点匹配数组，未匹配为 -1。
+        return {ml.begin(), ml.end()};
     }
 
-    const vector<int> &matchR() const
+    vector<int> rightMatch() const
     {
-        // 无参数；返回右点到左点的匹配数组，未匹配为 -1。
-        return mr;
+        // 无参数；返回右点匹配数组，未匹配为 -1。
+        return {mr.begin(), mr.end()};
     }
 };

@@ -215,42 +215,42 @@ struct StrHash
     }
 };
 
-using u64 = unsigned long long;
-using u128 = __uint128_t;
-
 struct ShortHash
 {
-    static constexpr u64 M = (1ULL << 61) - 1;
-    inline static const u64 B =
-        mt19937_64((u64)chrono::steady_clock::now().time_since_epoch().count()
-                   ^ random_device{}())()
-        % (M / 2) + M / 2;
-    inline static vector<u64> p{1}; // p[i] 是 B 的 i 次幂。
-    vector<u64> h;                  // h[i] 是原串前 i 个字符的哈希。
+    static constexpr uint64_t M = (1ULL << 61) - 1;
+    // B 从 [M / 2, M - 2] 中预先选定；固定常数避免现场再写随机设备。
+    static constexpr uint64_t B = 1234567890123456789ULL;
+    inline static vector<uint64_t> p{1}; // p[i] 是 B 的 i 次幂。
+    vector<uint64_t> h;                  // h[i] 是原串前 i 个字符的哈希。
 
-    static u64 red(u64 x)
+    static uint64_t red(uint64_t x)
     {
         // x 小于 2M；返回 x 模 M 的规范代表元。
         x = (x & M) + (x >> 61);
         return x >= M ? x - M : x;
     }
 
-    static u64 mul(u64 a, u64 b)
+    static uint64_t mul(uint64_t a, uint64_t b)
     {
         // a、b 是模 M 代表元；返回二者乘积模 M。
-        u128 x = (u128)a * b;
-        return red((u64)(x >> 61) + (u64)(x & M));
+        __uint128_t x = (__uint128_t)a * b;
+        return red((uint64_t)(x >> 61) + (uint64_t)(x & M));
     }
 
     ShortHash(string_view s) : h(s.size() + 1)
     {
         // s 是原字符串；预处理前缀哈希和所需底数幂。
-        while (p.size() <= s.size()) p.push_back(mul(p.back(), B));
+        while (p.size() <= s.size())
+        {
+            p.push_back(mul(p.back(), B));
+        }
         for (int i = 0; i < (int)s.size(); i++)
+        {
             h[i + 1] = red(mul(h[i], B) + (unsigned char)s[i] + 1);
+        }
     }
 
-    u64 get(int l, int r) const
+    uint64_t get(int l, int r) const
     {
         // l、r 是原串下标；返回半开子串 [l,r) 的哈希。
         return red(h[r] + M - mul(h[l], p[r - l]));

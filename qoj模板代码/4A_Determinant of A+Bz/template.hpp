@@ -1,261 +1,177 @@
-// Generated from hushuqi算法竞赛模板. Do not edit by hand.
-
-// QOJ contest 3936: 4A Determinant of A+Bz
+#pragma once
 
 #include <bits/stdc++.h>
-#include <bits/stdc++.h>
 using namespace std;
+#define int long long
 
-template <uint32_t mod> struct LinearMint
+constexpr int mod = 998244353;
+
+int power(int a, int b)
 {
-    static_assert(mod > 1 && mod < (1U << 30) && (mod & 1));
-    using M = LinearMint;
-    uint32_t a = 0;
-
-    static constexpr uint32_t inv32()
+    // a、b 是模幂底数和非负指数；返回 a^b mod mod。
+    int r = 1;
+    a %= mod;
+    while (b)
     {
-        uint32_t x = mod;
-        for (int i = 0; i < 4; i++) x *= 2 - mod * x;
-        return x;
-    }
-    static constexpr uint32_t r = inv32();
-    static constexpr uint32_t n2 = -uint64_t(mod) % mod;
-
-    static constexpr uint32_t reduce(uint64_t x)
-    {
-        return (x + uint64_t(uint32_t(x) * uint32_t(-r)) * mod) >> 32;
-    }
-    LinearMint() = default;
-    LinearMint(long long x) : a(reduce(uint64_t((x % mod + mod) % mod) * n2)) {}
-    uint32_t val() const
-    {
-        uint32_t x = reduce(a);
-        return x >= mod ? x - mod : x;
-    }
-    M &operator+=(M b)
-    {
-        if ((int32_t)(a += b.a - 2 * mod) < 0) a += 2 * mod;
-        return *this;
-    }
-    M &operator-=(M b)
-    {
-        if ((int32_t)(a -= b.a) < 0) a += 2 * mod;
-        return *this;
-    }
-    M &operator*=(M b)
-    {
-        a = reduce(uint64_t(a) * b.a);
-        return *this;
-    }
-    M pow(unsigned long long b) const
-    {
-        M x = *this, ans = 1;
-        while (b)
+        if (b & 1)
         {
-            if (b & 1) ans *= x;
-            x *= x;
-            b >>= 1;
+            r = r * a % mod;
         }
-        return ans;
+        a = a * a % mod;
+        b >>= 1;
     }
-    M inv() const { return pow(mod - 2); }
-    M &operator/=(M b) { return *this *= b.inv(); }
-    friend M operator+(M a, M b) { return a += b; }
-    friend M operator-(M a, M b) { return a -= b; }
-    friend M operator*(M a, M b) { return a *= b; }
-    friend M operator/(M a, M b) { return a /= b; }
-    M operator-() const { return M() - *this; }
-    friend bool operator==(M a, M b) { return a.val() == b.val(); }
-    friend bool operator!=(M a, M b) { return !(a == b); }
-    friend istream &operator>>(istream &in, M &x)
-    {
-        long long v;
-        in >> v;
-        x = v;
-        return in;
-    }
-    friend ostream &operator<<(ostream &out, M x) { return out << x.val(); }
-};
-
-struct F2Vector
-{
-    int n = 0;
-    vector<unsigned long long> a;
-
-    F2Vector(int n = 0) : n(n), a((n + 63) / 64) {}
-    bool get(int i) const { return a[i >> 6] >> (i & 63) & 1ULL; }
-    void set(int i, bool x = true)
-    {
-        unsigned long long b = 1ULL << (i & 63);
-        if (x) a[i >> 6] |= b;
-        else a[i >> 6] &= ~b;
-    }
-    F2Vector &operator^=(const F2Vector &b)
-    {
-        assert(n == b.n);
-        for (int i = 0; i < (int)a.size(); i++) a[i] ^= b.a[i];
-        return *this;
-    }
-    string str() const
-    {
-        string s(n, '0');
-        for (int i = 0; i < n; i++) s[i] += get(i);
-        return s;
-    }
-};
-
-inline vector<F2Vector> matMulF2(const vector<F2Vector> &a,
-                                 const vector<F2Vector> &b, int k)
-{
-    // a 是 n*m 的按行位矩阵，b 是 m*k 的按行位矩阵；返回 a*b。
-    if (a.empty()) return {};
-    int m = b.size();
-    vector<F2Vector> c(a.size(), F2Vector(k));
-    for (int i = 0; i < (int)a.size(); i++)
-    {
-        for (int j = 0; j < m; j++) if (a[i].get(j)) c[i] ^= b[j];
-    }
-    return c;
+    return r;
 }
 
-inline int rankF2(vector<F2Vector> a)
+vector<int> detAz(vector<vector<int>> a, vector<vector<int>> b)
 {
-    // a 是按行保存的 F2 矩阵；返回其秩。
-    if (a.empty()) return 0;
-    int n = a.size(), m = a[0].n, rk = 0;
-    if (n > m)
-    {
-        vector<F2Vector> t(m, F2Vector(n));
-        for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) if (a[i].get(j)) t[j].set(i);
-        a.swap(t);
-        swap(n, m);
-    }
-    for (int col = 0; col < m && rk < n; col++)
-    {
-        int p = rk;
-        while (p < n && !a[p].get(col)) p++;
-        if (p == n) continue;
-        swap(a[p], a[rk]);
-        for (int i = rk + 1; i < n; i++) if (a[i].get(col)) a[i] ^= a[rk];
-        rk++;
-    }
-    return rk;
-}
-
-inline optional<vector<F2Vector>> matInvF2(vector<F2Vector> a)
-{
-    // a 是 n 阶 F2 方阵；可逆时返回逆矩阵的各行，否则返回空。
+    // a、b 是同阶矩阵；返回 det(a+bz) 的低次到高次系数。
     int n = a.size();
-    vector<F2Vector> b(n, F2Vector(n));
-    for (int i = 0; i < n; i++) b[i].set(i);
-    for (int col = 0; col < n; col++)
+    assert(n == (int)b.size());
+    for (auto &v : a)
     {
-        int p = col;
-        while (p < n && !a[p].get(col)) p++;
-        if (p == n) return nullopt;
-        swap(a[p], a[col]);
-        swap(b[p], b[col]);
-        for (int i = 0; i < n; i++) if (i != col && a[i].get(col))
+        assert((int)v.size() == n);
+        for (int &x : v)
         {
-            a[i] ^= a[col];
-            b[i] ^= b[col];
+            x = (x % mod + mod) % mod;
         }
     }
-    return b;
-}
+    for (auto &v : b)
+    {
+        assert((int)v.size() == n);
+        for (int &x : v)
+        {
+            x = (x % mod + mod) % mod;
+        }
+    }
 
-struct F2LinearSol
-{
-    F2Vector part;
-    vector<F2Vector> basis;
-};
-
-inline optional<F2LinearSol> gaussF2(vector<F2Vector> a, const F2Vector &rhs)
-{
-    // a 是 n*m 的按行矩阵，rhs 是 n 维右端；返回一组特解与齐次解空间基。
-    int n = a.size(), m = a.empty() ? 0 : a[0].n, rk = 0;
-    assert(rhs.n == n);
-    vector<int> pivot(m, -1);
-    vector<int> b(n);
-    for (int i = 0; i < n; i++) b[i] = rhs.get(i);
-    for (int col = 0; col < m && rk < n; col++)
+    int z = 0, sc = 1;
+    for (int c = 0; c < n; c++)
     {
-        int p = rk;
-        while (p < n && !a[p].get(col)) p++;
-        if (p == n) continue;
-        swap(a[p], a[rk]);
-        swap(b[p], b[rk]);
-        for (int i = 0; i < n; i++) if (i != rk && a[i].get(col))
+        while (1)
         {
-            a[i] ^= a[rk];
-            b[i] ^= b[rk];
-        }
-        pivot[col] = rk++;
-    }
-    for (int i = rk; i < n; i++) if (b[i]) return nullopt;
-    F2LinearSol sol{F2Vector(m), {}};
-    for (int col = 0; col < m; col++) if (pivot[col] != -1) sol.part.set(col, b[pivot[col]]);
-    for (int free = 0; free < m; free++) if (pivot[free] == -1)
-    {
-        F2Vector x(m);
-        x.set(free);
-        for (int col = 0; col < m; col++) if (pivot[col] != -1 && a[pivot[col]].get(free)) x.set(col);
-        sol.basis.push_back(move(x));
-    }
-    return sol;
-}
-
-using namespace std;
-
-template <class T> vector<T> charPoly(const vector<vector<T>> &a)
-{
-    // a 是域上的方阵；返回 det(xI-a) 从常数项到最高次项的系数。
-    int n = a.size();
-    // 调试检查，可删。
-    for (const auto &r : a)
-    {
-        assert((int)r.size() == n);
-    }
-    vector h = a;
-    for (int col = 0; col + 2 < n; col++)
-    {
-        int p = col + 1;
-        while (p < n && h[p][col] == T(0)) p++;
-        if (p == n) continue;
-        if (p != col + 1)
-        {
-            swap(h[p], h[col + 1]);
-            for (int i = 0; i < n; i++) swap(h[i][p], h[i][col + 1]);
-        }
-        T inv = T(1) / h[col + 1][col];
-        for (int row = col + 2; row < n; row++)
-        {
-            if (h[row][col] == T(0)) continue;
-            T q = h[row][col] * inv;
-            for (int j = col; j < n; j++) h[row][j] -= q * h[col + 1][j];
-            for (int i = 0; i < n; i++) h[i][col + 1] += q * h[i][row];
-        }
-    }
-    vector<vector<T>> p(n + 1);
-    p[0] = {T(1)};
-    for (int i = 1; i <= n; i++)
-    {
-        p[i].assign(i + 1, T(0));
-        for (int j = 0; j < i; j++)
-        {
-            p[i][j] -= p[i - 1][j] * h[i - 1][i - 1];
-            p[i][j + 1] += p[i - 1][j];
-        }
-        T prod = 1;
-        for (int len = 1; len < i; len++)
-        {
-            prod *= h[i - len][i - len - 1];
-            T q = prod * h[i - len - 1][i - 1];
-            for (int j = 0; j <= i - len - 1; j++)
+            for (int p = 0; p < c; p++)
             {
-                p[i][j] -= q * p[i - len - 1][j];
+                int w = b[p][c];
+                for (int i = 0; i < n; i++)
+                {
+                    a[i][c] = (a[i][c] - w * a[i][p]) % mod;
+                }
+                b[p][c] = 0;
+            }
+            int p = c;
+            while (p < n && !b[p][c])
+            {
+                p++;
+            }
+            if (p < n)
+            {
+                break;
+            }
+            if (++z > n)
+            {
+                return vector<int>(n + 1);
+            }
+            for (int i = 0; i < n; i++)
+            {
+                b[i][c] = a[i][c];
+                a[i][c] = 0;
+            }
+        }
+        int p = c;
+        while (p < n && !b[p][c])
+        {
+            p++;
+        }
+        if (p != c)
+        {
+            sc = mod - sc;
+            swap(a[p], a[c]);
+            swap(b[p], b[c]);
+        }
+        sc = sc * b[c][c] % mod;
+        int iv = power(b[c][c], mod - 2);
+        for (int j = 0; j < n; j++)
+        {
+            a[c][j] = a[c][j] * iv % mod;
+            b[c][j] = b[c][j] * iv % mod;
+        }
+        for (int i = c + 1; i < n; i++)
+        {
+            int w = b[i][c];
+            for (int j = 0; j < n; j++)
+            {
+                a[i][j] = (a[i][j] - w * a[c][j]) % mod;
+                b[i][j] = (b[i][j] - w * b[c][j]) % mod;
             }
         }
     }
-    return p[n];
+    for (auto &v : a)
+    {
+        for (int &x : v)
+        {
+            x = (-x) % mod;
+        }
+    }
+
+    for (int c = 0; c + 1 < n; c++)
+    {
+        int p = c + 1;
+        while (p < n && !a[p][c])
+        {
+            p++;
+        }
+        if (p == n)
+        {
+            continue;
+        }
+        swap(a[p], a[c + 1]);
+        for (int i = 0; i < n; i++)
+        {
+            swap(a[i][p], a[i][c + 1]);
+        }
+        int iv = power(a[c + 1][c], mod - 2);
+        for (int i = c + 2; i < n; i++)
+        {
+            int w = a[i][c] * iv % mod;
+            for (int j = 0; j < n; j++)
+            {
+                a[i][j] = (a[i][j] - w * a[c + 1][j]) % mod;
+                a[j][c + 1] = (a[j][c + 1] + w * a[j][i]) % mod;
+            }
+        }
+    }
+
+    vector<vector<int>> f(n + 1);
+    f[0] = {1};
+    for (int m = 1; m <= n; m++)
+    {
+        f[m].assign(m + 1, 0);
+        for (int i = 0; i < m; i++)
+        {
+            int w = a[i][m - 1];
+            for (int k = i + 1; k < m; k++)
+            {
+                w = w * a[k][k - 1] % mod;
+            }
+            for (int d = 0; d <= i; d++)
+            {
+                f[m][d] = (f[m][d] - w * f[i][d]) % mod;
+            }
+        }
+        for (int d = 0; d < m; d++)
+        {
+            f[m][d + 1] = (f[m][d + 1] + f[m - 1][d]) % mod;
+        }
+    }
+    vector<int> ans(n + 1);
+    for (int d = 0; d + z <= n; d++)
+    {
+        ans[d] = f[n][d + z] * sc % mod;
+    }
+    for (int &x : ans)
+    {
+        x = (x + mod) % mod;
+    }
+    return ans;
 }

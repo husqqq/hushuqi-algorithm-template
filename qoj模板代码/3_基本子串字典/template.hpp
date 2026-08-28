@@ -1,195 +1,254 @@
-// Generated from hushuqi算法竞赛模板. Do not edit by hand.
-
-// QOJ contest 3936: 3 基本子串字典
+#pragma once
 
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
 
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
+struct BorderInfo
+{
+    // mn、mx 是最短和最长真 border 长度，cnt 是真 border 数量。
+    int mn = 0, mx = 0, cnt = 0;
+};
 
-template <class T> bool chmin(T &a, const T &b)
+namespace basic_substring_dict
 {
-    // a 是待更新值，b 是候选值；若 a 变小则返回 true。
-    if (b >= a)
-    {
-        return false;
-    }
-    a = b;
-    return true;
-}
-template <class T> bool chmax(T &a, const T &b)
+struct Q
 {
-    // a 是待更新值，b 是候选值；若 a 变大则返回 true。
-    if (a >= b)
-    {
-        return false;
-    }
-    a = b;
-    return true;
-}
+    int l, r;
+};
 
-vector<int> prefix(const string &s)
+inline vector<BorderInfo> solve(const string &s,
+                                const vector<pair<int, int>> &qs)
 {
-    // s 是原字符串；返回前缀函数，p[i] 是 s[0..i] 的最长真 border 长度。
-    vector<int> p(s.size());
-    for (int i = 1; i < (int)s.size(); i++)
+    // s 是字符串；qs 是 0 下标闭区间；返回每个区间的真 border 统计。
+    int n = s.size(), q = qs.size();
+    vector<BorderInfo> ans(q);
+    if (!n || !q)
     {
-        int j = p[i - 1];
-        while (j && s[i] != s[j])
-        {
-            j = p[j - 1];
-        }
-        if (s[i] == s[j])
-        {
-            j++;
-        }
-        p[i] = j;
+        return ans;
     }
-    return p;
-}
+    vector<Q> a(q);
+    vector<vector<int>> lq(n + 2), rq(n + 2);
+    for (int i = 0; i < q; i++)
+    {
+        int l = qs[i].first + 1, r = qs[i].second + 1;
+        assert(1 <= l && l <= r && r <= n);
+        a[i] = {l, r};
+        lq[l].push_back(i);
+        rq[r].push_back(i);
+    }
 
-vector<int> kmp(const string &s, const string &t)
-{
-    // s 是文本串，t 是模式串；返回全部匹配起点，按下标递增排列。
-    if (t.empty())
+    vector<int> sa(n + 1), rk(n + 1), id(n + n + 3), c(256);
+    for (int i = 1; i <= n; i++)
     {
-        vector<int> a(s.size() + 1);
-        iota(a.begin(), a.end(), 0);
-        return a;
+        c[(unsigned char)s[i - 1]]++;
     }
-    auto p = prefix(t);
-    vector<int> ans;
-    int j = 0;
-    for (int i = 0; i < (int)s.size(); i++)
+    for (int i = 1; i < 256; i++)
     {
-        while (j && s[i] != t[j])
+        c[i] += c[i - 1];
+    }
+    for (int i = n; i; i--)
+    {
+        sa[c[(unsigned char)s[i - 1]]--] = i;
+    }
+    int p = 0;
+    for (int i = 1; i <= n; i++)
+    {
+        if (i == 1 || s[sa[i] - 1] != s[sa[i - 1] - 1])
         {
-            j = p[j - 1];
+            p++;
         }
-        if (s[i] == t[j])
+        rk[sa[i]] = p;
+    }
+
+    vector<int> nx(n + 2), ll(q, n + 1), lr(q), rl(q, n + 1), rr(q);
+    vector<int> lo(q, n + 1), hi(q), num(q), bu(n + 3);
+
+    auto one = [&](int i, int x, int l, int r, int d)
+    {
+        if (l <= x && x <= r && (x - l) % d == 0)
         {
-            j++;
+            hi[i] = max(hi[i], x);
+            lo[i] = min(lo[i], x);
+            num[i]++;
         }
-        if (j == (int)t.size())
+    };
+    auto two = [&](int i, int l1, int r1, int d1, int l2, int r2, int d2)
+    {
+        if (r1 - l1 <= d1)
         {
-            ans.push_back(i - j + 1);
-            j = p[j - 1];
+            for (int x = l1; x <= r1; x += d1)
+            {
+                one(i, x, l2, r2, d2);
+            }
+            return;
+        }
+        if (r2 - l2 <= d2)
+        {
+            for (int x = l2; x <= r2; x += d2)
+            {
+                one(i, x, l1, r1, d1);
+            }
+            return;
+        }
+        if ((l1 - l2) % d1)
+        {
+            return;
+        }
+        l1 = max(l1, l2);
+        r1 = min(r1, r2);
+        if (l1 <= r1)
+        {
+            hi[i] = max(hi[i], r1);
+            lo[i] = min(lo[i], l1);
+            num[i] += (r1 - l1) / d1 + 1;
+        }
+    };
+
+    auto work = [&](int t)
+    {
+        fill(bu.begin(), bu.begin() + p + 1, n + 1);
+        for (int i = n - t + 1; i >= 1; i--)
+        {
+            nx[i] = bu[rk[i]];
+            bu[rk[i]] = i;
+        }
+        fill(bu.begin(), bu.begin() + p + 1, -1);
+        for (int i = 2 - t; i <= n; i++)
+        {
+            if (1 <= i && i <= n)
+            {
+                bu[rk[i]] = i;
+            }
+            int j = i + t - 1;
+            if (1 <= j && j <= n)
+            {
+                for (int z : rq[j])
+                {
+                    if (a[z].r - a[z].l + 1 > t)
+                    {
+                        lr[z] = bu[rk[a[z].l]];
+                    }
+                }
+            }
+            j = i - t + 1;
+            if (1 <= j && j <= n)
+            {
+                for (int z : lq[j])
+                {
+                    if (a[z].r - a[z].l + 1 > t)
+                    {
+                        rr[z] = min(bu[rk[a[z].r - t + 1]], a[z].r - t + 1);
+                    }
+                }
+            }
+        }
+
+        fill(bu.begin(), bu.begin() + p + 1, n + 1);
+        for (int i = n; i + t - 1; i--)
+        {
+            if (1 <= i && i <= n)
+            {
+                bu[rk[i]] = i;
+            }
+            int j = i + 2 * t - 2;
+            if (1 <= j && j <= n)
+            {
+                for (int z : rq[j])
+                {
+                    if (a[z].r - a[z].l + 1 > t)
+                    {
+                        ll[z] = max(bu[rk[a[z].l]], nx[a[z].l]);
+                    }
+                }
+            }
+            if (1 <= i && i <= n)
+            {
+                for (int z : lq[i])
+                {
+                    if (a[z].r - a[z].l + 1 > t)
+                    {
+                        rl[z] = bu[rk[a[z].r - t + 1]];
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < q; i++)
+        {
+            if (a[i].r - a[i].l + 1 <= t || ll[i] > lr[i] || rl[i] > rr[i])
+            {
+                continue;
+            }
+            int d1 = nx[ll[i]] - ll[i], d2 = nx[rl[i]] - rl[i];
+            swap(ll[i], lr[i]);
+            rl[i] += t - a[i].l;
+            rr[i] += t - a[i].l;
+            ll[i] = a[i].r - ll[i] + 1;
+            lr[i] = a[i].r - lr[i] + 1;
+            two(i, ll[i], lr[i], d1, rl[i], rr[i], d2);
+        }
+
+        if (p == n)
+        {
+            return;
+        }
+        fill(bu.begin(), bu.begin() + p + 1, 0);
+        int z = 0;
+        for (int i = n; i > n - t; i--)
+        {
+            id[++z] = i;
+        }
+        for (int i = 1; i <= n; i++)
+        {
+            if (sa[i] > t)
+            {
+                id[++z] = sa[i] - t;
+            }
+        }
+        for (int i = 1; i <= n; i++)
+        {
+            bu[rk[i]]++;
+        }
+        for (int i = 2; i <= p; i++)
+        {
+            bu[i] += bu[i - 1];
+        }
+        for (int i = n; i; i--)
+        {
+            sa[bu[rk[id[i]]]--] = id[i];
+            id[i] = rk[i];
+        }
+        p = 0;
+        for (int i = 1; i <= n; i++)
+        {
+            int x = sa[i], y = sa[i - 1];
+            if (i == 1 || id[x] != id[y] || id[x + t] != id[y + t])
+            {
+                p++;
+            }
+            rk[x] = p;
+        }
+    };
+
+    for (int t = 1; t <= n; t <<= 1)
+    {
+        work(t);
+    }
+    for (int i = 0; i < q; i++)
+    {
+        if (num[i])
+        {
+            ans[i] = {lo[i], hi[i], num[i]};
         }
     }
     return ans;
 }
-
-vector<int> borders(const string &s)
-{
-    // s 是原字符串；返回全部非空真 border 的长度，按递增排列。
-    auto p = prefix(s);
-    vector<int> a;
-    int x = s.empty() ? 0 : p.back();
-    while (x)
-    {
-        a.push_back(x);
-        x = p[x - 1];
-    }
-    reverse(a.begin(), a.end());
-    return a;
 }
 
-int minPeriod(const string &s)
+inline vector<BorderInfo> basicDict(const string &s,
+                                    const vector<pair<int, int>> &qs)
 {
-    // s 是原字符串；返回最短整周期长度，空串返回 0。
-    if (s.empty())
-    {
-        return 0;
-    }
-    auto p = prefix(s);
-    int x = s.size() - p.back();
-    return (int)s.size() % x == 0 ? x : (int)s.size();
+    // s 是字符串；qs 是 0 下标闭区间；返回每个区间的真 border 统计。
+    return basic_substring_dict::solve(s, qs);
 }
-
-template <int A = 26, char F = 'a'> struct KMPAutomaton
-{
-    // pattern 保存模式串，pi 是其前缀函数，go[state][字符] 是 DFA 转移后的匹配长度。
-    string pattern;
-    vector<int> pi;
-    vector<array<int, A>> go;
-
-    KMPAutomaton() = default;
-
-    explicit KMPAutomaton(const string &s)
-    {
-        // s 是模式串；构造其所有前缀匹配状态的自动机。
-        build(s);
-    }
-
-    int id(char c) const
-    {
-        // c 是字符集 [F,F+A) 中的字符；返回从 0 开始的字符编号。
-        int x = c - F;
-        assert(0 <= x && x < A);
-        return x;
-    }
-
-    void build(const string &s)
-    {
-        // s 是模式串；重建前缀函数和状态转移表，无返回值。
-        pattern = s;
-        int n = pattern.size();
-        for (char c : pattern)
-        {
-            id(c);
-        }
-        pi.assign(n, 0);
-        for (int i = 1, j = 0; i < n; i++)
-        {
-            while (j && pattern[i] != pattern[j])
-            {
-                j = pi[j - 1];
-            }
-            if (pattern[i] == pattern[j])
-            {
-                j++;
-            }
-            pi[i] = j;
-        }
-        go.assign(n + 1, array<int, A>());
-        for (int state = 0; state <= n; state++)
-        {
-            for (int x = 0; x < A; x++)
-            {
-                int j = state;
-                char c = (char)(F + x);
-                while (j && (j == n || pattern[j] != c))
-                {
-                    j = pi[j - 1];
-                }
-                if (j < n && pattern[j] == c)
-                {
-                    j++;
-                }
-                go[state][x] = j;
-            }
-        }
-    }
-
-    int next(int state, int x) const
-    {
-        // state 是当前已匹配前缀长度，x 是字符编号；返回读入该字符后的匹配长度。
-        assert(0 <= state && state <= (int)pattern.size() && 0 <= x && x < A);
-        return go[state][x];
-    }
-
-    int next(int state, char c) const
-    {
-        // state 是当前已匹配前缀长度，c 是字符集内字符；返回读入该字符后的匹配长度。
-        return next(state, id(c));
-    }
-
-    bool matched(int state) const
-    {
-        // state 是当前状态；返回是否已经匹配完整模式串。
-        return state == (int)pattern.size();
-    }
-};

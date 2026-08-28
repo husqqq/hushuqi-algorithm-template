@@ -1,6 +1,6 @@
 # 41. 类欧几里得算法
 
 - QOJ: https://qoj.ac/contest/3936/problem/21978
-- 状态：仅有相关算法模板，尚无完整 QOJ 提交实现
+- 状态：性能版 `main.cpp` 已保留用于 QOJ；打印版候选 `template.hpp` 待批准写入正式模板
 - 模板条目：7.5.003
-- 备注：QOJ 询问带 x 与 floor 的幂次；模板提供可扩展的万能欧几里得框架。
+- 实现：`floorMoment` 返回整张混合矩表，`floorMoments` 批量处理 `(n,a,b,c,p,q)`；次数总和不超过 10。

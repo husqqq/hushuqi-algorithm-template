@@ -1,385 +1,155 @@
-// Generated from hushuqi算法竞赛模板. Do not edit by hand.
+#pragma once
 
-// QOJ contest 3936: 64 Historical Maximum Value
+// QOJ candidate template extracted from the verified standalone solver.
+// Keep this file outside the formal template until it is approved.
 
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
 
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
+constexpr long long NEG_INF = -(1LL << 60) * 3;
 
-template <class T> bool chmin(T &a, const T &b)
+long long addExtended(long long a, long long b)
 {
-    // a 是当前值，b 是候选值；若 b 更小则更新 a 并返回 true。
-    return b < a ? a = b, true : false;
-}
-template <class T> bool chmax(T &a, const T &b)
-{
-    // a 是当前值，b 是候选值；若 b 更大则更新 a 并返回 true。
-    return a < b ? a = b, true : false;
+    // a、b 是普通值或 NEG_INF；返回带负无穷吸收元的加法结果。
+    return a == NEG_INF || b == NEG_INF ? NEG_INF : a + b;
 }
 
-// 区间加、区间和实例。换题时通常只需要修改这两个结构。
 struct Tag
 {
-    // add 是尚未下传的区间增量。
-    long long add = 0;
-
-    // 先前标记后再执行 t：区间加直接累加。
-    void apply(const Tag &t)
-    {
-        // t 是后执行的区间加标记；与当前标记复合。
-        add += t.add;
-    }
+    long long currentCurrent = 0; // 当前值到当前值的系数。
+    long long currentHistory = NEG_INF; // 当前值对历史最大值的贡献。
+    long long historyHistory = 0; // 历史最大值的保留系数。
+    long long constantCurrent = NEG_INF; // 对当前值的常数赋值。
+    long long constantHistory = NEG_INF; // 对历史最大值的常数贡献。
 };
+
+Tag compose(const Tag &first, const Tag &second)
+{
+    // first、second 按先后顺序作用；返回先 first 后 second 的复合标记。
+    return {
+        max(addExtended(first.currentCurrent, second.currentCurrent), NEG_INF),
+        max({addExtended(first.currentCurrent, second.currentHistory),
+             addExtended(first.currentHistory, second.historyHistory), NEG_INF}),
+        max(addExtended(first.historyHistory, second.historyHistory), NEG_INF),
+        max(addExtended(first.constantCurrent, second.currentCurrent), second.constantCurrent),
+        max({addExtended(first.constantHistory, second.historyHistory),
+             addExtended(first.constantCurrent, second.currentHistory), second.constantHistory})
+    };
+}
 
 struct Info
 {
-    // sum 是区间和，len 是区间叶子数。
-    long long sum = 0;
-    int len = 0;
-
-    Info() = default; // 查询越界时的合并单位元
-    Info(long long x) : sum(x), len(1)
-    {
-        // x 是叶子的初始值。
-    }
-
-    // 把区间加标记作用到当前节点。
-    void apply(const Tag &t)
-    {
-        // t 是区间加标记；更新当前区间和。
-        sum += t.add * len;
-    }
-
-    friend Info operator+(Info a, Info b)
-    {
-        // a、b 是相邻区间信息；返回合并结果。
-        Info c;
-        c.sum = a.sum + b.sum;
-        c.len = a.len + b.len;
-        return c;
-    }
+    long long current = NEG_INF; // 区间当前最大值。
+    long long historical = NEG_INF; // 区间历史最大值。
 };
 
-template <class Info, class Tag> struct LazySeg
+Info apply(Info value, const Tag &tag)
 {
-    // n 是叶子数；tr 保存已计入本节点修改的区间信息，tag 和 has 保存尚未下传给儿子的修改。
-    int n;
-    vector<Info> tr;
-    vector<Tag> tag;
-    vector<unsigned char> has;
+    // value 是节点摘要，tag 是区间标记；返回作用标记后的摘要。
+    return {
+        max(addExtended(value.current, tag.currentCurrent), tag.constantCurrent),
+        max({addExtended(value.current, tag.currentHistory),
+             addExtended(value.historical, tag.historyHistory), tag.constantHistory})
+    };
+}
 
-    LazySeg(int n = 0)
-    {
-        // n 是叶子数；每个叶子由 Info(0) 构造成零值信息。
-        init(n);
-    }
-    LazySeg(const vector<Info> &a)
-    {
-        // a 是各叶子的初始信息。
-        init(a);
-    }
-
-    void init(int n_)
-    {
-        // n_ 是新的叶子数；用 n_ 个 Info(0) 重建全零数组。
-        assert(n_ >= 0); // 调试检查，可删
-        n = n_;
-        tr.assign(4 * max<int>(n, 1), Info{});
-        tag.assign(4 * max<int>(n, 1), Tag{});
-        has.assign(4 * max<int>(n, 1), 0);
-        if (n)
-        {
-            vector<Info> a(n, Info(0));
-            build(1, 0, n, a);
-        }
-    }
-
-    void init(const vector<Info> &a)
-    {
-        // a 是新的叶子信息；清空旧状态并重建。
-        n = a.size();
-        tr.assign(4 * max<int>(n, 1), Info{});
-        tag.assign(4 * max<int>(n, 1), Tag{});
-        has.assign(4 * max<int>(n, 1), 0);
-        if (n)
-        {
-            build(1, 0, n, a);
-        }
-    }
-
-    void build(int p, int l, int r, const vector<Info> &a)
-    {
-        // p 是当前节点，[l,r) 是其区间，a 是叶子信息。
-        if (r - l == 1)
-        {
-            tr[p] = a[l];
-            return;
-        }
-        int m = (l + r) / 2;
-        build(2 * p, l, m, a);
-        build(2 * p + 1, m, r, a);
-        pull(p);
-    }
-
-    void pull(int p)
-    {
-        // p 是内部节点编号；按左右顺序合并两个儿子。
-        tr[p] = tr[2 * p] + tr[2 * p + 1];
-    }
-
-    void apply(int p, const Tag &v)
-    {
-        // p 是整段命中的节点，v 是本次区间修改标记。
-        tr[p].apply(v);
-        tag[p].apply(v);
-        has[p] = 1;
-    }
-
-    void push(int p)
-    {
-        // p 是当前节点；仅在有待执行标记时把它下传给两个儿子。
-        if (!has[p])
-        {
-            return;
-        }
-        apply(2 * p, tag[p]);
-        apply(2 * p + 1, tag[p]);
-        tag[p] = Tag{};
-        has[p] = 0;
-    }
-
-    void apply(int p, int l, int r, int ql, int qr, const Tag &v)
-    {
-        // p、[l,r) 是当前节点， [ql,qr) 是修改区间，v 是本次标记。
-        if (qr <= l || r <= ql)
-        {
-            return;
-        }
-        if (ql <= l && r <= qr)
-        {
-            apply(p, v);
-            return;
-        }
-        push(p);
-        int m = (l + r) / 2;
-        apply(2 * p, l, m, ql, qr, v);
-        apply(2 * p + 1, m, r, ql, qr, v);
-        pull(p);
-    }
-
-    Info query(int p, int l, int r, int ql, int qr)
-    {
-        // p、[l,r) 是当前节点， [ql,qr) 是询问区间；返回相交部分的信息。
-        if (qr <= l || r <= ql)
-        {
-            return Info{};
-        }
-        if (ql <= l && r <= qr)
-        {
-            return tr[p];
-        }
-        push(p);
-        int m = (l + r) / 2;
-        return query(2 * p, l, m, ql, qr) + query(2 * p + 1, m, r, ql, qr);
-    }
-
-    Info get(int p, int l, int r, int i) const
-    {
-        // p、[l,r) 是当前节点，i 是目标叶子下标；只读返回该叶子的最新信息。
-        if (r - l == 1)
-        {
-            return tr[p];
-        }
-        int m = (l + r) / 2;
-        Info ans;
-        if (i < m)
-        {
-            ans = get(2 * p, l, m, i);
-        }
-        else
-        {
-            ans = get(2 * p + 1, m, r, i);
-        }
-        if (has[p])
-        {
-            ans.apply(tag[p]);
-        }
-        return ans;
-    }
-
-    void apply(int l, int r, const Tag &v)
-    {
-        // l、r 是半开区间端点，v 是区间修改标记。
-        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
-        apply(1, 0, n, l, r, v);
-    }
-    Info query(int l, int r)
-    {
-        // l、r 是半开区间端点；返回 [l,r) 的信息。
-        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
-        return query(1, 0, n, l, r);
-    }
-    Info get(int i) const
-    {
-        // i 是叶子下标；只读返回该位置在所有待下传标记生效后的信息。
-        assert(0 <= i && i < n); // 调试检查，可删
-        return get(1, 0, n, i);
-    }
-};
-
-// a 是初始叶子信息。
-// LazySeg<Info, Tag> seg(a);
-// seg.apply(1, 4, Tag{2}); // 给 [1,4) 的每个数加 2。
-// long long ans = seg.query(0, 4).sum; // 查询 [0,4) 的区间和。
-
-
-template <class T> struct AffineTag
+class SegmentTree
 {
-    // mul、add 表示待执行变换 x -> mul*x+add。
-    T mul = T(1), add{};
+    int n; // 数组长度。
+    vector<Info> tree; // 当前节点摘要。
+    vector<Tag> lazy; // 尚未下传到儿子的复合标记。
 
-    // 已有变换后再执行 t。
-    void apply(const AffineTag<T> &t)
+    void build(int node, int left, int right, const vector<long long> &a)
     {
-        // t 是后执行的仿射变换；把它复合到当前标记之后。
-        mul *= t.mul;
-        add = add * t.mul + t.add;
-    }
-};
-
-template <class T> struct AffineInfo
-{
-    // sum 是区间和，len 是区间叶子数。
-    T sum{};
-    int len = 0;
-
-    AffineInfo() = default;
-    AffineInfo(const T &x) : sum(x), len(1)
-    {
-        // x 是单个叶子的初值。
+        if (left + 1 == right)
+        {
+            tree[node] = {a[left], a[left]};
+            return;
+        }
+        int middle = (left + right) / 2;
+        build(node * 2, left, middle, a);
+        build(node * 2 + 1, middle, right, a);
+        pull(node);
     }
 
-    AffineInfo(const T &s, int n) : sum(s), len(n)
+    void pull(int node)
     {
-        // s 是当前区间元素和，n 是该区间叶子数。
+        tree[node] = {max(tree[node * 2].current, tree[node * 2 + 1].current),
+                      max(tree[node * 2].historical, tree[node * 2 + 1].historical)};
     }
 
-    void apply(const AffineTag<T> &t)
+    void applyNode(int node, const Tag &tag)
     {
-        // t 是本次仿射标记；更新当前区间和。
-        sum = sum * t.mul + T(len) * t.add;
+        tree[node] = apply(tree[node], tag);
+        lazy[node] = compose(lazy[node], tag);
     }
 
-    friend AffineInfo operator+(AffineInfo a, AffineInfo b)
+    void push(int node)
     {
-        // a、b 是相邻区间信息；返回合并结果。
-        AffineInfo c;
-        c.sum = a.sum + b.sum;
-        c.len = a.len + b.len;
-        return c;
-    }
-};
-
-template <class T> class AffPointSeg
-{
-    // n 是叶子数；a 保存初始点值；tag 和 has 保存尚未下传的仿射修改。
-    int n;
-    vector<T> a;
-    vector<AffineTag<T>> tag;
-    vector<unsigned char> has;
-
-    void apply(int p, const AffineTag<T> &v)
-    {
-        // p 是完整命中节点，v 是后执行的仿射变换；只复合该段延迟标记。
-        tag[p].apply(v);
-        has[p] = 1;
+        applyNode(node * 2, lazy[node]);
+        applyNode(node * 2 + 1, lazy[node]);
+        lazy[node] = {};
     }
 
-    void push(int p)
+    void update(int node, int left, int right, int queryLeft, int queryRight, const Tag &tag)
     {
-        // p 是内部节点；把较早的整段修改下传后，才允许对子段施加较晚修改。
-        if (!has[p])
+        if (queryRight <= left || right <= queryLeft)
         {
             return;
         }
-        apply(2 * p, tag[p]);
-        apply(2 * p + 1, tag[p]);
-        tag[p] = AffineTag<T>{};
-        has[p] = 0;
-    }
-
-    void affine(int p, int l, int r, int ql, int qr, const AffineTag<T> &v)
-    {
-        // p、[l,r) 是当前节点，[ql,qr) 是修改区间，v 是后执行的仿射变换。
-        if (qr <= l || r <= ql)
+        if (queryLeft <= left && right <= queryRight)
         {
+            applyNode(node, tag);
             return;
         }
-        if (ql <= l && r <= qr)
-        {
-            apply(p, v);
-            return;
-        }
-        push(p);
-        int m = (l + r) / 2;
-        affine(2 * p, l, m, ql, qr, v);
-        affine(2 * p + 1, m, r, ql, qr, v);
+        push(node);
+        int middle = (left + right) / 2;
+        update(node * 2, left, middle, queryLeft, queryRight, tag);
+        update(node * 2 + 1, middle, right, queryLeft, queryRight, tag);
+        pull(node);
     }
 
-    T get(int p, int l, int r, int i) const
+    Info query(int node, int left, int right, int queryLeft, int queryRight)
     {
-        // p、[l,r) 是当前节点，i 是目标叶子下标；只读返回所有仿射修改后的点值。
-        T ans;
-        if (r - l == 1)
+        if (queryRight <= left || right <= queryLeft)
         {
-            ans = a[i];
+            return {};
         }
-        else
+        if (queryLeft <= left && right <= queryRight)
         {
-            int m = (l + r) / 2;
-            ans = i < m ? get(2 * p, l, m, i) : get(2 * p + 1, m, r, i);
+            return tree[node];
         }
-        if (has[p])
-        {
-            ans = ans * tag[p].mul + tag[p].add;
-        }
-        return ans;
+        push(node);
+        int middle = (left + right) / 2;
+        Info a = query(node * 2, left, middle, queryLeft, queryRight);
+        Info b = query(node * 2 + 1, middle, right, queryLeft, queryRight);
+        return {max(a.current, b.current), max(a.historical, b.historical)};
     }
 
   public:
-    AffPointSeg(vector<T> a) : n(a.size()), a(move(a))
+    // a 是初始数组；建立支持区间加、区间赋值和当前/历史最大值查询的线段树。
+    explicit SegmentTree(const vector<long long> &a) : n(a.size()), tree(4 * n), lazy(4 * n)
     {
-        // a 是初始点值；构造仅分配延迟标记，不维护区间摘要。
-        tag.assign(4 * max<int>(n, 1), AffineTag<T>{});
-        has.assign(4 * max<int>(n, 1), 0);
+        assert(n > 0);
+        build(1, 0, n, a);
     }
 
-    void affine(int l, int r, const T &mul, const T &add)
+    // [left,right) 是 0 下标区间，value 是增量；区间加并更新历史最大值。
+    void add(int left, int right, long long value)
     {
-        // l、r 是半开端点；把 [l,r) 内每个值变为 value*mul+add。
-        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
-        if (l == r)
-        {
-            return;
-        }
-        affine(1, 0, n, l, r, {mul, add});
+        update(1, 0, n, left, right, Tag{value, value, 0, NEG_INF, NEG_INF});
     }
 
-    T get(int i) const
+    // [left,right) 是 0 下标区间，value 是新值；区间赋值并更新历史最大值。
+    void assign(int left, int right, long long value)
     {
-        // i 是叶子下标；只读返回该点当前值。
-        assert(0 <= i && i < n); // 调试检查，可删
-        return get(1, 0, n, i);
+        update(1, 0, n, left, right, Tag{NEG_INF, NEG_INF, 0, value, value});
+    }
+
+    // [left,right) 是 0 下标区间；返回当前最大值及历史最大值摘要。
+    Info query(int left, int right)
+    {
+        return query(1, 0, n, left, right);
     }
 };
-
-// a 是初始叶子信息。
-// LazySeg<AffineInfo<Z>, AffineTag<Z>> seg(a);
-// seg.apply(l, r, {Z(1), x}); // 给区间加 x。
-// seg.apply(l, r, {x, Z(0)}); // 给区间乘 x。
-// seg.apply(l, r, {Z(0), x}); // 把区间赋值为 x。
-// Z ans = seg.query(l, r).sum; // 查询区间和。

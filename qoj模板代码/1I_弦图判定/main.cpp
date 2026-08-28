@@ -1,172 +1,185 @@
+// Generated from the protected candidate template.hpp and main.cpp.in.
+
+// Candidate optimization based on hushuqi算法竞赛模板 5.10.001.
+// Keep this file in the QOJ candidate area until it is approved.
 
 #include <bits/stdc++.h>
 using namespace std;
-#define int long long
-
-struct Chordal
-{
-    // ok 表示图是否为弦图。
-    bool ok;
-    // peo 保存最大势搜索得到的完美消除序列，弦图时有效。
-    vector<int> peo;
-    // 非弦图时，bad 是破坏候选 PEO 的三元组 (u,p,v)。
-    array<int, 3> bad{-1, -1, -1};
-};
-
-Chordal chordal(const vector<vector<int>> &g)
-{
-    // g 是简单无向图邻接表；返回弦图判定、候选 PEO 和失败三元组。
-    int n = g.size();
-    vector<int> w(n), pos(n), peo;
-    vector<bool> used(n);
-    for (int k = 0; k < n; k++)
-    {
-        int u = -1;
-        for (int i = 0; i < n; i++)
-        {
-            if (!used[i] && (u == -1 || w[i] > w[u]))
-            {
-                u = i;
-            }
-        }
-        used[u] = true;
-        peo.push_back(u);
-        for (int v : g[u])
-        {
-            if (!used[v])
-            {
-                w[v]++;
-            }
-        }
-    }
-    reverse(peo.begin(), peo.end());
-    for (int i = 0; i < n; i++)
-    {
-        pos[peo[i]] = i;
-    }
-    vector<int> mark(n, -1);
-    for (int i = 0; i < n; i++)
-    {
-        int u = peo[i], p = -1;
-        for (int v : g[u])
-        {
-            if (pos[v] > i && (p == -1 || pos[v] < pos[p]))
-            {
-                p = v;
-            }
-        }
-        if (p == -1)
-        {
-            continue;
-        }
-        for (int v : g[p])
-        {
-            mark[v] = u;
-        }
-        for (int v : g[u])
-        {
-            if (v != p && pos[v] > i && mark[v] != u)
-            {
-                return {false, peo, {u, p, v}};
-            }
-        }
-    }
-    return {true, peo};
-}
 
 struct ChordalCertificate
 {
-    // ok 表示图是否为弦图。
     bool ok;
-    // peo 是弦图的一组完美消除序列；非弦图时为空。
     vector<int> peo;
-    // cycle 是非弦图的一条诱导环；弦图时为空。
     vector<int> cycle;
 };
 
-ChordalCertificate chordalCertificate(int n, const vector<pair<int, int>> &e)
+ChordalCertificate chordalCertificate(int n, const vector<pair<int, int>> &edges)
 {
-    // n 是点数，e 是简单无向边；返回 PEO 或长度至少四的诱导环证书。
-    assert(n >= 0); // 调试检查，可删。
-    vector<set<int>> g(n);
-    for (auto [u, v] : e)
+    // edges 是简单无向边；返回一组 PEO，或一条长度至少四的诱导环。
+    assert(n >= 0);
+    vector<int> degree(n);
+    for (auto [u, v] : edges)
     {
-        assert(0 <= u && u < n && 0 <= v && v < n && u != v); // 调试检查，可删。
-        g[u].insert(v);
-        g[v].insert(u);
+        assert(0 <= u && u < n && 0 <= v && v < n && u != v);
+        degree[u]++;
+        degree[v]++;
     }
-    vector<int> w(n), pos(n), ord;
-    set<pair<int, int>> cand;
-    for (int u = 0; u < n; u++) cand.insert({0, u});
-    while (!cand.empty())
+    vector<int> offset(n + 1), neighbors(2 * edges.size());
+    for (int u = 0; u < n; u++) offset[u + 1] = offset[u] + degree[u];
+    vector<int> cursor = offset;
+    for (auto [u, v] : edges)
     {
-        int u = prev(cand.end())->second;
-        cand.erase(prev(cand.end()));
-        pos[u] = ord.size();
-        ord.push_back(u);
-        w[u] = -1;
-        for (int v : g[u])
-        {
-            if (w[v] != -1)
-            {
-                cand.erase({w[v], v});
-                cand.insert({++w[v], v});
-            }
-        }
+        neighbors[cursor[u]++] = v;
+        neighbors[cursor[v]++] = u;
     }
-    for (int u : ord)
-    {
-        int pre = -1;
-        for (int v : g[u])
-        {
-            if (pos[v] < pos[u]) pre = max(pre, pos[v]);
-        }
-        if (pre == -1) continue;
-        int p = ord[pre];
-        for (int s : g[u])
-        {
-            if (pos[s] >= pos[p] || g[p].contains(s)) continue;
-            vector<int> from(n, -1);
-            queue<int> q;
-            from[s] = s;
-            q.push(s);
-            while (!q.empty() && from[p] == -1)
-            {
-                int x = q.front();
-                q.pop();
-                for (int v : g[x])
-                {
-                    if (v == u || (v != p && g[u].contains(v)) || from[v] != -1) continue;
-                    from[v] = x;
-                    q.push(v);
-                }
-            }
-            assert(from[p] != -1); // MCS 反例保证该路径存在。
-            vector<int> cyc;
-            for (int x = p; x != s; x = from[x]) cyc.push_back(x);
-            cyc.push_back(s);
-            cyc.push_back(u);
-            return {false, {}, move(cyc)};
-        }
-    }
-    reverse(ord.begin(), ord.end());
-    return {true, move(ord), {}};
-}
 
-signed main()
+    vector<int> bucketHead(n + 1, -1), next(n, -1), previous(n, -1), weight(n);
+    auto erase = [&](int u)
+    {
+        int w = weight[u];
+        if (previous[u] == -1) bucketHead[w] = next[u];
+        else next[previous[u]] = next[u];
+        if (next[u] != -1) previous[next[u]] = previous[u];
+    };
+    auto insert = [&](int u)
+    {
+        int w = weight[u];
+        previous[u] = -1;
+        next[u] = bucketHead[w];
+        if (bucketHead[w] != -1) previous[bucketHead[w]] = u;
+        bucketHead[w] = u;
+    };
+    for (int u = 0; u < n; u++) insert(u);
+
+    vector<int> selectionOrder;
+    selectionOrder.reserve(n);
+    vector<char> selected(n);
+    int maximumWeight = 0;
+    while ((int)selectionOrder.size() < n)
+    {
+        while (bucketHead[maximumWeight] == -1) maximumWeight--;
+        int u = bucketHead[maximumWeight];
+        erase(u);
+        selected[u] = true;
+        selectionOrder.push_back(u);
+        for (int edge = offset[u]; edge < offset[u + 1]; edge++)
+        {
+            int v = neighbors[edge];
+            if (selected[v]) continue;
+            erase(v);
+            weight[v]++;
+            insert(v);
+            maximumWeight = max(maximumWeight, weight[v]);
+        }
+    }
+
+    vector<int> position(n), parent(n, -1), childHead(n, -1), childNext(n, -1);
+    for (int i = 0; i < n; i++) position[selectionOrder[i]] = i;
+    for (int u = 0; u < n; u++)
+    {
+        for (int edge = offset[u]; edge < offset[u + 1]; edge++)
+        {
+            int v = neighbors[edge];
+            if (position[v] < position[u] &&
+                (parent[u] == -1 || position[parent[u]] < position[v]))
+            {
+                parent[u] = v;
+            }
+        }
+        if (parent[u] != -1)
+        {
+            childNext[u] = childHead[parent[u]];
+            childHead[parent[u]] = u;
+        }
+    }
+
+    vector<int> adjacentStamp(n, -1);
+    int badVertex = -1, badParent = -1, badNeighbor = -1;
+    for (int center = 0; center < n; center++)
+    {
+        for (int edge = offset[center]; edge < offset[center + 1]; edge++)
+        {
+            adjacentStamp[neighbors[edge]] = center;
+        }
+        for (int u = childHead[center]; u != -1; u = childNext[u])
+        {
+            for (int edge = offset[u]; edge < offset[u + 1]; edge++)
+            {
+                int v = neighbors[edge];
+                if (position[v] >= position[center] || adjacentStamp[v] == center) continue;
+                if (badVertex == -1 || position[u] > position[badVertex])
+                {
+                    badVertex = u;
+                    badParent = center;
+                    badNeighbor = v;
+                }
+                break;
+            }
+        }
+    }
+    if (badVertex == -1)
+    {
+        reverse(selectionOrder.begin(), selectionOrder.end());
+        return {true, move(selectionOrder), {}};
+    }
+
+    vector<char> forbidden(n);
+    for (int edge = offset[badVertex]; edge < offset[badVertex + 1]; edge++)
+    {
+        int v = neighbors[edge];
+        if (position[v] < position[badVertex] && v != badNeighbor && v != badParent)
+        {
+            forbidden[v] = true;
+        }
+    }
+    vector<int> from(n, -1), queue(n);
+    int queueBegin = 0, queueEnd = 0;
+    from[badNeighbor] = badNeighbor;
+    queue[queueEnd++] = badNeighbor;
+    while (queueBegin < queueEnd && from[badParent] == -1)
+    {
+        int u = queue[queueBegin++];
+        for (int edge = offset[u]; edge < offset[u + 1]; edge++)
+        {
+            int v = neighbors[edge];
+            if (position[v] >= position[badVertex] || forbidden[v] || from[v] != -1) continue;
+            from[v] = u;
+            queue[queueEnd++] = v;
+        }
+    }
+    assert(from[badParent] != -1);
+    vector<int> path;
+    for (int u = badParent;; u = from[u])
+    {
+        path.push_back(u);
+        if (u == badNeighbor) break;
+    }
+    reverse(path.begin(), path.end());
+    vector<int> cycle{badVertex};
+    cycle.insert(cycle.end(), path.begin(), path.end());
+    return {false, {}, move(cycle)};
+}
+int main()
 {
-    int n, m; cin >> n >> m;
-    vector<pair<int, int>> e(m);
-    for (auto &[u, v] : e) cin >> u >> v;
-    auto ans = chordalCertificate(n, e);
-    if (ans.ok)
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n, m;
+    cin >> n >> m;
+    vector<pair<int, int>> edges(m);
+    for (auto &[u, v] : edges) cin >> u >> v;
+    ChordalCertificate answer = chordalCertificate(n, edges);
+    if (answer.ok)
     {
         cout << "YES\n";
-        for (int i = 0; i < n; i++) cout << ans.peo[i] << " \n"[i + 1 == n];
+        for (int i = 0; i < n; i++) cout << answer.peo[i] << " \n"[i + 1 == n];
     }
     else
     {
-        cout << "NO\n" << ans.cycle.size() << '\n';
-        for (int i = 0; i < (int)ans.cycle.size(); i++) cout << ans.cycle[i] << " \n"[i + 1 == (int)ans.cycle.size()];
+        cout << "NO\n" << answer.cycle.size() << '\n';
+        for (int i = 0; i < (int)answer.cycle.size(); i++)
+        {
+            cout << answer.cycle[i] << " \n"[i + 1 == (int)answer.cycle.size()];
+        }
     }
 }

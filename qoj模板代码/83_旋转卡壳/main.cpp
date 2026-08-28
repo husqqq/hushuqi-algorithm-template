@@ -221,6 +221,12 @@ template <class T> T diameter2(const vector<Point<T>> &a)
         }
         ans = max(ans, norm(a[i] - a[j]));
         ans = max(ans, norm(a[(i + 1) % n] - a[j]));
+        int next = (j + 1) % n;
+        if (cross(a[(i + 1) % n] - a[i], a[next] - a[j]) == 0)
+        {
+            ans = max(ans, norm(a[i] - a[next]));
+            ans = max(ans, norm(a[(i + 1) % n] - a[next]));
+        }
     }
     return ans;
 }

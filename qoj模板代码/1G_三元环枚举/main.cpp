@@ -1,3 +1,10 @@
+// Generated from the protected candidate template.hpp and main.cpp.in.
+
+// Candidate template based on hushuqi算法竞赛模板 5.9.006.
+// Keep this file in the QOJ candidate area until it is approved.
+
+// QOJ contest 3936: 1G 三元环枚举
+
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -45,7 +52,7 @@ unsigned long long triangles(int n, const vector<pair<int, int>> &e)
     return ans;
 }
 
-long long weightedTriangles(int n, const vector<long long> &val, const vector<pair<int, int>> &e, long long mod)
+long long weightedTri(int n, const vector<long long> &val, const vector<pair<int, int>> &e, long long mod)
 {
     // n 是点数，val 是每点权值，e 是简单无向边集，mod 是正模数；返回所有三元环三点权乘积之和模 mod。
     assert((int)val.size() == n && mod > 0); // 调试检查，可删。
@@ -84,6 +91,62 @@ long long weightedTriangles(int n, const vector<long long> &val, const vector<pa
     return (ans + mod) % mod;
 }
 
+uint32_t weightedTriangles998244353(
+    int32_t n,
+    const vector<uint32_t> &value,
+    const vector<pair<int32_t, int32_t>> &edges)
+{
+    // 针对固定模数的批量加权三元环计数；输入必须是简单无向图，点权已在 [0,mod) 内。
+    constexpr uint32_t mod = 998244353;
+    assert((int32_t)value.size() == n);
+    vector<int32_t> degree(n), order(n), rank(n);
+    for (auto [u, v] : edges)
+    {
+        assert(0 <= u && u < n && 0 <= v && v < n && u != v);
+        degree[u]++;
+        degree[v]++;
+    }
+    iota(order.begin(), order.end(), 0);
+    sort(order.begin(), order.end(), [&](int32_t u, int32_t v)
+    {
+        return pair{degree[u], u} < pair{degree[v], v};
+    });
+
+    vector<uint32_t> reorderedValue(n);
+    for (int32_t i = 0; i < n; i++)
+    {
+        rank[order[i]] = i;
+        reorderedValue[i] = value[order[i]];
+    }
+    vector<basic_string<int32_t>> graph(n);
+    for (auto [u, v] : edges)
+    {
+        u = rank[u];
+        v = rank[v];
+        if (u > v) swap(u, v);
+        graph[v].push_back(u);
+    }
+
+    vector<int32_t> marked(n, -1);
+    unsigned __int128 answer = 0;
+    for (int32_t u = 0; u < n; u++)
+    {
+        for (int32_t v : graph[u]) marked[v] = u;
+        unsigned __int128 middleSum = 0;
+        for (int32_t v : graph[u])
+        {
+            uint64_t commonWeight = 0;
+            for (int32_t w : graph[v])
+            {
+                if (marked[w] == u) commonWeight += reorderedValue[w];
+            }
+            middleSum += (unsigned __int128)commonWeight * reorderedValue[v];
+        }
+        answer += middleSum * reorderedValue[u];
+    }
+    return (uint32_t)(answer % mod);
+}
+
 unsigned long long fourCycles(int n, const vector<pair<int, int>> &e)
 {
     // e 是简单无向图边集；返回四元环数量。
@@ -111,7 +174,7 @@ unsigned long long fourCycles(int n, const vector<pair<int, int>> &e)
     return ans / 2;
 }
 
-vector<long long> fourCyclesPerEdge(int n, const vector<pair<int, int>> &edges)
+vector<long long> fourCycleCnt(int n, const vector<pair<int, int>> &edges)
 {
     // n 是点数，edges 是允许重边的无向边；返回每条原边参与的四元环数量。
     int m = edges.size();
@@ -194,13 +257,16 @@ vector<long long> fourCyclesPerEdge(int n, const vector<pair<int, int>> &edges)
     }
     return res;
 }
-
 signed main()
 {
-    int n, m; cin >> n >> m;
-    vector<long long> val(n);
-    for (long long &x : val) cin >> x;
-    vector<pair<int, int>> e(m);
-    for (auto &[u, v] : e) cin >> u >> v;
-    cout << weightedTriangles(n, val, e, 998244353) << '\n';
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int32_t n, m;
+    cin >> n >> m;
+    vector<uint32_t> value(n);
+    for (uint32_t &x : value) cin >> x;
+    vector<pair<int32_t, int32_t>> edges(m);
+    for (auto &[u, v] : edges) cin >> u >> v;
+    cout << weightedTriangles998244353(n, value, edges) << '\n';
 }

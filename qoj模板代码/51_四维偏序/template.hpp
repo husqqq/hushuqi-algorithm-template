@@ -1,125 +1,142 @@
-// Generated from hushuqi算法竞赛模板. Do not edit by hand.
+#pragma once
 
-// QOJ contest 3936: 51 四维偏序
+// QOJ candidate template extracted from the verified standalone solver.
+// Keep this file outside the formal template until it is approved.
 
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
 
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
-
-template <class T> bool chmin(T &a, const T &b)
+struct Point
 {
-    // 若 b 更小则以 b 更新 a；返回是否发生更新。
-    return b < a ? a = b, true : false;
-}
-template <class T> bool chmax(T &a, const T &b)
-{
-    // 若 b 更大则以 b 更新 a；返回是否发生更新。
-    return a < b ? a = b, true : false;
-}
+    int x; // 第一维坐标。
+    int y; // 第二维坐标。
+    int z; // 第三维坐标。
+    int w; // 第四维坐标。
+};
 
-// Point3[0..3] 依次是 x、y、z 坐标与原输入编号。
-using Point3 = array<int, 4>;
-
-// answer[i] 是三维坐标均不大于第 i 个点的点数。
-inline vector<int> dom3(vector<Point3> points)
+struct Event
 {
-    // points 的每项为 {x,y,z,id}；返回每个原编号的三维非严格支配计数。
-    int n = points.size();
-    vector<int> coord;
-    for (auto point : points)
+    int y; // 第二维坐标。
+    int z; // 第三维坐标。
+    int w; // 第四维坐标。
+    bool source; // 是否为左半部分的来源点。
+};
+
+class Fenwick
+{
+    vector<int> tree;
+
+public:
+    // n 是 Fenwick 下标的最大值；初始所有位置的计数为 0。
+    explicit Fenwick(int n) : tree(n + 1) {}
+
+    // position 是 1 下标位置，value 是增量；执行单点加法。
+    void add(int position, int value)
     {
-        coord.push_back(point[2]);
-    }
-    ranges::sort(coord);
-    coord.erase(unique(coord.begin(), coord.end()), coord.end());
-    ranges::sort(points,
-                 [](const Point3 &a, const Point3 &b)
-                 {
-                     return tie(a[0], a[1], a[2]) < tie(b[0], b[1], b[2]);
-                 });
-    struct Node
-    {
-        // x、y 是原坐标，z 是离散编号，weight 是该坐标的重复点数。
-        int x, y, z, weight;
-        // ids 保存该组重复点的原编号。
-        vector<int> ids;
-        // answer 保存当前累计的非严格支配计数。
-        long long answer;
-    };
-    vector<Node> nodes;
-    for (auto point : points)
-    {
-        int z = lower_bound(coord.begin(), coord.end(), point[2]) - coord.begin();
-        if (!nodes.empty() && tie(nodes.back().x, nodes.back().y, nodes.back().z) == tie(point[0], point[1], z))
+        for (; position < (int)tree.size(); position += position & -position)
         {
-            ++nodes.back().weight;
-            ++nodes.back().answer;
-            nodes.back().ids.push_back(point[3]);
-        }
-        else
-        {
-            nodes.push_back({point[0], point[1], z, 1, {point[3]}, 1});
+            tree[position] += value;
         }
     }
-    vector<int> bit(coord.size() + 1), order(nodes.size()), buffer(nodes.size()), answer(n);
-    iota(order.begin(), order.end(), 0);
-    auto add = [&](int x, int value)
-    {
-        for (++x; x < bit.size(); x += x & -x)
-        {
-            bit[x] += value;
-        }
-    };
-    auto sum = [&](int x)
+
+    // position 是前缀右端点；返回 [1,position] 的计数和。
+    int prefix(int position) const
     {
         int result = 0;
-        for (++x; x > 0; x -= x & -x)
+        for (; position; position -= position & -position)
         {
-            result += bit[x];
+            result += tree[position];
         }
         return result;
-    };
-    function<void(int, int)> cdq = [&](int left, int right)
+    }
+};
+
+long long countThreeDimensional(vector<Event> events, int coordinateLimit)
+{
+    // events 是按第二维排序的三维偏序事件；返回来源点严格小于查询点的数量。
+    assert(coordinateLimit >= 0);
+    sort(events.begin(), events.end(), [](const Event &a, const Event &b)
     {
-        if (right - left == 1)
+        return a.y < b.y;
+    });
+    vector<Event> buffer(events.size());
+    Fenwick fenwick(coordinateLimit);
+    long long answer = 0;
+    auto solve = [&](auto &&self, int left, int right) -> void
+    {
+        if (right - left <= 1)
         {
             return;
         }
-        int middle = midpoint(left, right);
-        cdq(left, middle);
-        cdq(middle, right);
-        int i = left, j = middle, output = left;
-        while (j < right)
+        int middle = (left + right) / 2;
+        self(self, left, middle);
+        self(self, middle, right);
+        int i = left;
+        for (int j = middle; j < right; j++)
         {
-            while (i < middle && nodes[order[i]].y <= nodes[order[j]].y)
+            while (i < middle && events[i].z < events[j].z)
             {
-                add(nodes[order[i]].z, nodes[order[i]].weight);
-                buffer[output++] = order[i++];
+                if (events[i].source)
+                {
+                    fenwick.add(events[i].w, 1);
+                }
+                i++;
             }
-            nodes[order[j]].answer += sum(nodes[order[j]].z);
-            buffer[output++] = order[j++];
+            if (!events[j].source)
+            {
+                answer += fenwick.prefix(events[j].w - 1);
+            }
         }
-        while (i < middle)
+        for (int k = left; k < i; k++)
         {
-            buffer[output++] = order[i++];
+            if (events[k].source)
+            {
+                fenwick.add(events[k].w, -1);
+            }
         }
-        for (int k = left; k < middle; ++k)
+        merge(events.begin() + left, events.begin() + middle,
+              events.begin() + middle, events.begin() + right,
+              buffer.begin() + left, [](const Event &a, const Event &b)
         {
-            add(nodes[order[k]].z, -nodes[order[k]].weight);
-        }
-        copy(buffer.begin() + left, buffer.begin() + right, order.begin() + left);
+            return a.z < b.z;
+        });
+        copy(buffer.begin() + left, buffer.begin() + right, events.begin() + left);
     };
-    cdq(0, nodes.size());
-    for (auto &node : nodes)
+    solve(solve, 0, events.size());
+    return answer;
+}
+
+long long countFourDimensional(vector<Point> points)
+{
+    // points 是四维点集；返回两点四维坐标均严格递增的有序点对数量。
+    sort(points.begin(), points.end(), [](const Point &a, const Point &b)
     {
-        for (int id : node.ids)
+        return a.x < b.x;
+    });
+    int n = points.size();
+    long long answer = 0;
+    auto solve = [&](auto &&self, int left, int right) -> void
+    {
+        if (right - left <= 1)
         {
-            answer[id] = node.answer;
+            return;
         }
-    }
+        int middle = (left + right) / 2;
+        self(self, left, middle);
+        self(self, middle, right);
+        vector<Event> events;
+        events.reserve(right - left);
+        for (int i = left; i < middle; i++)
+        {
+            events.push_back({points[i].y, points[i].z, points[i].w, true});
+        }
+        for (int i = middle; i < right; i++)
+        {
+            events.push_back({points[i].y, points[i].z, points[i].w, false});
+        }
+        answer += countThreeDimensional(move(events), n);
+    };
+    solve(solve, 0, n);
     return answer;
 }

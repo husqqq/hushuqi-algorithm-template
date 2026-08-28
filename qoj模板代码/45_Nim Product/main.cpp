@@ -100,12 +100,13 @@ signed main()
         sc ^= z ^ sa;
         return sc;
     };
+    NimProduct64::init();
     uint32_t last = 0;
     while (t--)
     {
         uint32_t x = rng() + last;
         uint32_t y = rng();
-        last = (uint32_t)nimProduct(x, y);
+        last = NimProduct64::p32(x, y);
     }
     cout << last << '\n';
 }

@@ -59,17 +59,20 @@ def write_problem(entry: dict[str, object]) -> None:
         "// Generated from hushuqi算法竞赛模板. Do not edit by hand.\n",
         "// QOJ contest 3936: " + str(entry["label"]) + " " + str(entry["title"]) + "\n",
     ]
-    seen: set[Path] = set()
-    for topic in topics:
-        pieces.append(bundle(TEMPLATE_ROOT / f"{topic.replace('.', '_')}.hpp", seen))
-    (destination / "template.hpp").write_text("\n".join(pieces), encoding="utf-8", newline="\n")
+    if not entry.get("pending_template"):
+        seen: set[Path] = set()
+        for topic in topics:
+            pieces.append(bundle(TEMPLATE_ROOT / f"{topic.replace('.', '_')}.hpp", seen))
+        (destination / "template.hpp").write_text("\n".join(pieces), encoding="utf-8", newline="\n")
 
     # QOJ 的题意和 Library Checker 经常只有算法相同、I/O 协议不同。
     # main.cpp 必须逐题按 QOJ 题面适配；生成器只更新模板和索引，
     # 既不覆盖已有入口，也不自动复制 Library Checker 的提交源码。
 
     has_main = (destination / "main.cpp").exists()
-    if has_main:
+    if entry.get("pending_template"):
+        status = "QOJ 候选 template.hpp + 适配入口，待批准写入正式模板"
+    elif has_main:
         status = "main.cpp 已按 QOJ 题面适配输入输出"
     elif str(entry["label"]) == "46":
         status = "函数接口题：按题面实现 init(p) 与 inv(x)，不应提供 main.cpp"
@@ -96,8 +99,9 @@ def write_index(problems: list[dict[str, object]]) -> None:
         "# QOJ 3936 模板代码",
         "",
         "本目录对应 [XXIV 赛前模板训练赛](https://qoj.ac/contest/3936) 的 75 道题。",
-        "每题目录中的 `template.hpp` 是从本仓库权威模板依赖展开得到的自包含代码；",
+        "通常每题目录中的 `template.hpp` 从本仓库权威模板依赖展开；带 pending_template 标记的条目则是待批准候选，生成器会保留而不覆盖；",
         "算法主体可复用本仓库模板或 Library Checker 实现，但 `main.cpp` 的输入输出、下标和特殊约定均逐题按 QOJ 题面适配。",
+        "生成器不会创建或覆盖 `main.cpp`；入口代码的来源分类见 `来源审计.md`。",
         "",
         f"当前共有 {ready} 道提供按 QOJ 题面适配的 `main.cpp`。",
         "不存在 `main.cpp` 的目录只提供相关算法模板，不能直接提交；46 为函数接口题，本来就不应包含 main。",
@@ -111,7 +115,10 @@ def write_index(problems: list[dict[str, object]]) -> None:
     for problem in problems:
         name = safe_name(str(problem["label"]), str(problem["title"]))
         link = quote(name, safe="")
-        kind = "QOJ main.cpp + template.hpp" if has_main(problem) else ("函数接口 template.hpp" if str(problem["label"]) == "46" else "仅 template.hpp")
+        if problem.get("pending_template"):
+            kind = "候选 template.hpp + QOJ main.cpp"
+        else:
+            kind = "QOJ main.cpp + template.hpp" if has_main(problem) else ("函数接口 template.hpp" if str(problem["label"]) == "46" else "仅 template.hpp")
         topics = ", ".join(str(topic) for topic in problem.get("topics", [])) or "-"
         lines.append(
             f"| {problem['label']} | [{problem['title']}]({link}/) | {problem['id']} | {topics} | {kind} |"

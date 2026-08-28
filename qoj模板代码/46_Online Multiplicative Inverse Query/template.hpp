@@ -282,3 +282,86 @@ vector<int> batchInv(const vector<int> &a, int mod)
     }
     return ans;
 }
+
+template <int Mod> class OnlineInverseTable
+{
+private:
+    static_assert(Mod == 998244353);
+    // 分数树的每项分子、分母小于 2048，使用 16 位存储以控制常驻内存。
+    static const vector<pair<uint16_t, uint16_t>> frac;
+    // 逆元表的值小于 2^30，使用 32 位存储以控制常驻内存。
+    static const vector<uint32_t> small;
+
+public:
+    // x 是 1<=x<Mod 的非零剩余；返回 x 在模 Mod 下的乘法逆元。
+    static int get(int x)
+    {
+        assert(1 <= x && x < Mod); // 调试检查，可删
+        auto [a, b] = frac[x >> 10];
+        int pos = 2 * (1 << 20) + x * b - (int)a * Mod;
+        return small[pos];
+    }
+};
+
+template <int Mod>
+inline const vector<pair<uint16_t, uint16_t>> OnlineInverseTable<Mod>::frac = []
+{
+    vector<pair<uint16_t, uint16_t>> res(1 << 20);
+    array<array<int, 4>, 2048> st{};
+    int top = 0;
+    st[top++] = {0, 1, 1, 1};
+    while (top)
+    {
+        auto [a, b, c, d] = st[--top];
+        if (b + d < 2048)
+        {
+            st[top++] = {a + c, b + d, c, d};
+            st[top++] = {a, b, a + c, b + d};
+            continue;
+        }
+        int l = (long long)a * Mod / (1024 * b);
+        int r = (long long)c * Mod / (1024 * d);
+        res[l] = {(uint16_t)a, (uint16_t)b};
+        res[r] = {(uint16_t)c, (uint16_t)d};
+        if (a > c)
+        {
+            a = c;
+        }
+        if (b > d)
+        {
+            b = d;
+        }
+        for (int i = l + 1; i < r; i++)
+        {
+            res[i] = {(uint16_t)a, (uint16_t)b};
+        }
+    }
+    return res;
+}();
+
+template <int Mod>
+inline const vector<uint32_t> OnlineInverseTable<Mod>::small = []
+{
+    vector<uint32_t> res(4 * (1 << 20) + 1);
+    constexpr int mid = 2 * (1 << 20);
+    res[mid + 1] = 1;
+    res[mid - 1] = Mod - 1;
+    for (int i = 2; i <= mid; i++)
+    {
+        uint32_t x = (uint64_t)(Mod - res[mid + (Mod % i)]) * (Mod / i) % Mod;
+        res[mid + i] = x;
+        res[mid - i] = Mod - x;
+    }
+    return res;
+}();
+
+// QOJ Online Multiplicative Inverse Query 的固定接口；题面模数固定为 998244353。
+inline void init(int p)
+{
+    assert(p == 998244353); // 调试检查，可删
+}
+
+inline int inv(int x)
+{
+    return OnlineInverseTable<998244353>::get(x);
+}

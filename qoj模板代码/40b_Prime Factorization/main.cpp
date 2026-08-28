@@ -86,23 +86,47 @@ unsigned long long pollard(unsigned long long n)
     static mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
     while (true)
     {
+        auto y = rng() % (n - 1) + 1;
         auto c = rng() % (n - 1) + 1;
-        auto x = rng() % n;
-        auto y = x;
-        auto d = 1ULL;
-        auto f = [&](unsigned long long z)
+        auto f = [&](unsigned long long x)
         {
-            return (unsigned long long)(((unsigned __int128)mul64(z, z, n) + c) % n);
+            return (unsigned long long)(((unsigned __int128)x * x + c) % n);
         };
-        while (d == 1)
+        unsigned long long g = 1, r = 1, x = 0, saved = 0;
+        while (g == 1)
         {
-            x = f(x);
-            y = f(f(y));
-            d = gcd(x > y ? x - y : y - x, n);
+            x = y;
+            for (unsigned long long i = 0; i < r; i++)
+            {
+                y = f(y);
+            }
+            for (unsigned long long k = 0; k < r && g == 1; k += 128)
+            {
+                saved = y;
+                unsigned long long product = 1;
+                auto stop = min<unsigned long long>(128, r - k);
+                for (unsigned long long i = 0; i < stop; i++)
+                {
+                    y = f(y);
+                    auto difference = x > y ? x - y : y - x;
+                    product = mul64(product, difference, n);
+                }
+                g = gcd(product, n);
+            }
+            r <<= 1;
         }
-        if (d != n)
+        if (g == n)
         {
-            return d;
+            do
+            {
+                saved = f(saved);
+                auto difference = x > saved ? x - saved : saved - x;
+                g = gcd(difference, n);
+            } while (g == 1);
+        }
+        if (g != n)
+        {
+            return g;
         }
     }
 }
