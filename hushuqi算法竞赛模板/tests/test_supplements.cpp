@@ -66,23 +66,23 @@ signed main()
 {
     // 本测试使用固定样例和固定种子对拍全部补充实现；成功输出 OK。
     assert((pbds_ordered::rankInfo({5, 1, 5, 3}, 5) == array<int, 2>{2, 5}));
-    assert(pbds_heap_policy::heapTop({2, 9, 1}) == 9);
-    assert(pbds_mutable_heap::editHeap() == 40);
-    assert((pbds_heap_compare::compareHeap({2, 9, 1}) == array<int, 2>{9, 9}));
-    assert((pbds_tree_policy::treeSizes({1, 1, 2}) == array<int, 3>{2, 2, 2}));
-    pbds_split_join::Map ma, mb;
+    assert(pbdsHeap::heapTop({2, 9, 1}) == 9);
+    assert(pbdsMutHeap::editHeap() == 40);
+    assert((pbdsHeapCmp::compareHeap({2, 9, 1}) == array<int, 2>{9, 9}));
+    assert((pbdsTree::treeSizes({1, 1, 2}) == array<int, 3>{2, 2, 2}));
+    pbdsSplit::Map ma, mb;
     ma[1] = 10, ma[3] = 30, ma[5] = 50;
-    pbds_split_join::splitAt(ma, mb, 3);
+    pbdsSplit::splitAt(ma, mb, 3);
     assert(ma.size() == 2 && mb.size() == 1);
-    pbds_split_join::joinOrdered(ma, mb);
+    pbdsSplit::joinOrdered(ma, mb);
     assert(ma.size() == 3 && mb.empty());
-    assert(pbds_metadata::rootSize({4, 1, 4, 2}) == 3);
-    pbds_subtree_sum::Tree sumTree;
+    assert(pbdsMeta::rootSize({4, 1, 4, 2}) == 3);
+    pbdsSubSum::Tree sumTree;
     for (int x : {1, 3, 5, 8})
     {
         sumTree.insert(x);
     }
-    assert(pbds_subtree_sum::prefixSum(sumTree, 6) == 9);
+    assert(pbdsSubSum::prefixSum(sumTree, 6) == 9);
     assert(pbds_compat::available());
 
     auto side = planar_graph::chordPlanar(6, {{0, 3}, {1, 4}, {2, 5}});
@@ -108,7 +108,7 @@ signed main()
     {
         for (int m = 1; m <= 40; m++)
         {
-            assert(fast_divisibility::divisible(to_string(x), m) == (x % m == 0));
+            assert(fastDiv::divisible(to_string(x), m) == (x % m == 0));
         }
     }
     for (int lim = 1; lim <= 1000; lim++)
@@ -129,11 +129,11 @@ signed main()
                 best = x, cnt = cur;
             }
         }
-        assert((highly_composite::mostDivisors(lim) == array<int, 2>{best, cnt}));
+        assert((highlyComp::mostDivisors(lim) == array<int, 2>{best, cnt}));
     }
     for (int n = 0; n <= 500; n++)
     {
-        assert(last_nonzero_digit::lastDigit(n) == naiveLast(n));
+        assert(lastNzDigit::lastDigit(n) == naiveLast(n));
     }
 
     assert(incl_excl::countMult(100, {2, 3, 5}) == 74);
@@ -212,11 +212,11 @@ signed main()
     }
     auto post = prob_formula::bayes({0.5L, 0.5L}, {0.2L, 0.8L});
     assert(abs(post[0] - 0.2L) < 1E-15L);
-    assert(abs(probability_distribution::binomialPmf(4, 2, 0.5L) - 0.375L) < 1E-15L);
+    assert(abs(probDist::binomialPmf(4, 2, 0.5L) - 0.375L) < 1E-15L);
     auto mom = exp_var::moments({0, 2}, {0.25L, 0.75L});
     assert(abs(mom[0] - 1.5L) < 1E-15L && abs(mom[1] - 0.75L) < 1E-15L);
-    assert((harmonic_power_sum::powerSums(10) == array<__int128, 3>{55, 385, 3025}));
-    auto tri = triangle_formula::triangle(3, 4, 5);
+    assert((harmPow::powerSums(10) == array<__int128, 3>{55, 385, 3025}));
+    auto tri = triForm::triangle(3, 4, 5);
     assert(abs(tri[0] - 6) < 1E-15L);
 
     vector<array<int, 4>> clauses = {{0, 1, 1, 1}, {0, 0, 1, 1}};
@@ -289,20 +289,20 @@ signed main()
     assert(grid_count::gridPaths(3, 3, {}) == 6);
     assert(grid_count::gridPaths(3, 3, {{1, 1}}) == 2);
 
-    using triangle_fermat::Point;
+    using triFermat::Point;
     auto close = [](Point a, Point b)
     {
         return hypotl(a.x - b.x, a.y - b.y) < 1E-10L;
     };
     Point a{0, 0}, b{2, 0}, c{1, sqrtl(3.0L)};
     Point mid{1, sqrtl(3.0L) / 3};
-    assert(close(*triangle_fermat::incenter(a, b, c), mid));
-    assert(close(*triangle_fermat::circumcenter(a, b, c), mid));
-    assert(close(*triangle_fermat::orthocenter(a, b, c), mid));
-    assert(close(*triangle_fermat::fermat(a, b, c), mid));
+    assert(close(*triFermat::incenter(a, b, c), mid));
+    assert(close(*triFermat::circumcenter(a, b, c), mid));
+    assert(close(*triFermat::orthocenter(a, b, c), mid));
+    assert(close(*triFermat::fermat(a, b, c), mid));
     Point d{-2, 0.1L};
-    assert(close(*triangle_fermat::fermat(a, b, d), a));
-    assert(!triangle_fermat::circumcenter({0, 0}, {1, 0}, {2, 0}));
+    assert(close(*triFermat::fermat(a, b, d), a));
+    assert(!triFermat::circumcenter({0, 0}, {1, 0}, {2, 0}));
 
     for (int m = 1; m <= 15; m += 2)
     {

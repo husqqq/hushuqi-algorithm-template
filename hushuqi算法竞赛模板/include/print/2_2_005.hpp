@@ -2,25 +2,12 @@
 using namespace std;
 #define int long long
 
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
-
-template <class T> bool chmin(T &a, const T &b)
-{
-    // 若 b 更小则以 b 更新 a；返回是否发生更新。
-    return b < a ? a = b, true : false;
-}
-template <class T> bool chmax(T &a, const T &b)
-{
-    // 若 b 更大则以 b 更新 a；返回是否发生更新。
-    return a < b ? a = b, true : false;
-}
+#include "support/topic_common.hpp"
 
 // Point3[0..3] 依次是 x、y、z 坐标与原输入编号。
 using Point3 = array<int, 4>;
 
-// answer[i] 是三维坐标均不大于第 i 个点的点数。
+// ans[i] 是三维坐标均不大于第 i 个点的点数。
 inline vector<int> dom3(vector<Point3> points)
 {
     // points 的每项为 {x,y,z,id}；返回每个原编号的三维非严格支配计数。
@@ -43,8 +30,8 @@ inline vector<int> dom3(vector<Point3> points)
         int x, y, z, weight;
         // ids 保存该组重复点的原编号。
         vector<int> ids;
-        // answer 保存当前累计的非严格支配计数。
-        long long answer;
+        // ans 保存当前累计的非严格支配计数。
+        long long ans;
     };
     vector<Node> nodes;
     for (auto point : points)
@@ -53,7 +40,7 @@ inline vector<int> dom3(vector<Point3> points)
         if (!nodes.empty() && tie(nodes.back().x, nodes.back().y, nodes.back().z) == tie(point[0], point[1], z))
         {
             ++nodes.back().weight;
-            ++nodes.back().answer;
+            ++nodes.back().ans;
             nodes.back().ids.push_back(point[3]);
         }
         else
@@ -61,7 +48,7 @@ inline vector<int> dom3(vector<Point3> points)
             nodes.push_back({point[0], point[1], z, 1, {point[3]}, 1});
         }
     }
-    vector<int> bit(coord.size() + 1), order(nodes.size()), buffer(nodes.size()), answer(n);
+    vector<int> bit(coord.size() + 1), order(nodes.size()), buffer(nodes.size()), ans(n);
     iota(order.begin(), order.end(), 0);
     auto add = [&](int x, int value)
     {
@@ -72,12 +59,12 @@ inline vector<int> dom3(vector<Point3> points)
     };
     auto sum = [&](int x)
     {
-        int result = 0;
+        int res = 0;
         for (++x; x > 0; x -= x & -x)
         {
-            result += bit[x];
+            res += bit[x];
         }
-        return result;
+        return res;
     };
     function<void(int, int)> cdq = [&](int left, int right)
     {
@@ -96,7 +83,7 @@ inline vector<int> dom3(vector<Point3> points)
                 add(nodes[order[i]].z, nodes[order[i]].weight);
                 buffer[output++] = order[i++];
             }
-            nodes[order[j]].answer += sum(nodes[order[j]].z);
+            nodes[order[j]].ans += sum(nodes[order[j]].z);
             buffer[output++] = order[j++];
         }
         while (i < middle)
@@ -114,8 +101,105 @@ inline vector<int> dom3(vector<Point3> points)
     {
         for (int id : node.ids)
         {
-            answer[id] = node.answer;
+            ans[id] = node.ans;
         }
     }
-    return answer;
+    return ans;
+}
+
+struct Point4
+{
+    // x、y、z、w 是四维坐标。
+    int x, y, z, w;
+};
+
+struct Dom4Event
+{
+    // y、z、w 是后三维坐标；src 表示该点来自较小 x 的左半部。
+    int y, z, w;
+    bool src;
+};
+
+inline long long dom4Cross(vector<Dom4Event> a, int m)
+{
+    // a 是一次跨段统计的事件，m 是离散后第四维大小；返回后三维均严格递增的跨段点对数。
+    sort(a.begin(), a.end(), [](const auto &u, const auto &v)
+    {
+        return tie(u.y, u.src) < tie(v.y, v.src);
+    });
+    vector<Dom4Event> buf(a.size());
+    vector<int> bit(m + 1);
+    auto add = [&](int p, int v)
+    {
+        for (++p; p <= m; p += p & -p) bit[p] += v;
+    };
+    auto sum = [&](int p)
+    {
+        int ans = 0;
+        for (; p; p -= p & -p) ans += bit[p];
+        return ans;
+    };
+    long long ans = 0;
+    auto cdq = [&](auto &&self, int l, int r) -> void
+    {
+        if (r - l <= 1) return;
+        int mid = (l + r) / 2;
+        self(self, l, mid);
+        self(self, mid, r);
+        int i = l;
+        for (int j = mid; j < r; j++)
+        {
+            while (i < mid && a[i].z < a[j].z)
+            {
+                if (a[i].src) add(a[i].w, 1);
+                i++;
+            }
+            if (!a[j].src) ans += sum(a[j].w);
+        }
+        for (int k = l; k < i; k++) if (a[k].src) add(a[k].w, -1);
+        merge(a.begin() + l, a.begin() + mid, a.begin() + mid, a.begin() + r,
+              buf.begin() + l, [](const auto &u, const auto &v)
+        {
+            return u.z < v.z;
+        });
+        copy(buf.begin() + l, buf.begin() + r, a.begin() + l);
+    };
+    cdq(cdq, 0, a.size());
+    return ans;
+}
+
+inline long long countFourDimensional(vector<Point4> a)
+{
+    // a 是四维点集；返回两点四维坐标均严格递增的有序点对数量。
+    vector<int> ws;
+    for (auto p : a) ws.push_back(p.w);
+    sort(ws.begin(), ws.end());
+    ws.erase(unique(ws.begin(), ws.end()), ws.end());
+    for (auto &p : a) p.w = lower_bound(ws.begin(), ws.end(), p.w) - ws.begin();
+    sort(a.begin(), a.end(), [](const auto &u, const auto &v)
+    {
+        return tie(u.x, u.y, u.z, u.w) < tie(v.x, v.y, v.z, v.w);
+    });
+    long long ans = 0;
+    auto solve = [&](auto &&self, int l, int r) -> void
+    {
+        if (r - l <= 1) return;
+        int mid = (l + r) / 2;
+        while (mid < r && a[mid - 1].x == a[mid].x) mid++;
+        if (mid == r)
+        {
+            mid = (l + r) / 2;
+            while (mid > l && a[mid - 1].x == a[mid].x) mid--;
+            if (mid == l) return;
+        }
+        self(self, l, mid);
+        self(self, mid, r);
+        vector<Dom4Event> e;
+        e.reserve(r - l);
+        for (int i = l; i < mid; i++) e.push_back({a[i].y, a[i].z, a[i].w, true});
+        for (int i = mid; i < r; i++) e.push_back({a[i].y, a[i].z, a[i].w, false});
+        ans += dom4Cross(move(e), ws.size());
+    };
+    solve(solve, 0, a.size());
+    return ans;
 }

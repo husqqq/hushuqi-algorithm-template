@@ -1,6 +1,8 @@
 #pragma once
 
 #include <bits/stdc++.h>
+#include "1_1_008.hpp"
+#include "7_1_001.hpp"
 using namespace std;
 #define int long long
 
@@ -77,12 +79,60 @@ long long weightedTri(int n, const vector<long long> &val, const vector<pair<int
             {
                 if (mark[w] == u)
                 {
-                    ans = (ans + (__int128)(val[u] % mod) * (val[v] % mod) % mod * (val[w] % mod)) % mod;
+                    long long cur = mulMod(val[u], val[v], mod);
+                    ans += mulMod(cur, val[w], mod);
+                    if (ans >= mod)
+                    {
+                        ans -= mod;
+                    }
                 }
             }
         }
     }
     return (ans + mod) % mod;
+}
+
+inline int triWeight998(int n, const vector<int> &value,
+                        const vector<pair<int, int>> &edges)
+{
+    // value 是点权，edges 是简单无向边；返回三元环三点权乘积和模 998244353。
+    assert((int)value.size() == n); // 调试检查，可删。
+    vector<int> deg(n), ord(n), rk(n);
+    for (auto [u, v] : edges)
+    {
+        assert(0 <= u && u < n && 0 <= v && v < n && u != v); // 调试检查，可删。
+        deg[u]++, deg[v]++;
+    }
+    iota(ord.begin(), ord.end(), 0);
+    sort(ord.begin(), ord.end(), [&](int u, int v)
+    {
+        return pair{deg[u], u} < pair{deg[v], v};
+    });
+    for (int i = 0; i < n; i++) rk[ord[i]] = i;
+    vector<Z> w(n);
+    for (int i = 0; i < n; i++) w[i] = value[ord[i]];
+    vector<vector<int>> g(n);
+    for (auto [u, v] : edges)
+    {
+        u = rk[u], v = rk[v];
+        if (u > v) swap(u, v);
+        g[v].push_back(u);
+    }
+    vector<int> mark(n, -1);
+    Z ans = 0;
+    for (int u = 0; u < n; u++)
+    {
+        for (int v : g[u]) mark[v] = u;
+        Z sum = 0;
+        for (int v : g[u])
+        {
+            Z cur = 0;
+            for (int x : g[v]) if (mark[x] == u) cur += w[x];
+            sum += cur * w[v];
+        }
+        ans += sum * w[u];
+    }
+    return ans.val();
 }
 
 unsigned long long fourCycles(int n, const vector<pair<int, int>> &e)

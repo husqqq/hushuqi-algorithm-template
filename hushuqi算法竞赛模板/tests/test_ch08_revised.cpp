@@ -84,6 +84,11 @@ signed main()
     Comb<Z> comb;
     assert(comb.C(10, 3).val() == 120);
     assert(comb.A(10, 3).val() == 720);
+    assert(comb.C(132, 66).val() == 241200029);
+    Comb<MInt<1000000007>> comb1e9;
+    assert(comb1e9.C(132, 66).val() == 598375978);
+    assert(comb.C(0, 0).val() == 1);
+    assert(comb.C(10, 11).val() == 0);
     assert(BinomMod(1).C(20, 7) == 0);
     assert(BinomMod(7).C(100, 50) == 4);
     assert(BinomMod(8).C(10, 3) == 0);

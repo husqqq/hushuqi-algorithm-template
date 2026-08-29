@@ -93,7 +93,7 @@ optional<array<int, 3>> monoTriangle(const vector<vector<int>> &col)
 }
 
 // 知识点 7.1.012：十进制大整数快速整除判定。
-namespace fast_divisibility
+namespace fastDiv
 {
 bool divisible(const string &s, int m)
 {
@@ -123,7 +123,7 @@ bool divisible(const string &s, int m)
 }
 
 // 知识点 7.2.007：不超过上界且因数个数最多的最小正整数。
-namespace highly_composite
+namespace highlyComp
 {
 array<int, 2> mostDivisors(int lim)
 {
@@ -156,7 +156,7 @@ array<int, 2> mostDivisors(int lim)
 }
 
 // 知识点 7.2.008：阶乘最后一个非零十进制位。
-namespace last_nonzero_digit
+namespace lastNzDigit
 {
 int lastDigit(int n)
 {
@@ -741,7 +741,7 @@ vector<long double> bayes(const vector<long double> &prior, const vector<long do
 }
 
 // 知识点 13.2.002：常见离散概率分布。
-namespace probability_distribution
+namespace probDist
 {
 long double binomialPmf(int n, int k, long double p)
 {
@@ -783,7 +783,7 @@ array<long double, 2> moments(const vector<long double> &x, const vector<long do
 }
 
 // 知识点 13.3.001：多项式导数与不定积分系数表。
-namespace calculus_formula
+namespace calcForm
 {
 vector<long double> derivative(const vector<long double> &a)
 {
@@ -811,7 +811,7 @@ vector<long double> integral(const vector<long double> &a, long double c = 0)
 }
 
 // 知识点 13.3.002：调和数与前三阶幂和。
-namespace harmonic_power_sum
+namespace harmPow
 {
 array<__int128, 3> powerSums(int n)
 {
@@ -834,7 +834,7 @@ long double harmonic(int n)
 }
 
 // 知识点 13.3.003：正弦定理、余弦定理与 Heron 公式。
-namespace triangle_formula
+namespace triForm
 {
 array<long double, 3> triangle(long double a, long double b, long double c)
 {
@@ -848,7 +848,7 @@ array<long double, 3> triangle(long double a, long double b, long double c)
 }
 
 // 知识点 13.3.004：常用平面面积与立体体积公式。
-namespace measure_formula
+namespace measure
 {
 array<long double, 4> roundBodies(long double r, long double h, long double r2)
 {
@@ -861,7 +861,7 @@ array<long double, 4> roundBodies(long double r, long double h, long double r2)
 }
 
 // 知识点 13.3.006：常用常数与 NTT 质数表。
-namespace constants_table
+namespace constTab
 {
 constexpr long double pi = 3.141592653589793238462643383279502884L;
 constexpr long double e = 2.718281828459045235360287471352662498L;

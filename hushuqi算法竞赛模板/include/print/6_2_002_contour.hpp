@@ -20,9 +20,9 @@ struct Fenwick
     }
     long long sumPrefix(int p) const
     {
-        long long result = 0;
-        for (; p; p -= p & -p) result += bit[p];
-        return result;
+        long long res = 0;
+        for (; p; p -= p & -p) res += bit[p];
+        return res;
     }
 };
 
@@ -178,13 +178,13 @@ public:
     }
     T prod(int u, int dl, int dr) const
     {
-        T answer = 0;
+        T ans = 0;
         for (auto e : index.path(u))
         {
-            answer += index.whole(e.cen).rangeSum(dl - e.distance, dr - e.distance);
-            if (e.branch >= 0) answer -= index.part(e.cen, e.branch).rangeSum(dl - e.distance, dr - e.distance);
+            ans += index.whole(e.cen).rangeSum(dl - e.distance, dr - e.distance);
+            if (e.branch >= 0) ans -= index.part(e.cen, e.branch).rangeSum(dl - e.distance, dr - e.distance);
         }
-        return answer;
+        return ans;
     }
 };
 
@@ -196,13 +196,13 @@ public:
     PtGetRngAdd(const vector<vector<int>> &g, const vector<T> &a) : index(g), value(a) {}
     T get(int u) const
     {
-        T answer = value[u];
+        T ans = value[u];
         for (auto e : index.path(u))
         {
-            answer += index.whole(e.cen).pval(e.distance);
-            if (e.branch >= 0) answer -= index.part(e.cen, e.branch).pval(e.distance);
+            ans += index.whole(e.cen).pval(e.distance);
+            if (e.branch >= 0) ans -= index.part(e.cen, e.branch).pval(e.distance);
         }
-        return answer;
+        return ans;
     }
     void apply(int u, int dl, int dr, T delta)
     {

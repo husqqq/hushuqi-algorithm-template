@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+#include "../include/topic_common.hpp"
 namespace hash_topic {
 #include "../include/full/4_1_001.hpp"
 }

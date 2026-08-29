@@ -1,197 +1,186 @@
+// Generated from hushuqi算法竞赛模板. Do not edit by hand.
+
+// QOJ contest 3936: 15 最小费用最大流 - 随机数据
+
+
 #include <bits/stdc++.h>
 using namespace std;
+#define int long long
 
-template <class Cap = long long, class Cost = long long>
+template <class T = long long, class Cost = long long>
 struct CostFlow
 {
-    struct Edge
+    struct E
     {
-        int to;
-        int reverse;
-        Cap cap;
+        // 终点与反向边下标。
+        int to, rev;
+        // 当前残量容量。
+        T cap;
+        // 单位流量费用。
         Cost cost;
     };
 
+    // 点数、残量邻接表与跨调用保留的势能。
     int n;
-    vector<vector<Edge>> graph;
-    vector<Cost> potential;
-    bool potentialReady = false;
+    vector<vector<E>> e;
+    vector<Cost> h;
+    bool ready = false;
+    int source = -1, sink = -1;
 
-    explicit CostFlow(int vertexCount)
-        : n(vertexCount), graph(n), potential(n)
+    CostFlow(int n = 0) : n(n), e(n), h(n)
     {
+        // n 是残量网络点数；构造空网络。
     }
 
-    void addEdge(int from, int to, Cap cap, Cost cost)
+    void add(int x, int y, T cap, Cost cost)
     {
-        int fromId = (int)graph[from].size();
-        int toId = (int)graph[to].size() + (from == to);
-        graph[from].push_back({to, toId, cap, cost});
-        graph[to].push_back({from, fromId, 0, -cost});
-        potentialReady = false;
+        // x、y 是端点，cap 是非负容量，cost 是单位费用；加入一对残量边。
+        assert(0 <= x && x < n && 0 <= y && y < n && cap >= 0); // 调试检查，可删。
+        assert(source == -1); // 调试检查，可删：所有边须在首次 flow 前加入。
+        assert(cost != numeric_limits<Cost>::min()); // 调试检查，可删。
+        int id = e[x].size();
+        int rev = e[y].size() + (x == y);
+        e[x].push_back({y, rev, cap, cost});
+        e[y].push_back({x, id, 0, -cost});
+        ready = false;
     }
 
-    void initializePotential(int source)
+    void init(int s)
     {
-        vector<optional<Cost>> distance(n);
-        vector<char> inQueue(n);
+        // s 是源点；用 SPFA 求初始势能，要求不存在 s 可达的负费用环。
+        vector<optional<Cost>> d(n);
+        vector<bool> in(n);
         queue<int> q;
-
-        distance[source] = 0;
-        inQueue[source] = true;
-        q.push(source);
-
+        d[s] = 0;
+        q.push(s);
+        in[s] = true;
         while (!q.empty())
         {
             int u = q.front();
             q.pop();
-            inQueue[u] = false;
-
-            for (const auto &edge : graph[u])
+            in[u] = false;
+            for (const auto &a : e[u])
             {
-                if (edge.cap == 0)
+                Cost nd = *d[u] + a.cost;
+                if (a.cap > 0 &&
+                    (!d[a.to].has_value() || nd < *d[a.to]))
                 {
-                    continue;
-                }
-
-                Cost nextDistance = *distance[u] + edge.cost;
-                if (!distance[edge.to].has_value() ||
-                    nextDistance < *distance[edge.to])
-                {
-                    distance[edge.to] = nextDistance;
-                    if (!inQueue[edge.to])
+                    d[a.to] = nd;
+                    if (!in[a.to])
                     {
-                        inQueue[edge.to] = true;
-                        q.push(edge.to);
+                        in[a.to] = true;
+                        q.push(a.to);
                     }
                 }
             }
         }
-
-        fill(potential.begin(), potential.end(), 0);
+        fill(h.begin(), h.end(), 0);
         for (int u = 0; u < n; u++)
         {
-            if (distance[u].has_value())
+            if (d[u].has_value())
             {
-                potential[u] = *distance[u];
+                h[u] = *d[u];
             }
         }
-        potentialReady = true;
+        ready = true;
     }
 
-    pair<Cap, Cost> minCostMaxFlow(int source, int sink)
+    pair<T, Cost> flow(int s, int t, T lim = numeric_limits<T>::max())
     {
-        if (source == sink)
+        // s、t 是固定源汇，lim 是流量上限；返回本次新增流量与费用。
+        if (s == t)
         {
             return {0, 0};
         }
-        if (!potentialReady)
+        assert(lim >= 0); // 调试检查，可删。
+        if (source == -1)
         {
-            initializePotential(source);
+            source = s;
+            sink = t;
+        }
+        assert(source == s && sink == t); // 调试检查，可删：分段调用不能更换源汇。
+        if (!ready)
+        {
+            init(s);
         }
 
-        Cap totalFlow = 0;
-        Cost totalCost = 0;
-        vector<int> previousVertex(n);
-        vector<int> previousEdge(n);
-
-        while (true)
+        vector<int> pv(n), pe(n);
+        T f = 0;
+        Cost cost = 0;
+        while (f < lim)
         {
-            vector<optional<Cost>> distance(n);
-            priority_queue<pair<Cost, int>,
-                           vector<pair<Cost, int>>,
-                           greater<>> q;
-
-            distance[source] = 0;
-            q.push({0, source});
-
+            vector<optional<Cost>> dis(n);
+            priority_queue<pair<Cost, int>, vector<pair<Cost, int>>, greater<>> q;
+            dis[s] = 0;
+            q.emplace(0, s);
             while (!q.empty())
             {
-                auto [currentDistance, u] = q.top();
+                auto [d, x] = q.top();
                 q.pop();
-                if (!distance[u].has_value() ||
-                    currentDistance != *distance[u])
+                if (!dis[x].has_value() || d != *dis[x])
                 {
                     continue;
                 }
-
-                for (int edgeId = 0;
-                     edgeId < (int)graph[u].size();
-                     edgeId++)
+                for (int i = 0; i < (int)e[x].size(); ++i)
                 {
-                    const auto &edge = graph[u][edgeId];
-                    if (edge.cap == 0)
+                    auto &a = e[x][i];
+                    if (a.cap == 0)
                     {
                         continue;
                     }
-
-                    Cost nextDistance = currentDistance + edge.cost +
-                                        potential[u] - potential[edge.to];
-                    if (!distance[edge.to].has_value() ||
-                        nextDistance < *distance[edge.to])
+                    Cost nd = d + a.cost + h[x] - h[a.to];
+                    assert(nd >= 0); // 调试检查，可删：势能应保证约化费用非负。
+                    if (!dis[a.to].has_value() || nd < *dis[a.to])
                     {
-                        distance[edge.to] = nextDistance;
-                        previousVertex[edge.to] = u;
-                        previousEdge[edge.to] = edgeId;
-                        q.push({nextDistance, edge.to});
+                        dis[a.to] = nd;
+                        pv[a.to] = x;
+                        pe[a.to] = i;
+                        q.emplace(nd, a.to);
                     }
                 }
             }
-
-            if (!distance[sink].has_value())
+            if (!dis[t].has_value())
             {
                 break;
             }
-
-            for (int u = 0; u < n; u++)
+            for (int i = 0; i < n; ++i)
             {
-                if (distance[u].has_value())
+                if (dis[i].has_value())
                 {
-                    potential[u] += *distance[u];
+                    h[i] += *dis[i];
                 }
             }
-
-            Cap pushed = numeric_limits<Cap>::max();
-            for (int u = sink; u != source; u = previousVertex[u])
+            T d = lim - f;
+            for (int x = t; x != s; x = pv[x])
             {
-                const auto &edge = graph[previousVertex[u]][previousEdge[u]];
-                pushed = min(pushed, edge.cap);
+                d = min(d, e[pv[x]][pe[x]].cap);
             }
-
-            for (int u = sink; u != source; u = previousVertex[u])
+            for (int x = t; x != s; x = pv[x])
             {
-                auto &edge = graph[previousVertex[u]][previousEdge[u]];
-                edge.cap -= pushed;
-                graph[u][edge.reverse].cap += pushed;
+                auto &a = e[pv[x]][pe[x]];
+                a.cap -= d;
+                e[x][a.rev].cap += d;
             }
-
-            totalFlow += pushed;
-            totalCost += (Cost)pushed *
-                         (potential[sink] - potential[source]);
+            f += d;
+            cost += (Cost)d * (h[t] - h[s]);
         }
-
-        return {totalFlow, totalCost};
+        return {f, cost};
     }
 };
 
-int main()
+signed main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-
     int n, m;
     cin >> n >> m;
-
-    CostFlow flow(n);
+    CostFlow<long long, long long> g(n);
     for (int i = 0; i < m; i++)
     {
-        int from, to;
-        long long cap, cost;
-        cin >> from >> to >> cap >> cost;
-        flow.addEdge(from - 1, to - 1, cap, cost);
+        int u, v, cap, cost;
+        cin >> u >> v >> cap >> cost;
+        g.add(u - 1, v - 1, cap, cost);
     }
-
-    auto [maxFlow, minCost] = flow.minCostMaxFlow(0, n - 1);
-    cout << maxFlow << ' ' << minCost << '\n';
-    return 0;
+    auto [flow, cost] = g.flow(0, n - 1);
+    cout << flow << ' ' << cost << '\n';
 }

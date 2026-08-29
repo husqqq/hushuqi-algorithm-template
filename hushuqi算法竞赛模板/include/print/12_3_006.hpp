@@ -33,26 +33,26 @@ vector<int> smawk(int rows, int cols, F better)
                 reduced.push_back(col);
             }
         }
-        vector<int> oddRows;
+        vector<int> odd;
         for (int i = 1; i < (int)rs.size(); i += 2)
         {
-            oddRows.push_back(rs[i]);
+            odd.push_back(rs[i]);
         }
-        vector<int> answer(rs.size());
-        if (!oddRows.empty())
+        vector<int> ans(rs.size());
+        if (!odd.empty())
         {
-            vector<int> oddAnswer = self(self, oddRows, reduced);
-            for (int i = 0; i < (int)oddAnswer.size(); i++)
+            vector<int> oa = self(self, odd, reduced);
+            for (int i = 0; i < (int)oa.size(); i++)
             {
-                answer[2 * i + 1] = oddAnswer[i];
+                ans[2 * i + 1] = oa[i];
             }
         }
         int p = 0;
         for (int i = 0; i < (int)rs.size(); i += 2)
         {
-            int limit = (i + 1 == (int)rs.size() ? reduced.back() : answer[i + 1]);
+            int lim = (i + 1 == (int)rs.size() ? reduced.back() : ans[i + 1]);
             int best = reduced[p];
-            while (reduced[p] < limit)
+            while (reduced[p] < lim)
             {
                 ++p;
                 if (better(rs[i], best, reduced[p]))
@@ -60,9 +60,9 @@ vector<int> smawk(int rows, int cols, F better)
                     best = reduced[p];
                 }
             }
-            answer[i] = best;
+            ans[i] = best;
         }
-        return answer;
+        return ans;
     };
     vector<int> rs(rows), cs(cols);
     iota(rs.begin(), rs.end(), 0);

@@ -78,7 +78,7 @@ vector<int> solveMod(const vector<vector<int>> &g)
 {
     int n = g.size();
     vector<char> blocked(n);
-    vector<int> parent(n), size(n), answer(n), work{0};
+    vector<int> parent(n), size(n), ans(n), work{0};
     while (!work.empty())
     {
         int start = work.back();
@@ -129,8 +129,8 @@ vector<int> solveMod(const vector<vector<int>> &g)
             auto subtract = NTT<MOD, ROOT>::square(histogram);
             for (int d = 0; d < (int)subtract.size() && d < n; d++)
             {
-                answer[d] -= subtract[d];
-                if (answer[d] < 0) answer[d] += MOD;
+                ans[d] -= subtract[d];
+                if (ans[d] < 0) ans[d] += MOD;
             }
             if (total.size() < histogram.size()) total.resize(histogram.size());
             for (int d = 0; d < (int)histogram.size(); d++) total[d] += histogram[d];
@@ -138,33 +138,33 @@ vector<int> solveMod(const vector<vector<int>> &g)
         auto add = NTT<MOD, ROOT>::square(total);
         for (int d = 0; d < (int)add.size() && d < n; d++)
         {
-            answer[d] += add[d];
-            if (answer[d] >= MOD) answer[d] -= MOD;
+            ans[d] += add[d];
+            if (ans[d] >= MOD) ans[d] -= MOD;
         }
         blocked[cen] = true;
         for (int v : g[cen]) if (!blocked[v]) work.push_back(v);
     }
-    vector<int> result(n);
-    for (int i = 0; i < n; i++) result[i] = answer[i];
-    return result;
+    vector<int> res(n);
+    for (int i = 0; i < n; i++) res[i] = ans[i];
+    return res;
 }
 }
 
 vector<long long> treeDistFreq(const vector<vector<int>> &g)
 {
-    // g 是非空无权树；返回 answer[d-1]=距离恰为 d 的无序点对数（1<=d<n）。
+    // g 是非空无权树；返回 ans[d-1]=距离恰为 d 的无序点对数（1<=d<n）。
     int n = g.size();
     if (n <= 1) return {};
     constexpr int M0 = 998244353, M1 = 924844033;
     auto a = treeFreqDtl::solveMod<M0, 3>(g);
     auto b = treeFreqDtl::solveMod<M1, 5>(g);
     long long inverse = treeFreqDtl::NTT<M1, 5>::power(M0 % M1, M1 - 2);
-    vector<long long> answer(n - 1);
+    vector<long long> ans(n - 1);
     for (int d = 1; d < n; d++)
     {
         long long delta = (b[d] + M1 - a[d] % M1) % M1;
         long long ordered = a[d] + (long long)M0 * (delta * inverse % M1);
-        answer[d - 1] = ordered / 2;
+        ans[d - 1] = ordered / 2;
     }
-    return answer;
+    return ans;
 }

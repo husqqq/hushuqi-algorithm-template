@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+#include "../include/topic_common.hpp"
 
 namespace path_topic {
 #include "../include/full/6_1_007.hpp"

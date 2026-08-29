@@ -1,6 +1,6 @@
 #pragma once
 #include <bits/stdc++.h>
-#include "support/linear_algebra_mod.hpp"
+#include "7_1_001.hpp"
 #include "support/linear_algebra_field.hpp"
 using namespace std;
 
@@ -39,7 +39,7 @@ inline long long detPrime(vector<vector<long long>> a, long long mod)
             swap(a[row], a[col]);
             ans = (mod - ans) % mod;
         }
-        ans = linearMulMod(ans, a[col][col], mod);
+        ans = mulMod(ans, a[col][col], mod);
         long long z = 1;
         long long b = mod - 2;
         long long x = a[col][col];
@@ -47,17 +47,17 @@ inline long long detPrime(vector<vector<long long>> a, long long mod)
         {
             if (b & 1)
             {
-                z = linearMulMod(z, x, mod);
+                z = mulMod(z, x, mod);
             }
-            x = linearMulMod(x, x, mod);
+            x = mulMod(x, x, mod);
             b >>= 1;
         }
         for (int i = col + 1; i < n; i++)
         {
-            long long q = linearMulMod(a[i][col], z, mod);
+            long long q = mulMod(a[i][col], z, mod);
             for (int j = col; j < n; j++)
             {
-                a[i][j] = (a[i][j] - linearMulMod(q, a[col][j], mod)) % mod;
+                a[i][j] = (a[i][j] - mulMod(q, a[col][j], mod)) % mod;
                 if (a[i][j] < 0)
                 {
                     a[i][j] += mod;
@@ -96,7 +96,7 @@ inline long long detAny(vector<vector<long long>> a, long long mod)
                 long long q = a[col][col] / a[i][col];
                 for (int j = col; j < n; j++)
                 {
-                    a[col][j] = (a[col][j] - linearMulMod(q, a[i][j], mod)) % mod;
+                    a[col][j] = (a[col][j] - mulMod(q, a[i][j], mod)) % mod;
                     if (a[col][j] < 0)
                     {
                         a[col][j] += mod;
@@ -110,7 +110,7 @@ inline long long detAny(vector<vector<long long>> a, long long mod)
         {
             return 0;
         }
-        ans = linearMulMod(ans, a[col][col], mod);
+        ans = mulMod(ans, a[col][col], mod);
     }
     return ans;
 }

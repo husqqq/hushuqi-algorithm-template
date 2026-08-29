@@ -40,6 +40,7 @@ signed main()
         assert(x == slowProduct(a, b));
         assert(x == nimProduct(b, a));
         assert(nimProduct(a, 1) == a);
+        assert(nimProduct32((uint32_t)a, (uint32_t)b) == (uint32_t)slowProduct((uint32_t)a, (uint32_t)b, 32));
         agg = agg * 1000000007ULL + x;
     }
     cout << agg << '\n';

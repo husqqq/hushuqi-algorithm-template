@@ -31,6 +31,11 @@ signed main()
     vector<DEdge> cycle = {{0, 1, 0}, {1, 0, -1}};
     assert(!bellmanFord(2, cycle, 0).cycle.empty());
     assert(!spfa(2, cycle, 0).has_value());
+    vector<NegEdge> spread = {{0, 1, 1}, {1, 2, -2}, {2, 1, 1},
+                              {2, 3, 4}, {0, 4, 7}};
+    auto np = negShortest(5, spread, 0);
+    assert(!np.negInf[0] && np.negInf[1] && np.negInf[2] && np.negInf[3]);
+    assert(!np.negInf[4] && np.dist[4] == optional<int>(7));
 
     vector<vector<optional<__int128>>> f(3, vector<optional<__int128>>(3));
     for (int i = 0; i < 3; i++)

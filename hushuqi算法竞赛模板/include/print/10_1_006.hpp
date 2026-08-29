@@ -1,6 +1,6 @@
 #pragma once
 
-#include "7_1_007.hpp"
+#include "1_1_008.hpp"
 using namespace std;
 #define int long long
 
@@ -239,4 +239,270 @@ vector<int> bitConvMod(vector<int> a, vector<int> b)
     }
     fwtMod<P, Op, true>(a);
     return a;
+}
+
+// 稀疏 XOR 卷积专用接口，模数固定为大素数。
+constexpr unsigned long long sparseXorMod = 1000000000000125953ULL;
+
+class XorMint
+{
+private:
+    unsigned long long x = 0;
+    static unsigned long long mulRaw(unsigned long long a, unsigned long long b)
+    {
+        return (unsigned long long)((unsigned __int128)a * b % sparseXorMod);
+    }
+
+public:
+    XorMint() = default;
+    XorMint(long long v)
+    {
+        v %= (long long)sparseXorMod;
+        if (v < 0) v += sparseXorMod;
+        x = (unsigned long long)v;
+    }
+    static XorMint raw(unsigned long long v)
+    {
+        XorMint r;
+        r.x = v;
+        return r;
+    }
+    unsigned long long val() const { return x; }
+    XorMint operator-() const { return raw(x ? sparseXorMod - x : 0); }
+    XorMint &operator+=(const XorMint &o)
+    {
+        x += o.x;
+        if (x >= sparseXorMod) x -= sparseXorMod;
+        return *this;
+    }
+    XorMint &operator-=(const XorMint &o)
+    {
+        x += sparseXorMod - o.x;
+        if (x >= sparseXorMod) x -= sparseXorMod;
+        return *this;
+    }
+    XorMint &operator*=(const XorMint &o)
+    {
+        x = mulRaw(x, o.x);
+        return *this;
+    }
+    friend XorMint operator+(XorMint a, const XorMint &b) { return a += b; }
+    friend XorMint operator-(XorMint a, const XorMint &b) { return a -= b; }
+    friend XorMint operator*(XorMint a, const XorMint &b) { return a *= b; }
+    friend bool operator==(const XorMint &a, const XorMint &b) { return a.x == b.x; }
+    XorMint pow(unsigned long long e) const
+    {
+        XorMint a = *this, r = 1;
+        while (e)
+        {
+            if (e & 1) r *= a;
+            a *= a;
+            e >>= 1;
+        }
+        return r;
+    }
+    XorMint inv() const
+    {
+        assert(x != 0); // 调试检查，可删
+        return pow(sparseXorMod - 2);
+    }
+};
+
+class XorInfo
+{
+private:
+    static XorMint t, invt;
+    static int maxBit;
+    static int legendre(const XorMint &x)
+    {
+        XorMint z = x.pow((sparseXorMod - 1) / 2);
+        if (z == XorMint(1)) return 1;
+        if (z == XorMint(0)) return 0;
+        return -1;
+    }
+    static XorMint sqrt(const XorMint &x)
+    {
+        assert(legendre(x) >= 0); // 调试检查，可删
+        if (x == XorMint(0)) return 0;
+        XorMint w2, a = 0;
+        while (true)
+        {
+            w2 = a * a - x;
+            if (legendre(w2) == -1) break;
+            a += XorMint(1);
+        }
+        auto mul = [w2](pair<XorMint, XorMint> u,
+                        pair<XorMint, XorMint> v)
+        {
+            return make_pair(u.first * v.first + u.second * v.second * w2,
+                             u.first * v.second + u.second * v.first);
+        };
+        pair<XorMint, XorMint> r{1, 0}, b{a, 1};
+        unsigned long long e = (sparseXorMod + 1) / 2;
+        while (e)
+        {
+            if (e & 1) r = mul(r, b);
+            b = mul(b, b);
+            e >>= 1;
+        }
+        return r.first;
+    }
+    XorInfo(XorMint p, XorMint q, long long e, int zero)
+        : xp(p), xq(q), power(e), zeroCount(zero) {}
+
+public:
+    XorMint xp = 1, xq = 1;
+    long long power = 0;
+    int zeroCount = 0;
+    XorInfo() = default;
+    static void setMaxBit(int k) { maxBit = k; }
+    XorInfo(XorMint x, int bits) : xp(x)
+    {
+        if (x == XorMint(0))
+        {
+            xp = 1;
+            zeroCount = 1;
+            return;
+        }
+        for (int i = 0; i < bits; i++)
+        {
+            if (legendre(xp) == 1) xp = sqrt(xp);
+            else
+            {
+                xp = sqrt(xp * invt);
+                power |= 1LL << i;
+            }
+        }
+        power <<= maxBit - bits;
+    }
+    XorInfo operator*(const XorInfo &o) const
+    {
+        return {xp * o.xp, xq * o.xq, power + o.power, zeroCount + o.zeroCount};
+    }
+    XorInfo operator/(const XorInfo &o) const
+    {
+        return {xp * o.xq, xq * o.xp, power - o.power, zeroCount - o.zeroCount};
+    }
+    XorInfo &operator*=(const XorInfo &o)
+    {
+        xp *= o.xp;
+        xq *= o.xq;
+        power += o.power;
+        zeroCount += o.zeroCount;
+        return *this;
+    }
+    XorInfo &operator/=(const XorInfo &o)
+    {
+        xp *= o.xq;
+        xq *= o.xp;
+        power -= o.power;
+        zeroCount -= o.zeroCount;
+        return *this;
+    }
+    XorMint value() const
+    {
+        if (zeroCount) return 0;
+        XorMint r = xp * xq.inv();
+        if (power > 0) r *= t.pow(power >> maxBit);
+        else if (power < 0) r *= invt.pow((-power) >> maxBit);
+        return r;
+    }
+    static void init()
+    {
+        XorMint a = 0, w2;
+        while (true)
+        {
+            w2 = a * a - XorMint(1);
+            if (legendre(w2) == -1)
+            {
+                t = w2;
+                break;
+            }
+            a += XorMint(1);
+        }
+        invt = t.inv();
+    }
+};
+
+inline XorMint XorInfo::t;
+inline XorMint XorInfo::invt;
+inline int XorInfo::maxBit = 0;
+
+// factors 每项为 {局部 Walsh 基向量, 基准掩码/偏移}，返回长度 2^n 的异或卷积。
+inline vector<unsigned long long> sparseXor(
+    int n, const vector<vector<pair<int, long long>>> &factors)
+{
+    assert(0 <= n && n < 30); // 调试检查，可删
+    int size = 1LL << n, maxBit = 0;
+    for (const auto &factor : factors)
+    {
+        assert(!factor.empty());
+        maxBit = max(maxBit, (int)factor.size() - 1);
+    }
+    assert(maxBit < 60); // 调试检查，可删
+    XorInfo::setMaxBit(maxBit);
+    XorInfo::init();
+    vector<XorInfo> all(size);
+    int delta = 0;
+    for (const auto &factor : factors)
+    {
+        int bits = factor.size() - 1, base = factor.back().first;
+        XorMint offset = factor.back().second;
+        delta ^= base;
+        int localSize = 1LL << bits;
+        vector<int> mask(localSize);
+        vector<XorMint> walsh(localSize);
+        for (int i = 0; i < bits; i++)
+        {
+            mask[1LL << i] = factor[i].first ^ base;
+            walsh[1LL << i] = factor[i].second;
+        }
+        for (int s = 1; s < localSize; s++)
+        {
+            int b = s & -s;
+            mask[s] = mask[s ^ b] ^ mask[b];
+        }
+        for (int h = 1; h < localSize; h <<= 1)
+            for (int l = 0; l < localSize; l += h << 1)
+                for (int j = 0; j < h; j++)
+                {
+                    auto x = walsh[l + j], y = walsh[l + j + h];
+                    walsh[l + j] = x + y;
+                    walsh[l + j + h] = x - y;
+                }
+        for (auto &x : walsh) x += offset;
+        vector<XorInfo> local(localSize);
+        for (int s = 0; s < localSize; s++) local[s] = XorInfo(walsh[s], bits);
+        for (int h = 1; h < localSize; h <<= 1)
+            for (int l = 0; l < localSize; l += h << 1)
+                for (int j = 0; j < h; j++)
+                {
+                    auto x = local[l + j], y = local[l + j + h];
+                    local[l + j] = x * y;
+                    local[l + j + h] = x / y;
+                }
+        for (int s = 0; s < localSize; s++) all[mask[s]] *= local[s];
+    }
+    for (int h = 1; h < size; h <<= 1)
+        for (int l = 0; l < size; l += h << 1)
+            for (int j = 0; j < h; j++)
+            {
+                auto x = all[l + j], y = all[l + j + h];
+                all[l + j] = x * y;
+                all[l + j + h] = x / y;
+            }
+    vector<XorMint> ans(size);
+    for (int i = 0; i < size; i++) ans[i] = all[i].value();
+    XorMint inv2 = XorMint(2).inv();
+    for (int h = 1; h < size; h <<= 1)
+        for (int l = 0; l < size; l += h << 1)
+            for (int j = 0; j < h; j++)
+            {
+                auto x = ans[l + j], y = ans[l + j + h];
+                ans[l + j] = (x + y) * inv2;
+                ans[l + j + h] = (x - y) * inv2;
+            }
+    vector<unsigned long long> res(size);
+    for (int i = 0; i < size; i++) res[i] = ans[i ^ delta].val();
+    return res;
 }

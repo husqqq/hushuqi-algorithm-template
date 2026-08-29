@@ -1,75 +1,11 @@
 #pragma once
 
 #include <bits/stdc++.h>
+#include "1_1_008.hpp"
 using namespace std;
 #define int long long
 
-template <int Mod> struct StaticModInt
-{
-    int x = 0;
-
-    StaticModInt(long long v = 0)
-    {
-        x = v % Mod;
-        if (x < 0)
-        {
-            x += Mod;
-        }
-    }
-
-    StaticModInt &operator+=(const StaticModInt &a)
-    {
-        x += a.x;
-        if (x >= Mod)
-        {
-            x -= Mod;
-        }
-        return *this;
-    }
-
-    StaticModInt &operator-=(const StaticModInt &a)
-    {
-        x -= a.x;
-        if (x < 0)
-        {
-            x += Mod;
-        }
-        return *this;
-    }
-
-    StaticModInt &operator*=(const StaticModInt &a)
-    {
-        x = x * a.x % Mod;
-        return *this;
-    }
-
-    StaticModInt pow(int e) const
-    {
-        StaticModInt a = *this, r = 1;
-        while (e)
-        {
-            if (e & 1)
-            {
-                r *= a;
-            }
-            a *= a;
-            e >>= 1;
-        }
-        return r;
-    }
-
-    StaticModInt &operator/=(const StaticModInt &a)
-    {
-        assert(a.x != 0);
-        return *this *= a.pow(Mod - 2);
-    }
-
-    friend StaticModInt operator+(StaticModInt a, const StaticModInt &b) { return a += b; }
-    friend StaticModInt operator-(StaticModInt a, const StaticModInt &b) { return a -= b; }
-    friend StaticModInt operator*(StaticModInt a, const StaticModInt &b) { return a *= b; }
-    friend StaticModInt operator/(StaticModInt a, const StaticModInt &b) { return a /= b; }
-    auto operator<=>(const StaticModInt &) const = default;
-};
+template <int Mod> using StaticModInt = MInt<(int)Mod>;
 
 struct QuotDirich
 {

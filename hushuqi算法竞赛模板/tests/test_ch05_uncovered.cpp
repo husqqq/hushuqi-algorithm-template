@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+#include "../include/topic_common.hpp"
 namespace deldag_topic {
 #include "../include/full/5_1_006.hpp"
 }

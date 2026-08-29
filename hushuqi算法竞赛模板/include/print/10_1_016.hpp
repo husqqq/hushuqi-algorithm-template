@@ -8,7 +8,7 @@
 using namespace std;
 #define int long long
 
-unsigned __int128 carrylessMul(uint64_t a, uint64_t b)
+unsigned __int128 carrylessMul(unsigned long long a, unsigned long long b)
 {
     // a、b 是 64 位二进制多项式系数；返回不进位乘积的 128 位系数。
 #if defined(__x86_64__) && defined(__GNUC__)
@@ -30,7 +30,7 @@ unsigned __int128 carrylessMul(uint64_t a, uint64_t b)
 #endif
 }
 
-constexpr unsigned __int128 clMulConst(uint64_t a, uint64_t b)
+constexpr unsigned __int128 clMulConst(unsigned long long a, unsigned long long b)
 {
     // a、b 是编译期 64 位二进制多项式系数；返回不进位乘积。
     unsigned __int128 r = 0;
@@ -47,16 +47,16 @@ constexpr unsigned __int128 clMulConst(uint64_t a, uint64_t b)
 struct GF64
 {
     static constexpr unsigned __int128 poly = ((unsigned __int128)1 << 64) | 0b11011; // 定义域的 64 次不可约多项式。
-    static constexpr uint64_t inv = [] // Montgomery 式约减使用的低半逆元。
+    static constexpr unsigned long long inv = [] // Montgomery 式约减使用的低半逆元。
     {
-        uint64_t a = 1;
+        unsigned long long a = 1;
         for (int i = 0; i < 6; i++)
         {
-            a = clMulConst(a, (uint64_t)clMulConst(a, (uint64_t)poly));
+            a = clMulConst(a, (unsigned long long)clMulConst(a, (unsigned long long)poly));
         }
         return a;
     }();
-    static constexpr uint64_t r2 = [] // 普通表示转内部表示时乘入的 x^128 mod poly。
+    static constexpr unsigned long long r2 = [] // 普通表示转内部表示时乘入的 x^128 mod poly。
     {
         unsigned __int128 r = 1;
         for (int i = 0; i < 128; i++)
@@ -67,13 +67,13 @@ struct GF64
                 r ^= poly;
             }
         }
-        return (uint64_t)r;
+        return (unsigned long long)r;
     }();
 
-    uint64_t x = 0; // 当前域元素的内部 Montgomery 式表示。
+    unsigned long long x = 0; // 当前域元素的内部 Montgomery 式表示。
 
     GF64() = default;
-    explicit GF64(uint64_t v) : x(reduce(carrylessMul(v, r2)))
+    explicit GF64(unsigned long long v) : x(reduce(carrylessMul(v, r2)))
     {
         // v 是普通 64 位域元素表示；构造对应内部表示。
     }
@@ -84,11 +84,11 @@ struct GF64
         return GF64(x & 1);
     }
 
-    static uint64_t reduce(unsigned __int128 x)
+    static unsigned long long reduce(unsigned __int128 x)
     {
         // x 是 128 位不进位乘积；返回除以 poly 后的内部表示余数。
-        uint64_t f = carrylessMul((uint64_t)x, inv);
-        return (uint64_t)(x >> 64) ^ (uint64_t)(carrylessMul(f, (uint64_t)poly) >> 64) ^ f;
+        unsigned long long f = carrylessMul((unsigned long long)x, inv);
+        return (unsigned long long)(x >> 64) ^ (unsigned long long)(carrylessMul(f, (unsigned long long)poly) >> 64) ^ f;
     }
 
     GF64 &operator+=(GF64 o)
@@ -129,7 +129,7 @@ struct GF64
         return a *= b;
     }
 
-    GF64 pow(uint64_t n) const
+    GF64 pow(unsigned long long n) const
     {
         // n 是非负指数；返回当前域元素的 n 次幂。
         GF64 a = *this, r = bit(1);
@@ -149,10 +149,10 @@ struct GF64
     {
         // 当前值非零；返回乘法逆元。
         assert(x != 0); // 调试检查，可删。
-        return pow(~uint64_t(0) - 1);
+        return pow(~(unsigned long long)(0) - 1);
     }
 
-    uint64_t val() const
+    unsigned long long val() const
     {
         // 无参数；返回普通 64 位域元素表示。
         return reduce(x);
@@ -310,7 +310,7 @@ struct GF64FFT
 
 inline GF64FFT gf64FFT; // 全局复用的 GF(2^64) 加法 FFT 预处理。
 
-vector<uint64_t> convGF64(const vector<uint64_t> &x, const vector<uint64_t> &y)
+vector<unsigned long long> convGF64(const vector<unsigned long long> &x, const vector<unsigned long long> &y)
 {
     // x、y 是 GF(2^64) 系数的普通表示；返回线性卷积，任一输入为空时返回空。
     if (x.empty() || y.empty())
@@ -324,7 +324,7 @@ vector<uint64_t> convGF64(const vector<uint64_t> &x, const vector<uint64_t> &y)
         (long long)n * (lg + 1) * (lg + 1))
     {
         vector<GF64> c(need);
-        vector<uint64_t> ans(need);
+        vector<unsigned long long> ans(need);
         for (int i = 0; i < (int)x.size(); i++)
         {
             for (int j = 0; j < (int)y.size(); j++)
@@ -340,8 +340,8 @@ vector<uint64_t> convGF64(const vector<uint64_t> &x, const vector<uint64_t> &y)
     }
     if (lg > 3 && need == (1LL << (lg - 1)) + 1)
     {
-        vector<uint64_t> prefix(x.begin(), x.end() - 1);
-        vector<uint64_t> ans = convGF64(prefix, y);
+        vector<unsigned long long> prefix(x.begin(), x.end() - 1);
+        vector<unsigned long long> ans = convGF64(prefix, y);
         ans.resize(need);
         GF64 last(x.back());
         for (int j = 0; j < (int)y.size(); j++)
@@ -367,7 +367,7 @@ vector<uint64_t> convGF64(const vector<uint64_t> &x, const vector<uint64_t> &y)
         a[i] *= b[i];
     }
     gf64FFT.transform<true>(span<GF64>(a));
-    vector<uint64_t> ans(need);
+    vector<unsigned long long> ans(need);
     for (int i = 0; i < need; i++)
     {
         ans[i] = a[i].val();

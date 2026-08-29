@@ -3,11 +3,10 @@
 本目录对应 [XXIV 赛前模板训练赛](https://qoj.ac/contest/3936) 的 75 道题。
 通常每题目录中的 `template.hpp` 从本仓库权威模板依赖展开；带 pending_template 标记的条目则是待批准打印版候选，生成器会保留而不覆盖；
 算法主体可复用本仓库模板或 Library Checker 实现，但 `main.cpp` 的输入输出、下标和特殊约定均逐题按 QOJ 题面适配。
-生成器不会创建或覆盖 `main.cpp`；入口代码的来源分类见 `来源审计.md`。
+生成器不会创建或覆盖 `main.cpp`；入口代码的来源分类和待回写事项见 [QOJ状态与模板修改清单.md](QOJ状态与模板修改清单.md)。
 
-当前共有 73 道提供按 QOJ 题面适配的 `main.cpp`。
-不存在 `main.cpp` 的目录只提供相关算法模板，不能直接提交；46 为函数接口题，本来就不应包含 main。
-EX1 按计划不做适配。其余未完成项及原因见 `未完成清单.md`。
+当前共有 74 道提供按 QOJ 题面适配的 `main.cpp`。
+不存在 `main.cpp` 的目录只提供相关算法模板，不能直接提交；46 为函数接口题，本来就不应包含 main。EX1 候选已由提交 `2832178` 验证，是否回写正式模板仍见状态清单。
 
 生成命令：`python qoj模板代码/tools/generate.py`（不会生成或覆盖任何 `main.cpp`）
 
@@ -33,7 +32,7 @@ EX1 按计划不做适配。其余未完成项及原因见 `未完成清单.md`�
 | 14X | [最大流 2](14X_%E6%9C%80%E5%A4%A7%E6%B5%81%202/) | 457 | 5.8.010 | QOJ main.cpp + template.hpp |
 | 15 | [最小费用最大流 - 随机数据](15_%E6%9C%80%E5%B0%8F%E8%B4%B9%E7%94%A8%E6%9C%80%E5%A4%A7%E6%B5%81%20-%20%E9%9A%8F%E6%9C%BA%E6%95%B0%E6%8D%AE/) | 602 | 5.8.004 | QOJ main.cpp + template.hpp |
 | 16a | [最短路 1](16a_%E6%9C%80%E7%9F%AD%E8%B7%AF%201/) | 1445 | 5.2.001 | QOJ main.cpp + template.hpp |
-| 16b | [最短路 2](16b_%E6%9C%80%E7%9F%AD%E8%B7%AF%202/) | 1446 | 5.2.002 | 候选 template.hpp + QOJ main.cpp |
+| 16b | [最短路 2](16b_%E6%9C%80%E7%9F%AD%E8%B7%AF%202/) | 1446 | 5.2.002 | QOJ main.cpp + template.hpp |
 | 17 | [支配树](17_%E6%94%AF%E9%85%8D%E6%A0%91/) | 788 | 5.10.003 | QOJ main.cpp + template.hpp |
 | 18 | [二分图最大匹配](18_%E4%BA%8C%E5%88%86%E5%9B%BE%E6%9C%80%E5%A4%A7%E5%8C%B9%E9%85%8D/) | 898 | 5.6.003 | QOJ main.cpp + template.hpp |
 | 19 | [一般图最大匹配](19_%E4%B8%80%E8%88%AC%E5%9B%BE%E6%9C%80%E5%A4%A7%E5%8C%B9%E9%85%8D/) | 899 | 5.7.001 | QOJ main.cpp + template.hpp |
@@ -61,7 +60,7 @@ EX1 按计划不做适配。其余未完成项及原因见 `未完成清单.md`�
 | 43 | [特征多项式](43_%E7%89%B9%E5%BE%81%E5%A4%9A%E9%A1%B9%E5%BC%8F/) | 603 | 9.1.007 | QOJ main.cpp + template.hpp |
 | 44 | [Tutte 多项式](44_Tutte%20%E5%A4%9A%E9%A1%B9%E5%BC%8F/) | 45 | 5.10.010 | 候选 template.hpp + QOJ main.cpp |
 | 45 | [Nim Product](45_Nim%20Product/) | 56 | 13.1.009 | QOJ main.cpp + template.hpp |
-| 46 | [Online Multiplicative Inverse Query](46_Online%20Multiplicative%20Inverse%20Query/) | 5 | 7.1.001 | 函数接口 template.hpp |
+| 46 | [Online Multiplicative Inverse Query](46_Online%20Multiplicative%20Inverse%20Query/) | 5 | 7.1.006 | 函数接口 template.hpp |
 | 48 | [Primitive root - 原根](48_Primitive%20root%20-%20%E5%8E%9F%E6%A0%B9/) | 144 | 7.4.003 | QOJ main.cpp + template.hpp |
 | 49 | [Min_25 筛](49_Min_25%20%E7%AD%9B/) | 21405 | 7.3.007 | QOJ main.cpp + template.hpp |
 | 4A | [Determinant of A+Bz](4A_Determinant%20of%20A%2BBz/) | 59 | 9.1.007 | 候选 template.hpp + QOJ main.cpp |
@@ -85,6 +84,6 @@ EX1 按计划不做适配。其余未完成项及原因见 `未完成清单.md`�
 | 91 | [快速 AND 卷积](91_%E5%BF%AB%E9%80%9F%20AND%20%E5%8D%B7%E7%A7%AF/) | 1003 | 10.1.006 | QOJ main.cpp + template.hpp |
 | 92 | [快速 XOR 卷积](92_%E5%BF%AB%E9%80%9F%20XOR%20%E5%8D%B7%E7%A7%AF/) | 1004 | 10.1.006 | QOJ main.cpp + template.hpp |
 | 93 | [子集卷积](93_%E5%AD%90%E9%9B%86%E5%8D%B7%E7%A7%AF/) | 1005 | 10.1.011 | QOJ main.cpp + template.hpp |
-| 94 | [稀疏 XOR 卷积](94_%E7%A8%80%E7%96%8F%20XOR%20%E5%8D%B7%E7%A7%AF/) | 85 | 10.1.006 | 候选 template.hpp + QOJ main.cpp |
+| 94 | [稀疏 XOR 卷积](94_%E7%A8%80%E7%96%8F%20XOR%20%E5%8D%B7%E7%A7%AF/) | 85 | 10.1.006 | QOJ main.cpp + template.hpp |
 | A0 | [树 Hash](A0_%E6%A0%91%20Hash/) | 499 | 6.1.008 | QOJ main.cpp + template.hpp |
-| EX1 | [Kth 1](EX1_Kth%201/) | 15001 | 7.1.001 | 仅 template.hpp |
+| EX1 | [Kth 1](EX1_Kth%201/) | 15001 | 7.1.001 | 高性能候选 main.cpp + template.hpp |

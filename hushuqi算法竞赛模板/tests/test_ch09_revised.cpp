@@ -367,6 +367,17 @@ void testLinearSystems()
     F2Vector rhs(3); rhs.set(0); rhs.set(1);
     auto f2sol = gaussF2(f2, rhs);
     assert(f2sol && f2sol->basis.size() == 2);
+    auto oneF2 = solveF2(f2, rhs);
+    assert(oneF2);
+    for (int i = 0; i < 3; i++)
+    {
+        int v = 0;
+        for (int j = 0; j < 4; j++) v ^= f2[i].get(j) & oneF2->get(j);
+        assert(v == rhs.get(i));
+    }
+    F2Vector badRhs(2); badRhs.set(1);
+    vector<F2Vector> badF2(2, F2Vector(1));
+    assert(!solveF2(badF2, badRhs));
     vector<F2Vector> id(4, F2Vector(4)); for (int i = 0; i < 4; i++) id[i].set(i);
     auto inv2 = matInvF2(id); assert(inv2 && (*inv2)[2].get(2));
     auto inter = xorSpaceMeet({3, 5}, {6});

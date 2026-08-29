@@ -5,6 +5,7 @@
 using namespace std;
 #define int long long
 
+// 每个 limb 固定保存 32 位；进位、移位、除法和 CRT 重建依赖该布局。
 struct HexBigInt
 {
     using It = vector<uint32_t>::iterator;

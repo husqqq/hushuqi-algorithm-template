@@ -1,98 +1,154 @@
+// Generated from hushuqi算法竞赛模板. Do not edit by hand.
+
+// QOJ contest 3936: 1D 正则二分图匹配
+
+
 #include <bits/stdc++.h>
 using namespace std;
+#define int long long
 
-int main()
+class HopcroftKarp
 {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+    // nl、nr 是左右部点数，g 是从左部出发的邻接表。
+    int nl, nr;
+    vector<vector<int32_t>> g;
+    // ml、mr 是左右匹配点；dep、it、que 分别是层数、当前弧和复用队列。
+    vector<int32_t> ml, mr, dep, it, que;
 
-    int n, degree;
-    cin >> n >> degree;
-
-    vector<vector<int>> graph(n, vector<int>(degree));
-    for (auto &edges : graph)
+    bool bfs()
     {
-        for (int &v : edges)
-        {
-            cin >> v;
-            v--;
-        }
-    }
-
-    vector<int> leftMatch(n, -1);
-    vector<int> rightMatch(n, -1);
-    vector<int> distance(n);
-
-    auto bfs = [&]()
-    {
-        queue<int> q;
-        for (int u = 0; u < n; u++)
-        {
-            if (leftMatch[u] == -1)
-            {
-                distance[u] = 0;
-                q.push(u);
-            }
-            else
-            {
-                distance[u] = -1;
-            }
-        }
-
+        // 无参数；给交替图分层，存在增广路时返回 true。
+        fill(dep.begin(), dep.end(), -1);
+        int32_t ql = 0, qr = 0;
         bool found = false;
-        while (!q.empty())
+        for (int32_t u = 0; u < nl; u++)
         {
-            int u = q.front();
-            q.pop();
-
-            for (int v : graph[u])
+            if (ml[u] == -1)
             {
-                if (rightMatch[v] == -1)
+                dep[u] = 0;
+                que[qr++] = u;
+            }
+        }
+        while (ql < qr)
+        {
+            int32_t u = que[ql++];
+            for (int32_t v : g[u])
+            {
+                int32_t x = mr[v];
+                if (x == -1)
                 {
                     found = true;
                 }
-                else if (distance[rightMatch[v]] == -1)
+                else if (dep[x] == -1)
                 {
-                    distance[rightMatch[v]] = distance[u] + 1;
-                    q.push(rightMatch[v]);
+                    dep[x] = dep[u] + 1;
+                    que[qr++] = x;
                 }
             }
         }
         return found;
-    };
+    }
 
-    auto dfs = [&](auto &&self, int u) -> bool
+    bool dfs(int32_t u)
     {
-        for (int v : graph[u])
+        // u 是当前左点；沿 BFS 层寻找增广路，成功时返回 true。
+        for (int32_t &i = it[u]; i < (int32_t)g[u].size(); i++)
         {
-            int next = rightMatch[v];
-            if (next == -1 ||
-                (distance[next] == distance[u] + 1 && self(self, next)))
+            int32_t v = g[u][i];
+            int32_t x = mr[v];
+            if (x == -1)
             {
-                leftMatch[u] = v;
-                rightMatch[v] = u;
+                ml[u] = v;
+                mr[v] = u;
+                return true;
+            }
+            if (x != -1 && dep[x] == dep[u] + 1 && dfs(x))
+            {
+                ml[u] = v;
+                mr[v] = u;
                 return true;
             }
         }
-
-        distance[u] = -1;
+        dep[u] = -1;
         return false;
-    };
+    }
 
-    while (bfs())
+  public:
+    HopcroftKarp(int nl, int nr)
+        : nl(nl), nr(nr), g(nl), ml(nl, -1), mr(nr, -1), dep(nl), it(nl), que(nl)
     {
-        for (int u = 0; u < n; u++)
+        // nl、nr 是左右部点数；构造空二分图，无返回值。
+        assert(nl <= INT32_MAX && nr <= INT32_MAX); // 调试检查，可删。
+    }
+
+    void reserve(int u, int m)
+    {
+        // u 是左点，m 是预计邻边数；预留空间但不改变图。
+        assert(0 <= u && u < nl && m >= 0); // 调试检查，可删。
+        g[u].reserve(m);
+    }
+
+    void addEdge(int u, int v)
+    {
+        // u 是左点，v 是右点；加入一条边，无返回值。
+        assert(0 <= u && u < nl && 0 <= v && v < nr); // 调试检查，可删。
+        g[u].push_back((int32_t)v);
+    }
+
+    int matching()
+    {
+        // 无参数；从空匹配重算并返回最大匹配边数。
+        fill(ml.begin(), ml.end(), -1);
+        fill(mr.begin(), mr.end(), -1);
+        int ans = 0;
+        while (bfs())
         {
-            if (leftMatch[u] == -1)
+            fill(it.begin(), it.end(), 0);
+            for (int32_t u = 0; u < nl; u++)
             {
-                dfs(dfs, u);
+                if (ml[u] == -1)
+                {
+                    ans += dfs(u);
+                }
             }
         }
+        return ans;
     }
 
+    vector<int> leftMatch() const
+    {
+        // 无参数；返回左点到右点的匹配数组，未匹配为 -1。
+        return {ml.begin(), ml.end()};
+    }
+
+    vector<int> matchR() const
+    {
+        // 无参数；返回右点到左点的匹配数组，未匹配为 -1。
+        return {mr.begin(), mr.end()};
+    }
+};
+
+signed main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n, d;
+    cin >> n >> d;
+    HopcroftKarp g(n, n);
     for (int u = 0; u < n; u++)
     {
-        cout << leftMatch[u] + 1 << " \n"[u + 1 == n];
+        g.reserve(u, d);
+        for (int i = 0; i < d; i++)
+        {
+            int v;
+            cin >> v;
+            g.addEdge(u, v - 1);
+        }
     }
-    return 0;
+    g.matching();
+    auto match = g.leftMatch();
+    for (int i = 0; i < n; i++)
+    {
+        cout << match[i] + 1 << " \n"[i + 1 == n];
+    }
 }

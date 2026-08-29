@@ -2,20 +2,7 @@
 using namespace std;
 #define int long long
 
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
-
-template <class T> bool chmin(T &a, const T &b)
-{
-    // 参数 a 表示 第一组图论数据；b 表示 第二组图论数据；把指定区间内大于给定上界的值降低到该上界，无返回值。
-    return b < a ? a = b, true : false;
-}
-template <class T> bool chmax(T &a, const T &b)
-{
-    // 参数 a 表示 第一组图论数据；b 表示 第二组图论数据；把指定位置或区间内小于给定下界的值提高到该下界，无返回值。
-    return a < b ? a = b, true : false;
-}
+#include "../topic_common.hpp"
 
 class DelDAG
 {
@@ -98,7 +85,7 @@ class DelDAG
                 starts[begin].push_back({left[u] + 1 + right[v], end});
             }
         }
-        vector<int> prefix(n + 1), suffix(n + 1), answer(n);
+        vector<int> prefix(n + 1), suffix(n + 1), ans(n);
         for (int i = 0; i < n; ++i)
         {
             prefix[i + 1] = max(prefix[i], left[order[i]]);
@@ -118,12 +105,12 @@ class DelDAG
             {
                 active.pop();
             }
-            answer[order[i]] = max(prefix[i], suffix[i + 1]);
+            ans[order[i]] = max(prefix[i], suffix[i + 1]);
             if (!active.empty())
             {
-                answer[order[i]] = max(answer[order[i]], active.top().first);
+                ans[order[i]] = max(ans[order[i]], active.top().first);
             }
         }
-        return answer;
+        return ans;
     }
 };

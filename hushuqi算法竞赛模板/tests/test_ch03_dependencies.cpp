@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+#include "../include/topic_common.hpp"
 
 namespace trie_topic {
 #include "../include/full/3_6_002.hpp"

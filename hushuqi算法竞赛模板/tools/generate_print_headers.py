@@ -18,8 +18,7 @@ CHAPTERS = sorted(ROOT.glob("[0-9][0-9]-*.md"))
 
 # Fixed machine words, natural overflow, an external ABI, or a fixed bit layout.
 FIXED_TOPICS = {
-    "1.1.006", "1.2.008", "1.3.006", "1.4.004", "2.2.001",
-    "3.6.008", "4.1.001", "7.4.008", "10.1.016", "10.2.015", "13.1.009",
+    "1.1.006", "1.1.008",
     "14.1.019",
 }
 FIXED_HEADERS = {topic.replace(".", "_") + ".hpp" for topic in FIXED_TOPICS}
@@ -66,51 +65,16 @@ def replace_general_types(text: str) -> str:
     for old, new in replacements.items():
         text = re.sub(rf"\b{old}\b", new, text)
     text = re.sub(r"\b(?:UINT32_MAX|INT32_MAX)\b", "numeric_limits<int>::max()", text)
-    text = text.replace("int(0)", "(int)0")
+    text = re.sub(r"\bint\(0\)", "(int)0", text)
     text = text.replace("__PRINT_UINT32_CAST__", "uint32_t")
-    return text
-
-
-def transform_mint(text: str) -> str:
-    performance_pattern = re.compile(
-        r"using V = conditional_t<\(P <= numeric_limits<int32_t>::max\(\)\),\s*"
-        r"uint32_t, unsigned long long>;"
-    )
-    text, performance_count = performance_pattern.subn(
-        "using V = conditional_t<(P <= numeric_limits<long long>::max() / 2),\n"
-        "                            int, unsigned long long>;",
-        text,
-    )
-    text, legacy_count = text.replace("using V = int;", (
-        "using V = conditional_t<(P <= numeric_limits<long long>::max() / 2),\n"
-        "                            int, unsigned long long>;"
-    )), text.count("using V = int;")
-    count = performance_count + legacy_count
-    if count:
-        text = text.replace(
-            "static constexpr V M = (V)P; // 与 x 同宽的模数，避免热路径被 P 提升为有符号 64 位",
-            "static constexpr V M = (V)P; // 超大模数保留无符号类型，避免模加溢出有符号 64 位",
-        )
-        text = text.replace(
-            "static constexpr V M = (V)P; // 打印版统一使用 int 保存模数代表元",
-            "static constexpr V M = (V)P; // 超大模数保留无符号类型，避免模加溢出有符号 64 位",
-        )
-        text = text.replace(
-            "V x = 0; // 当前剩余类在 [0,P) 内的代表元；常见小模使用无符号 32 位",
-            "V x = 0; // 当前剩余类代表元；普通模数使用 int，超大模数使用无符号 64 位",
-        )
-        text = text.replace(
-            "V x = 0; // 当前剩余类在 [0,P) 内的代表元",
-            "V x = 0; // 当前剩余类代表元；普通模数使用 int，超大模数使用无符号 64 位",
-        )
     return text
 
 
 def transform_header(text: str, name: str, *, support: bool = False) -> str:
     if (support and name in FIXED_SUPPORT) or (not support and name in FIXED_HEADERS):
         out = text
-    elif name == "7_1_007.hpp":
-        out = replace_general_types(transform_mint(text))
+    elif name == "13_1_009.hpp":
+        out = replace_general_types(text)
     elif name == "10_1_004.hpp":
         begin = "// LC_GENERATOR_CH14_ONLY_BEGIN"
         end = "// LC_GENERATOR_CH14_ONLY_END"
@@ -141,8 +105,6 @@ def transform_chapter(text: str) -> str:
         section = text[match.start() : end]
         topic = match.group(1)
         if topic not in FIXED_TOPICS:
-            if topic == "7.1.007":
-                section = transform_mint(section)
             section = replace_general_types(section)
             if topic == "10.1.011":
                 section = section.replace("popcount(s)", "popcount((unsigned long long)s)")

@@ -1,6 +1,6 @@
 #pragma once
 #include <bits/stdc++.h>
-#include "support/linear_algebra_mod.hpp"
+#include "7_1_001.hpp"
 #include "support/linear_algebra_field.hpp"
 using namespace std;
 
@@ -25,8 +25,8 @@ inline int rankMod(vector<vector<long long>> a, int m, long long mod)
         long long ans = 1;
         while (b)
         {
-            if (b & 1) ans = linearMulMod(ans, x, mod);
-            x = linearMulMod(x, x, mod);
+            if (b & 1) ans = mulMod(ans, x, mod);
+            x = mulMod(x, x, mod);
             b >>= 1;
         }
         return ans;
@@ -40,10 +40,10 @@ inline int rankMod(vector<vector<long long>> a, int m, long long mod)
         long long inv = power(a[rk][col], mod - 2);
         for (int i = rk + 1; i < n; i++) if (a[i][col])
         {
-            long long q = linearMulMod(a[i][col], inv, mod);
+            long long q = mulMod(a[i][col], inv, mod);
             for (int j = col; j < m; j++)
             {
-                a[i][j] -= linearMulMod(q, a[rk][j], mod);
+                a[i][j] -= mulMod(q, a[rk][j], mod);
                 if (a[i][j] < 0) a[i][j] += mod;
             }
         }
@@ -79,9 +79,9 @@ inline optional<ModLinearSol> gaussMod(vector<vector<long long>> a, int n, long 
         {
             if (b & 1)
             {
-                ans = linearMulMod(ans, x, mod);
+                ans = mulMod(ans, x, mod);
             }
-            x = linearMulMod(x, x, mod);
+            x = mulMod(x, x, mod);
             b >>= 1;
         }
         return ans;
@@ -101,7 +101,7 @@ inline optional<ModLinearSol> gaussMod(vector<vector<long long>> a, int n, long 
         long long inv = power(a[rk][col], mod - 2);
         for (int j = col; j <= n; j++)
         {
-            a[rk][j] = linearMulMod(a[rk][j], inv, mod);
+            a[rk][j] = mulMod(a[rk][j], inv, mod);
         }
         for (int i = 0; i < m; i++)
         {
@@ -112,7 +112,7 @@ inline optional<ModLinearSol> gaussMod(vector<vector<long long>> a, int n, long 
             long long q = a[i][col];
             for (int j = col; j <= n; j++)
             {
-                a[i][j] -= linearMulMod(q, a[rk][j], mod);
+                a[i][j] -= mulMod(q, a[rk][j], mod);
                 if (a[i][j] < 0)
                 {
                     a[i][j] += mod;

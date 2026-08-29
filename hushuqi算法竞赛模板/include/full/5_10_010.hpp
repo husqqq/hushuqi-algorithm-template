@@ -147,3 +147,76 @@ vector<Z> chromPoly(const vector<unsigned long long> &g)
     }
     return ans;
 }
+
+inline void tutteRanked(vector<Z> &a, int n, bool inverse)
+{
+    // a 按子集和次数压平存储，n 是位数；执行分层 Zeta 或 Mobius 变换。
+    int N = 1 << n, w = n + 1;
+    for (int bit = 0; bit < n; bit++) for (int s = 0; s < N; s++) if (s >> bit & 1)
+    {
+        Z *to = a.data() + (size_t)s * w;
+        Z *from = a.data() + (size_t)(s ^ (1 << bit)) * w;
+        for (int d = 0; d <= n; d++)
+            if (inverse) to[d] -= from[d]; else to[d] += from[d];
+    }
+}
+
+inline vector<Z> tutteSetExp(const vector<Z> &f, int n)
+{
+    // f 是常数项为 0 的 n 位集合幂级数；返回集合卷积意义下的 exp(f)。
+    int N = 1 << n, w = n + 1;
+    vector<Z> a((size_t)N * w);
+    for (int s = 0; s < N; s++) a[(size_t)s * w + popcount((unsigned)s)] = f[s];
+    tutteRanked(a, n, false);
+    vector<Z> log(w);
+    for (int s = 0; s < N; s++)
+    {
+        Z *v = a.data() + (size_t)s * w;
+        copy(v, v + w, log.begin());
+        v[0] = 1;
+        for (int d = 1; d <= n; d++)
+        {
+            Z sum = 0;
+            for (int k = 1; k <= d; k++) sum += Z(k) * log[k] * v[d - k];
+            v[d] = sum / Z(d);
+        }
+    }
+    tutteRanked(a, n, true);
+    vector<Z> ans(N);
+    for (int s = 0; s < N; s++) ans[s] = a[(size_t)s * w + popcount((unsigned)s)];
+    return ans;
+}
+
+inline Z tutteEval(const vector<unsigned long long> &g, Z x, Z y)
+{
+    // g 是无自环无向图邻接位集；x、y 是 Tutte 多项式点值，点数不超过 20。
+    int n = g.size(), N = 1 << n;
+    assert(0 < n && n <= 20); // 调试检查，可删。
+    vector<Z> connected(N), temp(N);
+    vector<Z> geo(n + 1);
+    for (int i = 1; i <= n; i++) geo[i] = geo[i - 1] * y + Z(1);
+    for (int u = 0; u < n; u++)
+    {
+        int M = 1 << u;
+        for (int s = 0; s < M; s++)
+            temp[s] = connected[s] * geo[popcount(g[u] & (unsigned long long)s)];
+        vector<Z> add(temp.begin(), temp.begin() + M);
+        add = tutteSetExp(add, u);
+        for (int s = 0; s < M; s++) connected[M | s] = add[s];
+    }
+    vector<char> vis(n), hasRoot(N);
+    for (int start = 0; start < n; start++) if (!vis[start])
+    {
+        vector<int> q{start};
+        vis[start] = 1;
+        for (int h = 0; h < (int)q.size(); h++)
+        {
+            int u = q[h];
+            for (int v = 0; v < n; v++) if ((g[u] >> v & 1) && !vis[v])
+                vis[v] = 1, q.push_back(v);
+        }
+        for (int s = 0; s < N; s++) if (s >> start & 1) hasRoot[s] = 1;
+    }
+    for (int s = 1; s < N; s++) if (!hasRoot[s]) connected[s] *= x - Z(1);
+    return tutteSetExp(connected, n).back();
+}

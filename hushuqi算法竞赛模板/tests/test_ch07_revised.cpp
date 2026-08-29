@@ -1,3 +1,4 @@
+#include "../include/full/7_1_001.hpp"
 #include "../include/full/7_1_008.hpp"
 #include "../include/full/7_1_010.hpp"
 #include "../include/full/7_2_001.hpp"
@@ -27,6 +28,12 @@ long long floorDiv(__int128 x, long long y)
 
 signed main()
 {
+    mt19937 rng(20260829);
+    for (int i = 0; i < 1000; i++)
+    {
+        int x = 1 + rng() % (998244353 - 1);
+        assert((long long)x * InvTable<998244353>::get(x) % 998244353 == 1);
+    }
     assert(binaryGcd(numeric_limits<long long>::min(), 0) == (1ULL << 63));
     auto l = safeLcm(numeric_limits<long long>::min(), 1);
     assert(l && *l == (1ULL << 63));
@@ -38,6 +45,10 @@ signed main()
     assert(!isPrime(3825123056546413051ULL));
     assert((factor64(600851475143ULL) ==
             vector<unsigned long long>{71, 839, 1471, 6857}));
+    assert((factor64(1000000007ULL * 1000000009ULL) ==
+            vector<unsigned long long>{1000000007ULL, 1000000009ULL}));
+    assert((factor64(4294967291ULL * 4294967279ULL) ==
+            vector<unsigned long long>{4294967279ULL, 4294967291ULL}));
 
     static_assert(sizeof(Z) == sizeof(uint32_t));
     static_assert(is_same_v<decltype(Z{}.x), uint32_t>);

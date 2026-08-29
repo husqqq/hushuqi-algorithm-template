@@ -11,57 +11,52 @@ class HopcroftKarp
 {
     // nl、nr 是左右部点数，g 是从左部出发的邻接表。
     int nl, nr;
-    vector<vector<int>> g;
-    // ml、mr 是左右匹配点，dep 是左点层数，lim 是本轮最短增广路长度。
-    vector<int> ml, mr, dep;
-    int lim = -1;
+    vector<vector<int32_t>> g;
+    // ml、mr 是左右匹配点；dep、it、que 分别是层数、当前弧和复用队列。
+    vector<int32_t> ml, mr, dep, it, que;
 
     bool bfs()
     {
-        // 无参数；给全部最短增广路分层，存在增广路时返回 true。
-        queue<int> q;
+        // 无参数；给交替图分层，存在增广路时返回 true。
         fill(dep.begin(), dep.end(), -1);
-        lim = -1;
-        for (int u = 0; u < nl; u++)
+        int32_t ql = 0, qr = 0;
+        bool found = false;
+        for (int32_t u = 0; u < nl; u++)
         {
             if (ml[u] == -1)
             {
                 dep[u] = 0;
-                q.push(u);
+                que[qr++] = u;
             }
         }
-        while (!q.empty())
+        while (ql < qr)
         {
-            int u = q.front();
-            q.pop();
-            if (lim != -1 && dep[u] >= lim)
+            int32_t u = que[ql++];
+            for (int32_t v : g[u])
             {
-                continue;
-            }
-            for (auto v : g[u])
-            {
-                int x = mr[v];
+                int32_t x = mr[v];
                 if (x == -1)
                 {
-                    lim = dep[u] + 1;
+                    found = true;
                 }
-                else if (dep[x] == -1 && (lim == -1 || dep[u] + 1 < lim))
+                else if (dep[x] == -1)
                 {
                     dep[x] = dep[u] + 1;
-                    q.push(x);
+                    que[qr++] = x;
                 }
             }
         }
-        return lim != -1;
+        return found;
     }
 
-    bool dfs(int u)
+    bool dfs(int32_t u)
     {
-        // u 是当前左点；沿 BFS 层寻找最短增广路，成功时返回 true。
-        for (auto v : g[u])
+        // u 是当前左点；沿 BFS 层寻找增广路，成功时返回 true。
+        for (int32_t &i = it[u]; i < (int32_t)g[u].size(); i++)
         {
-            int x = mr[v];
-            if (x == -1 && dep[u] + 1 == lim)
+            int32_t v = g[u][i];
+            int32_t x = mr[v];
+            if (x == -1)
             {
                 ml[u] = v;
                 mr[v] = u;
@@ -79,16 +74,25 @@ class HopcroftKarp
     }
 
   public:
-    HopcroftKarp(int nl, int nr) : nl(nl), nr(nr), g(nl), ml(nl, -1), mr(nr, -1), dep(nl)
+    HopcroftKarp(int nl, int nr)
+        : nl(nl), nr(nr), g(nl), ml(nl, -1), mr(nr, -1), dep(nl), it(nl), que(nl)
     {
         // nl、nr 是左右部点数；构造空二分图，无返回值。
+        assert(nl <= INT32_MAX && nr <= INT32_MAX); // 调试检查，可删。
+    }
+
+    void reserve(int u, int m)
+    {
+        // u 是左点，m 是预计邻边数；预留空间但不改变图。
+        assert(0 <= u && u < nl && m >= 0); // 调试检查，可删。
+        g[u].reserve(m);
     }
 
     void addEdge(int u, int v)
     {
         // u 是左点，v 是右点；加入一条边，无返回值。
         assert(0 <= u && u < nl && 0 <= v && v < nr); // 调试检查，可删。
-        g[u].push_back(v);
+        g[u].push_back((int32_t)v);
     }
 
     int matching()
@@ -99,7 +103,8 @@ class HopcroftKarp
         int ans = 0;
         while (bfs())
         {
-            for (int u = 0; u < nl; u++)
+            fill(it.begin(), it.end(), 0);
+            for (int32_t u = 0; u < nl; u++)
             {
                 if (ml[u] == -1)
                 {
@@ -110,15 +115,15 @@ class HopcroftKarp
         return ans;
     }
 
-    const vector<int> &leftMatch() const
+    vector<int> leftMatch() const
     {
         // 无参数；返回左点到右点的匹配数组，未匹配为 -1。
-        return ml;
+        return {ml.begin(), ml.end()};
     }
 
-    const vector<int> &matchR() const
+    vector<int> matchR() const
     {
         // 无参数；返回右点到左点的匹配数组，未匹配为 -1。
-        return mr;
+        return {mr.begin(), mr.end()};
     }
 };

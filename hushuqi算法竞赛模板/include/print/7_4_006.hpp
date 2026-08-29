@@ -50,12 +50,12 @@ class PowerTower
                                  long long limit)
     {
         // 返回 min(base^exponent,limit)。
-        long long result = 1;
-        while (exponent && result < limit)
+    long long res = 1;
+    while (exponent && res < limit)
         {
             if (exponent & 1)
             {
-                result = mulCap(result, base, limit);
+            res = mulCap(res, base, limit);
             }
             exponent >>= 1;
             if (exponent)
@@ -63,7 +63,7 @@ class PowerTower
                 base = mulCap(base, base, limit);
             }
         }
-        return result;
+    return res;
     }
 
     static long long towerCapped(long long base, long long height,

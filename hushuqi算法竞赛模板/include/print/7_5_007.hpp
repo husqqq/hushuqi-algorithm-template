@@ -128,7 +128,7 @@ vector<pair<long long, long long>> twoSqRep(long long n)
         }
         reps.swap(next);
     }
-    set<pair<long long, long long>> answer;
+    set<pair<long long, long long>> ans;
     for (auto [x0, y0] : reps)
     {
         __int128 x = x0, y = y0;
@@ -139,9 +139,9 @@ vector<pair<long long, long long>> twoSqRep(long long n)
             y = ny;
             if (x >= 0 && y >= 0)
             {
-                answer.insert({(long long)x, (long long)y});
+                ans.insert({(long long)x, (long long)y});
             }
         }
     }
-    return {answer.begin(), answer.end()};
+    return {ans.begin(), ans.end()};
 }

@@ -6,30 +6,9 @@ using namespace std;
 
 #define int long long
 
-constexpr long long INF = numeric_limits<long long>::max() / 4;
+#include "common.hpp"
+
 constexpr long double EPS = 1E-12L;
-
-template <class T> bool chmin(T &x, const T &y)
-{
-    // y<x 时把 x 降到 y 并返回 true
-    if (y < x)
-    {
-        x = y;
-        return true;
-    }
-    return false;
-}
-
-template <class T> bool chmax(T &x, const T &y)
-{
-    // x<y 时把 x 升到 y 并返回 true
-    if (x < y)
-    {
-        x = y;
-        return true;
-    }
-    return false;
-}
 
 int sgn(long double x, long double eps = EPS)
 {
@@ -65,7 +44,7 @@ struct FastInput
 
     template <class T> bool read(T &x)
     {
-        // 读一个 T 范围内的整数，成功返回 true
+        // 题面保证整数能由 T 表示；EOF 或格式错误返回 false
         static_assert(is_integral_v<T> && !is_same_v<remove_cv_t<T>, bool>);
         using U = make_unsigned_t<T>;
         auto c = get();
@@ -86,29 +65,11 @@ struct FastInput
         {
             return false;
         }
-        U lim = numeric_limits<U>::max();
-        if constexpr (is_signed_v<T>)
-        {
-            lim = (U)numeric_limits<T>::max() + (neg ? 1 : 0);
-        }
-        bool fit = true;
         U v = 0;
         while ('0' <= c && c <= '9')
         {
-            U d = (U)(c - '0');
-            if (fit && v > (lim - d) / 10)
-            {
-                fit = false;
-            }
-            if (fit)
-            {
-                v = v * 10 + d;
-            }
+            v = v * 10 + (U)(c - '0');
             c = get();
-        }
-        if (!fit)
-        {
-            return false;
         }
         if constexpr (is_unsigned_v<T>)
         {
@@ -120,15 +81,7 @@ struct FastInput
         }
         else if (neg)
         {
-            U absMin = (U)numeric_limits<T>::max() + 1;
-            if (v == absMin)
-            {
-                x = numeric_limits<T>::min();
-            }
-            else
-            {
-                x = -((T)v);
-            }
+            x = (T)(U(0) - v);
         }
         else
         {
@@ -230,7 +183,7 @@ struct i128
     unsigned long long hi = 0; // 补码的高 64 位
     unsigned long long lo = 0; // 补码的低 64 位
 
-    i128(int64_t x = 0) : hi(x < 0 ? ~0ULL : 0), lo((unsigned long long)x)
+    i128(long long x = 0) : hi(x < 0 ? ~0ULL : 0), lo((unsigned long long)x)
     {
         // 把 64 位有符号整数按补码符号扩展到 128 位
     }
@@ -428,7 +381,7 @@ vector<string> split(const string &s, char sep = ' ')
 
 struct CustomHash
 {
-    static uint64_t mix(uint64_t x)
+    static unsigned long long mix(unsigned long long x)
     {
         // 返回 x 经 SplitMix64 finalizer 扰动后的值
         x += 0x9e3779b97f4a7c15ULL;
@@ -437,31 +390,31 @@ struct CustomHash
         return x ^ (x >> 31);
     }
 
-    size_t operator()(uint64_t x) const
+    size_t operator()(unsigned long long x) const
     {
         // 返回混入进程随机种子的整数哈希值
-        static const uint64_t seed =
-            (uint64_t)chrono::steady_clock::now().time_since_epoch().count();
+        static const unsigned long long seed =
+            (unsigned long long)chrono::steady_clock::now().time_since_epoch().count();
         return mix(x + seed);
     }
 
     size_t operator()(const pair<int, int> &x) const
     {
         // 只接受两个不超过 64 位的整数分量
-        static const uint64_t seed =
-            (uint64_t)chrono::steady_clock::now().time_since_epoch().count();
-        uint64_t a = mix((uint64_t)x.first + seed);
-        uint64_t b = mix((uint64_t)x.second + seed + 0x9e3779b97f4a7c15ULL);
+        static const unsigned long long seed =
+            (unsigned long long)chrono::steady_clock::now().time_since_epoch().count();
+        unsigned long long a = mix((unsigned long long)x.first + seed);
+        unsigned long long b = mix((unsigned long long)x.second + seed + 0x9e3779b97f4a7c15ULL);
         return mix(a ^ rotl(b, 32));
     }
 };
 
-struct DynamicBitset
+struct DynBitset
 {
     int n = 0;                    // 有效位数
     vector<unsigned long long> a; // 按 64 位机器字打包
 
-    DynamicBitset(int m = 0)
+    DynBitset(int m = 0)
     {
         // 构造 m 位的全零集合，要求 m>=0
         init(m);
@@ -514,7 +467,7 @@ struct DynamicBitset
         return ans;
     }
 
-    DynamicBitset &operator|=(const DynamicBitset &o)
+    DynBitset &operator|=(const DynBitset &o)
     {
         // 逐位或入 o，返回当前集合
         assert(n == o.n); // 调试检查，可删
@@ -525,7 +478,7 @@ struct DynamicBitset
         return *this;
     }
 
-    DynamicBitset &operator&=(const DynamicBitset &o)
+    DynBitset &operator&=(const DynBitset &o)
     {
         // 逐位与入 o，返回当前集合
         assert(n == o.n); // 调试检查，可删

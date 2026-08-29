@@ -1,6 +1,6 @@
 #pragma once
 #include <bits/stdc++.h>
-#include "support/linear_algebra_mod.hpp"
+#include "7_1_001.hpp"
 #include "support/linear_algebra_field.hpp"
 using namespace std;
 
@@ -74,8 +74,8 @@ inline optional<vector<vector<long long>>> matInvPP(vector<vector<long long>> a,
         long long z = invInt(a[col][col], pk);
         for (int j = 0; j < n; j++)
         {
-            a[col][j] = linearMulMod(a[col][j], z, pk);
-            b[col][j] = linearMulMod(b[col][j], z, pk);
+            a[col][j] = mulMod(a[col][j], z, pk);
+            b[col][j] = mulMod(b[col][j], z, pk);
         }
         for (int i = 0; i < n; i++)
         {
@@ -86,8 +86,8 @@ inline optional<vector<vector<long long>>> matInvPP(vector<vector<long long>> a,
             long long q = a[i][col];
             for (int j = 0; j < n; j++)
             {
-                a[i][j] = (a[i][j] - linearMulMod(q, a[col][j], pk)) % pk;
-                b[i][j] = (b[i][j] - linearMulMod(q, b[col][j], pk)) % pk;
+                a[i][j] = (a[i][j] - mulMod(q, a[col][j], pk)) % pk;
+                b[i][j] = (b[i][j] - mulMod(q, b[col][j], pk)) % pk;
                 if (a[i][j] < 0)
                 {
                     a[i][j] += pk;
@@ -147,7 +147,7 @@ inline optional<vector<vector<long long>>> matInvAny(const vector<vector<long lo
                 {
                     t += pk;
                 }
-                t = linearMulMod(t, z, pk);
+                t = mulMod(t, z, pk);
                 // 已处理模数 cur 与当前 pk 的乘积不超过总模数，故 cur*t 不溢出。
                 ans[i][j] += cur * t;
             }

@@ -2,20 +2,7 @@
 using namespace std;
 #define int long long
 
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
-
-template <class T> bool chmin(T &a, const T &b)
-{
-    // 若 b 更小则以 b 更新 a；返回是否发生更新。
-    return b < a ? a = b, true : false;
-}
-template <class T> bool chmax(T &a, const T &b)
-{
-    // 若 b 更大则以 b 更新 a；返回是否发生更新。
-    return a < b ? a = b, true : false;
-}
+#include "support/topic_common.hpp"
 
 template <class T> class GcdSegs
 {
@@ -26,26 +13,26 @@ template <class T> class GcdSegs
     explicit GcdSegs(const vector<T> &a) : groups(a.size())
     {
         // a 是原序列；预处理每个右端点的 gcd 分组。
-        vector<pair<int, T>> previous;
+        vector<pair<int, T>> pre;
         for (int r = 0; r < a.size(); ++r)
         {
-            vector<pair<int, T>> current{{r, abs(a[r])}};
-            for (auto [left, value] : previous)
+            vector<pair<int, T>> cur{{r, abs(a[r])}};
+            for (auto [left, value] : pre)
             {
                 value = gcd(value, abs(a[r]));
-                if (current.back().second == value)
+                if (cur.back().second == value)
                 {
-                    current.back().first = left;
+                    cur.back().first = left;
                 }
                 else
                 {
-                    current.push_back({left, value});
+                    cur.push_back({left, value});
                 }
             }
-            ranges::reverse(current);
-            groups[r] = current;
-            previous = current;
-            ranges::reverse(previous);
+            ranges::reverse(cur);
+            groups[r] = cur;
+            pre = cur;
+            ranges::reverse(pre);
         }
     }
 

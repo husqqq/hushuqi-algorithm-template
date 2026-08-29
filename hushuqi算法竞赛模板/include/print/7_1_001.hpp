@@ -1,31 +1,9 @@
 #pragma once
+#ifndef HUSHUQI_MOD_ARITH_HPP
+#define HUSHUQI_MOD_ARITH_HPP
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
-
-constexpr int inf = 1E9;
-constexpr long long INF = numeric_limits<long long>::max() / 4;
-constexpr long double eps = 1E-12L;
-
-template <class T> bool chmin(T &a, const T &b)
-{
-    if (b < a)
-    {
-        a = b;
-        return true;
-    }
-    return false;
-}
-
-template <class T> bool chmax(T &a, const T &b)
-{
-    if (a < b)
-    {
-        a = b;
-        return true;
-    }
-    return false;
-}
 
 long long mulMod(long long a, long long b, long long m)
 {
@@ -279,3 +257,75 @@ vector<int> batchInv(const vector<int> &a, int mod)
     }
     return ans;
 }
+
+template <int Mod> class InvTable
+{
+private:
+    static_assert(Mod == 998244353);
+    static const vector<pair<int, int>> frac;
+    static const vector<int> small;
+
+public:
+    // x 是 1<=x<Mod 的非零余数；返回 x 在模 Mod 下的乘法逆元。
+    static int get(int x)
+    {
+        assert(1 <= x && x < Mod); // 调试检查，可删
+        auto [a, b] = frac[x >> 10];
+        int pos = 2 * (1 << 20) + x * b - (int)a * Mod;
+        return (long long)small[pos] * b % Mod;
+    }
+};
+
+template <int Mod>
+inline const vector<pair<int, int>> InvTable<Mod>::frac = []
+{
+    vector<pair<int, int>> res(1 << 20);
+    array<array<int, 4>, 2048> st{};
+    int top = 0;
+    st[top++] = {0, 1, 1, 1};
+    while (top)
+    {
+        auto [a, b, c, d] = st[--top];
+        if (b + d < 2048)
+        {
+            st[top++] = {a + c, b + d, c, d};
+            st[top++] = {a, b, a + c, b + d};
+            continue;
+        }
+        int l = (long long)a * Mod / (1024 * b);
+        int r = (long long)c * Mod / (1024 * d);
+        res[l] = {(int)a, (int)b};
+        res[r] = {(int)c, (int)d};
+        if (a > c)
+        {
+            a = c;
+        }
+        if (b > d)
+        {
+            b = d;
+        }
+        for (int i = l + 1; i < r; i++)
+        {
+            res[i] = {(int)a, (int)b};
+        }
+    }
+    return res;
+}();
+
+template <int Mod>
+inline const vector<int> InvTable<Mod>::small = []
+{
+    vector<int> res(4 * (1 << 20) + 1);
+    constexpr int mid = 2 * (1 << 20);
+    res[mid + 1] = 1;
+    res[mid - 1] = Mod - 1;
+    for (int i = 2; i <= mid; i++)
+    {
+        int x = (unsigned long long)(Mod - res[mid + (Mod % i)]) * (Mod / i) % Mod;
+        res[mid + i] = x;
+        res[mid - i] = Mod - x;
+    }
+    return res;
+}();
+
+#endif

@@ -96,26 +96,26 @@ template <class Acc = long long> class DynSubAddSum
     }
     void access(int x)
     {
-        int previous = 0;
-        for (int current = x; current; current = t[current].p)
+        int pre = 0;
+        for (int cur = x; cur; cur = t[cur].p)
         {
-            splay(current);
-            int old = t[current].ch[1];
+            splay(cur);
+            int old = t[cur].ch[1];
             if (old)
             {
                 push(old);
-                t[current].virSize += t[old].size;
-                t[current].virSum += t[old].sum;
+                t[cur].virSize += t[old].size;
+                t[cur].virSum += t[old].sum;
             }
-            t[current].ch[1] = previous;
-            if (previous)
+            t[cur].ch[1] = pre;
+            if (pre)
             {
-                push(previous);
-                t[current].virSize -= t[previous].size;
-                t[current].virSum -= t[previous].sum;
+                push(pre);
+                t[cur].virSize -= t[pre].size;
+                t[cur].virSum -= t[pre].sum;
             }
-            pull(current);
-            previous = current;
+            pull(cur);
+            pre = cur;
         }
         splay(x);
     }
@@ -257,25 +257,25 @@ template <class Acc = long long> class DynSubExact
     }
     void expose(Node *x)
     {
-        Node *previous = &none;
-        for (Node *current = x; current != &none; current = current->p)
+        Node *pre = &none;
+        for (Node *cur = x; cur != &none; cur = cur->p)
         {
-            splay(current);
-            if (current->ch[1] != &none)
+            splay(cur);
+            if (cur->ch[1] != &none)
             {
-                flush(current->ch[1]);
-                current->lightSize += current->ch[1]->size;
-                current->lightSum += current->ch[1]->sum;
+                flush(cur->ch[1]);
+                cur->lightSize += cur->ch[1]->size;
+                cur->lightSum += cur->ch[1]->sum;
             }
-            current->ch[1] = previous;
-            if (current->ch[1] != &none)
+            cur->ch[1] = pre;
+            if (cur->ch[1] != &none)
             {
-                flush(current->ch[1]);
-                current->lightSize -= current->ch[1]->size;
-                current->lightSum -= current->ch[1]->sum;
+                flush(cur->ch[1]);
+                cur->lightSize -= cur->ch[1]->size;
+                cur->lightSum -= cur->ch[1]->sum;
             }
-            fetch(current);
-            previous = current;
+            fetch(cur);
+            pre = cur;
         }
         splay(x);
     }

@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+#include "../include/topic_common.hpp"
 namespace lca_st_topic {
 #include "../include/full/6_1_004.hpp"
 }

@@ -2,20 +2,7 @@
 using namespace std;
 #define int long long
 
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
-
-template <class T> bool chmin(T &a, const T &b)
-{
-    // a 是待更新值，b 是候选上界；若 b 更小则写入 a 并返回 true。
-    return b < a ? a = b, true : false;
-}
-template <class T> bool chmax(T &a, const T &b)
-{
-    // a 是待更新值，b 是候选下界；若 b 更大则写入 a 并返回 true。
-    return a < b ? a = b, true : false;
-}
+#include "support/topic_common.hpp"
 
 struct Cart
 {

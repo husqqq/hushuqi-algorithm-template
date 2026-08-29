@@ -28,6 +28,56 @@ template <class T> T diameter2(const vector<Point<T>> &a)
     return ans;
 }
 
+template <class T> T weakDiam2(const vector<Point<T>> &a)
+{
+    // a 是按边界顺序给出的弱凸多边形；允许相邻边共线，返回最远点对距离平方。
+    int n = a.size();
+    if (n <= 2)
+    {
+        return n < 2 ? 0 : norm(a[0] - a[1]);
+    }
+    vector<Point<T>> h;
+    for (int i = 0; i < n; i++)
+    {
+        if (cross(a[i] - a[(i + n - 1) % n], a[(i + 1) % n] - a[i]) != 0)
+        {
+            h.push_back(a[i]);
+        }
+    }
+    if (h.empty())
+    {
+        auto [l, r] = minmax_element(a.begin(), a.end());
+        return norm(*l - *r);
+    }
+    if (h.size() <= 2)
+    {
+        return h.size() < 2 ? 0 : norm(h[0] - h[1]);
+    }
+    T ans = 0;
+    int m = h.size(), j = 1;
+    for (int i = 0; i < m; i++)
+    {
+        auto area = [&](int k)
+        {
+            T x = cross(h[(i + 1) % m] - h[i], h[k] - h[i]);
+            return x < 0 ? -x : x;
+        };
+        while (area((j + 1) % m) > area(j))
+        {
+            j = (j + 1) % m;
+        }
+        ans = max(ans, norm(h[i] - h[j]));
+        ans = max(ans, norm(h[(i + 1) % m] - h[j]));
+        int k = (j + 1) % m;
+        if (area(k) == area(j))
+        {
+            ans = max(ans, norm(h[i] - h[k]));
+            ans = max(ans, norm(h[(i + 1) % m] - h[k]));
+        }
+    }
+    return ans;
+}
+
 template <class T> pair<int, int> farthestPair(const vector<Point<T>> &p)
 {
     // p 是至少含两个点的点集；返回一对欧氏距离最大的原下标。

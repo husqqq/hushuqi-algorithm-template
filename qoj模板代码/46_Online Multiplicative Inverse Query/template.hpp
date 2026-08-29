@@ -299,7 +299,7 @@ public:
         assert(1 <= x && x < Mod); // 调试检查，可删
         auto [a, b] = frac[x >> 10];
         int pos = 2 * (1 << 20) + x * b - (int)a * Mod;
-        return small[pos];
+        return (long long)small[pos] * b % Mod;
     }
 };
 
@@ -356,12 +356,12 @@ inline const vector<uint32_t> OnlineInverseTable<Mod>::small = []
 }();
 
 // QOJ Online Multiplicative Inverse Query 的固定接口；题面模数固定为 998244353。
-inline void init(int p)
+void init(int32_t p)
 {
     assert(p == 998244353); // 调试检查，可删
 }
 
-inline int inv(int x)
+int32_t inv(int32_t x)
 {
     return OnlineInverseTable<998244353>::get(x);
 }

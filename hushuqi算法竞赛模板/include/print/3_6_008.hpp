@@ -2,33 +2,20 @@
 using namespace std;
 #define int long long
 
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
-
-template <class T> bool chmin(T &a, const T &b)
-{
-    // 若 b 更小则更新 a，返回是否更新。
-    return b < a ? a = b, true : false;
-}
-template <class T> bool chmax(T &a, const T &b)
-{
-    // 若 b 更大则更新 a，返回是否更新。
-    return a < b ? a = b, true : false;
-}
+#include "support/topic_common.hpp"
 
 class BitVec
 {
     // n 是逻辑位数，words 按低位到高位保存 64 位块。
     int n = 0;
-    vector<uint64_t> words;
+    vector<unsigned long long> words;
 
     void trim()
     {
         // 清除最高字中超出逻辑长度的位。
         if (n % 64)
         {
-            words.back() &= (uint64_t{1} << (n % 64)) - 1;
+            words.back() &= (1ULL << (n % 64)) - 1;
         }
     }
 
@@ -53,7 +40,7 @@ class BitVec
         assert(0 <= x && x < n); // 调试检查，可删
         if (value)
         {
-            words[x / 64] |= uint64_t{1} << (x % 64);
+            words[x / 64] |= 1ULL << (x % 64);
         }
         else
         {
@@ -65,13 +52,13 @@ class BitVec
     {
         // x 是位下标；把该位清零。
         assert(0 <= x && x < n); // 调试检查，可删
-        words[x / 64] &= ~(uint64_t{1} << (x % 64));
+        words[x / 64] &= ~(1ULL << (x % 64));
     }
 
     void setAll()
     {
         // 把全部有效位设为一。
-        ranges::fill(words, ~uint64_t{});
+        ranges::fill(words, ~0ULL);
         if (!words.empty())
         {
             trim();
@@ -87,12 +74,12 @@ class BitVec
     int count() const
     {
         // 返回一的个数。
-        int result = 0;
+        int res = 0;
         for (auto word : words)
         {
-            result += popcount(word);
+            res += popcount(word);
         }
-        return result;
+        return res;
     }
 
     BitVec &operator|=(const BitVec &other)
@@ -140,7 +127,7 @@ class BitVec
         int block = shift / 64, offset = shift % 64;
         for (int i = (int)words.size() - 1; i >= 0; --i)
         {
-            uint64_t value = i >= block ? words[i - block] << offset : 0;
+            unsigned long long value = i >= block ? words[i - block] << offset : 0;
             if (offset && i > block)
             {
                 value |= words[i - block - 1] >> (64 - offset);
@@ -163,7 +150,7 @@ class BitVec
         int block = shift / 64, offset = shift % 64;
         for (int i = 0; i < (int)words.size(); ++i)
         {
-            uint64_t value = i + block < (int)words.size() ? words[i + block] >> offset : 0;
+            unsigned long long value = i + block < (int)words.size() ? words[i + block] >> offset : 0;
             if (offset && i + block + 1 < (int)words.size())
             {
                 value |= words[i + block + 1] << (64 - offset);

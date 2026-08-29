@@ -5,7 +5,7 @@ using namespace std;
 #define int long long
 
 // 知识点 11.3.012：三角形四心（内心、外心、垂心、费马点）。
-namespace triangle_fermat
+namespace triFermat
 {
 using Real = long double;
 
@@ -153,7 +153,7 @@ optional<Point> fermat(Point a, Point b, Point c)
     auto e = a + rot(c - a, pi / 3);
     return lineIsect(c, d - c, b, e - b);
 }
-} // 命名空间 triangle_fermat
+} // 命名空间 triFermat
 
 // 知识点 14.1.015：把部分完全图边染色扩展成完整 1-因子分解。
 namespace factor_ext

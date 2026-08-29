@@ -2,20 +2,7 @@
 using namespace std;
 #define int long long
 
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
-
-template <class T> bool chmin(T &a, const T &b)
-{
-    // 若 b 更小则以 b 更新 a；返回是否发生更新。
-    return b < a ? a = b, true : false;
-}
-template <class T> bool chmax(T &a, const T &b)
-{
-    // 若 b 更大则以 b 更新 a；返回是否发生更新。
-    return a < b ? a = b, true : false;
-}
+#include "../topic_common.hpp"
 
 class KthOffline
 {
@@ -26,8 +13,8 @@ class KthOffline
     };
 
     // values 是去重升序值域，rank[i] 是原数组第 i 项的值域编号。
-    // bit 在当前分治层统计左半值域中各位置的出现次数，answer 按查询编号保存第 k 小。
-    vector<int> values, rank, bit, answer;
+    // bit 在当前分治层统计左半值域中各位置的出现次数，ans 按查询编号保存第 k 小。
+    vector<int> values, rank, bit, ans;
 
     void add(int x, int value)
     {
@@ -41,12 +28,12 @@ class KthOffline
     int prefixSum(int x) const
     {
         // 返回 Fenwick 中半开前缀 [0,x) 的计数。
-        int result = 0;
+        int res = 0;
         for (; x > 0; x -= x & -x)
         {
-            result += bit[x];
+            res += bit[x];
         }
-        return result;
+        return res;
     }
 
     void solve(int low, int high, vector<int> positions, vector<Query> queries)
@@ -60,7 +47,7 @@ class KthOffline
         {
             for (auto query : queries)
             {
-                answer[query.id] = values[low];
+                ans[query.id] = values[low];
             }
             return;
         }
@@ -121,8 +108,8 @@ class KthOffline
             queries.push_back({left, right, kth, id});
         }
         bit.assign(a.size() + 1, 0);
-        answer.resize(queries.size());
+        ans.resize(queries.size());
         solve(0, values.size(), move(positions), move(queries));
-        return answer;
+        return ans;
     }
 };

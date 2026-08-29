@@ -221,7 +221,7 @@ using DPoly = vector<int>;
 // 公共 Z/NTT 固定模数，不适用于这里的运行时素数；次数至多百级，故保留朴素运算。
 // p 是当前模数，state 是确定性随机状态；公开入口会重置二者，因此本实现不可重入。
 int p;
-uint64_t state;
+unsigned long long state;
 
 int norm(int x)
 {
@@ -382,7 +382,7 @@ DPoly powMod(DPoly a, int e, const DPoly &m)
     return r;
 }
 
-uint64_t rnd()
+unsigned long long rnd()
 {
     // 无参数；返回确定性 xorshift 伪随机数并更新 state。
     state ^= state << 7;
@@ -516,7 +516,7 @@ struct DynFactor
 };
 
 vector<DynFactor> factorPrime(vector<int> f, int p,
-                                  uint64_t seed = 88172645463325252ULL)
+                                  unsigned long long seed = 88172645463325252ULL)
 {
     // f 是低次在前系数，p 是素数模数；返回 F_p 上的首一不可约分解及重数。
     assert(p >= 2); // 调试检查，可删。

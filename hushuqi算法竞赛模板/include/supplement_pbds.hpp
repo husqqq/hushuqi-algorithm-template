@@ -30,13 +30,13 @@ array<int, 2> rankInfo(const vector<int> &a, int x)
 }
 
 // 知识点 3.9.002：PBDS priority_queue 的五种策略标签。
-namespace pbds_heap_policy
+namespace pbdsHeap
 {
 using namespace __gnu_pbds;
 
 template <class T> using BinaryHeap = __gnu_pbds::priority_queue<T, less<T>, binary_heap_tag>;
 template <class T> using BinomialHeap = __gnu_pbds::priority_queue<T, less<T>, binomial_heap_tag>;
-template <class T> using RcBinomialHeap = __gnu_pbds::priority_queue<T, less<T>, rc_binomial_heap_tag>;
+template <class T> using RcBinHeap = __gnu_pbds::priority_queue<T, less<T>, rc_binomial_heap_tag>;
 template <class T> using PairingHeap = __gnu_pbds::priority_queue<T, less<T>, pairing_heap_tag>;
 template <class T> using ThinHeap = __gnu_pbds::priority_queue<T, less<T>, thin_heap_tag>;
 
@@ -53,7 +53,7 @@ int heapTop(const vector<int> &a)
 }
 
 // 知识点 3.9.003：PBDS 堆的点迭代器、modify、erase 与 join。
-namespace pbds_mutable_heap
+namespace pbdsMutHeap
 {
 using namespace __gnu_pbds;
 
@@ -74,7 +74,7 @@ int editHeap()
 }
 
 // 知识点 3.9.004：PBDS 堆、STL 堆与线段树的选型边界。
-namespace pbds_heap_compare
+namespace pbdsHeapCmp
 {
 using namespace __gnu_pbds;
 
@@ -95,7 +95,7 @@ array<int, 2> compareHeap(const vector<int> &a)
 }
 
 // 知识点 3.9.005：PBDS tree 的三种底层平衡策略。
-namespace pbds_tree_policy
+namespace pbdsTree
 {
 using namespace __gnu_pbds;
 
@@ -120,7 +120,7 @@ array<int, 3> treeSizes(const vector<int> &a)
 }
 
 // 知识点 3.9.006：PBDS tree 的 set/map、split 与 join。
-namespace pbds_split_join
+namespace pbdsSplit
 {
 using namespace __gnu_pbds;
 
@@ -140,7 +140,7 @@ void joinOrdered(Map &a, Map &b)
 }
 
 // 知识点 3.9.009：自定义 Node_Update、metadata_type 与节点迭代器。
-namespace pbds_metadata
+namespace pbdsMeta
 {
 using namespace __gnu_pbds;
 
@@ -181,7 +181,7 @@ int rootSize(const vector<int> &a)
 }
 
 // 知识点 3.9.010：用自定义子树和回答键值前缀和。
-namespace pbds_subtree_sum
+namespace pbdsSubSum
 {
 using namespace __gnu_pbds;
 

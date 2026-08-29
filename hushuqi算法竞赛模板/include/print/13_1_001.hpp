@@ -4,31 +4,7 @@
 using namespace std;
 #define int long long
 
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
-
-template<class T>
-bool chmin(T &a, const T &b)
-{
-    if (b < a)
-    {
-        a = b;
-        return true;
-    }
-    return false;
-}
-
-template<class T>
-bool chmax(T &a, const T &b)
-{
-    if (a < b)
-    {
-        a = b;
-        return true;
-    }
-    return false;
-}
+#include "support/topic_common.hpp"
 
 bool bashWin(long long n, long long m)
 {

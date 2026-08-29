@@ -100,6 +100,7 @@ struct NTT
 
 // LC_GENERATOR_CH14_ONLY_BEGIN
 #undef int
+// 固定 32 位 Montgomery 模运算内核；约减、移位和槽布局依赖该位宽。
 template <uint32_t mod, uint32_t primitive> struct StaticNTT
 {
     static constexpr int level = countr_zero(mod - 1);

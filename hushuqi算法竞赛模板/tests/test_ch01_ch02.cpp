@@ -23,7 +23,7 @@ void testBase()
     }
     assert((split("a,,bc,", ',') == vector<string>{"a", "", "bc", ""}));
 
-    DynamicBitset a(130), b(130);
+    DynBitset a(130), b(130);
     for (auto p : {0LL, 63LL, 64LL, 129LL})
     {
         a.set(p);

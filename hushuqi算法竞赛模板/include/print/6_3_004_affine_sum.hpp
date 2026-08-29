@@ -34,7 +34,7 @@ vector<long long> treeAffRoots(const vector<long long> &value,
         }
     }
     assert((int)order.size() == n);
-    vector<long long> down(n), answer(n);
+    vector<long long> down(n), ans(n);
     for (int i = n - 1; i >= 0; i--)
     {
         int u = order[i];
@@ -46,16 +46,16 @@ vector<long long> treeAffRoots(const vector<long long> &value,
             size[u] += size[v];
         }
     }
-    answer[0] = down[0];
+    ans[0] = down[0];
     for (int i = 1; i < n; i++)
     {
         int v = order[i], u = parent[v];
         auto e = edges[parEdge[v]];
         long long child = (e.a * down[v] + e.b * size[v]) % P;
-        long long outside = (answer[u] - child + P) % P;
-        answer[v] = (down[v] + e.a * outside + e.b * (n - size[v])) % P;
+        long long out = (ans[u] - child + P) % P;
+        ans[v] = (down[v] + e.a * out + e.b * (n - size[v])) % P;
     }
-    return answer;
+    return ans;
 }
 
 template <long long P> class DynTreeAff

@@ -72,6 +72,8 @@ def write_problem(entry: dict[str, object]) -> None:
     has_main = (destination / "main.cpp").exists()
     if entry.get("pending_template"):
         status = "QOJ 候选 template.hpp + 适配入口，待批准写入正式模板"
+    elif str(entry["label"]) == "EX1" and has_main:
+        status = "已补高性能本地候选，尚待 QOJ 目标机验证"
     elif has_main:
         status = "main.cpp 已按 QOJ 题面适配输入输出"
     elif str(entry["label"]) == "46":
@@ -86,7 +88,13 @@ def write_problem(entry: dict[str, object]) -> None:
     )
     if entry.get("note"):
         readme += f"- 备注：{entry['note']}\n"
-    (destination / "README.md").write_text(readme, encoding="utf-8", newline="\n")
+    readme_path = destination / "README.md"
+    marker = "\n## 做法\n"
+    if str(entry["label"]) == "EX1" and readme_path.exists():
+        old_readme = readme_path.read_text(encoding="utf-8")
+        if marker in old_readme:
+            readme += marker + old_readme.split(marker, 1)[1]
+    readme_path.write_text(readme, encoding="utf-8", newline="\n")
 
 
 def write_index(problems: list[dict[str, object]]) -> None:
@@ -105,7 +113,7 @@ def write_index(problems: list[dict[str, object]]) -> None:
         "",
         f"当前共有 {ready} 道提供按 QOJ 题面适配的 `main.cpp`。",
         "不存在 `main.cpp` 的目录只提供相关算法模板，不能直接提交；46 为函数接口题，本来就不应包含 main。",
-        "EX1 按计划不做适配。其余未完成项及原因见 `未完成清单.md`。",
+        "EX1 已补高性能本地候选，尚待 QOJ 验证；其余未完成项及原因见 `未完成清单.md`。",
         "",
         "生成命令：`python qoj模板代码/tools/generate.py`",
         "",
@@ -117,6 +125,8 @@ def write_index(problems: list[dict[str, object]]) -> None:
         link = quote(name, safe="")
         if problem.get("pending_template"):
             kind = "候选 template.hpp + QOJ main.cpp"
+        elif str(problem["label"]) == "EX1" and has_main(problem):
+            kind = "高性能候选 main.cpp + template.hpp"
         else:
             kind = "QOJ main.cpp + template.hpp" if has_main(problem) else ("函数接口 template.hpp" if str(problem["label"]) == "46" else "仅 template.hpp")
         topics = ", ".join(str(topic) for topic in problem.get("topics", [])) or "-"

@@ -84,7 +84,8 @@ signed main()
     auto z = convolution(x, y);
     for (int i = 0; i < (int)z.size(); i++)
     {
-        assert(llroundl(z[i]) == want[i].val() - (want[i].val() > mod / 2 ? mod : 0));
+        long long w = (long long)want[i].val();
+        assert(llroundl(z[i]) == w - (w > mod / 2 ? mod : 0));
     }
 
     assert((convMod({-1, 2}, {3, -4}, 5) == vector<long long>{2, 0, 2}));

@@ -65,7 +65,7 @@ template <int LOG = 30> struct Wavelet
         // left、right 是半开区间端点，rank 从 0 开始；返回第 rank 小的原值。
         assert(0 <= left && left < right && right <= size); // 调试检查，可删
         assert(0 <= rank && rank < right - left); // 调试检查，可删
-        int answer = 0;
+        int ans = 0;
         for (int bit = LOG - 1; bit >= 0; --bit)
         {
             int onesLeft = prefixOne[bit][left];
@@ -78,13 +78,13 @@ template <int LOG = 30> struct Wavelet
             }
             else
             {
-                answer |= 1LL << bit;
+                ans |= 1LL << bit;
                 rank -= zeros;
                 left = middle[bit] + onesLeft;
                 right = middle[bit] + onesR;
             }
         }
-        return answer;
+        return ans;
     }
 
     pair<int, int> countSumLT(int left, int right, int hi) const
@@ -214,7 +214,7 @@ template <int LOG = 30> struct KthWavelet
         // left、right 是半开区间端点，rank 从 0 开始；返回第 rank 小的原值。
         assert(0 <= left && left < right && right <= size); // 调试检查，可删
         assert(0 <= rank && rank < right - left); // 调试检查，可删
-        int answer = 0;
+        int ans = 0;
         for (int bit = LOG - 1; bit >= 0; --bit)
         {
             int onesLeft = prefixOne[bit][left];
@@ -227,12 +227,12 @@ template <int LOG = 30> struct KthWavelet
             }
             else
             {
-                answer |= 1LL << bit;
+                ans |= 1LL << bit;
                 rank -= zeros;
                 left = middle[bit] + onesLeft;
                 right = middle[bit] + onesR;
             }
         }
-        return answer;
+        return ans;
     }
 };

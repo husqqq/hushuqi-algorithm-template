@@ -4,30 +4,7 @@
 using namespace std;
 #define int long long
 
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
-
-template <class T> bool chmin(T &a, const T &b)
-{
-    // a 是待更新值，b 是候选值；若 a 变小则返回 true。
-    if (b >= a)
-    {
-        return false;
-    }
-    a = b;
-    return true;
-}
-template <class T> bool chmax(T &a, const T &b)
-{
-    // a 是待更新值，b 是候选值；若 a 变大则返回 true。
-    if (a >= b)
-    {
-        return false;
-    }
-    a = b;
-    return true;
-}
+#include "support/topic_common.hpp"
 
 struct HashValue
 {
@@ -217,24 +194,24 @@ struct StrHash
 
 struct ShortHash
 {
-    static constexpr uint64_t M = (1ULL << 61) - 1;
+    static constexpr unsigned long long M = (1ULL << 61) - 1;
     // B 从 [M / 2, M - 2] 中预先选定；固定常数避免现场再写随机设备。
-    static constexpr uint64_t B = 1234567890123456789ULL;
-    inline static vector<uint64_t> p{1}; // p[i] 是 B 的 i 次幂。
-    vector<uint64_t> h;                  // h[i] 是原串前 i 个字符的哈希。
+    static constexpr unsigned long long B = 1234567890123456789ULL;
+    inline static vector<unsigned long long> p{1}; // p[i] 是 B 的 i 次幂。
+    vector<unsigned long long> h;                  // h[i] 是原串前 i 个字符的哈希。
 
-    static uint64_t red(uint64_t x)
+    static unsigned long long red(unsigned long long x)
     {
         // x 小于 2M；返回 x 模 M 的规范代表元。
         x = (x & M) + (x >> 61);
         return x >= M ? x - M : x;
     }
 
-    static uint64_t mul(uint64_t a, uint64_t b)
+    static unsigned long long mul(unsigned long long a, unsigned long long b)
     {
         // a、b 是模 M 代表元；返回二者乘积模 M。
         __uint128_t x = (__uint128_t)a * b;
-        return red((uint64_t)(x >> 61) + (uint64_t)(x & M));
+        return red((unsigned long long)(x >> 61) + (unsigned long long)(x & M));
     }
 
     ShortHash(string_view s) : h(s.size() + 1)
@@ -250,7 +227,7 @@ struct ShortHash
         }
     }
 
-    uint64_t get(int l, int r) const
+    unsigned long long get(int l, int r) const
     {
         // l、r 是原串下标；返回半开子串 [l,r) 的哈希。
         return red(h[r] + M - mul(h[l], p[r - l]));

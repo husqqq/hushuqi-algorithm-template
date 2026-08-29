@@ -1,17 +1,118 @@
+// Generated from hushuqi算法竞赛模板. Do not edit by hand.
+
+// QOJ contest 3936: 80 Convex Checker
+
+
+
+
+
 #include <bits/stdc++.h>
 using namespace std;
+#define int long long
 
-using i64 = long long;
-using i128 = __int128_t;
+using Real = long double;
+constexpr Real eps = 1E-12L;
 
-struct Point
+template <class T> int sgn(T x)
 {
-    i64 x;
-    i64 y;
+    return (x > 0) - (x < 0);
+}
+
+int sgn(Real x)
+{
+    // x 是待判断的浮点数；返回 -1、0、1 表示负、近似零、正。
+    Real t = eps * max<Real>(1, fabsl(x));
+    return (x > t) - (x < -t);
+}
+
+template <class T> bool eq(T x, T y)
+{
+    return x == y;
+}
+
+bool eq(Real x, Real y)
+{
+    // x、y 是两个浮点数；使用相对误差判断是否近似相等。
+    return fabsl(x - y) <= eps * max<Real>(1, max(fabsl(x), fabsl(y)));
+}
+
+
+template <class T> struct Point
+{
+    T x;
+    T y;
+
+    Point(const T &x = 0, const T &y = 0) : x(x), y(y)
+    {
+    }
+
+    template <class U> explicit operator Point<U>() const
+    {
+        return Point<U>((U)x, (U)y);
+    }
+
+    Point &operator+=(const Point &p)
+    {
+        x += p.x;
+        y += p.y;
+        return *this;
+    }
+
+    Point &operator-=(const Point &p)
+    {
+        x -= p.x;
+        y -= p.y;
+        return *this;
+    }
+
+    Point &operator*=(const T &k)
+    {
+        x *= k;
+        y *= k;
+        return *this;
+    }
+
+    Point &operator/=(const T &k)
+    {
+        assert(k != T(0)); // 调试检查，可删。
+        x /= k;
+        y /= k;
+        return *this;
+    }
+
+    Point operator-() const
+    {
+        return {-x, -y};
+    }
+
+    friend Point operator+(Point a, const Point &b)
+    {
+        return a += b;
+    }
+
+    friend Point operator-(Point a, const Point &b)
+    {
+        return a -= b;
+    }
+
+    friend Point operator*(Point a, const T &k)
+    {
+        return a *= k;
+    }
+
+    friend Point operator*(const T &k, Point a)
+    {
+        return a *= k;
+    }
+
+    friend Point operator/(Point a, const T &k)
+    {
+        return a /= k;
+    }
 
     friend bool operator<(const Point &a, const Point &b)
     {
-        return tie(a.x, a.y) < tie(b.x, b.y);
+        return a.x != b.x ? a.x < b.x : a.y < b.y;
     }
 
     friend bool operator==(const Point &a, const Point &b)
@@ -20,91 +121,126 @@ struct Point
     }
 };
 
-i128 cross(const Point &a, const Point &b, const Point &c)
+using P = Point<Real>;
+
+template <class T> bool eq(Point<T> a, Point<T> b)
 {
-    return (i128)(b.x - a.x) * (c.y - a.y) -
-           (i128)(b.y - a.y) * (c.x - a.x);
+    // a、b 是两个点；整数精确比较，浮点按统一误差比较。
+    return eq(a.x, b.x) && eq(a.y, b.y);
 }
 
-vector<Point> convexHull(vector<Point> points)
-{
-    // 与正式板子 11.3.001 一致：Andrew 严格凸包，删除共线中间点。
-    sort(points.begin(), points.end());
-    points.erase(unique(points.begin(), points.end()), points.end());
-    if (points.size() <= 1)
-    {
-        return points;
-    }
 
-    vector<Point> hull;
-    for (int pass = 0; pass < 2; pass++)
+template <class T> T dot(const Point<T> &a, const Point<T> &b)
+{
+    return a.x * b.x + a.y * b.y;
+}
+
+template <class T> T cross(const Point<T> &a, const Point<T> &b)
+{
+    return a.x * b.y - a.y * b.x;
+}
+
+template <class T> T cross(const Point<T> &a, const Point<T> &b, const Point<T> &c)
+{
+    return cross(b - a, c - a);
+}
+
+template <class T> T square(const Point<T> &a)
+{
+    return dot(a, a);
+}
+
+template <class T> Real abs(const Point<T> &a)
+{
+    return sqrtl((Real)square(a));
+}
+
+template <class T> T norm(const Point<T> &a)
+{
+    return square(a);
+}
+
+template <class T> Real angle(const Point<T> &a, const Point<T> &b)
+{
+    assert(a.x != T{} || a.y != T{}); // 调试检查，可删。
+    assert(b.x != T{} || b.y != T{}); // 调试检查，可删。
+    return atan2l(cross(a, b), dot(a, b));
+}
+
+template <class T> Point<Real> rotate(const Point<T> &a, Real t)
+{
+    return {a.x * cosl(t) - a.y * sinl(t), a.x * sinl(t) + a.y * cosl(t)};
+}
+
+template <class T> Point<T> rot(const Point<T> &a)
+{
+    return {-a.y, a.x};
+}
+
+
+template <class T> vector<Point<T>> hull(vector<Point<T>> a)
+{
+    sort(a.begin(), a.end());
+    a.erase(unique(a.begin(), a.end()), a.end());
+    if (a.size() <= 1)
     {
-        int base = (int)hull.size();
-        for (const Point &point : points)
+        return a;
+    }
+    vector<Point<T>> h;
+    for (int t = 0; t < 2; t++)
+    {
+        int z = (int)h.size();
+        for (Point<T> p : a)
         {
-            while ((int)hull.size() >= base + 2 &&
-                   cross(hull[hull.size() - 2], hull.back(), point) <= 0)
+            while ((int)h.size() >= z + 2
+                   && sgn(cross(h.back() - h[h.size() - 2], p - h.back())) <= 0)
             {
-                hull.pop_back();
+                h.pop_back();
             }
-            hull.push_back(point);
+            h.push_back(p);
         }
-        hull.pop_back();
-        reverse(points.begin(), points.end());
+        h.pop_back();
+        reverse(a.begin(), a.end());
     }
-    return hull;
+    return h;
 }
 
-bool sameCyclicOrder(const vector<Point> &polygon,
-                     const vector<Point> &hull)
+bool sameCyclicOrder(const vector<Point<long long>> &p,
+                     const vector<Point<long long>> &h)
 {
-    int n = (int)polygon.size();
-    int start = -1;
-    for (int i = 0; i < n; i++)
+    int n = p.size();
+    for (int st = 0; st < n; st++)
     {
-        if (polygon[i] == hull[0])
+        if (p[st] != h[0]) continue;
+        bool ok = true;
+        for (int i = 0; i < n; i++)
         {
-            start = i;
-            break;
+            if (p[(st + i) % n] != h[i])
+            {
+                ok = false;
+                break;
+            }
         }
+        if (ok) return true;
     }
-    if (start == -1)
-    {
-        return false;
-    }
-
-    for (int i = 0; i < n; i++)
-    {
-        if (!(polygon[(start + i) % n] == hull[i]))
-        {
-            return false;
-        }
-    }
-    return true;
+    return false;
 }
 
-int main()
+signed main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-
     int n;
     cin >> n;
-    vector<Point> polygon(n);
-    for (Point &point : polygon)
+    vector<Point<long long>> p(n);
+    for (auto &x : p) cin >> x.x >> x.y;
+    auto h = hull(p);
+    bool ok = h.size() == p.size() && sameCyclicOrder(p, h);
+    if (!ok)
     {
-        cin >> point.x >> point.y;
+        reverse(p.begin(), p.end());
+        h = hull(p);
+        ok = h.size() == p.size() && sameCyclicOrder(p, h);
     }
-
-    vector<Point> hull = convexHull(polygon);
-    bool convex = (int)hull.size() == n;
-
-    if (convex && !sameCyclicOrder(polygon, hull))
-    {
-        reverse(polygon.begin(), polygon.end());
-        convex = sameCyclicOrder(polygon, hull);
-    }
-
-    cout << (convex ? "Yes" : "No") << '\n';
-    return 0;
+    cout << (ok ? "Yes" : "No") << '\n';
 }

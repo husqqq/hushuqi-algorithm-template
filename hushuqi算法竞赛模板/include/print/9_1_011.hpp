@@ -33,9 +33,9 @@ inline vector<vector<long long>> adjugateP(vector<vector<long long>> a, long lon
         {
             if (b & 1)
             {
-                ans = linearMulMod(ans, x, mod);
+                ans = mulMod(ans, x, mod);
             }
-            x = linearMulMod(x, x, mod);
+            x = mulMod(x, x, mod);
             b >>= 1;
         }
         return ans;
@@ -60,7 +60,7 @@ inline vector<vector<long long>> adjugateP(vector<vector<long long>> a, long lon
             long long z = power(m[rk][col], mod - 2);
             for (int j = 0; j < n; j++)
             {
-                m[rk][j] = linearMulMod(m[rk][j], z, mod);
+                m[rk][j] = mulMod(m[rk][j], z, mod);
             }
             for (int i = 0; i < n; i++)
             {
@@ -71,7 +71,7 @@ inline vector<vector<long long>> adjugateP(vector<vector<long long>> a, long lon
                 long long q = m[i][col];
                 for (int j = 0; j < n; j++)
                 {
-                    m[i][j] = (m[i][j] - linearMulMod(q, m[rk][j], mod)) % mod;
+                    m[i][j] = (m[i][j] - mulMod(q, m[rk][j], mod)) % mod;
                     if (m[i][j] < 0)
                     {
                         m[i][j] += mod;
@@ -92,7 +92,7 @@ inline vector<vector<long long>> adjugateP(vector<vector<long long>> a, long lon
         {
             for (int j = 0; j < n; j++)
             {
-                ans[i][j] = linearMulMod(det, (*inv)[i][j], mod);
+                ans[i][j] = mulMod(det, (*inv)[i][j], mod);
             }
         }
         return ans;
@@ -162,13 +162,13 @@ inline vector<vector<long long>> adjugateP(vector<vector<long long>> a, long lon
     {
         cof = mod - cof;
     }
-    long long scale = linearMulMod(cof, power(x[i0], mod - 2), mod);
-    scale = linearMulMod(scale, power(y[j0], mod - 2), mod);
+    long long scale = mulMod(cof, power(x[i0], mod - 2), mod);
+    scale = mulMod(scale, power(y[j0], mod - 2), mod);
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < n; j++)
         {
-            ans[i][j] = linearMulMod(linearMulMod(scale, x[i], mod), y[j], mod);
+            ans[i][j] = mulMod(mulMod(scale, x[i], mod), y[j], mod);
         }
     }
     return ans;

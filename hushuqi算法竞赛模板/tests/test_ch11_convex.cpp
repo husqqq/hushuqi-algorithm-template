@@ -35,6 +35,10 @@ signed main()
     assert((hullTangents(sq, {0.5L, 0.5L}) == pair<int, int>{-1, -1}));
     assert(eq(diameter2(vector<P>{{0, 0}, {3, 0}, {3, 4}, {0, 4}}), 25));
     vector<Point<long long>> rect{{0, 0}, {3, 0}, {3, 4}, {0, 4}};
+    vector<Point<long long>> weak{{0, 0}, {2, 0}, {4, 0}, {4, 3}, {4, 4}, {0, 4}};
+    vector<Point<long long>> line{{0, 0}, {0, 2}, {0, 4}, {0, 6}};
+    assert(weakDiam2(weak) == 32);
+    assert(weakDiam2(line) == 36);
     auto fp = farthestPair(rect);
     assert(norm(rect[fp.first] - rect[fp.second]) == 25);
     vector<Point<long long>> same{{1, 2}, {1, 2}, {1, 2}};

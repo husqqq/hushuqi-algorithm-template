@@ -2,20 +2,7 @@
 using namespace std;
 #define int long long
 
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
-
-template <class T> bool chmin(T &a, const T &b)
-{
-    // 参数 a 表示 按节点编号给出的初始权值；b 表示 第二个输入序列、矩阵或操作数；把指定区间内大于给定上界的值降低到该上界，无返回值。
-    return b < a ? a = b, true : false;
-}
-template <class T> bool chmax(T &a, const T &b)
-{
-    // 参数 a 表示 按节点编号给出的初始权值；b 表示 第二个输入序列、矩阵或操作数；把指定位置或区间内小于给定下界的值提高到该下界，无返回值。
-    return a < b ? a = b, true : false;
-}
+#include "support/topic_common.hpp"
 
 class DsuOnTree
 {
@@ -60,19 +47,19 @@ class DsuOnTree
     }
 
     template <class Add, class Remove, class Answer>
-    void dfs(int u, bool keep, Add &&add, Remove &&remove, Answer &&answer)
+    void dfs(int u, bool keep, Add &&add, Remove &&remove, Answer &&ans)
     {
-        // 参数 u 表示 当前树节点；keep 表示 是否保留当前子树贡献；add 表示 定义状态加法或加入贡献的回调；remove 表示 撤销一个元素贡献的回调；answer 表示 由调用者提供的答案数组；处理 u 子树；按 keep 决定是否保留频率贡献，并把该点答案写入 answer。
+        // 参数 u 表示 当前树节点；keep 表示 是否保留当前子树贡献；add 表示 定义状态加法或加入贡献的回调；remove 表示 撤销一个元素贡献的回调；ans 表示 由调用者提供的答案数组；处理 u 子树；按 keep 决定是否保留频率贡献，并把该点答案写入 ans。
         for (int v : tree[u])
         {
             if (v != parent[u] && v != heavy[u])
             {
-                dfs(v, false, add, remove, answer);
+                dfs(v, false, add, remove, ans);
             }
         }
         if (heavy[u] != -1)
         {
-            dfs(heavy[u], true, add, remove, answer);
+            dfs(heavy[u], true, add, remove, ans);
         }
         for (int v : tree[u])
         {
@@ -82,7 +69,7 @@ class DsuOnTree
             }
         }
         add(u);
-        answer(u);
+        ans(u);
         if (!keep)
         {
             visitSubtree(u, parent[u], remove);
@@ -95,12 +82,12 @@ class DsuOnTree
         // 参数 tree 表示 树的邻接表；按邻接表构造 DSU on Tree 预处理对象，无返回值。
     }
 
-    template <class Add, class Remove, class Answer> void run(Add &&add, Remove &&remove, Answer &&answer, int root = 0)
+    template <class Add, class Remove, class Answer> void run(Add &&add, Remove &&remove, Answer &&ans, int root = 0)
     {
-        // 参数 add 表示 定义状态加法或加入贡献的回调；remove 表示 撤销一个元素贡献的回调；answer 表示 由调用者提供的答案数组；root 表示 当前指定的树根；执行 DSU on Tree；用 add、remove 维护贡献并用 answer 写回每点答案。
+        // 参数 add 表示 定义状态加法或加入贡献的回调；remove 表示 撤销一个元素贡献的回调；ans 表示 由调用者提供的答案数组；root 表示 当前指定的树根；执行 DSU on Tree；用 add、remove 维护贡献并用 ans 写回每点答案。
         assert(n > 0 && 0 <= root && root < n); // 调试检查，可删
         fill(heavy.begin(), heavy.end(), -1);
         prepare(root, -1);
-        dfs(root, false, add, remove, answer);
+        dfs(root, false, add, remove, ans);
     }
 };

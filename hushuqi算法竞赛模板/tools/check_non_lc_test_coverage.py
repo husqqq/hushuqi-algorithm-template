@@ -15,7 +15,7 @@ MAPPING = REPO / "library-checker-template-solutions" / "LC_TEMPLATE_MAPPING.tsv
 
 DOCUMENTATION_ONLY = {
     "13_3_005.hpp", "13_3_007.hpp", "14_1_010.hpp", "14_1_011.hpp",
-    "14_1_012.hpp", "14_1_013.hpp", "14_1_014.hpp",
+    "14_1_012.hpp", "14_1_013.hpp", "14_1_014.hpp", "7_1_007.hpp",
 }
 TEST_INCLUDE = re.compile(r'#include\s+"\.\./include/(?:full/|print/)?([^"/]+\.hpp)"')
 HEADER_INCLUDE = re.compile(r'#include\s+"(?:full/)?([^"/]+\.hpp)"')

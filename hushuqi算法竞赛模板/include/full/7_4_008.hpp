@@ -35,30 +35,30 @@ struct DLogHash
         return x ^ (x >> 31);
     }
 
-    void insert(uint32_t key, uint32_t val)
+    void insert(long long key, long long val)
     {
         int p = hash(key) % tab.size();
-        while (tab[p] && (uint32_t)(tab[p] >> 32) != key)
+        while (tab[p] && (tab[p] >> 32) != (unsigned long long)key)
         {
             if (++p == (int)tab.size())
             {
                 p = 0;
             }
         }
-        if (!tab[p] || val < (uint32_t)tab[p])
+        if (!tab[p] || val < (long long)(tab[p] & 0xffffffffULL))
         {
             tab[p] = ((unsigned long long)key << 32) | val;
         }
     }
 
-    int find(uint32_t key) const
+    int find(long long key) const
     {
         int p = hash(key) % tab.size();
         while (tab[p])
         {
-            if ((uint32_t)(tab[p] >> 32) == key)
+            if ((tab[p] >> 32) == (unsigned long long)key)
             {
-                return (uint32_t)tab[p];
+                return (int)(tab[p] & 0xffffffffULL);
             }
             if (++p == (int)tab.size())
             {
@@ -89,7 +89,7 @@ vector<int> batchDLog(int p, int g, const vector<int> &a)
     long long step = powMod64(g, B, p), cur = step;
     for (int x = 1; x <= lim; x++)
     {
-        tab.insert((uint32_t)cur, (uint32_t)x);
+        tab.insert(cur, x);
         cur = cur * step % p;
     }
     long long gy = 1;
@@ -103,7 +103,7 @@ vector<int> batchDLog(int p, int g, const vector<int> &a)
                 ans[i] = 0;
                 continue;
             }
-            int x = tab.find((uint32_t)(a[i] * gy % p));
+            int x = tab.find(a[i] * gy % p);
             if (x != -1)
             {
                 int e = (x * B - y) % (p - 1);

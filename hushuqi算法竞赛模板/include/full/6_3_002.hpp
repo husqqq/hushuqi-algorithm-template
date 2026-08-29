@@ -2,20 +2,7 @@
 using namespace std;
 #define int long long
 
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
-
-template <class T> bool chmin(T &a, const T &b)
-{
-    // 参数 a 表示 按节点编号给出的初始权值；b 表示 第二个输入序列、矩阵或操作数；把指定区间内大于给定上界的值降低到该上界，无返回值。
-    return b < a ? a = b, true : false;
-}
-template <class T> bool chmax(T &a, const T &b)
-{
-    // 参数 a 表示 按节点编号给出的初始权值；b 表示 第二个输入序列、矩阵或操作数；把指定位置或区间内小于给定下界的值提高到该下界，无返回值。
-    return a < b ? a = b, true : false;
-}
+#include "../topic_common.hpp"
 
 class RerootHLD
 {
@@ -93,22 +80,22 @@ class RerootHLD
     vector<pair<int, int>> pathSegments(int u, int v) const
     {
         // 参数 u 表示 当前树节点；v 表示 与 u 相邻或位于同一路径的节点；返回树路径对应的 DFS 序区间，并保留遍历方向。
-        vector<pair<int, int>> result;
+        vector<pair<int, int>> res;
         while (head[u] != head[v])
         {
             if (depth[head[u]] < depth[head[v]])
             {
                 swap(u, v);
             }
-            result.push_back({position[head[u]], position[u] + 1});
+            res.push_back({position[head[u]], position[u] + 1});
             u = parent[head[u]];
         }
         if (depth[u] > depth[v])
         {
             swap(u, v);
         }
-        result.push_back({position[u], position[v] + 1});
-        return result;
+        res.push_back({position[u], position[v] + 1});
+        return res;
     }
 
     int lca(int u, int v) const
@@ -145,15 +132,15 @@ class RerootHLD
             return {{position[u], position[u] + size[u]}};
         }
         int child = childOnPath(u, root);
-        vector<pair<int, int>> result;
+        vector<pair<int, int>> res;
         if (position[child])
         {
-            result.push_back({0, position[child]});
+            res.push_back({0, position[child]});
         }
         if (position[child] + size[child] < n)
         {
-            result.push_back({position[child] + size[child], n});
+            res.push_back({position[child] + size[child], n});
         }
-        return result;
+        return res;
     }
 };

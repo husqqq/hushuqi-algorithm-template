@@ -3,7 +3,7 @@
 
 unsigned long long pollard(unsigned long long n)
 {
-    // n 是大于 1 的合数；返回 n 的一个非平凡因子。
+    // n 是大于 1 的合数；用 Brent 分块乘积返回一个非平凡因子。
     if (n % 2 == 0)
     {
         return 2;
@@ -12,22 +12,47 @@ unsigned long long pollard(unsigned long long n)
     while (true)
     {
         auto c = rng() % (n - 1) + 1;
-        auto x = rng() % n;
-        auto y = x;
-        auto d = 1ULL;
+        auto y = rng() % (n - 1) + 1;
         auto f = [&](unsigned long long z)
         {
             return (unsigned long long)(((unsigned __int128)mul64(z, z, n) + c) % n);
         };
-        while (d == 1)
+        unsigned long long x = 0, ys = 0, g = 1, q = 1, r = 1;
+        constexpr unsigned long long m = 128;
+        while (g == 1)
         {
-            x = f(x);
-            y = f(f(y));
-            d = gcd(x > y ? x - y : y - x, n);
+            x = y;
+            q = 1;
+            for (unsigned long long i = 0; i < r; i++)
+            {
+                y = f(y);
+            }
+            for (unsigned long long k = 0; k < r && g == 1; k += m)
+            {
+                ys = y;
+                auto lim = min(m, r - k);
+                for (unsigned long long i = 0; i < lim; i++)
+                {
+                    y = f(y);
+                    auto d = x > y ? x - y : y - x;
+                    q = mul64(q, d, n);
+                }
+                g = gcd(q, n);
+            }
+            r <<= 1;
         }
-        if (d != n)
+        if (g == n)
         {
-            return d;
+            do
+            {
+                ys = f(ys);
+                auto d = x > ys ? x - ys : ys - x;
+                g = gcd(d, n);
+            } while (g == 1);
+        }
+        if (g != n)
+        {
+            return g;
         }
     }
 }

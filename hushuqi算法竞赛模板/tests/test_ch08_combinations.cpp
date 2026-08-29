@@ -24,7 +24,7 @@ signed main()
     {
         return k < 0 || k > n ? 0LL : a[n][k];
     };
-    assert(vandermonde(2, 3, 2, c) == c(5, 2));
+    assert(vandermonde(2, 3, 2, c) == 10);
 
     assert(roots_unity::rootFilter({-1, 2, 3, 4}, 2, 0) == 2);
     assert(roots_unity::rootFilter({-1, 2, 3, 4}, 2, 1) == 6);

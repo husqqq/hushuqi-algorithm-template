@@ -1,6 +1,6 @@
 #pragma once
 
-#include "7_1_007.hpp"
+#include "1_1_008.hpp"
 
 constexpr int NTT_LIM = 1 << 23;
 
@@ -77,7 +77,7 @@ class FastNTT
         assert(n > 0 && has_single_bit((unsigned long long)n) && n <= NTT_LIM); // 调试检查，可删。
         init();
         int z = n;
-        int h = countr_zero((uint32_t)z);
+        int h = countr_zero((unsigned long long)z);
         int len = 0;
         while (len < h)
         {
@@ -97,7 +97,7 @@ class FastNTT
                     }
                     if (s + 1 != (1 << len))
                     {
-                        rot = (uint64_t)rot * rate2[countr_zero((uint32_t)~s)] % mod;
+                        rot = (uint64_t)rot * rate2[countr_zero((unsigned long long)~s)] % mod;
                     }
                 }
                 len++;
@@ -128,7 +128,7 @@ class FastNTT
                     }
                     if (s + 1 != (1 << len))
                     {
-                        rot = (uint64_t)rot * rate3[countr_zero((uint32_t)~s)] % mod;
+                        rot = (uint64_t)rot * rate3[countr_zero((unsigned long long)~s)] % mod;
                     }
                 }
                 len += 2;
@@ -148,7 +148,7 @@ class FastNTT
         assert(n > 0 && has_single_bit((unsigned long long)n) && n <= NTT_LIM); // 调试检查，可删。
         init();
         int z = n;
-        int h = countr_zero((uint32_t)z);
+        int h = countr_zero((unsigned long long)z);
         int len = h;
         while (len)
         {
@@ -168,7 +168,7 @@ class FastNTT
                     }
                     if (s + 1 != (1 << (len - 1)))
                     {
-                        rot = (uint64_t)rot * irate2[countr_zero((uint32_t)~s)] % mod;
+                        rot = (uint64_t)rot * irate2[countr_zero((unsigned long long)~s)] % mod;
                     }
                 }
                 len--;
@@ -197,7 +197,7 @@ class FastNTT
                     }
                     if (s + 1 != (1 << (len - 2)))
                     {
-                        rot = (uint64_t)rot * irate3[countr_zero((uint32_t)~s)] % mod;
+                        rot = (uint64_t)rot * irate3[countr_zero((unsigned long long)~s)] % mod;
                     }
                 }
                 len -= 2;

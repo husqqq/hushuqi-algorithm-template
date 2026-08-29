@@ -1,30 +1,7 @@
 #pragma once
 #include <bits/stdc++.h>
-#include "../linear_algebra_mod.hpp"
+#include "7_1_001.hpp"
 using namespace std;
-
-inline long long powerMod(long long a, long long b, long long mod)
-{
-    // a 是底数，b 是非负指数，mod 是正模数；返回模幂。
-    // 调试检查，可删。
-    assert(b >= 0 && mod > 0);
-    a %= mod;
-    if (a < 0)
-    {
-        a += mod;
-    }
-    long long ans = 1 % mod;
-    while (b)
-    {
-        if (b & 1)
-        {
-            ans = linearMulMod(ans, a, mod);
-        }
-        a = linearMulMod(a, a, mod);
-        b >>= 1;
-    }
-    return ans;
-}
 
 inline long long interpSeq(const vector<long long> &y, long long x, long long mod)
 {
@@ -45,22 +22,22 @@ inline long long interpSeq(const vector<long long> &y, long long x, long long mo
     vector<long long> fac(n, 1), ifac(n, 1), pre(n + 1, 1), suf(n + 1, 1);
     for (int i = 1; i < n; i++)
     {
-        fac[i] = linearMulMod(fac[i - 1], i, mod);
+        fac[i] = mulMod(fac[i - 1], i, mod);
     }
     ifac[n - 1] = powerMod(fac[n - 1], mod - 2, mod);
     for (int i = n - 1; i; i--)
     {
-        ifac[i - 1] = linearMulMod(ifac[i], i, mod);
+        ifac[i - 1] = mulMod(ifac[i], i, mod);
     }
     for (int i = 0; i < n; i++)
     {
         long long d = x >= i ? x - i : mod - (i - x);
-        pre[i + 1] = linearMulMod(pre[i], d, mod);
+        pre[i + 1] = mulMod(pre[i], d, mod);
     }
     for (int i = n - 1; i >= 0; i--)
     {
         long long d = x >= i ? x - i : mod - (i - x);
-        suf[i] = linearMulMod(suf[i + 1], d, mod);
+        suf[i] = mulMod(suf[i + 1], d, mod);
     }
     long long ans = 0;
     for (int i = 0; i < n; i++)
@@ -70,10 +47,10 @@ inline long long interpSeq(const vector<long long> &y, long long x, long long mo
         {
             v += mod;
         }
-        long long term = linearMulMod(v, pre[i], mod);
-        term = linearMulMod(term, suf[i + 1], mod);
-        term = linearMulMod(term, ifac[i], mod);
-        term = linearMulMod(term, ifac[n - 1 - i], mod);
+        long long term = mulMod(v, pre[i], mod);
+        term = mulMod(term, suf[i + 1], mod);
+        term = mulMod(term, ifac[i], mod);
+        term = mulMod(term, ifac[n - 1 - i], mod);
         if ((n - 1 - i) & 1)
         {
             term = term ? mod - term : 0;

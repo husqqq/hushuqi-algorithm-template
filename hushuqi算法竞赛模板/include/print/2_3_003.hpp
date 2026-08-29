@@ -2,20 +2,7 @@
 using namespace std;
 #define int long long
 
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
-
-template <class T> bool chmin(T &a, const T &b)
-{
-    // 若 b 更小则以 b 更新 a；返回是否发生更新。
-    return b < a ? a = b, true : false;
-}
-template <class T> bool chmax(T &a, const T &b)
-{
-    // 若 b 更大则以 b 更新 a；返回是否发生更新。
-    return a < b ? a = b, true : false;
-}
+#include "support/topic_common.hpp"
 
 // MoQuery[0..2] 依次是左端点、右端点与答案编号。
 using MoQuery = array<int, 3>;

@@ -4,11 +4,7 @@
 
 signed main()
 {
-#ifdef TEMPLATE_PRINT_VARIANT
-    static_assert(sizeof(Z) == sizeof(int));
-#else
     static_assert(sizeof(Z) == 4);
-#endif
     auto [q, r] = polyDivmod({1, 0, 1}, {1, 1});
     assert((q == Poly{-1, 1} && r == Poly{2}));
     assert(fpsInv({}, 0).empty());

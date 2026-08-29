@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 一键：合订 14 章 -> 生成带封面 / 目录 / 自动页码的 PDF。
+# 一键：合订第 0–15 章 -> 生成带封面 / 目录 / 自动页码的 PDF。
 # 用法： bash book/build.sh          (默认出 PDF)
 #        bash book/build.sh tex      (只出中间 .tex，快，便于排查)
 set -euo pipefail
@@ -9,12 +9,8 @@ cd "$ROOT"
 
 MD="$HERE/hushuqi算法竞赛模板-合订.md"
 
-# 1) 合订：按章号顺序拼接，并在章间补空行，避免章标题粘到上一章末行
-: > "$MD"
-for file in 0[1-9]-*.md 1[0-4]-*.md; do
-  cat "$file" >> "$MD"
-  printf '\n\n' >> "$MD"
-done
+# 1) 合订：由 UTF-8 脚本按两位章号拼接，避免不同 shell 的中文文件名差异
+python "$HERE/combine.py" "$MD" 2>&1 || python3 "$HERE/combine.py" "$MD"
 # 剔除各章「本章公共前导」冗余小节（ch01 全局前导已覆盖全书）
 python "$HERE/strip_preamble.py" "$MD" 2>&1 || python3 "$HERE/strip_preamble.py" "$MD"
 echo "combined -> $MD"
@@ -38,4 +34,5 @@ if [ "${1:-pdf}" = "tex" ]; then
 else
   "${PANDOC[@]}" --pdf-engine=xelatex -o "$HERE/hushuqi算法竞赛模板.pdf"
   echo "PDF -> $HERE/hushuqi算法竞赛模板.pdf"
+  python "$HERE/build_volumes.py" 2>&1 || python3 "$HERE/build_volumes.py"
 fi
