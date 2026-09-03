@@ -69,7 +69,12 @@
 \renewcommand{\headrulewidth}{0.4pt}
 \setlength{\headheight}{14pt}
 \usepackage{etoolbox}
-\pretocmd{\section}{\clearpage}{}{}
+% 分册可在封面后打开开关，使目录用罗马页码、正文重新从 1 编号。
+\newif\ifresetbody
+\resetbodyfalse
+\pretocmd{\section}{%
+  \clearpage
+  \ifresetbody\pagenumbering{arabic}\global\resetbodyfalse\fi}{}{}
 
 % 目录已超过一千页，默认页码盒只够三位数；扩宽后四位页码不会越过右边界。
 \makeatletter
@@ -83,3 +88,5 @@
 \newfontfamily\latinfallback{Latin Modern Roman}
 \newunicodechar{ő}{{\latinfallback ő}}
 \newunicodechar{Ő}{{\latinfallback Ő}}
+\newunicodechar{ů}{{\latinfallback ů}}
+\newunicodechar{Ů}{{\latinfallback Ů}}

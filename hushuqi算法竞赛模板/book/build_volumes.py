@@ -66,7 +66,7 @@ def strip_chapter_intro(text):
     return "".join(out)
 
 
-def cover(title, path):
+def cover(title, path, reset_body=False):
     """写入指定分册封皮。"""
     text = rf"""% 分册封面
 \begin{{titlepage}}
@@ -85,6 +85,13 @@ def cover(title, path):
 \end{{titlepage}}
 \clearpage
 """
+    if reset_body:
+        text += r"""
+% 目录使用罗马页码，正文恢复为 1；这样目录可补印到旧纸质分册。
+\pagenumbering{roman}
+% \tableofcontents 自己会调用无编号 section，故在它结束后才打开正文重置开关。
+\apptocmd{\tableofcontents}{\global\resetbodytrue}{}{}
+"""
     path.write_text(text, encoding="utf-8")
 
 
@@ -94,7 +101,7 @@ def build_one(name, files, with_toc, tmp):
     md = tmp / f"volume-{name}.md"
     md.write_text(strip_chapter_intro(strip_preamble(text)) + "\n\n", encoding="utf-8")
     cover_path = tmp / f"cover-{name}.tex"
-    cover(f"hushuqi算法竞赛模板({name})", cover_path)
+    cover(f"hushuqi算法竞赛模板({name})", cover_path, reset_body=name != "上")
     VOLUME_DIR.mkdir(exist_ok=True)
     out = VOLUME_DIR / f"hushuqi算法竞赛模板({name}).pdf"
     cmd = ["pandoc", str(md)]
@@ -112,7 +119,7 @@ def main():
     files = sorted(ROOT.glob("[0-9][0-9]-*.md"), key=lambda p: p.name)
     if len(files) != 16:
         raise SystemExit(f"expected 16 chapter files, found {len(files)}")
-    groups = [("上", files[:5], True), ("中", files[5:9], False), ("下", files[9:], False)]
+    groups = [("上", files[:5], True), ("中", files[5:9], True), ("下", files[9:], True)]
     with tempfile.TemporaryDirectory(prefix="hushuqi-volumes-") as path:
         tmp = Path(path)
         for name, part, with_toc in groups:
