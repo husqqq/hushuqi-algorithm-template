@@ -68,7 +68,7 @@ inline vector<int> dom3(vector<Point3> points)
     };
     function<void(int, int)> cdq = [&](int left, int right)
     {
-        if (right - left == 1)
+        if (right - left <= 1)
         {
             return;
         }
@@ -86,11 +86,12 @@ inline vector<int> dom3(vector<Point3> points)
             nodes[order[j]].ans += sum(nodes[order[j]].z);
             buffer[output++] = order[j++];
         }
+        auto used = i;
         while (i < middle)
         {
             buffer[output++] = order[i++];
         }
-        for (int k = left; k < middle; ++k)
+        for (int k = left; k < used; ++k)
         {
             add(nodes[order[k]].z, -nodes[order[k]].weight);
         }

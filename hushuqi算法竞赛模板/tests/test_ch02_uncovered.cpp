@@ -117,6 +117,9 @@ signed main()
     using dominance_topic::Point3;
     assert((dominance_topic::dom3(vector<Point3>{{1, 1, 1, 0}, {2, 1, 2, 1}, {1, 1, 1, 2}, {3, 3, 3, 3}})
             == vector<ll>{2, 3, 2, 4}));
+    assert((dominance_topic::dom3(vector<Point3>{{0, 3, 0, 0}, {1, 2, 1, 1}, {2, 1, 3, 2}})
+            == vector<ll>{1, 1, 1}));
+    assert(dominance_topic::dom3(vector<Point3>{}).empty());
     cascade_topic::FracCascade<int> fc({{1, 4, 9}, {0, 4, 7}, {2, 3, 8}});
     assert((fc.lowerBound(4) == vector<ll>{1, 1, 2}));
     using Rect = sweep_topic::Rectangle<ll>;
