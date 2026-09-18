@@ -8,6 +8,7 @@
 #include "../include/full/5_8_009.hpp"
 #include "../include/full/5_8_010.hpp"
 #include "../include/full/5_8_011.hpp"
+#include "../include/full/5_8_013.hpp"
 
 struct RefMaxFlow
 {
@@ -172,22 +173,29 @@ void checkCost(int n, const vector<array<long long, 4>> &edge)
 {
     SpfaCostFlow<long long> a(n);
     CostFlow<long long> b(n);
+    FastCostFlow<long long> c(n);
     RefCostFlow ref(n);
     for (auto x : edge)
     {
         a.add(x[0], x[1], x[2], x[3]);
         b.add(x[0], x[1], x[2], x[3]);
+        c.add(x[0], x[1], x[2], x[3]);
         ref.add(x[0], x[1], x[2], x[3]);
     }
     auto got = a.flow(0, n - 1);
     auto [fr, cr] = ref.flow(0, n - 1);
     auto got1 = b.flow(0, n - 1, 1);
     auto got2 = b.flow(0, n - 1);
+    auto got3 = c.flow(0, n - 1, 1);
+    auto got4 = c.flow(0, n - 1);
     auto [fa, ca] = got;
     auto [f1, c1] = got1;
     auto [f2, c2] = got2;
+    auto [f3, c3] = got3;
+    auto [f4, c4] = got4;
     assert(fa == fr && ca == cr);
     assert(f1 + f2 == fr && c1 + c2 == cr);
+    assert(f3 + f4 == fr && c3 + c4 == cr);
 }
 
 __int128 cutValue(int n, const vector<tuple<int, int, long long>> &edge,
@@ -290,6 +298,43 @@ signed main()
 
     checkCost(4, {{0, 1, 2, 1}, {0, 2, 1, 4}, {1, 2, 1, -2}, {1, 3, 1, 3}, {2, 3, 2, 1}});
     checkCost(3, {{0, 1, 1, -20}, {1, 2, 1, 7}});
+    checkCost(2, {{0, 1, 3, 2000000000LL}});
+    checkCost(2, {{0, 1, 3000000000LL, 2}});
+    checkCost(4, {{0, 1, 2, 0}, {0, 2, 2, 0}, {1, 2, 2, 0},
+                  {2, 1, 2, 0}, {1, 3, 2, 1}, {2, 3, 2, 1}});
+    checkCost(3, {{0, 0, 7, 0}, {0, 1, 2, 3}, {1, 2, 2, 4}});
+
+    FastCostFlow<long long> fastSplit(4);
+    fastSplit.add(0, 1, 2, 1);
+    fastSplit.add(0, 2, 1, 4);
+    fastSplit.add(1, 2, 1, -2);
+    fastSplit.add(1, 3, 1, 3);
+    fastSplit.add(2, 3, 2, 1);
+    assert((fastSplit.flow(0, 0) == pair<long long, long long>{0, 0}));
+    assert((fastSplit.flow(0, 3, 1) == pair<long long, long long>{1, 0}));
+    assert((fastSplit.flow(0, 3) == pair<long long, long long>{2, 9}));
+
+    FastCostFlow<long long> fastOtherSource(5);
+    fastOtherSource.add(0, 1, 1, -9);
+    fastOtherSource.add(2, 3, 2, -5);
+    fastOtherSource.add(3, 4, 2, 7);
+    assert((fastOtherSource.flow(2, 4) == pair<long long, long long>{2, 4}));
+
+    FastCostFlow<long long> fastNoPath(3);
+    fastNoPath.add(0, 1, 1, 2);
+    assert((fastNoPath.flow(0, 2) == pair<long long, long long>{0, 0}));
+    assert((fastNoPath.flow(0, 2) == pair<long long, long long>{0, 0}));
+
+    SpfaCostFlow<long long> split(4);
+    split.add(0, 1, 2, 1);
+    split.add(0, 2, 1, 4);
+    split.add(1, 2, 1, -2);
+    split.add(1, 3, 1, 3);
+    split.add(2, 3, 2, 1);
+    assert((split.flow(0, 3, 1) == pair<long long, long long>{1, 0}));
+    assert((split.flow(0, 3) == pair<long long, long long>{2, 9}));
+    assert((split.flow(0, 0) == pair<long long, long long>{0, 0}));
+
     for (int it = 0; it < 2000; it++)
     {
         int n = rng() % 6 + 2;
@@ -301,6 +346,28 @@ signed main()
                 if (rng() % 3 == 0)
                 {
                     edge.push_back({u, v, (long long)(rng() % 4 + 1), (long long)(rng() % 21) - 10});
+                }
+            }
+        }
+        checkCost(n, edge);
+    }
+    for (int it = 0; it < 1000; it++)
+    {
+        int n = rng() % 6 + 2;
+        vector<int> pot(n);
+        for (int u = 0; u < n; u++)
+        {
+            pot[u] = (int)(rng() % 21) - 10;
+        }
+        vector<array<long long, 4>> edge;
+        for (int u = 0; u < n; u++)
+        {
+            for (int v = 0; v < n; v++)
+            {
+                if (u != v && rng() % 5 == 0)
+                {
+                    long long cost = (long long)(rng() % 6) + pot[v] - pot[u];
+                    edge.push_back({u, v, (long long)(rng() % 4 + 1), cost});
                 }
             }
         }

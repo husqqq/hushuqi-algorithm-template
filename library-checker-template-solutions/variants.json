@@ -616,7 +616,7 @@
       "category": "graph",
       "language": "cpp20",
       "source": "graph/assignment/variants/5_8_003_spfa_cost_flow_cpp20/main.cpp",
-      "source_sha256": "9ca9aeac3cf5d36c95806b11594b334f555009c74dba23e4a9a5be61c29badea",
+      "source_sha256": "ce87d12237689fa2c579f832fd8c88ea7d15b2f008583531db8924ca17006dbe",
       "meta": "graph/assignment/variants/5_8_003_spfa_cost_flow_cpp20/meta.json",
       "template_items": [
         "5.8.003"

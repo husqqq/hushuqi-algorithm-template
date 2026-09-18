@@ -7,7 +7,7 @@
   "category": "graph",
   "language": "cpp20",
   "source": "graph/assignment/variants/5_8_003_spfa_cost_flow_cpp20/main.cpp",
-  "source_sha256": "9ca9aeac3cf5d36c95806b11594b334f555009c74dba23e4a9a5be61c29badea",
+  "source_sha256": "ce87d12237689fa2c579f832fd8c88ea7d15b2f008583531db8924ca17006dbe",
   "template_items": [
     "5.8.003"
   ],
@@ -19,31 +19,25 @@
     "inputs": [
       {
         "path": "hushuqi算法竞赛模板/include/full/5_8_003.hpp",
-        "sha256": "5beee7fa2a73736614a3a779a17fb07ef5602038d69b0deb647284827d1f0714"
+        "sha256": "cec047f607abfcd23df4f99ce821e839859b6d68c8f8c95f52a1a4bf3bd7e9f4"
       },
       {
         "path": "hushuqi算法竞赛模板/tests/test_ch05_flow.cpp",
-        "sha256": "fc2460283cb270bfedab402126550f54aafb9da66d1a2703ef71084be69c0dbb"
+        "sha256": "696bf870299d08babfd2191dba02ec089a044e19b24b6f6cdc20479ae57a4857"
       }
     ],
-    "generated_sha256": "9ca9aeac3cf5d36c95806b11594b334f555009c74dba23e4a9a5be61c29badea"
+    "generated_sha256": "ce87d12237689fa2c579f832fd8c88ea7d15b2f008583531db8924ca17006dbe"
   },
   "validation": {
-    "status": "online_failed",
-    "current_source_sha256": "9ca9aeac3cf5d36c95806b11594b334f555009c74dba23e4a9a5be61c29badea",
-    "current_source_online_verdict": "TLE",
-    "current_source_submission_id": 396210,
-    "server_source_sha256": "9ca9aeac3cf5d36c95806b11594b334f555009c74dba23e4a9a5be61c29badea",
+    "status": "local_only",
+    "current_source_sha256": "ce87d12237689fa2c579f832fd8c88ea7d15b2f008583531db8924ca17006dbe",
+    "current_source_online_verdict": null,
+    "current_source_submission_id": null,
+    "server_source_sha256": null,
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch05_flow.cpp"
-    ],
-    "checked_at": "2026-08-23T04:02:30.793804Z",
-    "current_source_time": 5,
-    "current_source_memory": 19668992,
-    "current_source_submission_time": "2026-08-23T04:02:01.345333Z",
-    "current_source_is_latest": true,
-    "note": "当前变体在线评测未通过。"
+    ]
   },
   "submission_attempts": [
     {
