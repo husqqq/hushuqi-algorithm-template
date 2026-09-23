@@ -10,6 +10,12 @@ signed main()
     b.resize(1 << 15);
     for (auto &x : a) x = rng() % mod;
     for (auto &x : b) x = rng() % mod;
-    assert(conv(a, b) == plain_ntt::conv(a, b));
+    auto fast = conv(a, b);
+    vector<int> x(a.size()), y(b.size());
+    for (int i = 0; i < (int)a.size(); i++) x[i] = a[i].val();
+    for (int i = 0; i < (int)b.size(); i++) y[i] = b[i].val();
+    auto slow = plain_ntt::conv(x, y);
+    assert(fast.size() == slow.size());
+    for (int i = 0; i < (int)fast.size(); i++) assert(fast[i].val() == slow[i]);
     return 0;
 }

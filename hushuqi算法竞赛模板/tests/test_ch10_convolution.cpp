@@ -21,7 +21,11 @@ signed main()
         }
     }
     assert(conv(a, b) == want);
-    assert(plain_ntt::conv(a, b) == want);
+    vector<int> pa{1, -2, 3, -4, 5};
+    vector<int> pb{6, 7, -8, 9, -10};
+    vector<int> pwant(want.size());
+    for (int i = 0; i < (int)want.size(); i++) pwant[i] = want[i].val();
+    assert(plain_ntt::conv(pa, pb) == pwant);
 
     vector<Z> e(65), f(66);
     for (int i = 0; i < (int)e.size(); i++)

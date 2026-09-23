@@ -464,88 +464,65 @@ vector<Z> convLarge(const vector<Z> &a, const vector<Z> &b)
 
 namespace plain_ntt
 {
-void dft(vector<Z> &a)
+constexpr int mod = 998244353, G = 3;
+
+int qpow(int a, int b)
 {
-    // a 的长度是至多 2^23 的正 2 的幂；原地完成自然顺序的正 NTT。
+    int r = 1;
+    for (; b; b >>= 1, a = (long long)a * a % mod)
+        if (b & 1) r = (long long)r * a % mod;
+    return r;
+}
+
+void dft(vector<int> &a, bool inv = false)
+{
     int n = a.size();
-    assert(n > 0 && has_single_bit((unsigned long long)n) && n <= NTT_LIM); // 调试检查，可删。
-    int rev = 0;
-    for (int i = 1; i < n; i++)
+    assert(n > 0 && n <= (1 << 23) && has_single_bit((unsigned long long)n));
+    for (int i = 1, j = 0; i < n; i++)
     {
-        int b = n >> 1;
-        for (; rev & b; b >>= 1)
-        {
-            rev ^= b;
-        }
-        rev ^= b;
-        if (i < rev)
-        {
-            swap(a[i], a[rev]);
-        }
+        int bit = n >> 1;
+        for (; j & bit; bit >>= 1) j ^= bit;
+        if ((j ^= bit) > i) swap(a[i], a[j]);
     }
     for (int len = 2; len <= n; len <<= 1)
     {
-        Z w = Z(3).pow((mod - 1) / len);
+        int wlen = qpow(G, (mod - 1) / len);
+        if (inv) wlen = qpow(wlen, mod - 2);
         for (int i = 0; i < n; i += len)
         {
-            Z x = 1;
+            int w = 1;
             for (int j = 0; j < len / 2; j++)
             {
-                Z u = a[i + j];
-                Z v = a[i + j + len / 2] * x;
-                a[i + j] = u + v;
-                a[i + j + len / 2] = u - v;
-                x *= w;
+                int u = a[i + j], v = (long long)a[i + j + len / 2] * w % mod;
+                a[i + j] = u + v < mod ? u + v : u + v - mod;
+                a[i + j + len / 2] = u - v < 0 ? u - v + mod : u - v;
+                w = (long long)w * wlen % mod;
             }
         }
     }
-}
-
-void idft(vector<Z> &a)
-{
-    // a 是自然顺序的频域值；原地完成逆 NTT 并除以长度。
-    assert(!a.empty() && has_single_bit((unsigned long long)a.size()) && a.size() <= NTT_LIM); // 调试检查，可删。
-    reverse(a.begin() + 1, a.end());
-    plain_ntt::dft(a);
-    Z iv = Z(a.size()).inv();
-    for (auto &x : a)
+    if (inv)
     {
-        x *= iv;
+        int iv = qpow(n, mod - 2);
+        for (int &x : a) x = (long long)x * iv % mod;
     }
 }
 
-vector<Z> conv(vector<Z> a, vector<Z> b)
+void idft(vector<int> &a)
 {
-    // a、b 按低次到高次保存系数；返回普通线性卷积，任一输入为空时返回空。
-    if (a.empty() || b.empty())
-    {
-        return {};
-    }
-    int s = a.size() + b.size() - 1;
-    if (min(a.size(), b.size()) <= 32)
-    {
-        vector<Z> c(s);
-        for (int i = 0; i < (int)a.size(); i++)
-        {
-            for (int j = 0; j < (int)b.size(); j++)
-            {
-                c[i + j] += a[i] * b[j];
-            }
-        }
-        return c;
-    }
-    assert(nttFit(a.size(), b.size())); // 调试检查，可删。
-    int n = bit_ceil((unsigned long long)s);
-    a.resize(n);
-    b.resize(n);
-    plain_ntt::dft(a);
-    plain_ntt::dft(b);
-    for (int i = 0; i < n; i++)
-    {
-        a[i] *= b[i];
-    }
-    plain_ntt::idft(a);
-    a.resize(s);
+    dft(a, true);
+}
+
+vector<int> conv(vector<int> a, vector<int> b)
+{
+    if (a.empty() || b.empty()) return {};
+    int s = a.size() + b.size() - 1, n = 1;
+    while (n < s) n <<= 1;
+    for (int &x : a) x = (x % mod + mod) % mod;
+    for (int &x : b) x = (x % mod + mod) % mod;
+    a.resize(n), b.resize(n);
+    dft(a), dft(b);
+    for (int i = 0; i < n; i++) a[i] = (long long)a[i] * b[i] % mod;
+    idft(a), a.resize(s);
     return a;
 }
 }
