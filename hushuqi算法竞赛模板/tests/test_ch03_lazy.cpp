@@ -6,6 +6,25 @@ struct DefaultTag
     void apply(const DefaultTag &t) { add += t.add; }
 };
 
+struct SearchTag
+{
+    long long add = 0;
+    void apply(const SearchTag &t) { add += t.add; }
+};
+
+struct SearchInfo
+{
+    long long mx = numeric_limits<long long>::lowest();
+    SearchInfo() = default;
+    SearchInfo(long long x) : mx(x) {}
+    static SearchInfo identity() { return SearchInfo(); }
+    void apply(const SearchTag &t) { mx += t.add; }
+    friend SearchInfo operator+(SearchInfo a, SearchInfo b)
+    {
+        return SearchInfo(max(a.mx, b.mx));
+    }
+};
+
 struct DefaultInfo
 {
     long long sum = 0;
@@ -39,6 +58,14 @@ signed main()
     assert(st.query(0, 4).sum == 8);
     assert(st.get(1).sum == 1 && st.get(2).sum == 1);
     assert(st.query(1, 3).sum == 2 && st.query(1, 3).len == 2);
+
+    LazySeg<SearchInfo, SearchTag> search(vector<SearchInfo>{1, 2, 3, 4, 5});
+    search.apply(0, 5, SearchTag{10});
+    search.apply(1, 4, SearchTag{-7});
+    assert(search.findFirst(0, 5, [](SearchInfo x) { return x.mx >= 5; }) == 0);
+    assert(search.findFirst(1, 5, [](SearchInfo x) { return x.mx >= 6; }) == 2);
+    assert(search.findLast(0, 5, [](SearchInfo x) { return x.mx >= 5; }) == 4);
+    assert(search.findLast(0, 4, [](SearchInfo x) { return x.mx >= 5; }) == 3);
 
     LazySeg<Info, Tag> empty(0);
     empty.apply(0, 0, Tag{7});

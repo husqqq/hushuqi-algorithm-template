@@ -210,6 +210,50 @@ template <class Info, class Tag> struct LazySeg
         return ans;
     }
 
+    template <class F>
+    int findFirst(int p, int l, int r, int ql, int qr, F &ok)
+    {
+        // p、[l,r) 是当前节点， [ql,qr) 是搜索区间；返回其中第一个满足条件的下标。
+        if (r <= ql || qr <= l)
+        {
+            return -1;
+        }
+        if (ql <= l && r <= qr && !ok(tr[p]))
+        {
+            return -1;
+        }
+        if (r - l == 1)
+        {
+            return l < n ? l : -1;
+        }
+        push(p);
+        int m = l + (r - l) / 2;
+        int x = findFirst(2 * p, l, m, ql, qr, ok);
+        return x == -1 ? findFirst(2 * p + 1, m, r, ql, qr, ok) : x;
+    }
+
+    template <class F>
+    int findLast(int p, int l, int r, int ql, int qr, F &ok)
+    {
+        // p、[l,r) 是当前节点， [ql,qr) 是搜索区间；返回其中最后一个满足条件的下标。
+        if (r <= ql || qr <= l)
+        {
+            return -1;
+        }
+        if (ql <= l && r <= qr && !ok(tr[p]))
+        {
+            return -1;
+        }
+        if (r - l == 1)
+        {
+            return l < n ? l : -1;
+        }
+        push(p);
+        int m = l + (r - l) / 2;
+        int x = findLast(2 * p + 1, m, r, ql, qr, ok);
+        return x == -1 ? findLast(2 * p, l, m, ql, qr, ok) : x;
+    }
+
     void apply(int l, int r, const Tag &v)
     {
         // l、r 是半开区间端点，v 是区间修改标记。
@@ -227,6 +271,22 @@ template <class Info, class Tag> struct LazySeg
         // i 是叶子下标；只读返回该位置在所有待下传标记生效后的信息。
         assert(0 <= i && i < n); // 调试检查，可删
         return get(1, 0, n, i);
+    }
+
+    template <class F>
+    int findFirst(int l, int r, F ok)
+    {
+        // l、r 是半开搜索区间，ok 判断节点摘要是否可能包含答案；返回第一个满足条件的下标。
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
+        return l == r ? -1 : findFirst(1, 0, n, l, r, ok);
+    }
+
+    template <class F>
+    int findLast(int l, int r, F ok)
+    {
+        // l、r 是半开搜索区间，ok 判断节点摘要是否可能包含答案；返回最后一个满足条件的下标。
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
+        return l == r ? -1 : findLast(1, 0, n, l, r, ok);
     }
 };
 
