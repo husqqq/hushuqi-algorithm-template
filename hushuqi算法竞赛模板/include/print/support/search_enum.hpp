@@ -4,10 +4,11 @@
 
 template <class F> int firstTrue(int l, int r, F f)
 {
-    // l、r 是答案所在闭区间，f 是由假变真的谓词；返回第一个为真的位置。
+    // l、r 是非空闭区间，f 由假变真且 f(r) 为真；返回首个真值的位置。
+    assert(l <= r);
     while (l < r)
     {
-        auto m = midpoint(l, r);
+        int m = midpoint(l, r);
         if (f(m))
         {
             r = m;
@@ -22,14 +23,11 @@ template <class F> int firstTrue(int l, int r, F f)
 
 template <class F> int lastTrue(int l, int r, F f)
 {
-    // l、r 是答案所在闭区间，f 是由真变假的谓词；返回最后一个为真的位置。
+    // l、r 是非空闭区间，f 由真变假且 f(l) 为真；返回末个真值的位置。
+    assert(l <= r);
     while (l < r)
     {
-        auto m = midpoint(l, r);
-        if (m == l)
-        {
-            m = r;
-        }
+        int m = midpoint(r, l);
         if (f(m))
         {
             l = m;
@@ -44,7 +42,8 @@ template <class F> int lastTrue(int l, int r, F f)
 
 template <class F> long double firstReal(long double l, long double r, F f, int it = 100)
 {
-    // l、r 是初始实数区间，f 是单调谓词，it 是迭代轮数；返回分界点近似值。
+    // l、r 是有限实数端点，f 由假变真且分界在 [l,r]，it 非负；返回分界近似值。
+    assert(isfinite(l) && isfinite(r) && l <= r && it >= 0);
     for (int t = 0; t < it; t++)
     {
         auto m = midpoint(l, r);

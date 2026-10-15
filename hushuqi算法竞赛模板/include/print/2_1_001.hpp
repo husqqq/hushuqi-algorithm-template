@@ -4,12 +4,13 @@ using namespace std;
 
 #include "support/topic_common.hpp"
 
-template <class F> long long firstTrue(long long l, long long r, F f)
+template <class F> int firstTrue(int l, int r, F f)
 {
-    // 在闭区间 [l,r] 内返回第一个使单调谓词 f 为真的整数。
+    // l、r 是非空闭区间，f 由假变真且 f(r) 为真；返回首个真值的位置。
+    assert(l <= r);
     while (l < r)
     {
-        long long m = l + (r - l) / 2;
+        int m = midpoint(l, r);
         if (f(m))
         {
             r = m;
@@ -22,25 +23,32 @@ template <class F> long long firstTrue(long long l, long long r, F f)
     return l;
 }
 
-template <class F> long long lastTrue(long long l, long long r, F f)
+template <class F> int lastTrue(int l, int r, F f)
 {
-    // 在闭区间 [l,r] 内返回最后一个使单调谓词 f 为真的整数。
-    return firstTrue(l,
-                     r,
-                     [&](long long x)
-                     {
-                         return !f(x);
-                     }) -
-           1;
+    // l、r 是非空闭区间，f 由真变假且 f(l) 为真；返回末个真值的位置。
+    assert(l <= r);
+    while (l < r)
+    {
+        int m = midpoint(r, l);
+        if (f(m))
+        {
+            l = m;
+        }
+        else
+        {
+            r = m - 1;
+        }
+    }
+    return l;
 }
 
-// f 在 [l,r] 上由 false 变 true；固定迭代次数避免精度死循环。
 template <class F> long double firstReal(long double l, long double r, F f, int it = 100)
 {
-    // f 从假变真；二分 it 次后返回边界的中点近似。
-    while (it--)
+    // l、r 是有限实数端点，f 由假变真且分界在 [l,r]，it 非负；返回分界近似值。
+    assert(isfinite(l) && isfinite(r) && l <= r && it >= 0);
+    for (int t = 0; t < it; t++)
     {
-        long double m = (l + r) / 2;
+        auto m = midpoint(l, r);
         if (f(m))
         {
             r = m;
@@ -50,31 +58,33 @@ template <class F> long double firstReal(long double l, long double r, F f, int 
             l = m;
         }
     }
-    return (l + r) / 2;
+    return midpoint(l, r);
 }
 
 template <class It, class T, class F = less<>> It fastLower(It first, It last, const T &x, F f = {})
 {
-    // [first,last) 必须支持随机访问；返回第一个不小于 x 的位置。
-    assert(first <= last && (unsigned long long)(last - first) <= numeric_limits<int>::max()); // 调试检查，可删
+    // [first,last) 是随机访问区间，x 是查询值；f(元素,x) 先真后假，返回首个假值位置。
+    // 区间长度须能由 int 表示；没有这样的元素时返回 last，空区间也返回 last。
+    assert(first <= last && last - first <= numeric_limits<int>::max());
     int n = last - first;
-    for (n++; n > 1;)
+    while (n)
     {
-        int h = n / 2;
+        int h = n / 2 + (n & 1);
         n -= h;
-        first += f(first[h - 1], x) * h;
+        first += (bool)f(first[h - 1], x) * h;
     }
     return first;
 }
 
 template <class It, class T, class F = less<>> It fastUpper(It first, It last, const T &x, F f = {})
 {
-    // [first,last) 必须支持随机访问；返回第一个大于 x 的位置。
-    assert(first <= last && (unsigned long long)(last - first) <= numeric_limits<int>::max()); // 调试检查，可删
+    // [first,last) 是随机访问区间，x 是查询值；f(x,元素) 先假后真，返回首个真值位置。
+    // 区间长度须能由 int 表示；没有这样的元素时返回 last，空区间也返回 last。
+    assert(first <= last && last - first <= numeric_limits<int>::max());
     int n = last - first;
-    for (n++; n > 1;)
+    while (n)
     {
-        int h = n / 2;
+        int h = n / 2 + (n & 1);
         n -= h;
         first += !f(x, first[h - 1]) * h;
     }
