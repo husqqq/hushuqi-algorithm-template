@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "updated_at": "2026-10-15T17:41:46.443975Z",
+  "updated_at": "2026-10-15T17:55:11.408673Z",
   "official_repository": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
     "url": "https://github.com/yosupo06/library-checker-problems"
@@ -1635,7 +1635,7 @@
       "title": "Range Affine Range Sum",
       "category": "data_structure",
       "source": "data_structure/range_affine_range_sum/main.cpp",
-      "source_sha256": "a88a6a09490e74abe273355ca388dbd72ab4dde68d94ba08e3680bc8d4bed49c",
+      "source_sha256": "3f1ef8768ad32cdc9ddae6cfdff85b973ab339c03e7027ac8ab0c8dcbc54e51e",
       "meta": "data_structure/range_affine_range_sum/meta.json",
       "state": "template_solution"
     },

@@ -42,9 +42,9 @@ OFFICIAL_LICENSE_BLOB = "91554e3bd99da6761c82645d6c740ced590d17bb"
 
 MODDOC = (
     (
-        "07-数论.md",
-        "7.1.007",
-        ("template <long long P> struct MInt", "using Z = MInt<mod>;"),
+        "01-基础与工程.md",
+        "1.1.008",
+        ("template <uint32_t P> struct MInt", "using Z = MInt<mod>;"),
     ),
 )
 
@@ -684,10 +684,10 @@ signed main()
     Spec(
         "dynamic_point_set_rectangle_affine_rectangle_sum",
         "Dynamic Point Rectangle Affine Rectangle Sum",
-        ("7_1_007.hpp", "3_7_009.hpp"),
+        ("1_1_008.hpp", "3_7_009.hpp"),
         "3.7.009",
         ("struct KDRectAffine",),
-        ("tests/test_ch03_kd_rect_affine.cpp", "tests/test_ch07_revised.cpp"),
+        ("tests/test_ch03_kd_rect_affine.cpp", "tests/test_ch01_mint.cpp"),
         r'''
 signed main()
 {
@@ -761,10 +761,10 @@ signed main()
     Spec(
         "dynamic_sequence_range_affine_range_sum",
         "Dynamic Sequence Range Affine Range Sum",
-        ("7_1_007.hpp", "3_5_011.hpp"),
+        ("1_1_008.hpp", "3_5_011.hpp"),
         "3.5.011",
         ("template <class T> struct ImpTreap",),
-        ("tests/test_ch03_implicit_treap.cpp", "tests/test_ch07_revised.cpp"),
+        ("tests/test_ch03_implicit_treap.cpp", "tests/test_ch01_mint.cpp"),
         r'''
 signed main()
 {
@@ -863,10 +863,10 @@ signed main()
     Spec(
         "persistent_range_affine_range_sum",
         "Persistent Range Affine Range Sum",
-        ("7_1_007.hpp", "3_3_020.hpp"),
+        ("1_1_008.hpp", "3_3_020.hpp"),
         "3.3.020",
         ("template <class T> class PerAffSeg",),
-        ("tests/test_ch03_persistent_affine.cpp", "tests/test_ch07_revised.cpp"),
+        ("tests/test_ch03_persistent_affine.cpp", "tests/test_ch01_mint.cpp"),
         r'''
 signed main()
 {
@@ -955,10 +955,10 @@ signed main()
     Spec(
         "range_set_range_composite",
         "Range Set Range Composite",
-        ("7_1_007.hpp", "3_3_022.hpp"),
+        ("1_1_008.hpp", "3_3_022.hpp"),
         "3.3.022",
         ("template <class T, class F> class RangeSetSeg",),
-        ("tests/test_ch03_sparse_affine.cpp", "tests/test_ch07_revised.cpp"),
+        ("tests/test_ch03_sparse_affine.cpp", "tests/test_ch01_mint.cpp"),
         r'''
 using Fn = array<Z, 2>;
 
@@ -1087,10 +1087,10 @@ signed main()
     Spec(
         "range_affine_point_get",
         "Range Affine Point Get",
-        ("7_1_007.hpp", "3_3_003.hpp"),
+        ("1_1_008.hpp", "3_3_003.hpp"),
         "3.3.003",
         ("template <class T> class AffPointSeg", "template <class T> struct AffineTag"),
-        ("tests/test_ch03_sparse_affine.cpp", "tests/test_ch07_revised.cpp"),
+        ("tests/test_ch03_sparse_affine.cpp", "tests/test_ch01_mint.cpp"),
         r'''
 signed main()
 {
@@ -1133,10 +1133,10 @@ signed main()
     Spec(
         "range_affine_range_sum",
         "Range Affine Range Sum",
-        ("7_1_007.hpp", "3_3_003.hpp"),
+        ("1_1_008.hpp", "3_3_003.hpp"),
         "3.3.003",
         ("template <class Info, class Tag> struct LazySeg", "template <class T> struct AffineTag", "template <class T> struct AffineInfo"),
-        ("tests/test_ch03_sparse_affine.cpp", "tests/test_ch07_revised.cpp"),
+        ("tests/test_ch03_sparse_affine.cpp", "tests/test_ch01_mint.cpp"),
         r'''
 signed main()
 {
@@ -1176,10 +1176,10 @@ signed main()
     Spec(
         "range_affine_range_sum_large_array",
         "Range Affine Range Sum (Large Array)",
-        ("7_1_007.hpp", "3_3_021.hpp"),
+        ("1_1_008.hpp", "3_3_021.hpp"),
         "3.3.021",
         ("template <class T> class SparseAffSeg",),
-        ("tests/test_ch03_sparse_affine.cpp",),
+        ("tests/test_ch03_sparse_affine.cpp", "tests/test_ch01_mint.cpp"),
         r'''
 signed main()
 {
@@ -1543,10 +1543,10 @@ signed main()
     Spec(
         "point_set_range_composite",
         "Point Set Range Composite",
-        ("7_1_007.hpp", "3_3_001.hpp"),
+        ("1_1_008.hpp", "3_3_001.hpp"),
         "3.3.001",
         ("template <class Info> struct Seg",),
-        ("tests/test_ch03_seg.cpp", "tests/test_ch07_revised.cpp"),
+        ("tests/test_ch03_seg.cpp", "tests/test_ch01_mint.cpp"),
         r'''
 struct Aff
 {
@@ -1595,10 +1595,10 @@ signed main()
     Spec(
         "point_set_range_composite_large_array",
         "Point Set Range Composite (Large Array)",
-        ("7_1_007.hpp", "3_3_007.hpp"),
+        ("1_1_008.hpp", "3_3_007.hpp"),
         "3.3.007",
         ("template <class T, class F> class SparsePtSeg",),
-        ("tests/test_ch03_sparse_affine.cpp", "tests/test_ch07_revised.cpp"),
+        ("tests/test_ch03_sparse_affine.cpp", "tests/test_ch01_mint.cpp"),
         r'''
 struct Aff
 {
@@ -1699,10 +1699,10 @@ signed main()
     Spec(
         "point_set_range_sort_range_composite",
         "Point Set Range Sort Range Composite",
-        ("7_1_007.hpp", "3_3_018.hpp"),
+        ("1_1_008.hpp", "3_3_018.hpp"),
         "3.3.018",
         ("template <class M> class SortSeg",),
-        ("tests/test_ch03_revised.cpp", "tests/test_ch07_revised.cpp"),
+        ("tests/test_ch03_revised.cpp", "tests/test_ch01_mint.cpp"),
         r'''
 struct Aff
 {
@@ -1916,10 +1916,10 @@ signed main()
     Spec(
         "static_rectangle_add_rectangle_sum",
         "Static Rectangle Add Rectangle Sum",
-        ("3_2_009.hpp", "7_1_007.hpp"),
+        ("3_2_009.hpp", "1_1_008.hpp"),
         "3.2.009",
         ("template <class T> struct RectAddSum",),
-        ("tests/test_ch03_rect_add_sum.cpp", "tests/test_ch07_revised.cpp"),
+        ("tests/test_ch03_rect_add_sum.cpp", "tests/test_ch01_mint.cpp"),
         r'''
 signed main()
 {
@@ -1953,10 +1953,10 @@ signed main()
     Spec(
         "range_parallel_unionfind",
         "Range Parallel Unionfind",
-        ("3_1_006.hpp", "7_1_007.hpp"),
+        ("3_1_006.hpp", "1_1_008.hpp"),
         "3.1.006",
         ("struct RangeDSU",),
-        ("tests/test_ch03_revised.cpp", "tests/test_ch07_revised.cpp"),
+        ("tests/test_ch03_revised.cpp", "tests/test_ch01_mint.cpp"),
         r'''
 signed main()
 {
@@ -2153,10 +2153,10 @@ signed main()
     Spec(
         "unionfind_with_potential",
         "Unionfind with Potential",
-        ("3_1_003.hpp", "7_1_007.hpp"),
+        ("3_1_003.hpp", "1_1_008.hpp"),
         "3.1.003",
         ("template <class T> struct WDSU",),
-        ("tests/test_ch03_wdsu.cpp", "tests/test_ch07_revised.cpp"),
+        ("tests/test_ch03_wdsu.cpp", "tests/test_ch01_mint.cpp"),
         r'''
 signed main()
 {
@@ -2193,10 +2193,10 @@ signed main()
     Spec(
         "unionfind_with_potential_non_commutative_group",
         "Unionfind with Potential (Non-Commutative Group)",
-        ("3_1_008.hpp", "7_1_007.hpp"),
+        ("3_1_008.hpp", "1_1_008.hpp"),
         "3.1.008",
         ("template <class Group> struct PotentialDSU",),
-        ("tests/test_ch03_group_dsu.cpp", "tests/test_ch07_revised.cpp"),
+        ("tests/test_ch03_group_dsu.cpp", "tests/test_ch01_mint.cpp"),
         r'''
 struct MatrixGroup
 {
@@ -2643,6 +2643,29 @@ def update_index(
         write_json(path, manifest)
 
 
+def check_index(root: Path, spec: Spec, report: dict) -> None:
+    directory = root / "library-checker-template-solutions"
+    manifest = json.loads(read_text(directory / "manifest.json"))
+    entries = [entry for entry in manifest["problems"] if entry["name"] == spec.name]
+    expected = {
+        "name": spec.name,
+        "title": spec.title,
+        "category": "data_structure",
+        "source": source_path(spec),
+        "source_sha256": report["source_sha256"],
+        "meta": meta_path(spec),
+        "state": "template_solution",
+    }
+    if entries != [expected]:
+        raise ValueError(f"{spec.name}: manifest entry is out of date")
+    current = json.loads(read_text(directory / meta_path(spec)))
+    argv = current.get("provenance", {}).get("evidence", {}).get("generator", {}).get("argv", [])
+    fresh = metadata(root, spec, report, argv)
+    for field in ("provenance", "reference", "official_reference"):
+        if current.get(field) != fresh[field]:
+            raise ValueError(f"{spec.name}: metadata {field} is out of date")
+
+
 def describe(root: Path, spec: Spec, data: bytes, headers: list[Path]) -> dict:
     templates = template_root(root)
     chapter = chapter_path(templates)
@@ -2688,9 +2711,10 @@ def generate_twice(root: Path, spec: Spec) -> tuple[bytes, list[Path]]:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate chapter 03 Library Checker sources")
     parser.add_argument("--only", help="comma-separated problem names")
-    parser.add_argument("--check", action="store_true", help="only compare generated bytes with main.cpp")
-    parser.add_argument("--write-index", action="store_true", help="refresh meta.json and manifest.json")
-    parser.add_argument("--describe", action="store_true", help="print source input identities as JSON")
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument("--check", action="store_true", help="verify source, manifest and provenance without writing")
+    mode.add_argument("--write", "--write-index", dest="write_index", action="store_true", help="explicitly refresh source, meta.json and manifest.json")
+    mode.add_argument("--describe", action="store_true", help="print source input identities as JSON without writing")
     args = parser.parse_args()
 
     root = workspace_root()
@@ -2704,18 +2728,18 @@ def main() -> None:
         if args.check:
             if not target.is_file() or target.read_bytes() != data:
                 raise ValueError(f"{spec.name}: main.cpp is not byte-identical to generated output")
-            print(f"MATCHED {spec.name} {sha256(data)}")
-        else:
+        elif args.write_index:
             target.parent.mkdir(parents=True, exist_ok=True)
             if not target.is_file() or target.read_bytes() != data:
                 target.write_bytes(data)
             print(f"GENERATED {spec.name} {sha256(data)}")
         report = describe(root, spec, data, headers)
+        if args.check:
+            check_index(root, spec, report)
+            print(f"MATCHED {spec.name} {sha256(data)}")
         reports_by_name[spec.name] = report
         reports.append(report)
     if args.write_index:
-        if args.check:
-            raise ValueError("--check cannot update the index")
         generator_argv = []
         if args.only is not None:
             generator_argv.extend(["--only", args.only])

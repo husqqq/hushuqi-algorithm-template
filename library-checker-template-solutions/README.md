@@ -28,3 +28,17 @@
 - 当前源码的本地验证收据、性能记录、提交批次和结果记录。
 
 这些内容对继续验证和复用登录态有用，但体积较大且涉及本机状态或隐私，必须由顶层 `.gitignore` 排除，不能提交到 GitHub。题解源码不存放在 `.local/` 中。
+
+## 第 03 章生成器
+
+`generate_ch03_lc.py` 必须显式选择模式，使用 `--only` 指定题目：
+
+```powershell
+python library-checker-template-solutions/tools/generate_ch03_lc.py --only range_affine_range_sum --describe
+python library-checker-template-solutions/tools/generate_ch03_lc.py --only range_affine_range_sum --write
+python library-checker-template-solutions/tools/generate_ch03_lc.py --only range_affine_range_sum --check
+```
+
+`--describe` 只输出依赖与源码哈希；`--write` 同步候选、清单和来源元数据，兼容旧名 `--write-index`；`--check` 只核验生成字节、清单与来源元数据。无参数调用和只读模式均不写文件。模运算依赖第一章 `1.1.008` 的 `MInt<P>`，不再依赖第七章兼容入口。
+
+同一源码已有的在线 AC 在刷新来源元数据时保留；源码改变后，当前验证失效，历史提交仍保留。生成、正确性、性能和在线状态分别记录，当前进度见[第 03 章审计](docs/03-数据结构审计.md)。

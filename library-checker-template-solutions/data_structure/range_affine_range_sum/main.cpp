@@ -1,35 +1,32 @@
+#ifndef HUSHUQI_STATIC_MINT_HPP
+#define HUSHUQI_STATIC_MINT_HPP
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
 
-template <long long P> struct MInt
+template <uint32_t P> struct MInt
 {
-    static_assert(P > 1);
-    using V = conditional_t<(P <= numeric_limits<int32_t>::max()),
-                            uint32_t, unsigned long long>;
-    static constexpr V M = (V)P; // 与 x 同宽的模数，避免热路径被 P 提升为有符号 64 位
-    V x = 0; // 当前剩余类在 [0,P) 内的代表元；常见小模使用无符号 32 位
+    static_assert(1 < P && P <= 1000000007);
+    uint32_t x = 0; // 固定 32 位以保证对象为 4 字节，提高大数组的缓存密度。
 
-    MInt() = default;
-
-    MInt(long long v)
+    MInt(long long v = 0)
     {
         // v 是要转入模 P 剩余类的整数；构造其最小非负代表元。
-        v %= P;
+        v %= (long long)P;
         if (v < 0)
         {
             v += P;
         }
-        x = (V)v;
+        x = (uint32_t)v;
     }
 
-    static constexpr long long mod()
+    static constexpr uint32_t mod()
     {
         // 无参数；返回编译期模数 P。
         return P;
     }
 
-    long long val() const
+    uint32_t val() const
     {
         // 无参数；返回当前剩余类的最小非负代表元。
         return x;
@@ -39,7 +36,7 @@ template <long long P> struct MInt
     {
         // 无参数；返回当前剩余类的加法逆元。
         MInt ans;
-        ans.x = x ? M - x : 0;
+        ans.x = x ? P - x : 0;
         return ans;
     }
 
@@ -47,9 +44,9 @@ template <long long P> struct MInt
     {
         // o 是要加到当前值上的同模剩余类；原地完成模加并返回当前对象引用。
         x += o.x;
-        if (x >= M)
+        if (x >= P)
         {
-            x -= M;
+            x -= P;
         }
         return *this;
     }
@@ -57,10 +54,10 @@ template <long long P> struct MInt
     MInt &operator-=(const MInt &o)
     {
         // o 是要从当前值减去的同模剩余类；原地完成模减并返回当前对象引用。
-        x += M - o.x;
-        if (x >= M)
+        x += P - o.x;
+        if (x >= P)
         {
-            x -= M;
+            x -= P;
         }
         return *this;
     }
@@ -68,14 +65,8 @@ template <long long P> struct MInt
     MInt &operator*=(const MInt &o)
     {
         // o 是要乘到当前值上的同模剩余类；原地完成模乘并返回当前对象引用。
-        if constexpr (P <= 2147483647LL)
-        {
-            x = (unsigned long long)x * o.x % M;
-        }
-        else
-        {
-            x = (unsigned __int128)x * o.x % M;
-        }
+        // 乘积可能超过 32 位，显式提升到无符号 64 位。
+        x = (uint64_t)x * o.x % P;
         return *this;
     }
 
@@ -111,7 +102,7 @@ template <long long P> struct MInt
 
     friend bool operator==(const MInt &, const MInt &) = default;
 
-    MInt pow(unsigned long long b) const
+    MInt pow(uint64_t b) const
     {
         // b 是非负指数；返回当前剩余类的 b 次幂。
         MInt a = *this;
@@ -136,10 +127,10 @@ template <long long P> struct MInt
     }
 };
 
-template <long long P> const vector<MInt<P>> &invTable(int n)
+template <uint32_t P> const vector<MInt<P>> &invTable(int n)
 {
     // n 是需要的最大下标且 0<=n<P；返回至少覆盖 0..n 的共享模逆元表，其中位置 0 为 0。
-    assert(0 <= n && n < P); // 调试检查，可删
+    assert(0 <= n && (uint64_t)n < P); // 调试检查，可删
     static vector<MInt<P>> iv{0, 1};
     int old = iv.size();
     if (old <= n)
@@ -153,26 +144,46 @@ template <long long P> const vector<MInt<P>> &invTable(int n)
     return iv;
 }
 
-constexpr int mod = 998244353;
+constexpr uint32_t mod = 998244353;
 using Z = MInt<mod>;
+
+#endif
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
 
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
+
+
+#include <limits>
+
+using namespace std;
+
+constexpr long long INF = numeric_limits<long long>::max() / 4;
 
 template <class T> bool chmin(T &a, const T &b)
 {
-    // a 是当前值，b 是候选值；若 b 更小则更新 a 并返回 true。
-    return b < a ? a = b, true : false;
+    // a 是待更新值，b 是候选值；若 b 更小则更新 a 并返回 true。
+    if (b < a)
+    {
+        a = b;
+        return true;
+    }
+    return false;
 }
+
 template <class T> bool chmax(T &a, const T &b)
 {
-    // a 是当前值，b 是候选值；若 b 更大则更新 a 并返回 true。
-    return a < b ? a = b, true : false;
+    // a 是待更新值，b 是候选值；若 b 更大则更新 a 并返回 true。
+    if (a < b)
+    {
+        a = b;
+        return true;
+    }
+    return false;
 }
+
+constexpr int inf = 1E9;
+constexpr long double eps = 1E-12L;
 
 // 区间加、区间和实例。换题时通常只需要修改这两个结构。
 struct Tag
@@ -192,12 +203,20 @@ struct Info
 {
     // sum 是区间和，len 是区间叶子数。
     long long sum = 0;
-    int len = 0;
+    int len = 1;
 
-    Info() = default; // 查询越界时的合并单位元
+    Info() = default; // 默认构造一个值为 0 的叶子信息
     Info(long long x) : sum(x), len(1)
     {
         // x 是叶子的初始值。
+    }
+
+    static Info identity()
+    {
+        // 无参数；返回长度为 0 的空区间信息，作为合并单位元。
+        Info c;
+        c.len = 0;
+        return c;
     }
 
     // 把区间加标记作用到当前节点。
@@ -225,9 +244,18 @@ template <class Info, class Tag> struct LazySeg
     vector<Tag> tag;
     vector<unsigned char> has;
 
+    static Info identity()
+    {
+        // 无参数；Info 自带 identity() 时用它，否则用默认构造值作为合并单位元。
+        if constexpr (requires { Info::identity(); })
+            return Info::identity();
+        else
+            return Info{};
+    }
+
     LazySeg(int n = 0)
     {
-        // n 是叶子数；每个叶子由 Info(0) 构造成零值信息。
+        // n 是叶子数；每个叶子由 Info{} 默认构造成初始信息。
         init(n);
     }
     LazySeg(const vector<Info> &a)
@@ -238,7 +266,7 @@ template <class Info, class Tag> struct LazySeg
 
     void init(int n_)
     {
-        // n_ 是新的叶子数；用 n_ 个 Info(0) 重建全零数组。
+        // n_ 是新的叶子数；用 n_ 个 Info{} 重建默认数组。
         assert(n_ >= 0); // 调试检查，可删
         n = n_;
         tr.assign(4 * max<int>(n, 1), Info{});
@@ -246,7 +274,7 @@ template <class Info, class Tag> struct LazySeg
         has.assign(4 * max<int>(n, 1), 0);
         if (n)
         {
-            vector<Info> a(n, Info(0));
+            vector<Info> a(n);
             build(1, 0, n, a);
         }
     }
@@ -329,7 +357,7 @@ template <class Info, class Tag> struct LazySeg
         // p、[l,r) 是当前节点， [ql,qr) 是询问区间；返回相交部分的信息。
         if (qr <= l || r <= ql)
         {
-            return Info{};
+            return identity();
         }
         if (ql <= l && r <= qr)
         {
@@ -364,6 +392,50 @@ template <class Info, class Tag> struct LazySeg
         return ans;
     }
 
+    template <class F>
+    int findFirst(int p, int l, int r, int ql, int qr, F &ok)
+    {
+        // p、[l,r) 是当前节点， [ql,qr) 是搜索区间；返回其中第一个满足条件的下标。
+        if (r <= ql || qr <= l)
+        {
+            return -1;
+        }
+        if (ql <= l && r <= qr && !ok(tr[p]))
+        {
+            return -1;
+        }
+        if (r - l == 1)
+        {
+            return l < n ? l : -1;
+        }
+        push(p);
+        int m = l + (r - l) / 2;
+        int x = findFirst(2 * p, l, m, ql, qr, ok);
+        return x == -1 ? findFirst(2 * p + 1, m, r, ql, qr, ok) : x;
+    }
+
+    template <class F>
+    int findLast(int p, int l, int r, int ql, int qr, F &ok)
+    {
+        // p、[l,r) 是当前节点， [ql,qr) 是搜索区间；返回其中最后一个满足条件的下标。
+        if (r <= ql || qr <= l)
+        {
+            return -1;
+        }
+        if (ql <= l && r <= qr && !ok(tr[p]))
+        {
+            return -1;
+        }
+        if (r - l == 1)
+        {
+            return l < n ? l : -1;
+        }
+        push(p);
+        int m = l + (r - l) / 2;
+        int x = findLast(2 * p + 1, m, r, ql, qr, ok);
+        return x == -1 ? findLast(2 * p, l, m, ql, qr, ok) : x;
+    }
+
     void apply(int l, int r, const Tag &v)
     {
         // l、r 是半开区间端点，v 是区间修改标记。
@@ -382,12 +454,23 @@ template <class Info, class Tag> struct LazySeg
         assert(0 <= i && i < n); // 调试检查，可删
         return get(1, 0, n, i);
     }
-};
 
-// a 是初始叶子信息。
-// LazySeg<Info, Tag> seg(a);
-// seg.apply(1, 4, Tag{2}); // 给 [1,4) 的每个数加 2。
-// long long ans = seg.query(0, 4).sum; // 查询 [0,4) 的区间和。
+    template <class F>
+    int findFirst(int l, int r, F ok)
+    {
+        // l、r 是半开搜索区间，ok 判断节点摘要是否可能包含答案；返回第一个满足条件的下标。
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
+        return l == r ? -1 : findFirst(1, 0, n, l, r, ok);
+    }
+
+    template <class F>
+    int findLast(int l, int r, F ok)
+    {
+        // l、r 是半开搜索区间，ok 判断节点摘要是否可能包含答案；返回最后一个满足条件的下标。
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
+        return l == r ? -1 : findLast(1, 0, n, l, r, ok);
+    }
+};
 
 template <class T> struct AffineTag
 {
@@ -439,7 +522,7 @@ template <class T> struct AffineInfo
 template <class T> class AffPointSeg
 {
     // n 是叶子数；a 保存初始点值；tag 和 has 保存尚未下传的仿射修改。
-    int n;
+    int n; // n 是叶子数。
     vector<T> a;
     vector<AffineTag<T>> tag;
     vector<unsigned char> has;
@@ -529,12 +612,127 @@ template <class T> class AffPointSeg
     }
 };
 
-// a 是初始叶子信息。
-// LazySeg<AffineInfo<Z>, AffineTag<Z>> seg(a);
-// seg.apply(l, r, {Z(1), x}); // 给区间加 x。
-// seg.apply(l, r, {x, Z(0)}); // 给区间乘 x。
-// seg.apply(l, r, {Z(0), x}); // 把区间赋值为 x。
-// Z ans = seg.query(l, r).sum; // 查询区间和。
+class HistMaxSeg
+{
+  public:
+    struct Info
+    {
+        // cur、hist 分别是区间当前最大值和历次修改后的历史最大值。
+        long long cur, hist;
+    };
+
+  private:
+    static constexpr long long neg = numeric_limits<long long>::lowest() / 2; // neg 表示 max-plus 意义下的负无穷，取一半防止相加溢出。
+    struct Tag
+    {
+        // cc、ch、hh、vc、vh 描述 max-plus 变换 (cur,hist,1) 的五个有限系数。
+        long long cc = 0, ch = neg, hh = 0, vc = neg, vh = neg;
+    };
+    int n; // n 是叶子数。
+    vector<Info> tr; // tr[p] 是节点 p 区间的当前最大值与历史最大值。
+    vector<Tag> lz; // lz[p] 是节点 p 尚未下传给儿子的复合标记。
+
+    static long long plus(long long a, long long b)
+    {
+        // a、b 是普通值或负无穷；返回 max-plus 乘法。
+        return a == neg || b == neg ? neg : a + b;
+    }
+
+    static Tag compose(const Tag &a, const Tag &b)
+    {
+        // a、b 是先后执行的标记；返回先 a 后 b 的复合标记。
+        return {plus(a.cc, b.cc),
+                max(plus(a.cc, b.ch), plus(a.ch, b.hh)),
+                plus(a.hh, b.hh),
+                max(plus(a.vc, b.cc), b.vc),
+                max({plus(a.vh, b.hh), plus(a.vc, b.ch), b.vh})};
+    }
+
+    static Info apply(Info a, const Tag &t)
+    {
+        // a 是节点摘要，t 是区间标记；返回变换后的摘要。
+        return {max(plus(a.cur, t.cc), t.vc),
+                max({plus(a.cur, t.ch), plus(a.hist, t.hh), t.vh})};
+    }
+
+    void pull(int p)
+    {
+        // p 是内部节点；由两个儿子重算摘要。
+        tr[p] = {max(tr[2 * p].cur, tr[2 * p + 1].cur),
+                 max(tr[2 * p].hist, tr[2 * p + 1].hist)};
+    }
+
+    void build(int p, int l, int r, const vector<long long> &a)
+    {
+        // p、[l,r) 是当前节点，a 是初始数组。
+        if (r - l == 1) return void(tr[p] = {a[l], a[l]});
+        int m = (l + r) / 2;
+        build(2 * p, l, m, a), build(2 * p + 1, m, r, a), pull(p);
+    }
+
+    void apply(int p, const Tag &t)
+    {
+        // p 是整段命中节点，t 是后执行的标记。
+        tr[p] = apply(tr[p], t);
+        lz[p] = compose(lz[p], t);
+    }
+
+    void push(int p)
+    {
+        // p 是内部节点；把累计标记下传。
+        apply(2 * p, lz[p]), apply(2 * p + 1, lz[p]), lz[p] = {};
+    }
+
+    void update(int p, int l, int r, int ql, int qr, const Tag &t)
+    {
+        // p、[l,r) 是当前节点，[ql,qr) 是修改区间，t 是修改标记。
+        if (qr <= l || r <= ql) return;
+        if (ql <= l && r <= qr) return apply(p, t);
+        push(p);
+        int m = (l + r) / 2;
+        update(2 * p, l, m, ql, qr, t), update(2 * p + 1, m, r, ql, qr, t), pull(p);
+    }
+
+    Info query(int p, int l, int r, int ql, int qr)
+    {
+        // p、[l,r) 是当前节点，[ql,qr) 是询问区间；返回相交部分摘要。
+        if (qr <= l || r <= ql) return {neg, neg};
+        if (ql <= l && r <= qr) return tr[p];
+        push(p);
+        int m = (l + r) / 2;
+        Info a = query(2 * p, l, m, ql, qr), b = query(2 * p + 1, m, r, ql, qr);
+        return {max(a.cur, b.cur), max(a.hist, b.hist)};
+    }
+
+  public:
+    explicit HistMaxSeg(const vector<long long> &a) : n(a.size()), tr(4 * max<int>(n, 1), {neg, neg}), lz(4 * max<int>(n, 1))
+    {
+        // a 是非空初始数组；建立当前最大值与历史最大值线段树。
+        assert(n > 0); // 调试检查，可删
+        build(1, 0, n, a);
+    }
+
+    void add(int l, int r, long long v)
+    {
+        // l、r 是半开端点，v 是增量；给区间加 v 并记录修改后的历史峰值。
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
+        update(1, 0, n, l, r, {v, v, 0, neg, neg});
+    }
+
+    void assign(int l, int r, long long v)
+    {
+        // l、r 是半开端点，v 是新值；给区间赋值并记录修改后的历史峰值。
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
+        update(1, 0, n, l, r, {neg, neg, 0, v, v});
+    }
+
+    Info query(int l, int r)
+    {
+        // l、r 是非空半开端点；返回区间当前最大值和历史最大值。
+        assert(0 <= l && l < r && r <= n); // 调试检查，可删
+        return query(1, 0, n, l, r);
+    }
+};
 
 signed main()
 {
