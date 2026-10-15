@@ -19,7 +19,7 @@ struct FMIndex
         {
             s[i] = (unsigned char)text[i] + 1;
         }
-        sa = suffixArray(s);
+        sa = saIs(s, 256);
         bwt.resize(n);
         for (int i = 0; i < n; i++)
         {
@@ -35,13 +35,15 @@ struct FMIndex
 
     int rank(int x, int r) const
     {
-        // x 是符号编码，r 是行号上界；返回 bwt[0..r) 中 x 的出现次数。
+        // x 在 [0,256] 内，r 在 [0,bwt.size()] 内；返回 bwt[0..r) 中 x 的出现次数。
+        assert(0 <= x && x <= 256 && 0 <= r && r <= (int)bwt.size());
         return lower_bound(at[x].begin(), at[x].end(), r) - at[x].begin();
     }
 
     int lf(int i) const
     {
-        // i 是行号；返回把该行循环右移一位后所在的行（LF 映射）。
+        // i 是 [0,bwt.size()) 内的行号；返回该行循环右移一位后的行号。
+        assert(0 <= i && i < (int)bwt.size());
         return c[bwt[i]] + rank(bwt[i], i);
     }
 

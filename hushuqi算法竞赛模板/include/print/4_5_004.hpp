@@ -11,16 +11,22 @@ int multiSubstr(const vector<string> &a)
     {
         return 0;
     }
+    int pos = 0;
+    for (int i = 1; i < (int)a.size(); i++)
+    {
+        if (a[i].size() < a[pos].size()) pos = i;
+    }
+    if (a[pos].empty() || a.size() == 1) return a[pos].size();
     struct N
     {
         // len 是该状态的最长长度，link 是后缀链接。
         int len = 0, link = -1;
-        // to 按字节保存转移目标状态。
+        // to 只保存实际存在的字节转移，避免每状态预留 256 个下标。
         unordered_map<unsigned char, int> to;
     };
     vector<N> t(1);
     int last = 0;
-    for (unsigned char c : a[0])
+    for (unsigned char c : a[pos])
     {
         int u = t.size();
         t.push_back({t[last].len + 1});
@@ -61,7 +67,7 @@ int multiSubstr(const vector<string> &a)
         }
         last = u;
     }
-    vector<int> ord(t.size()), cnt(a[0].size() + 1), mn(t.size());
+    vector<int> ord(t.size()), cnt(a[pos].size() + 1), mn(t.size());
     for (const N &v : t)
     {
         cnt[v.len]++;
@@ -76,8 +82,9 @@ int multiSubstr(const vector<string> &a)
     {
         mn[i] = t[i].len;
     }
-    for (int k = 1; k < (int)a.size(); k++)
+    for (int k = 0; k < (int)a.size(); k++)
     {
+        if (k == pos) continue;
         vector<int> best(t.size());
         int v = 0, l = 0;
         for (unsigned char c : a[k])
