@@ -29,7 +29,7 @@ int primRoot(int p)
         bool ok = true;
         for (int q : f)
         {
-            if (powMod64(g, (p - 1) / q, p) == 1)
+            if (powerMod(g, (p - 1) / q, p) == 1)
             {
                 ok = false;
             }

@@ -1,83 +1,5 @@
-#include <bits/stdc++.h>
-using namespace std;
-#define int long long
-
-#include "support/topic_common.hpp"
-
-using CP = complex<long double>;
-
-void fft(vector<CP> &a, bool inv)
-{
-    // a 是复数系数数组，inv 表示是否执行逆变换；变换原地完成。
-    int n = a.size();
-    for (int i = 1, j = 0; i < n; i++)
-    {
-        int b = n >> 1;
-        for (; j & b; b >>= 1)
-        {
-            j ^= b;
-        }
-        j ^= b;
-        if (i < j)
-        {
-            swap(a[i], a[j]);
-        }
-    }
-    for (int len = 2; len <= n; len <<= 1)
-    {
-        CP w(cosl(2 * acosl(-1.L) / len), (inv ? -1 : 1) * sinl(2 * acosl(-1.L) / len));
-        for (int i = 0; i < n; i += len)
-        {
-            CP x = 1;
-            for (int j = 0; j < len / 2; j++, x *= w)
-            {
-                CP u = a[i + j], v = a[i + j + len / 2] * x;
-                a[i + j] = u + v;
-                a[i + j + len / 2] = u - v;
-            }
-        }
-    }
-    if (inv)
-    {
-        for (auto &x : a)
-        {
-            x /= n;
-        }
-    }
-}
-
-vector<long double> convReal(const vector<long double> &a, const vector<long double> &b)
-{
-    // a、b 是实数系数数组；返回二者的浮点线性卷积。
-    if (a.empty() || b.empty())
-    {
-        return {};
-    }
-    int s = a.size() + b.size() - 1;
-    int n = bit_ceil((unsigned long long)s);
-    vector<CP> x(n), y(n);
-    for (int i = 0; i < (int)a.size(); i++)
-    {
-        x[i] = a[i];
-    }
-    for (int i = 0; i < (int)b.size(); i++)
-    {
-        y[i] = b[i];
-    }
-    fft(x, false);
-    fft(y, false);
-    for (int i = 0; i < n; i++)
-    {
-        x[i] *= y[i];
-    }
-    fft(x, true);
-    vector<long double> c(s);
-    for (int i = 0; i < s; i++)
-    {
-        c[i] = x[i].real();
-    }
-    return c;
-}
+#pragma once
+#include "10_1_002.hpp"
 
 vector<bool> wildcardMC(const string &s, string t, unsigned long long seed, char any = '*')
 {
@@ -115,7 +37,7 @@ vector<bool> wildcardMC(const string &s, string t, unsigned long long seed, char
             fixed++;
         }
     }
-    auto c = convReal(a, b);
+    auto c = convolution(a, b);
     long double tol = 1E-9L * max<int>(1, fixed);
     vector<bool> ans(n - m + 1);
     for (int i = 0; i + m <= n; i++)
