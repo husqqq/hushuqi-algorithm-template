@@ -4,23 +4,7 @@ using namespace std;
 
 #include "../topic_common.hpp"
 
-template <class T> struct Discrete
-{
-    vector<T> a; // a 保存升序且去重后的原值。
-
-    explicit Discrete(vector<T> v) : a(move(v))
-    {
-        sort(a.begin(), a.end());
-        a.erase(unique(a.begin(), a.end()), a.end());
-    }
-
-    int id(const T &x) const
-    {
-        auto it = lower_bound(a.begin(), a.end(), x);
-        assert(it != a.end() && *it == x); // 调试检查，可删
-        return it - a.begin();
-    }
-};
+#include "2_2_002.hpp"
 
 template <class T> int invMerge(vector<T> a)
 {
