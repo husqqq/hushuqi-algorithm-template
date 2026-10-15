@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "updated_at": "2026-08-23T17:13:57.565576Z",
+  "updated_at": "2026-10-15T17:41:46.443975Z",
   "official_repository": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
     "url": "https://github.com/yosupo06/library-checker-problems"
@@ -1401,7 +1401,7 @@
       "title": "Point Add Range Sum",
       "category": "data_structure",
       "source": "data_structure/point_add_range_sum/main.cpp",
-      "source_sha256": "a6c281ed2d717a33e57f4e14daddcc1901d4a7bf65e4e50f6fc2b60cd95b2551",
+      "source_sha256": "775d28a9f6d260e58680f6cefdc9411297ff285cb4374102cfd7285dc97b937c",
       "meta": "data_structure/point_add_range_sum/meta.json",
       "state": "template_solution"
     },

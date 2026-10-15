@@ -4,7 +4,6 @@
 
 | 模板条目 | LC 题目 | 映射 | 源码 | 本地 | 在线 | 未完成原因 |
 |---|---|---|---|---|---|---|
-| `3.2.001` | `data_structure/point_add_range_sum` | `audited` | `current` | `missing` | `missing` | `verification_missing` |
 | `3.2.010` | `data_structure/rectangle_sum` | `audited` | `current` | `missing` | `missing` | `verification_missing` |
 | `3.3.003` | `data_structure/range_affine_point_get` | `audited` | `current` | `missing` | `missing` | `verification_missing` |
 | `3.3.003` | `data_structure/range_affine_range_sum` | `audited` | `current` | `missing` | `missing` | `verification_missing` |

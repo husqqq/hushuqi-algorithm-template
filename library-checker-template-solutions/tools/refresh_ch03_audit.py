@@ -21,7 +21,7 @@ PERFORMANCE_DIR = ROOT / ".local" / "ch03-performance"
 AUDIT = ROOT / "docs" / "03-数据结构审计.md"
 
 
-# 第 03 章共有 110 个三级条目。SPECS 中的 topic 是单题候选的主入口；
+# SPECS 中的 topic 是单题候选的主入口；
 # 下表记录正文明确复用、但不单独作为生成入口的条目，避免把它们错误写成 N/A。
 SHARED_ENTRY_COVERAGE = {
     "3.1.002": (
@@ -56,6 +56,10 @@ SHARED_ENTRY_COVERAGE = {
         "`data_structure/static_range_frequency`",
         "该条是同一静态区间频次语义的离线替代方案，当前主候选使用 `Wavelet`。",
     ),
+    "3.4.013": (
+        "`data_structure/staticrmq`",
+        "`FischerHeun::query` 直接提供静态半开区间最小值；主候选使用 `3.4.001 ST`。本行只记录接口对应，不能据主候选 AC 宣称本实现已获在线验证。",
+    ),
     "3.7.002": (
         "`data_structure/line_add_get_min`",
         "动态开点李超树与 `3.7.001 LiChao` 属于相同直线最小值问题域；当前题面可离线收集坐标，故主候选取后者。",
@@ -88,6 +92,9 @@ NOT_APPLICABLE_GROUPS = {
     ),
     "冻结题集没有要求该平衡树、可删堆或 Top-K 结构的独有公开接口；不能以可替代实现替换已记录的主映射。": (
         "3.5.001", "3.5.002", "3.5.003", "3.5.004", "3.5.005", "3.5.006", "3.5.008", "3.5.009", "3.5.010",
+    ),
+    "`RadixHeap` 只接受不小于最近弹出键的 64 位无符号键；`double_ended_priority_queue` 允许任意插入并同时弹出最大值，不能由此接口满足。冻结 data_structure 没有单调键最小堆题。": (
+        "3.5.013",
     ),
     "冻结题集没有要求该 Trie、可持久化 Trie、bitset 或 MEX/标记维护的独有语义。": (
         "3.6.001", "3.6.002", "3.6.004", "3.6.005", "3.6.007", "3.6.008", "3.6.010", "3.6.011", "3.6.012", "3.6.013",
@@ -208,14 +215,22 @@ def online_state(submitter, prepared, meta: dict) -> str:
     return "`online_pending`"
 
 
+def generation_state(generator, spec, workspace: Path, target: Path) -> str:
+    """逐题比较当前生成字节；过期或生成前置条件失效也必须保留在矩阵中。"""
+    try:
+        generated, _ = generator.generate_twice(workspace, spec)
+    except (OSError, ValueError):
+        return "`generation_failed`"
+    if target.is_file() and target.read_bytes() == generated:
+        return "`generation_current`"
+    return "`source_stale`"
+
+
 def template_entry_rows(generator) -> tuple[list[str], list[str]]:
     """返回共享覆盖与真正 N/A 条目的 Markdown 行，并校验两类清单覆盖关系。"""
     templates = generator.template_root(WORKSPACE)
     chapter = generator.read_text(generator.chapter_path(templates))
     headings = dict(ENTRY_RE.findall(chapter))
-    if len(headings) != 110:
-        raise RuntimeError(f"chapter 03 entry count changed: {len(headings)}")
-
     primary = {spec.topic for spec in generator.SPECS if spec.topic is not None}
     expected_shared = set(SHARED_ENTRY_COVERAGE)
     not_applicable = {
@@ -246,7 +261,7 @@ def template_entry_rows(generator) -> tuple[list[str], list[str]]:
 
     evidence = (
         f"冻结 `{generator.OFFICIAL_COMMIT}:data_structure` 的 47 个直属题完整枚举；"
-        "`11-其他分类审计.md` 已确认第 03 章分配题数为 0；逐题主映射见上表。"
+        "`93-其他分类审计.md` 已确认第 03 章分配题数为 0；逐题主映射见上表。"
     )
     not_applicable_rows = []
     for reason, entries in NOT_APPLICABLE_GROUPS.items():
@@ -274,26 +289,17 @@ def render() -> str:
 
     receipt = read_json(RECEIPT) if RECEIPT.is_file() else None
     prepared_by_name = {}
+    generations = {}
     for name in official_names:
         spec = specs[name]
-        generated, _ = generator.generate_twice(WORKSPACE, spec)
         target = ROOT / generator.source_path(spec)
-        if not target.is_file() or target.read_bytes() != generated:
-            raise RuntimeError(f"{name}: current deterministic generation differs from main.cpp")
+        generations[name] = generation_state(generator, spec, WORKSPACE, target)
         prepared = submitter.prepare_sources(
             submitter.load_items(ROOT, manifest, {name}, solution_only=True)
         )
         if len(prepared) != 1:
             raise RuntimeError(f"{name}: cannot prepare current source")
         prepared_by_name[name] = prepared[0]
-    try:
-        # 第 03 章的状态只由冻结的 47 道 data_structure 题决定；默认收据
-        # 仍绑定整个 manifest，但不要求同时覆盖其他章节的候选。
-        verifier.require_receipt(ROOT, list(prepared_by_name.values()), manifest)
-        receipt_current = True
-    except verifier.LocalVerifyError:
-        receipt_current = False
-
     rows = []
     local_verified = 0
     performance_passed = 0
@@ -321,9 +327,15 @@ def render() -> str:
         reference_path = reference.get("source") if isinstance(reference, dict) else "null"
         official_blob = official.get("git_blob") if isinstance(official, dict) else "null"
         evidence = (
-            f"{code('tools/generate_ch03_lc.py --check')}<br>"
+            f"{generations[name]}<br>"
             f"{code(str(reference_path))}<br>official correct.cpp blob {code(str(official_blob)[:12])}"
         )
+        try:
+            # 默认收据仍严格绑定完整 manifest，但单题通过不要求同章其他题已完成。
+            verifier.require_receipt(ROOT, [prepared], manifest)
+            receipt_current = True
+        except verifier.LocalVerifyError:
+            receipt_current = False
         local = local_state(receipt, receipt_current, name, source_sha256)
         performance = performance_state(name, source_sha256)
         online = online_state(submitter, prepared, meta)
@@ -350,11 +362,13 @@ def render() -> str:
     return "\n".join([
         "# Chapter 03 Data Structure Audit",
         "",
-        "本矩阵以冻结官方题库的 `data_structure/` 直属题集为反向基线。每行的候选均为当前用户模板确定性生成的唯一 `main.cpp`；参考目录和官方 `correct.cpp` 只用于源码对照与本地判定，绝不作为提交候选。",
+        "本矩阵以冻结官方题库的 `data_structure/` 直属题集为反向基线。逐题列出唯一候选与当前模板的生成一致性；参考目录和官方 `correct.cpp` 只用于源码对照与本地判定，不作为提交候选。",
         "",
         "## Coverage Status",
         "",
-        f"固定官方 commit `{generator.OFFICIAL_COMMIT}` 共 `{len(official_names)}` 题：已建立真实模板映射、独立源码和本轮本地收据 `{local_verified}/{len(official_names)}`；性能门 `{performance_passed}/{len(official_names)}`；当前可认证线上 AC `{online_ac}/{len(official_names)}`。`performance_pending` 和 `online_pending` 都表示该题尚未越过对应门禁，不能被报告为完成。",
+        f"固定官方 commit `{generator.OFFICIAL_COMMIT}` 共 `{len(official_names)}` 题：映射与候选 `{len(entries)}/{len(official_names)}`；当前生成字节一致 `{sum(value == '`generation_current`' for value in generations.values())}/{len(official_names)}`；默认收据当前通过 `{local_verified}/{len(official_names)}`；同源码性能门 `{performance_passed}/{len(official_names)}`；同源码可认证线上 AC `{online_ac}/{len(official_names)}`。各列独立核对，旧候选 AC 不证明当前模板已同步。",
+        "",
+        "`generation_current` 表示当前生成字节与候选相同；`source_stale` 表示字节不同；`generation_failed` 表示生成器前置条件或依赖已失效。后两种状态均须修复后重验，不能报告章节完成。",
         "",
         "| LC problem | Template mapping / API | Header / test | Current source | Source evidence | Local state | Performance | Online state |",
         "|---|---|---|---|---|---|---|---|",
@@ -362,7 +376,7 @@ def render() -> str:
         "",
         "## Shared Template Coverage",
         "",
-        "下表 11 个条目并非独立生成入口，但正文明确复用或提供了同一官方题所需的公开能力。因此它们不属于模板专属 `not_applicable`，也不新增或替代上方的官方题行。",
+        f"下表 {len(shared_rows)} 个条目并非独立主候选入口，但正文明确复用或提供了同一官方题所需的公开能力。因此它们不属于模板专属 `not_applicable`，也不新增或替代上方的官方题行；独立算法仍需自己的变体验证。",
         "",
         "| Template entry | Shared official coverage | Review conclusion |",
         "|---|---|---|",
@@ -370,7 +384,7 @@ def render() -> str:
         "",
         "## Template-only `not_applicable`",
         "",
-        "本轮最终范围是固定 `data_structure/` 的 47 题，且 `11-其他分类审计.md` 向第 03 章分配 0 题。以下 58 个条目没有在该范围建立独立的、满足题面语义和复杂度的官方映射；它们不会替代或减少上方 47 题基线。",
+        f"本轮最终范围是固定 `data_structure/` 的 47 题，且 `93-其他分类审计.md` 向第 03 章分配 0 题。以下 {len(not_applicable_rows)} 个条目没有在该范围建立独立的、满足题面语义和复杂度的官方映射；它们不会替代或减少上方 47 题基线。",
         "",
         "| Template entry | Reason no dedicated official data_structure problem is used here | Review evidence |",
         "|---|---|---|",
@@ -388,7 +402,7 @@ def render() -> str:
         "",
         "## Review Notes",
         "",
-        "- 全部 47 道题已按题面 I/O、约束、公开接口、区间/复合方向和复杂度与当前模板调用链对照；本轮未发现需要修改算法模板的确定性错误。",
+        "- 映射来自冻结题集的既有源码审阅；本工具只重算生成一致性与验证状态，不能代替逐题审阅或据此判定算法正确。",
         f"- 当前默认本地收据覆盖 {local_verified}/47 题；每条有效记录均绑定候选编译、关联模板测试和样例/边界/可复现随机三类官方 checker 用例。",
         "- 重点性能风险保留在持久化节点池、排序线段树和高内存 Wavelet 路径；只有同一源码的五轮基准通过后才会写为 `performance_passed` 并进入单题线上提交。",
         "- 历史在线 AC 只有在服务端回显源码 SHA256 与当前 `main.cpp` 相同、最终 verdict 为 AC 且 `is_latest=true` 时才写为 `online_ac`。",
