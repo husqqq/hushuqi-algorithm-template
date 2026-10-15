@@ -82,7 +82,22 @@ signed main()
     assert(bsearch_topic::lastTrue(-10, 10, [](ll x) { return x <= 3; }) == 3);
     assert(abs(bsearch_topic::firstReal(0, 2, [](long double x) { return x * x >= 2; }) - sqrtl(2)) < 1E-12L);
     assert(ternary_topic::ternaryInt(-10, 10, [](ll x) { return -(x - 3) * (x - 3); }) == 3);
-    assert(abs(ternary_topic::ternary(-5, 5, [](long double x) { return -(x - 1.25L) * (x - 1.25L); }) - 1.25L) < 1E-8L);
+    assert(ternary_topic::ternaryInt(5, 5, [](ll x) { return -x; }) == 5);
+    auto platform = ternary_topic::ternaryInt(-20, 20, [](ll x)
+                                              { return x < -2 ? x + 2 : x > 2 ? 2 - x : 0; });
+    assert(-2 <= platform && platform <= 2);
+    assert(ternary_topic::ternaryInt(numeric_limits<ll>::min(),
+                                    numeric_limits<ll>::max(),
+                                    [](ll x) -> __int128
+                                    { return x <= 7 ? (__int128)x : 14 - (__int128)x; }) == 7);
+    auto fr = [](long double x)
+    {
+        return -(x - 1.25L) * (x - 1.25L);
+    };
+    assert(abs(ternary_topic::ternaryReal(-5, 5, fr) - 1.25L) < 1E-8L);
+    assert(abs(ternary_topic::goldenMax(-5, 5, fr) - 1.25L) < 1E-8L);
+    assert(ternary_topic::ternaryReal(-5, 5, fr, 0) == 0);
+    assert(ternary_topic::goldenMax(-5, 5, fr, 0) == 0);
 
     int permutations = 0;
     enumerate_topic::eachPerm(vector<int>{1, 1, 2}, [&](const auto &) { ++permutations; });

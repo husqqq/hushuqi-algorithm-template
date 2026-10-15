@@ -104,6 +104,14 @@ void testSearch()
                       {
                           return x <= 7 ? (__int128)x : 14 - (__int128)x;
                       }) == 7);
+    assert(ternaryInt(numeric_limits<int>::min(),
+                      numeric_limits<int>::max(),
+                      [](int x) -> __int128
+                      {
+                          return x <= 7 ? (__int128)x : 14 - (__int128)x;
+                      }) == 7);
+    assert(ternaryReal(-5, 5, f, 0) == 0);
+    assert(goldenMax(-5, 5, f, 0) == 0);
     auto hi = numeric_limits<long double>::max();
     auto target = hi * .75L;
     auto large = firstReal(hi / 2,

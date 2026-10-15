@@ -61,13 +61,14 @@ template <class F> long double firstReal(long double l, long double r, F f, int 
 
 template <class F> int ternaryInt(int l, int r, F f)
 {
-    // l、r 是整数闭区间，f 是单峰函数；返回一个最大值位置。
-    // 求最小值要把收缩循环和末尾扫描中的 f 比较同时反向；只改一处会得到错误区间。
-    while (r - l > 4)
+    // l、r 是非空整数闭区间；f 在峰顶平台外严格递增、递减，返回一个最大值位置。
+    // 求最小值要把收缩循环和末尾扫描中的 f 比较同时反向；只改一处会破坏不变量。
+    assert(l <= r);
+    while ((__int128)r - l > 4)
     {
-        auto d = r - l;
-        auto x = l + d / 3;
-        auto y = r - d / 3;
+        auto d = (__int128)r - l; // 跨 64 位端点的差值需要加宽。
+        auto x = l + (int)(d / 3);
+        auto y = r - (int)(d / 3);
         if (f(x) < f(y))
         {
             l = x + 1;
@@ -92,8 +93,10 @@ template <class F> int ternaryInt(int l, int r, F f)
 
 template <class F> long double ternaryReal(long double l, long double r, F f, int it = 120)
 {
-    // l、r 是实数区间，f 是单峰函数，it 是迭代轮数；返回最大值位置近似值。
-    // 求最小值时反向循环内的 f(x)、f(y) 比较；若改传 -f，先确认取负不会溢出。
+    // l、r 是有限实数端点，it 是非负迭代次数；返回 [l,r] 上最大值位置的近似值。
+    // f 在峰顶平台外严格递增、递减，求值须保持大小关系且不产生 NaN。
+    // 求最小值要反向循环内的 f(x)、f(y) 比较；若改传 -f，先确认取负不会溢出。
+    assert(isfinite(l) && isfinite(r) && l <= r && it >= 0);
     for (int t = 0; t < it; t++)
     {
         auto x = lerp(l, r, 1.0L / 3);
@@ -112,8 +115,10 @@ template <class F> long double ternaryReal(long double l, long double r, F f, in
 
 template <class F> long double goldenMax(long double l, long double r, F f, int it = 120)
 {
-    // l、r 是实数区间，f 是单峰函数，it 是迭代轮数；返回黄金分割搜索结果。
+    // l、r 是有限实数端点，it 是非负迭代次数；返回 [l,r] 上最大值位置的近似值。
+    // f 在峰顶平台外严格递增、递减，求值须保持大小关系且不产生 NaN。
     // 求最小值时反向 fx、fy 的比较；其余复用点和区间更新方向不变。
+    assert(isfinite(l) && isfinite(r) && l <= r && it >= 0);
     constexpr long double ratio = 0.6180339887498948482L;
     auto x = lerp(l, r, 1 - ratio);
     auto y = lerp(l, r, ratio);
