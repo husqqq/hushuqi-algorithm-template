@@ -50,27 +50,23 @@ int lcsBitset(const string &a, const string &b)
     // a、b 是两个字节串；返回二者的最长公共子序列长度。
     int w = (b.size() + 63) / 64;
     vector<vector<unsigned long long>> mask(256, vector<unsigned long long>(w));
-    vector<unsigned long long> s(w), x(w), z(w);
+    vector<unsigned long long> s(w);
     for (int i = 0; i < (int)b.size(); i++)
     {
         mask[(unsigned char)b[i]][i / 64] |= 1ULL << (i % 64);
     }
     for (unsigned char c : a)
     {
+        // shift、borrow 分别把左移进位和减法借位传给下一个 64 位块。
         unsigned long long shift = 1, borrow = 0;
         for (int i = 0; i < w; i++)
         {
-            x[i] = mask[c][i] | s[i];
+            unsigned long long x = mask[c][i] | s[i];
             unsigned long long y = s[i] << 1 | shift;
             shift = s[i] >> 63;
             unsigned long long q = y + borrow;
-            unsigned long long borrow = q < y || x[i] < q;
-            z[i] = x[i] - q;
-            borrow = borrow;
-        }
-        for (int i = 0; i < w; i++)
-        {
-            s[i] = x[i] & ~z[i];
+            borrow = q < y || x < q;
+            s[i] = x & ~(x - q);
         }
     }
     int ans = 0;

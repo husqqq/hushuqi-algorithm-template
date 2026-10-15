@@ -84,12 +84,17 @@ int minPeriod(const string &s)
 
 template <int A = 26, char F = 'a'> struct KMPAutomaton
 {
+    static_assert(0 < A && A <= 256 - (unsigned char)F);
     // pattern 保存模式串，pi 是其前缀函数，go[state][字符] 是 DFA 转移后的匹配长度。
     string pattern;
     vector<int> pi;
     vector<array<int, A>> go;
 
-    KMPAutomaton() = default;
+    KMPAutomaton()
+    {
+        // 无参数；构造空模式的唯一状态及其自环转移。
+        build("");
+    }
 
     explicit KMPAutomaton(const string &s)
     {
@@ -100,7 +105,7 @@ template <int A = 26, char F = 'a'> struct KMPAutomaton
     int id(char c) const
     {
         // c 是字符集 [F,F+A) 中的字符；返回从 0 开始的字符编号。
-        int x = c - F;
+        int x = (unsigned char)c - (unsigned char)F;
         assert(0 <= x && x < A);
         return x;
     }
@@ -114,35 +119,21 @@ template <int A = 26, char F = 'a'> struct KMPAutomaton
         {
             id(c);
         }
-        pi.assign(n, 0);
-        for (int i = 1, j = 0; i < n; i++)
-        {
-            while (j && pattern[i] != pattern[j])
-            {
-                j = pi[j - 1];
-            }
-            if (pattern[i] == pattern[j])
-            {
-                j++;
-            }
-            pi[i] = j;
-        }
+        pi = prefix(pattern);
         go.assign(n + 1, array<int, A>());
         for (int state = 0; state <= n; state++)
         {
             for (int x = 0; x < A; x++)
             {
-                int j = state;
-                char c = (char)(F + x);
-                while (j && (j == n || pattern[j] != c))
+                if (state < n && id(pattern[state]) == x)
                 {
-                    j = pi[j - 1];
+                    go[state][x] = state + 1;
                 }
-                if (j < n && pattern[j] == c)
+                else if (state)
                 {
-                    j++;
+                    // 失配时复用较短 border 的整步转移，每项只计算一次。
+                    go[state][x] = go[pi[state - 1]][x];
                 }
-                go[state][x] = j;
             }
         }
     }
