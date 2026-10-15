@@ -76,6 +76,7 @@ class EdgeDecomp
                 best = cur;
             }
         }
+        assert(best[1] != -1); // 调试检查，可删
         int id = cut.size();
         cut.push_back({cutPar, best[2], best[3]});
         ban[best[1]] = true;

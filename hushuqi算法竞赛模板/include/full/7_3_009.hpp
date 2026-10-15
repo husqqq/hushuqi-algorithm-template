@@ -14,6 +14,7 @@ struct DivBlock
 vector<DivBlock> divBlocks(long long n)
 {
     // n 是正整数；返回 floor(n/i) 相同的全部极大闭区间。
+    assert(n > 0); // 调试检查，可删
     vector<DivBlock> a;
     long long l = 1;
     while (l <= n)

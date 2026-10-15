@@ -39,6 +39,7 @@ struct OnlineNTT
         int z = countr_zero((unsigned long long)(p + 2));
         int w = 1LL << z;
         int s;
+        assert(2 * w <= (1 << 23)); // 调试检查，可删。
         if (p + 2 == w)
         {
             x = a;

@@ -32,6 +32,7 @@ struct Sieve
     vector<pair<int, int>> factor(int x) const
     {
         // x 在 [1,minp.size()) 内；返回按质因子升序的 {质因子,指数}。
+        assert(1 <= x && x < (int)minp.size()); // 调试检查，可删
         vector<pair<int, int>> ans;
         while (x > 1)
         {

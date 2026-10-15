@@ -21,6 +21,7 @@ template <class T> struct Discrete
     {
         // x 必须已存在；返回 x 从 0 开始的离散编号。
         auto it = lower_bound(a.begin(), a.end(), x);
+        assert(it != a.end() && *it == x); // 调试检查，可删
         return it - a.begin();
     }
 

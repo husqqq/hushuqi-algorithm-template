@@ -42,6 +42,7 @@ Poly productPolys(vector<Poly> a)
         q.pop();
         int y = q.top().second;
         q.pop();
+        assert(convFit(pool[x].size(), pool[y].size())); // 调试检查，可删。
         vector<Z> z = conv(move(pool[x]), move(pool[y]));
         int p = pool.size();
         pool.emplace_back(move(z));

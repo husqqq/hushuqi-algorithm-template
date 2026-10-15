@@ -194,6 +194,7 @@ template <class T> struct Splay
     T kth(int k)
     {
         // k 是 0 基排名；返回第 k 小并把对应节点伸展到根。
+        assert(0 <= k && k < size(root)); // 调试检查，可删
         int u = root;
         while (true)
         {

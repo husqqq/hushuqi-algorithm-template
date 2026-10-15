@@ -8,6 +8,7 @@ int chromaticNum(const vector<unsigned long long> &e)
 {
     // e 是简单无向图邻接位集；返回最小点染色数。
     int n = e.size();
+    assert(n <= 24); // 调试检查，可删：状态数必须能承受。
     size_t z = 1ULL << n;
     vector<bool> ind(z);
     ind[0] = true;

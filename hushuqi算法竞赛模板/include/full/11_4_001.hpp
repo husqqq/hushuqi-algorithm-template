@@ -10,11 +10,13 @@ struct C
 
 bool in(C c, P p)
 {
+    assert(sgn(c.r) >= 0); // 调试检查，可删。
     return sgn(abs(p - c.o) - c.r) <= 0;
 }
 
 int circleRel(C a, C b)
 {
+    assert(sgn(a.r) >= 0 && sgn(b.r) >= 0); // 调试检查，可删。
     Real d = abs(a.o - b.o);
     if (sgn(d) == 0 && sgn(a.r - b.r) == 0)
     {

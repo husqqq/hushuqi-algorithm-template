@@ -123,6 +123,7 @@ template <uint32_t P> struct MInt
     MInt inv() const
     {
         // 当前值必须非零且 P 必须为素数；返回乘法逆元。
+        assert(x != 0); // 调试检查，可删
         return pow(P - 2);
     }
 };
@@ -130,6 +131,7 @@ template <uint32_t P> struct MInt
 template <uint32_t P> const vector<MInt<P>> &invTable(int n)
 {
     // n 是需要的最大下标且 0<=n<P；返回至少覆盖 0..n 的共享模逆元表，其中位置 0 为 0。
+    assert(0 <= n && (uint64_t)n < P); // 调试检查，可删
     static vector<MInt<P>> iv{0, 1};
     int old = iv.size();
     if (old <= n)

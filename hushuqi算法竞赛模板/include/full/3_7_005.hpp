@@ -96,6 +96,7 @@ template <class T = long long> struct KDBlocks
         T query(int xl, int xr, int yl, int yr) const
         {
             // 四个参数是有序的闭矩形边界；返回本块内点权和。
+            assert(xl <= xr && yl <= yr); // 调试检查，可删
             return query(root, xl, xr, yl, yr);
         }
     };
@@ -126,6 +127,7 @@ template <class T = long long> struct KDBlocks
     T query(int xl, int xr, int yl, int yr) const
     {
         // 四个参数是有序的闭矩形边界；返回所有块内的点权和。
+        assert(xl <= xr && yl <= yr); // 调试检查，可删
         T ans{};
         for (auto &x : b)
         {

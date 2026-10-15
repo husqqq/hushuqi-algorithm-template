@@ -48,6 +48,7 @@ template <class Dist = long long> struct Johnson
         for (auto [u, v, w] : e)
         {
             Dist nw = (Dist)w + h[u] - h[v];
+            assert(nw >= 0); // 调试检查，可删：势函数应使重标权非负。
             g[u].push_back({v, nw});
         }
         vector ans(n, vector<optional<Dist>>(n));

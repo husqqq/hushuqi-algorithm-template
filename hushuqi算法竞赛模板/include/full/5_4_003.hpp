@@ -21,6 +21,7 @@ optional<vector<int>> lexTwoSat(int n, const vector<array<int, 4>> &clauses)
         };
         for (auto [u, a, v, b] : clauses)
         {
+            assert(0 <= u && u < n && 0 <= v && v < n && (a == 0 || a == 1) && (b == 0 || b == 1)); // 调试检查，可删。
             int x = 2 * u + a, y = 2 * v + b;
             add(x ^ 1, y);
             add(y ^ 1, x);

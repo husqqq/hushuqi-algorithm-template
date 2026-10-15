@@ -35,6 +35,7 @@ struct RayPtsQuery3
 vector<ParamPoint3> lineSphere3(L3 l, Sphere s)
 {
     // l 是非退化直线，s 是非负半径球；返回按参数递增的 0 至 2 个球面交点。
+    assert((l.v.x != 0 || l.v.y != 0 || l.v.z != 0) && s.r >= 0); // 调试检查，可删。
     Real vv = norm(l.v);
     Real middle = dot(s.o - l.p, l.v) / vv;
     P3 foot = l.p + l.v * middle;
@@ -59,6 +60,7 @@ vector<ParamPoint3> lineSphere3(L3 l, Sphere s)
 RayPtsQuery3 raySphere3(Ray3 r, Sphere s)
 {
     // r 是可退化射线，s 是非负半径球；返回所有非负参数的球面交点。
+    assert(s.r >= 0); // 调试检查，可删。
     if (r.v.x == 0 && r.v.y == 0 && r.v.z == 0)
     {
         return {RayState3::Degenerate, {}};
@@ -82,6 +84,7 @@ RayPtsQuery3 raySphere3(Ray3 r, Sphere s)
 optional<Circle3> planeSphere3(Plane p, Sphere s)
 {
     // p 是非退化平面，s 是非负半径球；返回交圆，相离时返回空，相切时半径为 0。
+    assert(sgn(abs(p.n)) != 0 && sgn(s.r) >= 0); // 调试检查，可删。
     Real h = dot(s.o - p.p, p.n) / abs(p.n);
     if (fabsl(h) > s.r && !eq(fabsl(h), s.r))
     {
@@ -95,6 +98,7 @@ optional<Circle3> planeSphere3(Plane p, Sphere s)
 SpherePair3 spherePair3(Sphere a, Sphere b)
 {
     // a、b 是两个非负半径球；返回球面关系及相切或相交时的交圆。
+    assert(sgn(a.r) >= 0 && sgn(b.r) >= 0); // 调试检查，可删。
     Real d = abs(b.o - a.o);
     Real sum = a.r + b.r;
     Real diff = fabsl(a.r - b.r);
@@ -132,6 +136,7 @@ SpherePair3 spherePair3(Sphere a, Sphere b)
 vector<ParamPoint3> lineCircle3(L3 l, Circle3 c)
 {
     // l 是非退化直线，c 是法向非零的空间圆；返回按直线参数递增的交点。
+    assert((l.v.x != 0 || l.v.y != 0 || l.v.z != 0) && sgn(abs(c.n)) != 0 && c.r >= 0); // 调试检查，可删。
     Real d = dot(l.v, c.n);
     if (d != 0)
     {
@@ -155,6 +160,7 @@ vector<ParamPoint3> lineCircle3(L3 l, Circle3 c)
 Real sphereLens3(Sphere a, Sphere b)
 {
     // a、b 是两个非负半径闭球；返回二者公共部分体积。
+    assert(sgn(a.r) >= 0 && sgn(b.r) >= 0); // 调试检查，可删。
     Real d = abs(b.o - a.o);
     Real sum = a.r + b.r;
     Real diff = fabsl(a.r - b.r);
@@ -175,12 +181,14 @@ Real sphereLens3(Sphere a, Sphere b)
 Real sphereArea(Real r)
 {
     // r 是非负球半径；返回三维球面面积。
+    assert(r >= 0); // 调试检查，可删。
     return 4 * acosl(-1) * r * r;
 }
 
 Real capArea(Real r, Real h)
 {
     // r 是非负球半径，h 是范围 [0,2r] 的球冠高；返回球冠曲面面积。
+    assert(r >= 0 && (h > 0 || eq(h, Real(0))) && (h < 2 * r || eq(h, 2 * r))); // 调试检查，可删。
     h = clamp(h, Real(0), 2 * r);
     return max(Real(0), 2 * acosl(-1) * r * h);
 }
@@ -188,6 +196,7 @@ Real capArea(Real r, Real h)
 Real capVolume(Real r, Real h)
 {
     // r 是非负球半径，h 是范围 [0,2r] 的球冠高；返回球冠体积。
+    assert(r >= 0 && (h > 0 || eq(h, Real(0))) && (h < 2 * r || eq(h, 2 * r))); // 调试检查，可删。
     h = clamp(h, Real(0), 2 * r);
     return max(Real(0), acosl(-1) * h * h * (r - h / 3));
 }
@@ -196,6 +205,7 @@ Real zoneArea(Real r, Real low, Real high)
 {
     // r 是非负球半径，[low,high] 是相对球心轴坐标区间；返回球带曲面面积。
     assert(r >= 0 && (low > -r || eq(low, -r)) && (low < high || eq(low, high)) &&
+           (high < r || eq(high, r))); // 调试检查，可删。
     low = clamp(low, -r, r);
     high = clamp(high, -r, r);
     if (low > high)
@@ -209,6 +219,7 @@ Real zoneVol3(Real r, Real low, Real high)
 {
     // r 是非负球半径，[low,high] 是相对球心轴坐标区间；返回两截面间体积。
     assert(r >= 0 && (low > -r || eq(low, -r)) && (low < high || eq(low, high)) &&
+           (high < r || eq(high, r))); // 调试检查，可删。
     low = clamp(low, -r, r);
     high = clamp(high, -r, r);
     if (low > high)

@@ -102,6 +102,7 @@ optional<Assignment<Acc>> assignment(const vector<vector<long long>> &a, bool mx
                     j1 = j;
                 }
             }
+            assert(delta); // 调试检查，可删：n<=m 时总有未访问列。
             for (int j = 0; j <= m; j++)
             {
                 if (used[j])

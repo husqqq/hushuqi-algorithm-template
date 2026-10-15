@@ -127,6 +127,7 @@ template <class Dist = long long> class KDTree
 
     int rectSum(int xl, int xr, int yl, int yr) const
     {
+        assert(xl <= xr && yl <= yr); // 调试检查，可删
         return rectSum(rt, xl, xr, yl, yr);
     }
 

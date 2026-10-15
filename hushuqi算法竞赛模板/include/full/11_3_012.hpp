@@ -4,6 +4,7 @@
 
 P fermatPoint(P a, P b, P c)
 {
+    assert(sgn(cross(a, b, c)) != 0); // 调试检查，可删。
     const Real pi = acosl(-1);
     auto ang = [&](P x, P y, P z)
     {

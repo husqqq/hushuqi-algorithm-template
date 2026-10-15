@@ -6,6 +6,7 @@ using namespace std;
 unsigned long long kthRoot(unsigned long long n, int k)
 {
     // n 是被开方的非负整数，k 是正整数次数；返回 floor(n^(1/k))。
+    assert(k > 0); // 调试检查，可删
     if (k == 1 || n <= 1)
     {
         return n;

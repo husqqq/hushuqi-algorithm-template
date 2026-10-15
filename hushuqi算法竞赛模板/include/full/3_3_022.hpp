@@ -27,6 +27,7 @@ template <class T, class F> class RangeSetSeg
     int32_t makeTag(const T &x)
     {
         // x 是一次新的统一赋值；建立按二次幂长度索引的重复积并返回编号。
+        assert(powers.size() / (height + 1) < (size_t)numeric_limits<int32_t>::max()); // 调试检查，可删
         int32_t id = (int32_t)(powers.size() / (height + 1));
         T cur = x;
         for (int level = 0; level <= height; level++)
@@ -134,12 +135,14 @@ template <class T, class F> class RangeSetSeg
     void reserveTags(int cap)
     {
         // cap 是预计的非空赋值总次数；预留幂缓存容量，不改变结构语义。
+        assert(cap >= 0); // 调试检查，可删
         powers.reserve((size_t)cap * (height + 1));
     }
 
     void assign(int l, int r, const T &x)
     {
         // l、r 是半开端点，x 是新值；把 [l,r) 每个元素统一赋为 x，空区间无操作。
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         if (l == r)
         {
             return;
@@ -150,6 +153,7 @@ template <class T, class F> class RangeSetSeg
     T prod(int l, int r)
     {
         // l、r 是半开端点；返回 [l,r) 的有序积，空区间返回 e。
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         if (l == r)
         {
             return e;

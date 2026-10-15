@@ -10,6 +10,7 @@ Poly taylorShift(const Poly &a, Z c)
     {
         return {};
     }
+    assert(n <= mod && convFit(n, n)); // 调试检查，可删。
     vector<Z> fac(n, 1);
     vector<Z> ifac(n, 1);
     for (int i = 1; i < n; i++)
@@ -43,10 +44,12 @@ vector<Z> shiftSamples(const vector<Z> &y, int c, int m)
 {
     // y[i]=f(i)，c 是首个整数点，m 是输出长度；返回模 mod 下 f(c)..f(c+m-1)。
     int n = y.size();
+    assert(n > 0 && n < mod && 0 <= m && m <= mod); // 调试检查，可删。
     if (m == 0)
     {
         return {};
     }
+    assert(convFit(n, n + m - 1)); // 调试检查，可删。
     vector<Z> fac(n + 1, 1);
     vector<Z> ifac(n + 1, 1);
     for (int i = 1; i <= n; i++)

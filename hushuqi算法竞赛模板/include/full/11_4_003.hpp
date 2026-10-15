@@ -4,6 +4,7 @@
 
 Real circleArea(C a, C b)
 {
+    assert(sgn(a.r) >= 0 && sgn(b.r) >= 0); // 调试检查，可删。
     Real d = abs(a.o - b.o);
     if (sgn(d - a.r - b.r) >= 0)
     {

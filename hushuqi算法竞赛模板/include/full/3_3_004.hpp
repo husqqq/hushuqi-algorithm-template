@@ -100,6 +100,7 @@ class AddMinSeg
     void add(int l, int r, long long v)
     {
         // 给半开区间 [l,r) 增加 v；空区间无操作。
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         if (l == r)
         {
             return;
@@ -110,6 +111,7 @@ class AddMinSeg
     long long rangeMin(int l, int r)
     {
         // 返回非空半开区间 [l,r) 的最小值。
+        assert(0 <= l && l < r && r <= n); // 调试检查，可删
         return rangeMin(1, 0, n, l, r);
     }
 };

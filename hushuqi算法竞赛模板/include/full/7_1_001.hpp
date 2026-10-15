@@ -8,6 +8,7 @@ using namespace std;
 long long mulMod(long long a, long long b, long long m)
 {
     // a、b 是乘数，m 是正模数；返回 a*b mod m 的最小非负余数。
+    assert(m > 0); // 调试检查，可删
     a %= m;
     b %= m;
     if (a < 0)
@@ -29,6 +30,7 @@ long long mulMod(long long a, long long b, long long m)
 long long powerMod(long long a, unsigned long long b, long long m)
 {
     // a 是可为负的底数，b 是非负指数，m 是正模数；返回 a^b mod m。
+    assert(m > 0); // 调试检查，可删
     long long r = 1 % m;
     a %= m;
     if (a < 0)
@@ -135,6 +137,7 @@ Exgcd exgcd(long long a, long long b)
 optional<long long> invMod(long long a, long long m)
 {
     // a 是待求逆整数，m 是大于 1 的模数；返回最小非负逆元，不可逆时返回空。
+    assert(m > 1); // 调试检查，可删
     auto [g, x, y] = exgcd(a, m);
     if (g != 1)
     {
@@ -153,6 +156,7 @@ using Cong = array<int, 2>; // [0]=最小非负余数，[1]=正周期
 optional<Cong> congruence(long long a, long long b, long long m)
 {
     // 解 ax=b (mod m)，返回 {最小非负解,周期}；无解返回空。
+    assert(m > 0); // 调试检查，可删
     long long g = (long long)binaryGcd(a, m);
     if (b % g)
     {
@@ -170,6 +174,7 @@ optional<Cong> congruence(long long a, long long b, long long m)
 optional<Cong> crt(Cong a, Cong b)
 {
     // 合并 x≡a[0] (mod a[1]) 与 x≡b[0] (mod b[1])；返回 {最小非负解,lcm 模}，无解或新模越界时返回空。
+    assert(a[1] > 0 && b[1] > 0); // 调试检查，可删
     auto [g, x, y] = exgcd(a[1], b[1]);
     __int128 d = (__int128)b[0] - a[0];
     if (d % g)
@@ -202,6 +207,7 @@ optional<Cong> crt(Cong a, Cong b)
 int invPrime(int a, int mod)
 {
     // 返回非零剩余 a 在素数模 mod 下的逆元。
+    assert(0 < a && a < mod); // 调试检查，可删
     int ans = 1;
     int b = mod - 2;
     while (b)
@@ -219,6 +225,7 @@ int invPrime(int a, int mod)
 vector<int> invTable(int n, int mod)
 {
     // 返回 1..n 在素数模 mod 下的逆元表，位置 0 保持 0。
+    assert(0 <= n && n < mod); // 调试检查，可删
     vector<int> inv(n + 1);
     if (n >= 1)
     {
@@ -238,6 +245,7 @@ vector<int> batchInv(const vector<int> &a, int mod)
     vector<int> pre(n + 1, 1);
     for (int i = 0; i < n; i++)
     {
+        assert(0 < a[i] && a[i] < mod); // 调试检查，可删
         pre[i + 1] = mulMod(pre[i], a[i], mod);
     }
     int cur = invPrime(pre[n], mod);
@@ -261,6 +269,7 @@ public:
     // x 是 1<=x<Mod 的非零余数；返回 x 在模 Mod 下的乘法逆元。
     static int get(int x)
     {
+        assert(1 <= x && x < Mod); // 调试检查，可删
         auto [a, b] = frac[x >> 10];
         int pos = 2 * (1 << 20) + x * b - (int)a * Mod;
         return (long long)small[pos] * b % Mod;

@@ -182,6 +182,7 @@ template <class T> struct Treap
     T kth(int k) const
     {
         // k 是 0 基排名；返回第 k 小键。
+        assert(0 <= k && k < size(root)); // 调试检查，可删
         int u = root;
         while (true)
         {

@@ -25,6 +25,7 @@ vector<optional<Dist>> dijkstraSp(const vector<vector<WEdge>> &g, int s)
         }
         for (auto [v, w] : g[u])
         {
+            assert(w >= 0); // 调试检查，可删：Dijkstra 要求非负边权。
             Dist z = (Dist)w;
             Dist nd = du + z;
             if (!d[v].has_value() || nd < *d[v])
@@ -65,6 +66,7 @@ vector<optional<Dist>> dijkstraDn(
         {
             if (w[u][v].has_value())
             {
+                assert(*w[u][v] >= 0); // 调试检查，可删：Dijkstra 要求非负边权。
                 Dist z = (Dist)*w[u][v];
                 Dist nd = *d[u] + z;
                 if (!d[v].has_value() || nd < *d[v])

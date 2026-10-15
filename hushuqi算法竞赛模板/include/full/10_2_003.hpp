@@ -5,10 +5,12 @@
 Poly fpsInv(const Poly &a, int n)
 {
     // a 是输入 FPS，n 是 [0,2^22] 内的截断长度；n>0 时 a[0] 必须非零，返回满足 a*g=1 mod x^n 的 g。
+    assert(n >= 0 && n <= (1 << 22)); // 调试检查，可删。
     if (n == 0)
     {
         return {};
     }
+    assert(!a.empty() && a[0] != Z(0)); // 调试检查，可删。
     Poly g{a[0].inv()};
     for (int k = 2; k < 2 * n; k <<= 1)
     {
@@ -20,10 +22,12 @@ Poly fpsInv(const Poly &a, int n)
 Poly fpsInvFast(const Poly &a, int n)
 {
     // a 是输入 FPS，n 是 [0,2^23] 内的截断长度；n>0 时 a[0] 必须非零，返回满足 a*g=1 mod x^n 的快速逆元。
+    assert(n >= 0 && n <= (1 << 23)); // 调试检查，可删。
     if (n == 0)
     {
         return {};
     }
+    assert(!a.empty() && a[0] != Z(0)); // 调试检查，可删。
 
     int m = min<int>(n, 64); // m 是当前已经求出的逆元项数。
     Poly g(m);

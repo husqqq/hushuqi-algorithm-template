@@ -17,9 +17,11 @@ optional<DualPath<Dist>> dualShortest(
     int faces, const vector<array<int, 3>> &dualEdges, int s, int t)
 {
     // dualEdges 是相邻面与非负代价；不可达时返回空。
+    assert(faces > 0 && 0 <= s && s < faces && 0 <= t && t < faces); // 调试检查，可删。
     vector<vector<array<int, 2>>> g(faces);
     for (auto [u, v, w] : dualEdges)
     {
+        assert(0 <= u && u < faces && 0 <= v && v < faces && w >= 0); // 调试检查，可删。
         g[u].push_back({v, w});
         g[v].push_back({u, w});
     }

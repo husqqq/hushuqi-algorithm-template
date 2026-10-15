@@ -47,6 +47,7 @@ class EdgeBCC
     int addEdge(int u, int v)
     {
         // u、v 是端点；加入允许重边的无向边并返回边编号。
+        assert(0 <= u && u < n && 0 <= v && v < n); // 调试检查，可删。
         int id = ed.size();
         ed.push_back({u, v});
         g[u].push_back({v, id});

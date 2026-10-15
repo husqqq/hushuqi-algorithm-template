@@ -158,12 +158,14 @@ template <class T> struct ImpTreap
     explicit ImpTreap(int cap = 0)
     {
         // cap 是预计节点总数，只用于预留池容量；构造空序列。
+        assert(cap >= 0); // 调试检查，可删
         reserveNodes(cap);
     }
 
     explicit ImpTreap(const vector<T> &a, int cap = 0)
     {
         // a 是初始序列，cap 是预计节点总数；在线性时间建出当前序列。
+        assert(cap >= 0); // 调试检查，可删
         reserveNodes(max<int>(cap, (int)a.size()));
         build(a);
     }
@@ -171,6 +173,7 @@ template <class T> struct ImpTreap
     void reserveNodes(int cap)
     {
         // cap 是预计节点总数；预留 0 号哨兵外的池容量，不改变现有序列。
+        assert(cap >= 0); // 调试检查，可删
         tr.reserve(cap + 1);
     }
 
@@ -224,6 +227,7 @@ template <class T> struct ImpTreap
     void insert(int k, const T &x)
     {
         // k 是插入位置，x 是新值；把 x 插到原第 k 项前，允许 k=size()。
+        assert(0 <= k && k <= size()); // 调试检查，可删
         auto [a, b] = split(root, k);
         root = merge(merge(a, newNode(x)), b);
     }
@@ -231,6 +235,7 @@ template <class T> struct ImpTreap
     void erase(int k)
     {
         // k 是删除位置；删除原第 k 项，已分配节点不回收。
+        assert(0 <= k && k < size()); // 调试检查，可删
         auto [a, b] = split(root, k);
         root = merge(a, split(b, 1).second);
     }
@@ -238,6 +243,7 @@ template <class T> struct ImpTreap
     void reverse(int l, int r)
     {
         // l、r 是半开区间端点；原地翻转 [l,r)，空区间允许。
+        assert(0 <= l && l <= r && r <= size()); // 调试检查，可删
         auto [a, b] = split(root, l);
         auto [c, d] = split(b, r - l);
         applyReverse(c);
@@ -247,6 +253,7 @@ template <class T> struct ImpTreap
     void affine(int l, int r, const T &mul, const T &add)
     {
         // l、r 是半开区间端点，mul、add 是变换参数；对 [l,r) 每项执行 x -> x*mul+add。
+        assert(0 <= l && l <= r && r <= size()); // 调试检查，可删
         auto [a, b] = split(root, l);
         auto [c, d] = split(b, r - l);
         applyAffine(c, mul, add);
@@ -256,6 +263,7 @@ template <class T> struct ImpTreap
     T sum(int l, int r)
     {
         // l、r 是半开区间端点；返回 [l,r) 的元素和，空区间返回零元。
+        assert(0 <= l && l <= r && r <= size()); // 调试检查，可删
         auto [a, b] = split(root, l);
         auto [c, d] = split(b, r - l);
         T ans = sumNode(c);

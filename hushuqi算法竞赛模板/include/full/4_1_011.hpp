@@ -22,6 +22,7 @@ vector<bool> wildcard(const string &s, string t, char any = '*')
         if (s[i] != any)
         {
             int x = s[i] - 'a' + 1;
+            assert(1 <= x && x <= 26); // 调试检查，可删。
             sx[i] = x;
             sx2[i] = x * x;
             sm[i] = 1;
@@ -32,6 +33,7 @@ vector<bool> wildcard(const string &s, string t, char any = '*')
         if (t[i] != any)
         {
             int y = t[i] - 'a' + 1;
+            assert(1 <= y && y <= 26); // 调试检查，可删。
             ty[i] = y;
             ty2[i] = y * y;
             tm[i] = 1;

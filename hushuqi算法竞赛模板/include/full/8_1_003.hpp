@@ -8,6 +8,7 @@ using namespace std;
 int powPrime(int a, int b, int p)
 {
     // a 是底数，b 是非负指数，p 是素数；返回 a^b mod p。
+    assert(b >= 0 && p >= 2); // 调试检查，可删。
     a %= p;
     if (a < 0)
     {
@@ -29,6 +30,7 @@ int powPrime(int a, int b, int p)
 int lucas(int n, int k, int p)
 {
     // n、k 是组合数参数，p 是素数；返回 C(n,k) mod p。
+    assert(n >= 0 && p >= 2); // 调试检查，可删。
     if (k < 0 || k > n)
     {
         return 0;

@@ -11,9 +11,11 @@ struct DegreeBlock
     DegreeBlock(int n, const vector<array<int, 2>> &e, vector<int> init = {})
         : g(n), big(n), id(n, -1), w(move(init))
     {
+        assert(n >= 0 && (w.empty() || (int)w.size() == n)); // 调试检查，可删。
         w.resize(n);
         for (auto [u, v] : e)
         {
+            assert(0 <= u && u < n && 0 <= v && v < n && u != v); // 调试检查，可删。
             g[u].push_back(v);
             g[v].push_back(u);
         }

@@ -16,11 +16,13 @@ vector<Dist> eppWalks(
     unsigned long long k, bool keep0 = true)
 {
     // n 是点数，e 是边表，s、t 是起终点，k 是要枚举的项数；返回前至多 k 小游走长度。
+    assert(k >= 1 && 0 <= s && s < n && 0 <= t && t < n); // 调试检查，可删。
     // g[u] 的每项依次是终点、边权和原边编号，rg 是反图。
     vector<vector<array<int, 3>>> g(n), rg(n);
     for (int i = 0; i < (int)e.size(); i++)
     {
         auto [u, v, w] = e[i];
+        assert(0 <= u && u < n && 0 <= v && v < n && w >= 0); // 调试检查，可删。
         g[u].push_back({v, w, i});
         rg[v].push_back({u, w, i});
     }

@@ -74,6 +74,7 @@ vector<pair<int, int>> euclidMST(const vector<array<long long, 2>> &p)
         edge.push_back({rep[x], rep[y], dx * dx + dy * dy});
     }
     auto mst = kruskal(n, move(edge));
+    assert(mst.has_value()); // 调试检查，可删；Delaunay 边与重合点零边必然连通。
     vector<pair<int, int>> ans;
     for (auto [x, y, w] : mst->second)
     {

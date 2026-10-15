@@ -26,6 +26,7 @@ template <int A = 26> class SqAM
     void add(int x)
     {
         // x 是 [0,A) 内的新字符编号；把它追加到文本末尾。
+        assert(0 <= x && x < A); // 调试检查，可删
         int v = go.size();
         go.push_back({});
         go.back().fill(-1);

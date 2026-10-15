@@ -11,6 +11,7 @@ struct Barrett
     Barrett(unsigned m = 1) : m(m), im(0)
     {
         // m 是正模数；预计算定点倒数。
+        assert(m > 0); // 调试检查，可删
         im = ~0ULL / m + 1;
     }
 
@@ -40,6 +41,7 @@ struct DynMod
     static void setMod(unsigned m)
     {
         // 把后续所有 DynMod 对象的模数设为 m。
+        assert(m > 0 && m < (1U << 31)); // 调试检查，可删
         bt = Barrett(m);
     }
 

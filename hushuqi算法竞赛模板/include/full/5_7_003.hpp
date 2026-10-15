@@ -39,6 +39,7 @@ int tutteMatch(int n, const vector<pair<int, int>> &e, unsigned seed = 712367)
     vector a(n, vector<Z>(n));
     for (auto [u, v] : e)
     {
+        assert(0 <= u && u < n && 0 <= v && v < n); // 调试检查，可删。
         if (u == v)
         {
             continue;

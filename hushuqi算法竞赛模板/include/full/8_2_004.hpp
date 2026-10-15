@@ -7,6 +7,7 @@ using namespace std;
 template <class T> vector<T> bell(int n)
 {
     // n 是要计算的最大下标；返回 B_0 到 B_n 的 Bell 数。
+    assert(n >= 0); // 调试检查，可删。
     vector<vector<T>> a(n + 1, vector<T>(n + 1));
     vector<T> b(n + 1);
     a[0][0] = 1;

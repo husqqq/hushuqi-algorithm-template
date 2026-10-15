@@ -5,6 +5,7 @@
 optional<int> minKForest(int n, int k, vector<MEdge> e)
 {
     // n 是点数，k 是目标连通块数，e 是无向边集；返回最小森林权值。
+    assert(n >= 1 && 1 <= k && k <= n); // 调试检查，可删。
     if (k == n)
     {
         return 0;

@@ -23,6 +23,7 @@ class FastSet
     void init(int m)
     {
         // m 是新的元素宇宙大小；清空集合并建立所有 64 叉摘要层。
+        assert(m >= 0); // 调试检查，可删
         n = m;
         a.clear();
         do
@@ -35,6 +36,7 @@ class FastSet
     void set(int x)
     {
         // x 是 [0,n) 内元素；把 x 插入集合，已经存在时不改变状态。
+        assert(0 <= x && x < n); // 调试检查，可删
         for (auto &level : a)
         {
             int p = x / 64;
@@ -51,6 +53,7 @@ class FastSet
     void reset(int x)
     {
         // x 是 [0,n) 内元素；把 x 从集合删除，原本不存在时不改变状态。
+        assert(0 <= x && x < n); // 调试检查，可删
         for (auto &level : a)
         {
             int p = x / 64;
@@ -71,12 +74,14 @@ class FastSet
     bool test(int x) const
     {
         // x 是 [0,n) 内元素；返回 x 当前是否属于集合。
+        assert(0 <= x && x < n); // 调试检查，可删
         return a[0][x / 64] >> (x % 64) & 1ULL;
     }
 
     int next(int x) const
     {
         // x 是 [0,n] 内起点；返回不小于 x 的最小集合元素，不存在时返回 -1。
+        assert(0 <= x && x <= n); // 调试检查，可删
         if (x == n)
         {
             return -1;
@@ -109,6 +114,7 @@ class FastSet
     int prev(int x) const
     {
         // x 是 [-1,n) 内起点；返回不大于 x 的最大集合元素，不存在时返回 -1。
+        assert(-1 <= x && x < n); // 调试检查，可删
         if (x < 0)
         {
             return -1;

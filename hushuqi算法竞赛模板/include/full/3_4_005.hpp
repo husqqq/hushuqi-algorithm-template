@@ -29,6 +29,7 @@ template <int LOG = 30> struct Wavelet
         constexpr unsigned long long limit = 1ULL << LOG;
         for (int i = 0; i < size; i++)
         {
+            assert(0 <= values[i] && (unsigned long long)values[i] < limit); // 调试检查，可删
             prefixSum[i + 1] = prefixSum[i] + values[i];
         }
         vector<int> next(size);
@@ -62,6 +63,8 @@ template <int LOG = 30> struct Wavelet
     int kth(int left, int right, int rank) const
     {
         // left、right 是半开区间端点，rank 从 0 开始；返回第 rank 小的原值。
+        assert(0 <= left && left < right && right <= size); // 调试检查，可删
+        assert(0 <= rank && rank < right - left); // 调试检查，可删
         int ans = 0;
         for (int bit = LOG - 1; bit >= 0; --bit)
         {
@@ -87,6 +90,7 @@ template <int LOG = 30> struct Wavelet
     pair<int, int> countSumLT(int left, int right, int hi) const
     {
         // 返回 [left,right) 内严格小于 hi 的元素个数与元素值和。
+        assert(0 <= left && left <= right && right <= size); // 调试检查，可删
         if (hi <= 0)
         {
             return {0, 0};
@@ -128,6 +132,7 @@ template <int LOG = 30> struct Wavelet
     int frequency(int left, int right, int value) const
     {
         // 返回 [left,right) 内 value 的出现次数，值域外返回 0。
+        assert(0 <= left && left <= right && right <= size); // 调试检查，可删
         constexpr unsigned long long limit = 1ULL << LOG;
         if (value < 0 || (unsigned long long)value >= limit)
         {
@@ -139,6 +144,7 @@ template <int LOG = 30> struct Wavelet
     pair<int, int> countSumLE(int left, int right, int hi) const
     {
         // 返回 [left,right) 内不大于 hi 的元素个数与元素值和。
+        assert(0 <= left && left <= right && right <= size); // 调试检查，可删
         if (hi < 0)
         {
             return {0, 0};
@@ -171,10 +177,12 @@ template <int LOG = 30> struct KthWavelet
     void init(vector<int> values)
     {
         // values 是新的静态序列；清空旧层并重新稳定划分。
+        assert(values.size() <= INT32_MAX); // 调试检查，可删
         size = (int32_t)values.size();
         constexpr unsigned long long limit = 1ULL << LOG;
         for (int value : values)
         {
+            assert(0 <= value && (unsigned long long)value < limit); // 调试检查，可删
         }
         vector<int> next(size);
         for (int bit = LOG - 1; bit >= 0; --bit)
@@ -204,6 +212,8 @@ template <int LOG = 30> struct KthWavelet
     int kth(int left, int right, int rank) const
     {
         // left、right 是半开区间端点，rank 从 0 开始；返回第 rank 小的原值。
+        assert(0 <= left && left < right && right <= size); // 调试检查，可删
+        assert(0 <= rank && rank < right - left); // 调试检查，可删
         int ans = 0;
         for (int bit = LOG - 1; bit >= 0; --bit)
         {

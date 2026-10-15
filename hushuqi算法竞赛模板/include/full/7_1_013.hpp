@@ -5,6 +5,8 @@ optional<pair<long long, long long>> ratRebuild(long long x, long long m,
                                                          long long a, long long b)
 {
     // x 是模 m 的剩余，a、b 是分子绝对值与分母上界；在 2ab<m 时返回唯一既约真分数。
+    assert(m > 0 && a >= 0 && b > 0); // 调试检查，可删
+    assert((__int128)2 * a * b < m); // 调试检查，可删
     x %= m;
     if (x < 0)
     {

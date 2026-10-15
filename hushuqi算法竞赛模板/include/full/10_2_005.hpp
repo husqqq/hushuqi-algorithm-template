@@ -7,10 +7,12 @@
 Poly fpsLog(const Poly &a, int n)
 {
     // a 的常数项必须为 1，n 是不超过 2^22 的截断长度；返回 ln(a) mod x^n。
+    assert(n >= 0 && n <= (1 << 22)); // 调试检查，可删。
     if (n == 0)
     {
         return {};
     }
+    assert(!a.empty() && a[0] == Z(1)); // 调试检查，可删。
     Poly f = a.cut(n);
     return integr((deriv(f) * fpsInvFast(f, n)).cut(n - 1)).cut(n);
 }
@@ -18,10 +20,12 @@ Poly fpsLog(const Poly &a, int n)
 Poly fpsExpNewton(const Poly &a, int n)
 {
     // a 的常数项必须为 0，n 是 [0,2^22] 内的截断长度；用 Newton 迭代返回 exp(a) mod x^n。
+    assert(n >= 0 && n <= (1 << 22)); // 调试检查，可删。
     if (n == 0)
     {
         return {};
     }
+    assert(a.empty() || a[0] == Z(0)); // 调试检查，可删。
     Poly g{1};
     for (int k = 2; k < 2 * n; k <<= 1)
     {
@@ -184,16 +188,19 @@ struct RExp
 Poly fpsExpRelax(const Poly &a, int n)
 {
     // a 的常数项必须为 0，n 不超过 2^20；用 16 叉在线卷积返回 exp(a) mod x^n。
+    assert(n >= 0 && n <= rexp::LIM); // 调试检查，可删。
     if (n == 0)
     {
         return {};
     }
+    assert(a.empty() || a[0] == Z(0)); // 调试检查，可删。
     return rexp::RExp(a, n).run();
 }
 
 Poly fpsExp(const Poly &a, int n)
 {
     // a 的常数项必须为 0，n 是截断长度；默认使用在线分块算法，超长时回退 Newton 迭代。
+    assert(n >= 0 && n <= (1 << 22)); // 调试检查，可删。
     if (n <= rexp::LIM)
     {
         return fpsExpRelax(a, n);
@@ -204,6 +211,7 @@ Poly fpsExp(const Poly &a, int n)
 optional<Poly> fpsSqrtAt(const Poly &a, int n, int p, Z s)
 {
     // a[p] 是前 n 项中的首个非零系数，s 是它的一组平方根；返回对应 FPS 平方根，无解时返回空。
+    assert(0 <= p && p < min(n, (int)a.size()) && a[p] != Z(0)); // 调试检查，可删。
     if ((p & 1) || s * s != a[p])
     {
         return nullopt;
@@ -226,6 +234,7 @@ optional<Poly> fpsSqrtAt(const Poly &a, int n, int p, Z s)
 optional<Poly> fpsSqrt(const Poly &a, int n, Z s)
 {
     // a 是输入 FPS，n 是不超过 2^22 的截断长度，s 是首个非零系数的一组平方根；无平方根时返回空。
+    assert(n >= 0 && n <= (1 << 22)); // 调试检查，可删。
     if (n == 0)
     {
         return Poly{};
@@ -245,6 +254,7 @@ optional<Poly> fpsSqrt(const Poly &a, int n, Z s)
 optional<Poly> fpsSqrt(const Poly &a, int n)
 {
     // a 是输入 FPS，n 是不超过 2^22 的截断长度；自动求首个非零系数平方根，返回一组平方根或空。
+    assert(n >= 0 && n <= (1 << 22)); // 调试检查，可删。
     if (n == 0)
     {
         return Poly{};
@@ -273,6 +283,7 @@ optional<Poly> fpsSqrt(const Poly &a, int n)
 Poly fpsPow(const Poly &a, unsigned long long k, int n)
 {
     // a 是输入 FPS，k 是非负指数，n 是不超过 2^22 的截断长度；返回 a^k mod x^n。
+    assert(n >= 0 && n <= (1 << 22)); // 调试检查，可删。
     if (n == 0)
     {
         return {};

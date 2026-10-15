@@ -10,7 +10,9 @@ int kthMaxMinSum(const vector<int> &mn, int k)
 {
     // mn[j] 是所有大小为 j 的子集最小值之和且 mn[0] 不用，k 从 1 开始；返回第 k 大元素。
     int n = (int)mn.size() - 1;
+    assert(1 <= k && k <= n); // 调试检查，可删。
     constexpr array<long long, 3> ps{998244353, 1000000007, 1000000009};
+    assert(n < ps[0]); // 调试检查，可删。
     array<long long, 3> rem{};
     for (int z = 0; z < 3; z++)
     {
@@ -86,6 +88,7 @@ int kthMaxMinSum(const vector<int> &mn, int k)
     {
         ans -= m;
     }
+    assert(numeric_limits<int>::min() <= ans && ans <= numeric_limits<int>::max()); // 调试检查，可删。
     return (int)ans;
 }
 }

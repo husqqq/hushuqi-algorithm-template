@@ -33,6 +33,7 @@ template <class T, class C = T> struct PerLiChao
     {
         // lo、hi 定义非空整数半开区间；初始空版本根为 -1。
         static_assert(is_integral_v<T> && is_signed_v<T>);
+        assert(lo < hi); // 调试检查，可删
     }
 
     int clone(int p)
@@ -83,6 +84,7 @@ template <class T, class C = T> struct PerLiChao
     {
         // p 是版本根，x 是查询横坐标；返回最小值，空版本返回空。
         // 最大值版按直线取反时，对非空返回值取负，空版本仍返回 nullopt。
+        assert(lo <= x && x < hi); // 调试检查，可删
         return qval(p, lo, hi, x);
     }
 

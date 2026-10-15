@@ -30,6 +30,7 @@ struct Flow
     int add(int x, int y, T c)
     {
         // x、y 是端点，c 是非负容量；返回正向边在 e[x] 中的下标。
+        assert(0 <= x && x < n && 0 <= y && y < n && c >= 0); // 调试检查，可删。
         int id = e[x].size();
         int rev = e[y].size() + (x == y);
         e[x].push_back({y, rev, c});

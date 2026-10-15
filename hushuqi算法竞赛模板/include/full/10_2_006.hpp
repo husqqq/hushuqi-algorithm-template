@@ -16,6 +16,7 @@ vector<pair<int, Z>> spNorm(vector<pair<int, Z>> f)
     vector<pair<int, Z>> g;
     for (auto [i, x] : f)
     {
+        assert(i >= 0); // 调试检查，可删。
         if (!g.empty() && g.back().first == i)
         {
             g.back().second += x;
@@ -35,6 +36,7 @@ vector<pair<int, Z>> spNorm(vector<pair<int, Z>> f)
 Poly sparseDiv(const Poly &a, vector<pair<int, Z>> b, int n)
 {
     // a 是稠密分子，b 保存非零的 {次数,系数}，n 是商的截断长度；返回 a/b mod x^n。
+    assert(n >= 0); // 调试检查，可删。
     if (n == 0)
     {
         return {};
@@ -44,6 +46,7 @@ Poly sparseDiv(const Poly &a, vector<pair<int, Z>> b, int n)
     {
         return x.first < y;
     }), b.end());
+    assert(!b.empty() && b[0].first == 0 && b[0].second != Z(0)); // 调试检查，可删。
     Z iv = b[0].second.inv();
     Poly q(n);
     for (int i = 0; i < n; i++)

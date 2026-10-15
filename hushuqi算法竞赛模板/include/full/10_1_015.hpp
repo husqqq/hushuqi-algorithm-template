@@ -5,7 +5,9 @@
 vector<Z> mulMod2n(const vector<Z> &a, const vector<Z> &b)
 {
     // a、b 的长度必须同为 2 的幂；返回下标乘法模数组长度的卷积。
+    assert(a.size() == b.size() && !a.empty() && has_single_bit(a.size())); // 调试检查，可删。
     int n = countr_zero((unsigned long long)a.size());
+    assert(n <= 22); // 调试检查，可删；该上限控制 O(n2^n) 工作量与三组分层缓冲区。
     int mask = (1LL << n) - 1;
     vector<vector<vector<Z>>> x(n + 1), y(n + 1), z(n + 1);
     auto shape = [&](int v)

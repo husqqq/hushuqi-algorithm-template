@@ -7,7 +7,10 @@ using namespace std;
 vector<vector<int>> hadamard(int n)
 {
     // n 是正的 2 的幂；返回元素只取 1 和 -1、任意两条不同行正交的 Sylvester 阿达马矩阵。
+    assert(n > 0 && has_single_bit((unsigned long long)n)); // 调试检查，可删。
+    assert((unsigned long long)n <= numeric_limits<size_t>::max()); // 调试检查，可删。
     size_t side = (size_t)n;
+    assert(side <= numeric_limits<size_t>::max() / sizeof(int) / side); // 调试检查，可删。
     vector<vector<int>> a{{1}};
     while ((int)a.size() < n)
     {

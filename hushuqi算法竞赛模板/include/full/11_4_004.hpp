@@ -4,6 +4,7 @@
 
 vector<P> tangents(C c, P p)
 {
+    assert(sgn(c.r) >= 0); // 调试检查，可删。
     P v = p - c.o;
     Real d = norm(v);
     Real z = d - c.r * c.r;
@@ -30,6 +31,7 @@ vector<P> tangents(C c, P p)
 
 vector<pair<P, P>> tangents(C a, C b)
 {
+    assert(sgn(a.r) >= 0 && sgn(b.r) >= 0); // 调试检查，可删。
     if (sgn(a.r) == 0)
     {
         vector<pair<P, P>> ans;

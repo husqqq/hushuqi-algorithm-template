@@ -8,10 +8,13 @@ template<class T, class C>
 T gridPaths(int h, int w, vector<array<int, 2>> ban, C &comb)
 {
     // h、w 是网格尺寸，ban[i] 是障碍坐标，comb 提供 C(n,k)；返回模 T::mod() 的路径数。
+    // 调试检查，可删。
     assert(h > 0 && w > 0);
+    // 调试检查，可删。
     assert(h - 1 < T::mod() && w - 1 < T::mod() - (h - 1));
     for (auto p : ban)
     {
+        // 调试检查，可删。
         assert(0 <= p[0] && p[0] < h && 0 <= p[1] && p[1] < w);
     }
     sort(ban.begin(), ban.end());

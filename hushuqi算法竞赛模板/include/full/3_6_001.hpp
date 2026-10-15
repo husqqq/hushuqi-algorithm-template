@@ -34,6 +34,7 @@ template <int A = 26, char S = 'a'> struct Trie
         for (char c : s)
         {
             int x = c - S;
+            assert(0 <= x && x < A); // 调试检查，可删
             if (!ch[p][x])
             {
                 ch[p][x] = newNode();

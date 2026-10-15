@@ -5,6 +5,7 @@
 vector<long double> quadRoots(long double a, long double b, long double c)
 {
     // a、b、c 是方程 ax^2+bx+c=0 的系数；返回升序实根，重根只返回一次。
+    // 调试检查，可删。
     assert(isfinite(a) && isfinite(b) && isfinite(c));
     bool hasA = a != 0, hasB = b != 0;
     long double scale = max({fabsl(a), fabsl(b), fabsl(c)});
@@ -15,6 +16,7 @@ vector<long double> quadRoots(long double a, long double b, long double c)
     a /= scale;
     b /= scale;
     c /= scale;
+    assert((!hasA || a != 0) && (!hasB || b != 0)); // 调试检查，可删。
     if (!hasA)
     {
         return !hasB ? vector<long double>{} : vector<long double>{-c / b};

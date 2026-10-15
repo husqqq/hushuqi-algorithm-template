@@ -12,6 +12,7 @@ unsigned long long triangles(int n, const vector<pair<int, int>> &e)
     vector<int> d(n);
     for (auto [u, v] : e)
     {
+        assert(0 <= u && u < n && 0 <= v && v < n && u != v); // 调试检查，可删。
         d[u]++;
         d[v]++;
     }
@@ -50,9 +51,11 @@ unsigned long long triangles(int n, const vector<pair<int, int>> &e)
 long long weightedTri(int n, const vector<long long> &val, const vector<pair<int, int>> &e, long long mod)
 {
     // n 是点数，val 是每点权值，e 是简单无向边集，mod 是正模数；返回所有三元环三点权乘积之和模 mod。
+    assert((int)val.size() == n && mod > 0); // 调试检查，可删。
     vector<int> d(n);
     for (auto [u, v] : e)
     {
+        assert(0 <= u && u < n && 0 <= v && v < n && u != v); // 调试检查，可删。
         d[u]++;
         d[v]++;
     }
@@ -93,9 +96,11 @@ inline int triWeight998(int n, const vector<int> &value,
                         const vector<pair<int, int>> &edges)
 {
     // value 是点权，edges 是简单无向边；返回三元环三点权乘积和模 998244353。
+    assert((int)value.size() == n); // 调试检查，可删。
     vector<int> deg(n), ord(n), rk(n);
     for (auto [u, v] : edges)
     {
+        assert(0 <= u && u < n && 0 <= v && v < n && u != v); // 调试检查，可删。
         deg[u]++, deg[v]++;
     }
     iota(ord.begin(), ord.end(), 0);
@@ -137,6 +142,7 @@ unsigned long long fourCycles(int n, const vector<pair<int, int>> &e)
     vector a(n, vector<unsigned long long>(blocks));
     for (auto [u, v] : e)
     {
+        assert(0 <= u && u < n && 0 <= v && v < n && u != v); // 调试检查，可删。
         a[u][v >> 6] |= 1ULL << (v & 63);
         a[v][u >> 6] |= 1ULL << (u & 63);
     }
@@ -163,6 +169,7 @@ vector<long long> fourCycleCnt(int n, const vector<pair<int, int>> &edges)
     vector<int> deg(n), ord(n), rk(n);
     for (auto [u, v] : edges)
     {
+        assert(0 <= u && u < n && 0 <= v && v < n && u != v); // 调试检查，可删。
         deg[u]++;
         deg[v]++;
     }

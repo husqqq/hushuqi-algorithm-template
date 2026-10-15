@@ -28,6 +28,7 @@ template <int W = 64> struct XorBasis
     bool add(unsigned long long x)
     {
         // x 是待插入向量；返回它是否使秩增加。
+        assert(valid(x)); // 调试检查，可删。
         for (int i = W - 1; i >= 0; i--)
         {
             if (x >> i & 1)
@@ -47,6 +48,7 @@ template <int W = 64> struct XorBasis
     bool has(unsigned long long x) const
     {
         // x 是查询向量；返回它能否由当前基表示。
+        assert(valid(x)); // 调试检查，可删。
         for (int i = W - 1; i >= 0; i--)
         {
             if ((x >> i & 1) && a[i])
@@ -60,6 +62,7 @@ template <int W = 64> struct XorBasis
     unsigned long long maxXor(unsigned long long x = 0) const
     {
         // x 是初值；返回 x 与张成空间中某值异或后的最大结果。
+        assert(valid(x)); // 调试检查，可删。
         for (int i = W - 1; i >= 0; i--)
         {
             chmax(x, x ^ a[i]);

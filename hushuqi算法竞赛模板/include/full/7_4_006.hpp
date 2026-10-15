@@ -134,6 +134,7 @@ class PowerTower
     static long long eval(long long base, long long height, long long mod)
     {
         // 返回 height 层 base 幂塔对 mod 的最小非负余数。
+        assert(base >= 0 && height >= 0 && mod > 0); // 调试检查，可删
         return evaluate(base, height, mod).rem;
     }
 };

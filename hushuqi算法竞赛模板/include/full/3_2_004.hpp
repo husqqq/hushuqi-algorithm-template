@@ -33,6 +33,7 @@ template <class T> struct RangeFenwick
     explicit RangeFenwick(int n = 0) : n(n), bit0(n + 1), bit1(n + 1)
     {
         // n 是数组长度；初值全为零。
+        assert(n >= 0); // 调试检查，可删
     }
 
     explicit RangeFenwick(const vector<T> &a) : RangeFenwick((int)a.size())
@@ -47,6 +48,7 @@ template <class T> struct RangeFenwick
     void rangeAdd(int l, int r, T value)
     {
         // l、r 是半开区间端点，value 是增量；给 [l,r) 整段增加 value。
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         add(bit0, l, value);
         add(bit0, r, -value);
         add(bit1, l, value * l);
@@ -56,12 +58,14 @@ template <class T> struct RangeFenwick
     T prefixSum(int r) const
     {
         // r 是前缀右端点；返回 [0,r) 的元素和。
+        assert(0 <= r && r <= n); // 调试检查，可删
         return sum(bit0, r) * r - sum(bit1, r);
     }
 
     T rangeSum(int l, int r) const
     {
         // l、r 是半开区间端点；返回 [l,r) 的元素和。
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         return prefixSum(r) - prefixSum(l);
     }
 };

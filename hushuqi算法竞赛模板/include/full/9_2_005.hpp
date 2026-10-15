@@ -19,9 +19,11 @@ struct Simplex
         : m(B.size()), n(C.size()), b(m), z(n + 1), a(m + 2, vector<long double>(n + 2))
     {
         // A、B 给出 Ax<=B，C 是最大化目标系数；隐含 x>=0。
+        // 调试检查，可删。
         assert((int)A.size() == m);
         for (int i = 0; i < m; i++)
         {
+            // 调试检查，可删。
             assert((int)A[i].size() == n);
             for (int j = 0; j < n; j++)
             {

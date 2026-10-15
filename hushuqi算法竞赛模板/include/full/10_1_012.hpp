@@ -7,6 +7,7 @@ using namespace std;
 template <class F> vector<int> monoMin(int rows, int cols, F better)
 {
     // better(r,x,y) 判断第 r 行的候选 y 是否不劣于 x；返回每行的最优列下标。
+    assert(rows > 0 && cols > 0); // 调试检查，可删。
     vector<int> p(rows);
     auto dfs = [&](auto &&self, int u, int d, int l, int r) -> void
     {

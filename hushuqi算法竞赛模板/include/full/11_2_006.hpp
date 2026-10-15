@@ -10,6 +10,7 @@ template <class T> vector<array<int, 3>> triangulate(const vector<Point<T>> &a)
         return {};
     }
     T s = area2(a);
+    assert(sgn(s) != 0); // 调试检查，可删。
     vector<int> p(n);
     iota(p.begin(), p.end(), 0);
     if (s < 0)

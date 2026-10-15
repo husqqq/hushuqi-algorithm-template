@@ -5,12 +5,14 @@
 void kFWT(vector<Z> &a, int k, bool inv = false)
 {
     // a 按 k 进制向量编号，k 是每一位的取值数；inv 指定正变换或逆变换，结果写回 a。
+    assert(!a.empty() && k > 1 && (Z::mod() - 1) % k == 0); // 调试检查，可删。
     int n = a.size();
     int q = n;
     while (q % k == 0)
     {
         q /= k;
     }
+    assert(q == 1); // 调试检查，可删。
     Z w = Z(3).pow((Z::mod() - 1) / k);
     if (inv)
     {

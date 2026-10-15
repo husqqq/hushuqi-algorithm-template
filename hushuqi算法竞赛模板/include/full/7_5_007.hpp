@@ -6,6 +6,7 @@
 vector<pair<long long, long long>> circlePoints(long long n)
 {
     // n 是非负半径平方；返回满足 x*x+y*y=n 的全部整数点，按字典序排列。
+    assert(n >= 0); // 调试检查，可删
     set<pair<long long, long long>> s;
     for (long long x = 0; x == 0 || x <= n / x; x++)
     {
@@ -30,6 +31,7 @@ vector<pair<long long, long long>> circlePoints(long long n)
 vector<pair<long long, long long>> twoSqRep(long long n)
 {
     // n 是非负整数；返回全部非负有序对 (x,y) 使 x^2+y^2=n。
+    assert(n >= 0); // 调试检查，可删
     if (n == 0)
     {
         return {{0, 0}};

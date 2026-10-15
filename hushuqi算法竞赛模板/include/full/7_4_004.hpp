@@ -4,6 +4,7 @@
 optional<long long> sqrtMod(long long n, long long p)
 {
     // n 是被开方数，p 是素数模；返回较小平方根，非二次剩余返回空。
+    assert(p >= 2); // 调试检查，可删
     n %= p;
     if (n < 0)
     {

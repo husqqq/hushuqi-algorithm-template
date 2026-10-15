@@ -7,6 +7,7 @@ inline long long interpSeq(const vector<long long> &y, long long x, long long mo
 {
     // y[i]=f(i)，x 是查询点，mod 是素数；返回 f(x) 对 mod 的最小非负余数。
     int n = y.size();
+    // 调试检查，可删。
     assert(n > 0 && n < mod);
     x %= mod;
     if (x < 0)

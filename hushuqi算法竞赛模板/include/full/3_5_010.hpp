@@ -15,6 +15,7 @@ template <class T> struct TopK
     TopK(int k) : k(k)
     {
         // k 是要取的最大元素个数，允许 k=0。
+        assert(k >= 0); // 调试检查，可删
     }
 
     void fix()

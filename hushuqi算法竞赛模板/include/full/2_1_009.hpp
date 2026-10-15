@@ -20,6 +20,7 @@ struct DLX
         : m(cols), l(m + 1), r(m + 1), u(m + 1), d(m + 1), row(m + 1), col(m + 1), sz(m + 1)
     {
         // cols 是列数，reserveNodes 是预估的数据节点数；建立带根节点的列链表。
+        assert(m >= 0 && reserveNodes >= 0); // 调试检查，可删。
         for (int i = 0; i <= m; i++)
         {
             l[i] = i - 1;
@@ -47,7 +48,9 @@ struct DLX
         for (int k = 0; k < (int)columns.size(); k++)
         {
             int c = columns[k];
+            // 调试检查，可删。
             assert(1 <= c && c <= m);
+            // 调试检查，可删。
             assert(find(columns.begin(), columns.begin() + k, c) == columns.begin() + k);
             int x = (int)l.size();
             l.push_back(x);

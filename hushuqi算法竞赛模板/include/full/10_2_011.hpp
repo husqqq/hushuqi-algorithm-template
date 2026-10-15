@@ -6,6 +6,7 @@
 vector<Z> powerProj(const Poly &f, const vector<Z> &w, int m)
 {
     // f 是输入多项式，w[i] 是线性泛函在 x^i 上的值，m 是输出项数；返回 L(f^k)（0<=k<m）。
+    assert(m >= 0 && m <= (1 << 22) && w.size() <= (1 << 20)); // 调试检查，可删。
     if (m == 0)
     {
         return {};

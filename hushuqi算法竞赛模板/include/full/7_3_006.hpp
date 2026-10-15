@@ -18,6 +18,7 @@ struct DuSieve
     DuSieve(long long m)
     {
         // m 是最大查询上界；预筛约 m^(2/3) 内的 mu、phi 及前缀和。
+        assert(m >= 0); // 调试检查，可删
         n = max(1LL, (long long)(powl(m, 2.0L / 3) + 2));
         mu.resize(n + 1);
         phi.resize(n + 1);
@@ -60,6 +61,7 @@ struct DuSieve
     long long sumMu(long long x)
     {
         // 返回 sum_{i=1}^x mu(i)，超出预筛范围时分块递归并记忆化。
+        assert(x >= 0); // 调试检查，可删
         if (x <= n)
         {
             return smu[x];
@@ -86,6 +88,7 @@ struct DuSieve
     __int128 sumPhi(long long x)
     {
         // 返回 sum_{i=1}^x phi(i)，超出预筛范围时分块递归并记忆化。
+        assert(x >= 0); // 调试检查，可删
         if (x <= n)
         {
             return sphi[x];

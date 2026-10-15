@@ -39,6 +39,7 @@ template <class T> struct Point
 
     Point &operator/=(const T &k)
     {
+        assert(k != T(0)); // 调试检查，可删。
         x /= k;
         y /= k;
         return *this;

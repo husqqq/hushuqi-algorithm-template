@@ -8,6 +8,7 @@ optional<vector<int>> stNumbering(const vector<vector<int>> &g, int s, int t)
 {
     // g 是简单无向图；返回 st 编号的排名，无法构造时返回空。
     int n = g.size();
+    assert(n >= 2 && 0 <= s && s < n && 0 <= t && t < n && s != t); // 调试检查，可删。
     vector<int> pre(n, -1), low(n), par(n, -1), order;
     pre[s] = 0;
     low[s] = s;
@@ -19,6 +20,7 @@ optional<vector<int>> stNumbering(const vector<vector<int>> &g, int s, int t)
     {
         for (int v : g[u])
         {
+            assert(0 <= v && v < n && v != u); // 调试检查，可删。
             if (pre[v] == -1)
             {
                 pre[v] = order.size();
@@ -98,6 +100,7 @@ optional<vector<int>> stNumbering(const vector<vector<int>> &g, int s, int t)
         bool left = false, right = false;
         for (int w : g[v])
         {
+            assert(0 <= w && w < n && w != v); // 调试检查，可删。
             left |= rank[w] < rank[v];
             right |= rank[v] < rank[w];
         }

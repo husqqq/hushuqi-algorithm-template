@@ -51,6 +51,7 @@ struct OrderBlock
 
     void add(int l, int r, int v)
     {
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删。
         if (l == r)
         {
             return;
@@ -76,6 +77,7 @@ struct OrderBlock
 
     int count(int l, int r, int x, bool le = false) const
     {
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删。
         int ans = 0;
         for (int k = l / B; L(k) < r; k++)
         {
@@ -177,6 +179,7 @@ struct OrderBlock
 
     int kth(int l, int r, int k, int lo, int hi) const
     {
+        assert(0 <= k && k < r - l && lo <= hi); // 调试检查，可删。
         while (lo < hi)
         {
             int mid = midpoint(lo, hi);

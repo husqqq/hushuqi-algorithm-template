@@ -125,6 +125,7 @@ template <class T> class AffPointSeg
     void affine(int l, int r, const T &mul, const T &add)
     {
         // l、r 是半开端点；把 [l,r) 内每个值变为 value*mul+add。
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         if (l == r)
         {
             return;
@@ -135,6 +136,7 @@ template <class T> class AffPointSeg
     T get(int i) const
     {
         // i 是叶子下标；只读返回该点当前值。
+        assert(0 <= i && i < n); // 调试检查，可删
         return get(1, 0, n, i);
     }
 };
@@ -242,24 +244,28 @@ class HistMaxSeg
     explicit HistMaxSeg(const vector<long long> &a) : n(a.size()), tr(4 * max<int>(n, 1), {neg, neg}), lz(4 * max<int>(n, 1))
     {
         // a 是非空初始数组；建立当前最大值与历史最大值线段树。
+        assert(n > 0); // 调试检查，可删
         build(1, 0, n, a);
     }
 
     void add(int l, int r, long long v)
     {
         // l、r 是半开端点，v 是增量；给区间加 v 并记录修改后的历史峰值。
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         update(1, 0, n, l, r, {v, v, 0, neg, neg});
     }
 
     void assign(int l, int r, long long v)
     {
         // l、r 是半开端点，v 是新值；给区间赋值并记录修改后的历史峰值。
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         update(1, 0, n, l, r, {neg, neg, 0, v, v});
     }
 
     Info query(int l, int r)
     {
         // l、r 是非空半开端点；返回区间当前最大值和历史最大值。
+        assert(0 <= l && l < r && r <= n); // 调试检查，可删
         return query(1, 0, n, l, r);
     }
 };

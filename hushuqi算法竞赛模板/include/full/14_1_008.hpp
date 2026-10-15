@@ -8,9 +8,11 @@ namespace bin_packing
 int firstFitDec(vector<int> a, int cap)
 {
     // a 是物品体积，cap 是箱容量；返回降序首次适应使用的箱数。
+    // 调试检查，可删。
     assert(cap >= 0);
     for (int x : a)
     {
+        // 调试检查，可删。
         assert(0 <= x && x <= cap);
     }
     sort(a.begin(), a.end(), greater<>());
@@ -34,6 +36,7 @@ int firstFitDec(vector<int> a, int cap)
 pair<int, vector<int>> firstFit(const vector<int> &a, int cap)
 {
     // 按输入顺序放置，返回使用箱数与每件物品所在的 0 下标箱号。
+    assert(cap >= 0); // 调试检查，可删
     int n = (int)a.size();
     vector<int> rem(n, cap), box;
     vector<MaxInfo> init(n, MaxInfo(cap));
@@ -42,6 +45,7 @@ pair<int, vector<int>> firstFit(const vector<int> &a, int cap)
     int used = 0;
     for (int x : a)
     {
+        assert(0 <= x && x <= cap); // 调试检查，可删
         int p = st.findFirst(0, n, [&](MaxInfo z) { return z.val >= x; });
         assert(p != -1); // 前 i 件物品至多占用 i 个箱子
         rem[p] -= x;
@@ -56,10 +60,13 @@ int exactBins(const vector<int> &a, int cap)
 {
     // a 是至多 24 个物品体积，cap 是箱容量；返回最少箱数。
     int n = (int)a.size();
+    // 调试检查，可删。
     assert(0 <= n && n <= 24);
+    // 调试检查，可删。
     assert(cap >= 0);
     for (int x : a)
     {
+        // 调试检查，可删。
         assert(0 <= x && x <= cap);
     }
     // State[0..1] 依次是已用箱数与最后一个箱的已用容量。

@@ -30,6 +30,7 @@ struct IncrMSF
     void reserveEdges(int m)
     {
         // m 是后续最多插入的边数；预留边节点容量，避免在线替换时反复扩容。
+        assert(m >= 0); // 调试检查，可删。
         t.reserve(n + 1 + m);
         buf.reserve(64);
     }
@@ -229,6 +230,7 @@ struct IncrMSF
     int replaceId(int u, int v, long long w, int id)
     {
         // u、v 是端点，w 是互异边权，id 是当前输入边编号；返回被 MSF 删除的输入编号，未删除时返回 -1，拒绝当前边时返回 id。
+        assert(0 <= u && u < n && 0 <= v && v < n && id >= 0); // 调试检查，可删。
         if (u == v)
         {
             return id;
@@ -250,6 +252,7 @@ struct IncrMSF
             return id;
         }
         int old = t[e].tag;
+        assert(old >= 0); // 调试检查，可删：在线接口不能与未编号 add 混用。
         long long pre = t[e].val;
         cutNode(e, t[e].u);
         cutNode(e, t[e].v);

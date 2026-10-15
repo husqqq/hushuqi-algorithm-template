@@ -8,6 +8,7 @@ struct TreeBlock
 
     TreeBlock(const vector<vector<int>> &g, int root, int B) : bel(g.size(), -1)
     {
+        assert(!g.empty() && 0 <= root && root < (int)g.size() && B > 0); // 调试检查，可删。
         vector<int> st;
         auto dfs = [&](auto &&self, int u, int f) -> void
         {

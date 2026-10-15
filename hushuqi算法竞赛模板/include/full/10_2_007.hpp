@@ -29,6 +29,7 @@ vector<Z> multiEval(const Poly &f, const vector<Z> &x)
     }
 
     int n = bit_ceil((unsigned long long)s);
+    assert(n <= NTT_LIM && convFit(f.size(), f.size())); // 调试检查，可删。
     vector<Poly> tr(2 * n);
     for (int i = 0; i < n; i++)
     {
@@ -129,6 +130,7 @@ struct PolyTree
         : n(points.size()), z(bit_ceil((unsigned long long)max<int>(1, n))), x(points)
     {
         // points 是全部求值点；建立乘积树。
+        assert(z <= NTT_LIM); // 调试检查，可删。
         t.assign(2 * z, Poly{1});
         for (int i = 0; i < n; i++)
         {
@@ -156,6 +158,7 @@ struct PolyTree
         if (m >= b && m > 256 && b > 256)
         {
             int q = m - b + 1;
+            assert(convFit(q, q) && convFit(b, q)); // 调试检查，可删。
         }
         vector<Z> ans(n);
         auto dfs = [&](auto &&self, int p, int l, int w, Poly r) -> void

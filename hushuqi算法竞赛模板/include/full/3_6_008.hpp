@@ -23,18 +23,21 @@ class BitVec
     explicit BitVec(int n = 0) : n(n)
     {
         // n 是逻辑位数；初值全为零。
+        assert(n >= 0); // 调试检查，可删
         words.resize(n / 64 + (n % 64 != 0));
     }
 
     bool test(int x) const
     {
         // x 是位下标；返回该位是否为一。
+        assert(0 <= x && x < n); // 调试检查，可删
         return words[x / 64] >> (x % 64) & 1;
     }
 
     void set(int x, bool value = true)
     {
         // x 是位下标，value 是新位值。
+        assert(0 <= x && x < n); // 调试检查，可删
         if (value)
         {
             words[x / 64] |= 1ULL << (x % 64);
@@ -48,6 +51,7 @@ class BitVec
     void reset(int x)
     {
         // x 是位下标；把该位清零。
+        assert(0 <= x && x < n); // 调试检查，可删
         words[x / 64] &= ~(1ULL << (x % 64));
     }
 
@@ -81,6 +85,7 @@ class BitVec
     BitVec &operator|=(const BitVec &other)
     {
         // other 是等长位向量；逐位或后返回自身。
+        assert(n == other.n); // 调试检查，可删
         for (int i = 0; i < (int)words.size(); ++i)
         {
             words[i] |= other.words[i];
@@ -91,6 +96,7 @@ class BitVec
     BitVec &operator&=(const BitVec &other)
     {
         // other 是等长位向量；逐位与后返回自身。
+        assert(n == other.n); // 调试检查，可删
         for (int i = 0; i < (int)words.size(); ++i)
         {
             words[i] &= other.words[i];
@@ -101,6 +107,7 @@ class BitVec
     BitVec &operator^=(const BitVec &other)
     {
         // other 是等长位向量；逐位异或后返回自身。
+        assert(n == other.n); // 调试检查，可删
         for (int i = 0; i < (int)words.size(); ++i)
         {
             words[i] ^= other.words[i];
@@ -111,6 +118,7 @@ class BitVec
     BitVec &operator<<=(int shift)
     {
         // shift 是非负左移量；越界位丢弃，返回自身。
+        assert(shift >= 0); // 调试检查，可删
         if (shift >= n)
         {
             resetAll();
@@ -133,6 +141,7 @@ class BitVec
     BitVec &operator>>=(int shift)
     {
         // shift 是非负右移量；越界位丢弃，返回自身。
+        assert(shift >= 0); // 调试检查，可删
         if (shift >= n)
         {
             resetAll();

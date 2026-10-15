@@ -4,6 +4,7 @@
 optional<pair<long long, long long>> pell(long long d)
 {
     // d 是正整数；返回 x^2-d*y^2=1 的基本解，d 为平方数或解越过 long long 时返回空。
+    assert(d > 0); // 调试检查，可删
     long long a0 = kthRoot((unsigned long long)d, 2);
     if ((__int128)a0 * a0 == d)
     {

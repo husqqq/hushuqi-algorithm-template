@@ -37,6 +37,7 @@ vector<pair<Poly, int>> squareFree(Poly f)
 vector<pair<Poly, int>> distinctDeg(Poly f)
 {
     // f 是首一平方自由多项式；返回 {同次数不可约因子乘积,不可约因子次数}。
+    assert(!f.empty() && (int)f.size() <= (1 << 22)); // 调试检查，可删。
     vector<pair<Poly, int>> ans;
     Poly x{0, 1}, h = polyMod(x, f);
     for (int d = 1; 2 * d <= (int)f.size() - 1; d++)
@@ -190,6 +191,7 @@ vector<Z> distinctRoot(Poly f, unsigned long long seed = 0)
 {
     // f 是长度不超过 2^22 的非零多项式；返回 F_p 中所有不同有限根，按代表元升序排列且不重复。
     f.norm();
+    assert(!f.empty() && (int)f.size() <= (1 << 22)); // 调试检查，可删。
     if (f.size() == 1)
     {
         return {};
@@ -316,6 +318,7 @@ pair<DPoly, DPoly> divmod(DPoly a, const DPoly &b)
 {
     // a 是被除式，b 是非零动态模多项式；返回 {商,余式}。
     int n = deg(a), m = deg(b);
+    assert(m >= 0); // 调试检查，可删。
     a.resize(n + 1);
     if (n < m)
     {
@@ -516,6 +519,7 @@ vector<DynFactor> factorPrime(vector<int> f, int p,
                                   uint64_t seed = 88172645463325252ULL)
 {
     // f 是低次在前系数，p 是素数模数；返回 F_p 上的首一不可约分解及重数。
+    assert(p >= 2); // 调试检查，可删。
     using namespace dfac;
     dfac::p = p;
     state = seed ? seed : 88172645463325252ULL;
@@ -524,6 +528,7 @@ vector<DynFactor> factorPrime(vector<int> f, int p,
         x = norm(x);
     }
     trim(f);
+    assert(!f.empty()); // 调试检查，可删。
     auto part = factor(move(f));
     vector<DynFactor> ans;
     for (auto &x : part)

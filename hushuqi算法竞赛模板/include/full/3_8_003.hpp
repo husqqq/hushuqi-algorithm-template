@@ -38,6 +38,7 @@ template <class T, int Bits = numeric_limits<T>::digits> class RangeBasis
         // a 是静态无符号整数序列；建立每个右端点的前缀基。
         for (int i = 0; i < (int)a.size(); i++)
         {
+            assert(valid(a[i])); // 调试检查，可删。
             if (i)
             {
                 pre[i] = pre[i - 1];
@@ -64,6 +65,8 @@ template <class T, int Bits = numeric_limits<T>::digits> class RangeBasis
     T maxXor(int l, int r, T x = 0) const
     {
         // l、r 是闭区间端点，x 是初值；返回可取得的最大异或值。
+        assert(0 <= l && l <= r && r < (int)pre.size()); // 调试检查，可删
+        assert(valid(x)); // 调试检查，可删。
         for (int b = Bits - 1; b >= 0; b--)
         {
             auto [v, p] = pre[r][b];

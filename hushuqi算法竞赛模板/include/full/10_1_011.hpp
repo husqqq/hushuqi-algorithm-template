@@ -10,6 +10,7 @@ template <class T> struct Ranked
     explicit Ranked(int m = 0) : n(m)
     {
         // m 是集合变量数；构造全零秩表。
+        assert(0 <= m && m <= 30); // 调试检查，可删。
         a.resize((1LL << m) * (m + 1));
     }
 
@@ -29,6 +30,7 @@ template <class T> struct Ranked
 template <class T> Ranked<T> rankedZeta(const vector<T> &a)
 {
     // a 是长度为 2 的幂的集合函数；返回按子集大小分层后的子集 Zeta 变换。
+    assert(!a.empty() && has_single_bit(a.size())); // 调试检查，可删。
     uint32_t n = countr_zero((unsigned long long)a.size());
     uint32_t m = a.size();
     uint32_t d = n + 1;
@@ -45,7 +47,9 @@ template <class T> vector<T> rankedMobius(Ranked<T> r)
 {
     // r 是按子集大小分层的 Zeta 变换；返回每个集合对应秩层的 Möbius 逆变换系数。
     int n = r.n;
+    assert(0 <= n && n <= 30); // 调试检查，可删。
     int m = 1LL << n;
+    assert((int)r.a.size() == m * (n + 1)); // 调试检查，可删。
     orFWT<true>(r.a.data(), m, n + 1);
     vector<T> a(m);
     for (uint32_t s = 0; s < (uint32_t)m; s++)
@@ -58,6 +62,7 @@ template <class T> vector<T> rankedMobius(Ranked<T> r)
 template <class T> vector<T> subsetConv(const vector<T> &a, const vector<T> &b)
 {
     // a、b 是等长且长度为 2 的幂的集合函数；返回 c[S]=sum(T subset S) a[T]*b[S\T]。
+    assert(a.size() == b.size() && !a.empty() && has_single_bit(a.size())); // 调试检查，可删。
     uint32_t n = countr_zero((unsigned long long)a.size());
     uint32_t m = a.size();
     uint32_t d = n + 1;

@@ -5,6 +5,7 @@
 vector<Z> triPow(Z r, int n)
 {
     // r 是公比，n 是非负长度；返回 a[i]=r^(i(i-1)/2) 的前 n 项。
+    assert(n >= 0); // 调试检查，可删。
     vector<Z> a(n);
     if (!n)
     {
@@ -45,6 +46,7 @@ vector<Z> geomEval(vector<Z> f, Z a, Z r, int m)
         ans[0] = y;
         return ans;
     }
+    assert(convFit(n, n + m - 1)); // 调试检查，可删。
     Z pw = 1;
     for (auto &x : f)
     {
@@ -76,6 +78,7 @@ vector<Z> geomInterp(vector<Z> y, Z a, Z r)
         return y;
     }
     assert(a != Z(0) && r != Z(0));
+    assert(nttFit(n, n)); // 调试检查，可删。
     vector<Z> pw(2 * n - 1);
     pw[0] = 1;
     Z ir = r.inv();

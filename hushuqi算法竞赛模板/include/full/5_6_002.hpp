@@ -56,6 +56,7 @@ class BitHungarian
     void addEdge(int u, int v)
     {
         // u 是左点，v 是右点；把对应邻接位设为 1，无返回值。
+        assert(0 <= u && u < nl && 0 <= v && v < nr); // 调试检查，可删。
         g[u][v / 64] |= 1ULL << (v % 64);
     }
 

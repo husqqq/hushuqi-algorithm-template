@@ -35,6 +35,7 @@ vector<Z> pack(const Mat &a, int w)
     {
         return {};
     }
+    assert(w >= a.m); // 调试检查，可删。
     vector<Z> x((a.n - 1) * w + a.m);
     for (int i = 0; i < a.n; i++)
     {
@@ -53,6 +54,7 @@ Mat unpack(const vector<Z> &a, int n, int m)
     {
         return {};
     }
+    assert((int)a.size() >= n * m); // 调试检查，可删。
     Mat c(n, m);
     for (int i = 0; i < n; i++)
     {
@@ -81,6 +83,7 @@ Mat conv(const Mat &a, const Mat &b)
 array<Mat, 2> conv(const Mat &a, const Mat &b, const Mat &c)
 {
     // a、b 是同形左因子，c 是公共右因子；返回 {a*c,b*c}，两次卷积共享 c 的正变换。
+    assert(a.n == b.n && a.m == b.m); // 调试检查，可删。
     if (a.n == 0 || a.m == 0 || c.n == 0 || c.m == 0)
     {
         return {};
@@ -95,6 +98,7 @@ array<Mat, 2> conv(const Mat &a, const Mat &b, const Mat &c)
         return {unpack(::conv(x, z), n, m), unpack(::conv(y, z), n, m)};
     }
     int s = max(x.size() + z.size() - 1, y.size() + z.size() - 1);
+    assert(nttFit(x.size(), z.size()) && nttFit(y.size(), z.size())); // 调试检查，可删。
     int len = bit_ceil((unsigned long long)s);
     x.resize(len);
     y.resize(len);
@@ -126,9 +130,11 @@ vector<vector<Z>> conv2(const vector<vector<Z>> &a, const vector<vector<Z>> &b)
     int m2 = b[0].size();
     for (const auto &r : a)
     {
+        assert((int)r.size() == m1); // 调试检查，可删。
     }
     for (const auto &r : b)
     {
+        assert((int)r.size() == m2); // 调试检查，可删。
     }
     if (m1 == 0 || m2 == 0)
     {

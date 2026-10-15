@@ -40,6 +40,7 @@ struct HLPP
     void add(int u, int v, T c)
     {
         // u、v 是端点，c 是非负容量；加入一对残量边。
+        assert(0 <= u && u < n && 0 <= v && v < n && c >= 0); // 调试检查，可删。
         int id = e[u].size();
         int rev = e[v].size() + (u == v);
         e[u].push_back({v, rev, c});
@@ -218,6 +219,8 @@ struct HLPP
     T flow(int s, int t)
     {
         // s、t 是源汇点；首次调用时返回最大流。
+        assert(0 <= s && s < n && 0 <= t && t < n); // 调试检查，可删。
+        assert(!used); // 调试检查，可删。
         used = true;
         if (s == t)
         {

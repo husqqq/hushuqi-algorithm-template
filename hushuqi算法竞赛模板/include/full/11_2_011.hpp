@@ -10,6 +10,7 @@ struct Fraction128
     Fraction128(__int128 num = 0, __int128 den = 1) : num(num), den(den)
     {
         // num、den 是分子和非零分母；构造符号规范化的有理数。
+        assert(den != 0); // 调试检查，可删。
         if (den < 0)
         {
             this->num = -num;
@@ -130,8 +131,10 @@ template <class T, class Key> vector<Real> covAreaImpl(vector<vector<Point<T>>> 
         {
             p.pop_back();
         }
+        assert(p.size() >= 3 && covDir(p) > 0); // 调试检查，可删。
         for (int i = 0; i < (int)p.size(); i++)
         {
+            assert(!(p[i] == p[(i + 1) % p.size()])); // 调试检查，可删。
         }
         int pos = min_element(p.begin(), p.end()) - p.begin();
         rotate(p.begin(), p.begin() + pos, p.end());
@@ -260,6 +263,7 @@ template <class T, class Key> vector<Real> covAreaImpl(vector<vector<Point<T>>> 
                 Key r = one < t ? one : t;
                 if (l < r)
                 {
+                    assert(0 <= cnt && cnt + w[i] <= n); // 调试检查，可删。
                     P pa = (P)a;
                     P u = (P)(b - a);
                     P s = pa + u * covVal(l);

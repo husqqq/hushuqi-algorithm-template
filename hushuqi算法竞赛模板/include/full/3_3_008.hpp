@@ -21,6 +21,7 @@ struct PerSeg
     PerSeg(int n) : n(n)
     {
         // n 是非空离散值域大小；0 号根表示空版本。
+        assert(n > 0); // 调试检查，可删
     }
 
     int add(int root, int x, long long v)
@@ -32,6 +33,7 @@ struct PerSeg
     int add(int root, int x, long long dc, long long dw)
     {
         // root 是旧版本根，x 是值域下标；dc、dw 是计数与附加权值增量，返回新版本根。
+        assert(0 <= x && x < n); // 调试检查，可删
         return add(root, 0, n, x, dc, dw);
     }
 
@@ -44,6 +46,7 @@ struct PerSeg
     array<long long, 2> queryInfo(int root, int l, int r) const
     {
         // root 是版本根，l、r 是值域半开区间；返回 {计数和,附加权值和}。
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         return queryInfo(root, 0, n, l, r);
     }
 
@@ -51,6 +54,7 @@ struct PerSeg
     int kth(int rootL, int rootR, long long k) const
     {
         // rootL、rootR 是两个前缀版本根，k 是 0 基排名；返回版本差中的第 k 小值域下标。
+        assert(0 <= k && k < t[rootR].sum - t[rootL].sum); // 调试检查，可删
         int l = 0, r = n;
         while (r - l > 1)
         {

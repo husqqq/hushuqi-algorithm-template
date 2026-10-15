@@ -32,7 +32,9 @@ template <int A = 26, char S = 'a'> struct SAM
     void add(char c)
     {
         // c 是要追加到原串末尾的字符。
+        assert(!counted); // 调试检查，可删
         int x = c - S;
+        assert(0 <= x && x < A); // 调试检查，可删
         int p = last, q = t.size();
         t.push_back({});
         t[q].len = t[p].len + 1;

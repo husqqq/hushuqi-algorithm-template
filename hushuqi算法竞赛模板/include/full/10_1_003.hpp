@@ -7,6 +7,7 @@ constexpr int NTT_LIM = 1 << 23;
 bool nttFit(int n, int m)
 {
     // n、m 是两输入序列长度；返回一次不超过 NTT_LIM 的变换能否覆盖其线性卷积。
+    assert(n >= 0 && m >= 0); // 调试检查，可删。
     return n == 0 || m == 0 || (__int128)n + m - 1 <= NTT_LIM;
 }
 
@@ -14,6 +15,7 @@ bool convFit(int n, int m)
 {
     // n、m 是两输入序列长度；返回公共 conv 能否计算其线性卷积。
     // 结果只超上限一至两项时，conv 会拆掉两端最高项再做一次较短卷积。
+    assert(n >= 0 && m >= 0); // 调试检查，可删。
     return n == 0 || m == 0 || min(n, m) <= 64 ||
            (__int128)n + m - 1 <= NTT_LIM + 2;
 }
@@ -72,6 +74,7 @@ class FastNTT
     {
         // a 指向长度 n 的连续系数，n 是至多 2^23 的正 2 的幂；原地完成正变换。
         // 长度 n 的相邻位置 2i、2i+1 对应 z、-z；前者与长度 n/2 变换的第 i 个频点对应同一个 z^2。
+        assert(n > 0 && has_single_bit((unsigned long long)n) && n <= NTT_LIM); // 调试检查，可删。
         init();
         int z = n;
         int h = countr_zero((unsigned long long)z);
@@ -142,6 +145,7 @@ class FastNTT
     static void idft(Z *a, int n)
     {
         // a 指向本类 dft 产生的 n 个频域值；原地逆变换、除以 n 并恢复自然顺序系数。
+        assert(n > 0 && has_single_bit((unsigned long long)n) && n <= NTT_LIM); // 调试检查，可删。
         init();
         int z = n;
         int h = countr_zero((unsigned long long)z);
@@ -234,6 +238,7 @@ class FastNTT
             }
             return c;
         }
+        assert(convFit(n, m)); // 调试检查，可删。
         int z = bit_ceil((unsigned long long)s);
         if (s - 2 <= z / 2)
         {
@@ -306,6 +311,7 @@ class NTT32
     void trans(uint32_t *a, int n, bool inv)
     {
         // a 指向长度 n 且各项在 [0,mod) 内的预分配切片，inv 表示是否逆变换；使用 uint64_t 工作区原地完成变换。
+        assert(n > 0 && has_single_bit((unsigned long long)n) && n <= mx && mx % n == 0); // 调试检查，可删。
         const auto &r = getRev(n);
         for (int i = 0; i < n; i++)
         {
@@ -346,6 +352,7 @@ class NTT32
     NTT32(int n = 0) : mx(n), w(n), buf(n)
     {
         // n 是最大变换长度，必须为 0 或不超过 2^17 的二次幂；预处理各级连续单位根。
+        assert(n == 0 || (has_single_bit((unsigned long long)n) && n <= (1 << 17))); // 调试检查，可删。
         if (n == 0)
         {
             return;

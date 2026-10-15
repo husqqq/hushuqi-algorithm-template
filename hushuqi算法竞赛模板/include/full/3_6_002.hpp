@@ -66,6 +66,7 @@ template <int W = 30> struct BinaryTrie
     int count(unsigned long long x) const
     {
         // x 是待查询整数；返回 x 的出现次数。
+        assert(valid(x)); // 调试检查，可删
         int p = 1;
         for (int i = W - 1; i >= 0; i--)
         {
@@ -81,6 +82,7 @@ template <int W = 30> struct BinaryTrie
     void insert(unsigned long long x, int v = 1)
     {
         // x 是待插入整数，v 是一次插入的份数，必须为正。
+        assert(valid(x) && v > 0); // 调试检查，可删
         int p = 1;
         tr[p][2] += v;
         for (int i = W - 1; i >= 0; i--)
@@ -98,6 +100,7 @@ template <int W = 30> struct BinaryTrie
     unsigned long long maxXor(unsigned long long x) const
     {
         // x 是询问整数；返回集合中最大的 x xor y。
+        assert(valid(x) && !empty()); // 调试检查，可删
         int p = 1;
         unsigned long long ans = 0;
         for (int i = W - 1; i >= 0; i--)
@@ -123,6 +126,7 @@ template <int W = 30> struct BinaryTrie
     unsigned long long minXor(unsigned long long x) const
     {
         // x 是询问整数；返回集合中最小的 x xor y。
+        assert(valid(x) && !empty()); // 调试检查，可删
         int p = 1;
         unsigned long long ans = 0;
         for (int i = W - 1; i >= 0; i--)
@@ -148,6 +152,7 @@ template <int W = 30> struct BinaryTrie
     unsigned long long kthXor(unsigned long long x, int k) const
     {
         // x 是询问整数，k 从 0 开始；返回第 k 小的 x xor y。
+        assert(valid(x) && 0 <= k && k < size()); // 调试检查，可删
         int p = 1;
         unsigned long long ans = 0;
         for (int i = W - 1; i >= 0; i--)
@@ -178,6 +183,7 @@ template <int W = 30> struct BinaryTrie
     int countXorLess(unsigned long long x, unsigned long long k) const
     {
         // x、k 是询问参数；返回满足 (x xor y) < k 的元素个数。
+        assert(valid(x)); // 调试检查，可删
         if constexpr (W < 64)
         {
             if (k >= ((unsigned long long)1 << W))

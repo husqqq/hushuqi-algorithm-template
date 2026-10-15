@@ -6,12 +6,15 @@ using namespace std;
 template <class T> T pfaffian(vector<vector<T>> a)
 {
     int n = a.size();
+    // 调试检查，可删。
     assert(n % 2 == 0);
     for (int i = 0; i < n; i++)
     {
+        // 调试检查，可删。
         assert((int)a[i].size() == n && a[i][i] == T(0));
         for (int j = 0; j < n; j++)
         {
+            // 调试检查，可删。
             assert(a[i][j] == -a[j][i]);
         }
     }

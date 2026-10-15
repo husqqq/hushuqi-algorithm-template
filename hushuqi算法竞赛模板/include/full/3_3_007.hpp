@@ -25,6 +25,7 @@ template <class T, class F> class SparsePtSeg
         q.pos = x;
         q.x = q.prod = v;
         t.push_back(move(q));
+        assert(t.size() <= (size_t)numeric_limits<int32_t>::max()); // 调试检查，可删
         return (int32_t)t.size() - 1;
     }
 
@@ -108,23 +109,27 @@ template <class T, class F> class SparsePtSeg
     SparsePtSeg(long long lo, long long hi, T e, F op) : lo(lo), hi(hi), e(move(e)), op(move(op))
     {
         // lo、hi 是非空半开整数值域，e 是未写位置的值，op 是保持左右顺序的结合运算。
+        assert(lo < hi); // 调试检查，可删
     }
 
     void reserveNodes(int cap)
     {
         // cap 是预计出现的不同位置数；预留节点池容量，不改变结构语义。
+        assert(cap >= 0); // 调试检查，可删
         t.reserve(cap + 1);
     }
 
     void set(long long x, const T &v)
     {
         // x 是值域内位置，v 是新值；把该点赋为 v，未写过的位置默认取 e。
+        assert(lo <= x && x < hi); // 调试检查，可删
         rt = set(rt, lo, hi, x, v);
     }
 
     T get(long long x) const
     {
         // x 是值域内位置；返回该点当前值，未出现过时返回 e。
+        assert(lo <= x && x < hi); // 调试检查，可删
         int32_t p = rt;
         while (p)
         {
@@ -140,6 +145,7 @@ template <class T, class F> class SparsePtSeg
     T prod(long long l, long long r) const
     {
         // l、r 是值域内半开端点；返回 [l,r) 按下标从左到右合并的积，空区间返回 e。
+        assert(lo <= l && l <= r && r <= hi); // 调试检查，可删
         T ans = e;
         prod(rt, lo, hi, l, r, ans);
         return ans;

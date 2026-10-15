@@ -15,6 +15,7 @@ template <bool Inv = false, class T> void orFWT(T *a, int n, int d)
 {
     // a 指向 n 行、每行 d 项的连续集合函数，n 是 2 的幂；沿行掩码做批量 OR 变换。
     assert(a && n > 0 && d > 0 && n <= UINT32_MAX && d <= UINT32_MAX &&
+           has_single_bit((unsigned long long)n)); // 调试检查，可删。
     uint32_t m = n;
     uint32_t w = d;
     for (uint32_t h = 1; h < m; h <<= 1)
@@ -60,6 +61,7 @@ template <class T> void orFWT(T *a, int n, int d, bool inv)
 template <bool Inv = false, class T> void orFWT(vector<T> &a)
 {
     // a 是按掩码编号的一维集合函数；原地完成 OR 正变换或逆变换。
+    assert(!a.empty() && a.size() <= UINT32_MAX && has_single_bit(a.size())); // 调试检查，可删。
     uint32_t n = a.size();
     for (uint32_t h = 1; h < n; h <<= 1)
     {
@@ -84,6 +86,7 @@ template <class T> void fwt(vector<T> &a, BitOp op, bool inv = false)
 {
     // a 是按掩码编号的系数，op 指定或、与或异或，inv 指定正变换或逆变换；原地完成变换。
     int n = a.size();
+    assert(n > 0 && has_single_bit((unsigned long long)n)); // 调试检查，可删。
     if (op == BitOp::Or)
     {
         if (inv)
@@ -149,6 +152,7 @@ template <class T> void xorFwt(vector<T> &a, bool inv = false)
 template <class T> vector<T> bitConv(vector<T> a, vector<T> b, BitOp op)
 {
     // a、b 是等长的掩码系数，op 指定卷积下标使用或、与或异或；返回对应的按位卷积。
+    assert(!a.empty() && a.size() == b.size()); // 调试检查，可删。
     fwt(a, op);
     fwt(b, op);
     for (int i = 0; i < (int)a.size(); i++)
@@ -231,6 +235,7 @@ void fwtMod(uint32_t *a, uint32_t n)
 {
     static_assert(1 < P && P < (1U << 31));
     static_assert(Op != BitOp::Xor || (P & 1));
+    assert(a && n && has_single_bit((unsigned long long)n)); // 调试检查，可删
     if constexpr (N <= (1U << 30))
     {
         if (n == N)
@@ -256,6 +261,7 @@ template <uint32_t P, bool Inv = false> void xorFwtMod(vector<uint32_t> &a) { fw
 template <uint32_t P, BitOp Op>
 vector<uint32_t> bitConvMod(vector<uint32_t> a, vector<uint32_t> b)
 {
+    assert(!a.empty() && a.size() == b.size()); // 调试检查，可删
     fwtMod<P, Op>(a);
     fwtMod<P, Op>(b);
     for (uint32_t i = 0; i < a.size(); i++)
@@ -332,6 +338,7 @@ public:
     }
     XorMint inv() const
     {
+        assert(x != 0); // 调试检查，可删
         return pow(sparseXorMod - 2);
     }
 };
@@ -350,6 +357,7 @@ private:
     }
     static XorMint sqrt(const XorMint &x)
     {
+        assert(legendre(x) >= 0); // 调试检查，可删
         if (x == XorMint(0)) return 0;
         XorMint w2, a = 0;
         while (true)
@@ -459,12 +467,14 @@ inline int XorInfo::maxBit = 0;
 inline vector<uint64_t> sparseXor(
     int n, const vector<vector<pair<int, long long>>> &factors)
 {
+    assert(0 <= n && n < 30); // 调试检查，可删
     int size = 1LL << n, maxBit = 0;
     for (const auto &factor : factors)
     {
         assert(!factor.empty());
         maxBit = max(maxBit, (int)factor.size() - 1);
     }
+    assert(maxBit < 60); // 调试检查，可删
     XorInfo::setMaxBit(maxBit);
     XorInfo::init();
     vector<XorInfo> all(size);

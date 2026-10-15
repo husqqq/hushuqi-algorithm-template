@@ -7,6 +7,7 @@ using namespace std;
 template <class T> vector<T> partitions(int n)
 {
     // n 是要计算的最大整数；返回 p(0) 到 p(n)。
+    assert(n >= 0); // 调试检查，可删。
     vector<T> a(n + 1);
     a[0] = 1;
     for (int i = 1; i <= n; i++)

@@ -25,6 +25,7 @@ template <class T> class PerAffSeg
         // 新建空节点并返回编号；新节点的仿射标记初始化为恒等变换。
         t.push_back(Node{});
         int p = (int)t.size() - 1;
+        assert(p <= numeric_limits<int32_t>::max()); // 调试检查，可删
         t[p].mul = one;
         return p;
     }
@@ -32,8 +33,10 @@ template <class T> class PerAffSeg
     int clone(int p)
     {
         // p 是旧版本中的非空节点；复制它并返回新节点编号。
+        assert(p > 0); // 调试检查，可删
         t.push_back(t[p]);
         int q = (int)t.size() - 1;
+        assert(q <= numeric_limits<int32_t>::max()); // 调试检查，可删
         return q;
     }
 
@@ -191,6 +194,7 @@ template <class T> class PerAffSeg
     explicit PerAffSeg(const vector<T> &a) : n((int)a.size()), one(T(1)), t(1)
     {
         // a 是非空初始数组；T 需支持 0、1、加法、乘法、相等比较和由长度构造。
+        assert(n > 0); // 调试检查，可删
         t.reserve(2 * n + 1);
         t[0].mul = one;
         base = build(a, 0, n);
@@ -205,6 +209,8 @@ template <class T> class PerAffSeg
     int affine(int root, int l, int r, const T &mul, const T &add)
     {
         // root 是旧版本根，[l,r) 是修改区间；返回执行 x->mul*x+add 后的新版本根。
+        assert(0 < root && root < (int)t.size()); // 调试检查，可删
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         if (l == r || (mul == one && add == T{}))
         {
             return root;
@@ -215,6 +221,9 @@ template <class T> class PerAffSeg
     int splice(int target, int source, int l, int r)
     {
         // target、source 是旧版本根；返回 target 的 [l,r) 被 source 同位置覆盖后的新版本根。
+        assert(0 < target && target < (int)t.size()); // 调试检查，可删
+        assert(0 < source && source < (int)t.size()); // 调试检查，可删
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         if (target == source || l == r)
         {
             return target;
@@ -225,6 +234,8 @@ template <class T> class PerAffSeg
     T sum(int root, int l, int r) const
     {
         // root 是任意历史版本根，[l,r) 是查询区间；返回该区间当前元素和，空区间返回零。
+        assert(0 < root && root < (int)t.size()); // 调试检查，可删
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         return sum(root, 0, n, l, r, one, T{});
     }
 };

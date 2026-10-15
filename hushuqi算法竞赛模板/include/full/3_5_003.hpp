@@ -132,12 +132,14 @@ template <class T> struct PerTreap
     int insert(int rt, int k, T v)
     {
         // rt 是旧版本根，k 是插入位置，v 是新值；返回插入后的版本根。
+        assert(0 <= k && k <= size(rt)); // 调试检查，可删
         auto [a, b] = split(rt, k);
         return merge(merge(a, node(v)), b);
     }
     int erase(int rt, int k)
     {
         // rt 是旧版本根，k 是删除位置；返回删除后的版本根。
+        assert(0 <= k && k < size(rt)); // 调试检查，可删
         auto [a, b] = split(rt, k);
         auto [c, d] = split(b, 1);
         return merge(a, d);
@@ -145,6 +147,7 @@ template <class T> struct PerTreap
     int reverse(int rt, int l, int r)
     {
         // rt 是旧版本根；翻转半开区间 [l,r) 并返回新版本根。
+        assert(0 <= l && l <= r && r <= size(rt)); // 调试检查，可删
         auto [a, b] = split(rt, l);
         auto [c, d] = split(b, r - l);
         return merge(merge(a, flip(c)), d);
@@ -183,6 +186,7 @@ template <class T> struct PerTreap
     T query(int rt, int l, int r) const
     {
         // rt 是版本根；只读返回半开区间 [l,r) 的和，不新建节点。
+        assert(0 <= l && l <= r && r <= size(rt)); // 调试检查，可删
         return query(rt, l, r, false);
     }
 

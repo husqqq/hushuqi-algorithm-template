@@ -5,6 +5,7 @@
 vector<Z> stirling1K(int n, int k)
 {
     // n 是最大行号，k 是固定列号；返回 s(k,k) 到 s(n,k)，模数由 Z 决定。
+    assert(0 <= k && k <= n && n < mod); // 调试检查，可删。
     Poly f(n + 1);
     for (int i = 1; i <= n; i++)
     {

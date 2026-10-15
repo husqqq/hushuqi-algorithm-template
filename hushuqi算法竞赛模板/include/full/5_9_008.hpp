@@ -22,6 +22,7 @@ struct Unicycle
     void add(int u, int v)
     {
         // 加入简单无向边 u-v。
+        assert(0 <= u && u < n && 0 <= v && v < n && u != v); // 调试检查，可删。
         e[u].push_back(v);
         e[v].push_back(u);
     }

@@ -9,6 +9,7 @@ array<P, 6> triCenters(P a, P b, P c)
     auto z = abs(a - b);
     auto in = (a * x + b * y + c * z) / (x + y + z);
     auto d = 2 * cross(b - a, c - a);
+    assert(sgn(d) != 0); // 调试检查，可删。
     auto bb = square(b - a);
     auto cc = square(c - a);
     P out{a.x + ((c.y - a.y) * bb - (b.y - a.y) * cc) / d,

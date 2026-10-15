@@ -84,30 +84,35 @@ class IntGraph
     IntGraph(int n) : n(n), g(n), out(4 * n), in(4 * n)
     {
         // n 是正的原始点数；建立区间图辅助节点。
+        assert(n > 0); // 调试检查，可删。
         build(1, 0, n);
     }
 
     void addEdge(int u, int v, int w)
     {
         // u、v 是原始点，w 是非负边权；加入单点边。
+        assert(0 <= u && u < n && 0 <= v && v < n && w >= 0); // 调试检查，可删。
         edge(u, v, w);
     }
 
     void addPointRng(int u, int l, int r, int w)
     {
         // u 到 [l,r) 加权 w 的逻辑边。
+        assert(0 <= u && u < n && 0 <= l && l <= r && r <= n && w >= 0); // 调试检查，可删。
         pointRange(1, 0, n, u, l, r, w);
     }
 
     void addRngPoint(int l, int r, int v, int w)
     {
         // [l,r) 到 v 加权 w 的逻辑边。
+        assert(0 <= l && l <= r && r <= n && 0 <= v && v < n && w >= 0); // 调试检查，可删。
         rangePoint(1, 0, n, l, r, v, w);
     }
 
     vector<optional<Dist>> dijkstra(int s) const
     {
         // s 是原始源点；返回到全部原始点的最短路，不可达点为空。
+        assert(0 <= s && s < n); // 调试检查，可删。
         vector<optional<Dist>> d(g.size());
         priority_queue<pair<Dist, int>, vector<pair<Dist, int>>, greater<>> q;
         d[s] = 0;

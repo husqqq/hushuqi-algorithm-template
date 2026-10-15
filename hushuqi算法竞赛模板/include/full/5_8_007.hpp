@@ -21,8 +21,10 @@ GlobalCut stoerWagner(vector<vector<int>> g)
     }
     for (int i = 0; i < n; i++)
     {
+        assert((int)g[i].size() == n); // 调试检查，可删。
         for (int j = 0; j < n; j++)
         {
+            assert(g[i][j] >= 0 && g[i][j] == g[j][i]); // 调试检查，可删。
         }
         g[i][i] = 0;
     }

@@ -54,10 +54,12 @@ class BIT2
         // (x,y) 必须在构造时登记，v 是该点的权值增量。
         int n = xs.size();
         auto it = lower_bound(xs.begin(), xs.end(), x);
+        assert(it != xs.end() && *it == x); // 调试检查，可删
         int p = it - xs.begin() + 1;
         for (int i = p; i <= n; i += i & -i)
         {
             auto jt = lower_bound(ys[i].begin(), ys[i].end(), y);
+            assert(jt != ys[i].end() && *jt == y); // 调试检查，可删
             int q = jt - ys[i].begin() + 1;
             for (int j = q; j < (int)tr[i].size(); j += j & -j)
             {
@@ -85,6 +87,7 @@ class BIT2
     void addRectangle(int l, int d, int r, int u, long long w)
     {
         // [l,r) x [d,u) 是半开加权矩形，w 是增量；四角必须已在构造时预登记。
+        assert(l < r && d < u); // 调试检查，可删
         add(l, d, w);
         add(l, u, -w);
         add(r, d, -w);

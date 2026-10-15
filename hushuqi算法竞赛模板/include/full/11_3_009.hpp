@@ -11,6 +11,7 @@ struct HP
 
     HP(P p, P q) : p(p), v(q - p), a(atan2l(v.y, v.x))
     {
+        assert(!eq(p, q)); // 调试检查，可删。
         if (a < 0)
         {
             a += 2 * acosl(-1);
@@ -170,6 +171,7 @@ optional<vector<P>> halfPlane(vector<HP> a)
     {
         const HP &x = q[i];
         const HP &y = q[(i + 1) % q.size()];
+        assert(!parallel({x.p, x.v}, {y.p, y.v})); // 调试检查，可删。
         P z = isect({x.p, x.v}, {y.p, y.v});
         if (p.empty() || !eq(p.back(), z))
         {

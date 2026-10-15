@@ -20,6 +20,7 @@ struct Euclid
 inline Euclid monoidPower(Euclid value, long long exponent)
 {
     // 返回 value 在幺半群 + 下的 exponent 次幂。
+    assert(exponent >= 0); // 调试检查，可删
     Euclid res;
     while (exponent)
     {
@@ -37,6 +38,7 @@ inline Euclid floorPath(long long p, long long q, long long r,
                         long long length, Euclid up, Euclid right)
 {
     // p、q、r 定义取整直线，length 是横坐标上界；up、right 是纵步与横步元素，返回整段聚合。
+    assert(p >= 0 && q > 0 && 0 <= r && r < q && length >= 0); // 调试检查，可删
     if (!length)
     {
         return {};
@@ -136,6 +138,7 @@ inline const Pre &pre()
 inline FloorTable floorMoment(int n, int a, int b, int c, int d)
 {
     // n、a、b、c 定义 0<=i<=n 时 floor((a*i+b)/c)，d 是总次数上界；返回 sum i^p floor(...)^q。
+    assert(n >= 0 && a >= 0 && b >= 0 && c > 0 && 0 <= d && d <= floorMomentDeg); // 调试检查，可删
     const auto &pc = fm::pre();
     FloorTable ans{};
     if (!a)
@@ -186,6 +189,7 @@ inline vector<int> floorMoments(const vector<array<int, 6>> &qs)
     ans.reserve(qs.size());
     for (auto x : qs)
     {
+        assert(x[4] >= 0 && x[5] >= 0 && x[4] + x[5] <= floorMomentDeg); // 调试检查，可删
         auto t = floorMoment(x[0], x[1], x[2], x[3], x[4] + x[5]);
         ans.push_back(t[x[4]][x[5]]);
     }

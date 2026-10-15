@@ -85,6 +85,7 @@ class DsuOnTree
     template <class Add, class Remove, class Answer> void run(Add &&add, Remove &&remove, Answer &&ans, int root = 0)
     {
         // 参数 add 表示 定义状态加法或加入贡献的回调；remove 表示 撤销一个元素贡献的回调；ans 表示 由调用者提供的答案数组；root 表示 当前指定的树根；执行 DSU on Tree；用 add、remove 维护贡献并用 ans 写回每点答案。
+        assert(n > 0 && 0 <= root && root < n); // 调试检查，可删
         fill(heavy.begin(), heavy.end(), -1);
         prepare(root, -1);
         dfs(root, false, add, remove, ans);

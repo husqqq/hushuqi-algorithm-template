@@ -8,6 +8,7 @@ pair<vector<optional<Dist>>, vector<int>> shortestTree(
 {
     // g 是非负权有向图；返回最短距离与一棵最短路径树的父节点。
     int n = g.size();
+    assert(0 <= s && s < n); // 调试检查，可删。
     auto d = dijkstraSp<Dist>(g, s);
     vector<int> par(n, -1), vis(n);
     queue<int> q;

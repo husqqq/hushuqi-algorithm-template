@@ -66,6 +66,7 @@ vector<long long> xorConv(const vector<long long> &a, const vector<long long> &b
 {
     // a、b 是等长整数序列；mod 为正的有符号 64 位模数，且 n*mod < 2^128。
     assert(mod > 0 && !a.empty() && a.size() == b.size() &&
+           has_single_bit(a.size())); // 调试检查，可删。
     int n = a.size();
     unsigned __int128 lifted = (unsigned __int128)(unsigned long long)mod * n;
     vector<unsigned __int128> x(n);
@@ -95,6 +96,7 @@ vector<long long> xorConv(const vector<long long> &a, const vector<long long> &b
     vector<long long> c(n);
     for (int i = 0; i < n; i++)
     {
+        assert(x[i] % n == 0); // 调试检查，可删。
         c[i] = (long long)(x[i] / n % (unsigned long long)mod);
     }
     return c;

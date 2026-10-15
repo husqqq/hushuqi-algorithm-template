@@ -42,6 +42,7 @@ vector<Z> subsetConv(const vector<Z> &a, const vector<Z> &b)
 {
     // a、b 是相同 n 位全集上的子集函数；返回 (a*b)[S]=sum_{T subset S}a[T]b[S-T]。
     int n = countr_zero((unsigned)a.size());
+    assert(a.size() == b.size() && n <= 20); // 调试检查，可删。
     auto x = rankedZeta(a, n), y = rankedZeta(b, n);
     for (int s = 0; s < (1 << n); s++)
     {
@@ -90,6 +91,7 @@ vector<Z> chromPoly(const vector<unsigned long long> &g)
 {
     // g 是允许自环的无向图邻接位集；返回按次数升序的色多项式系数，自环图返回全零，支持至多 20 点。
     int n = g.size(), N = 1 << n;
+    assert(n <= 20 && n < Z::mod()); // 调试检查，可删：模数须为大于 n 的素数。
     for (int u = 0; u < n; u++)
     {
         if (g[u] >> u & 1) return vector<Z>(n + 1);
@@ -189,6 +191,7 @@ inline Z tutteEval(const vector<unsigned long long> &g, Z x, Z y)
 {
     // g 是无自环无向图邻接位集；x、y 是 Tutte 多项式点值，点数不超过 20。
     int n = g.size(), N = 1 << n;
+    assert(0 < n && n <= 20); // 调试检查，可删。
     vector<Z> connected(N), temp(N);
     vector<Z> geo(n + 1);
     for (int i = 1; i <= n; i++) geo[i] = geo[i - 1] * y + Z(1);

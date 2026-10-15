@@ -9,6 +9,7 @@ vector<optional<Acc>> treePack(const vector<vector<int>> &g, const vector<Acc> &
 {
     // g 是无向树，val 是各点权，root 是根，k 是恰选点数；返回恰选 j 点的最大值，j 不可达时为 nullopt。
     int n = g.size();
+    assert(n > 0 && (int)val.size() == n && 0 <= root && root < n && k >= 0); // 调试检查，可删
     auto dfs = [&](auto &&self, int u, int p) -> vector<optional<Acc>>
     {
         // u、p 是当前点及其父亲；返回 u 子树内各选点数的最优值。

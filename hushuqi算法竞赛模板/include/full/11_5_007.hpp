@@ -226,6 +226,7 @@ template <class T> optional<pair<int, int>> anySegMeet(vector<Line<T>> seg)
                 continue;
             }
             auto it = active.find(id);
+            assert(it != active.end()); // 调试检查，可删。
             auto nx = next(it);
             if (it != active.begin() && nx != active.end())
             {

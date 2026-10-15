@@ -4,6 +4,7 @@
 
 P arcCentroid(C c, Real l, Real r)
 {
+    assert(sgn(c.r) >= 0); // 调试检查，可删。
     Real t = r - l;
     if (sgn(t) == 0)
     {

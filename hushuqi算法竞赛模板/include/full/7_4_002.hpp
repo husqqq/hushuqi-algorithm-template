@@ -4,6 +4,7 @@
 optional<int> PH(int g, int h, int p)
 {
     // g 是模素数 p 的原根，h 是非零剩余；返回最小非负离散对数。
+    assert(p >= 2); // 调试检查，可删
     int left = p - 1;
     int x = 0;
     int curMod = 1;

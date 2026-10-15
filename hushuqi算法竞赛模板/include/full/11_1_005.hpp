@@ -28,5 +28,6 @@ using L = DirLine;
 template <class T> DirLine toDir(const Line<T> &l)
 {
     auto v = l.b - l.a;
+    assert(l.a != l.b); // 调试检查，可删。
     return {(P)l.a, (P)v};
 }

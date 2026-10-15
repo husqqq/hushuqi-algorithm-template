@@ -45,6 +45,7 @@ template <class T, class F> struct DST
     T query(int l, int r) const
     {
         // [l,r) 是非空查询区间；返回按原顺序合并的结果。
+        assert(0 <= l && l < r && r <= n); // 调试检查，可删
         if (r - l == 1)
         {
             return a[l];

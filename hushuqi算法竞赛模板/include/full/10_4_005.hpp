@@ -6,6 +6,7 @@
 pair<Poly, Poly> bmStep(Poly q)
 {
     // q 的首尾系数非零；返回 {q(-x),v(x)}，其中 q(x)q(-x)=v(x^2)。
+    assert(!q.empty() && q[0] != Z(0) && q.back() != Z(0)); // 调试检查，可删。
     Poly neg = q;
     for (int i = 1; i < (int)neg.size(); i += 2)
     {
@@ -25,6 +26,7 @@ Z bostanMori(Poly p, Poly q, unsigned long long n)
     // p、q 是分子分母且 q[0] 非零，n 是所求下标；返回 [x^n]p(x)/q(x)。
     p.norm();
     q.norm();
+    assert(!q.empty() && q[0] != Z(0)); // 调试检查，可删。
     while (n)
     {
         auto [neg, nq] = bmStep(move(q));

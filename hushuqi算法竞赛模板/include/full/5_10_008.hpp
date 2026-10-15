@@ -102,10 +102,13 @@ class Dsatur
     Dsatur(vector<unsigned long long> e) : n(e.size()), best(n + 1), e(move(e)), col(n, -1)
     {
         // e 是简单无向图邻接位集；构造精确染色器。
+        assert(n <= 64); // 调试检查，可删。
         for (int u = 0; u < n; u++)
         {
+            assert(!(this->e[u] >> u & 1)); // 调试检查，可删。
             for (int v = 0; v < n; v++)
             {
+                assert((this->e[u] >> v & 1) == (this->e[v] >> u & 1)); // 调试检查，可删。
             }
         }
     }

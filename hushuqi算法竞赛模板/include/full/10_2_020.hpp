@@ -22,6 +22,7 @@ Poly polyMod(Poly a, const Poly &m)
 Poly polyPowMod(Poly a, long long e, const Poly &m)
 {
     // a 是底数多项式，e 是非负指数，m 是次数至少为 1 的模多项式；返回 a^e mod m。
+    assert(e >= 0 && m.size() > 1); // 调试检查，可删。
     Poly r{1};
     a = polyMod(move(a), m);
     while (e)
@@ -91,6 +92,7 @@ Mat mul(const Mat &a, const Mat &b)
                 add(a[2] * b[0], a[3] * b[2]),
                 add(a[2] * b[1], a[3] * b[3])};
     }
+    assert(n <= (1 << 23)); // 调试检查，可删。
     array<Poly, 8> f{a[0], a[1], a[2], a[3], b[0], b[1], b[2], b[3]};
     for (auto &x : f)
     {
@@ -130,6 +132,7 @@ Pair mul(const Mat &a, const Pair &b)
         return {add(a[0] * b[0], a[1] * b[1]),
                 add(a[2] * b[0], a[3] * b[1])};
     }
+    assert(n <= (1 << 23)); // 调试检查，可删。
     array<Poly, 6> f{a[0], a[1], a[2], a[3], b[0], b[1]};
     for (auto &x : f)
     {
@@ -250,6 +253,7 @@ Poly polyGcd(Poly f, Poly g)
     // f、g 是不全为零的多项式；两者非空时长度均不超过 2^22，返回首一 gcd，不计算最终 Bézout 系数。
     f.norm();
     g.norm();
+    assert(!f.empty() || !g.empty()); // 调试检查，可删。
     if (f.empty())
     {
         return polyMonic(move(g));
@@ -258,6 +262,7 @@ Poly polyGcd(Poly f, Poly g)
     {
         return polyMonic(move(f));
     }
+    assert(max(f.size(), g.size()) <= (1 << 22)); // 调试检查，可删。
     if (f.size() < g.size())
     {
         swap(f, g);
@@ -286,6 +291,7 @@ tuple<Poly, Poly, Poly> polyExtGcd(Poly f, Poly g)
     // f、g 是不全为零的多项式；两者非空时长度均不超过 2^22，返回 {d,x,y}，满足 d=xf+yg=gcd(f,g)，d 未首一化。
     f.norm();
     g.norm();
+    assert(!f.empty() || !g.empty()); // 调试检查，可删。
     if (g.empty())
     {
         return {f, Poly{1}, Poly{}};
@@ -294,6 +300,7 @@ tuple<Poly, Poly, Poly> polyExtGcd(Poly f, Poly g)
     {
         return {g, Poly{}, Poly{1}};
     }
+    assert(max(f.size(), g.size()) <= (1 << 22)); // 调试检查，可删。
     if (f.size() < g.size())
     {
         auto [d, y, x] = polyExtGcd(move(g), move(f));
@@ -316,12 +323,14 @@ optional<Poly> polyInvMod(Poly f, Poly m)
     // f 是待求逆多项式，m 是非零模多项式；两者非空且 m 非常数时长度均不超过 2^22，可逆时返回次数小于 m 的逆元，否则返回空。
     f.norm();
     m.norm();
+    assert(!m.empty()); // 调试检查，可删。
     if (m.size() == 1)
     {
         return Poly{};
     }
     if (!f.empty())
     {
+        assert(max(f.size(), m.size()) <= (1 << 22)); // 调试检查，可删。
     }
     auto [d, x, y] = polyExtGcd(move(f), m);
     if (d.size() != 1)

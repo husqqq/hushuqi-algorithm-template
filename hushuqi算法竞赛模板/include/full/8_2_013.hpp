@@ -15,8 +15,10 @@ T youngTab(const vector<int> &row)
     size_t cells = 0;
     for (int i = 0; i < (int)row.size(); i++)
     {
+        assert(row[i] >= 0); // 调试检查，可删。
         if (i)
         {
+            assert(row[i - 1] >= row[i]); // 调试检查，可删。
         }
         cells += row[i];
     }
@@ -70,6 +72,7 @@ T youngTab(const vector<int> &row)
     T ans = 1;
     for (int p : ps)
     {
+        assert(e[p] >= 0); // 调试检查，可删。
         for (int i = 0; i < e[p]; i++)
         {
             ans *= p;

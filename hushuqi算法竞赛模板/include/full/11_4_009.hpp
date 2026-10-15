@@ -9,6 +9,7 @@ Real circleUnion(const vector<C> &a)
     Real ans = 0;
     for (int i = 0; i < (int)a.size(); i++)
     {
+        assert(sgn(a[i].r) >= 0); // 调试检查，可删。
         vector<pair<Real, int>> e;
         bool cover = false;
         for (int j = 0; j < (int)a.size(); j++)
@@ -88,6 +89,7 @@ vector<Real> circleCov(const vector<C> &a)
     P shift = n ? a[0].o : P{};
     for (int i = 0; i < n; i++)
     {
+        assert(sgn(a[i].r) >= 0); // 调试检查，可删。
         if (sgn(a[i].r) == 0)
         {
             continue;
@@ -96,6 +98,7 @@ vector<Real> circleCov(const vector<C> &a)
         int cnt = 0;
         for (int j = 0; j < n; j++)
         {
+            assert(sgn(a[j].r) >= 0); // 调试检查，可删。
             if (i == j || sgn(a[j].r) == 0)
             {
                 continue;
@@ -156,6 +159,7 @@ vector<Real> circleCov(const vector<C> &a)
             {
                 return;
             }
+            assert(0 <= cnt && cnt < n); // 调试检查，可删。
             P o = a[i].o - shift;
             Real sum =
                 a[i].r * a[i].r * (r - l) + o.x * a[i].r * (sinl(r) - sinl(l)) - o.y * a[i].r * (cosl(r) - cosl(l));

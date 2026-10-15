@@ -29,10 +29,12 @@ template <int A = 26> class AC
     int add(const string &s, char fst = 'a')
     {
         // s 是非空模式串，fst 是字符集起始字节；返回模式终态。
+        assert(!s.empty()); // 调试检查，可删
         int u = 0;
         for (char c : s)
         {
             int x = (unsigned char)c - (unsigned char)fst;
+            assert(0 <= x && x < A); // 调试检查，可删
             if (t[u].ch[x] == -1)
             {
                 t[u].ch[x] = t.size();
@@ -80,6 +82,8 @@ template <int A = 26> class AC
     int step(int u, int c) const
     {
         // u 是当前状态，c 是 [0,A) 内字符编号；返回下一状态。
+        assert(0 <= u && u < (int)t.size()); // 调试检查，可删
+        assert(0 <= c && c < A); // 调试检查，可删
         return t[u].nxt[c];
     }
     const vector<Node> &nodes() const

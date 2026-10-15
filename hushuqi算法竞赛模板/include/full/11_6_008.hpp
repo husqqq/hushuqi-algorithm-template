@@ -14,6 +14,7 @@ pair<P3, Real> tetraSphere(P3 a, P3 b, P3 c, P3 d)
     Real z = abs(cross(c - a, d - a));
     Real w = abs(cross(c - b, d - b));
     Real s = x + y + z + w;
+    assert(sgn(s) != 0 && sgn(tetraVolume(a, b, c, d)) != 0); // 调试检查，可删。
     P3 o = (d * x + c * y + b * z + a * w) / s;
     return {o, 3 * tetraVolume(a, b, c, d) / (s / 2)};
 }

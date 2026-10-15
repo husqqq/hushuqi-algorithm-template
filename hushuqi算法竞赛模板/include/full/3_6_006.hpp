@@ -49,6 +49,7 @@ template <class K, class V, uint32_t N, class H = CustomHash> class FixedHashMap
   public:
     V &operator[](const K &x)
     {
+        assert(cnt < CAP); // 调试检查，可删；容量必须严格大于不同键数。
         uint32_t p = findPos(x);
         if (!test(p))
         {
@@ -142,6 +143,7 @@ template <class K, uint32_t N, class H = CustomHash> class FixedHashSet
     bool insert(const K &x)
     {
         // x 是待插入键；首次插入返回 true，已经存在返回 false。
+        assert(cnt < CAP); // 调试检查，可删；容量必须严格大于不同键数。
         uint32_t p = findPos(x);
         if (test(p))
         {

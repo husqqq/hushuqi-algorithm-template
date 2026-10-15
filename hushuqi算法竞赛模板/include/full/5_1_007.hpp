@@ -18,6 +18,7 @@ optional<vector<Dist>> diffCons(int n, const vector<array<int, 3>> &a)
         bool upd = false;
         for (auto [u, v, w] : a)
         {
+            assert(0 <= u && u < n && 0 <= v && v < n); // 调试检查，可删。
             Dist nx = x[u] + (Dist)w;
             if (x[v] > nx)
             {

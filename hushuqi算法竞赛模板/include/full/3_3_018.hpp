@@ -132,6 +132,7 @@ template <class M> class SortSeg
         {
             return p | q;
         }
+        assert(r - l > 1); // 调试检查，可删：合法键全局互异，不会在同一叶相遇
         int m = l + (r - l) / 2;
         t[p].l = join(t[p].l, t[q].l, l, m);
         t[p].r = join(t[p].r, t[q].r, m, r);
@@ -205,6 +206,7 @@ template <class M> class SortSeg
     void sortRange(int l, int r, bool d)
     {
         // [l,r) 是排序区间，d 表示是否降序；合并其中各段并设置方向。
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         if (l == r)
         {
             return;
@@ -229,6 +231,7 @@ template <class M> class SortSeg
     SortSeg(int K, const vector<int> &key, const vector<T> &a) : n(key.size()), K(K), rt(n), rev(n)
     {
         // K 是键值域 [0,K) 的右端点；key、a 分别是每个位置的互异键和幺半群值。
+        assert(K > 0 && key.size() == a.size()); // 调试检查，可删
         t.emplace_back(M::id());
         while (z < max<int>(1, n))
         {
@@ -238,6 +241,7 @@ template <class M> class SortSeg
         cut.insert(n);
         for (int i = 0; i < n; i++)
         {
+            assert(0 <= key[i] && key[i] < K); // 调试检查，可删
             cut.insert(i);
             rt[i] = put(0, 0, K, key[i], a[i]);
             seg[z + i] = a[i];
@@ -251,6 +255,7 @@ template <class M> class SortSeg
     void assign(int p, int k, const T &x)
     {
         // p 是序列位置，k 是替换后的全局唯一键，x 是新值；完成单点赋值。
+        assert(0 <= p && p < n && 0 <= k && k < K); // 调试检查，可删
         splitAt(p);
         splitAt(p + 1);
         rt[p] = put(0, 0, K, k, x);
@@ -273,6 +278,7 @@ template <class M> class SortSeg
     T prod(int l, int r)
     {
         // [l,r) 是查询区间；返回当前顺序下的幺半群积。
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         splitAt(l);
         splitAt(r);
         return outProd(l, r);

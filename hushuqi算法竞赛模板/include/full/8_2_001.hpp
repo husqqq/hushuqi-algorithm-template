@@ -8,6 +8,7 @@ using namespace std;
 array<int, 2> fibPair(unsigned long long n, int mod)
 {
     // n 是下标，mod 是正模数；返回 {F_n,F_{n+1}} mod mod。
+    assert(mod > 0); // 调试检查，可删。
     if (n == 0)
     {
         return {0, 1 % mod};
@@ -34,6 +35,7 @@ array<int, 2> fibPair(unsigned long long n, int mod)
 int lucasNumber(unsigned long long n, int mod)
 {
     // n 是下标，mod 是正模数；返回 Lucas 数 L_n mod mod。
+    assert(mod > 0); // 调试检查，可删。
     if (n == 0)
     {
         return 2 % mod;

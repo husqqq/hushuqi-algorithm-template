@@ -140,6 +140,7 @@ struct PerBitTrie
     PerBitTrie(int bit = 62) : bit(bit), tr(1, Node{}), rt(1, 0)
     {
         // bit 是最高处理位；构造只含空版本的持久化 Trie。
+        assert(0 <= bit && bit <= 62); // 调试检查，可删
     }
 
     int clone(int p)
@@ -152,6 +153,7 @@ struct PerBitTrie
     void append(int x)
     {
         // x 是能由 bit+1 位表示的非负整数；追加后生成新前缀版本。
+        assert(0 <= x && (bit == 62 || (unsigned long long)x < (1ULL << (bit + 1)))); // 调试检查，可删
         auto old = rt.back();
         auto cur = clone(old);
         rt.push_back(cur);
@@ -176,6 +178,8 @@ struct PerBitTrie
     int maxXor(int l, int r, int x) const
     {
         // [l,r) 是下标区间，x 是询问值；返回最大异或值，空区间返回 -1。
+        assert(0 <= l && l <= r && r < (int)rt.size()); // 调试检查，可删
+        assert(0 <= x && (bit == 62 || (unsigned long long)x < (1ULL << (bit + 1)))); // 调试检查，可删
         if (l == r)
         {
             return -1;
@@ -407,6 +411,7 @@ TreeOrder preorderTab(const vector<vector<int>> &g, int root = 0)
     {
         return {};
     }
+    assert(0 <= root && root < n); // 调试检查，可删
     TreeOrder z{vector<int>(n, -1), {}, vector<int>(n), vector<int>(n, 1)};
     z.ord.reserve(n);
     auto dfs = [&](auto &&self, int x, int p) -> void

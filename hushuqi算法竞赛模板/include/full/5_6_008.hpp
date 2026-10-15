@@ -8,12 +8,14 @@ using namespace std;
 inline vector<int> maxIS(int n, const vector<pair<int, int>> &edges)
 {
     // n 是点数，edges 是无向边；返回一组最大独立集顶点，允许重边和自环。
+    assert(0 <= n && n <= 63); // 调试检查，可删：位集使用 unsigned long long。
     vector<unsigned long long> adj(n);
     vector<bool> loop(n);
     unsigned long long all = n ? (1ULL << n) - 1 : 0;
     for (int u = 0; u < n; u++) adj[u] = all ^ (1ULL << u);
     for (auto [u, v] : edges)
     {
+        assert(0 <= u && u < n && 0 <= v && v < n); // 调试检查，可删。
         if (u == v)
         {
             loop[u] = true;

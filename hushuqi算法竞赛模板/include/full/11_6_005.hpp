@@ -9,6 +9,7 @@ bool segTri(P3 p, P3 q, P3 a, P3 b, P3 c)
     P3 e1 = b - a;
     P3 e2 = c - a;
     P3 n = cross(e1, e2);
+    assert(sgn(abs(n)) != 0); // 调试检查，可删。
     P3 h = cross(v, e2);
     Real d = dot(e1, h);
     Real scale = abs(v) * abs(e1) * abs(e2);

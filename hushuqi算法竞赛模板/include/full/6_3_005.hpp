@@ -29,6 +29,7 @@ template <class T = long long> class TreeDiff
         : n(g.size()), root(root), lca(g, root), order(n), dv(n), edgeDelta(n)
     {
         // g 是非空无向树，root 是固定根；预处理祖先与汇总顺序。
+        assert(n > 0 && 0 <= root && root < n); // 调试检查，可删
         for (int u = 0; u < n; u++)
         {
             order[lca.in[u]] = u;
@@ -45,6 +46,7 @@ template <class T = long long> class TreeDiff
     void addVtxPath(int u, int v, const T &delta)
     {
         // u、v 是路径两端，delta 是增量；给简单路径上的每个点增加 delta。
+        assert(0 <= u && u < n && 0 <= v && v < n); // 调试检查，可删
         int p = lca.lca(u, v);
         dv[u] += delta;
         dv[v] += delta;
@@ -58,6 +60,7 @@ template <class T = long long> class TreeDiff
     void addEdgePath(int u, int v, const T &delta)
     {
         // u、v 是路径两端，delta 是增量；给简单路径上的每条边增加 delta。
+        assert(0 <= u && u < n && 0 <= v && v < n); // 调试检查，可删
         int p = lca.lca(u, v);
         edgeDelta[u] += delta;
         edgeDelta[v] += delta;

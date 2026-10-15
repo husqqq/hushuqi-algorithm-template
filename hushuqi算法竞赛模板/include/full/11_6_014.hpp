@@ -21,6 +21,7 @@ struct MeshLoop3
 PlaneBasis3 planeBasis3(Plane s)
 {
     // s 是非退化平面；返回以 s.p 为原点的右手正交基。
+    assert(sgn(abs(s.n)) != 0); // 调试检查，可删。
     P3 n = unit(s.n);
     P3 axis;
     if (fabsl(n.x) <= fabsl(n.y) && fabsl(n.x) <= fabsl(n.z))
@@ -61,6 +62,7 @@ vector<P3> coplanarHull(const vector<P3> &points, Plane s)
     map<P, int> original;
     for (int i = 0; i < (int)points.size(); i++)
     {
+        assert(onPlane3(points[i], s)); // 调试检查，可删。
         P q = planeCoord3(basis, points[i]);
         projected.push_back(q);
         if (!original.count(q))
@@ -83,16 +85,19 @@ Real meshVolume3(const vector<P3> &points, const vector<array<int, 3>> &faces)
     {
         return 0;
     }
+    assert(!points.empty() && 0 <= faces[0][0] && faces[0][0] < (int)points.size()); // 调试检查，可删。
     P3 o = points[faces[0][0]];
     Real sum = 0;
     for (auto f : faces)
     {
         for (int x : f)
         {
+            assert(0 <= x && x < (int)points.size()); // 调试检查，可删。
         }
         P3 a = points[f[0]] - o;
         P3 b = points[f[1]] - o;
         P3 c = points[f[2]] - o;
+        assert(sgn(abs(cross(b - a, c - a))) != 0); // 调试检查，可删。
         sum += dot(a, cross(b, c));
     }
     return fabsl(sum) / 6;
@@ -101,6 +106,7 @@ Real meshVolume3(const vector<P3> &points, const vector<array<int, 3>> &faces)
 optional<vector<MeshLoop3>> meshSection3(const vector<P3> &points, const vector<array<int, 3>> &faces, Plane s)
 {
     // points 是网格顶点，faces 每项三维依次是按一致外向顺序的三个顶点下标，s 是截平面；返回截面环，退化时返回空。
+    assert(sgn(abs(s.n)) != 0); // 调试检查，可删。
     vector<Real> distance(points.size());
     vector<int> side(points.size());
     for (int i = 0; i < (int)points.size(); i++)
@@ -136,6 +142,7 @@ optional<vector<MeshLoop3>> meshSection3(const vector<P3> &points, const vector<
     {
         for (int x : f)
         {
+            assert(0 <= x && x < (int)points.size()); // 调试检查，可删。
         }
         P3 fn = cross(points[f[1]] - points[f[0]], points[f[2]] - points[f[0]]);
         if (sgn(abs(fn)) == 0)

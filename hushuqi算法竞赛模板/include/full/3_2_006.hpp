@@ -13,11 +13,13 @@ template <class T> struct SuffixBIT
     SuffixBIT(int n = 0) : n(n), a(n + 1)
     {
         // n 是数组长度；初值全为零。
+        assert(n >= 0); // 调试检查，可删
     }
 
     void add(int x, T v)
     {
         // x 是 0 下标位置，v 是增量；把该点增加 v。
+        assert(0 <= x && x < n); // 调试检查，可删
         for (++x; x; x -= x & -x)
         {
             a[x] += v;
@@ -27,6 +29,7 @@ template <class T> struct SuffixBIT
     T sumSuffix(int l) const
     {
         // l 是后缀左端点；返回 [l,n) 的和，允许 l=n。
+        assert(0 <= l && l <= n); // 调试检查，可删
         T ans{};
         for (++l; l <= n; l += l & -l)
         {
@@ -38,6 +41,7 @@ template <class T> struct SuffixBIT
     T sum(int l, int r) const
     {
         // l、r 是半开区间端点；返回 [l,r) 的和。
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         return sumSuffix(l) - sumSuffix(r);
     }
 };

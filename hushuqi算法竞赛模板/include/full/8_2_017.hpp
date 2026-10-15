@@ -34,6 +34,7 @@ class Stirling2P : public SmallPComb
     int get(int n, int k) const
     {
         // n、k 是非负 64 位下标；返回 S(n,k) mod p，k>n 时返回 0。
+        assert(n >= 0); // 调试检查，可删。
         if (k < 0 || k > n)
         {
             return 0;

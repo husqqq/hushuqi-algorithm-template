@@ -19,6 +19,7 @@ template <class T> struct BIT
     void init(int n_)
     {
         // n_ 是新的数组长度；清空旧状态并置零。
+        assert(n_ >= 0); // 调试检查，可删
         n = n_;
         a.assign(n + 1, T{});
     }
@@ -26,6 +27,7 @@ template <class T> struct BIT
     void add(int x, T v)
     {
         // x 是 0 下标位置，v 是增量；把 a[x] 增加 v。
+        assert(0 <= x && x < n); // 调试检查，可删
         for (++x; x <= n; x += x & -x)
         {
             a[x] += v;
@@ -35,6 +37,7 @@ template <class T> struct BIT
     T sum(int x) const
     {
         // x 是前缀右端点；返回 [0,x) 的和。
+        assert(0 <= x && x <= n); // 调试检查，可删
         T ans{};
         for (; x; x -= x & -x)
         {
@@ -46,12 +49,14 @@ template <class T> struct BIT
     T sum(int l, int r) const
     {
         // l、r 是半开区间端点；返回 [l,r) 的和。
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         return sum(r) - sum(l);
     }
 
     int kth(T k) const
     {
         // 各点权必须非负且 k>=0；返回满足 sum(x)<=k 的最大前缀长度 x。
+        assert(k >= T{}); // 调试检查，可删
         int x = 0;
         T cur{};
         for (int d = bit_floor((unsigned long long)n); d; d >>= 1)
@@ -101,6 +106,7 @@ template <class T> struct FastBIT
 
     void add(uint32_t x, T v)
     {
+        assert(x < n); // 调试检查，可删
         for (x++; x <= n; x += x & -x)
         {
             a[pos(x)] += v;
@@ -109,6 +115,7 @@ template <class T> struct FastBIT
 
     T sum(uint32_t x) const
     {
+        assert(x <= n); // 调试检查，可删
         T ans{};
         for (; x; x &= x - 1)
         {
@@ -119,11 +126,13 @@ template <class T> struct FastBIT
 
     T sum(uint32_t l, uint32_t r) const
     {
+        assert(l <= r && r <= n); // 调试检查，可删
         return sum(r) - sum(l);
     }
 
     uint32_t kth(T k) const
     {
+        assert(k >= T{}); // 调试检查，可删
         uint32_t x = 0;
         T cur{};
         for (uint32_t d = bit_floor((unsigned long long)n); d; d >>= 1)

@@ -35,12 +35,14 @@ template <class T, class Cmp = less<T>> struct ErasableHeap
     const T &top()
     {
         // 返回当前非空堆的最优键。
+        assert(n > 0); // 调试检查，可删
         clean();
         return a.top();
     }
     void pop()
     {
         // 删除当前非空堆的最优键。
+        assert(n > 0); // 调试检查，可删
         clean();
         a.pop();
         n--;

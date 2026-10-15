@@ -28,6 +28,7 @@ struct Cactus
     void add(int u, int v)
     {
         // u、v 是简单无向边端点；加入一条边。
+        assert(0 <= u && u < n && 0 <= v && v < n && u != v); // 调试检查，可删。
         int id = e.size();
         e.push_back({u, v});
         g[u].push_back({v, id});

@@ -64,25 +64,3 @@ PDF 的依赖与生成命令见 [`book/构建说明.md`](book/构建说明.md)�
 运行 `python tools/check_print_variants.py` 可独立编译两套知识点头；运行 `python tools/check_test_variants.py` 可在系统临时目录中分别编译、运行两套头文件对应的全部非 benchmark C++ 测试。
 
 运行 `python tools/check_non_lc_test_coverage.py` 可检查每个含 C++ 实现的知识点头是否至少有 Library Checker 映射，或被一份带断言的本地行为测试直接引用；纯文档索引单独列入白名单。
-
-## 📚 理论增强进度
-
-模板库正在进行理论说明的系统化补充工作，目标是为每个算法添加详细的原理解释和复杂度分析。
-
-**当前进度**: 18/783 (2.3%)
-
-已完成理论增强的算法包括：
-- 迭代加深搜索、折半搜索
-- Fischer-Heun RMQ、Euler Tour Tree
-- Myers编辑距离、BWT与FM-index
-- Yen K短路、Stoer-Wagner最小割
-- Hensel提升、LLL格基约化
-- 子集和卷积、Slope Trick
-- 更多详见 [理论增强进度报告](docs/理论增强进度报告.md)
-
-**后续计划**: 
-- Phase 1: 核心基础算法（并查集、最短路、KMP等80个）
-- Phase 2: 进阶算法（树链剖分、FFT等120个）
-- Phase 3: 专题算法（计算几何、博弈论等200个）
-
-详细计划见 [待增强算法清单](docs/待增强算法清单.md)

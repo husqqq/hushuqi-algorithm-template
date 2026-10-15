@@ -10,6 +10,7 @@ using PTriple = array<int, 3>;
 vector<PTriple> pythagorean(long long cmax)
 {
     // cmax 是非负斜边上界；返回全部满足 a<=b、c<=cmax 的本原三元组 {a,b,c}。
+    assert(cmax >= 0); // 调试检查，可删。
     vector<PTriple> ans;
     for (long long m = 2; m <= (cmax - 1) / m; m++)
     {

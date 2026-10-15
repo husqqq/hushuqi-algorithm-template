@@ -41,6 +41,7 @@ struct RangeDSU
     RangeDSU(int n) : n(n)
     {
         // n 是原序列长度；预建每个倍增层的块并查集。
+        assert(n >= 0); // 调试检查，可删
         int m = max<int>(1, bit_width((unsigned long long)n));
         for (int k = 0; k < m; k++)
         {
@@ -68,6 +69,7 @@ struct RangeDSU
     template <class F> void merge(int x, int y, int len, F f)
     {
         // 合并 [x,x+len) 与 [y,y+len)；每个新单点合并调用一次 f(新根,被吸收根)。
+        assert(0 <= x && x <= n && 0 <= y && y <= n && 0 <= len && len <= n - x && len <= n - y); // 调试检查，可删
         if (!len)
         {
             return;

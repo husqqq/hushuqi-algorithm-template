@@ -66,6 +66,8 @@ template <class T> class PerArray
     int set(int version, int position, const T &value)
     {
         // version 是旧版本，position 是位置，value 是新值；返回新增版本编号。
+        assert(0 <= version && version < (int)roots.size()); // 调试检查，可删
+        assert(0 <= position && position < n); // 调试检查，可删
         roots.push_back(set(roots[version], 0, n, position, value));
         return roots.size() - 1;
     }
@@ -73,6 +75,8 @@ template <class T> class PerArray
     T get(int version, int position) const
     {
         // version 是历史版本，position 是位置；按值返回该位置的内容。
+        assert(0 <= version && version < (int)roots.size()); // 调试检查，可删
+        assert(0 <= position && position < n); // 调试检查，可删
         int p = roots[version], l = 0, r = n;
         while (r - l > 1)
         {

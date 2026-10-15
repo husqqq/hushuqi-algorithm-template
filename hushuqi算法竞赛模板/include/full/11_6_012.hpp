@@ -27,6 +27,7 @@ bool inTri3(P3 p, P3 a, P3 b, P3 c)
 {
     // p 是查询点，a、b、c 是非退化三角形；返回 p 是否在三角形闭集内。
     P3 n = cross(b - a, c - a);
+    assert(sgn(abs(n)) != 0); // 调试检查，可删。
     if (!onPlane3(p, {a, n}))
     {
         return false;
@@ -43,6 +44,7 @@ TriClose3 pointTri3(P3 p, P3 a, P3 b, P3 c)
     P3 u = b - a;
     P3 v = c - a;
     P3 n = cross(u, v);
+    assert(sgn(abs(n)) != 0); // 调试检查，可删。
     P3 q = projection(Plane{a, n}, p);
     if (inTri3(q, a, b, c))
     {
@@ -75,6 +77,7 @@ TriClose3 pointTri3(P3 p, P3 a, P3 b, P3 c)
 TriPlaneRes3 triPlane3(P3 a, P3 b, P3 c, Plane s)
 {
     // a、b、c 是非退化三角形，s 是非退化平面；返回完整交集分类与顶点。
+    assert(sgn(abs(cross(b - a, c - a))) != 0 && sgn(abs(s.n)) != 0); // 调试检查，可删。
     array<P3, 3> p{a, b, c};
     array<Real, 3> d;
     array<int, 3> side;
@@ -119,12 +122,14 @@ TriPlaneRes3 triPlane3(P3 a, P3 b, P3 c, Plane s)
     {
         return {TriPlaneType::Point, out};
     }
+    assert(out.size() == 2); // 调试检查，可删。
     return {TriPlaneType::Segment, out};
 }
 
 vector<P3> clipPolygon3(const vector<P3> &poly, Plane s)
 {
     // poly 是有序共面凸多边形，s 是非退化裁剪平面；返回法向正侧闭半空间内的顶点序列。
+    assert(sgn(abs(s.n)) != 0); // 调试检查，可删。
     if (poly.empty())
     {
         return {};
@@ -188,6 +193,7 @@ RayPtQuery3 rayTriangle3(Ray3 r, P3 a, P3 b, P3 c)
 {
     // r 是可退化射线，a、b、c 是非退化三角形；返回三角形闭集的首次命中。
     P3 n = cross(b - a, c - a);
+    assert(sgn(abs(n)) != 0); // 调试检查，可删。
     if (r.v.x == 0 && r.v.y == 0 && r.v.z == 0)
     {
         return {RayState3::Degenerate, {}};

@@ -4,6 +4,7 @@
 
 template <class T> Real distancePL(const Point<T> &p, const Line<T> &l)
 {
+    assert(l.a != l.b); // 调试检查，可删。
     return fabsl((Real)cross(l.b - l.a, p - l.a)) / abs(l.b - l.a);
 }
 

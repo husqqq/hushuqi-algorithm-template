@@ -13,11 +13,13 @@ struct Clique64
     Clique64(int n = 0) : n(n), e(n)
     {
         // n 是点数；构造空图。
+        assert(0 <= n && n <= 64); // 调试检查，可删。
     }
 
     void add(int u, int v)
     {
         // u、v 是端点；加入无向边，自环直接忽略，无返回值。
+        assert(0 <= u && u < n && 0 <= v && v < n); // 调试检查，可删。
         if (u == v)
         {
             return;
@@ -123,10 +125,12 @@ struct Clique64
 long long weightClique(int n, const vector<long long> &val, const vector<pair<int, int>> &e, long long mod)
 {
     // n 是点数，val 是点权，e 是简单无向边，mod 是正模数；返回所有非空团点权乘积之和模 mod。
+    assert((int)val.size() == n && mod > 0); // 调试检查，可删。
     vector<vector<int>> g(n);
     vector<vector<char>> adj(n, vector<char>(n));
     for (auto [u, v] : e)
     {
+        assert(0 <= u && u < n && 0 <= v && v < n && u != v && !adj[u][v]); // 调试检查，可删。
         g[u].push_back(v);
         g[v].push_back(u);
         adj[u][v] = adj[v][u] = 1;
