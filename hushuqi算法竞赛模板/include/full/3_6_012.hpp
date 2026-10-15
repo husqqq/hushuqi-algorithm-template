@@ -36,8 +36,6 @@ template <int W = 30> struct TaggedTrie
     void add(U x, int t, int v = 1)
     {
         // t 是 0/1 标签，v 为正时插入、为负时删除。
-        assert(valid(x) && 0 <= t && t < 2 && v != 0); // 调试检查，可删
-        assert(v > 0 || tr[1].cnt[t] >= -v);           // 调试检查，可删
         int p = 1;
         tr[p].cnt[t] += v;
         for (int i = W - 1; i >= 0; i--)
@@ -49,7 +47,6 @@ template <int W = 30> struct TaggedTrie
                 tr[p].ch[b] = newNode();
             }
             int q = tr[p].ch[b];
-            assert(v > 0 || tr[q].cnt[t] >= -v); // 调试检查，可删
             p = q;
             tr[p].cnt[t] += v;
         }
@@ -58,7 +55,6 @@ template <int W = 30> struct TaggedTrie
     optional<U> maxXor(U x, int t) const
     {
         // 只在标签 t 的元素中查询最大的 x xor y。
-        assert(valid(x) && 0 <= t && t < 2); // 调试检查，可删
         if (!tr[1].cnt[t])
         {
             return nullopt;

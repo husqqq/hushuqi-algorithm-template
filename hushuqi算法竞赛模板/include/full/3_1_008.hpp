@@ -24,7 +24,6 @@ template <class Group> struct PotentialDSU
     void init(int n)
     {
         // n 是新的元素个数；清空旧状态并重建单点集合。
-        assert(n >= 0); // 调试检查，可删
         f.resize(n);
         iota(f.begin(), f.end(), 0);
         s.assign(n, 1);
@@ -76,7 +75,6 @@ template <class Group> struct PotentialDSU
     T diff(int x, int y)
     {
         // x、y 必须连通；返回 value[x] 的逆乘 value[y]，即 value[x]^{-1}*value[y]。
-        assert(same(x, y)); // 调试检查，可删
         return Group::op(Group::inv(pot[x]), pot[y]);
     }
 

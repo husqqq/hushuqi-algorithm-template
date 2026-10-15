@@ -22,7 +22,6 @@ struct Blossom
     void add(int u, int v)
     {
         // u、v 是端点；自环不参与匹配，直接忽略。
-        assert(0 <= u && u < n && 0 <= v && v < n); // 调试检查，可删。
         if (u == v)
         {
             return;

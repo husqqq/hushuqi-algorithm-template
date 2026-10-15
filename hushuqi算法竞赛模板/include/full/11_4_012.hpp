@@ -4,7 +4,6 @@
 
 vector<pair<long long, long long>> circlePoints(long long n)
 {
-    assert(n >= 0); // 调试检查，可删。
     set<pair<long long, long long>> s;
     for (long long x = 0; x == 0 || x <= n / x; x++)
     {

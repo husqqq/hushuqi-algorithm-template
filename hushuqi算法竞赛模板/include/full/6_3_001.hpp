@@ -16,7 +16,6 @@ struct HLD
         : n(g.size()), fa(n, -1), dep(n), sz(n, 1), son(n, -1), top(n), in(n), rev(n)
     {
         // g 是非空树，root 是根。
-        assert(n > 0 && 0 <= root && root < n); // 调试检查，可删
         auto dfs1 = [&](auto &&self, int u, int p) -> void
         {
             fa[u] = p;

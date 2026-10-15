@@ -31,13 +31,11 @@ template <int A = 26, char B = 'a'> struct ExSAM
     void insert(const string &s)
     {
         // s 是待加入集合的整条字符串；相邻字符串之间不产生跨边界子串。
-        assert(!done); // 调试检查，可删
         emptyCnt += (int)s.size() + 1;
         int u = 0;
         for (char c : s)
         {
             int x = c - B;
-            assert(0 <= x && x < A); // 调试检查，可删
             if (!tr[u].ch[x])
             {
                 tr[u].ch[x] = tr.size();
@@ -106,7 +104,6 @@ template <int A = 26, char B = 'a'> struct ExSAM
     void build()
     {
         // 从公共 Trie 构造广义 SAM，并上传各状态的跨串出现次数。
-        assert(!done); // 调试检查，可删
         done = true;
         vector<int> pos(tr.size());
         queue<int> q;
@@ -175,7 +172,6 @@ template <int A = 26, char B = 'a'> struct ExSAM
     long long count(const string &s) const
     {
         // s 是查询串；返回它在全部输入串中的出现次数，空串按各串分别计位置。
-        assert(done); // 调试检查，可删
         if (s.empty())
         {
             return emptyCnt;
@@ -187,7 +183,6 @@ template <int A = 26, char B = 'a'> struct ExSAM
     long long distinct() const
     {
         // 返回全部输入串并集中的本质不同非空子串数。
-        assert(done); // 调试检查，可删
         long long ans = 0;
         for (int i = 1; i < t.size(); i++)
         {

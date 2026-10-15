@@ -16,7 +16,6 @@ template <class Mint> struct Min25T
     Min25T(long long n) : n(n), sq(0)
     {
         // n 是正前缀上界；建立整除商表并筛出不超过 sqrt(n) 的素数。
-        assert(n > 0); // 调试检查，可删
         sq = sqrtl(n);
         while (sq + 1 <= n / (sq + 1))
         {

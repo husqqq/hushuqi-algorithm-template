@@ -31,6 +31,16 @@ PANDOC_COMMON = [
 ]
 
 
+def strip_maintenance_notes(text):
+    """删除打印版中不应出现的仓库路径和生成器同步提示。"""
+    return re.sub(
+        r"^头文件：`?include/full/[0-9_]+\.hpp`?，打印版由生成器同步。\s*\n?",
+        "",
+        text,
+        flags=re.MULTILINE,
+    )
+
+
 def strip_preamble(text):
     """删除合订本中重复的「本章公共前导」小节。"""
     out = []
@@ -99,7 +109,8 @@ def build_one(name, files, with_toc, tmp):
     """构建一册 PDF；files 是按顺序排列的章节文件。"""
     text = "\n\n".join(p.read_text(encoding="utf-8") for p in files)
     md = tmp / f"volume-{name}.md"
-    md.write_text(strip_chapter_intro(strip_preamble(text)) + "\n\n", encoding="utf-8")
+    body = strip_maintenance_notes(strip_chapter_intro(strip_preamble(text)))
+    md.write_text(body + "\n\n", encoding="utf-8")
     cover_path = tmp / f"cover-{name}.tex"
     cover(f"hushuqi算法竞赛模板({name})", cover_path, reset_body=name != "上")
     VOLUME_DIR.mkdir(exist_ok=True)

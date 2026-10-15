@@ -33,7 +33,6 @@ struct BoundFlow
     void add(int u, int v, Cap l, Cap r)
     {
         // u、v 是端点，l、r 是非负流量下界和上界。
-        assert(0 <= u && u < n && 0 <= v && v < n && 0 <= l && l <= r); // 调试检查，可删。
         e.push_back({u, v, l, r});
     }
 
@@ -41,7 +40,6 @@ struct BoundFlow
     {
         // s=t=-1 求循环可行流；否则 minimum 决定求最小流还是最大流。
         assert((s == -1 && t == -1) ||
-               (0 <= s && s < n && 0 <= t && t < n && s != t)); // 调试检查，可删。
         int ss = n, tt = n + 1;
         Flow<Cap> f(n + 2);
         vector<Cap> d(n);

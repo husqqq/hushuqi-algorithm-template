@@ -34,8 +34,6 @@ template <class T> T norm(const Point<T> &a)
 
 template <class T> Real angle(const Point<T> &a, const Point<T> &b)
 {
-    assert(a.x != T{} || a.y != T{}); // 调试检查，可删。
-    assert(b.x != T{} || b.y != T{}); // 调试检查，可删。
     return atan2l(cross(a, b), dot(a, b));
 }
 

@@ -25,7 +25,6 @@ struct BinomMod
         int comb(int n, int k) const
         {
             // n、k 是组合数参数；返回 C(n,k) mod p^e，k 不在 [0,n] 时返回 0。
-            assert(n >= 0); // 调试检查，可删。
             return fac.binomial(n, k);
         }
 
@@ -44,7 +43,6 @@ struct BinomMod
     explicit BinomMod(int mod) : mod(mod)
     {
         // mod 是正模数且每个质数幂分量不超过 5e6；分解 mod 并建立单位阶乘表。
-        assert(mod > 0); // 调试检查，可删。
         int n = mod;
         for (int p = 2; p <= n / p; p++)
         {
@@ -90,7 +88,6 @@ struct BinomMod
     int C(int n, int k) const
     {
         // n、k 是组合数参数；返回 C(n,k) mod mod，k 不在 [0,n] 时返回 0。
-        assert(n >= 0); // 调试检查，可删。
         return crt(
             [&](const auto &q)
             {
@@ -101,7 +98,6 @@ struct BinomMod
     int fact(int n) const
     {
         // n 是非负整数；返回 n! mod mod。
-        assert(n >= 0); // 调试检查，可删。
         return crt(
             [&](const auto &q)
             {

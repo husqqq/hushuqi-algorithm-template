@@ -6,7 +6,6 @@ using namespace std;
 __int128 floorSum(long long n, long long m, long long a, long long b)
 {
     // n 是项数，m 是正除数，a、b 是线性系数；返回取整和，要求精确中间量与答案可由 __int128 表示。
-    assert(n >= 0 && m > 0); // 调试检查，可删
     __int128 N = n;
     __int128 M = m;
     __int128 A = a;

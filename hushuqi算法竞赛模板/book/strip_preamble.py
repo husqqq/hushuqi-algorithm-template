@@ -6,6 +6,16 @@
 import sys, io, re
 from pathlib import Path
 
+
+def strip_maintenance_notes(text):
+    """删除只服务于仓库维护的头文件同步提示，保留源 Markdown 中的提示。"""
+    return re.sub(
+        r"^头文件：`?include/full/[0-9_]+\.hpp`?，打印版由生成器同步。\s*\n?",
+        "",
+        text,
+        flags=re.MULTILINE,
+    )
+
 path = sys.argv[1] if len(sys.argv) > 1 else str(Path(__file__).resolve().parent / "hushuqi算法竞赛模板-合订.md")
 with io.open(path, encoding="utf-8") as f:
     lines = f.readlines()
@@ -22,6 +32,7 @@ for line in lines:
         out.append(line)
 
 text = "".join(out)
+text = strip_maintenance_notes(text)
 
 # PDF 只保留章标题和正文；每章标题后的第一段章首说明属于阅读提示，
 # 单章 Markdown 仍保留，便于直接阅读和复制。

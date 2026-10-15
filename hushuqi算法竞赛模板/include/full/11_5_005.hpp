@@ -27,7 +27,6 @@ int hexDist(Hex a, Hex b = {})
         return x < 0 ? -x : x;
     };
     __int128 d = (ab(q) + ab(r) + ab(q + r)) / 2;
-    assert(d <= LLONG_MAX); // 调试检查，可删。
     return (int)d;
 }
 

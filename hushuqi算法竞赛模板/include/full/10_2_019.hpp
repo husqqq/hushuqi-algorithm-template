@@ -6,13 +6,11 @@ vector<Z> monoToNewton(const Poly &f, const vector<Z> &p)
 {
     // f 是低次在前的单项式基系数，p 是 Newton 基的节点；两者等长，返回各级前缀乘积的系数。
     int n = f.size();
-    assert((int)p.size() == n); // 调试检查，可删。
     if (n == 0)
     {
         return {};
     }
     int z = bit_ceil((unsigned long long)n);
-    assert(z <= NTT_LIM / 2); // 调试检查，可删。
     vector<Poly> prod(2 * z, Poly{1});
     for (int i = 0; i < z; i++)
     {

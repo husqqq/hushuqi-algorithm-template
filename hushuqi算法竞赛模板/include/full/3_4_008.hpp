@@ -71,7 +71,6 @@ class RangeMode
     optional<pair<int, int>> query(int l, int r)
     {
         // l、r 是半开区间端点；返回 {一个众数,出现次数}，空区间返回空。
-        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         if (l == r)
         {
             return nullopt;

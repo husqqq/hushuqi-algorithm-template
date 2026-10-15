@@ -148,7 +148,6 @@ struct GF64
     GF64 invField() const
     {
         // 当前值非零；返回乘法逆元。
-        assert(x != 0); // 调试检查，可删。
         return pow(~uint64_t(0) - 1);
     }
 

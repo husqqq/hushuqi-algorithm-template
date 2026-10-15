@@ -27,7 +27,6 @@ struct Poly : vector<Z>
     Poly cut(int n) const
     {
         // n 是非负截断长度；返回恰含前 n 项的形式幂级数。
-        assert(n >= 0); // 调试检查，可删。
         Poly a(begin(), begin() + min(n, (int)size()));
         a.resize(n);
         return a;
@@ -110,7 +109,6 @@ struct Poly : vector<Z>
 Poly midProd(const Poly &a, const Poly &b)
 {
     // a、b 满足 a.size()>=b.size()>0；返回 c[i]=sum_j b[j]*a[i+j] 的中段乘积。
-    assert(!b.empty() && a.size() >= b.size()); // 调试检查，可删。
     int m = a.size() - b.size() + 1;
     if (min((int)b.size(), m) <= 64)
     {
@@ -124,7 +122,6 @@ Poly midProd(const Poly &a, const Poly &b)
         }
         return c;
     }
-    assert(nttFit(b.size(), m)); // 调试检查，可删。
     int n = bit_ceil((unsigned long long)a.size());
     Poly x = a;
     Poly y(b.rbegin(), b.rend());

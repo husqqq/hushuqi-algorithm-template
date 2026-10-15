@@ -11,7 +11,6 @@ constexpr int mod = 998244353;
 int qpow(int a, int n)
 {
     // a 是底数，n 是非负指数；返回模 mod 幂。
-    assert(n >= 0); // 调试检查，可删。
     a %= mod;
     if (a < 0)
     {
@@ -33,7 +32,6 @@ int qpow(int a, int n)
 int rootFilter(const vector<int> &a, int m, int rem)
 {
     // a 是多项式系数，m 是整除 mod-1 的正整数，rem 是余数；返回次数同余 rem 的系数和。
-    assert(m > 0 && (mod - 1) % m == 0); // 调试检查，可删。
     rem %= m;
     if (rem < 0)
     {

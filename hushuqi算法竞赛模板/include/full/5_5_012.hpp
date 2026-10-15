@@ -25,17 +25,26 @@ struct MinDiamTree
 
     int n;
     vector<vector<Edge>> g;
+    bool valid = true;
+    __int128 totalWeight2 = 0;
 
-    MinDiamTree(int n_) : n(n_), g(n_)
+    MinDiamTree(int n_) : n(max(0LL, n_)), g(max(0LL, n_))
     {
-        assert(n > 0);
+        valid = n_ > 0;
     }
 
-    void addEdge(int u, int v, long long w)
+    bool addEdge(int u, int v, long long w)
     {
-        assert(0 <= u && u < n && 0 <= v && v < n && w >= 0);
+        if (u < 0 || u >= n || v < 0 || v >= n || w < 0 ||
+            (__int128)w * 2 + totalWeight2 >= numeric_limits<long long>::max() / 4)
+        {
+            valid = false;
+            return false;
+        }
+        totalWeight2 += (__int128)w * 2;
         g[u].push_back({v, w * 2});
         g[v].push_back({u, w * 2});
+        return true;
     }
 
     pair<vector<long long>, vector<int>> dijkstra(int s, const vector<vector<Edge>> &a) const
@@ -62,16 +71,16 @@ struct MinDiamTree
             {
                 if (!vis[v])
                 {
-                    assert(d <= INF - w);
-                    q.push({d + w, v, u});
+                    if (d <= INF - w) q.push({d + w, v, u});
                 }
             }
         }
         return {dis, fa};
     }
 
-    pair<long long, vector<pair<int, int>>> solve() const
+    optional<pair<long long, vector<pair<int, int>>>> solve() const
     {
+        if (!valid || n == 0) return nullopt;
         const long long INF = numeric_limits<long long>::max() / 4;
         vector<vector<long long>> dis(n);
         vector<vector<int>> ord(n, vector<int>(n));
@@ -85,7 +94,7 @@ struct MinDiamTree
             {
                 return dis[s][x] > dis[s][y];
             });
-            assert(dis[s][ord[s][0]] < INF);
+            if (dis[s][ord[s][0]] >= INF) return nullopt;
             long long cur = dis[s][ord[s][0]] * 2;
             if (cur < bestP)
             {
@@ -157,6 +166,6 @@ struct MinDiamTree
                 }
             }
         }
-        return {min(bestP, bestEdge) / 2, tree};
+        return pair<long long, vector<pair<int, int>>>{min(bestP, bestEdge) / 2, move(tree)};
     }
 };

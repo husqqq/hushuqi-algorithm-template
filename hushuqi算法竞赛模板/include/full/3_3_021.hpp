@@ -22,7 +22,6 @@ template <class T> class SparseAffSeg
         Node q;
         q.info = AffineInfo<T>(T{}, r - l);
         t.push_back(move(q));
-        assert(t.size() <= (size_t)numeric_limits<int32_t>::max()); // 调试检查，可删
         return (int32_t)t.size() - 1;
     }
 
@@ -129,20 +128,17 @@ template <class T> class SparseAffSeg
     SparseAffSeg(long long lo, long long hi) : lo(lo), hi(hi)
     {
         // lo、hi 是非空半开整数值域；初始所有位置为零。
-        assert(lo < hi); // 调试检查，可删
     }
 
     void reserveNodes(int cap)
     {
         // cap 是预计节点数；预留节点池容量，不改变结构语义。
-        assert(cap >= 0); // 调试检查，可删
         t.reserve(cap + 1);
     }
 
     void affine(long long l, long long r, const T &mul, const T &add)
     {
         // l、r 是值域内半开端点，mul、add 表示 x->x*mul+add；原地修改 [l,r)。
-        assert(lo <= l && l <= r && r <= hi); // 调试检查，可删
         if (l == r)
         {
             return;
@@ -153,7 +149,6 @@ template <class T> class SparseAffSeg
     T sum(long long l, long long r) const
     {
         // l、r 是值域内半开端点；返回 [l,r) 的元素和，空区间返回零。
-        assert(lo <= l && l <= r && r <= hi); // 调试检查，可删
         return sum(rt, lo, hi, l, r, AffineTag<T>{});
     }
 };

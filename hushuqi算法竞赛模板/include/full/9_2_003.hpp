@@ -7,9 +7,7 @@ inline optional<vector<long double>> minNormSolve(const vector<vector<long doubl
 {
     int m = a.size();
     int s = n + m;
-    // 调试检查，可删。
     assert(n >= 0 && (int)b.size() == m);
-    // 调试检查，可删。
     for (const auto &r : a)
     {
         assert((int)r.size() == n);

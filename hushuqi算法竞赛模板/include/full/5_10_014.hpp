@@ -17,7 +17,6 @@ optional<TreeDecomp2> treeDecomp2(int n, const vector<pair<int, int>> &edge)
     vector<set<int>> g(n);
     for (auto [u, v] : edge)
     {
-        assert(0 <= u && u < n && 0 <= v && v < n && u != v); // 调试检查，可删。
         g[u].insert(v);
         g[v].insert(u);
     }

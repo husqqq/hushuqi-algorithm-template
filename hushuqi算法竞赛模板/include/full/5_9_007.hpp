@@ -14,7 +14,6 @@ vector<int> dirCycle(const vector<vector<int>> &g)
         c[u] = 1;
         for (int v : g[u])
         {
-            assert(0 <= v && v < n); // 调试检查，可删。
             if (c[v] == 0)
             {
                 p[v] = u;
@@ -54,7 +53,6 @@ vector<int> findDirCycle(int n, const vector<pair<int, int>> &edges)
     for (int i = 0; i < (int)edges.size(); i++)
     {
         auto [u, v] = edges[i];
-        assert(0 <= u && u < n && 0 <= v && v < n); // 调试检查，可删。
         g[u].push_back({v, i});
     }
     vector<int> state(n), it(n), par(n, -1), pe(n, -1), st;
@@ -99,7 +97,6 @@ vector<int> findUndirCyc(int n, const vector<pair<int, int>> &edges)
     for (int i = 0; i < (int)edges.size(); i++)
     {
         auto [u, v] = edges[i];
-        assert(0 <= u && u < n && 0 <= v && v < n); // 调试检查，可删。
         g[u].push_back({v, i});
         if (u != v) g[v].push_back({u, i});
     }
@@ -143,13 +140,10 @@ unsigned __int128 simpleCycles(const vector<unsigned long long> &g)
 {
     // g 是简单无向图的对称邻接位掩码；返回全部简单环数量。
     int n = g.size();
-    assert(n <= 22); // 调试检查，可删：状态数必须能承受。
     for (int u = 0; u < n; u++)
     {
-        assert(!(g[u] >> u & 1)); // 调试检查，可删。
         for (int v = 0; v < n; v++)
         {
-            assert((g[u] >> v & 1) == (g[v] >> u & 1)); // 调试检查，可删。
         }
     }
     unsigned __int128 ans = 0;

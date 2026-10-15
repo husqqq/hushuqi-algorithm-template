@@ -29,7 +29,6 @@ struct Dominator
         {
             for (int v : g[u])
             {
-                assert(0 <= v && v < n); // 调试检查，可删。
                 if (!dfn[v])
                 {
                     dfn[v] = ++ti;
@@ -93,7 +92,6 @@ struct Dominator
     vector<int> work(int rt)
     {
         // rt 是入口；返回直接支配点，不可达点为 -1。
-        assert(0 <= rt && rt < n); // 调试检查，可删。
         ti = 0;
         rg.assign(n + 1, {});
         buc.assign(n + 1, {});

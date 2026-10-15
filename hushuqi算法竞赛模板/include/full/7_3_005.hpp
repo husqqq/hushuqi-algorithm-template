@@ -6,7 +6,6 @@ using namespace std;
 template <class T> void divisorZeta(vector<T> &a)
 {
     // a 在下标 1..n 保存原函数；原地改成每个位置的约数和，位置 0 不使用。
-    assert(!a.empty()); // 调试检查，可删
     int n = a.size() - 1;
     vector<char> comp(n + 1);
     vector<int> p;
@@ -41,7 +40,6 @@ template <class T> void divisorZeta(vector<T> &a)
 template <class T> void divisorMu(vector<T> &a)
 {
     // a 是 divisorZeta 的结果；原地恢复下标 1..n 的原函数，位置 0 不使用。
-    assert(!a.empty()); // 调试检查，可删
     int n = a.size() - 1;
     vector<char> comp(n + 1);
     vector<int> p;

@@ -19,8 +19,6 @@ optional<ShortestCnt<Dist>> shortestCnt(
 {
     // g 是非负权邻接表；零权环导致计数无穷时返回空。
     int n = g.size();
-    assert(0 <= s && s < n); // 调试检查，可删。
-    assert(mod > 0); // 调试检查，可删。
     ShortestCnt<Dist> z{vector<array<optional<Dist>, 2>>(n), vector<array<int, 2>>(n)};
     using Q = pair<Dist, int>;
     priority_queue<Q, vector<Q>, greater<>> q;
@@ -37,7 +35,6 @@ optional<ShortestCnt<Dist>> shortestCnt(
         }
         for (auto [v, w] : g[u])
         {
-            assert(w >= 0); // 调试检查，可删。
             Dist ew = (Dist)w;
             Dist nd = du + ew;
             if (!z.d[v][0].has_value() || nd < *z.d[v][0])

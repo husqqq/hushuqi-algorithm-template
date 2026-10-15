@@ -39,7 +39,6 @@ ClosureRes<Cap> maxClosure(
     }
     for (auto [u, v] : need)
     {
-        assert(0 <= u && u < n && 0 <= v && v < n); // 调试检查，可删。
         fl.add(u, v, inf);
     }
 

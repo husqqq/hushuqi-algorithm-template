@@ -29,8 +29,6 @@ struct SpfaCostFlow
     void add(int u, int v, T cap, Cost cost)
     {
         // u、v 是端点，cap 是容量，cost 是单位费用；加入正向边和零容量反向边，无返回值。
-        assert(0 <= u && u < n && 0 <= v && v < n && cap >= 0); // 调试检查，可删。
-        assert(cost != numeric_limits<Cost>::min()); // 调试检查，可删。
         int id = e[u].size();
         int rev = e[v].size() + (u == v);
         e[u].push_back({v, rev, cap, cost});
@@ -109,7 +107,6 @@ struct SpfaCostFlow
         {
             return {0, 0};
         }
-        assert(lim >= 0); // 调试检查，可删。
         T f = 0;
         Cost cost = 0;
         while (f < lim && shortest(s, t))
@@ -117,7 +114,6 @@ struct SpfaCostFlow
             fill(cur.begin(), cur.end(), 0);
             fill(vis.begin(), vis.end(), 0);
             T x = dfs(s, t, lim - f);
-            assert(x > 0); // 调试检查，可删：最短路存在时紧边 DFS 必须能增广。
             if (x == 0) break;
             f += x;
             cost += (Cost)x * *d[t];

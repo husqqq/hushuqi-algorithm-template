@@ -99,7 +99,9 @@ signed main()
             e.push_back({u, v, w});
             q.addEdge(u, v, w);
         }
-        auto [got, es] = q.solve();
+        auto result = q.solve();
+        assert(result);
+        auto [got, es] = *result;
         assert(got == brute(n, e));
         assert((int)es.size() == n - 1);
         vector<E> t;
@@ -119,6 +121,11 @@ signed main()
         assert(diameter(n, t) == got);
         agg = agg * 1000000007ULL + got;
     }
+    MinDiamTree disconnected(2);
+    assert(!disconnected.solve());
+    MinDiamTree badWeight(2);
+    assert(!badWeight.addEdge(0, 1, numeric_limits<long long>::max()));
+    assert(!badWeight.solve());
     cout << agg << '\n';
     return 0;
 }

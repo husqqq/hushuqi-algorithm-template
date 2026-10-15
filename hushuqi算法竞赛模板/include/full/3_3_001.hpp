@@ -65,7 +65,6 @@ template <class Info> struct Seg
     void init(int n_)
     {
         // n_ 是新的叶子数；幂次二基址让每个内部节点对应连续区间。
-        assert(n_ >= 0); // 调试检查，可删
         n = n_;
         size = 1;
         while (size < n)
@@ -95,7 +94,6 @@ template <class Info> struct Seg
     void set(int p, Info v)
     {
         // p 是 0 下标位置，v 是新叶子信息；修改后重算祖先。
-        assert(0 <= p && p < n); // 调试检查，可删
         for (tr[p += size] = v; p >>= 1;)
         {
             pull(p);
@@ -105,7 +103,6 @@ template <class Info> struct Seg
     Info query(int l, int r) const
     {
         // l、r 是半开区间端点；按原顺序返回 [l,r) 的合并结果。
-        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         Info x{}, y{};
         for (l += size, r += size; l < r; l >>= 1, r >>= 1)
         {
@@ -144,7 +141,6 @@ template <class Info> struct Seg
     template <class F>
     int findFirst(int l, int r, F ok) const
     {
-        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         return l == r ? -1 : findFirst(1, 0, size, l, r, ok);
     }
 
@@ -171,7 +167,6 @@ template <class Info> struct Seg
     template <class F>
     int findLast(int l, int r, F ok) const
     {
-        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         return l == r ? -1 : findLast(1, 0, size, l, r, ok);
     }
 };

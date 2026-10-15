@@ -17,17 +17,14 @@ struct LDLT
         : l(a.size(), vector<long double>(a.size())), d(a.size()), eps(tol), valid(true)
     {
         // a 是方阵且应对称，tol 是非负的对称性与枢轴判定容差；保存 A 的 LDL^T 分解。
-        assert(tol >= 0); // 调试检查，可删。
         int n = (int)a.size();
         for (int i = 0; i < n; i++)
         {
-            assert((int)a[i].size() == n); // 调试检查，可删。
         }
         for (int i = 0; i < n; i++)
         {
             for (int j = 0; j < n; j++)
             {
-                assert(fabsl(a[i][j] - a[j][i]) <= eps); // 调试检查，可删。
             }
             l[i][i] = 1;
         }
@@ -59,7 +56,6 @@ struct LDLT
     optional<vector<long double>> solve(const vector<long double> &b) const
     {
         // b 是长度等于矩阵阶数的右端向量；返回 Ax=b 的解，无效分解时返回空。
-        assert((int)b.size() == (int)d.size()); // 调试检查，可删。
         if (!valid)
         {
             return nullopt;

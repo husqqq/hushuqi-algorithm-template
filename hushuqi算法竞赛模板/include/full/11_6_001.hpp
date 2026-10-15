@@ -25,7 +25,6 @@ struct P3
 
     P3 operator/(Real k) const
     {
-        assert(sgn(k) != 0); // 调试检查，可删。
         return {x / k, y / k, z / k};
     }
 };

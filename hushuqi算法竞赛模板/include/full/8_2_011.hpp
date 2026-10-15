@@ -8,7 +8,6 @@ Z detField(vector<vector<Z>> a)
     int n = a.size();
     for (const auto &row : a)
     {
-        assert((int)row.size() == n); // 调试检查，可删。
     }
     Z ans = 1;
     for (int c = 0; c < n; c++)
@@ -44,10 +43,8 @@ Z detField(vector<vector<Z>> a)
 Z spanTreeCnt(int n, const vector<pair<int, int>> &e)
 {
     // n 是点数，e 是无向边端点列表且允许重边；返回生成树数量。
-    assert(n >= 0); // 调试检查，可删。
     for (auto [u, v] : e)
     {
-        assert(0 <= u && u < n && 0 <= v && v < n); // 调试检查，可删。
     }
     if (n <= 1)
     {
@@ -76,10 +73,8 @@ Z spanTreeCnt(int n, const vector<pair<int, int>> &e)
 Z arboCount(int n, int root, const vector<pair<int, int>> &e)
 {
     // n 是点数，root 是根，e 是有向边端点列表且允许重边；返回从 root 向外的生成树数量。
-    assert(n >= 1 && 0 <= root && root < n); // 调试检查，可删。
     for (auto [u, v] : e)
     {
-        assert(0 <= u && u < n && 0 <= v && v < n); // 调试检查，可删。
     }
     if (n == 1)
     {

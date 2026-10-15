@@ -150,7 +150,6 @@ class LineMinSeg
     LineMinSeg(const vector<long long> &a) : n(a.size())
     {
         // a 是非空初始数组；建立每个节点的下凸包桥。
-        assert(n > 0); // 调试检查，可删
         while (z < n)
         {
             z *= 2;
@@ -173,7 +172,6 @@ class LineMinSeg
     void add(int l, int r, long long b, long long c)
     {
         // [l,r) 是修改区间，b、c 定义一次函数 b*i+c；把它加到每个 a[i]。
-        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         if (l == r)
         {
             return;
@@ -212,7 +210,6 @@ class LineMinSeg
     long long min(int l, int r) const
     {
         // [l,r) 是非空查询区间；返回其中最小值。
-        assert(0 <= l && l < r && r <= n); // 调试检查，可删
         long long ans = 4'000'000'000'000'000'000LL;
         for (l += z, r += z; l < r; l >>= 1, r >>= 1)
         {

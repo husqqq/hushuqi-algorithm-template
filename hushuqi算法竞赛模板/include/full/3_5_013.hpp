@@ -59,7 +59,6 @@ template <class T> class RadixHeap
     void push(Key k, const T &v)
     {
         // k 是单调键，v 是关联值；插入一项，要求 k 不小于最近弹出的键。
-        assert(k >= last); // 调试检查，可删
         b[id(k)].push_back({k, v});
         n++;
     }
@@ -67,7 +66,6 @@ template <class T> class RadixHeap
     const pair<Key, T> &top()
     {
         // 无参数；返回键最小的一项，要求堆非空。
-        assert(n > 0); // 调试检查，可删
         pull();
         return b[0].back();
     }

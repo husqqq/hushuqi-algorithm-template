@@ -14,7 +14,6 @@ struct RollbackDSU
     RollbackDSU(int n = 0) : p(n, -1)
     {
         // n 是元素个数；初始时每个元素自成集合。
-        assert(n >= 0); // 调试检查，可删
     }
 
     int find(int x) const
@@ -57,7 +56,6 @@ struct RollbackDSU
     void rollback(int s)
     {
         // s 是此前由 snap 返回的栈高；撤销其后的所有合并。
-        assert(0 <= s && s <= (int)st.size()); // 调试检查，可删
         while ((int)st.size() > s)
         {
             auto [u, x] = st.back();

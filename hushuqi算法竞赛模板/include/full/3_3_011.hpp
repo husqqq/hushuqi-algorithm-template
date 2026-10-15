@@ -22,44 +22,37 @@ struct SegBeats
     SegBeats(const vector<long long> &a) : n(a.size()), tr(4 * n)
     {
         // a 是非空初始数组。
-        assert(n); // 调试检查，可删
         build(1, 0, n, a);
     }
 
     void add(int l, int r, long long x)
     {
         // 给半开区间 [l,r) 增加 x。
-        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         add(1, 0, n, l, r, x);
     }
     void chmin(int l, int r, long long x)
     {
         // 把半开区间 [l,r) 内每个值改成 min(value,x)。
-        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         chmin(1, 0, n, l, r, x);
     }
     void chmax(int l, int r, long long x)
     {
         // 把半开区间 [l,r) 内每个值改成 max(value,x)。
-        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         chmax(1, 0, n, l, r, x);
     }
     long long sum(int l, int r)
     {
         // 返回半开区间 [l,r) 的和，空区间返回 0。
-        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         return sum(1, 0, n, l, r);
     }
     long long min(int l, int r)
     {
         // 返回非空半开区间 [l,r) 的最小值。
-        assert(0 <= l && l < r && r <= n); // 调试检查，可删
         return min(1, 0, n, l, r);
     }
     long long max(int l, int r)
     {
         // 返回非空半开区间 [l,r) 的最大值。
-        assert(0 <= l && l < r && r <= n); // 调试检查，可删
         return max(1, 0, n, l, r);
     }
 

@@ -6,13 +6,11 @@
 vector<Z> sparseInv(int n, vector<pair<int, Z>> f)
 {
     // n 是截断长度，f 是常数项非零的稀疏 FPS；返回 1/f 的前 n 项。
-    assert(0 <= n && n <= Z::mod()); // 调试检查，可删。
     if (n == 0)
     {
         return {};
     }
     f = spNorm(move(f));
-    assert(!f.empty() && f[0].first == 0 && f[0].second != Z(0)); // 调试检查，可删。
     vector<Z> g(n);
     g[0] = f[0].second.inv();
     for (int i = 1; i < n; i++)
@@ -30,9 +28,7 @@ vector<Z> sparseInv(int n, vector<pair<int, Z>> f)
 vector<Z> sparseExp(int n, vector<pair<int, Z>> f)
 {
     // n 是截断长度，f 保存常数项为 0 的稀疏 FPS；规范化后返回 exp(f) 的前 n 项。
-    assert(0 <= n && n <= Z::mod()); // 调试检查，可删。
     f = spNorm(move(f));
-    assert(f.empty() || f[0].first > 0 || f[0].second == Z(0)); // 调试检查，可删。
     vector<Z> g(n);
     if (!n)
     {
@@ -62,13 +58,11 @@ vector<Z> sparseExp(int n, vector<pair<int, Z>> f)
 vector<Z> sparseLog(int n, vector<pair<int, Z>> f)
 {
     // n 是截断长度，f 保存常数项为 1 的稀疏 FPS；规范化后返回 ln(f) 的前 n 项。
-    assert(0 <= n && n <= Z::mod()); // 调试检查，可删。
     if (n == 0)
     {
         return {};
     }
     f = spNorm(move(f));
-    assert(!f.empty() && f[0].first == 0 && f[0].second == Z(1)); // 调试检查，可删。
     vector<Z> q(max<int>(0, n - 1));
     vector<Z> g(n);
     const auto &iv = invTable<mod>(n - 1);
@@ -98,7 +92,6 @@ vector<Z> sparseLog(int n, vector<pair<int, Z>> f)
 vector<Z> sparsePow(int n, vector<pair<int, Z>> f, long long k)
 {
     // n 是截断长度，f 是可乱序且允许重复次数的稀疏 FPS，k 是非负指数；规范化后返回 f^k 的前 n 项。
-    assert(0 <= n && n <= Z::mod() && k >= 0); // 调试检查，可删。
     vector<Z> g(n);
     if (!n)
     {
@@ -155,7 +148,6 @@ vector<Z> sparsePow(int n, vector<pair<int, Z>> f, long long k)
 optional<vector<Z>> spSqrt(int n, vector<pair<int, Z>> f, Z root)
 {
     // n 是截断长度，f 已按次数规范化，root 是首项的一组平方根；返回对应平方根，无解时返回空。
-    assert(0 <= n && n <= Z::mod()); // 调试检查，可删。
     vector<Z> ans(n);
     if (n == 0)
     {
@@ -219,7 +211,6 @@ optional<vector<Z>> sparseSqrt(int n, vector<pair<int, Z>> f, Z root)
 optional<vector<Z>> sparseSqrt(int n, vector<pair<int, Z>> f)
 {
     // n 是截断长度，f 是稀疏 FPS；自动选择首个非零系数的一组平方根，返回对应平方根的前 n 项，无平方根时返回空。
-    assert(0 <= n && n <= Z::mod()); // 调试检查，可删。
     auto g = spNorm(move(f));
     if (n == 0 || g.empty() || g[0].first >= n)
     {

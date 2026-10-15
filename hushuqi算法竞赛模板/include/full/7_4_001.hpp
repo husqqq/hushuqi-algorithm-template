@@ -6,7 +6,6 @@ optional<long long> bsgs(long long a, long long b, long long m,
                          long long ord = -1)
 {
     // 在 [0,ord) 内求最小解；ord=-1 时使用通用上界 m，无解返回空。
-    assert(m > 0); // 调试检查，可删
     if (m == 1)
     {
         return 0;
@@ -21,12 +20,10 @@ optional<long long> bsgs(long long a, long long b, long long m,
     {
         b += m;
     }
-    assert(binaryGcd(a, m) == 1); // 调试检查，可删
     if (ord == -1)
     {
         ord = m;
     }
-    assert(ord > 0); // 调试检查，可删
     long long n = kthRoot((unsigned long long)ord, 2);
     if (n <= (ord - 1) / n && n * n < ord)
     {
@@ -63,7 +60,6 @@ optional<long long> bsgs(long long a, long long b, long long m,
 optional<long long> exbsgs(long long a, long long b, long long m)
 {
     // 求 a^x=b (mod m) 的最小非负解，不要求 a 与 m 互素。
-    assert(m > 0); // 调试检查，可删
     a %= m;
     b %= m;
     if (a < 0)

@@ -51,7 +51,6 @@ struct RayIntQuery3
 bool in(AABB3 b, P3 p)
 {
     // b 是合法闭包围盒，p 是查询点；返回 p 是否在盒内或边界上。
-    assert(b.lo.x <= b.hi.x && b.lo.y <= b.hi.y && b.lo.z <= b.hi.z); // 调试检查，可删。
     auto inside = [&](Real x, Real l, Real r)
     {
         return (x > l || eq(x, l)) && (x < r || eq(x, r));
@@ -62,8 +61,6 @@ bool in(AABB3 b, P3 p)
 optional<ParamRange3> aabbRange3(P3 p, P3 v, AABB3 b, Real lower, Real upper)
 {
     // p+v*t 是参数直线，b 是合法闭包围盒，[lower,upper] 是参数域；返回命中参数区间，未命中返回空。
-    assert(lower <= upper);                                           // 调试检查，可删。
-    assert(b.lo.x <= b.hi.x && b.lo.y <= b.hi.y && b.lo.z <= b.hi.z); // 调试检查，可删。
     array<Real, 3> origin{p.x, p.y, p.z};
     array<Real, 3> dir{v.x, v.y, v.z};
     array<Real, 3> lo{b.lo.x, b.lo.y, b.lo.z};
@@ -113,7 +110,6 @@ optional<ParamRange3> aabbRange3(P3 p, P3 v, AABB3 b, Real lower, Real upper)
 RayPtQuery3 rayPlane3(Ray3 r, Plane s)
 {
     // r 是可退化射线，s 是非退化平面；返回闭平面的首次非负命中。
-    assert(sgn(abs(s.n)) != 0); // 调试检查，可删。
     if (r.v.x == 0 && r.v.y == 0 && r.v.z == 0)
     {
         return {RayState3::Degenerate, {}};
@@ -138,7 +134,6 @@ RayPtQuery3 rayPlane3(Ray3 r, Plane s)
 RayIntQuery3 rayAABB3(Ray3 r, AABB3 b)
 {
     // r 是可退化射线，b 是合法闭包围盒；返回盒内的非负参数区间。
-    assert(b.lo.x <= b.hi.x && b.lo.y <= b.hi.y && b.lo.z <= b.hi.z); // 调试检查，可删。
     if (r.v.x == 0 && r.v.y == 0 && r.v.z == 0)
     {
         return {RayState3::Degenerate, {}};
@@ -169,8 +164,6 @@ optional<ParamRange3> segmentAABB3(P3 a, P3 b, AABB3 box)
 bool sphereAABB3(Sphere s, AABB3 b)
 {
     // s 是非负半径闭球，b 是合法闭包围盒；返回两个闭集是否相交。
-    assert(sgn(s.r) >= 0);                                            // 调试检查，可删。
-    assert(b.lo.x <= b.hi.x && b.lo.y <= b.hi.y && b.lo.z <= b.hi.z); // 调试检查，可删。
     P3 q{clamp(s.o.x, b.lo.x, b.hi.x), clamp(s.o.y, b.lo.y, b.hi.y), clamp(s.o.z, b.lo.z, b.hi.z)};
     return in(b, q) && in(s, q);
 }

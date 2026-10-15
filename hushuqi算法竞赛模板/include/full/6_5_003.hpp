@@ -13,7 +13,6 @@ vector<int> depthMode(const vector<vector<int>> &g, int root = 0)
     {
         return {};
     }
-    assert(0 <= root && root < n); // 调试检查，可删
     vector<int> len(n, 1), son(n, -1), ans(n), at(n), f(n + 1);
     auto dfs1 = [&](auto &&self, int u, int p) -> void
     {

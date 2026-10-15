@@ -10,7 +10,6 @@ vector<Z> fallMul(const vector<Z> &a, const vector<Z> &b)
         return {};
     }
     int n = a.size() + b.size() - 1;
-    assert(n <= mod && convFit(n, n)); // 调试检查，可删。
     vector<Z> fac(n);
     vector<Z> ifac(n);
     vector<Z> e(n);

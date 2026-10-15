@@ -20,7 +20,6 @@ struct MergeSeg
     MergeSeg(int lo, int hi) : lo(lo), hi(hi)
     {
         // lo、hi 是非空半开值域边界。
-        assert(lo < hi); // 调试检查，可删
     }
     int newNode()
     {
@@ -61,7 +60,6 @@ struct MergeSeg
     void add(int &p, int x, long long v)
     {
         // p 是根，x 是值域位置，v 是权值增量；原地更新 p。
-        assert(lo <= x && x < hi); // 调试检查，可删
         p = add(p, lo, hi, x, v);
     }
 
@@ -108,7 +106,6 @@ struct MergeSeg
     long long rangeSum(int p, int l, int r) const
     {
         // p 是树根；返回值域 [l,r) 的权值和。
-        assert(lo <= l && l <= r && r <= hi); // 调试检查，可删
         return sum(p, lo, hi, l, r);
     }
 };

@@ -81,7 +81,6 @@ template <class T> T weakDiam2(const vector<Point<T>> &a)
 template <class T> pair<int, int> farthestPair(const vector<Point<T>> &p)
 {
     // p 是至少含两个点的点集；返回一对欧氏距离最大的原下标。
-    assert(p.size() >= 2); // 调试检查，可删。
     map<Point<T>, int> id;
     for (int i = 0; i < (int)p.size(); i++)
     {

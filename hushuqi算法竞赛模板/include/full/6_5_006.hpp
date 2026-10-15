@@ -13,7 +13,6 @@ vector<T> rerooting(
 {
     // g 是带边号无向树，base 是各点自身贡献，identity 是 merge 单位元；merge 合并贡献，lift 令贡献跨边。
     int n = g.size();
-    assert(n > 0 && (int)base.size() == n && 0 <= root && root < n); // 调试检查，可删
     vector<T> down(n, identity), fromPar(n, identity), ans(n, identity);
 
     auto dfsDown = [&](auto &&self, int u, int p) -> void

@@ -58,7 +58,6 @@ class QBinomPrime
     QBinomPrime(int p, int q, int limit = -1) : p(p), q(q)
     {
         // p 是素数，q 是 q-二项式参数，limit 是最大查询 n；建立所需范围的 q-Lucas 表。
-        assert(p >= 2); // 调试检查，可删。
         if (limit < 0) limit = p - 1;
         assert(0 <= limit && limit < p);
         this->q %= p;
@@ -105,7 +104,6 @@ class QBinomPrime
     int C(int n, int k) const
     {
         // n、k 是 q-二项式参数且 0<=n<p；返回 [n choose k]_q mod p，k 越界时返回 0。
-        assert(0 <= n && n < p && n / d < (int)cfac.size()); // 调试检查，可删。
         if (k < 0 || k > n)
         {
             return 0;

@@ -4,7 +4,6 @@
 
 Real sphereVolume(Real r, int n = 3)
 {
-    assert(sgn(r) >= 0 && n >= 0); // 调试检查，可删。
     if (n == 0)
     {
         return 1;

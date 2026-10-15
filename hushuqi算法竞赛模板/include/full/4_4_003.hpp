@@ -33,7 +33,6 @@ template <int A = 26, char S = 'a'> struct PamSeries
     {
         // c 是追加到原串末尾的字符；返回新的最长回文后缀节点。
         int x = c - S;
-        assert(0 <= x && x < A); // 调试检查，可删
         s.push_back(x);
         int p = get(last);
         if (!t[p].ch[x])

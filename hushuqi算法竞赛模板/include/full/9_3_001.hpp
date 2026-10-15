@@ -7,7 +7,6 @@ long double simpson(F f, long double l, long double r,
                             long double err = 1E-12L, int dep = 24)
 {
     // f 是被积函数，[l,r] 是区间，err 是绝对误差目标，dep 是递归上限；返回定积分近似值。
-    // 调试检查，可删。
     assert(err > 0 && dep >= 0);
     auto simpson = [](long double ql, long double qr, long double vl,
                       long double vm, long double vr)

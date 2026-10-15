@@ -26,8 +26,6 @@ template <class T, int LOG = 20> class PersistQueue
     int anc(int p, int distance) const
     {
         // p 是非空尾节点，distance 是向前跳的步数；返回对应祖先节点编号。
-        assert(0 < p && p < (int)nodes.size()); // 调试检查，可删
-        assert(0 <= distance && (unsigned long long)distance < (1ULL << LOG)); // 调试检查，可删
         for (int k = 0; distance; k++, distance >>= 1)
         {
             if (distance & 1)
@@ -63,7 +61,6 @@ template <class T, int LOG = 20> class PersistQueue
     int size(int version) const
     {
         // version 是版本编号；返回该版本的逻辑队列长度。
-        assert(0 <= version && version < (int)versions.size()); // 调试检查，可删
         return versions[version].len;
     }
 
@@ -76,7 +73,6 @@ template <class T, int LOG = 20> class PersistQueue
     int push(int version, const T &value)
     {
         // version 是旧版本，value 是新队尾元素；返回追加后的新版本编号。
-        assert(0 <= version && version < (int)versions.size()); // 调试检查，可删
         int p = (int)nodes.size();
         assert((unsigned long long)p < (1ULL << LOG)
                && p <= numeric_limits<int32_t>::max()); // 调试检查，可删
@@ -89,7 +85,6 @@ template <class T, int LOG = 20> class PersistQueue
         }
         nodes.push_back(move(cur));
         int len = versions[version].len + 1;
-        assert(len <= numeric_limits<int32_t>::max()); // 调试检查，可删
         versions.push_back({(int32_t)p, (int32_t)len});
         return (int)versions.size() - 1;
     }
@@ -97,8 +92,6 @@ template <class T, int LOG = 20> class PersistQueue
     T front(int version) const
     {
         // version 是非空版本编号；返回该版本的队首值，不生成新版本。
-        assert(0 <= version && version < (int)versions.size()); // 调试检查，可删
-        assert(versions[version].len > 0); // 调试检查，可删
         int p = anc(versions[version].tail, versions[version].len - 1);
         return nodes[p].value;
     }
@@ -106,8 +99,6 @@ template <class T, int LOG = 20> class PersistQueue
     int pop(int version)
     {
         // version 是非空版本编号；删除其队首并返回新版本编号。
-        assert(0 <= version && version < (int)versions.size()); // 调试检查，可删
-        assert(versions[version].len > 0); // 调试检查，可删
         versions.push_back({versions[version].tail, (int32_t)(versions[version].len - 1)});
         return (int)versions.size() - 1;
     }

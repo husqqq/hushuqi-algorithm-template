@@ -81,14 +81,12 @@ template <class T, class C = T> class SegLiChao
         // 最大值版可对插入线的 k、b 取反，并对 query 返回值取反。
         sort(this->xs.begin(), this->xs.end());
         this->xs.erase(unique(this->xs.begin(), this->xs.end()), this->xs.end());
-        assert(!this->xs.empty()); // 调试检查，可删
         tr.resize(4 * this->xs.size());
     }
 
     void add(Line f, T l, T r)
     {
         // f 是待插入直线，[l,r) 是其按真实横坐标定义的有效半开区间。
-        assert(l < r); // 调试检查，可删
         int ql = lower_bound(xs.begin(), xs.end(), l) - xs.begin();
         int qr = lower_bound(xs.begin(), xs.end(), r) - xs.begin();
         if (ql < qr)
@@ -102,7 +100,6 @@ template <class T, class C = T> class SegLiChao
         // x 必须在构造坐标中；返回所有在 x 有效直线的最小值，无线时返回空。
         // 采用取反线的最大值版仍保留无线时的 nullopt 语义。
         int q = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
-        assert(q < (int)xs.size() && xs[q] == x); // 调试检查，可删
         optional<C> ans;
         int p = 1, l = 0, r = xs.size();
         while (true)

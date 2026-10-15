@@ -8,11 +8,9 @@ unsigned long long cantor(const vector<int> &p)
 {
     // p 是由 0 到 n-1 组成的排列；返回其从零开始的字典序排名。
     int n = p.size();
-    assert(n <= 20); // 调试检查，可删。
     vector<int> seen(n);
     for (int x : p)
     {
-        assert(0 <= x && x < n && !seen[x]); // 调试检查，可删。
         seen[x] = 1;
     }
     vector<unsigned long long> f(n + 1, 1);
@@ -51,20 +49,17 @@ unsigned long long cantor(const vector<int> &p)
 vector<int> invCantor(int n, unsigned long long k)
 {
     // n 是排列长度，k 是从零开始的排名；返回由 0 到 n-1 组成的对应排列。
-    assert(0 <= n && n <= 20); // 调试检查，可删。
     vector<unsigned long long> f(n + 1, 1);
     for (int i = 1; i <= n; i++)
     {
         f[i] = f[i - 1] * i;
     }
-    assert(k < f[n]); // 调试检查，可删。
     vector<int> a(n), ans;
     iota(a.begin(), a.end(), 0);
     for (int i = n; i; i--)
     {
         unsigned long long q = k / f[i - 1];
         k %= f[i - 1];
-        assert(q < a.size()); // 调试检查，可删。
         ans.push_back(a[q]);
         a.erase(a.begin() + q);
     }

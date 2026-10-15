@@ -5,7 +5,6 @@
 optional<int> kthRootBSGS(int a, int k, int p)
 {
     // a 是目标剩余，k 是非负指数，p 是素数；返回任意一根，无解返回空。
-    assert(k >= 0 && p >= 2); // 调试检查，可删
     a %= p;
     if (a < 0)
     {
@@ -96,7 +95,6 @@ int ppRoot(int a, int prime, int exponent, int mod)
 optional<int> kthResidue(int a, int k, int p)
 {
     // p 是素数、k 非负；返回任意 x 使 x^k=a mod p，无解返回空。
-    assert(k >= 0 && p >= 2); // 调试检查，可删
     a %= p;
     if (a < 0)
     {

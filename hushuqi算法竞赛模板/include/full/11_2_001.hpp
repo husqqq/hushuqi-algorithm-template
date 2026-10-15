@@ -40,6 +40,5 @@ template <class T> Point<Real> cen(const vector<Point<T>> &a)
         ans += ((P)a[i] + (P)a[(i + 1) % n]) * c;
         s += c;
     }
-    assert(sgn(s) != 0); // 调试检查，可删。
     return ans / (3 * s);
 }

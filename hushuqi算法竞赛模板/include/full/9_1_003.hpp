@@ -129,7 +129,6 @@ template <class T, class Conv = NaivePolyMul<T>> struct FrobPower
         : n(a.size()), a(move(a)), conv(move(conv)), rng(seed)
     {
         // a 是域上的方阵，conv 是卷积器，seed 是固定随机种子；构造时完成 Frobenius 分解。
-        // 调试检查，可删。
         for (const auto &r : this->a)
         {
             assert((int)r.size() == n);

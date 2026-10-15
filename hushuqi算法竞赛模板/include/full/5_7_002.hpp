@@ -9,10 +9,8 @@ weightMatch(const vector<vector<optional<long long>>> &w)
 {
     // w[u][v] 是边权，空值表示无边；返回最大总权和一组匹配边。
     int n = w.size();
-    assert(n <= 24); // 调试检查，可删：状态数必须能承受。
     for (const auto &row : w)
     {
-        assert((int)row.size() == n); // 调试检查，可删。
     }
     size_t tot = 1ULL << n;
     vector<int> dp(tot);

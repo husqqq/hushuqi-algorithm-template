@@ -85,7 +85,6 @@ template <class Info, class Tag> struct LazySeg
     void init(int n_)
     {
         // n_ 是新的叶子数；用 n_ 个 Info{} 重建默认数组。
-        assert(n_ >= 0); // 调试检查，可删
         n = n_;
         tr.assign(4 * max<int>(n, 1), Info{});
         tag.assign(4 * max<int>(n, 1), Tag{});
@@ -257,19 +256,16 @@ template <class Info, class Tag> struct LazySeg
     void apply(int l, int r, const Tag &v)
     {
         // l、r 是半开区间端点，v 是区间修改标记。
-        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         apply(1, 0, n, l, r, v);
     }
     Info query(int l, int r)
     {
         // l、r 是半开区间端点；返回 [l,r) 的信息。
-        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         return query(1, 0, n, l, r);
     }
     Info get(int i) const
     {
         // i 是叶子下标；只读返回该位置在所有待下传标记生效后的信息。
-        assert(0 <= i && i < n); // 调试检查，可删
         return get(1, 0, n, i);
     }
 
@@ -277,7 +273,6 @@ template <class Info, class Tag> struct LazySeg
     int findFirst(int l, int r, F ok)
     {
         // l、r 是半开搜索区间，ok 判断节点摘要是否可能包含答案；返回第一个满足条件的下标。
-        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         return l == r ? -1 : findFirst(1, 0, n, l, r, ok);
     }
 
@@ -285,7 +280,6 @@ template <class Info, class Tag> struct LazySeg
     int findLast(int l, int r, F ok)
     {
         // l、r 是半开搜索区间，ok 判断节点摘要是否可能包含答案；返回最后一个满足条件的下标。
-        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         return l == r ? -1 : findLast(1, 0, n, l, r, ok);
     }
 };

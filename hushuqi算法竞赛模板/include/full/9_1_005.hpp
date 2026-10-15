@@ -6,7 +6,6 @@ using namespace std;
 
 inline long long invInt(long long a, long long mod)
 {
-    // 调试检查，可删。
     assert(mod > 1);
     a %= mod;
     if (a < 0)
@@ -24,7 +23,6 @@ inline long long invInt(long long a, long long mod)
         x -= (__int128)q * y;
         swap(x, y);
     }
-    // 调试检查，可删。
     assert(a == 1);
     x %= mod;
     if (x < 0)
@@ -38,11 +36,9 @@ inline optional<vector<vector<long long>>> matInvPP(vector<vector<long long>> a,
                                                              long long p, long long pk)
 {
     int n = a.size();
-    // 调试检查，可删。
     assert(p >= 2 && pk >= p);
     for (auto &r : a)
     {
-        // 调试检查，可删。
         assert((int)r.size() == n);
         for (auto &x : r)
         {
@@ -105,7 +101,6 @@ inline optional<vector<vector<long long>>> matInvPP(vector<vector<long long>> a,
 inline optional<vector<vector<long long>>> matInvAny(const vector<vector<long long>> &a,
                                                       long long mod)
 {
-    // 调试检查，可删。
     assert(mod > 1);
     vector<pair<long long, long long>> fac;
     long long x = mod;

@@ -13,7 +13,6 @@ optional<vector<int>> chordPlanar(int n, vector<array<int, 2>> es)
     vector<vector<int>> g(m);
     for (auto &[u, v] : es)
     {
-        assert(0 <= u && u < n && 0 <= v && v < n); // 调试检查，可删。
         if (u > v)
         {
             swap(u, v);

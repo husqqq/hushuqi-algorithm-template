@@ -29,7 +29,6 @@ struct Steiner
     void add(int u, int v, int w)
     {
         // u、v 是端点，w 是非负边权；加入一条无向边。
-        assert(w >= 0); // 调试检查，可删。
         e[u].push_back({v, w});
         e[v].push_back({u, w});
         ed.push_back({u, v, w});
@@ -43,12 +42,10 @@ struct Steiner
         {
             return 0;
         }
-        assert(k < 63); // 调试检查，可删。
         size_t z = (size_t)1 << k;
         vector f(z, vector<optional<int>>(n));
         for (size_t i = 0; i < k; i++)
         {
-            assert(0 <= key[i] && key[i] < n); // 调试检查，可删。
             f[(size_t)1 << i][key[i]] = 0;
         }
         for (size_t s = 1; s < z; s++)
@@ -118,7 +115,6 @@ struct Steiner
         {
             return pair<int, vector<int>>{0, {}};
         }
-        assert(k < 20); // 调试检查，可删：本算法指数依赖关键点数。
         int lim = 1 << k;
         vector<vector<array<int, 3>>> g(n);
         for (int i = 0; i < (int)ed.size(); i++)
@@ -132,7 +128,6 @@ struct Steiner
         vector pre(lim, vector<array<int, 2>>(n, {-1, -1}));
         for (int i = 0; i < k; i++)
         {
-            assert(0 <= key[i] && key[i] < n); // 调试检查，可删。
             dp[1 << i][key[i]] = 0;
         }
         for (int s = 1; s < lim; s++)

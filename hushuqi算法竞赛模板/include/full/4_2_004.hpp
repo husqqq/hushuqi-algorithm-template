@@ -17,7 +17,6 @@ template <int A = 26> class SubseqAM
         nxt.back().fill(n);
         for (int i = n - 1; i >= 0; i--)
         {
-            assert(0 <= s[i] && s[i] < A); // 调试检查，可删
             nxt[i] = nxt[i + 1];
             nxt[i][s[i]] = i;
         }
@@ -29,7 +28,6 @@ template <int A = 26> class SubseqAM
         int p = 0, n = nxt.size() - 1;
         for (int c : t)
         {
-            assert(0 <= c && c < A); // 调试检查，可删
             if (p == n || nxt[p][c] == n)
             {
                 return false;

@@ -110,7 +110,6 @@ struct DynStrHash
     HashValue get(int l, int r) const
     {
         // l、r 是当前串下标；返回半开子串 [l,r) 的哈希值。
-        assert(0 <= l && l <= r && r <= size()); // 调试检查，可删。
         return pre[r] - pre[l] * HASH_POWER.pw[r - l];
     }
 
@@ -147,14 +146,12 @@ struct StrHash
     HashValue get(int l, int r) const
     {
         // l、r 是原串下标；返回半开子串 [l,r) 的正向哈希。
-        assert(0 <= l && l <= r && r <= size()); // 调试检查，可删。
         return pre[r] - pre[l] * HASH_POWER.pw[r - l];
     }
 
     HashValue getrev(int l, int r) const
     {
         // l、r 是原串下标；返回反转 s[l,r) 后的哈希。
-        assert(0 <= l && l <= r && r <= size()); // 调试检查，可删。
         int n = size();
         return rev[n - l] - rev[n - r] * HASH_POWER.pw[r - l];
     }

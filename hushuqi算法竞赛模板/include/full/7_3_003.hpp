@@ -6,7 +6,6 @@ using namespace std;
 template <class T = long long, class F> vector<T> multTable(int n, F primePower)
 {
     // n 是非负上界；primePower(p,e) 返回 f(p^e)，且 f 必须为积性函数；返回 f[0..n]，位置 0 不使用。
-    assert(n >= 0); // 调试检查，可删
     vector<T> f(n + 1);
     vector<int> minp(n + 1);
     vector<int> exp(n + 1);

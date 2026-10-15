@@ -12,14 +12,12 @@ optional<array<int, 3>> monoTriangle(const vector<vector<int>> &col)
     int n = col.size();
     for (int i = 0; i < n; i++)
     {
-        assert((int)col[i].size() == n); // 调试检查，可删。
     }
     for (int i = 0; i < n; i++)
     {
         for (int j = i + 1; j < n; j++)
         {
             assert((col[i][j] == 0 || col[i][j] == 1) &&
-                   col[i][j] == col[j][i]); // 调试检查，可删。
             for (int k = j + 1; k < n; k++)
             {
                 if (col[i][j] == col[i][k] && col[i][j] == col[j][k])

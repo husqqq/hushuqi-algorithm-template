@@ -6,7 +6,6 @@ using namespace std;
 vector<int> phiTable(int n)
 {
     // n 是非负筛表上界；返回 phi[0..n]，其中 phi[1]=1。
-    assert(n >= 0); // 调试检查，可删
     vector<int> phi(n + 1);
     vector<int> minp(n + 1);
     vector<int> primes;
@@ -43,7 +42,6 @@ vector<int> phiTable(int n)
 vector<int> mobiusTable(int n)
 {
     // n 是非负筛表上界；返回 mu[0..n]，其中 mu[1]=1。
-    assert(n >= 0); // 调试检查，可删
     vector<int> mu(n + 1);
     vector<int> minp(n + 1);
     vector<int> primes;
@@ -80,7 +78,6 @@ vector<int> mobiusTable(int n)
 template <class F> vector<int> multTable(int n, F primePower)
 {
     // primePower(p,e) 给出 f(p^e)；返回积性函数 f 在 0..n 的值。
-    assert(n >= 0); // 调试检查，可删
     vector<int> f(n + 1);
     vector<int> minp(n + 1);
     vector<int> exp(n + 1);
@@ -128,7 +125,6 @@ template <class T> vector<T> dirichlet(const vector<T> &a,
                                             const vector<T> &b)
 {
     // a、b 的位置 1..n 保存算术函数；返回公共上界内的 Dirichlet 卷积。
-    assert(!a.empty() && !b.empty()); // 调试检查，可删
     int n = min(a.size(), b.size()) - 1;
     vector<T> c(n + 1);
     for (int d = 1; d <= n; d++)
@@ -171,7 +167,6 @@ inline vector<int> divTransP(int n)
 template <class T> void divisorZeta(vector<T> &a)
 {
     // 把 a[1..n] 原地变成各位置的约数和。
-    assert(!a.empty()); // 调试检查，可删
     int n = a.size() - 1;
     for (int q : divTransP(n))
     {
@@ -185,7 +180,6 @@ template <class T> void divisorZeta(vector<T> &a)
 template <class T> void divisorMu(vector<T> &a)
 {
     // 把 divisorZeta 的结果原地恢复成原函数。
-    assert(!a.empty()); // 调试检查，可删
     int n = a.size() - 1;
     auto p = divTransP(n);
     for (auto it = p.rbegin(); it != p.rend(); it++)
@@ -201,7 +195,6 @@ template <class T> void divisorMu(vector<T> &a)
 vector<array<int, 3>> factorStats(int n)
 {
     // 返回 {omega(x),Omega(x),d(x)} 表，三维依次为不同质因子数、含重数质因子数、约数数。
-    assert(n >= 0); // 调试检查，可删
     vector<array<int, 3>> s(n + 1);
     vector<int> minp(n + 1);
     vector<int> exp(n + 1);

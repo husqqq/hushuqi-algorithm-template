@@ -12,10 +12,8 @@ class Freq
     {
         // v 是值，p 是预登记位置，d 是出现次数增量。
         auto it = id.find(v);
-        assert(it != id.end()); // 调试检查，可删
         int k = it->second;
         auto jt = lower_bound(pos[k].begin(), pos[k].end(), p);
-        assert(jt != pos[k].end() && *jt == p); // 调试检查，可删
         int x = jt - pos[k].begin() + 1;
         for (int i = x; i < (int)bit[k].size(); i += i & -i)
         {
@@ -49,7 +47,6 @@ class Freq
         id.reserve(2 * all.size() + 1);
         for (auto [p, v] : all)
         {
-            assert(0 <= p && p < (int)a.size()); // 调试检查，可删
             auto [it, ok] = id.emplace(v, id.size());
             if (ok)
             {
@@ -74,9 +71,7 @@ class Freq
     void setValue(int p, int v)
     {
         // p 是位置，v 是新值；要求 {p,v} 已在构造时预登记。
-        assert(0 <= p && p < (int)a.size()); // 调试检查，可删
         auto it = id.find(v);
-        assert(it != id.end() && binary_search(pos[it->second].begin(), pos[it->second].end(), p)); // 调试检查，可删
         add(a[p], p, -1);
         a[p] = v;
         add(v, p, 1);
@@ -85,7 +80,6 @@ class Freq
     int frequency(int l, int r, int v) const
     {
         // l、r 是半开区间端点，v 是查询值；返回 v 在 [l,r) 的出现次数。
-        assert(0 <= l && l <= r && r <= (int)a.size()); // 调试检查，可删
         auto it = id.find(v);
         if (it == id.end())
         {

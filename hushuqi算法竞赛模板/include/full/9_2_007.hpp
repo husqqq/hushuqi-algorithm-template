@@ -6,7 +6,6 @@ template <class T>
 optional<vector<T>> tridiagonal(vector<T> a, vector<T> b, vector<T> c, vector<T> d)
 {
     int n = b.size();
-    // 调试检查，可删。
     assert((int)a.size() == n && (int)c.size() == n && (int)d.size() == n);
     if (n == 0)
     {
@@ -44,9 +43,7 @@ optional<vector<T>> cyclicTri(vector<T> a, vector<T> b, vector<T> c,
                                        T tr, T bl, const vector<T> &d)
 {
     int n = b.size();
-    // 调试检查，可删。
     assert(n >= 3);
-    // 调试检查，可删。
     assert((int)a.size() == n && (int)c.size() == n && (int)d.size() == n);
     T g = b[0] == T(0) ? T(1) : -b[0];
     b[0] -= g;

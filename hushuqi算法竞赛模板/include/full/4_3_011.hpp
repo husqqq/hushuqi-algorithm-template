@@ -40,7 +40,6 @@ struct BasicFactors
     int compare(int l, int r, int len) const
     {
         // l、r 是两个子串起点，len 是共同长度；按字典序返回 -1、0 或 1。
-        assert(0 <= l && 0 <= r && 0 <= len && l + len <= (int)s.size() && r + len <= (int)s.size()); // 调试检查，可删
         if (!len) return 0;
         int k = bit_width((unsigned long long)len) - 1, d = len - (1LL << k);
         pair<int, int> a{rk[k][l], rk[k][l + d]}, b{rk[k][r], rk[k][r + d]};

@@ -20,7 +20,6 @@ template <class T> struct SplitSeg
     SplitSeg(int lo, int hi) : lo(lo), hi(hi)
     {
         // lo、hi 是非空半开值域边界。
-        assert(lo < hi); // 调试检查，可删
     }
     int newNode()
     {
@@ -50,7 +49,6 @@ template <class T> struct SplitSeg
         if (l + 1 == r)
         {
             t[p].sum += v;
-            assert(t[p].sum >= T{}); // 调试检查，可删
             return t[p].sum == T{} ? 0 : p;
         }
         int m = midpoint(l, r);
@@ -69,7 +67,6 @@ template <class T> struct SplitSeg
     void add(int &p, int x, T v)
     {
         // p 是根，x 是值域位置，v 是计数增量；更新后所有叶子计数必须非负。
-        assert(lo <= x && x < hi); // 调试检查，可删
         p = add(p, lo, hi, x, v);
     }
 
@@ -107,7 +104,6 @@ template <class T> struct SplitSeg
     int split(int &p, int l, int r)
     {
         // p 是原根；把值域 [l,r) 分出并返回新根，p 保留其余部分。
-        assert(lo <= l && l <= r && r <= hi); // 调试检查，可删
         auto [a, b] = split(p, lo, hi, l, r);
         p = a;
         return b;
@@ -156,7 +152,6 @@ template <class T> struct SplitSeg
     T rangeSum(int p, int l, int r) const
     {
         // p 是根；返回值域 [l,r) 内的计数和。
-        assert(lo <= l && l <= r && r <= hi); // 调试检查，可删
         return sum(p, lo, hi, l, r);
     }
 

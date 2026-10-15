@@ -80,7 +80,6 @@ template <unsigned P> struct Mont
     Mont pow(long long n) const
     {
         // n 是非负指数；返回当前元素的 n 次幂。
-        assert(n >= 0); // 调试检查，可删
         Mont a = *this;
         Mont r = 1;
         while (n)
@@ -98,7 +97,6 @@ template <unsigned P> struct Mont
     Mont invMod() const
     {
         // 当前元素必须非零且 P 必须为素数；返回乘法逆元。
-        assert(val() != 0); // 调试检查，可删
         return pow(P - 2);
     }
 

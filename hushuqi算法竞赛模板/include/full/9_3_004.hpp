@@ -7,7 +7,6 @@ inline optional<vector<long double>> cubicRoots(long double a, long double b,
 {
     // a、b、c、d 是有限实系数；返回升序互异实根，恒等式返回空 optional，无实根返回存在的空向量。
     constexpr long double eps = 1E-12L;
-    // 调试检查，可删。
     assert(isfinite(a) && isfinite(b) && isfinite(c) && isfinite(d));
     bool hasA = a != 0;
     bool hasB = b != 0;
@@ -21,7 +20,6 @@ inline optional<vector<long double>> cubicRoots(long double a, long double b,
     b /= sc;
     c /= sc;
     d /= sc;
-    assert((!hasA || a != 0) && (!hasB || b != 0) && (!hasC || c != 0)); // 调试检查，可删。
     if (!hasA)
     {
         if (!hasB)

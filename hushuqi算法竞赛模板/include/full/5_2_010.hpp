@@ -16,11 +16,9 @@ optional<Dist> kthWalk(
     unsigned long long k, bool keep0 = true)
 {
     // k 从 1 开始；返回第 k 小有向游走长度，不存在时返回空。
-    assert(k >= 1 && 0 <= s && s < n && 0 <= t && t < n); // 调试检查，可删。
     vector<vector<pair<int, int>>> g(n), rg(n);
     for (auto [u, v, w] : e)
     {
-        assert(w >= 0); // 调试检查，可删。
         g[u].push_back({v, w});
         rg[v].push_back({u, w});
     }

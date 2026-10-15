@@ -49,7 +49,6 @@ struct Manacher
     bool isPal(int l, int r) const
     {
         // l、r 是原串下标；返回半开区间 [l,r) 是否为回文串。
-        assert(0 <= l && l <= r && r <= (int)odd.size()); // 调试检查，可删
         if (l == r)
         {
             return true;

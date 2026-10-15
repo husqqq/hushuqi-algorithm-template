@@ -7,11 +7,7 @@ using namespace std;
 vector<vector<int>> magicSquare(int n)
 {
     // n 是阶数；返回恰好填入 1 到 n^2 的幻方，n=2 时无解并返回空矩阵。
-    assert(n > 0); // 调试检查，可删。
-    assert(n <= numeric_limits<int>::max() / n); // 调试检查，可删。
-    assert((unsigned long long)n <= numeric_limits<size_t>::max()); // 调试检查，可删。
     size_t side = (size_t)n;
-    assert(side <= numeric_limits<size_t>::max() / sizeof(int) / side); // 调试检查，可删。
     int total = n * n;
     if (n == 2)
     {

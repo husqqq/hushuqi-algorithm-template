@@ -15,7 +15,6 @@ struct DEdgeMST
 optional<__int128> directedMST(int n, int root, vector<DEdgeMST> e)
 {
     // n 是点数，root 是树根，e 是有向边集；返回最小树形图权值，不存在时返回空。
-    assert(n >= 1 && 0 <= root && root < n); // 调试检查，可删。
     __int128 ans = 0;
     while (true)
     {
@@ -100,7 +99,6 @@ struct DMSTFastEdge
 optional<DMSTResult> dmstTree(int n, int root, const vector<DMSTFastEdge> &e)
 {
     // n 是点数，root 是根，e 是边集；返回最小树形图总权和每点父点，不存在时返回空。
-    assert(n >= 1 && 0 <= root && root < n); // 调试检查，可删。
     struct Edge
     {
         // u、v 是边端点，w 是原始边权。
@@ -192,7 +190,6 @@ optional<DMSTResult> dmstTree(int n, int root, const vector<DMSTFastEdge> &e)
     vector<Heap> heap(2 * n);
     for (auto [u, v, w] : e)
     {
-        assert(0 <= u && u < n && 0 <= v && v < n); // 调试检查，可删。
         heap[v].push({u, v, w});
     }
     vector<int> up(2 * n, -1), dsu(2 * n, -1), vis(2 * n);

@@ -54,11 +54,9 @@ inline int rankMod(vector<vector<long long>> a, int m, long long mod)
 
 inline optional<ModLinearSol> gaussMod(vector<vector<long long>> a, int n, long long mod)
 {
-    // 调试检查，可删。
     assert(n >= 0 && mod > 1);
     for (auto &r : a)
     {
-        // 调试检查，可删。
         assert((int)r.size() == n + 1);
         for (auto &x : r)
         {

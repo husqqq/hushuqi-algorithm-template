@@ -479,7 +479,6 @@ vector<long long> convNaiveMod(const vector<long long> &a, const vector<long lon
                                long long mod)
 {
     // a、b 已规范到 [0,mod)，mod 是正模数；用 128 位乘加返回精确模卷积，任一输入为空时返回空。
-    assert(mod > 0); // 调试检查，可删。
     if (a.empty() || b.empty())
     {
         return {};
@@ -499,14 +498,12 @@ vector<long long> convNTTMod(const vector<long long> &a, const vector<long long>
                              long long mod)
 {
     // a、b 已规范到 [0,mod)，mod 不超过 1E9+7；用三个 NTT 素数返回精确模卷积。
-    assert(0 < mod && mod <= 1000000007); // 调试检查，可删。
     if (a.empty() || b.empty())
     {
         return {};
     }
     int need = a.size() + b.size() - 1;
     int n = bit_ceil((unsigned long long)need);
-    assert(n <= (1 << 20)); // 调试检查，可删；所选三个素数都支持该长度。
     constexpr array<uint32_t, 3> prime{998244353, 985661441, 943718401};
     constexpr array<uint32_t, 3> root{3, 3, 7};
     vector<unsigned long long> x(a.begin(), a.end()), y(b.begin(), b.end());
@@ -535,7 +532,6 @@ vector<long long> convNTTMod(const vector<long long> &a, const vector<long long>
 vector<long long> convMod(vector<long long> a, vector<long long> b, long long mod)
 {
     // a、b 是整数系数，mod 是正模数；返回最小非负代表元组成的线性卷积。
-    assert(mod > 0); // 调试检查，可删。
     if (a.empty() || b.empty())
     {
         return {};

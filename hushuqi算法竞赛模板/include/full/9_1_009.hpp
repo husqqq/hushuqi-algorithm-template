@@ -79,12 +79,10 @@ template <class T> Matrix<T> strassen(const Matrix<T> &a, const Matrix<T> &b)
     int n = a.size();
     int m = b.size();
     int k = m ? b[0].size() : 0;
-    // 调试检查，可删。
     for (const auto &r : a)
     {
         assert((int)r.size() == m);
     }
-    // 调试检查，可删。
     for (const auto &r : b)
     {
         assert((int)r.size() == k);

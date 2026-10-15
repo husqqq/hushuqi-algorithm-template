@@ -7,7 +7,6 @@ unsigned long long mul64(unsigned long long a, unsigned long long b,
                          unsigned long long mod)
 {
     // a、b 是乘数，mod 是正模数；返回 a*b mod mod。
-    assert(mod > 0); // 调试检查，可删
     return (unsigned __int128)a * b % mod;
 }
 
@@ -15,7 +14,6 @@ unsigned long long pow64(unsigned long long a, unsigned long long b,
                          unsigned long long mod)
 {
     // 返回 a^b 对正模数 mod 的最小非负余数。
-    assert(mod > 0); // 调试检查，可删
     unsigned long long ans = 1 % mod;
     a %= mod;
     while (b)

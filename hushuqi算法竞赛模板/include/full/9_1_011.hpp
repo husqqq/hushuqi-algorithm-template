@@ -5,12 +5,10 @@
 inline vector<vector<long long>> adjugateP(vector<vector<long long>> a, long long mod)
 {
     // a 是方阵，mod 是素数；返回 A 的伴随矩阵。
-    // 调试检查，可删。
     assert(mod > 1);
     int n = a.size();
     for (auto &r : a)
     {
-        // 调试检查，可删。
         assert((int)r.size() == n);
         for (auto &x : r)
         {

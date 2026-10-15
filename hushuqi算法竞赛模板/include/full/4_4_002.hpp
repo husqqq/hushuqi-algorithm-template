@@ -112,7 +112,6 @@ struct DequePAM
     {
         // c 是新字符；加入右端并维护最长回文前后缀。
         int x = (unsigned char)c - (unsigned char)S;
-        assert(0 <= x && x < A); // 调试检查，可删
         int par = d.empty() ? 0 : backCan(x, d.back().suf);
         int n = d.size();
         int v = t[par].ch[x];
@@ -125,7 +124,6 @@ struct DequePAM
             if (par != 0)
             {
                 w = t[backCan(x, t[par].link)].ch[x];
-                assert(w); // 调试检查，可删
             }
             t[v].link = w;
             t[w].sons++;
@@ -161,7 +159,6 @@ struct DequePAM
     {
         // c 是新字符；加入左端并维护最长回文前后缀。
         int x = (unsigned char)c - (unsigned char)S;
-        assert(0 <= x && x < A); // 调试检查，可删
         int par = d.empty() ? 0 : frontCan(x, d.front().pre);
         int v = t[par].ch[x];
         int w = 1;
@@ -173,7 +170,6 @@ struct DequePAM
             if (par != 0)
             {
                 w = t[frontCan(x, t[par].link)].ch[x];
-                assert(w); // 调试检查，可删
             }
             t[v].link = w;
             t[w].sons++;
@@ -206,7 +202,6 @@ struct DequePAM
     void popBack()
     {
         // 删除右端字符；当前串必须非空。
-        assert(!d.empty()); // 调试检查，可删
         int n = d.size();
         int v = d.back().suf;
         int x = d.back().c;
@@ -234,7 +229,6 @@ struct DequePAM
     void popFront()
     {
         // 删除左端字符；当前串必须非空。
-        assert(!d.empty()); // 调试检查，可删
         int v = d.front().pre;
         int x = d.front().c;
         int w = t[v].link;

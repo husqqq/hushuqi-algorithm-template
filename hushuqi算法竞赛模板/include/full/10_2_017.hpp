@@ -11,7 +11,6 @@ vector<vector<Z>> fpsInv2(const vector<vector<Z>> &f, int n, int m)
         return {};
     }
     assert(!f.empty() && !f[0].empty() && f[0][0] != Z(0));
-    assert(((__int128)2 * n - 1) * ((__int128)2 * m - 1) <= NTT_LIM + 2); // 调试检查，可删。
     vector<vector<Z>> g(1, vector<Z>(1, f[0][0].inv()));
     for (int len = 1; len < n + m - 1; len <<= 1)
     {

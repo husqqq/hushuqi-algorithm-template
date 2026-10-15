@@ -46,7 +46,6 @@ bool compatible(const ILine &p, const ILine &q)
 bool outside(const ILine &a, const ILine &b, const ILine &c)
 {
     __int128 d = det(b, c);
-    assert(d != 0); // 调试检查，可删。
     __int128 x = (__int128)b[1] * c[2] - (__int128)b[2] * c[1];
     __int128 y = (__int128)b[2] * c[0] - (__int128)b[0] * c[2];
     __int128 v = (__int128)a[0] * x + (__int128)a[1] * y
@@ -58,7 +57,6 @@ optional<vector<ILine>> halfPlane(vector<ILine> a)
 {
     for (auto &l : a)
     {
-        assert(l[0] != 0 || l[1] != 0); // 调试检查，可删。
     }
     sort(a.begin(), a.end(), [](const ILine &p, const ILine &q)
          {

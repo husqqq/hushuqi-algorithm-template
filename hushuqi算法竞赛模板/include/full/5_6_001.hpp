@@ -44,7 +44,6 @@ class Hungarian
     void addEdge(int u, int v)
     {
         // u 是左点，v 是右点；加入一条二分图边，无返回值。
-        assert(0 <= u && u < nl && 0 <= v && v < nr); // 调试检查，可删。
         g[u].push_back(v);
     }
 

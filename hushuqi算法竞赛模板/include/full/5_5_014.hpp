@@ -5,7 +5,6 @@
 optional<pair<int, vector<MEdge>>> boruvka(int n, const vector<MEdge> &e)
 {
     // n 是点数，e 是无向边集；返回 MST 总权与所选边，不连通时返回空。
-    assert(n >= 0); // 调试检查，可删
     DSU d(n);
     int cnt = n, ans = 0;
     vector<MEdge> use;

@@ -7,7 +7,6 @@ using namespace std;
 template <class T> vector<T> derangements(int n)
 {
     // n 是最大规模；返回 d[0..n]，d[i] 是 i 个元素无固定点排列数。
-    assert(n >= 0); // 调试检查，可删。
     vector<T> d(n + 1);
     d[0] = 1;
     if (n >= 1)

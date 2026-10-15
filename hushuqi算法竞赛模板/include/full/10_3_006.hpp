@@ -18,7 +18,6 @@ struct IncSeq
             v[i] *= ifac[i];
         }
         reverse(v.begin(), v.end());
-        assert(convFit(n, n + m - 1)); // 调试检查，可删。
         vector<Z> c(n + m - 1);
         for (int i = 0; i < n + m - 1; i++)
         {
@@ -36,7 +35,6 @@ struct IncSeq
     vector<Z> enumG(int n, const vector<Z> &v, int l)
     {
         // n 是 v 与输出的长度，l 是固定下标；返回 ans[i]=sum(v[j]*C(l+i-j,l),j=0..i)。
-        assert(convFit(n, n)); // 调试检查，可删。
         vector<Z> c(n);
         for (int i = 0; i < n; i++)
         {
@@ -120,10 +118,8 @@ struct IncSeq
     IncSeq(vector<int> a, vector<int> b) : sz(a.size()), lo(move(a)), hi(move(b))
     {
         // a、b 是非空等长的半开下、上界；构造后保存可供 get 计算的单调网格边界。
-        assert(sz > 0 && (int)hi.size() == sz); // 调试检查，可删。
         for (int i = 0; i < sz; i++)
         {
-            assert(lo[i] >= 0 && hi[i] >= 0); // 调试检查，可删。
             hi[i]--;
             if (lo[i] > hi[i] || (i && hi[i] < lo[i - 1]))
             {
@@ -168,9 +164,7 @@ struct IncSeq
         {
             return;
         }
-        assert(sz <= mod + 1 && hi.back() <= mod - sz + 1); // 调试检查，可删。
         int m = sz + hi.back() - 1;
-        assert(m > 0); // 调试检查，可删。
         fac.assign(m, 1);
         ifac.assign(m, 1);
         for (int i = 1; i < m; i++)

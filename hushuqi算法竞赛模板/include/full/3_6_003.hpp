@@ -10,7 +10,6 @@ template <int W = 30> struct EraseBinTrie : BinaryTrie<W>
     bool erase(unsigned long long x, int v = 1)
     {
         // x 是待删除整数，v 是删除份数；数量不足时不修改并返回 false。
-        assert(valid(x) && v > 0); // 调试检查，可删
         if (count(x) < v)
         {
             return false;

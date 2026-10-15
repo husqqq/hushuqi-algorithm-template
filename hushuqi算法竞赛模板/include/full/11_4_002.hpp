@@ -5,7 +5,6 @@
 
 vector<P> lineCircle(L l, C c)
 {
-    assert(sgn(norm(l.v)) != 0 && sgn(c.r) >= 0); // 调试检查，可删。
     P h = proj(l, c.o);
     Real d = norm(h - c.o);
     if (sgn(d - c.r * c.r) > 0)
@@ -22,7 +21,6 @@ vector<P> lineCircle(L l, C c)
 
 vector<P> circleIsect(C a, C b)
 {
-    assert(sgn(a.r) >= 0 && sgn(b.r) >= 0); // 调试检查，可删。
     Real d = abs(b.o - a.o);
     if (sgn(d) == 0)
     {

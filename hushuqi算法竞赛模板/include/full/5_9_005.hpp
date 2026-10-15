@@ -23,7 +23,6 @@ optional<long double> minMeanCycle(int n, const vector<MeanEdge> &e)
     {
         for (auto [u, v, w] : e)
         {
-            assert(0 <= u && u < n && 0 <= v && v < n && isfinite(w)); // 调试检查，可删。
             if (f[k - 1][u].has_value())
             {
                 long double z = *f[k - 1][u] + w;
@@ -76,7 +75,6 @@ optional<long double> minRatCycle(int n, const vector<RatioEdge> &e, int it = 10
     {
         return nullopt;
     }
-    assert(it >= 0); // 调试检查，可删。
     vector<vector<int>> g(n);
     vector<int> deg(n);
     long double lo = 0, hi = 0;
@@ -84,7 +82,6 @@ optional<long double> minRatCycle(int n, const vector<RatioEdge> &e, int it = 10
     for (auto [u, v, a, b] : e)
     {
         assert(0 <= u && u < n && 0 <= v && v < n &&
-               isfinite(a) && isfinite(b) && b > 0); // 调试检查，可删。
         g[u].push_back(v);
         deg[v]++;
         long double z = a / b;

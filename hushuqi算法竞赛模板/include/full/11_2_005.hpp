@@ -11,7 +11,6 @@ vector<P> polyKernel(const vector<P> &a)
     }
     vector<P> b = a;
     Real s = area(a);
-    assert(sgn(s) != 0); // 调试检查，可删。
     int n = (int)a.size();
     for (int i = 0; i < n && !b.empty(); i++)
     {

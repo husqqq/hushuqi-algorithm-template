@@ -17,7 +17,6 @@ vector<int> rangeInv(const vector<int> &a, const vector<pair<int, int>> &qs)
     for (int id = 0; id < (int)qs.size(); id++)
     {
         auto [l, r] = qs[id];
-        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         ord[id] = {(int32_t)l, (int32_t)r, (int32_t)id};
     }
 

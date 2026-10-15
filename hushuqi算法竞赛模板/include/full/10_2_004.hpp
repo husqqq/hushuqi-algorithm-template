@@ -20,7 +20,6 @@ Poly deriv(const Poly &a)
 Poly integr(const Poly &a)
 {
     // a 是输入多项式；返回常数项为 0 的形式积分，次数必须小于 mod-1。
-    assert(a.size() < mod); // 调试检查，可删。
     Poly b(a.size() + 1);
     const auto &iv = invTable<mod>(a.size());
     for (int i = 0; i < (int)a.size(); i++)

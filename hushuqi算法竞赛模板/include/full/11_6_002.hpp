@@ -71,7 +71,6 @@ bool coplanar(P3 a, P3 b, P3 c, P3 d)
 bool onLine3(P3 p, L3 l)
 {
     // p 是查询点，l 是非退化直线；返回 p 是否在 l 上。
-    assert(sgn(abs(l.v)) != 0); // 调试检查，可删。
     P3 u = p - l.p;
     if (sgn(abs(u)) == 0)
     {
@@ -99,41 +98,35 @@ bool onSegment3(P3 p, P3 a, P3 b)
 bool onPlane3(P3 p, Plane s)
 {
     // p 是查询点，s 是非退化平面；返回 p 是否在 s 上。
-    assert(sgn(abs(s.n)) != 0); // 调试检查，可删。
     return sgn(dot(p - s.p, s.n) / abs(s.n)) == 0;
 }
 
 bool parallel(L3 a, L3 b)
 {
     // a、b 是两条非退化直线；返回二者方向是否平行。
-    assert(sgn(abs(a.v)) != 0 && sgn(abs(b.v)) != 0); // 调试检查，可删。
     return sgn(abs(cross(a.v, b.v)) / abs(a.v) / abs(b.v)) == 0;
 }
 
 bool parallel(Plane a, Plane b)
 {
     // a、b 是两个非退化平面；返回二者是否平行。
-    assert(sgn(abs(a.n)) != 0 && sgn(abs(b.n)) != 0); // 调试检查，可删。
     return sgn(abs(cross(a.n, b.n)) / abs(a.n) / abs(b.n)) == 0;
 }
 
 bool parallel(L3 a, Plane b)
 {
     // a 是非退化直线，b 是非退化平面；返回直线方向是否平行于平面。
-    assert(sgn(abs(a.v)) != 0 && sgn(abs(b.n)) != 0); // 调试检查，可删。
     return sgn(dot(a.v, b.n) / abs(a.v) / abs(b.n)) == 0;
 }
 
 bool perp(L3 a, L3 b)
 {
     // a、b 是两条非退化直线；返回二者方向是否垂直。
-    assert(sgn(abs(a.v)) != 0 && sgn(abs(b.v)) != 0); // 调试检查，可删。
     return sgn(dot(a.v, b.v) / abs(a.v) / abs(b.v)) == 0;
 }
 
 bool perp(Plane a, Plane b)
 {
     // a、b 是两个非退化平面；返回二者法向量是否垂直。
-    assert(sgn(abs(a.n)) != 0 && sgn(abs(b.n)) != 0); // 调试检查，可删。
     return sgn(dot(a.n, b.n) / abs(a.n) / abs(b.n)) == 0;
 }

@@ -15,7 +15,6 @@ gomoryHu(int n, const vector<tuple<int, int, long long>> &edges)
         Flow<Cap> f(n);
         for (auto [u, v, c] : edges)
         {
-            assert(0 <= u && u < n && 0 <= v && v < n && c >= 0); // 调试检查，可删。
             f.add(u, v, (Cap)c);
             f.add(v, u, (Cap)c);
         }

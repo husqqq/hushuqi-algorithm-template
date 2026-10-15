@@ -133,7 +133,6 @@ optional<pair<__int128, __int128>> triAreaRng2(const vector<Point<long long>> &a
                 x = min(x, pos[z]);
                 y = max(y, pos[z]);
             }
-            assert(y - x + 1 == (int)v.size()); // 调试检查，可删。
             if (v.size() >= 3)
             {
                 mn = 0;
@@ -168,7 +167,6 @@ optional<pair<__int128, __int128>> triAreaRng2(const vector<Point<long long>> &a
         }
         l = r;
     }
-    assert(hasMin); // 调试检查，可删。
     return pair<__int128, __int128>{mn, mx};
 }
 

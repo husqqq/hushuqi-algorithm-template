@@ -12,10 +12,8 @@ vector<Z> multiConv(const vector<int> &base, const vector<Z> &f, const vector<Z>
     int n = 1;
     for (int x : base)
     {
-        assert(x > 0 && n <= (1 << 22) / x); // 调试检查，可删；同时保证 NTT 长度可用。
         n *= x;
     }
-    assert((int)f.size() == n && (int)g.size() == n); // 调试检查，可删。
     if (n == 1)
     {
         return {f[0] * g[0]};
@@ -129,15 +127,12 @@ vector<long long> multiCycConv(long long p, const vector<int> &base,
                                   const vector<long long> &f, const vector<long long> &g)
 {
     // p 是不超过 1E9 的素数，各维长度整除 p-1；f、g 最低维在前，返回逐维循环卷积。
-    assert(2 <= p && p <= 1000000000); // 调试检查，可删。
     DynMod::setMod(p);
     int n = 1;
     for (int x : base)
     {
-        assert(x >= 2 && (p - 1) % x == 0 && n <= 262144 / x); // 调试检查，可删。
         n *= x;
     }
-    assert((int)f.size() == n && (int)g.size() == n); // 调试检查，可删。
     vector<DynMod> a(n), b(n);
     for (int i = 0; i < n; i++)
     {

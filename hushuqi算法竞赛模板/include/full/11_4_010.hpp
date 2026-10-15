@@ -4,7 +4,6 @@
 
 Real circleGap(C a, C b)
 {
-    assert(sgn(a.r) >= 0 && sgn(b.r) >= 0); // 调试检查，可删。
     Real d = abs(a.o - b.o);
     return max({Real(0), d - a.r - b.r, fabsl(a.r - b.r) - d});
 }

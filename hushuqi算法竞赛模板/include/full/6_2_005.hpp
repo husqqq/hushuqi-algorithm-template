@@ -15,7 +15,6 @@ class KthAncestor
     KthAncestor(const vector<vector<int>> &tree, int root = 0) : depth(tree.size())
     {
         // tree 是非空树，root 是根。
-        assert(!tree.empty() && 0 <= root && root < (int)tree.size()); // 调试检查，可删
         int levels = bit_width((unsigned long long)tree.size());
         parent.assign(levels, vector<int>(tree.size(), -1));
         vector<int> order{root};
@@ -46,7 +45,6 @@ class KthAncestor
     int query(int u, int distance) const
     {
         // 返回 u 的第 distance 级祖先；越过根返回 -1。
-        assert(distance >= 0); // 调试检查，可删
         if (distance > depth[u])
         {
             return -1;

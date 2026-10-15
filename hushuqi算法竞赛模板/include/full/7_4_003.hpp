@@ -5,7 +5,6 @@
 long long primRoot(long long p)
 {
     // p 是素数；返回模 p 的最小正原根，p=2 时返回 1。
-    assert(p >= 2); // 调试检查，可删
     if (p == 2)
     {
         return 1;

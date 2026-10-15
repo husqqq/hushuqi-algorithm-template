@@ -32,9 +32,6 @@ struct CostFlow
     void add(int x, int y, T cap, Cost cost)
     {
         // x、y 是端点，cap 是非负容量，cost 是单位费用；加入一对残量边。
-        assert(0 <= x && x < n && 0 <= y && y < n && cap >= 0); // 调试检查，可删。
-        assert(source == -1); // 调试检查，可删：所有边须在首次 flow 前加入。
-        assert(cost != numeric_limits<Cost>::min()); // 调试检查，可删。
         int id = e[x].size();
         int rev = e[y].size() + (x == y);
         e[x].push_back({y, rev, cap, cost});
@@ -89,13 +86,11 @@ struct CostFlow
         {
             return {0, 0};
         }
-        assert(lim >= 0); // 调试检查，可删。
         if (source == -1)
         {
             source = s;
             sink = t;
         }
-        assert(source == s && sink == t); // 调试检查，可删：分段调用不能更换源汇。
         if (!ready)
         {
             init(s);
@@ -126,7 +121,6 @@ struct CostFlow
                         continue;
                     }
                     Cost nd = d + a.cost + h[x] - h[a.to];
-                    assert(nd >= 0); // 调试检查，可删：势能应保证约化费用非负。
                     if (!dis[a.to].has_value() || nd < *dis[a.to])
                     {
                         dis[a.to] = nd;

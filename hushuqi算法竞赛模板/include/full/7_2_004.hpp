@@ -60,7 +60,6 @@ unsigned long long pollard(unsigned long long n)
 vector<unsigned long long> factor64(unsigned long long n)
 {
     // n 是正整数；返回升序质因子表并保留重数，n=1 返回空表。
-    assert(n > 0); // 调试检查，可删
     vector<unsigned long long> ans;
     auto dfs = [&](auto &&self, unsigned long long x) -> void
     {

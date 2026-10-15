@@ -10,12 +10,10 @@ vector<vector<T>> semiringMul(const vector<vector<T>> &a, const vector<vector<T>
     int n = a.size();
     int m = b.size();
     int k = m ? b[0].size() : 0;
-    // 调试检查，可删。
     for (const auto &r : a)
     {
         assert((int)r.size() == m);
     }
-    // 调试检查，可删。
     for (const auto &r : b)
     {
         assert((int)r.size() == k);
@@ -40,7 +38,6 @@ vector<vector<T>> semiringPow(vector<vector<T>> a, unsigned long long b,
 {
     // a 是方阵，b 是非负指数；zero、one 是加法与乘法单位元。
     int n = a.size();
-    // 调试检查，可删。
     for (const auto &r : a)
     {
         assert((int)r.size() == n);

@@ -7,7 +7,6 @@ template <class T> vector<vector<T>> matPow(vector<vector<T>> a, unsigned long l
 {
     // a 是方阵，b 是非负指数；返回 a 的 b 次幂。
     int n = a.size();
-    // 调试检查，可删。
     for (const auto &r : a)
     {
         assert((int)r.size() == n);

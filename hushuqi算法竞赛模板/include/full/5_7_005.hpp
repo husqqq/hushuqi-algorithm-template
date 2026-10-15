@@ -14,7 +14,6 @@ Marriage stableMatch(const vector<vector<int>> &pa, const vector<vector<int>> &p
 {
     // pa、pb 是左右两侧从优到劣的完整偏好表；返回两侧互逆的稳定配偶数组。
     int n = pa.size();
-    assert((int)pb.size() == n); // 调试检查，可删。
     vector<vector<int>> rk(n, vector<int>(n));
     for (int y = 0; y < n; y++)
     {

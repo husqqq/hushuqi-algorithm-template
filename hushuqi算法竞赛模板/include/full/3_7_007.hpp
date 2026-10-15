@@ -40,7 +40,6 @@ template <class T, class F> struct AggDeque
     void rebuild(int k)
     {
         // k 是重建后放入队首侧的元素数；保持整个队列顺序不变。
-        assert(0 <= k && k <= size()); // 调试检查，可删
         vector<T> a;
         for (auto i = l.rbegin(); i != l.rend(); i++)
         {
@@ -64,7 +63,6 @@ template <class T, class F> struct AggDeque
     void popFront()
     {
         // 删除队首元素。
-        assert(!empty()); // 调试检查，可删
         if (l.empty())
         {
             rebuild((size() + 1) / 2);
@@ -74,7 +72,6 @@ template <class T, class F> struct AggDeque
     void popBack()
     {
         // 删除队尾元素。
-        assert(!empty()); // 调试检查，可删
         if (r.empty())
         {
             rebuild(size() / 2);
@@ -84,13 +81,11 @@ template <class T, class F> struct AggDeque
     T front() const
     {
         // 返回队首元素；只读端点，不为读取重建两侧栈。
-        assert(!empty()); // 调试检查，可删
         return l.empty() ? r.front().first : l.back().first;
     }
     T back() const
     {
         // 返回队尾元素，不为读取重建两侧栈。
-        assert(!empty()); // 调试检查，可删
         return r.empty() ? l.front().first : r.back().first;
     }
     T query() const

@@ -8,13 +8,11 @@ vector<pair<int, int>> bipolarOrd(const vector<vector<int>> &g, int s, int t)
 {
     // g 是简单无向图；返回以 s 为唯一源、t 为唯一汇的边方向，无解返回空。
     int n = g.size();
-    assert(n <= 12 && 0 <= s && s < n && 0 <= t && t < n && s != t); // 调试检查，可删。
     vector<unsigned long long> adj(n);
     for (int u = 0; u < n; u++)
     {
         for (int v : g[u])
         {
-            assert(0 <= v && v < n && u != v); // 调试检查，可删。
             adj[u] |= 1ULL << v;
         }
     }
@@ -22,7 +20,6 @@ vector<pair<int, int>> bipolarOrd(const vector<vector<int>> &g, int s, int t)
     {
         for (int v = 0; v < n; v++)
         {
-            assert((adj[u] >> v & 1) == (adj[v] >> u & 1)); // 调试检查，可删。
         }
     }
     if (!(adj[s] >> t & 1))

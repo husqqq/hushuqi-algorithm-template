@@ -4,7 +4,6 @@
 int minModLinear(int n, int m, int a, int b)
 {
     // n、m 为正，a、b 是整数；返回 0<=i<n 时 (a*i+b) mod m 的最小值。
-    assert(n > 0 && m > 0); // 调试检查，可删
     a %= m;
     b %= m;
     if (a < 0)

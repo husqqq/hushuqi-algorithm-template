@@ -6,7 +6,6 @@ using namespace std;
 long long carmichael(long long n)
 {
     // n 是正整数；返回 Carmichael 函数 lambda(n)。
-    assert(n >= 1); // 调试检查，可删
     long long ans = 1;
     for (long long p = 2; p <= n / p; p++)
     {

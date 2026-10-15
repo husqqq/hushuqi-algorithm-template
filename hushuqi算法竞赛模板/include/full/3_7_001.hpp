@@ -64,7 +64,6 @@ template <class T, class C = T> class LiChao
         // 改最大值时可在系数可安全取反时优先对直线取反再对答案取反，可保留李超树的比较不变量。
         sort(this->xs.begin(), this->xs.end());
         this->xs.erase(unique(this->xs.begin(), this->xs.end()), this->xs.end());
-        assert(!this->xs.empty()); // 调试检查，可删
         tr.resize(4 * this->xs.size());
     }
 
@@ -80,7 +79,6 @@ template <class T, class C = T> class LiChao
         // x 必须在构造坐标中；返回最小函数值，尚未加入直线时返回空。
         // 最大值版若按直线取反，调用者取负即可；空结果仍保持 nullopt。
         int q = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
-        assert(q < (int)xs.size() && xs[q] == x); // 调试检查，可删
         optional<C> ans;
         int p = 1, l = 0, r = xs.size();
         while (true)

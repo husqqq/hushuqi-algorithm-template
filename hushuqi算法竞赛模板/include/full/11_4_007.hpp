@@ -4,7 +4,6 @@
 
 int fixedCover(const vector<P> &a, Real r)
 {
-    assert(sgn(r) >= 0); // 调试检查，可删。
     int ans = a.empty() ? 0 : 1;
     const Real pi = acosl(-1);
     for (int i = 0; i < (int)a.size(); i++)

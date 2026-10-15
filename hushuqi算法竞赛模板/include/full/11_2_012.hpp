@@ -29,9 +29,6 @@ template <class T, class W = long long> struct PlanarEmbed
     void addEdge(int u, int v, const W &weight = W(1))
     {
         // u、v 是不同端点编号，weight 是穿过该边的代价；加入一条无向边，无返回值。
-        assert(0 <= u && u < (int)point.size());   // 调试检查，可删。
-        assert(0 <= v && v < (int)point.size());   // 调试检查，可删。
-        assert(u != v && !(point[u] == point[v])); // 调试检查，可删。
         edge.push_back({u, v, weight});
     }
 
@@ -48,16 +45,12 @@ template <class T, class W = long long> struct PlanarEmbed
         dual.clear();
 
         set<Point<T>> uniquePoint(point.begin(), point.end());
-        assert((int)uniquePoint.size() == n); // 调试检查，可删。
         vector<vector<int>> around(n);
         set<pair<int, int>> uniqEdge;
         for (int i = 0; i < m; i++)
         {
             auto [u, v, weight] = edge[i];
-            assert(0 <= u && u < n && 0 <= v && v < n); // 调试检查，可删。
-            assert(u != v && !(point[u] == point[v]));  // 调试检查，可删。
             pair<int, int> key{min(u, v), max(u, v)};
-            assert(uniqEdge.insert(key).second); // 调试检查，可删。
             halfEdge[2 * i] = {u, v};
             halfEdge[2 * i + 1] = {v, u};
             around[u].push_back(2 * i);
@@ -91,7 +84,6 @@ template <class T, class W = long long> struct PlanarEmbed
                 }
             }
         }
-        assert(count(seen.begin(), seen.end(), true) == n); // 调试检查，可删。
 
         auto dir = [&](int h)
         {
@@ -171,7 +163,6 @@ template <class T, class W = long long> struct PlanarEmbed
             __int128 area = 0;
             do
             {
-                assert(faceOfHalf[h] == -1); // 调试检查，可删。
                 faceOfHalf[h] = face;
                 auto [u, v] = halfEdge[h];
                 area += (__int128)point[u].x * (__int128)point[v].y - (__int128)point[u].y * (__int128)point[v].x;

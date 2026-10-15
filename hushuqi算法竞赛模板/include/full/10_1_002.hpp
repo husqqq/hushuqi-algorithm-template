@@ -10,7 +10,6 @@ void fft(vector<C> &a, bool inv = false)
 {
     // a 是待变换序列，inv 表示是否做逆变换；原地完成 FFT，逆变换已除以长度。
     int n = a.size();
-    assert(n > 0 && has_single_bit((unsigned long long)n)); // 调试检查，可删。
     int j = 0;
     for (int i = 1; i < n; i++)
     {

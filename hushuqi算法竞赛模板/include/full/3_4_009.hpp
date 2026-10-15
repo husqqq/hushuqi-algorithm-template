@@ -21,7 +21,6 @@ template <int LOG = 17> class StaticRngLIS
             {
                 continue;
             }
-            assert(0 <= p[i] && p[i] < n && q[p[i]] == none); // 调试检查，可删
             q[p[i]] = (int32_t)i;
         }
         return q;
@@ -236,7 +235,6 @@ template <int LOG = 17> class StaticRngLIS
         highMap.reserve(n - mid);
         for (int i = 0; i < n; i++)
         {
-            assert(0 <= p[i] && p[i] < n); // 调试检查，可删
             if (p[i] < mid)
             {
                 low.push_back(p[i]);
@@ -289,13 +287,10 @@ template <int LOG = 17> class StaticRngLIS
     {
         // p 是值域 [0,n) 的新静态排列；重建结构，不保留旧查询状态。
         n = p.size();
-        assert(n <= numeric_limits<int32_t>::max()); // 调试检查，可删
-        assert((unsigned long long)n < (1ULL << LOG)); // 调试检查，可删
         vector<char> used(n);
         vector<int32_t> q(n);
         for (int i = 0; i < n; i++)
         {
-            assert(0 <= p[i] && p[i] < n && !used[p[i]]); // 调试检查，可删
             used[p[i]] = true;
             q[i] = (int32_t)p[i];
         }
@@ -311,7 +306,6 @@ template <int LOG = 17> class StaticRngLIS
     int query(int l, int r) const
     {
         // l、r 是半开区间端点；返回排列 p[l,r) 的严格最长递增子序列长度。
-        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         return r - l - wt.countLess(l, n, r);
     }
 };

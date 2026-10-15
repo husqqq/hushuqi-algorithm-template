@@ -56,7 +56,6 @@ template <class F> long double firstReal(long double l, long double r, F f, int 
 template <class It, class T, class F = less<>> It fastLower(It first, It last, const T &x, F f = {})
 {
     // [first,last) 必须支持随机访问；返回第一个不小于 x 的位置。
-    assert(first <= last && (unsigned long long)(last - first) <= UINT32_MAX); // 调试检查，可删
     uint32_t n = last - first;
     for (n++; n > 1;)
     {
@@ -70,7 +69,6 @@ template <class It, class T, class F = less<>> It fastLower(It first, It last, c
 template <class It, class T, class F = less<>> It fastUpper(It first, It last, const T &x, F f = {})
 {
     // [first,last) 必须支持随机访问；返回第一个大于 x 的位置。
-    assert(first <= last && (unsigned long long)(last - first) <= UINT32_MAX); // 调试检查，可删
     uint32_t n = last - first;
     for (n++; n > 1;)
     {

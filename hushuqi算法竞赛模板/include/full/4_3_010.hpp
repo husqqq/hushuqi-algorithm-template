@@ -7,7 +7,6 @@
 inline long long subDistinct(const string &s, int l, int r)
 {
     // s 是原字符串，l、r 是半开端点；返回 s[l,r) 的本质不同子串数量。
-    assert(0 <= l && l <= r && r <= (int)s.size()); // 调试检查，可删
     string t = s.substr(l, r - l);
     auto sa = suffixArray(t);
     auto h = suffix_lcp::lcpArray(t, sa);
@@ -53,12 +52,10 @@ inline vector<int> rangeSubs(const string &s,
 {
     // s 是小写字母串；qs 是 0 下标半开区间；返回各区间的本质不同子串数。
     int n = s.size(), q = qs.size();
-    assert(n > 0); // 调试检查，可删
     vector<vector<pair<int, int>>> at(n + 1);
     for (int i = 0; i < q; i++)
     {
         auto [l, r] = qs[i];
-        assert(0 <= l && l < r && r <= n); // 调试检查，可删
         at[r].push_back({l + 1, i});
     }
     SAM<26, 'a'> sam(s);

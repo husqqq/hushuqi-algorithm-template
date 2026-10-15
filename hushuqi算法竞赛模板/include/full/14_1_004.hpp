@@ -5,18 +5,14 @@
 array<int, 6> pokerScore(vector<int> r, vector<int> suit)
 {
     // r、suit 依次给出五张牌的点数与花色；返回可直接字典序比较的六元评分。
-    // 调试检查，可删。
     assert(r.size() == 5 && suit.size() == 5);
     set<pair<int, int>> card;
     for (int i = 0; i < 5; i++)
     {
-        // 调试检查，可删。
         assert(2 <= r[i] && r[i] <= 14);
-        // 调试检查，可删。
         assert(0 <= suit[i] && suit[i] < 4);
         card.insert({r[i], suit[i]});
     }
-    // 调试检查，可删。
     assert(card.size() == 5);
     sort(r.begin(), r.end(), greater<>());
     if (r == vector<int>{14, 5, 4, 3, 2})

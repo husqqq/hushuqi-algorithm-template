@@ -48,14 +48,12 @@ template <class T, class Compare = less<T>> class LeftistHeap
     const T &top(int root) const
     {
         // root 是非空堆根；返回堆顶键值。
-        assert(root); // 调试检查，可删
         return t[root].x;
     }
 
     int pop(int root)
     {
         // root 是非空堆根；删除堆顶并返回新根。
-        assert(root); // 调试检查，可删
         return merge(t[root].l, t[root].r);
     }
 };

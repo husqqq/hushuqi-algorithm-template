@@ -39,7 +39,6 @@ template <class T> struct ODT
     auto split(int x)
     {
         // x 是分割位置；返回左端点为 x 的段，x=n 时返回 end()。
-        assert(0 <= x && x <= n); // 调试检查，可删
         if (x == n)
         {
             return s.end();
@@ -58,7 +57,6 @@ template <class T> struct ODT
     void assign(int l, int r, const T &v)
     {
         // l、r 是半开区间端点，v 是新值；空区间无操作。
-        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         if (l == r)
         {
             return;
@@ -71,7 +69,6 @@ template <class T> struct ODT
     template <class F> void apply(int l, int r, F f)
     {
         // l、r 是半开区间端点；对相交常值段的值逐段调用 f(T&)，空区间不调用。
-        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         if (l == r)
         {
             return;
@@ -86,7 +83,6 @@ template <class T> struct ODT
     T kth(int l, int r, int k)
     {
         // l、r 是非空半开区间端点，k 是 0 基排名；返回按位置计重后的第 k 小值。
-        assert(0 <= l && l < r && r <= n && 0 <= k && k < r - l); // 调试检查，可删
         auto y = split(r), x = split(l);
         vector<pair<T, int>> a;
         for (auto it = x; it != y; it++)

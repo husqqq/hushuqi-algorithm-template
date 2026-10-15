@@ -18,7 +18,6 @@ struct DSU
     void init(int n)
     {
         // n 是新的元素个数；清空旧状态并重建单点集合。
-        assert(n >= 0); // 调试检查，可删
         f.resize(n);
         iota(f.begin(), f.end(), 0);
         s.assign(n, 1);

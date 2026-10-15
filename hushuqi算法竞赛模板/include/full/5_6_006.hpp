@@ -33,7 +33,6 @@ struct BipEdgeColor
     void add(int u, int v)
     {
         // u、v 是左右端点；按加入顺序给边编号。
-        assert(0 <= u && u < n && 0 <= v && v < m); // 调试检查，可删。
         e.push_back({u, v, (int)e.size()});
     }
 
@@ -159,7 +158,6 @@ struct BipEdgeColor
                 fill(it.begin(), it.end(), 0);
                 for (int x = 0; x < z; x++) if (ml[x] == -1 && dfs(dfs, x)) got++;
             }
-            assert(got == z); // 调试检查，可删：正则二分图总有完美匹配。
             return ml;
         };
         auto color = [&](auto &&self, vector<int> ids, int d, int first) -> void

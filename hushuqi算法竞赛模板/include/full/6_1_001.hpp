@@ -36,7 +36,6 @@ Dia<Dist> treeDiameter(const vector<vector<pair<int, long long>>> &g)
                 {
                     continue;
                 }
-                assert(w >= 0); // 调试检查，可删。
                 p[v] = u;
                 d[v] = d[u] + (Dist)w;
                 self(self, v);

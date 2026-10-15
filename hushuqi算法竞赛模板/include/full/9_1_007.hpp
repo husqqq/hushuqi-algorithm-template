@@ -7,7 +7,6 @@ template <class T> vector<T> charPoly(const vector<vector<T>> &a)
 {
     // a 是域上的方阵；返回 det(xI-a) 从常数项到最高次项的系数。
     int n = a.size();
-    // 调试检查，可删。
     for (const auto &r : a)
     {
         assert((int)r.size() == n);
@@ -61,9 +60,7 @@ template <class T> vector<T> detAPlusBz(vector<vector<T>> a,
 {
     // a、b 是域上的同阶方阵；返回 det(a+bz) 从常数项到最高次项的系数，允许 b 奇异。
     int n = a.size(), shift = 0;
-    assert((int)b.size() == n); // 调试检查，可删
     for (int i = 0; i < n; i++)
-        assert((int)a[i].size() == n && (int)b[i].size() == n); // 调试检查，可删
     T scale = T(1);
     for (int col = 0; col < n; col++)
     {

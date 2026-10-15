@@ -17,7 +17,6 @@ template <class T> struct Discrete
     int id(const T &x) const
     {
         auto it = lower_bound(a.begin(), a.end(), x);
-        assert(it != a.end() && *it == x); // 调试检查，可删
         return it - a.begin();
     }
 };

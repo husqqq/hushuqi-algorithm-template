@@ -36,7 +36,6 @@ class MajRange
     {
         // x 是已预登记的原值；返回其离散编号。
         auto it = lower_bound(val.begin(), val.end(), x);
-        assert(it != val.end() && *it == x); // 调试检查，可删
         return it - val.begin();
     }
 
@@ -44,7 +43,6 @@ class MajRange
     {
         // k 是值编号，p 是预登记位置，d 是出现次数增量。
         auto it = lower_bound(pos[k].begin(), pos[k].end(), p);
-        assert(it != pos[k].end() && *it == p); // 调试检查，可删
         for (int i = it - pos[k].begin() + 1; i < (int)bit[k].size(); i += i & -i)
         {
             bit[k][i] += d;
@@ -99,7 +97,6 @@ class MajRange
         val = v;
         for (auto [p, x] : plan)
         {
-            assert(0 <= p && p < n); // 调试检查，可删
             val.push_back(x);
         }
         sort(val.begin(), val.end());
@@ -142,7 +139,6 @@ class MajRange
     void set(int p, int x)
     {
         // p 是数组位置，x 是已在 plan 登记的新值；完成单点赋值。
-        assert(0 <= p && p < n); // 调试检查，可删
         int k = id(x);
         add(a[p], p, -1);
         add(k, p, 1);
@@ -153,7 +149,6 @@ class MajRange
     optional<int> query(int l, int r) const
     {
         // [l,r) 是查询区间；返回严格众数，空区间或不存在时返回空。
-        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         if (l == r)
         {
             return nullopt;

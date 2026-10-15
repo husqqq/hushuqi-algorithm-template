@@ -40,14 +40,11 @@ template <class T> struct Mat
     friend Mat operator*(const Mat &x, const Mat &y)
     {
         // x、y 是乘法左右两侧的矩阵；返回维数相容时的普通乘积。
-        // 调试检查，可删。
         assert((int)x.a.size() == x.n && (int)y.a.size() == y.n && x.m == y.n);
-        // 调试检查，可删。
         for (const auto &r : x.a)
         {
             assert((int)r.size() == x.m);
         }
-        // 调试检查，可删。
         for (const auto &r : y.a)
         {
             assert((int)r.size() == y.m);
@@ -69,7 +66,6 @@ template <class T> struct Mat
     Mat pow(unsigned long long b) const
     {
         // b 是非负指数；返回当前方阵的 b 次幂。
-        // 调试检查，可删。
         assert(n == m);
         Mat x = *this;
         Mat ans = eye(n);

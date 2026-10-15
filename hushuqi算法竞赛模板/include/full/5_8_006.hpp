@@ -19,7 +19,6 @@ struct BinaryCut
     void addCost(int u, Cap c0, Cap c1)
     {
         // c0、c1 是 u 取 0、1 的非负代价。
-        assert(0 <= u && u < n && c0 >= 0 && c1 >= 0); // 调试检查，可删。
         edge.push_back({s, u, c0});
         edge.push_back({u, t, c1});
         sum += c0 + c1;
@@ -28,14 +27,12 @@ struct BinaryCut
     void imply(int u, int v)
     {
         // 加入 u=1 推出 v=1 的硬约束。
-        assert(0 <= u && u < n && 0 <= v && v < n); // 调试检查，可删。
         hard.push_back({u, v});
     }
 
     void addDiffCost(int u, int v, Cap c)
     {
         // 二者取值不同时付非负代价 c。
-        assert(0 <= u && u < n && 0 <= v && v < n && c >= 0); // 调试检查，可删。
         edge.push_back({u, v, c});
         edge.push_back({v, u, c});
         sum += c + c;

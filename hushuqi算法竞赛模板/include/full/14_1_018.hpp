@@ -5,7 +5,6 @@
 vector<int> nQueens(int n)
 {
     // n 是棋盘边长；返回每行皇后的 0 下标列号，n=2 或 3 时返回空表。
-    // 调试检查，可删。
     assert(n >= 1);
     if (n == 1)
     {

@@ -9,11 +9,9 @@ Z bestTheorem(int n, int root, const vector<pair<int, int>> &e, bool fixFirst = 
     {
         return e.empty() ? Z(1) : Z(0);
     }
-    assert(0 <= root && root < n); // 调试检查，可删。
     vector<int> out(n), in(n);
     for (auto [u, v] : e)
     {
-        assert(0 <= u && u < n && 0 <= v && v < n); // 调试检查，可删。
         out[u]++;
         in[v]++;
     }

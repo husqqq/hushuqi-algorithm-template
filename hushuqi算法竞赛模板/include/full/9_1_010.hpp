@@ -17,14 +17,12 @@ inline Mat mul(const Mat &a, const Mat &b)
     {
         for (const auto &r : a)
         {
-            assert(r.empty()); // 调试检查，可删。
         }
         return Mat(a.size());
     }
     int n = a.size();
     int k = b.size();
     int m = b[0].size();
-    // 调试检查，可删。
     for (const auto &r : b)
     {
         assert((int)r.size() == m);
@@ -32,7 +30,6 @@ inline Mat mul(const Mat &a, const Mat &b)
     Mat c(n, vector<long double>(m));
     for (int i = 0; i < n; i++)
     {
-        // 调试检查，可删。
         assert((int)a[i].size() == k);
         for (int p = 0; p < k; p++)
         {
@@ -52,7 +49,6 @@ inline Mat inv(Mat a)
     Mat b(n, vector<long double>(2 * n));
     for (int i = 0; i < n; i++)
     {
-        // 调试检查，可删。
         assert((int)a[i].size() == n);
         copy(a[i].begin(), a[i].end(), b[i].begin());
         b[i][n + i] = 1;
@@ -67,7 +63,6 @@ inline Mat inv(Mat a)
                 row = i;
             }
         }
-        // 调试检查，可删。
         assert(fabsl(b[row][col]) > 1E-18L);
         swap(b[row], b[col]);
         long double x = b[col][col];
@@ -101,26 +96,21 @@ inline Mat woodbury(const Mat &ai, const Mat &u, const Mat &ci, const Mat &v)
     // ai、ci 分别是 A 与 C 的逆，u、v 是低秩因子；返回 (A+UCV) 的逆。
     int n = ai.size();
     int k = ci.size();
-    // 调试检查，可删。
     assert((int)u.size() == n && (int)v.size() == k);
     for (const auto &r : ai)
     {
-        // 调试检查，可删。
         assert((int)r.size() == n);
     }
     for (const auto &r : u)
     {
-        // 调试检查，可删。
         assert((int)r.size() == k);
     }
     for (const auto &r : ci)
     {
-        // 调试检查，可删。
         assert((int)r.size() == k);
     }
     for (const auto &r : v)
     {
-        // 调试检查，可删。
         assert((int)r.size() == n);
     }
     if (n == 0)

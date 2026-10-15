@@ -88,11 +88,9 @@ struct ChordalCert
 ChordalCert chordalCert(int n, const vector<pair<int, int>> &e)
 {
     // n 是点数，e 是简单无向边；返回 PEO 或长度至少四的诱导环证书。
-    assert(n >= 0); // 调试检查，可删。
     vector<set<int>> g(n);
     for (auto [u, v] : e)
     {
-        assert(0 <= u && u < n && 0 <= v && v < n && u != v); // 调试检查，可删。
         g[u].insert(v);
         g[v].insert(u);
     }

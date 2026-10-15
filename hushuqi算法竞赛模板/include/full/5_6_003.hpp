@@ -75,20 +75,17 @@ class HopcroftKarp
         : nl(nl), nr(nr), g(nl), ml(nl, -1), mr(nr, -1), dep(nl), it(nl), que(nl)
     {
         // nl、nr 是左右部点数；构造空二分图，无返回值。
-        assert(nl <= INT32_MAX && nr <= INT32_MAX); // 调试检查，可删。
     }
 
     void reserve(int u, int m)
     {
         // u 是左点，m 是预计邻边数；预留空间但不改变图。
-        assert(0 <= u && u < nl && m >= 0); // 调试检查，可删。
         g[u].reserve(m);
     }
 
     void addEdge(int u, int v)
     {
         // u 是左点，v 是右点；加入一条边，无返回值。
-        assert(0 <= u && u < nl && 0 <= v && v < nr); // 调试检查，可删。
         g[u].push_back((int32_t)v);
     }
 

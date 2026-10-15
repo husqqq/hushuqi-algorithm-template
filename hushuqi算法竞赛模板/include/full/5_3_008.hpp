@@ -9,7 +9,6 @@ int edgeConn(int n, const vector<tuple<int, int, long long>> &e)
     vector a(n, vector<int>(n));
     for (auto [u, v, w] : e)
     {
-        assert(0 <= u && u < n && 0 <= v && v < n && w >= 0); // 调试检查，可删。
         if (u != v)
         {
             a[u][v] += w;
@@ -34,7 +33,6 @@ int vertexConn(const vector<vector<int>> &g)
     {
         for (int v : g[u])
         {
-            assert(0 <= v && v < n); // 调试检查，可删。
             if (u != v && !a[u][v])
             {
                 a[u][v] = true;

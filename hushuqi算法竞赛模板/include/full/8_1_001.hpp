@@ -13,7 +13,6 @@ template <class T> class Comb
     void init(int n)
     {
         // n 是要支持的最大上标；把阶乘表扩展到 n，无返回值。
-        assert(n >= 0); // 调试检查，可删。
         if ((int)fac.size() > n)
         {
             return;

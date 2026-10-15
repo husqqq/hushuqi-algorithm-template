@@ -38,7 +38,6 @@ struct LehmerPi
     long long phi(long long x, int s)
     {
         // 返回 [1,x] 中不被前 s 个素数整除的整数个数。
-        assert(x >= 0 && 0 <= s && s <= (int)p.size()); // 调试检查，可删
         if (!x)
         {
             return 0;
@@ -70,7 +69,6 @@ struct LehmerPi
     long long operator()(long long x)
     {
         // 返回 pi(x)，固定表版本要求 0<=x<=N^2。
-        assert(0 <= x && x <= (long long)N * N); // 调试检查，可删
         if (x <= N)
         {
             return pi[x];

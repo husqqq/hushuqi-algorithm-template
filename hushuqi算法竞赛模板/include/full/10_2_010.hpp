@@ -5,7 +5,6 @@
 Z fastFact(int n)
 {
     // n 满足 0<=n<Z::mod()；返回 n!，使用分块多项式乘积与多点求值降低单次复杂度。
-    assert(0 <= n && n < Z::mod()); // 调试检查，可删。
     if (n <= 1)
     {
         return 1;

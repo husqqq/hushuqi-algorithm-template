@@ -135,6 +135,20 @@ template <class T> void fwt(vector<T> &a, BitOp op, bool inv = false)
     }
 }
 
+// 方向由函数名表达；BitOp 版本保留给旧代码。
+template <class T> void orFwt(vector<T> &a, bool inv = false)
+{
+    fwt(a, BitOp::Or, inv);
+}
+template <class T> void andFwt(vector<T> &a, bool inv = false)
+{
+    fwt(a, BitOp::And, inv);
+}
+template <class T> void xorFwt(vector<T> &a, bool inv = false)
+{
+    fwt(a, BitOp::Xor, inv);
+}
+
 template <class T> vector<T> bitConv(vector<T> a, vector<T> b, BitOp op)
 {
     // a、b 是等长的掩码系数，op 指定卷积下标使用或、与或异或；返回对应的按位卷积。
@@ -147,6 +161,19 @@ template <class T> vector<T> bitConv(vector<T> a, vector<T> b, BitOp op)
     }
     fwt(a, op, true);
     return a;
+}
+
+template <class T> vector<T> orConv(vector<T> a, vector<T> b)
+{
+    return bitConv(move(a), move(b), BitOp::Or);
+}
+template <class T> vector<T> andConv(vector<T> a, vector<T> b)
+{
+    return bitConv(move(a), move(b), BitOp::And);
+}
+template <class T> vector<T> xorConv(vector<T> a, vector<T> b)
+{
+    return bitConv(move(a), move(b), BitOp::Xor);
 }
 
 template <int P> int fwtAdd(int x, int y)
@@ -227,6 +254,10 @@ template <int P, BitOp Op, bool Inv = false> void fwtMod(vector<int> &a)
     fwtMod<P, Op, Inv>(a.data(), a.size());
 }
 
+template <int P, bool Inv = false> void orFwtMod(vector<int> &a) { fwtMod<P, BitOp::Or, Inv>(a); }
+template <int P, bool Inv = false> void andFwtMod(vector<int> &a) { fwtMod<P, BitOp::And, Inv>(a); }
+template <int P, bool Inv = false> void xorFwtMod(vector<int> &a) { fwtMod<P, BitOp::Xor, Inv>(a); }
+
 template <int P, BitOp Op>
 vector<int> bitConvMod(vector<int> a, vector<int> b)
 {
@@ -240,6 +271,10 @@ vector<int> bitConvMod(vector<int> a, vector<int> b)
     fwtMod<P, Op, true>(a);
     return a;
 }
+
+template <int P> vector<int> orConvMod(vector<int> a, vector<int> b) { return bitConvMod<P, BitOp::Or>(move(a), move(b)); }
+template <int P> vector<int> andConvMod(vector<int> a, vector<int> b) { return bitConvMod<P, BitOp::And>(move(a), move(b)); }
+template <int P> vector<int> xorConvMod(vector<int> a, vector<int> b) { return bitConvMod<P, BitOp::Xor>(move(a), move(b)); }
 
 // 稀疏 XOR 卷积专用接口，模数固定为大素数。
 constexpr unsigned long long sparseXorMod = 1000000000000125953ULL;

@@ -7,7 +7,6 @@ Z lagrangeSeq(const vector<Z> &y, long long x)
 {
     // y[i]=f(i) 且 deg(f)<y.size()，x 是求值点；返回 f(x)。
     int n = y.size();
-    assert(n > 0 && n <= mod); // 调试检查，可删。
     if (0 <= x && x < n)
     {
         return y[x];
@@ -41,7 +40,6 @@ Z lagrangeSeq(const vector<Z> &y, long long x)
 Poly interpPoints(const vector<Z> &x, const vector<Z> &y)
 {
     // x 是互不相同的横坐标，y 是对应点值；返回次数小于 x.size() 的唯一插值多项式。
-    assert(x.size() == y.size()); // 调试检查，可删。
     if (x.empty())
     {
         return {};
@@ -52,7 +50,6 @@ Poly interpPoints(const vector<Z> &x, const vector<Z> &y)
     vector<Z> w(tr.n);
     for (int i = 0; i < tr.n; i++)
     {
-        assert(d[i] != Z(0)); // 调试检查，可删。
         w[i] = y[i] * iv[i];
     }
     auto dfs = [&](auto &&self, int p) -> Poly

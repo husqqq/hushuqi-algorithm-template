@@ -6,13 +6,11 @@ using namespace std;
 
 inline long long detPrime(vector<vector<long long>> a, long long mod)
 {
-    // 调试检查，可删。
     assert(mod > 1);
     int n = a.size();
     long long ans = 1;
     for (auto &r : a)
     {
-        // 调试检查，可删。
         assert((int)r.size() == n);
         for (auto &x : r)
         {
@@ -70,13 +68,11 @@ inline long long detPrime(vector<vector<long long>> a, long long mod)
 
 inline long long detAny(vector<vector<long long>> a, long long mod)
 {
-    // 调试检查，可删。
     assert(mod > 1);
     int n = a.size();
     long long ans = 1;
     for (auto &r : a)
     {
-        // 调试检查，可删。
         assert((int)r.size() == n);
         for (auto &x : r)
         {
@@ -123,7 +119,6 @@ template <uint32_t P> uint32_t detPrimeFast(const vector<vector<long long>> &src
     vector<uint32_t> cnt(n);
     for (uint32_t i = 0; i < n; i++)
     {
-        assert(src[i].size() == n); // 调试检查，可删
         for (uint32_t j = 0; j < n; j++)
         {
             long long x = src[i][j] % (long long)P;

@@ -4,7 +4,6 @@
 
 optional<P3> linePlane(L3 l, Plane s)
 {
-    assert(sgn(abs(l.v)) != 0 && sgn(abs(s.n)) != 0); // 调试检查，可删。
     Real d = dot(l.v, s.n);
     if (sgn(d / abs(l.v) / abs(s.n)) == 0)
     {
@@ -15,7 +14,6 @@ optional<P3> linePlane(L3 l, Plane s)
 
 optional<L3> planePlane(Plane a, Plane b)
 {
-    assert(sgn(abs(a.n)) != 0 && sgn(abs(b.n)) != 0); // 调试检查，可删。
     P3 v = cross(a.n, b.n);
     Real d = norm(v);
     if (sgn(d / norm(a.n) / norm(b.n)) == 0)

@@ -24,10 +24,8 @@ class PPFactorial
     PPFactorial(int p, int e) : p(p), e(e)
     {
         // p 是质数，e 是正指数；预处理模 p^e 的单位前缀积。
-        assert(p >= 2 && e >= 1); // 调试检查，可删
         for (int i = 0; i < e; i++)
         {
-            assert(mod <= 5000000 / p); // 调试检查，可删
             mod *= p;
         }
         unitPrefix.assign(mod + 1, 1);
@@ -52,7 +50,6 @@ class PPFactorial
     int exponent(int n) const
     {
         // n 是非负整数；返回 n! 中质因子 p 的指数。
-        assert(n >= 0); // 调试检查，可删
         int ans = 0;
         while (n)
         {
@@ -65,7 +62,6 @@ class PPFactorial
     int fact(int n) const
     {
         // n 是非负整数；返回 n! mod p^e。
-        assert(n >= 0); // 调试检查，可删
         int q = exponent(n);
         if (q >= e)
         {
@@ -77,7 +73,6 @@ class PPFactorial
     array<int, 2> split(int n) const
     {
         // n 是非负整数；返回 {n! 的 p-adic 指数,删除 p 后的单位部分}。
-        assert(n >= 0); // 调试检查，可删
         return {exponent(n), unitFact(n)};
     }
 

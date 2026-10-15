@@ -25,7 +25,6 @@ template <class T> T interpIota(const vector<T> &y, long long x)
 {
     // y[i] 是多项式在 i 处的值，x 是非负查询点；返回该多项式在 x 处的值。
     int n = y.size();
-    // 调试检查，可删。
     assert(n > 0 && x >= 0);
     if (x < n)
     {
@@ -62,7 +61,6 @@ template <class T> T interpIota(const vector<T> &y, long long x)
 template <class T> T sumExpPLim(T r, vector<T> f)
 {
     // f[i] 是多项式在 i 处的值且 r!=1；返回生成函数给出的形式无穷和。
-    // 调试检查，可删。
     assert(!f.empty() && r != T(1));
     T q = r / (T(1) - r);
     T term = T(1) / (T(1) - r);
@@ -82,7 +80,6 @@ template <class T> T sumExpPLim(T r, vector<T> f)
 template <class T> T sumExpPoly(T r, const vector<T> &f, long long n)
 {
     // f[i] 是多项式在 i 处的值，n 是项数；返回前 n 项的指数加权和。
-    // 调试检查，可删。
     assert(!f.empty() && n >= 0);
     if (n == 0)
     {

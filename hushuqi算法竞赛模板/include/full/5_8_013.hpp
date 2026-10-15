@@ -44,7 +44,6 @@ struct FastCostFlow
     FastCostFlow(int32_t n = 0) : n(n)
     {
         // n 是点数；构造一张空网络。
-        assert(n >= 0); // 调试检查，可删。
         static_assert(numeric_limits<Cap>::is_signed);
         static_assert(numeric_limits<Cost>::is_signed);
     }
@@ -52,9 +51,6 @@ struct FastCostFlow
     void add(int32_t u, int32_t v, Cap cap, Cost cost)
     {
         // u、v 是端点，cap 是非负容量，cost 是单位费用；加入一条原边。
-        assert(!built); // 调试检查，可删：首次 flow 后不能继续加边。
-        assert(0 <= u && u < n && 0 <= v && v < n && cap >= 0); // 调试检查，可删。
-        assert(cost != numeric_limits<Cost>::min()); // 调试检查，可删。
         raw.push_back({u, v, cap, cost});
         neg |= cap > 0 && cost < 0;
     }
@@ -62,7 +58,6 @@ struct FastCostFlow
     void build()
     {
         // 无参数；把原边一次性展开成按起点连续存储的 CSR 残量图。
-        assert(raw.size() <= (size_t)numeric_limits<int32_t>::max() / 2); // 调试检查，可删。
         start.assign(n + 1, 0);
         for (const auto &a : raw)
         {
@@ -190,7 +185,6 @@ struct FastCostFlow
                     continue;
                 }
                 Cost w = a.cost + h[u] - h[a.to];
-                assert(w >= 0); // 调试检查，可删：势能必须使可达残量边约化费用非负。
                 Cost nd = du + w;
                 if (nd < d[a.to])
                 {
@@ -225,7 +219,6 @@ struct FastCostFlow
                          Cap lim = numeric_limits<Cap>::max())
     {
         // s、t 是固定源汇，lim 是本次最多发送的流量；返回本次新增流量与最小费用。
-        assert(0 <= s && s < n && 0 <= t && t < n && lim >= 0); // 调试检查，可删。
         if (s == t)
         {
             return {0, 0};
@@ -237,7 +230,6 @@ struct FastCostFlow
             build();
             init(s);
         }
-        assert(source == s && sink == t); // 调试检查，可删：分段调用不能更换源汇。
         Cap f = 0;
         Cost cost = 0;
         while (f < lim && dualRef(s, t))

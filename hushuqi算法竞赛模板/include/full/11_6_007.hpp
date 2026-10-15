@@ -10,7 +10,6 @@ struct Sphere
 
 bool in(Sphere s, P3 p)
 {
-    assert(sgn(s.r) >= 0); // 调试检查，可删。
     return sgn(abs(p - s.o) - s.r) <= 0;
 }
 

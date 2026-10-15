@@ -90,7 +90,6 @@ struct ProductMST
     void add(int u, int v, int x, int y)
     {
         // u、v 是端点，x、y 是两种非负边权；加入一条无向边。
-        assert(x >= 0 && y >= 0); // 调试检查，可删。
         e.push_back({u, v, x, y});
     }
 

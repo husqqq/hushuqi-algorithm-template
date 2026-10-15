@@ -19,13 +19,11 @@ struct PerDSU
     PerDSU(int n) : n(n)
     {
         // n 是元素个数；允许 n=0，此时 build 返回空根 0。
-        assert(n >= 0); // 调试检查，可删
     }
 
     int build(int l, int r) const
     {
         // [l,r) 是初始数组范围；初始值全是隐含单点集合，返回空根 0。
-        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         return 0;
     }
 
@@ -53,7 +51,6 @@ struct PerDSU
     pair<int, int> get(int rt, int p) const
     {
         // rt 是版本根，p 是元素下标；返回 {父亲,根大小}，非根的第二项不使用。
-        assert(0 <= p && p < n); // 调试检查，可删
         int v = value(rt, 0, n, p);
         return v < 0 ? pair<int, int>{p, -v} : pair<int, int>{v, 0};
     }
@@ -61,7 +58,6 @@ struct PerDSU
     int set(int x, int l, int r, int p, int v)
     {
         // x 是旧版本节点，[l,r) 是其区间，p 是元素下标；写入覆盖值 v 并返回新根。
-        assert(t.size() < INT32_MAX); // 调试检查，可删
         int y = (int)t.size();
         t.push_back(t[x]);
         if (r - l == 1)

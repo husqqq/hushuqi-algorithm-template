@@ -7,7 +7,6 @@ using namespace std;
 template <class T> vector<vector<T>> stirling1(int n)
 {
     // n 是最大行号；返回有符号第一类 Stirling 数 s(i,j) 的第 0..n 行。
-    assert(n >= 0); // 调试检查，可删。
     vector<vector<T>> a(n + 1, vector<T>(n + 1));
     a[0][0] = 1;
     for (int i = 1; i <= n; i++)
@@ -23,7 +22,6 @@ template <class T> vector<vector<T>> stirling1(int n)
 template <class T> vector<vector<T>> stirling2(int n)
 {
     // n 是最大行号；返回第二类 Stirling 数 S(i,j) 的第 0..n 行。
-    assert(n >= 0); // 调试检查，可删。
     vector<vector<T>> a(n + 1, vector<T>(n + 1));
     a[0][0] = 1;
     for (int i = 1; i <= n; i++)

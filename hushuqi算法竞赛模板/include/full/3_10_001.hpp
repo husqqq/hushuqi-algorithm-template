@@ -59,7 +59,6 @@ struct SqrtBlock
 
     void add(int l, int r, int v)
     {
-        assert(0 <= l && l <= r && r <= n); // 调试检查，可删。
         if (l == r)
         {
             return;
@@ -89,7 +88,6 @@ struct SqrtBlock
     array<int, 3> query(int l, int r) const
     {
         // 返回区间的 {和,最小值,最大值}。
-        assert(0 <= l && l < r && r <= n); // 调试检查，可删。
         array<int, 3> ans{0, numeric_limits<int>::max(), numeric_limits<int>::lowest()};
         for (int k = l / B; L(k) < r; k++)
         {

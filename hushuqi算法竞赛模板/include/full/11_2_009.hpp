@@ -6,7 +6,6 @@ pair<long long, long long> pick(const vector<pair<long long, long long>> &a)
 {
     using i128 = __int128_t;
     int n = (int)a.size();
-    assert(n >= 3); // 调试检查，可删。
     auto ab = [&](i128 x)
     {
         return x < 0 ? -x : x;
@@ -33,9 +32,6 @@ pair<long long, long long> pick(const vector<pair<long long, long long>> &a)
         b += gcd128(dx, dy);
     }
     s = ab(s);
-    assert(s > 0); // 调试检查，可删。
-    assert((s - b) % 2 == 0); // 调试检查，可删。
     i128 in = (s - b + 2) / 2;
-    assert(in >= 0 && in <= LLONG_MAX && b <= LLONG_MAX); // 调试检查，可删。
     return {(long long)in, (long long)b};
 }

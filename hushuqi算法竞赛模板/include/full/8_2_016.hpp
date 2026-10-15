@@ -38,7 +38,6 @@ class SmallPComb
     explicit SmallPComb(int p) : p(p)
     {
         // p 是可承担 O(p^2) 表的素数；建立一位 Lucas 所需的 Pascal 三角。
-        assert(2 <= p && p <= numeric_limits<int32_t>::max()); // 调试检查，可删。
         c.resize(p);
         c[0] = {1};
         for (int i = 1; i < p; i++)
@@ -93,7 +92,6 @@ class Stirling1P : public SmallPComb
     int get(int n, int k) const
     {
         // n、k 是非负 64 位下标；返回有符号 s(n,k) mod p，k>n 时返回 0。
-        assert(n >= 0); // 调试检查，可删。
         if (k < 0 || k > n)
         {
             return 0;

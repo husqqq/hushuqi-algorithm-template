@@ -6,7 +6,6 @@ using namespace std;
 vector<pair<char, long long>> sternPath(long long p, long long q)
 {
     // p、q 是既约正分数的分子与分母；返回 L/R 分段路径编码。
-    assert(p > 0 && q > 0 && gcd(p, q) == 1); // 调试检查，可删
     vector<pair<char, long long>> a;
     while (p != q)
     {
@@ -37,15 +36,12 @@ pair<long long, long long> sternValue(const vector<pair<char, long long>> &a)
     for (auto it = a.rbegin(); it != a.rend(); it++)
     {
         auto [c, k] = *it;
-        assert((c == 'L' || c == 'R') && k > 0); // 调试检查，可删
         if (c == 'L')
         {
-            assert(k <= (numeric_limits<long long>::max() - q) / p); // 调试检查，可删
             q += k * p;
         }
         else
         {
-            assert(k <= (numeric_limits<long long>::max() - p) / q); // 调试检查，可删
             p += k * q;
         }
     }
@@ -189,7 +185,6 @@ ratApprox(long long n, long long x, long long y)
 vector<pair<int, int>> farey(int n)
 {
     // n 是正阶数；返回按值递增的 n 阶 Farey 序列。
-    assert(n >= 1); // 调试检查，可删
     vector<pair<int, int>> a{{0, 1}};
     int p = 0;
     int q = 1;

@@ -8,9 +8,7 @@ namespace setfps
 template <class T> vector<T> compEgf(const vector<T> &c, const vector<T> &f)
 {
     // c[k] 是外层 EGF 的第 k 个分子系数，f 是常数项为 0 的集合幂级数；返回 sum c[k]*f^k/k!。
-    assert(!c.empty() && !f.empty() && has_single_bit(f.size()) && f[0] == T(0)); // 调试检查，可删。
     int n = c.size() - 1;
-    assert(n <= 30 && (int)f.size() == (1LL << n)); // 调试检查，可删。
     vector<vector<vector<T>>> a(n + 1);
     for (int i = 0; i <= n; i++)
     {
@@ -65,7 +63,6 @@ template <class T> vector<T> compEgf(const vector<T> &c, const vector<T> &f)
 template <class T> vector<T> transConv(const vector<T> &f, vector<T> x)
 {
     // f 是固定右因子，x 是输出线性泛函；返回子集卷积算子关于 f 的转置作用结果。
-    assert(!f.empty() && f.size() == x.size() && has_single_bit(f.size())); // 调试检查，可删。
     reverse(x.begin(), x.end());
     x = subsetConv(x, f);
     reverse(x.begin(), x.end());
@@ -75,7 +72,6 @@ template <class T> vector<T> transConv(const vector<T> &f, vector<T> x)
 template <class T> vector<T> projEgf(const vector<T> &f, const vector<T> &w)
 {
     // f 是常数项为 0 的集合幂级数，w 是线性泛函权重；返回 <w,f^k/k!>（0<=k<=n）。
-    assert(!f.empty() && f.size() == w.size() && has_single_bit(f.size()) && f[0] == T(0)); // 调试检查，可删。
     int n = countr_zero((unsigned long long)f.size());
     vector<vector<T>> block(n);
     for (int j = 0; j < n; j++)
@@ -107,7 +103,6 @@ template <class T> vector<T> projEgf(const vector<T> &f, const vector<T> &w)
 template <class T> vector<T> setExp(const vector<T> &f)
 {
     // f[0] 必须为 0；返回子集卷积意义下的 exp(f)。
-    assert(!f.empty() && has_single_bit(f.size()) && f[0] == T(0)); // 调试检查，可删。
     int n = countr_zero((unsigned long long)f.size());
     vector<T> g(f.size());
     g[0] = T(1);
@@ -125,7 +120,6 @@ template <class T> vector<T> setExp(const vector<T> &f)
 template <class T> vector<T> setLog(const vector<T> &g)
 {
     // g[0] 必须为 1；返回子集卷积意义下的 log(g)。
-    assert(!g.empty() && has_single_bit(g.size()) && g[0] == T(1)); // 调试检查，可删。
     int n = countr_zero((unsigned long long)g.size());
     vector<T> f(g.size());
     for (int i = n - 1; i >= 0; i--)
@@ -154,7 +148,6 @@ template <class T> vector<T> setLog(const vector<T> &g)
 template <class T> vector<T> setCompose(const vector<T> &p, const vector<T> &f)
 {
     // p[k] 是普通多项式系数，f 是集合幂级数；返回普通多项式 p(f)。
-    assert(!f.empty() && has_single_bit(f.size())); // 调试检查，可删。
     int n = countr_zero((unsigned long long)f.size());
     if (p.empty())
     {
@@ -186,7 +179,6 @@ template <class T> vector<T> setPowerProj(const vector<T> &f, const vector<T> &w
 {
     // f 是集合幂级数，w 是同长线性泛函权重，m 是输出项数；返回 <w,f^k>（0<=k<m）。
     // T 必须是交换域，且 1..m-1 在其中可逆。
-    assert(m >= 0 && !f.empty() && f.size() == w.size() && has_single_bit(f.size())); // 调试检查，可删。
     if (m == 0)
     {
         return {};

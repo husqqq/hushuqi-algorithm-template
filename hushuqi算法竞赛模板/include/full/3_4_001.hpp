@@ -35,7 +35,6 @@ template <class T, class F> struct ST
     T query(int l, int r) const
     {
         // [l,r) 是非空查询区间；返回其合并结果。
-        assert(0 <= l && l < r && r <= n); // 调试检查，可删
         int k = bit_width((unsigned)(r - l)) - 1;
         return f(a[k][l], a[k][r - (1 << k)]);
     }
@@ -101,7 +100,6 @@ template <class T, class F, uint32_t B = 16> struct BlockST
 
     T query(uint32_t l, uint32_t r) const
     {
-        assert(l < r && r <= n); // 调试检查，可删
         r--;
         uint32_t x = l / B, y = r / B;
         if (x == y)

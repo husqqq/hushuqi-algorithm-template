@@ -39,14 +39,12 @@ struct LineClosest3
 P3 projection(L3 l, P3 p)
 {
     // l 是非退化直线，p 是查询点；返回 p 在 l 上的正交投影。
-    assert(norm(l.v) != 0); // 调试检查，可删。
     return l.p + l.v * (dot(p - l.p, l.v) / norm(l.v));
 }
 
 P3 projection(Plane s, P3 p)
 {
     // s 是非退化平面，p 是查询点；返回 p 在 s 上的正交投影。
-    assert(norm(s.n) != 0); // 调试检查，可删。
     return p - s.n * (dot(p - s.p, s.n) / norm(s.n));
 }
 
@@ -175,7 +173,6 @@ ClosestPair3 segSeg3(P3 a, P3 b, P3 c, P3 d)
 Real angle(L3 a, L3 b)
 {
     // a、b 是两条非退化无向直线；返回范围 [0,pi/2] 的较小夹角弧度。
-    assert(norm(a.v) != 0 && norm(b.v) != 0); // 调试检查，可删。
     Real x = fabsl(dot(a.v, b.v) / abs(a.v) / abs(b.v));
     return acosl(clamp(x, Real(0), Real(1)));
 }
@@ -183,7 +180,6 @@ Real angle(L3 a, L3 b)
 Real angle(L3 a, Plane b)
 {
     // a 是非退化直线，b 是非退化平面；返回范围 [0,pi/2] 的夹角弧度。
-    assert(norm(a.v) != 0 && norm(b.n) != 0); // 调试检查，可删。
     Real x = fabsl(dot(a.v, b.n) / abs(a.v) / abs(b.n));
     return asinl(clamp(x, Real(0), Real(1)));
 }
@@ -191,7 +187,6 @@ Real angle(L3 a, Plane b)
 Real angle(Plane a, Plane b)
 {
     // a、b 是两个非退化无向平面；返回范围 [0,pi/2] 的较小夹角弧度。
-    assert(norm(a.n) != 0 && norm(b.n) != 0); // 调试检查，可删。
     Real x = fabsl(dot(a.n, b.n) / abs(a.n) / abs(b.n));
     return acosl(clamp(x, Real(0), Real(1)));
 }
@@ -199,7 +194,6 @@ Real angle(Plane a, Plane b)
 optional<P3> planesMeet3(Plane a, Plane b, Plane c)
 {
     // a、b、c 是三个非退化平面；返回唯一公共点，不唯一或不存在时返回空。
-    assert(norm(a.n) != 0 && norm(b.n) != 0 && norm(c.n) != 0); // 调试检查，可删。
     Real det = dot(a.n, cross(b.n, c.n));
     if (det == 0)
     {
