@@ -40,18 +40,15 @@ vector<int> sg(const vector<vector<int>> &to)
     }
     assert((int)ord.size() == n); // 调试检查，可删。
     reverse(ord.begin(), ord.end());
-    vector<int> f(n);
+    vector<int> f(n), seen(n + 1, -1);
     for (int x : ord)
     {
-        vector<int> a;
         for (int y : to[x])
         {
-            a.push_back(f[y]);
+            seen[f[y]] = x; // 用状态编号作时间戳，无需逐点清空。
         }
-        sort(a.begin(), a.end());
-        a.erase(unique(a.begin(), a.end()), a.end());
         int g = 0;
-        while (binary_search(a.begin(), a.end(), g))
+        while (seen[g] == x)
         {
             g++;
         }

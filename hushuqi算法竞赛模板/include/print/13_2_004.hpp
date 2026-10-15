@@ -23,14 +23,15 @@ struct RNG
 
     unsigned long long operator()(unsigned long long n)
     {
-        // n 是正上界；返回 [0,n) 内的伪随机整数。
+        // n 是正上界；返回 [0,n) 内的伪随机整数；无符号类型用于 64 位移位与自然溢出。
         assert(n > 0); // 调试检查，可删。
-        unsigned long long lim = -n % n;
+        const auto mx = numeric_limits<unsigned long long>::max();
+        unsigned long long lim = mx - mx % n;
         unsigned long long x;
         do
         {
-            x = next();
-        } while (x < lim);
+            x = next() - 1; // 非零输出平移到 [0,2^64-2]，共有 2^64-1 个值。
+        } while (x >= lim);
         return x % n;
     }
 };

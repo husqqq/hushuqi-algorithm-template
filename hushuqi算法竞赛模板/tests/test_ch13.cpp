@@ -20,7 +20,7 @@ signed main()
 {
     assert(bashWin(numeric_limits<long long>::max(), numeric_limits<long long>::max()));
     assert(!bashWin(0, 1));
-    assert(!antiNimWin({}));
+    assert(antiNimWin({})); // 反规则的无步终局为胜，否则最后取者无法判负。
     assert(!antiNimWin({0, 1}));
     assert(antiNimWin({1, 1}));
     assert(antiNimWin({2, 0}));

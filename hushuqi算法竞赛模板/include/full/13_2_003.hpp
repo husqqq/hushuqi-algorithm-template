@@ -6,6 +6,7 @@ namespace exp_var
 {
 array<long double, 2> moments(const vector<long double> &x, const vector<long double> &p)
 {
+    // x 是取值，p 是对应概率且总和为 1；返回 {期望, 方差}。
     assert(x.size() == p.size());
     assert(!x.empty());
     long double sum = 0;

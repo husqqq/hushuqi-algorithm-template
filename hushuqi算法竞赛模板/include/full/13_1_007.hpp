@@ -24,6 +24,7 @@ int treeSg(const vector<vector<int>> &g, int root = 0)
     int seen = 0;
     auto dfs = [&](auto &&self, int u, int p) -> int
     {
+        // self 是递归自身，u 是当前点，p 是父点；返回接地子树的 SG 值。
         par[u] = p;
         seen++;
         int ans = 0;

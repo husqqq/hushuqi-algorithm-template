@@ -294,93 +294,10 @@ vector<int> divideLayer(const vector<int> &pre, int n, Cost w)
 }
 }
 
-// 知识点 13.1.005：Wythoff 两堆取石博弈。
-namespace wythoff_game
-{
-bool firstWins(int a, int b)
-{
-    // a、b 是非负石子数；返回先手是否必胜。
-    if (a > b) swap(a, b);
-    int k = b - a;
-    long double phi = (1 + sqrt(5.0L)) / 2;
-    int x = floor(k * phi);
-    while (static_cast<__int128>(x + 1) * (x + 1) - static_cast<__int128>(x + 1) * k <=
-           static_cast<__int128>(k) * k)
-    {
-        x++;
-    }
-    while (static_cast<__int128>(x) * x - static_cast<__int128>(x) * k > static_cast<__int128>(k) * k)
-    {
-        x--;
-    }
-    return a != x;
-}
-}
-
-// 知识点 13.1.006：Fibonacci 取石的最优首取量。
-namespace fib_game
-{
-int zeckMin(int n)
-{
-    // n 是正石子数；返回 Zeckendorf 分解中的最小 Fibonacci 项。
-    assert(n > 0);
-    vector<int> f = {1, 2};
-    while (f.back() <= n - f[f.size() - 2])
-    {
-        f.push_back(f.back() + f[f.size() - 2]);
-    }
-    int last = 0;
-    for (auto it = f.rbegin(); it != f.rend(); ++it)
-    {
-        if (*it <= n) n -= *it, last = *it;
-    }
-    return last;
-}
-}
-
-// 知识点 13.1.007：树上删边 Green Hackenbush 的 SG 值。
-namespace edge_del
-{
-int treeSg(const vector<vector<int>> &g, int root = 0)
-{
-    // g 是无向树，root 是地面根；返回整个局面的 SG 值。
-    auto dfs = [&](auto &&self, int u, int p) -> int
-    {
-        // self 是递归自身，u 是当前点，p 是父点；返回当前子树归约后的 SG 值。
-        int ans = 0;
-        for (int v : g[u])
-        {
-            if (v != p) ans ^= self(self, v, u) + 1;
-        }
-        return ans;
-    };
-    return dfs(dfs, root, -1);
-}
-}
-
-// 知识点 13.1.008：固定取法集合的取石子 SG 表。
-namespace stone_game
-{
-vector<int> subGameSG(int n, const vector<int> &take)
-{
-    // n 是最大石子数，take 是每次允许取走的正数；返回 0..n 的 SG 值。
-    vector<int> sg(n + 1);
-    for (int x = 1; x <= n; x++)
-    {
-        vector<char> seen(take.size() + 1);
-        for (int d : take)
-        {
-            assert(d > 0);
-            if (d <= x && sg[x - d] < static_cast<int>(seen.size())) seen[sg[x - d]] = 1;
-        }
-        while (sg[x] < static_cast<int>(seen.size()) && seen[sg[x]])
-        {
-            sg[x]++;
-        }
-    }
-    return sg;
-}
-}
+#include "../13_1_005.hpp"
+#include "../13_1_006.hpp"
+#include "../13_1_007.hpp"
+#include "../13_1_008.hpp"
 
 // 知识点 14.1.008：装箱问题的近似与小规模精确解。
 namespace bin_packing

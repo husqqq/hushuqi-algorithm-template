@@ -4,6 +4,7 @@
 
 array<long double, 3> triangle(long double a, long double b, long double c)
 {
+    // a、b、c 是非退化三角形边长；返回 {面积, c 对应角(弧度), 外接圆半径}。
     assert(a > 0 && b > 0 && c > 0 && a + b > c && a + c > b && b + c > a);
     long double s = (a + b + c) / 2;
     long double area = sqrtl(s * (s - a) * (s - b) * (s - c));

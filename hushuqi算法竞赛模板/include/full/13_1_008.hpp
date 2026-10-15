@@ -6,6 +6,7 @@ namespace stone_game
 {
 vector<int> subGameSG(int n, const vector<int> &take)
 {
+    // n 是最大石子数，take 是每次允许取走的正数；返回 0..n 的 SG 值。
     assert(n >= 0);
     vector<int> step = take;
     sort(step.begin(), step.end());

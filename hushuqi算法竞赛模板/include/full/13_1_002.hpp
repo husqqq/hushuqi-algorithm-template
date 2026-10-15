@@ -25,5 +25,23 @@ bool antiNimWin(const vector<unsigned long long> &a)
         x ^= v;
         one += v == 1;
     }
-    return allOne ? one > 0 && one % 2 == 0 : x != 0;
+    return allOne ? one % 2 == 0 : x != 0;
+}
+
+bool nimKWin(const vector<unsigned long long> &a, int k)
+{
+    // a 是各堆石子数，k>=1 是每步最多可减少的堆数；返回正常规则下先手是否必胜。
+    assert(k >= 1);
+    // 无符号类型保留完整 64 位堆大小，并承载 k+1。
+    unsigned long long mod = (unsigned long long)k + 1;
+    for (int b = 0; b < 64; b++)
+    {
+        unsigned long long cnt = 0;
+        for (auto x : a)
+        {
+            cnt += x >> b & 1;
+        }
+        if (cnt % mod != 0) return true;
+    }
+    return false;
 }
