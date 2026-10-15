@@ -7,7 +7,7 @@ using namespace std;
 template <class T, class C = T> class SegLiChao
 {
     // 当前实现维护最小值。改最大值可直接反向所有优劣比较并把空值改为负无穷，
-    // 或在系数与函数值都能安全取反时对每条线取反后复用本实现，查询非空结果再取反。
+    // 或在系数与函数值能安全取反时对每条线取反后复用本实现，查询非空结果再取反。
   public:
     static_assert(is_floating_point_v<T> || (is_integral_v<T> && is_signed_v<T>));
 

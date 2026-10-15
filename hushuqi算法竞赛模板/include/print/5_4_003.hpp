@@ -4,6 +4,7 @@
 using namespace std;
 #define int long long
 
+// 知识点 5.4.003：2-SAT 的字典序最小可行赋值。
 namespace lex_two_sat
 {
 optional<vector<int>> lexTwoSat(int n, const vector<array<int, 4>> &clauses)

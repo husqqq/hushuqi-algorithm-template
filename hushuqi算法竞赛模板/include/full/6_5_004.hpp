@@ -10,7 +10,7 @@ vector<optional<Acc>> treeDepPack(const vector<int> &w,
                                   const vector<int> &par,
                                   int cap)
 {
-    // w、val、par 是体积、价值和父节点，根的父节点为 -1；返回恰用容量 c 的最大值，c 不可达时为 nullopt。
+    // 返回恰用容量 c 且满足父子依赖的最大价值；nullopt 表示不可达。
     int n = w.size(), rt = n;
     assert((int)val.size() == n && (int)par.size() == n && cap >= 0); // 调试检查，可删
     vector<vector<int>> son(n + 1);
@@ -22,7 +22,6 @@ vector<optional<Acc>> treeDepPack(const vector<int> &w,
     int seen = 0;
     auto dfs = [&](auto &&self, int u) -> vector<optional<Acc>>
     {
-        // u 是虚根或实际物品；返回其子树满足父子依赖的容量状态。
         seen++;
         vector<optional<Acc>> f(cap + 1);
         if (u == rt)
@@ -60,6 +59,6 @@ vector<optional<Acc>> treeDepPack(const vector<int> &w,
         return f;
     };
     auto ans = dfs(dfs, rt);
-    assert(seen == n + 1); // 调试检查，可删：par 必须构成森林。
+    assert(seen == n + 1); // 调试检查，可删：par 必须构成森林
     return ans;
 }

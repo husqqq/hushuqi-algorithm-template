@@ -7,7 +7,7 @@ using namespace std;
 template <class T, class C = T> class LiChao
 {
     // 当前实现维护最小值。改成最大值有两种等价方式：反向所有优劣比较并把空值改为负无穷，
-    // 或在 k、b 与函数值都能安全取反（不能是最小负数）时插入 {-k,-b}，再把非空结果取反。
+    // 或在 k、b 与函数值都能安全取反时插入 {-k,-b}，再把非空结果取反。
   public:
     static_assert(is_floating_point_v<T> || (is_integral_v<T> && is_signed_v<T>));
 

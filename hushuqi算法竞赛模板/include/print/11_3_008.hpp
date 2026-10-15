@@ -1,9 +1,9 @@
 #pragma once
-
-#include "11_3_001.hpp"
+#include "11_1_002.hpp"
 
 template <class T> vector<Point<T>> minkowski(vector<Point<T>> a, vector<Point<T>> b)
 {
+    // a、b 是两个点集；返回其凸包的闵可夫斯基和。
     a = hull(a);
     b = hull(b);
     if (a.empty() || b.empty())
@@ -38,8 +38,7 @@ template <class T> vector<Point<T>> minkowski(vector<Point<T>> a, vector<Point<T
     int j = 0;
     while (i < (int)x.size() || j < (int)y.size())
     {
-        if (j == (int)y.size()
-            || (i < (int)x.size() && sgn(cross(x[i], y[j])) > 0))
+        if (j == (int)y.size() || (i < (int)x.size() && sgn(cross(x[i], y[j])) > 0))
         {
             c.push_back(c.back() + x[i++]);
         }

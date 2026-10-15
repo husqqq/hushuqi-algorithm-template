@@ -148,7 +148,7 @@ optional<MstVariants> secondMST(int n, const vector<array<int, 3>> &edges)
         return mstMergeTop(ans, mx[0][v]);
     };
     optional<int> other, strict;
-    auto upd = [](optional<int> &x, int v)
+    auto upd = [] (optional<int> &x, int v)
     {
         // x 是当前最优候选，v 是新候选；保留较小值。
         if (!x || v < *x)

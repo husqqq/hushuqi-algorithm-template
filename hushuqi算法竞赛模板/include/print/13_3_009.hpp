@@ -1,6 +1,7 @@
 #pragma once
-
-#include "13_1_001.hpp"
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
 
 template <class T> struct Complex
 {

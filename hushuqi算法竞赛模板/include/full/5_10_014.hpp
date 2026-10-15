@@ -23,7 +23,7 @@ optional<TreeDecomp2> treeDecomp2(int n, const vector<pair<int, int>> &edge)
     }
     struct Event
     {
-        int d, v, a, b;
+        int d, v, a, b; // d 是删除时度数，v 是被删点，a、b 是它的邻居（不存在为 -1）。
     };
     vector<Event> ev;
     vector<bool> alive(n, true);

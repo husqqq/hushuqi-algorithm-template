@@ -5,14 +5,14 @@ using namespace std;
 
 template <unsigned P> struct Mont
 {
-    unsigned x = 0; // 真值乘 2^32 后模 P 的 Montgomery 域表示，范围 [0,2P)
+    unsigned x = 0;   // Montgomery 域表示，即 (真值 * 2^32) mod P，范围 [0,2P)
 
     static_assert(P > 0 && (P & 1));
     static_assert(P < (1U << 30));
 
     static constexpr unsigned inv()
     {
-        // 返回 P 关于 2^32 的负逆。
+        // 返回 P 关于 2^32 的负逆 r：满足 P*r ≡ -1 (mod 2^32)，牛顿迭代 5 次收敛。
         unsigned x = P;
         for (int i = 0; i < 5; i++)
         {
@@ -21,18 +21,18 @@ template <unsigned P> struct Mont
         return -x;
     }
 
-    static constexpr unsigned r = inv();
-    static constexpr unsigned r2 = -(unsigned long long)P % P;
+    static constexpr unsigned r = inv(); // r 是 -P^{-1} mod 2^32，用于 Montgomery 约减。
+    static constexpr unsigned r2 = -(unsigned long long)P % P; // r2 是 2^64 mod P，用于转入 Montgomery 表示。
 
     static constexpr unsigned reduce(unsigned long long x)
     {
-        // x 小于 2^32*P；返回 x*2^-32 mod P，结果在 [0,2P) 内。
+        // 输入 x < 2^32 * P，返回 x * 2^-32 mod P（结果在 [0,2P) 内）。
         return (x + (unsigned long long)((unsigned)x * r) * P) >> 32;
     }
 
     Mont(long long v = 0)
     {
-        // 把普通整数 v 编码进 Montgomery 域。
+        // 把普通整数 v 编码进 Montgomery 域
         v %= P;
         if (v < 0)
         {
@@ -43,7 +43,7 @@ template <unsigned P> struct Mont
 
     unsigned val() const
     {
-        // 无参数；返回当前剩余类的最小非负代表元。
+        // 无参数；返回当前剩余类的最小非负整数代表。
         unsigned v = reduce(x);
         return v >= P ? v - P : v;
     }
@@ -113,25 +113,21 @@ template <unsigned P> struct Mont
         // a、b 是同模 Montgomery 数；返回 a+b。
         return a += b;
     }
-
     friend Mont operator-(Mont a, const Mont &b)
     {
         // a、b 是同模 Montgomery 数；返回 a-b。
         return a -= b;
     }
-
     friend Mont operator*(Mont a, const Mont &b)
     {
         // a、b 是同模 Montgomery 数；返回 a*b。
         return a *= b;
     }
-
     friend Mont operator/(Mont a, const Mont &b)
     {
         // a、b 是同模 Montgomery 数且 b 非零；返回 a/b。
         return a /= b;
     }
-
     friend bool operator==(const Mont &a, const Mont &b)
     {
         // a、b 是同模 Montgomery 数；返回二者是否代表同一剩余类。

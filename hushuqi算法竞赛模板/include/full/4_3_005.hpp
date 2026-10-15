@@ -8,7 +8,7 @@ template <int A = 26, char B = 'a'> struct ExSAM
 {
     struct Node
     {
-        array<int, A> ch{};
+        array<int, A> ch{}; // ch[c] 是 SAM 中字符 c 的转移，0 表示不存在。
         // link 是后缀链接，len 是该状态的最长长度。
         int link = -1, len = 0;
         // cnt 是该状态所代表子串在全部输入串中的出现次数。
@@ -17,7 +17,7 @@ template <int A = 26, char B = 'a'> struct ExSAM
 
     struct TrieNode
     {
-        array<int, A> ch{};
+        array<int, A> ch{}; // ch[c] 是 Trie 中字符 c 的儿子，0 表示不存在。
         // pass 是经过该 Trie 节点的输入串数，重复插入重复计算。
         long long pass = 0;
     };

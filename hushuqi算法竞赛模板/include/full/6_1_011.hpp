@@ -15,7 +15,7 @@ vector<CommonNode> commonIntTr(const vector<int> &p)
     // p 是 0..n-1 的排列；返回先序编号的公共区间分解树，父节点编号严格更小。
     struct MaxAddSeg
     {
-        int n;
+        int n; // n 是叶子数。
         vector<int> mx, tag; // mx 是区间最大值，tag 是整段加法懒标记。
         MaxAddSeg(int n) : n(n), mx(n * 4), tag(n * 4)
         {

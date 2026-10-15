@@ -80,4 +80,5 @@ T youngTab(const vector<int> &row)
     }
     return ans;
 }
+
 }

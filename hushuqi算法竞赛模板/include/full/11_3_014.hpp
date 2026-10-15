@@ -1,5 +1,5 @@
 #pragma once
-
+#include "11_1_002.hpp"
 #include "11_1_003.hpp"
 
 optional<pair<__int128, __int128>> triAreaRng2(const vector<Point<long long>> &a)

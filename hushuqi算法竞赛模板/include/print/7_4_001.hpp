@@ -5,7 +5,7 @@
 optional<long long> bsgs(long long a, long long b, long long m,
                          long long ord = -1)
 {
-    // 在 [0,ord) 内求最小解；ord=-1 时使用通用上界 m，无解返回空。
+    // 在 [0,ord) 内求最小解 x；ord=-1 时使用通用上界 m，无解返回空。
     assert(m > 0); // 调试检查，可删
     if (m == 1)
     {
@@ -62,7 +62,7 @@ optional<long long> bsgs(long long a, long long b, long long m,
 
 optional<long long> exbsgs(long long a, long long b, long long m)
 {
-    // 求 a^x=b (mod m) 的最小非负解，不要求 a 与 m 互素。
+    // a 是底数，b 是右端值，m 是模数（不要求与 a 互质）；返回满足 a^x=b (mod m) 的最小非负 x，不存在时返回空。
     assert(m > 0); // 调试检查，可删
     a %= m;
     b %= m;

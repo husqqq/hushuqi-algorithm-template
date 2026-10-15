@@ -1,3 +1,4 @@
+#include "../include/full/11_1_006.hpp"
 #include "../include/full/11_2_002.hpp"
 #include "../include/full/11_2_007.hpp"
 #include "../include/full/11_2_011.hpp"

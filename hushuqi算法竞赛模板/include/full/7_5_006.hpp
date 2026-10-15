@@ -3,7 +3,7 @@
 
 optional<pair<long long, long long>> pell(long long d)
 {
-    // d 是正整数；返回 x^2-d*y^2=1 的基本解，d 为平方数或解越过 long long 时返回空。
+    // d 是正整数；返回 x^2-d*y^2=1 的基本解，d 为平方数或解越界时返回空。
     assert(d > 0); // 调试检查，可删
     long long a0 = kthRoot((unsigned long long)d, 2);
     if ((__int128)a0 * a0 == d)
@@ -35,8 +35,7 @@ optional<pair<long long, long long>> pell(long long d)
         a = (a0 + m) / q;
         __int128 p2 = a * p1 + p0;
         __int128 q2 = a * q1 + q0;
-        if (p2 > numeric_limits<long long>::max() ||
-            q2 > numeric_limits<long long>::max())
+        if (p2 > numeric_limits<long long>::max() || q2 > numeric_limits<long long>::max())
         {
             return nullopt;
         }

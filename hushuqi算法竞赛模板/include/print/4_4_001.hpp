@@ -8,13 +8,13 @@ template <int A = 26, char S = 'a'> struct PAM
 {
     struct Node
     {
-        array<int, A> ch{};
+        array<int, A> ch{}; // ch[c] 是两侧各加字符 c 得到的回文节点，0 表示不存在。
         // len 是回文长度，link 是回文后缀链接，cnt 是出现次数。
         int len = 0, link = 0, cnt = 0;
     };
 
     vector<Node> t{{{}, -1, 0, 0}, {{}, 0, 0, 0}};
-    vector<int> s{-1};
+    vector<int> s{-1}; // s 是已加入的字符，s[0]=-1 作为哨兵。
     // last 是当前最长回文后缀节点，counted 记录出现次数是否已经上传。
     int last = 1;
     bool counted = false;
@@ -30,7 +30,6 @@ template <int A = 26, char S = 'a'> struct PAM
         return p;
     }
 
-    // 追加字符，返回当前最长回文后缀节点；节点数-2 即不同回文串数。
     int add(char c)
     {
         // c 是追加到原串末尾的字符；返回新的最长回文后缀节点。
@@ -67,7 +66,6 @@ template <int A = 26, char S = 'a'> struct PAM
         }
     }
 
-    // 调用一次后 cnt 变为每个不同回文在整串中的出现次数。
     void count()
     {
         // 沿后缀链接上传出现次数；重复调用不再二次累计。

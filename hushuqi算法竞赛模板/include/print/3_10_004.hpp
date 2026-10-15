@@ -4,13 +4,15 @@ using namespace std;
 
 struct DegreeBlock
 {
-    int B;
-    vector<vector<int>> g, big;
-    vector<int> id, w, sum;
+    int B; // B 是重点度数阈值，约为 sqrt(2m)。
+    vector<vector<int>> g, big; // g 是邻接表，big[u] 是 u 的重点邻居编号（id 值）。
+    vector<int> id, w, sum; // id[u] 是重点编号（轻点为 -1），w 是点权，sum[k] 是重点 k 的邻点权值和。
 
     DegreeBlock(int n, const vector<array<int, 2>> &e, vector<int> init = {})
         : g(n), big(n), id(n, -1), w(move(init))
     {
+        // n 是点数，e 是无向边 {u,v}（0 起、无自环），init 是初始点权（空表示全 0）。
+        // 建邻接表，把度数不小于 B≈√(2m) 的点设为重点并预存其邻点权值和。
         assert(n >= 0 && (w.empty() || (int)w.size() == n)); // 调试检查，可删。
         w.resize(n);
         for (auto [u, v] : e)
@@ -46,6 +48,7 @@ struct DegreeBlock
 
     void add(int u, int v)
     {
+        // u 是点编号，v 是增量；令 w[u]+=v，并同步更新与 u 相邻的所有重点的邻点和。
         w[u] += v;
         for (int k : big[u])
         {
@@ -55,6 +58,7 @@ struct DegreeBlock
 
     int query(int u) const
     {
+        // u 是点编号；返回 u 所有邻点的权值和（重边按重数计），重点直接取预存值。
         if (id[u] >= 0)
         {
             return sum[id[u]];

@@ -4,7 +4,8 @@
 
 array<__int128, 3> powerSums(int n)
 {
-    assert(0 <= n && n <= 5107605666LL);
+    // n 是非负整数；返回 1..n 的一次、二次、三次幂和。
+    assert(0 <= n && n <= 5107605666LL); // 调试检查，可删。
     __int128 x = n;
     __int128 s1 = x * (x + 1) / 2;
     __int128 a = x;
@@ -35,7 +36,8 @@ array<__int128, 3> powerSums(int n)
 
 long double harmonic(int n)
 {
-    assert(n >= 0);
+    // n 是非负整数；返回直接累加得到的第 n 个调和数。
+    assert(n >= 0); // 调试检查，可删。
     long double ans = 0;
     for (int i = 1; i <= n;)
     {

@@ -1,9 +1,9 @@
 #pragma once
-
-#include "11_2_001.hpp"
+#include "11_1_002.hpp"
 
 template <class T> vector<array<int, 3>> triangulate(const vector<Point<T>> &a)
 {
+    // a 是简单多边形；返回三角形对应的原顶点下标。
     int n = (int)a.size();
     if (n < 3)
     {
@@ -57,8 +57,7 @@ template <class T> vector<array<int, 3>> triangulate(const vector<Point<T>> &a)
             bool bad = false;
             for (int w : p)
             {
-                if (w != x && w != y && w != z
-                    && inside(a[w], a[x], a[y], a[z]))
+                if (w != x && w != y && w != z && inside(a[w], a[x], a[y], a[z]))
                 {
                     bad = true;
                     break;

@@ -64,7 +64,7 @@ void xorFwt(vector<unsigned __int128> &a, unsigned __int128 mod)
 vector<long long> xorConv(const vector<long long> &a, const vector<long long> &b,
                           long long mod)
 {
-    // a、b 是等长整数序列；mod 为正的有符号 64 位模数，且 n*mod < 2^128。
+    // a、b 是等长整数序列，mod 是正模数；返回最小非负代表元组成的异或卷积。
     assert(mod > 0 && !a.empty() && a.size() == b.size() &&
            has_single_bit(a.size())); // 调试检查，可删。
     int n = a.size();

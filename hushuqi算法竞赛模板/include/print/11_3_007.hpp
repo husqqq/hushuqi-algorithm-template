@@ -1,9 +1,9 @@
 #pragma once
-
-#include "11_1_003.hpp"
+#include "11_1_002.hpp"
 
 template <class T> tuple<T, int, int, int> maxTriangle(const vector<Point<T>> &a)
 {
+    // a 是逆时针凸包；返回最大双倍面积和三个顶点下标。
     int n = (int)a.size();
     tuple<T, int, int, int> ans{0, -1, -1, -1};
     if (n < 3)
@@ -40,6 +40,7 @@ template <class T> tuple<T, int, int, int> maxTriangle(const vector<Point<T>> &a
 
 template <class T> T maxQuad(const vector<Point<T>> &a)
 {
+    // a 是逆时针凸包；返回最大双倍面积。
     int n = (int)a.size();
     T ans = 0;
     auto area = [&](int i, int j, int k)

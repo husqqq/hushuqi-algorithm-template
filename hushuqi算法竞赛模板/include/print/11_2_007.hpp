@@ -1,10 +1,14 @@
 #pragma once
-
+#include "11_1_002.hpp"
+#include "11_1_003.hpp"
+#include "11_1_005.hpp"
+#include "11_1_007.hpp"
+#include "11_1_009.hpp"
 #include "11_2_001.hpp"
-#include "11_2_002.hpp"
 
 vector<P> convexIsect(vector<P> a, const vector<P> &b)
 {
+    // a、b 是逆时针凸包；返回包含退化情形的交集凸包。
     auto in = [&](P p, const vector<P> &q)
     {
         if (q.empty())
@@ -184,5 +188,6 @@ vector<P> convexIsect(vector<P> a, const vector<P> &b)
 
 Real convexUnion(const vector<P> &a, const vector<P> &b)
 {
+    // a、b 是逆时针凸包；返回二者并集面积。
     return area(a) + area(b) - area(convexIsect(a, b));
 }

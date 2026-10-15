@@ -8,7 +8,7 @@ template <int A = 26, char S = 'a'> struct SAM
 {
     struct Node
     {
-        array<int, A> next{};
+        array<int, A> next{}; // next[c] 是字符 c 的转移，0 表示不存在（根没有入边）。
         // link 是后缀链接，len 是最长长度，cnt 是当前出现次数，first 是一个最长串的末位置。
         int link = -1, len = 0, cnt = 0, first = -1;
     };
@@ -91,7 +91,7 @@ template <int A = 26, char S = 'a'> struct SAM
 
     long long distinct() const
     {
-        // 无参数；返回当前自动机表示的不同子串数量。
+        // 返回当前自动机表示的本质不同非空子串数。
         long long ans = 0;
         for (int i = 1; i < (int)t.size(); i++)
         {

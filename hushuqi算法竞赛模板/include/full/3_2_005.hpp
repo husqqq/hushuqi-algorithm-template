@@ -19,6 +19,7 @@ template <class T> struct MaxBIT
         assert(n >= 0); // 调试检查，可删
     }
 
+    // 只支持把单点值增大；若需要任意修改应改用线段树。
     void chmax(int x, T v)
     {
         // x 是 0 下标位置，v 是候选新值；令该点不低于 v。

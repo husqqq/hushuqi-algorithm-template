@@ -73,7 +73,7 @@ struct HLD
     // op(l,r,rev)：区间为 [l,r)，rev 表示沿路径应逆序读取。
     template <class F> void path(int u, int v, F op, bool edge = false) const
     {
-        // 依次回调 u 到 v 的路径区间；edge 表示点权还是边权。
+        // 按 u 到 v 的顺序回调各段；edge=true 时每条边存到较深端点。
         vector<pair<int, int>> right;
         while (top[u] != top[v])
         {
@@ -113,7 +113,7 @@ struct HLD
 
     pair<int, int> subtree(int u) const
     {
-        // 返回 u 子树对应的半开区间。
+        // 返回 u 的子树对应的 DFS 序半开区间。
         return {in[u], in[u] + sz[u]};
     }
 };

@@ -11,20 +11,23 @@ struct MonoHull
 
     struct Line
     {
+        // k、b 是直线 y=kx+b 的斜率和截距。
         int k;
         int b;
 
         Acc get(int x) const
         {
+            // x 是查询横坐标；返回直线在 x 处的函数值。
             return (Acc)k * x + b;
         }
     };
-
+    // q 是按交点顺序排列的下凸壳，last 是上一次查询横坐标。
     deque<Line> q;
     optional<int> last;
 
     static pair<bool, U128> product(int a, int b, int c, int d)
     {
+        // 返回 (a-b)(c-d) 的符号与绝对值，true 表示负数。
         auto diff = [](int x, int y)
         {
             if (x >= y)
@@ -39,6 +42,7 @@ struct MonoHull
 
     static bool less(pair<bool, U128> a, pair<bool, U128> b)
     {
+        // 比较两个符号-绝对值表示的整数。
         if (a.first != b.first)
         {
             return a.first;
@@ -48,7 +52,8 @@ struct MonoHull
 
     void add(int k, int b)
     {
-        assert(q.empty() || k <= q.back().k);
+        // k、b 是新直线的斜率和截距；要求斜率按不增顺序加入。
+        assert(q.empty() || k <= q.back().k); // 调试检查，可删。
         if (!q.empty() && k == q.back().k)
         {
             if (q.back().b <= b)
@@ -75,7 +80,8 @@ struct MonoHull
 
     optional<Acc> query(int x)
     {
-        assert(!last || *last <= x);
+        // x 是不小于上次查询的横坐标；无直线时返回空，否则返回最小函数值。
+        assert(!last || *last <= x); // 调试检查，可删。
         last = x;
         while (q.size() >= 2 && q[1].get(x) <= q[0].get(x))
         {

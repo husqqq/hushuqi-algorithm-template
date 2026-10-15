@@ -8,14 +8,15 @@ vector<optional<Acc>> treePack(const vector<vector<int>> &g,
                                       int root,
                                       int cap)
 {
+    // a[u] 是 {体积,价值,件数}；返回恰用各容量的最大价值，nullopt 表示不可达。
     int n = g.size();
-    assert(n > 0 && (int)a.size() == n && 0 <= root && root < n && cap >= 0);
+    assert(n > 0 && (int)a.size() == n && 0 <= root && root < n && cap >= 0); // 调试检查，可删
     auto dfs = [&](auto &&self, int u, int p) -> vector<optional<Acc>>
     {
         int w = a[u][0];
         Acc v = (Acc)a[u][1];
         int cnt = a[u][2];
-        assert(w > 0 && cnt >= 0);
+        assert(w > 0 && cnt >= 0); // 调试检查，可删
         vector<optional<Acc>> pre(cap + 1), f(cap + 1);
         pre[0] = (Acc)0;
         for (int r = 0; r < w && r <= cap; r++)

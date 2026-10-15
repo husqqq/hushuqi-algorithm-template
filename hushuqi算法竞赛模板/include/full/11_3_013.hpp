@@ -1,21 +1,21 @@
 #pragma once
-
-#include "11_1_003.hpp"
+#include "11_1_002.hpp"
 
 struct UpperHull
 {
     struct Node
     {
-        int l = -1, r = -1, bl = -1, br = -1;
+        int l = -1, r = -1, bl = -1, br = -1; // l、r 是子树最左存活点与最右存活点加一（r=-1 表示子树为空），bl、br 是左右儿子上凸壳之间公切桥的端点。
     };
 
-    int n, sz;
-    vector<Point<long long>> p;
-    vector<Node> tr;
+    int n, sz; // n 是点数，sz 是补齐到 2 的幂的叶子数。
+    vector<Point<long long>> p; // p 是按坐标排序后的点。
+    vector<Node> tr; // tr 是按堆式编号的线段树结点。
     vector<int> orig, pos;
 
     UpperHull(vector<Point<long long>> a) : n(a.size()), p(move(a))
     {
+        // a 是互异整数点；建立包含全部点的动态上凸壳。
         orig.resize(n);
         iota(orig.begin(), orig.end(), 0);
         sort(orig.begin(), orig.end(), [&](int x, int y) { return p[x] < p[y]; });
@@ -45,11 +45,13 @@ struct UpperHull
 
     bool has(int x) const
     {
+        // x 是线段树结点编号；返回该结点子树中是否还有未删除的点。
         return tr[x].r != -1;
     }
 
     void pull(int x)
     {
+        // 这里的叉积还要与坐标相乘，局部扩为 __int128。
         auto cross128 = [](Point<long long> a, Point<long long> b)
         {
             return (__int128)a.x * b.y - (__int128)a.y * b.x;
@@ -132,6 +134,7 @@ struct UpperHull
 
     void erase(int id)
     {
+        // id 是原输入编号；从当前点集中删除该点。
         int x = sz + pos[id];
         tr[x] = {};
         for (x >>= 1; x; x >>= 1)
@@ -142,6 +145,7 @@ struct UpperHull
 
     vector<int> get() const
     {
+        // 无参数；返回当前上凸壳从左到右的原输入编号。
         vector<int> ans;
         auto dfs = [&](auto &&self, int x, int l, int r) -> void
         {
@@ -191,6 +195,7 @@ struct UpperHull
 
 vector<vector<int>> convexLayers(const vector<Point<long long>> &p)
 {
+    // p 是互异且坐标绝对值不超过 1e9 的整数点；返回各层逆时针点编号。
     if (p.empty())
     {
         return {};
@@ -199,7 +204,7 @@ vector<vector<int>> convexLayers(const vector<Point<long long>> &p)
     q.reserve(p.size());
     for (auto [x, y] : p)
     {
-        assert(llabs(x) <= 1000000000 && llabs(y) <= 1000000000);
+        assert(llabs(x) <= 1000000000 && llabs(y) <= 1000000000); // 调试检查，可删。
         q.push_back({-x, -y});
     }
     UpperHull up(p), down(q);

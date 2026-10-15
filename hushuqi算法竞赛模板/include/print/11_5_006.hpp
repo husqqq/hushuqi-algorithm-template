@@ -4,6 +4,7 @@
 
 Real sphereDist(Real lat1, Real lon1, Real lat2, Real lon2, Real r = 1)
 {
+    // lat1、lon1、lat2、lon2 是弧度，r 是非负球半径。
     assert(sgn(r) >= 0); // 调试检查，可删。
     Real x = sinl((lat2 - lat1) / 2);
     Real y = sinl((lon2 - lon1) / 2);

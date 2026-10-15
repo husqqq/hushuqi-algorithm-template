@@ -15,7 +15,7 @@ struct Sudoku
 
     bool dfs(int z = 0)
     {
-        // z 是按行优先扫描时下一个待检查格编号；成功返回 true。
+        // 参数 z 表示 按行优先扫描时下一个待检查的格编号；从该格起继续深度优先搜索，成功返回 true。
         while (z < 81 && a[z / 9][z % 9])
         {
             z++;
@@ -50,7 +50,7 @@ struct Sudoku
 
     bool solve()
     {
-        // 无参数；验证初盘后求字典序最小完整数独，成功返回 true。
+        // 无参数；验证初盘后求字典序最小完整数独，成功返回 true，矛盾时返回 false。
         row.fill(0);
         col.fill(0);
         box.fill(0);

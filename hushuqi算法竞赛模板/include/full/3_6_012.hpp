@@ -11,8 +11,8 @@ template <int W = 30> struct TaggedTrie
 
     struct Node
     {
-        array<int, 2> ch{};
-        array<int, 2> cnt{};
+        array<int, 2> ch{}; // ch[0..1] 是比特 0、1 方向的儿子，0 表示空。
+        array<int, 2> cnt{}; // cnt[t] 是标签 t 的元素经过本节点的次数。
     };
 
     // tr[0] 是空节点，tr[1] 是根；cnt[u][t] 是标签 t 经过 u 的次数。
@@ -20,6 +20,7 @@ template <int W = 30> struct TaggedTrie
 
     bool valid(U x) const
     {
+        // x 是待插入或查询的值；返回 x 是否落在 [0,2^W)。
         if constexpr (W == 64)
         {
             return true;
@@ -29,6 +30,7 @@ template <int W = 30> struct TaggedTrie
 
     int newNode()
     {
+        // 无参数；新建空节点并返回编号。
         tr.push_back(Node{});
         return (int)tr.size() - 1;
     }

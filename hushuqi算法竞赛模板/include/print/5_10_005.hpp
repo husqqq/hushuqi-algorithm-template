@@ -6,7 +6,7 @@ using namespace std;
 
 bool graphical(vector<long long> a)
 {
-    // a 是无向简单图各点度数；返回是否存在恰有该度数多重集的简单图。
+    // a 是无向简单图各点度数；返回是否存在一个简单图恰好具有该度数多重集。
     sort(a.begin(), a.end(), greater<>());
     int n = a.size();
     vector<long long> s(n + 1);

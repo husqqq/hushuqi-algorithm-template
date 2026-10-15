@@ -8,7 +8,7 @@ namespace planar_graph
 {
 optional<vector<int>> chordPlanar(int n, vector<array<int, 2>> es)
 {
-    // n 是按环排列的点数，es[i] 是弦端点；返回内外侧 0/1 方案，无解返回空。
+    // n 是已按环排列的点数，es[i] 是额外弦端点；返回每条弦放环内或环外的 0/1 方案，无解返回空。
     int m = es.size();
     vector<vector<int>> g(m);
     for (auto &[u, v] : es)
@@ -66,7 +66,7 @@ optional<vector<int>> chordPlanar(int n, vector<array<int, 2>> es)
 
 long long faceCount(long long v, long long e, long long comp = 1)
 {
-    // v、e、comp 是点数、边数和连通块数；返回平面嵌入的面数。
+    // v、e、comp 是平面图的点数、边数和连通块数；返回任一平面嵌入的面数。
     if (e >= v)
     {
         return e - v + comp + 1;

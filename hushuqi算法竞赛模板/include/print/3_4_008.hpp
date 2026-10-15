@@ -4,7 +4,7 @@ using namespace std;
 
 class RangeMode
 {
-    int n, B, m;
+    int n, B, m; // n 是序列长度，B 是块长，m 是块数。
     // a 是离散值，val 是原值，rk[i] 是 i 在 pos[a[i]] 中的秩。
     vector<int> a, val, rk;
     vector<vector<int>> pos;

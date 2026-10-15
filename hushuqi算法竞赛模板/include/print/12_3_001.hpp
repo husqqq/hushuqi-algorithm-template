@@ -4,11 +4,12 @@
 
 vector<int> windowDP(const vector<int> &c, int k)
 {
+    // c[i] 是进入状态 i 的代价，k 是前驱窗口长度；返回 f[0]=c[0] 的最小代价 DP。
     if (c.empty())
     {
         return {};
     }
-    assert(k > 0);
+    assert(k > 0); // 调试检查，可删。
     int n = c.size();
     vector<int> f(n);
     deque<int> q;

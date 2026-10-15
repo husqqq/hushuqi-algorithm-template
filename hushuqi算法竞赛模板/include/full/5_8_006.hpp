@@ -11,6 +11,7 @@ struct BinaryCut
     vector<tuple<int, int, Cap>> edge;
     vector<pair<int, int>> hard;
     Cap sum = 0;
+
     BinaryCut(int n) : n(n), s(n), t(n + 1)
     {
         // n 是二元变量数；构造空模型。

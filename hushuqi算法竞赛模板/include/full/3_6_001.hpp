@@ -64,7 +64,7 @@ template <int A = 26, char S = 'a'> struct Trie
 
     int lcp(const string &s) const
     {
-        // s 是查询串；返回它与任意已插入串的最长公共前缀长度。
+        // s 是查询串；返回它与已插入字符串的最长公共前缀长度。
         int p = 0, n = 0;
         for (char c : s)
         {
@@ -81,11 +81,10 @@ template <int A = 26, char S = 'a'> struct Trie
 
     int prefixCnt(const string &s) const
     {
-        // s 是查询前缀；返回以它开头的已插入字符串数。
+        // s 是查询前缀；返回以 s 为前缀的已插入字符串数。
         int p = find(s);
         return p < 0 ? 0 : cnt[p];
     }
-
     int stringCnt(const string &s) const
     {
         // s 是完整查询串；返回它被插入的次数。

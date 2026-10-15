@@ -8,15 +8,15 @@ template <int A = 26> class SqAM
 {
     // go[u][c] 是状态 u 读字符 c 后到达的最早后继，-1 表示不存在。
     vector<array<int, A>> go;
-    // pre[u] 是与状态 u 字符相同的上一次出现位置。
+    // pre[u] 是与状态 u 字符相同的上一次出现位置，-1 表示此前未出现。
     vector<int> pre;
-    // last[c] 是字符 c 最近一次出现所对应的状态。
+    // last[c] 是字符 c 最近一次出现的状态，-1 表示尚未出现。
     array<int, A> last;
 
   public:
     SqAM()
     {
-        // 建立只含空文本状态的自动机。
+        // 建立只含空文本状态的子序列自动机。
         last.fill(-1);
         go.push_back({});
         go[0].fill(-1);
@@ -47,7 +47,7 @@ template <int A = 26> class SqAM
 
     bool contains(const vector<int> &s) const
     {
-        // s 是 [0,A) 内的模式序列；返回它是否为当前文本的子序列。
+        // s 是 [0,A) 内的模式序列；返回 s 是否为当前文本的子序列。
         int u = 0;
         for (int x : s)
         {

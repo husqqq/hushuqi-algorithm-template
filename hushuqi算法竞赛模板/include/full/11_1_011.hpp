@@ -1,9 +1,9 @@
 #pragma once
-
-#include "11_1_003.hpp"
+#include "11_1_002.hpp"
 
 template <class T> int rectKind(const array<Point<T>, 4> &p)
 {
+    // p[0..3] 表示四个无序点；返回 0 非矩形、1 矩形、2 正方形。
     vector<T> d;
     for (int i = 0; i < 4; i++)
     {
@@ -13,8 +13,7 @@ template <class T> int rectKind(const array<Point<T>, 4> &p)
         }
     }
     sort(d.begin(), d.end());
-    if (sgn(d[0]) == 0 || !eq(d[0], d[1]) || !eq(d[2], d[3]) ||
-        !eq(d[4], d[5]) || !eq(d[0] + d[2], d[4]))
+    if (sgn(d[0]) == 0 || !eq(d[0], d[1]) || !eq(d[2], d[3]) || !eq(d[4], d[5]) || !eq(d[0] + d[2], d[4]))
     {
         return 0;
     }

@@ -4,6 +4,7 @@
 
 array<P, 6> triCenters(P a, P b, P c)
 {
+    // a、b、c 表示逆时针或顺时针非共线三角形；依次返回内心、外心、垂心和三个旁心。
     auto x = abs(b - c);
     auto y = abs(c - a);
     auto z = abs(a - b);
@@ -12,8 +13,7 @@ array<P, 6> triCenters(P a, P b, P c)
     assert(sgn(d) != 0); // 调试检查，可删。
     auto bb = square(b - a);
     auto cc = square(c - a);
-    P out{a.x + ((c.y - a.y) * bb - (b.y - a.y) * cc) / d,
-          a.y + ((b.x - a.x) * cc - (c.x - a.x) * bb) / d};
+    P out{a.x + ((c.y - a.y) * bb - (b.y - a.y) * cc) / d, a.y + ((b.x - a.x) * cc - (c.x - a.x) * bb) / d};
     auto orth = a + b + c - out * 2;
     auto exa = (-a * x + b * y + c * z) / (-x + y + z);
     auto exb = (a * x - b * y + c * z) / (x - y + z);

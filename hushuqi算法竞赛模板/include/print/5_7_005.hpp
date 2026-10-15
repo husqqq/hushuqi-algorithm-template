@@ -10,6 +10,7 @@ struct Marriage
     vector<int> a, b;
 };
 
+// pa[x] 是左侧 x 对右侧的偏好；pb[y] 是右侧 y 对左侧的偏好，均从优到劣。
 Marriage stableMatch(const vector<vector<int>> &pa, const vector<vector<int>> &pb)
 {
     // pa、pb 是左右两侧从优到劣的完整偏好表；返回两侧互逆的稳定配偶数组。

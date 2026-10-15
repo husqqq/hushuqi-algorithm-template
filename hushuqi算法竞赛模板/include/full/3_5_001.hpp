@@ -8,7 +8,7 @@ template <class T> struct Treap
 {
     struct Node
     {
-        T x{};
+        T x{}; // x 是节点保存的键。
         // pri 是随机优先级；l、r 是儿子；cnt 是键重复数；sz 是含重复的子树大小。
         unsigned pri = 0;
         int l = 0, r = 0, cnt = 0, sz = 0;

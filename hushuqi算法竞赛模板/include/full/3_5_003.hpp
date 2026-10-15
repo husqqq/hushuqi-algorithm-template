@@ -19,7 +19,7 @@ template <class T> struct PerTreap
 
     // t 是持久化节点池，seed 是优先级生成器状态。
     vector<N> t{N{}};
-    unsigned seed = 712367821;
+    unsigned seed = 712367821; // seed 是 xorshift 随机优先级状态。
 
     unsigned rnd()
     {

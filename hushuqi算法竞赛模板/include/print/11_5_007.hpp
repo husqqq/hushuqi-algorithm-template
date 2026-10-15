@@ -1,5 +1,7 @@
 #pragma once
-
+#include "11_1_002.hpp"
+#include "11_1_003.hpp"
+#include "11_1_005.hpp"
 #include "11_1_009.hpp"
 
 __int128 swCross(Point<long long> a, Point<long long> b, Point<long long> c)

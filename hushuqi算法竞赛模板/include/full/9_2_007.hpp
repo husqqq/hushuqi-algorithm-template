@@ -2,9 +2,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template <class T>
-optional<vector<T>> tridiagonal(vector<T> a, vector<T> b, vector<T> c, vector<T> d)
+template <class T> optional<vector<T>> tridiagonal(vector<T> a, vector<T> b, vector<T> c, vector<T> d)
 {
+    // a、b、c 是下、主、上对角线，d 是右端；零主元时返回空。
     int n = b.size();
     assert((int)a.size() == n && (int)c.size() == n && (int)d.size() == n); // 调试检查，可删。
     if (n == 0)
@@ -39,9 +39,9 @@ optional<vector<T>> tridiagonal(vector<T> a, vector<T> b, vector<T> c, vector<T>
 }
 
 template <class T>
-optional<vector<T>> cyclicTri(vector<T> a, vector<T> b, vector<T> c,
-                                       T tr, T bl, const vector<T> &d)
+optional<vector<T>> cyclicTri(vector<T> a, vector<T> b, vector<T> c, T tr, T bl, const vector<T> &d)
 {
+    // tr、bl 是右上角与左下角系数；追赶法或秩一修正失败时返回空。
     int n = b.size();
     assert(n >= 3); // 调试检查，可删。
     assert((int)a.size() == n && (int)c.size() == n && (int)d.size() == n); // 调试检查，可删。

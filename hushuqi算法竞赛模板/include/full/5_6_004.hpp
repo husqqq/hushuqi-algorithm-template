@@ -1,12 +1,14 @@
 #pragma once
-
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
+#include "5_6_001.hpp"
+#include "5_6_002.hpp"
+#include "5_6_003.hpp"
 
 class HopKarpCSR
 {
-    int nl, nr;
+    int nl, nr; // nl、nr 是左右部点数。
     // edge[i][0]、edge[i][1] 是第 i 条边的左右端点。
     vector<array<int, 2>> edge;
     // 左点 u 的邻边存放在 to[start[u]..start[u+1])。

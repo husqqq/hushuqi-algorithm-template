@@ -8,7 +8,7 @@ struct DynStarCut
 {
     struct Seg
     {
-        int n;
+        int n; // n 是补齐到 2 的幂的叶子数。
         vector<int> mn, tag; // mn 是区间最小值，tag 是整段增量。
         Seg(int n = 0) { init(n); }
         void init(int m)
@@ -55,7 +55,7 @@ struct DynStarCut
         int allMin() const { return mn[1]; }
     };
 
-    int n;
+    int n; // n 是点数。
     vector<vector<int>> tree; // Stoer-Wagner 收缩树的子节点。
     vector<int> par, dep, heavy, head, pos, val; // HLD 父、深度、重儿子、链头、位置与星边权。
     Seg seg;

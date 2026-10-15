@@ -6,9 +6,12 @@ using namespace std;
 
 struct Clique64
 {
-    int n, best = 0;              // n 是点数，best 是已知最大团大小。
-    unsigned long long ans = 0;   // ans 是当前最大团的点位集。
-    vector<unsigned long long> e; // e[u] 的第 v 位表示无向边 u-v。
+    // n 是图的点数；best 是搜索过程中已知的最大团大小。
+    int n, best = 0;
+    // ans 是当前最大团的点位集（第 i 位为 1 表示点 i 在团中）。
+    unsigned long long ans = 0;
+    // e[u] 的第 v 位为 1 表示存在无向边 u-v。
+    vector<unsigned long long> e;
 
     Clique64(int n = 0) : n(n), e(n)
     {
@@ -18,7 +21,7 @@ struct Clique64
 
     void add(int u, int v)
     {
-        // u、v 是端点；加入无向边，自环直接忽略，无返回值。
+        // 加入无向边 u-v；自环与团定义无关，直接忽略。
         assert(0 <= u && u < n && 0 <= v && v < n); // 调试检查，可删。
         if (u == v)
         {

@@ -15,6 +15,7 @@ template <int A = 26> class AC
         int fail = 0;
         Node()
         {
+            // 无参数；Trie 实边置为 -1（不存在），补全转移默认指向根 0。
             ch.fill(-1);
             nxt.fill(0);
         }

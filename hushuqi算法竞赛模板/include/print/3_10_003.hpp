@@ -4,10 +4,11 @@ using namespace std;
 
 struct TreeBlock
 {
-    vector<int> bel, cap;
+    vector<int> bel, cap; // bel[u] 是点 u 所属块编号，cap[k] 是第 k 块的块根（省会）。
 
     TreeBlock(const vector<vector<int>> &g, int root, int B) : bel(g.size(), -1)
     {
+        // g 是树的邻接表，root 是根，B 是块大小下界；王室联邦分块，每块至少 B 个点（剩余点并入最后一块），块根可能不在块内。
         assert(!g.empty() && 0 <= root && root < (int)g.size() && B > 0); // 调试检查，可删。
         vector<int> st;
         auto dfs = [&](auto &&self, int u, int f) -> void

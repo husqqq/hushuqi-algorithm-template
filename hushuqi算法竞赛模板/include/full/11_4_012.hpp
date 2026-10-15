@@ -4,6 +4,7 @@
 
 vector<pair<long long, long long>> circlePoints(long long n)
 {
+    // n 是非负半径平方；返回全部整数解。
     assert(n >= 0); // 调试检查，可删。
     set<pair<long long, long long>> s;
     for (long long x = 0; x == 0 || x <= n / x; x++)

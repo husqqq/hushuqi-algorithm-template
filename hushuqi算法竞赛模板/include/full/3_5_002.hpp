@@ -14,8 +14,8 @@ template <class T> struct FHQ
 
     // tr 保存节点池；root 保存根；seed 保存随机数状态。
     vector<Node> tr{{}};
-    int root = 0;
-    unsigned seed = 712367821;
+    int root = 0; // root 是当前根，0 表示空树。
+    unsigned seed = 712367821; // seed 是 xorshift 随机优先级状态。
 
     unsigned rnd()
     {
@@ -131,7 +131,7 @@ template <class T> struct FHQ
     T kth(int k) const
     {
         // k 是 0 基排名；返回第 k 小键。
-        assert(0 <= k && k < size(root));
+        assert(0 <= k && k < size(root)); // 调试检查，可删
         int p = root;
         while (p)
         {

@@ -3,7 +3,7 @@
 
 unsigned long long pollard(unsigned long long n)
 {
-    // n 是大于 1 的合数；用 Brent 分块乘积返回一个非平凡因子。
+    // n 是合数且 n>1；用 Brent 分块乘积返回非平凡因子，依赖 7.2.003 的 mul64。
     if (n % 2 == 0)
     {
         return 2;
@@ -59,7 +59,7 @@ unsigned long long pollard(unsigned long long n)
 
 vector<unsigned long long> factor64(unsigned long long n)
 {
-    // n 是正整数；返回升序质因子表并保留重数，n=1 返回空表。
+    // n 是正整数；返回 n 的全部质因子并保留重数，结果升序，依赖 7.2.003 的 isPrime。
     assert(n > 0); // 调试检查，可删
     vector<unsigned long long> ans;
     auto dfs = [&](auto &&self, unsigned long long x) -> void

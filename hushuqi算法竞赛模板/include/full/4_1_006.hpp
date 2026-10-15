@@ -4,7 +4,6 @@ using namespace std;
 
 #include "../topic_common.hpp"
 
-// 返回 Lyndon 分解的左端点；最后附带 n 作为哨兵。
 vector<int> lyndon(const string &s)
 {
     // s 是待分解字符串；返回各段左端点，并在末尾附加 s.size()。

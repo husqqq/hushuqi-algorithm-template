@@ -4,6 +4,7 @@
 
 template <class T> T farManhattan(const vector<Point<T>> &a)
 {
+    // a 是点集；返回最远点对的曼哈顿距离。
     if (a.empty())
     {
         return 0;

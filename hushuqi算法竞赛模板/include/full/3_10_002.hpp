@@ -4,28 +4,32 @@ using namespace std;
 
 struct OrderBlock
 {
-    int n, B, m;
-    vector<int> a, tag;
-    vector<vector<int>> s;
+    int n, B, m; // n 是长度，B 是块长，m 是块数。
+    vector<int> a, tag; // a 是元素（不含所在块标记），tag 是块加标记。
+    vector<vector<int>> s; // s[k] 是第 k 块元素（不含标记）的升序副本。
 
     int L(int k) const
     {
+        // k 是块编号；返回第 k 块的起始下标（含）。
         return k * B;
     }
 
     int R(int k) const
     {
+        // k 是块编号；返回第 k 块的结束下标（不含），末块截到 n。
         return min(n, (k + 1) * B);
     }
 
     void pull(int k)
     {
+        // k 是块编号；用块内 a 值重建升序副本 s[k]，要求该块标记已下放（tag[k]=0）。
         s[k].assign(a.begin() + L(k), a.begin() + R(k));
         sort(s[k].begin(), s[k].end());
     }
 
     void push(int k)
     {
+        // k 是块编号；把 tag[k] 加到块内每个 a[i] 后清零。
         if (!tag[k])
         {
             return;
@@ -39,6 +43,7 @@ struct OrderBlock
 
     OrderBlock(vector<int> v) : n(v.size()), a(move(v))
     {
+        // v 是初始数列（0 起下标）；取块长 B≈√n 分块，清零标记并为每块建立升序副本。
         B = max<int>(1, (int)sqrtl(max<int>(1, n)));
         m = (n + B - 1) / B;
         tag.assign(m, 0);
@@ -51,6 +56,7 @@ struct OrderBlock
 
     void add(int l, int r, int v)
     {
+        // [l,r) 是 0 起半开区间，v 是增量；给区间内每个元素加 v，整块只改标记，零散块下放后重排。
         assert(0 <= l && l <= r && r <= n); // 调试检查，可删。
         if (l == r)
         {
@@ -77,6 +83,7 @@ struct OrderBlock
 
     int count(int l, int r, int x, bool le = false) const
     {
+        // [l,r) 是查询区间，x 是阈值；le 为假时返回区间内 <x 的元素个数，为真时返回 ≤x 的个数。
         assert(0 <= l && l <= r && r <= n); // 调试检查，可删。
         int ans = 0;
         for (int k = l / B; L(k) < r; k++)
@@ -105,6 +112,7 @@ struct OrderBlock
 
     optional<int> prev(int l, int r, int x) const
     {
+        // [l,r) 是查询区间，x 是阈值；返回区间内严格小于 x 的最大元素，不存在时为空。
         optional<int> ans;
         for (int k = l / B; L(k) < r; k++)
         {
@@ -142,6 +150,7 @@ struct OrderBlock
 
     optional<int> next(int l, int r, int x) const
     {
+        // [l,r) 是查询区间，x 是阈值；返回区间内大于等于 x 的最小元素，不存在时为空。
         optional<int> ans;
         for (int k = l / B; L(k) < r; k++)
         {
@@ -179,6 +188,7 @@ struct OrderBlock
 
     int kth(int l, int r, int k, int lo, int hi) const
     {
+        // [l,r) 是查询区间，k 从 0 计数，[lo,hi] 是须覆盖答案的整数值域；二分返回区间第 k 小的元素值。
         assert(0 <= k && k < r - l && lo <= hi); // 调试检查，可删。
         while (lo < hi)
         {

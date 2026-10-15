@@ -8,33 +8,36 @@ struct MinDiamTree
 {
     struct Edge
     {
-        int to;
-        long long w;
+        int to; // to 是边的另一端。
+        long long w; // w 是加倍后的边权。
     };
 
     struct State
     {
-        long long d;
-        int u, fa;
+        long long d; // d 是当前距离。
+        int u, fa; // u 是出堆点，fa 是它在最短路树上的前驱。
 
         bool operator>(const State &o) const
         {
+            // o 是另一个状态；按 (d,u,fa) 字典序比较，供小根堆使用。
             return tie(d, u, fa) > tie(o.d, o.u, o.fa);
         }
     };
 
-    int n;
-    vector<vector<Edge>> g;
-    bool valid = true;
-    __int128 totalWeight2 = 0;
+    int n; // n 是点数。
+    vector<vector<Edge>> g; // g 是邻接表，边权已加倍以避免中点出现半整数。
+    bool valid = true; // valid 为假表示加入过非法边或点数非正。
+    __int128 totalWeight2 = 0; // totalWeight2 是全部加倍边权之和，用于检查溢出。
 
     MinDiamTree(int n_) : n(max(0LL, n_)), g(max(0LL, n_))
     {
+        // n_ 是点数；构造空图，点数非正时标记为无效。
         valid = n_ > 0;
     }
 
     bool addEdge(int u, int v, long long w)
     {
+        // u、v 是端点，w 是非负边权；合法时加入无向边并返回 true，否则标记无效并返回 false。
         if (u < 0 || u >= n || v < 0 || v >= n || w < 0 ||
             (__int128)w * 2 + totalWeight2 >= numeric_limits<long long>::max() / 4)
         {
@@ -49,6 +52,7 @@ struct MinDiamTree
 
     pair<vector<long long>, vector<int>> dijkstra(int s, const vector<vector<Edge>> &a) const
     {
+        // s 是源点，a 是邻接表；返回各点距离与最短路树前驱（源点前驱为自身，不可达为 -1）。
         int m = a.size();
         const long long INF = numeric_limits<long long>::max() / 4;
         vector<long long> dis(m, INF);
@@ -80,6 +84,7 @@ struct MinDiamTree
 
     optional<pair<long long, vector<pair<int, int>>>> solve() const
     {
+        // 无参数；返回最小直径与一组生成树边，图非法或不连通时返回空。
         if (!valid || n == 0) return nullopt;
         const long long INF = numeric_limits<long long>::max() / 4;
         vector<vector<long long>> dis(n);

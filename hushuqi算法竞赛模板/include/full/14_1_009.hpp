@@ -2,6 +2,7 @@
 
 #include "14_1_001.hpp"
 
+// 知识点 14.1.009：障碍点网格最短路径计数。
 namespace grid_count
 {
 template<class T, class C>

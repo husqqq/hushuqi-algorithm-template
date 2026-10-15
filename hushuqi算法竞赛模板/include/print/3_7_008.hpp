@@ -134,7 +134,7 @@ struct PermTree
         int firstZero()
         {
             // 无参数；返回 q 中最左的零位置。
-            assert(mn[1] == 0);
+            assert(mn[1] == 0); // 调试检查，可删
             return firstZero(1, 0, n);
         }
     };
@@ -152,11 +152,12 @@ struct PermTree
         }
         vector<int> chk = a;
         sort(chk.begin(), chk.end());
-        assert(unique(chk.begin(), chk.end()) == chk.end());
-        assert((__int128)chk.back() - (__int128)chk[0] == n - 1);
+        assert(unique(chk.begin(), chk.end()) == chk.end()); // 调试检查，可删
+        assert((__int128)chk.back() - (__int128)chk[0] == n - 1); // 调试检查，可删
         RMQ rmq(a);
         Seg seg(n);
         vector<int> low, high, forest;
+
         auto common = [&](int l, int r)
         {
             auto [mn, mx] = rmq.query(l, r);
@@ -172,6 +173,7 @@ struct PermTree
             t[u].ch.push_back(v);
             t[v].par = u;
         };
+
         for (int i = 0; i < n; i++)
         {
             int lp = low.empty() ? 0 : low.back() + 1;
@@ -185,6 +187,7 @@ struct PermTree
             }
             seg.add(lp, i + 1, -(__int128)a[i]);
             low.push_back(i);
+
             lp = high.empty() ? 0 : high.back() + 1;
             while (!high.empty() && a[i] >= a[high.back()])
             {
@@ -196,6 +199,7 @@ struct PermTree
             }
             seg.add(lp, i + 1, (__int128)a[i]);
             high.push_back(i);
+
             int now = node(i, i + 1, 0);
             int le = seg.firstZero();
             while (!forest.empty() && t[forest.back()].l >= le)
@@ -239,7 +243,7 @@ struct PermTree
             forest.push_back(now);
             seg.add(0, i + 1, -1);
         }
-        assert(forest.size() == 1);
+        assert(forest.size() == 1); // 调试检查，可删
         root = forest[0];
         for (auto &x : t)
         {

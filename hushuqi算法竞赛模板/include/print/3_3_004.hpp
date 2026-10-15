@@ -53,7 +53,7 @@ class AddMinSeg
 
     void add(int p, int l, int r, int ql, int qr, long long v)
     {
-        // p、[l,r) 是当前节点，[ql,qr) 是修改区间，v 是增量。
+        // p、[l,r) 是当前节点， [ql,qr) 是修改区间，v 是增量。
         if (qr <= l || r <= ql)
         {
             return;

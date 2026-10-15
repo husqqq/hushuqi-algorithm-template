@@ -6,7 +6,7 @@ using namespace std;
 
 bool tourScore(vector<long long> a)
 {
-    // a 是竞赛图各点出度；返回是否存在恰有该出度多重集的竞赛图。
+    // a 是竞赛图各点出度；返回是否存在一个竞赛图恰好具有该出度多重集。
     sort(a.begin(), a.end());
     int n = a.size();
     __int128 sum = 0;

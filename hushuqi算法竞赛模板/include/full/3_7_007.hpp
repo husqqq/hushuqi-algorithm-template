@@ -89,7 +89,7 @@ template <class T, class F> struct AggDeque
     }
     T back() const
     {
-        // 返回队尾元素，不为读取重建两侧栈。
+        // 返回队尾元素；只读端点，不为读取重建两侧栈。
         assert(!empty()); // 调试检查，可删
         return r.empty() ? l.front().first : r.back().first;
     }

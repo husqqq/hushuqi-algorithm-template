@@ -89,7 +89,7 @@ struct BigInt
 
     void norm()
     {
-        // 无参数；删除多项式末尾多余的零系数，无返回值。
+        // 删除最高端零块并同步零值符号，无返回值。
         while (!a.empty() && !a.back())
         {
             a.pop_back();
@@ -314,7 +314,7 @@ struct BigInt
     static pair<BigInt, BigInt> divmod(const BigInt &x, const BigInt &y)
     {
         // x 是被除数，y 是非零除数；返回向零取整的商和与 x 同号的余数。
-        assert(y.s);
+        assert(y.s); // 调试检查，可删。
         BigInt q, r, d = y;
         d.s = 1;
         q.a.resize(x.a.size());

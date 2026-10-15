@@ -4,10 +4,11 @@
 
 bool boundSubset(const vector<int> &cnt, const vector<int> &w, int sum)
 {
-    assert(cnt.size() == w.size() && sum >= 0);
+    // cnt、w 分别是每类物品数量和正权值，sum 是目标和；返回目标是否可达。
+    assert(cnt.size() == w.size() && sum >= 0); // 调试检查，可删。
     for (int i = 0; i < (int)w.size(); i++)
     {
-        assert(cnt[i] >= 0 && w[i] > 0);
+        assert(cnt[i] >= 0 && w[i] > 0); // 调试检查，可删。
     }
     vector<int> rem(sum + 1, -1);
     rem[0] = 0;

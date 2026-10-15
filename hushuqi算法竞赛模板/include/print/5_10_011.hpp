@@ -7,7 +7,7 @@ using namespace std;
 template <class M1, class M2>
 vector<int> matroidMeet(int n, M1 first, M2 second)
 {
-    // n 是底集大小，first、second 是独立性判定；返回升序最大公共独立集。
+    // n 是底集大小，first、second 判定选择集在两个拟阵中是否独立；返回升序最大公共独立集。
     vector<bool> in(n);
     while (true)
     {

@@ -2,21 +2,23 @@
 
 #include "12_1_001.hpp"
 
+// 知识点 12.2.003：矩形棋盘切成 k 块的最小平方和。
 namespace board_part
 {
 template <class Acc = long long>
 Acc splitBoard(const vector<vector<int>> &a, int parts)
 {
+    // a 是非空棋盘，parts 是块数；返回最小平方和。
     static_assert(numeric_limits<Acc>::is_integer && numeric_limits<Acc>::is_signed &&
                   sizeof(Acc) >= sizeof(long long));
-    assert(!a.empty() && !a[0].empty());
+    assert(!a.empty() && !a[0].empty()); // 调试检查，可删。
     int n = a.size();
     int m = a[0].size();
-    assert(1 <= parts && parts <= n * m);
+    assert(1 <= parts && parts <= n * m); // 调试检查，可删。
     vector<vector<Acc>> s(n + 1, vector<Acc>(m + 1));
     for (int i = 0; i < n; i++)
     {
-        assert((int)a[i].size() == m);
+        assert((int)a[i].size() == m); // 调试检查，可删。
         for (int j = 0; j < m; j++)
         {
             s[i + 1][j + 1] = s[i][j + 1] + s[i + 1][j] - s[i][j] + a[i][j];
@@ -24,12 +26,15 @@ Acc splitBoard(const vector<vector<int>> &a, int parts)
     }
     auto sum = [&](int x1, int y1, int x2, int y2)
     {
+        // 四个参数定义半开子矩形；返回元素和。
         return s[x2][y2] - s[x1][y2] - s[x2][y1] + s[x1][y1];
     };
+    // Key[0..4] 依次是上、左、下、右边界与块数。
     using Key = array<int, 5>;
     map<Key, optional<Acc>> memo;
     auto dfs = [&](auto &&self, int x1, int y1, int x2, int y2, int k) -> optional<Acc>
     {
+        // self 是递归自身，四坐标定义矩形，k 是块数；返回最小平方和。
         Key key{x1, y1, x2, y2, k};
         if (auto it = memo.find(key); it != memo.end())
         {

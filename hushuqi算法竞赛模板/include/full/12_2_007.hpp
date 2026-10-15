@@ -5,6 +5,7 @@
 template<class T>
 vector<T> lis(const vector<T> &a)
 {
+    // a 是输入序列；返回一条严格最长上升子序列。
     int n = a.size();
     vector<T> tail;
     vector<int> at;

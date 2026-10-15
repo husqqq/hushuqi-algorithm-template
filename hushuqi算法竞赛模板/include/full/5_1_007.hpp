@@ -7,7 +7,7 @@ using namespace std;
 template <class Dist = long long>
 optional<vector<Dist>> diffCons(int n, const vector<array<int, 3>> &a)
 {
-    // n 是变量数，a[i] 是约束 u、v、w；无解返回空，否则返回一组可行解。
+    // n 是变量个数；a[i][0..2] 依次是 u、v、w，表示 x[v]-x[u]<=w；无解返回空，否则返回一组可行 x。
     vector<Dist> x(n);
     if (n == 0)
     {

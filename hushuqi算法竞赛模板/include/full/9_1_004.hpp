@@ -3,8 +3,7 @@
 using namespace std;
 
 template <class T, class Add, class Mul>
-vector<vector<T>> semiringMul(const vector<vector<T>> &a, const vector<vector<T>> &b,
-                              T zero, Add add, Mul mul)
+vector<vector<T>> semiringMul(const vector<vector<T>> &a, const vector<vector<T>> &b, T zero, Add add, Mul mul)
 {
     // a、b 是待乘矩阵，zero 是加法单位元；add、mul 定义半环加法与乘法。
     int n = a.size();
@@ -35,8 +34,7 @@ vector<vector<T>> semiringMul(const vector<vector<T>> &a, const vector<vector<T>
 }
 
 template <class T, class Add, class Mul>
-vector<vector<T>> semiringPow(vector<vector<T>> a, unsigned long long b,
-                              T zero, T one, Add add, Mul mul)
+vector<vector<T>> semiringPow(vector<vector<T>> a, unsigned long long b, T zero, T one, Add add, Mul mul)
 {
     // a 是方阵，b 是非负指数；zero、one 是加法与乘法单位元。
     int n = a.size();

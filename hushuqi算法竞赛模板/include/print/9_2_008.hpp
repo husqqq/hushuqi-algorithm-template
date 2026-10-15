@@ -5,14 +5,16 @@ using namespace std;
 
 template <class T> T pfaffian(vector<vector<T>> a)
 {
+    // a 是偶数阶斜对称矩阵，T 是域；返回 Pfaffian。
     int n = a.size();
     assert(n % 2 == 0); // 调试检查，可删。
+    // 调试检查，可删。
     for (int i = 0; i < n; i++)
     {
-        assert((int)a[i].size() == n && a[i][i] == T(0)); // 调试检查，可删。
+        assert((int)a[i].size() == n && a[i][i] == T(0));
         for (int j = 0; j < n; j++)
         {
-            assert(a[i][j] == -a[j][i]); // 调试检查，可删。
+            assert(a[i][j] == -a[j][i]);
         }
     }
     T ans = 1;

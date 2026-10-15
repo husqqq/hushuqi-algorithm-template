@@ -4,6 +4,7 @@
 
 pair<long long, long long> pick(const vector<pair<long long, long long>> &a)
 {
+    // a 是非退化格点简单多边形；返回内部、边界格点数。
     using i128 = __int128_t;
     int n = (int)a.size();
     assert(n >= 3); // 调试检查，可删。

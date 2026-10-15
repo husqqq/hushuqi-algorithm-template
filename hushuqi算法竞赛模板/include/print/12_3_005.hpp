@@ -5,13 +5,14 @@
 template <class Acc = long long>
 Acc wqsPartition(const vector<int> &pre, int K)
 {
+    // pre 是正数数组的前缀和，K 是目标段数；返回恰分 K 段的最小平方和。
     static_assert(numeric_limits<Acc>::is_integer && numeric_limits<Acc>::is_signed &&
                   sizeof(Acc) >= sizeof(long long));
     int n = (int)pre.size() - 1;
-    assert(n >= 1 && 1 <= K && K <= n && pre[0] == 0);
+    assert(n >= 1 && 1 <= K && K <= n && pre[0] == 0); // 调试检查，可删。
     for (int i = 1; i <= n; i++)
     {
-        assert(pre[i] > pre[i - 1]);
+        assert(pre[i] > pre[i - 1]); // 调试检查，可删。
     }
     Acc total = pre[n];
     if (K == 1)
@@ -20,6 +21,7 @@ Acc wqsPartition(const vector<int> &pre, int K)
     }
     auto check = [&](Acc lambda)
     {
+        // lambda 是每段罚值；返回含罚最优代价及同代价下的最多段数。
         vector<Acc> dp(n + 1);
         vector<int> cnt(n + 1);
         for (int i = 1; i <= n; i++)

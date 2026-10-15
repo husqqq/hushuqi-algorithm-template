@@ -20,8 +20,7 @@ struct Date
     static int monthDays(int y, int m)
     {
         // y、m 是公历年份和月份；返回该月的天数。
-        static constexpr int a[] = {0, 31, 28, 31, 30, 31, 30,
-                                    31, 31, 30, 31, 30, 31};
+        static constexpr int a[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         assert(1 <= m && m <= 12); // 调试检查，可删。
         return a[m] + (m == 2 && leap(y));
     }
@@ -32,6 +31,7 @@ struct Date
         return 1 <= m && m <= 12 && 1 <= d && d <= monthDays(y, m);
     }
 
+    // 与 1970-01-01 相差的天数，可为负。
     long long days() const
     {
         // 无参数；返回当前日期与 1970-01-01 相差的天数。
@@ -47,6 +47,7 @@ struct Date
         return (long long)z;
     }
 
+    // days() 的逆变换。
     static Date fromDays(long long z)
     {
         // z 是相对 1970-01-01 的天数；返回对应公历日期。
@@ -63,6 +64,7 @@ struct Date
         return {(long long)yy, (long long)mm, (long long)dd};
     }
 
+    // 周日为 0，周一为 1，...，周六为 6。
     int weekday() const
     {
         // 无参数；返回当前日期的星期编号，周日为 0。

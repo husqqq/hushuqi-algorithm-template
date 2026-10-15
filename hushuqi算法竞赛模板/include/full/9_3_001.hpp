@@ -3,13 +3,11 @@
 using namespace std;
 
 template <class F>
-long double simpson(F f, long double l, long double r,
-                            long double err = 1E-12L, int dep = 24)
+long double simpson(F f, long double l, long double r, long double err = 1E-12L, int dep = 24)
 {
     // f 是被积函数，[l,r] 是区间，err 是绝对误差目标，dep 是递归上限；返回定积分近似值。
     assert(err > 0 && dep >= 0); // 调试检查，可删。
-    auto simpson = [](long double ql, long double qr, long double vl,
-                      long double vm, long double vr)
+    auto simpson = [](long double ql, long double qr, long double vl, long double vm, long double vr)
     {
         // ql、qr 是端点，vl、vm、vr 是左端、中点、右端函数值；返回一次 Simpson 近似。
         return (vl + 4 * vm + vr) * (qr - ql) / 6;
@@ -18,9 +16,15 @@ long double simpson(F f, long double l, long double r,
     long double fl = f(l);
     long double fm = f(m);
     long double fr = f(r);
-    auto dfs = [&](auto &&self, long double ql, long double qr, long double vl,
-                   long double vm, long double vr, long double whole,
-                   long double tol, int depth) -> long double
+    auto dfs = [&](auto &&self,
+                   long double ql,
+                   long double qr,
+                   long double vl,
+                   long double vm,
+                   long double vr,
+                   long double whole,
+                   long double tol,
+                   int depth) -> long double
     {
         // self 是递归入口，whole 是当前段近似，tol 是误差预算，depth 是剩余层数；返回当前段积分值。
         long double mid = (ql + qr) / 2;

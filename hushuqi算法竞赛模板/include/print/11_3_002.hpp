@@ -1,15 +1,15 @@
 #pragma once
-
-#include "11_1_009.hpp"
+#include "11_1_002.hpp"
 
 template <class T> struct HullChain
 {
-    int dir;          // dir=1 维护上凸链，dir=-1 维护下凸链。
+    int dir;          // dir=1 维护上壳，dir=-1 维护下壳。
     set<Point<T>> a;  // a 按 x、y 保存当前严格凸链。
 
     HullChain(int dir) : dir(dir)
     {
-        assert(abs(dir) == 1);
+        // dir 取 1 或 -1；分别构造上壳或下壳。
+        assert(abs(dir) == 1); // 调试检查，可删
     }
 
     T turn(Point<T> x, Point<T> y, Point<T> z) const

@@ -2,6 +2,7 @@
 
 #include "5_6_003.hpp"
 
+// DAG 的最小点不相交路径覆盖，返回路径中的原图顶点。
 vector<vector<int>> dagPathCover(int n, const vector<pair<int, int>> &edges)
 {
     // n 是点数，edges 是 DAG 边；返回一组最小点不相交路径覆盖。

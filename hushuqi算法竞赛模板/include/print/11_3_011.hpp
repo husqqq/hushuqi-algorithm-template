@@ -1,6 +1,6 @@
 #pragma once
-
-#include "11_1_009.hpp"
+#include "11_1_002.hpp"
+#include "11_1_003.hpp"
 
 using IP = Point<int>;
 using IW = __int128_t;
@@ -9,10 +9,10 @@ struct DelaunayG
 {
     struct Edge
     {
-        int to = 0;          // to 保存有向边终点。
+        int to = 0;           // to 保存有向边终点。
         int ccw = 0, cw = 0; // ccw、cw 是同起点边的逆时针、顺时针相邻边。
-        int rev = 0;         // rev 保存反向边编号。
-        bool on = false;     // on 表示边当前是否存在。
+        int rev = 0;          // rev 保存反向边编号。
+        bool on = false;      // on 表示边当前是否存在。
     };
 
     vector<IP> p;      // p 是按 x、y 排序且去重后的点。
@@ -380,7 +380,7 @@ DelaunayRes delaunay(const vector<IP> &input)
             }
             if (area > 0)
             {
-                assert(face.size() == 3);
+                assert(face.size() == 3); // 调试检查，可删
                 tri.push_back({face[0], face[1], face[2]});
             }
         }

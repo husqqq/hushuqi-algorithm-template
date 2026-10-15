@@ -6,17 +6,18 @@ template <class T> struct ClosestPair
 {
     struct Q
     {
-        Point<T> p;
-        int id;
+        Point<T> p; // p 保存二维点。
+        int id; // id 保存原下标。
     };
 
-    vector<Q> a;
-    vector<Q> b;
-    T ans;
-    pair<int, int> ids;
+    vector<Q> a; // a 保存递归中按 x 或 y 排序的点。
+    vector<Q> b; // b 保存归并缓冲区。
+    T ans; // ans 保存当前最小距离平方。
+    pair<int, int> ids; // ids 保存对应的两个原下标。
 
     void upd(Q x, Q y)
     {
+        // x、y 是两个带原下标的点；尝试更新答案。
         T d = norm(x.p - y.p);
         if (d < ans)
         {
@@ -27,6 +28,7 @@ template <class T> struct ClosestPair
 
     void solve(int l, int r)
     {
+        // 递归求 [l,r) 的最近点对，并把该段按 y 坐标归并。
         if (r - l <= 3)
         {
             for (int i = l; i < r; i++)
@@ -36,7 +38,9 @@ template <class T> struct ClosestPair
                     upd(a[i], a[j]);
                 }
             }
-            sort(a.begin() + l, a.begin() + r, [](Q x, Q y)
+            sort(a.begin() + l,
+                 a.begin() + r,
+                 [](Q x, Q y)
                  {
                      return x.p.y < y.p.y;
                  });
@@ -46,8 +50,12 @@ template <class T> struct ClosestPair
         T x = a[m].p.x;
         solve(l, m);
         solve(m, r);
-        merge(a.begin() + l, a.begin() + m, a.begin() + m, a.begin() + r,
-              b.begin() + l, [](Q x, Q y)
+        merge(a.begin() + l,
+              a.begin() + m,
+              a.begin() + m,
+              a.begin() + r,
+              b.begin() + l,
+              [](Q x, Q y)
               {
                   return x.p.y < y.p.y;
               });
@@ -73,6 +81,7 @@ template <class T> struct ClosestPair
 
     optional<pair<T, pair<int, int>>> work(const vector<Point<T>> &p)
     {
+        // p 是输入点集；返回最小距离平方与一对原下标。
         if (p.size() < 2)
         {
             return nullopt;
@@ -83,7 +92,9 @@ template <class T> struct ClosestPair
         {
             a[i] = {p[i], i};
         }
-        sort(a.begin(), a.end(), [](Q x, Q y)
+        sort(a.begin(),
+             a.end(),
+             [](Q x, Q y)
              {
                  return x.p.x != y.p.x ? x.p.x < y.p.x : x.p.y < y.p.y;
              });

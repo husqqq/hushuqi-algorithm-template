@@ -33,6 +33,7 @@ struct Info
 
     static Info identity()
     {
+        // 无参数；返回长度为 0 的空区间信息，作为合并单位元。
         Info c;
         c.len = 0;
         return c;
@@ -65,6 +66,7 @@ template <class Info, class Tag> struct LazySeg
 
     static Info identity()
     {
+        // 无参数；Info 自带 identity() 时用它，否则用默认构造值作为合并单位元。
         if constexpr (requires { Info::identity(); })
             return Info::identity();
         else
@@ -289,8 +291,3 @@ template <class Info, class Tag> struct LazySeg
         return l == r ? -1 : findLast(1, 0, n, l, r, ok);
     }
 };
-
-// a 是初始叶子信息。
-// LazySeg<Info, Tag> seg(a);
-// seg.apply(1, 4, Tag{2}); // 给 [1,4) 的每个数加 2。
-// long long ans = seg.query(0, 4).sum; // 查询 [0,4) 的区间和。

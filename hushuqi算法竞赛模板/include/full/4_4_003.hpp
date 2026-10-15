@@ -8,13 +8,13 @@ template <int A = 26, char S = 'a'> struct PamSeries
 {
     struct Node
     {
-        array<int, A> ch{};
+        array<int, A> ch{}; // ch[c] 是两侧各加字符 c 得到的回文节点，0 表示不存在。
         // diff=len-len[link]，series 指向上一条不同公差的系列。
         int len = 0, link = 0, diff = 0, series = 0;
     };
 
     vector<Node> t{{{}, -1, 0, 0, 0}, {{}, 0, 0, 0, 0}};
-    vector<int> s{-1};
+    vector<int> s{-1}; // s 是已加入的字符，s[0]=-1 作为哨兵。
     // last 是当前最长回文后缀节点。
     int last = 1;
 

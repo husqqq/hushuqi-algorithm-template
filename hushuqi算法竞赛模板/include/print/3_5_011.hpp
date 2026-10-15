@@ -20,8 +20,8 @@ template <class T> struct ImpTreap
 
     // tr 是节点池，root 是当前序列根，seed 是 xorshift 优先级状态。
     vector<Node> tr{Node{}};
-    int root = 0;
-    unsigned seed = 712367821;
+    int root = 0; // root 是当前序列根，0 表示空序列。
+    unsigned seed = 712367821; // seed 是 xorshift 随机优先级状态。
 
     unsigned rnd()
     {

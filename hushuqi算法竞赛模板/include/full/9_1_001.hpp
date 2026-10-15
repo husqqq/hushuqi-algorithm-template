@@ -30,7 +30,6 @@ template <class T> struct Mat
         // x 是行下标；返回该行的可修改引用。
         return a[x];
     }
-
     const vector<T> &operator[](int x) const
     {
         // x 是行下标；返回该行的只读引用。

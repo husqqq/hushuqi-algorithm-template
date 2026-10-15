@@ -4,27 +4,32 @@
 
 namespace integer_hpi
 {
+// ILine[0..2] 依次是整数半平面 a*x+b*y+c>=0 的系数 a、b、c。
 using ILine = array<int, 3>;
+// IRatPoint[0..2] 依次是有理点横坐标分子、纵坐标分子和公共正分母。
 using IRatPoint = array<__int128, 3>;
 
 int half(int x, int y)
 {
+    // x、y 是非零方向向量的坐标；返回它在极角排序中所属的半平面编号。
     return y < 0 || (y == 0 && x < 0);
 }
 
 __int128 det(const ILine &p, const ILine &q)
 {
+    // p、q 是两条半平面的系数；返回它们法向量的叉积。
     return (__int128)p[0] * q[1] - (__int128)p[1] * q[0];
 }
 
 bool sameDir(const ILine &p, const ILine &q)
 {
-    return det(p, q) == 0
-        && (__int128)p[0] * q[0] + (__int128)p[1] * q[1] > 0;
+    // p、q 是两条半平面；返回它们的边界方向是否相同，而不是相反。
+    return det(p, q) == 0 && (__int128)p[0] * q[0] + (__int128)p[1] * q[1] > 0;
 }
 
 bool stricter(const ILine &p, const ILine &q)
 {
+    // p、q 必须同向；返回 p 是否比 q 的可行半平面更小。
     auto ab = [](__int128 x)
     {
         return x < 0 ? -x : x;
@@ -36,31 +41,34 @@ bool stricter(const ILine &p, const ILine &q)
 
 bool compatible(const ILine &p, const ILine &q)
 {
+    // p、q 的法向量必须反向；返回两个闭半平面是否相容。
     __int128 d = (__int128)p[0] * p[0] + (__int128)p[1] * p[1];
     __int128 x = -(__int128)p[0] * p[2];
     __int128 y = -(__int128)p[1] * p[2];
-    return (__int128)q[0] * x + (__int128)q[1] * y
-        + (__int128)q[2] * d >= 0;
+    return (__int128)q[0] * x + (__int128)q[1] * y + (__int128)q[2] * d >= 0;
 }
 
 bool outside(const ILine &a, const ILine &b, const ILine &c)
 {
+    // a 是待检查半平面，b、c 是两条不平行边界；返回 b、c 交点是否严格落在 a 外。
     __int128 d = det(b, c);
     assert(d != 0); // 调试检查，可删。
     __int128 x = (__int128)b[1] * c[2] - (__int128)b[2] * c[1];
     __int128 y = (__int128)b[2] * c[0] - (__int128)b[0] * c[2];
-    __int128 v = (__int128)a[0] * x + (__int128)a[1] * y
-        + (__int128)a[2] * d;
+    __int128 v = (__int128)a[0] * x + (__int128)a[1] * y + (__int128)a[2] * d;
     return v != 0 && ((v < 0) != (d < 0));
 }
 
 optional<vector<ILine>> halfPlane(vector<ILine> a)
 {
+    // a 是全部整数半平面；空 optional 表示非空但无界。
     for (auto &l : a)
     {
         assert(l[0] != 0 || l[1] != 0); // 调试检查，可删。
     }
-    sort(a.begin(), a.end(), [](const ILine &p, const ILine &q)
+    sort(a.begin(),
+         a.end(),
+         [](const ILine &p, const ILine &q)
          {
              int hp = half(p[1], -p[0]);
              int hq = half(q[1], -q[0]);
@@ -79,6 +87,7 @@ optional<vector<ILine>> halfPlane(vector<ILine> a)
              }
              return false;
          });
+
     vector<ILine> b;
     for (auto l : a)
     {
@@ -88,6 +97,7 @@ optional<vector<ILine>> halfPlane(vector<ILine> a)
         }
         b.push_back(l);
     }
+
     if (b.empty())
     {
         return nullopt;
@@ -128,6 +138,7 @@ optional<vector<ILine>> halfPlane(vector<ILine> a)
             return nullopt;
         }
     }
+
     deque<ILine> q;
     for (auto l : b)
     {
@@ -158,6 +169,7 @@ optional<vector<ILine>> halfPlane(vector<ILine> a)
 
 vector<IRatPoint> vertices(const vector<ILine> &q)
 {
+    // q 是 halfPlane 返回的有界边界；返回相邻边界交点的“横分子、纵分子、正分母”。
     vector<IRatPoint> p;
     auto ab = [](__int128 z)
     {

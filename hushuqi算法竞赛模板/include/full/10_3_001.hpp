@@ -1,8 +1,8 @@
 #pragma once
-
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
+#include "1_1_008.hpp"
 
 namespace ogf
 {

@@ -6,6 +6,7 @@ using namespace std;
 
 #include "../topic_common.hpp"
 
+// 区间和实例：Sum{} 是合并单位元，Sum{x} 表示一个值为 x 的叶子。
 struct Sum
 {
     // val 是当前区间的元素和。
@@ -26,7 +27,7 @@ struct Sum
 
 struct MaxInfo
 {
-    // 当前信息取区间最大值。改成最小值信息时，把 lowest 改为 highest、max 改为 min，
+    // 当前信息取区间最大值。改成最小值信息时，把 lowest 改为 numeric_limits<long long>::max()、max 改为 min，
     // 并同步把类型名、查询谓词中的 >= 改成 <=。
     // val 是区间最大值；空区间以 long long 最小值作为 max 的单位元。
     long long val = numeric_limits<long long>::lowest();
@@ -124,6 +125,8 @@ template <class Info> struct Seg
     template <class F>
     int findFirst(int p, int l, int r, int ql, int qr, F &ok) const
     {
+        // p 管辖 [l,r)，查询区间 [ql,qr)，ok 对区间信息单调（父真则至少一个儿子真）；
+        // 返回 [ql,qr) 内使 ok(tr[叶]) 为真的最小下标，不存在返回 -1。
         if (r <= ql || qr <= l)
         {
             return -1;
@@ -144,6 +147,7 @@ template <class Info> struct Seg
     template <class F>
     int findFirst(int l, int r, F ok) const
     {
+        // l、r 是半开区间，ok(Info) 判断区间是否含目标；返回最左满足的叶子下标，不存在返回 -1。
         assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         return l == r ? -1 : findFirst(1, 0, size, l, r, ok);
     }
@@ -151,6 +155,7 @@ template <class Info> struct Seg
     template <class F>
     int findLast(int p, int l, int r, int ql, int qr, F &ok) const
     {
+        // 参数同 findFirst 的递归版；返回 [ql,qr) 内使 ok 为真的最大下标，不存在返回 -1。
         if (r <= ql || qr <= l)
         {
             return -1;
@@ -171,6 +176,7 @@ template <class Info> struct Seg
     template <class F>
     int findLast(int l, int r, F ok) const
     {
+        // l、r 是半开区间，ok(Info) 判断区间是否含目标；返回最右满足的叶子下标，不存在返回 -1。
         assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         return l == r ? -1 : findLast(1, 0, size, l, r, ok);
     }

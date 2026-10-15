@@ -17,7 +17,7 @@ template <class T> struct Splay
 
     // t 是节点池，root 是当前根编号。
     vector<Node> t{{}};
-    int root = 0;
+    int root = 0; // root 是当前根，0 表示空树。
 
     int size(int u) const
     {

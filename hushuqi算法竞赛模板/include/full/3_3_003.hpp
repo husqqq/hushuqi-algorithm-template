@@ -51,7 +51,7 @@ template <class T> struct AffineInfo
 template <class T> class AffPointSeg
 {
     // n 是叶子数；a 保存初始点值；tag 和 has 保存尚未下传的仿射修改。
-    int n;
+    int n; // n 是叶子数。
     vector<T> a;
     vector<AffineTag<T>> tag;
     vector<unsigned char> has;
@@ -141,13 +141,6 @@ template <class T> class AffPointSeg
     }
 };
 
-// a 是初始叶子信息。
-// LazySeg<AffineInfo<Z>, AffineTag<Z>> seg(a);
-// seg.apply(l, r, {Z(1), x}); // 给区间加 x。
-// seg.apply(l, r, {x, Z(0)}); // 给区间乘 x。
-// seg.apply(l, r, {Z(0), x}); // 把区间赋值为 x。
-// Z ans = seg.query(l, r).sum; // 查询区间和。
-
 class HistMaxSeg
 {
   public:
@@ -158,15 +151,15 @@ class HistMaxSeg
     };
 
   private:
-    static constexpr long long neg = numeric_limits<long long>::lowest() / 2;
+    static constexpr long long neg = numeric_limits<long long>::lowest() / 2; // neg 表示 max-plus 意义下的负无穷，取一半防止相加溢出。
     struct Tag
     {
         // cc、ch、hh、vc、vh 描述 max-plus 变换 (cur,hist,1) 的五个有限系数。
         long long cc = 0, ch = neg, hh = 0, vc = neg, vh = neg;
     };
-    int n;
-    vector<Info> tr;
-    vector<Tag> lz;
+    int n; // n 是叶子数。
+    vector<Info> tr; // tr[p] 是节点 p 区间的当前最大值与历史最大值。
+    vector<Tag> lz; // lz[p] 是节点 p 尚未下传给儿子的复合标记。
 
     static long long plus(long long a, long long b)
     {

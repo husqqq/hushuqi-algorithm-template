@@ -6,11 +6,11 @@ using namespace std;
 
 struct Dominator
 {
-    // n 是点数，ti 是本次 DFS 到达的点数。
+    // 点数与本次 DFS 到达的点数。
     int n, ti = 0;
-    // g 是原图，rg 是按 DFS 序存的反图，buc 是半支配点桶。
+    // 原图、按 DFS 序存的反图与半支配点桶。
     vector<vector<int>> g, rg, buc;
-    // dfn、rev、par、sdom、dom、dsu、lab 分别保存支配树算法的各项状态。
+    // DFS 序及反查、DFS 父点、半支配点、直接支配点、并查集与最优标签。
     vector<int> dfn, rev, par, sdom, dom, dsu, lab;
 
     Dominator(const vector<vector<int>> &g)

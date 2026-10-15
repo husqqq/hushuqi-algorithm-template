@@ -1,5 +1,5 @@
 #pragma once
-
+#include "5_5_001.hpp"
 #include "5_5_003.hpp"
 
 struct DynamicMST

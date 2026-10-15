@@ -4,13 +4,14 @@
 
 vector<int> sg(const vector<vector<int>> &to)
 {
+    // to[x] 是状态 x 的后继编号表；返回每个 DAG 状态的 Sprague-Grundy 值。
     int n = to.size();
     vector<int> deg(n);
     for (int x = 0; x < n; x++)
     {
         for (int y : to[x])
         {
-            assert(0 <= y && y < n);
+            assert(0 <= y && y < n); // 调试检查，可删。
             deg[y]++;
         }
     }
@@ -37,7 +38,7 @@ vector<int> sg(const vector<vector<int>> &to)
             }
         }
     }
-    assert((int)ord.size() == n);
+    assert((int)ord.size() == n); // 调试检查，可删。
     reverse(ord.begin(), ord.end());
     vector<int> f(n);
     for (int x : ord)

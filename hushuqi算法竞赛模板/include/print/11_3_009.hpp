@@ -1,16 +1,19 @@
 #pragma once
-
+#include "11_1_002.hpp"
+#include "11_1_003.hpp"
+#include "11_1_006.hpp"
 #include "11_1_007.hpp"
 #include "11_2_001.hpp"
 
 struct HP
 {
-    P p;
-    P v;
-    Real a;
+    P p; // p 保存边界直线上的一点。
+    P v; // v 保存边界直线的方向。
+    Real a; // a 保存 v 在 [0,2pi) 内的极角。
 
     HP(P p, P q) : p(p), v(q - p), a(atan2l(v.y, v.x))
     {
+        // p、q 是边界直线上两个不同点；构造有向直线 p→q，保留左侧闭半平面，a 为方向极角并规范到 [0,2π)。
         assert(!eq(p, q)); // 调试检查，可删。
         if (a < 0)
         {
@@ -20,12 +23,14 @@ struct HP
 
     bool out(P q) const
     {
+        // q 是查询点；返回其是否严格位于右侧。
         return sgn(cross(v, q - p)) < 0;
     }
 };
 
 optional<vector<P>> halfPlane(vector<HP> a)
 {
+    // a 中每条有向边保留左侧；空 optional 表示非空但无界。
     auto feasible = [&](vector<HP> q) -> optional<P>
     {
         mt19937 rng(0);
@@ -125,8 +130,7 @@ optional<vector<P>> halfPlane(vector<HP> a)
         }
         b.push_back(h);
     }
-    if (b.size() > 1
-        && parallel({b.front().p, b.front().v}, {b.back().p, b.back().v})
+    if (b.size() > 1 && parallel({b.front().p, b.front().v}, {b.back().p, b.back().v})
         && sgn(dot(b.front().v, b.back().v)) > 0)
     {
         if (b.front().out(b.back().p))

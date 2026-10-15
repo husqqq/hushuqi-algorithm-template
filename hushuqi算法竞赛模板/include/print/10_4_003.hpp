@@ -60,8 +60,7 @@ vector<T> recCoef(const vector<T> &rec, unsigned long long n)
     return ans;
 }
 
-template <class T> T linearRec(const vector<T> &init, const vector<T> &rec,
-                               unsigned long long n)
+template <class T> T linearRec(const vector<T> &init, const vector<T> &rec, unsigned long long n)
 {
     // init 是至少 k 项初值，rec 定义 a[n]=sum(rec[i-1]*a[n-i])，n 是下标；返回 a[n]。
     int k = rec.size();

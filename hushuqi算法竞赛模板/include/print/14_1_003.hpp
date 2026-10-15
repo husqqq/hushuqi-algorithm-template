@@ -11,6 +11,7 @@ struct Expr
 
     void skip()
     {
+        // 无参数；把读位置 p 向后移过 s 中连续的空白字符。
         while (p < (int)s.size() && isspace((unsigned char)s[p]))
         {
             p++;

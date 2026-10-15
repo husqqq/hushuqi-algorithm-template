@@ -1,10 +1,11 @@
 #pragma once
-
 #include "11_1_009.hpp"
 #include "11_6_001.hpp"
+#include "11_1_003.hpp"
 
 bool segTri(P3 p, P3 q, P3 a, P3 b, P3 c)
 {
+    // p、q 是线段端点，a、b、c 是非退化三角形顶点。
     P3 v = q - p;
     P3 e1 = b - a;
     P3 e2 = c - a;

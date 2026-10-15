@@ -4,6 +4,7 @@
 
 optional<P3> linePlane(L3 l, Plane s)
 {
+    // 参数 l 表示 待求交的三维直线；s 表示 待求交的平面；返回直线与平面的唯一交点；平行或重合时返回空。
     assert(sgn(abs(l.v)) != 0 && sgn(abs(s.n)) != 0); // 调试检查，可删。
     Real d = dot(l.v, s.n);
     if (sgn(d / abs(l.v) / abs(s.n)) == 0)
@@ -15,6 +16,7 @@ optional<P3> linePlane(L3 l, Plane s)
 
 optional<L3> planePlane(Plane a, Plane b)
 {
+    // 参数 a 表示 第一个平面；b 表示 第二个平面；返回两平面的交线；平行或重合时返回空。
     assert(sgn(abs(a.n)) != 0 && sgn(abs(b.n)) != 0); // 调试检查，可删。
     P3 v = cross(a.n, b.n);
     Real d = norm(v);

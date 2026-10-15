@@ -59,7 +59,7 @@ struct BorderInfo
 
 struct BasicDictQuery
 {
-    int l, r;
+    int l, r; // l、r 是询问子串的 1 起闭区间端点。
 };
 
 inline vector<BorderInfo> basicDict(const string &s,

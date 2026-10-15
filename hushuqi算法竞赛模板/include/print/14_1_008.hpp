@@ -1,8 +1,7 @@
 #pragma once
-
-#include "14_1_001.hpp"
 #include "3_3_001.hpp"
 
+// 知识点 14.1.008：装箱问题的近似与小规模精确解。
 namespace bin_packing
 {
 int firstFitDec(vector<int> a, int cap)
