@@ -52,28 +52,115 @@ signed main()
     const auto &cr = r;
     assert(cr(3, 0) == 1 && cr(3, 1) == 5 && cr(3, 2) == 4);
     assert(rankedMobius(move(r)) == f);
-    mt19937 rng(0);
+    auto check = []<FWTInt P>()
+    {
+        mt19937 rng(20261016);
+        for (int n = 1; n <= 64; n <<= 1)
+        {
+            for (int rep = 0; rep < 12; rep++)
+            {
+                vector<FWTInt> p(n), q(n);
+                for (int i = 0; i < n; i++)
+                {
+                    p[i] = rep == 0 ? P - 1 : rng() % P;
+                    q[i] = rep == 1 ? 0 : rng() % P;
+                }
+                const auto oldp = p, oldq = q;
+                auto verify = [&](BitOp op, const vector<FWTInt> &got)
+                {
+                    vector<FWTInt> want(n);
+                    for (int i = 0; i < n; i++)
+                    {
+                        for (int j = 0; j < n; j++)
+                        {
+                            int k = op == BitOp::Or ? i | j : op == BitOp::And ? i & j : i ^ j;
+                            want[k] = (want[k] + (unsigned long long)p[i] * q[j]) % P;
+                        }
+                    }
+                    assert(got == want);
+                    vector<long long> x(p.begin(), p.end()), y(q.begin(), q.end());
+                    // 通用整数卷积只用小系数，避免近上界模数下的 Hadamard 乘积超出 long long。
+                    if constexpr (P <= 15)
+                    {
+                        auto z = op == BitOp::Or ? orConv(x, y) : op == BitOp::And ? andConv(x, y) : xorConv(x, y);
+                        assert(z == bitConv(x, y, op));
+                        for (int i = 0; i < n; i++)
+                        {
+                            assert(z[i] % P == want[i]);
+                        }
+                        if (op == BitOp::Or)
+                        {
+                            orFwt(x);
+                            orFwt(x, true);
+                        }
+                        if (op == BitOp::And)
+                        {
+                            andFwt(x);
+                            andFwt(x, true);
+                        }
+                        if (op == BitOp::Xor)
+                        {
+                            xorFwt(x);
+                            xorFwt(x, true);
+                        }
+                        assert(x == vector<long long>(p.begin(), p.end()));
+                    }
+                };
+                verify(BitOp::Or, orConvMod<P>(p, q));
+                verify(BitOp::And, andConvMod<P>(p, q));
+                assert(orConvMod<P>(p, q) == (bitConvMod<P, BitOp::Or>(p, q)));
+                assert(andConvMod<P>(p, q) == (bitConvMod<P, BitOp::And>(p, q)));
+                auto x = p;
+                orFwtMod<P>(x);
+                orFwtMod<P, true>(x);
+                assert(x == p);
+                andFwtMod<P>(x);
+                andFwtMod<P, true>(x);
+                assert(x == p);
+                fwtMod<P, BitOp::Or>(x.data(), n);
+                fwtMod<P, BitOp::Or, true>(x.data(), n);
+                assert(x == p);
+                if constexpr (P & 1)
+                {
+                    verify(BitOp::Xor, xorConvMod<P>(p, q));
+                    assert(xorConvMod<P>(p, q) == (bitConvMod<P, BitOp::Xor>(p, q)));
+                    xorFwtMod<P>(x);
+                    xorFwtMod<P, true>(x);
+                    assert(x == p);
+                }
+                assert(p == oldp && q == oldq);
+            }
+        }
+    };
+    check.template operator()<2>();
+    check.template operator()<10>();
+    check.template operator()<15>();
+    check.template operator()<998244353>();
+    check.template operator()<2147483646>();
+    check.template operator()<2147483647>();
     for (int n = 1; n <= 32; n <<= 1)
     {
-        vector<FWTInt> p(n), q(n);
-        for (auto &v : p) v = rng() % mod;
-        for (auto &v : q) v = rng() % mod;
-        vector<Z> pz(p.begin(), p.end()), qz(q.begin(), q.end());
-        auto check = [&](BitOp op, const vector<FWTInt> &got)
+        for (int d : {1, 2, 7})
         {
-            auto want = bitConv(pz, qz, op);
-            for (int i = 0; i < n; i++)
+            vector<long long> a(n * d), want(n * d);
+            iota(a.begin(), a.end(), -3);
+            for (int s = 0; s < n; s++)
             {
-                assert(got[i] == want[i].val());
+                for (int t = 0; t < n; t++)
+                {
+                    if ((s & t) != t) continue;
+                    for (int k = 0; k < d; k++)
+                    {
+                        want[s * d + k] += a[t * d + k];
+                    }
+                }
             }
-        };
-        check(BitOp::Or, bitConvMod<mod, BitOp::Or>(p, q));
-        check(BitOp::And, bitConvMod<mod, BitOp::And>(p, q));
-        check(BitOp::Xor, bitConvMod<mod, BitOp::Xor>(p, q));
-        auto z = p;
-        fwtMod<mod, BitOp::Xor>(z);
-        fwtMod<mod, BitOp::Xor, true>(z);
-        assert(z == p);
+            auto b = a;
+            orFWT(b.data(), n, d, false);
+            assert(b == want);
+            orFWT<true>(b.data(), n, d);
+            assert(b == a);
+        }
     }
     cout << "OK\n";
     return 0;

@@ -6,7 +6,7 @@
   "provenance": {
     "kind": "template_solution",
     "source": "enumerative_combinatorics/sharp_p_subset_sum/main.cpp",
-    "source_sha256": "fe6a32524c897245197da5e020196668d77f186eb00ee84549baee82261b8671"
+    "source_sha256": "e998b6ae2b2a67202dd146a163989272d6246b8b5fffeed9d11ee4a224a53021"
   },
   "official_reference": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
@@ -15,19 +15,19 @@
   },
   "validation": {
     "status": "online_ac",
-    "current_source_sha256": "fe6a32524c897245197da5e020196668d77f186eb00ee84549baee82261b8671",
+    "current_source_sha256": "e998b6ae2b2a67202dd146a163989272d6246b8b5fffeed9d11ee4a224a53021",
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch10_poly_misc.cpp"
     ],
-    "checked_at": "2026-08-21T21:27:53.485085Z",
+    "checked_at": "2026-10-15T22:07:45.058333Z",
     "current_source_online_verdict": "AC",
-    "current_source_submission_id": 395865,
-    "current_source_time": 0.324,
-    "current_source_memory": 39821312,
-    "current_source_submission_time": "2026-08-21T21:27:20.633157Z",
+    "current_source_submission_id": 410715,
+    "current_source_time": 0.327,
+    "current_source_memory": 39989248,
+    "current_source_submission_time": "2026-10-15T22:07:11.901905Z",
     "current_source_is_latest": true,
-    "server_source_sha256": "fe6a32524c897245197da5e020196668d77f186eb00ee84549baee82261b8671",
+    "server_source_sha256": "e998b6ae2b2a67202dd146a163989272d6246b8b5fffeed9d11ee4a224a53021",
     "note": "当前独立源码已通过 Library Checker 在线评测。"
   },
   "submission_attempts": [
@@ -45,6 +45,21 @@
       "compile_standard": "gnu++20",
       "submitted_at": "2026-08-21T21:27:20.936199Z",
       "recorded_at": "2026-08-21T21:27:53.483942Z"
+    },
+    {
+      "submission_id": 410715,
+      "source_sha256": "e998b6ae2b2a67202dd146a163989272d6246b8b5fffeed9d11ee4a224a53021",
+      "server_source_sha256": "e998b6ae2b2a67202dd146a163989272d6246b8b5fffeed9d11ee4a224a53021",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.327,
+      "memory": 39989248,
+      "submission_time": "2026-10-15T22:07:11.901905Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-10-15T22:07:12.098391Z",
+      "recorded_at": "2026-10-15T22:07:45.056993Z"
     }
   ]
 }

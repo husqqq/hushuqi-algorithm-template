@@ -13,8 +13,9 @@ enum class BitOp
 
 template <bool Inv = false, class T> void orFWT(T *a, int n, int d)
 {
-    // a 指向 n 行、每行 d 项的连续集合函数，n 是 2 的幂；沿行掩码做批量 OR 变换。
-    assert(a && n > 0 && d > 0 && n <= UINT32_MAX && d <= UINT32_MAX &&
+    // a 提供 n*d 项连续空间，每行 d 个通道，n 是至多 2^30 的正 2 的幂；Inv 指定逆变换，原地修改，无返回值。
+    assert(a && n > 0 && d > 0 && n <= (1ULL << 30) && d <= 2147483647ULL &&
+           (size_t)n <= numeric_limits<size_t>::max() / sizeof(T) / (size_t)d &&
            has_single_bit((unsigned long long)n)); // 调试检查，可删。
     uint32_t m = n;
     uint32_t w = d;
@@ -47,7 +48,7 @@ template <bool Inv = false, class T> void orFWT(T *a, int n, int d)
 
 template <class T> void orFWT(T *a, int n, int d, bool inv)
 {
-    // a、n、d 的含义同三参数版本；inv 指定正变换或逆变换。
+    // a 提供 n*d 项连续空间，每行 d 个通道；inv=false/true 指定正/逆 OR 变换，原地修改，无返回值。
     if (inv)
     {
         orFWT<true>(a, n, d);
@@ -60,8 +61,8 @@ template <class T> void orFWT(T *a, int n, int d, bool inv)
 
 template <bool Inv = false, class T> void orFWT(vector<T> &a)
 {
-    // a 是按掩码编号的一维集合函数；原地完成 OR 正变换或逆变换。
-    assert(!a.empty() && a.size() <= UINT32_MAX && has_single_bit(a.size())); // 调试检查，可删。
+    // a 按掩码编号，长度是至多 2^30 的正 2 的幂；Inv 指定逆变换，原地修改，无返回值。
+    assert(!a.empty() && a.size() <= (1ULL << 30) && has_single_bit(a.size())); // 调试检查，可删。
     uint32_t n = a.size();
     for (uint32_t h = 1; h < n; h <<= 1)
     {
@@ -85,8 +86,8 @@ template <bool Inv = false, class T> void orFWT(vector<T> &a)
 template <class T> void fwt(vector<T> &a, BitOp op, bool inv = false)
 {
     // a 是按掩码编号的系数，op 指定或、与或异或，inv 指定正变换或逆变换；原地完成变换。
+    assert(!a.empty() && a.size() <= (1ULL << 30) && has_single_bit(a.size()));
     int n = a.size();
-    assert(n > 0 && has_single_bit((unsigned long long)n)); // 调试检查，可删。
     if (op == BitOp::Or)
     {
         if (inv)
@@ -138,14 +139,17 @@ template <class T> void fwt(vector<T> &a, BitOp op, bool inv = false)
 // 方向由函数名表达；BitOp 版本保留给旧代码。
 template <class T> void orFwt(vector<T> &a, bool inv = false)
 {
+    // a 按掩码编号，长度是正 2 的幂；inv=false/true 指定正/逆 OR 变换，原地修改，无返回值。
     fwt(a, BitOp::Or, inv);
 }
 template <class T> void andFwt(vector<T> &a, bool inv = false)
 {
+    // a 按掩码编号，长度是正 2 的幂；inv=false/true 指定正/逆 AND 变换，原地修改，无返回值。
     fwt(a, BitOp::And, inv);
 }
 template <class T> void xorFwt(vector<T> &a, bool inv = false)
 {
+    // a 按掩码编号，长度是正 2 的幂；inv=false/true 指定正/逆 XOR 变换，原地修改，无返回值。
     fwt(a, BitOp::Xor, inv);
 }
 
@@ -165,39 +169,36 @@ template <class T> vector<T> bitConv(vector<T> a, vector<T> b, BitOp op)
 
 template <class T> vector<T> orConv(vector<T> a, vector<T> b)
 {
+    // a、b 等长且长度是正 2 的幂；返回按掩码顺序的 OR 卷积，不修改调用者的输入。
     return bitConv(move(a), move(b), BitOp::Or);
 }
 template <class T> vector<T> andConv(vector<T> a, vector<T> b)
 {
+    // a、b 等长且长度是正 2 的幂；返回按掩码顺序的 AND 卷积，不修改调用者的输入。
     return bitConv(move(a), move(b), BitOp::And);
 }
 template <class T> vector<T> xorConv(vector<T> a, vector<T> b)
 {
+    // a、b 等长且长度是正 2 的幂；返回按掩码顺序的 XOR 卷积，不修改调用者的输入。
     return bitConv(move(a), move(b), BitOp::Xor);
 }
 
 template <uint32_t P> uint32_t fwtAdd(uint32_t x, uint32_t y)
 {
-    x += y;
-    if (x >= P)
-    {
-        x -= P;
-    }
-    return x;
+    // x、y 在 [0,P) 内，1<P<2^31；返回 (x+y) mod P，加宽中间和以兼容有符号打印版。
+    unsigned long long s = (unsigned long long)x + y;
+    return s >= P ? s - P : s;
 }
 
 template <uint32_t P> uint32_t fwtSub(uint32_t x, uint32_t y)
 {
-    x += P - y;
-    if (x >= P)
-    {
-        x -= P;
-    }
-    return x;
+    // x、y 在 [0,P) 内，1<P<2^31；返回 (x-y) mod P，各分支结果均在 [0,P)。
+    return x >= y ? x - y : x + (P - y);
 }
 
 template <uint32_t P, BitOp Op, bool Inv, uint32_t N> void fwtRec(uint32_t *a)
 {
+    // a 指向 N 项 [0,P) 代表元；N 是正 2 的幂，Op 指定位运算，Inv 指定逆变换；原地修改，无返回值。
     constexpr uint32_t h = N / 2;
     if constexpr (h)
     {
@@ -220,8 +221,8 @@ template <uint32_t P, BitOp Op, bool Inv, uint32_t N> void fwtRec(uint32_t *a)
                 uint32_t d = fwtSub<P>(x, y);
                 if constexpr (Inv)
                 {
-                    s = (s + (s & 1) * P) >> 1;
-                    d = (d + (d & 1) * P) >> 1;
+                    s = ((unsigned long long)s + (s & 1) * P) >> 1;
+                    d = ((unsigned long long)d + (d & 1) * P) >> 1;
                 }
                 a[i] = s;
                 a[i + h] = d;
@@ -233,34 +234,49 @@ template <uint32_t P, BitOp Op, bool Inv, uint32_t N> void fwtRec(uint32_t *a)
 template <uint32_t P, BitOp Op, bool Inv = false, uint32_t N = 1>
 void fwtMod(uint32_t *a, uint32_t n)
 {
+    // a 指向 n 项 [0,P) 代表元，n 是至多 2^30 的正 2 的幂；Op 指定位运算，Inv 指定逆变换。
+    // N 是递归分派起点，调用时保持默认值；原地修改 a，无返回值。
     static_assert(1 < P && P < (1U << 31));
     static_assert(Op != BitOp::Xor || (P & 1));
-    assert(a && n && has_single_bit((unsigned long long)n)); // 调试检查，可删
-    if constexpr (N <= (1U << 30))
+    static_assert(N > 0 && N <= (1U << 30) && has_single_bit((unsigned long long)N));
+    assert(a && n >= N && n <= (1U << 30) && has_single_bit((unsigned long long)n));
+    if (n == N)
     {
-        if (n == N)
-        {
-            fwtRec<P, Op, Inv, N>(a);
-        }
-        else
-        {
-            fwtMod<P, Op, Inv, N << 1>(a, n);
-        }
+        fwtRec<P, Op, Inv, N>(a);
+    }
+    else if constexpr (N < (1U << 30))
+    {
+        fwtMod<P, Op, Inv, N << 1>(a, n);
     }
 }
 
 template <uint32_t P, BitOp Op, bool Inv = false> void fwtMod(vector<uint32_t> &a)
 {
+    // a 按掩码保存 [0,P) 代表元；Op 指定位运算，Inv 指定逆变换，原地修改，无返回值。
+    assert(!a.empty() && a.size() <= (1ULL << 30) && has_single_bit(a.size()));
     fwtMod<P, Op, Inv>(a.data(), a.size());
 }
 
-template <uint32_t P, bool Inv = false> void orFwtMod(vector<uint32_t> &a) { fwtMod<P, BitOp::Or, Inv>(a); }
-template <uint32_t P, bool Inv = false> void andFwtMod(vector<uint32_t> &a) { fwtMod<P, BitOp::And, Inv>(a); }
-template <uint32_t P, bool Inv = false> void xorFwtMod(vector<uint32_t> &a) { fwtMod<P, BitOp::Xor, Inv>(a); }
+template <uint32_t P, bool Inv = false> void orFwtMod(vector<uint32_t> &a)
+{
+    // a 按掩码保存 [0,P) 代表元；Inv 指定逆 OR 变换，原地修改，无返回值。
+    fwtMod<P, BitOp::Or, Inv>(a);
+}
+template <uint32_t P, bool Inv = false> void andFwtMod(vector<uint32_t> &a)
+{
+    // a 按掩码保存 [0,P) 代表元；Inv 指定逆 AND 变换，原地修改，无返回值。
+    fwtMod<P, BitOp::And, Inv>(a);
+}
+template <uint32_t P, bool Inv = false> void xorFwtMod(vector<uint32_t> &a)
+{
+    // a 按掩码保存 [0,P) 代表元；Inv 指定逆 XOR 变换，原地修改，无返回值。
+    fwtMod<P, BitOp::Xor, Inv>(a);
+}
 
 template <uint32_t P, BitOp Op>
 vector<uint32_t> bitConvMod(vector<uint32_t> a, vector<uint32_t> b)
 {
+    // a、b 等长，长度是正 2 的幂，各项在 [0,P)；返回 c[i Op j]+=a[i]*b[j] 的模 P 代表元。
     assert(!a.empty() && a.size() == b.size()); // 调试检查，可删
     fwtMod<P, Op>(a);
     fwtMod<P, Op>(b);
@@ -272,9 +288,21 @@ vector<uint32_t> bitConvMod(vector<uint32_t> a, vector<uint32_t> b)
     return a;
 }
 
-template <uint32_t P> vector<uint32_t> orConvMod(vector<uint32_t> a, vector<uint32_t> b) { return bitConvMod<P, BitOp::Or>(move(a), move(b)); }
-template <uint32_t P> vector<uint32_t> andConvMod(vector<uint32_t> a, vector<uint32_t> b) { return bitConvMod<P, BitOp::And>(move(a), move(b)); }
-template <uint32_t P> vector<uint32_t> xorConvMod(vector<uint32_t> a, vector<uint32_t> b) { return bitConvMod<P, BitOp::Xor>(move(a), move(b)); }
+template <uint32_t P> vector<uint32_t> orConvMod(vector<uint32_t> a, vector<uint32_t> b)
+{
+    // a、b 等长，长度是正 2 的幂，各项在 [0,P)；返回模 P 的 OR 卷积，不修改调用者输入。
+    return bitConvMod<P, BitOp::Or>(move(a), move(b));
+}
+template <uint32_t P> vector<uint32_t> andConvMod(vector<uint32_t> a, vector<uint32_t> b)
+{
+    // a、b 等长，长度是正 2 的幂，各项在 [0,P)；返回模 P 的 AND 卷积，不修改调用者输入。
+    return bitConvMod<P, BitOp::And>(move(a), move(b));
+}
+template <uint32_t P> vector<uint32_t> xorConvMod(vector<uint32_t> a, vector<uint32_t> b)
+{
+    // a、b 等长，长度是正 2 的幂，各项在 [0,P)；返回模 P 的 XOR 卷积，不修改调用者输入。
+    return bitConvMod<P, BitOp::Xor>(move(a), move(b));
+}
 
 // 稀疏 XOR 卷积专用接口，模数固定为大素数。
 constexpr uint64_t sparseXorMod = 1000000000000125953ULL;

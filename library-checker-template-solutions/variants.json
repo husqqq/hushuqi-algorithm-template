@@ -28,7 +28,7 @@
       "category": "convolution",
       "language": "cpp20",
       "source": "convolution/bitwise_and_convolution/variants/10_1_006_fixed_fwt_and_cpp20/main.cpp",
-      "source_sha256": "3a94c57e53c73de320a6aa54f94c0c3bd59d999d63e178afb96d565d3ef2c828",
+      "source_sha256": "48b8838b9b0c6331b0019f67258b767bd96d64bfc5a14daeb75fc7b40a29579c",
       "meta": "convolution/bitwise_and_convolution/variants/10_1_006_fixed_fwt_and_cpp20/meta.json",
       "template_items": [
         "10.1.006"
@@ -722,5 +722,5 @@
       "test": "hushuqi算法竞赛模板/tests/test_ch09_revised.cpp"
     }
   ],
-  "updated_at": "2026-10-15T17:08:31.765654Z"
+  "updated_at": "2026-10-15T22:11:05.472634Z"
 }

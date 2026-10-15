@@ -1271,7 +1271,7 @@ signed main()
     int n, t; cin >> n >> t;
     vector<int> a(n);
     for (int &x : a) cin >> x;
-    auto ans = sharpSubsetSum(a, t);
+    auto ans = sharpSubSum(a, t);
     for (int i = 1; i <= t; i++) cout << ans[i].val() << " \n"[i == t];
 }
 '''),
@@ -2064,11 +2064,63 @@ signed main(){ int n,m; cin>>n>>m; vector<long long>a(n),b(m); for(auto&x:a)cin>
 '''),
     ("convolution", "bitwise_and_convolution"): (
         "10_1_006.hpp", "Bitwise And Convolution", "tests/test_ch10_fwt.cpp", r'''
-signed main(){ int k;cin>>k;int n=1LL<<k;vector<Z>a(n),b(n);for(auto&x:a){int v;cin>>v;x=v;}for(auto&x:b){int v;cin>>v;x=v;}auto c=bitConv(a,b,BitOp::And);for(int i=0;i<n;i++)cout<<c[i].val()<<" \n"[i+1==n]; }
+signed main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int k;
+    cin >> k;
+    int n = 1LL << k;
+    vector<Z> a(n), b(n);
+    for (auto &x : a)
+    {
+        int v;
+        cin >> v;
+        x = v;
+    }
+    for (auto &x : b)
+    {
+        int v;
+        cin >> v;
+        x = v;
+    }
+    auto c = andConv(a, b);
+    for (int i = 0; i < n; i++)
+    {
+        cout << c[i].val() << " \n"[i + 1 == n];
+    }
+    return 0;
+}
 '''),
     ("convolution", "bitwise_xor_convolution"): (
         "10_1_006.hpp", "Bitwise Xor Convolution", "tests/test_ch10_fwt.cpp", r'''
-signed main(){ int k;cin>>k;int n=1LL<<k;vector<Z>a(n),b(n);for(auto&x:a){int v;cin>>v;x=v;}for(auto&x:b){int v;cin>>v;x=v;}auto c=bitConv(a,b,BitOp::Xor);for(int i=0;i<n;i++)cout<<c[i].val()<<" \n"[i+1==n]; }
+signed main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int k;
+    cin >> k;
+    int n = 1LL << k;
+    vector<Z> a(n), b(n);
+    for (auto &x : a)
+    {
+        int v;
+        cin >> v;
+        x = v;
+    }
+    for (auto &x : b)
+    {
+        int v;
+        cin >> v;
+        x = v;
+    }
+    auto c = xorConv(a, b);
+    for (int i = 0; i < n; i++)
+    {
+        cout << c[i].val() << " \n"[i + 1 == n];
+    }
+    return 0;
+}
 '''),
     ("convolution", "gcd_convolution"): (
         "10_1_010.hpp", "Gcd Convolution", "tests/test_ch10_divisor_transform.cpp", r'''
@@ -2231,6 +2283,143 @@ signed main()
         string a, b; cin >> a >> b;
         cout << (HexBigInt(a) * HexBigInt(b)).toHex() << '\n';
     }
+}
+'''),
+    ("set_power_series", "subset_convolution"): (
+        "10_1_011.hpp", "Subset Convolution", "tests/test_ch10_set_fps.cpp", r'''
+signed main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n;
+    cin >> n;
+    int m = 1LL << n;
+    vector<Z> a(m), b(m);
+    for (auto &x : a)
+    {
+        int v;
+        cin >> v;
+        x = v;
+    }
+    for (auto &x : b)
+    {
+        int v;
+        cin >> v;
+        x = v;
+    }
+    auto c = subsetConv(a, b);
+    for (int i = 0; i < m; i++)
+    {
+        cout << c[i].val() << " \n"[i + 1 == m];
+    }
+    return 0;
+}
+'''),
+    ("set_power_series", "exp_of_set_power_series"): (
+        "10_1_013.hpp", "Exp of Set Power Series", "tests/test_ch10_set_fps.cpp", r'''
+signed main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n;
+    cin >> n;
+    int m = 1LL << n;
+    vector<Z> f(m);
+    for (auto &x : f)
+    {
+        int v;
+        cin >> v;
+        x = v;
+    }
+    auto g = setExp(f);
+    for (int i = 0; i < m; i++)
+    {
+        cout << g[i].val() << " \n"[i + 1 == m];
+    }
+    return 0;
+}
+'''),
+    ("set_power_series", "log_of_set_power_series"): (
+        "10_1_013.hpp", "Log of Set Power Series", "tests/test_ch10_set_fps.cpp", r'''
+signed main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n;
+    cin >> n;
+    int m = 1LL << n;
+    vector<Z> f(m);
+    for (auto &x : f)
+    {
+        int v;
+        cin >> v;
+        x = v;
+    }
+    auto g = setLog(f);
+    for (int i = 0; i < m; i++)
+    {
+        cout << g[i].val() << " \n"[i + 1 == m];
+    }
+    return 0;
+}
+'''),
+    ("set_power_series", "polynomial_composite_set_power_series"): (
+        "10_1_013.hpp", "Polynomial Composite Set Power Series", "tests/test_ch10_set_fps.cpp", r'''
+signed main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int m, n;
+    cin >> m >> n;
+    vector<Z> p(m);
+    vector<Z> f(1LL << n);
+    for (auto &x : p)
+    {
+        int v;
+        cin >> v;
+        x = v;
+    }
+    for (auto &x : f)
+    {
+        int v;
+        cin >> v;
+        x = v;
+    }
+    auto g = setCompose(p, f);
+    for (int i = 0; i < (int)g.size(); i++)
+    {
+        cout << g[i].val() << " \n"[i + 1 == (int)g.size()];
+    }
+    return 0;
+}
+'''),
+    ("set_power_series", "power_projection_of_set_power_series"): (
+        "10_1_013.hpp", "Power Projection of Set Power Series", "tests/test_ch10_set_fps.cpp", r'''
+signed main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n, m;
+    cin >> n >> m;
+    vector<Z> f(1LL << n), w(1LL << n);
+    for (auto &x : f)
+    {
+        int v;
+        cin >> v;
+        x = v;
+    }
+    for (auto &x : w)
+    {
+        int v;
+        cin >> v;
+        x = v;
+    }
+    auto ans = setPowerProj(f, w, m);
+    for (int i = 0; i < m; i++)
+    {
+        cout << ans[i].val() << " \n"[i + 1 == m];
+    }
+    return 0;
 }
 '''),
 }

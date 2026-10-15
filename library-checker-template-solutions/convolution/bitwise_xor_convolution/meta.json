@@ -6,7 +6,7 @@
   "provenance": {
     "kind": "template_solution",
     "source": "convolution/bitwise_xor_convolution/main.cpp",
-    "source_sha256": "49b26dd2cf41896d06f5f2ca5b8b1cc7278847db57f9c93ad390b8138acf3284"
+    "source_sha256": "4331f1a2496ef704f0a8a265e64f2e198d9cf957075401c085084fb7f0e388e6"
   },
   "official_reference": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
@@ -15,19 +15,19 @@
   },
   "validation": {
     "status": "online_ac",
-    "current_source_sha256": "49b26dd2cf41896d06f5f2ca5b8b1cc7278847db57f9c93ad390b8138acf3284",
+    "current_source_sha256": "4331f1a2496ef704f0a8a265e64f2e198d9cf957075401c085084fb7f0e388e6",
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch10_fwt.cpp"
     ],
-    "checked_at": "2026-08-21T20:08:19.932819Z",
+    "checked_at": "2026-10-15T22:10:56.033263Z",
     "current_source_online_verdict": "AC",
-    "current_source_submission_id": 395821,
-    "current_source_time": 0.65,
-    "current_source_memory": 23826432,
-    "current_source_submission_time": "2026-08-21T20:07:50.858151Z",
+    "current_source_submission_id": 410718,
+    "current_source_time": 0.287,
+    "current_source_memory": 23740416,
+    "current_source_submission_time": "2026-10-15T22:10:37.119729Z",
     "current_source_is_latest": true,
-    "server_source_sha256": "49b26dd2cf41896d06f5f2ca5b8b1cc7278847db57f9c93ad390b8138acf3284",
+    "server_source_sha256": "4331f1a2496ef704f0a8a265e64f2e198d9cf957075401c085084fb7f0e388e6",
     "note": "当前独立源码已通过 Library Checker 在线评测。"
   },
   "submission_attempts": [
@@ -45,6 +45,36 @@
       "compile_standard": "gnu++20",
       "submitted_at": "2026-08-21T20:07:51.118745Z",
       "recorded_at": "2026-08-21T20:08:19.932235Z"
+    },
+    {
+      "submission_id": 410709,
+      "source_sha256": "0dfbbc0da3ceb605bb011063c7faa409ad337bb4da04c83f4ec959cd7c13b781",
+      "server_source_sha256": "0dfbbc0da3ceb605bb011063c7faa409ad337bb4da04c83f4ec959cd7c13b781",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.66,
+      "memory": 23744512,
+      "submission_time": "2026-10-15T22:03:16.423166Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-10-15T22:03:16.642874Z",
+      "recorded_at": "2026-10-15T22:03:39.664164Z"
+    },
+    {
+      "submission_id": 410718,
+      "source_sha256": "4331f1a2496ef704f0a8a265e64f2e198d9cf957075401c085084fb7f0e388e6",
+      "server_source_sha256": "4331f1a2496ef704f0a8a265e64f2e198d9cf957075401c085084fb7f0e388e6",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.287,
+      "memory": 23740416,
+      "submission_time": "2026-10-15T22:10:37.119729Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-10-15T22:10:37.322871Z",
+      "recorded_at": "2026-10-15T22:10:56.032376Z"
     }
   ]
 }

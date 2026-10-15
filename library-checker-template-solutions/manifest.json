@@ -150,7 +150,7 @@
       "title": "Bitwise And Convolution",
       "category": "convolution",
       "source": "convolution/bitwise_and_convolution/main.cpp",
-      "source_sha256": "68f447e96b69914f968890761a2977fb2acad230bc4eb0a29294da0a04361170",
+      "source_sha256": "8dbbc04424f53813e50f1a6b7c921021a5624ef9d8377a1c1368c7f73a41cac4",
       "meta": "convolution/bitwise_and_convolution/meta.json",
       "state": "template_solution"
     },
@@ -159,7 +159,7 @@
       "title": "Bitwise Xor Convolution",
       "category": "convolution",
       "source": "convolution/bitwise_xor_convolution/main.cpp",
-      "source_sha256": "49b26dd2cf41896d06f5f2ca5b8b1cc7278847db57f9c93ad390b8138acf3284",
+      "source_sha256": "4331f1a2496ef704f0a8a265e64f2e198d9cf957075401c085084fb7f0e388e6",
       "meta": "convolution/bitwise_xor_convolution/meta.json",
       "state": "template_solution"
     },
@@ -699,7 +699,7 @@
       "title": "Exp of Set Power Series",
       "category": "set_power_series",
       "source": "set_power_series/exp_of_set_power_series/main.cpp",
-      "source_sha256": "dbc921fe8d30052596d1fb2b579dd6f137164ce234ece1426a89373e59dd7a50",
+      "source_sha256": "19b46b2a8ebeb709d0ea631ec116f22748dd17a69b4f3fd95c4d331dcda82cad",
       "meta": "set_power_series/exp_of_set_power_series/meta.json",
       "state": "template_solution"
     },
@@ -807,7 +807,7 @@
       "title": "Hafnian of Matrix",
       "category": "linear_algebra",
       "source": "linear_algebra/hafnian_of_matrix/main.cpp",
-      "source_sha256": "887779d251dc366f5fec1ee1e085343d3069e817db6d18dadeeb3353ef241b8f",
+      "source_sha256": "510d5f4c7af65659879fe8993b5f32beaeeaf8203a722c11f2591f2ade7c7c3e",
       "meta": "linear_algebra/hafnian_of_matrix/meta.json",
       "state": "template_solution"
     },
@@ -987,7 +987,7 @@
       "title": "Log of Set Power Series",
       "category": "set_power_series",
       "source": "set_power_series/log_of_set_power_series/main.cpp",
-      "source_sha256": "abe3a4c8b47e504aa2ff4f4db6c225d7be83b4975f0491fe6df935f77154646f",
+      "source_sha256": "5b6c4fd1cb3c732c8b7e33046488bf77b241fc3d8d07ec54f23554f09f6dadb5",
       "meta": "set_power_series/log_of_set_power_series/meta.json",
       "state": "template_solution"
     },
@@ -1473,7 +1473,7 @@
       "title": "Polynomial Composite Set Power Series",
       "category": "set_power_series",
       "source": "set_power_series/polynomial_composite_set_power_series/main.cpp",
-      "source_sha256": "24cf2b50cd71b4cf9ee69022b6e407c5408caf5b20040f91d09fd9c93142d5eb",
+      "source_sha256": "29889714e8ffe3689d563ebb586d21586be7f8a100b801cbc5af1933978c420f",
       "meta": "set_power_series/polynomial_composite_set_power_series/meta.json",
       "state": "template_solution"
     },
@@ -1545,7 +1545,7 @@
       "title": "Power Projection of Set Power Series",
       "category": "set_power_series",
       "source": "set_power_series/power_projection_of_set_power_series/main.cpp",
-      "source_sha256": "c82e3c64f831df4e49fad09af81fda75e1040dd418d7f994dc8c53b047b2a701",
+      "source_sha256": "7b91c115c408727fe68b6bfe3df5ebe63ecabca70a31a37e3fafa71f60f30433",
       "meta": "set_power_series/power_projection_of_set_power_series/meta.json",
       "state": "template_solution"
     },
@@ -1788,7 +1788,7 @@
       "title": "$\\#_p$ Subset Sum",
       "category": "enumerative_combinatorics",
       "source": "enumerative_combinatorics/sharp_p_subset_sum/main.cpp",
-      "source_sha256": "fe6a32524c897245197da5e020196668d77f186eb00ee84549baee82261b8671",
+      "source_sha256": "e998b6ae2b2a67202dd146a163989272d6246b8b5fffeed9d11ee4a224a53021",
       "meta": "enumerative_combinatorics/sharp_p_subset_sum/meta.json",
       "state": "template_solution"
     },
@@ -2022,7 +2022,7 @@
       "title": "Subset Convolution",
       "category": "set_power_series",
       "source": "set_power_series/subset_convolution/main.cpp",
-      "source_sha256": "2380e9f0bec07139073b343a8a53a8ee7d5563c48b32da9415d077fb46fbdd17",
+      "source_sha256": "a62c9e57cbbbc51555581d43d99b00ff3a2959a5ba2507c1d6250e468bf84ad2",
       "meta": "set_power_series/subset_convolution/meta.json",
       "state": "template_solution"
     },

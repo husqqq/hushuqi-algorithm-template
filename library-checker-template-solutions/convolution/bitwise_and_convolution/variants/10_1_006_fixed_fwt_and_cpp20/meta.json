@@ -7,7 +7,7 @@
   "category": "convolution",
   "language": "cpp20",
   "source": "convolution/bitwise_and_convolution/variants/10_1_006_fixed_fwt_and_cpp20/main.cpp",
-  "source_sha256": "3a94c57e53c73de320a6aa54f94c0c3bd59d999d63e178afb96d565d3ef2c828",
+  "source_sha256": "48b8838b9b0c6331b0019f67258b767bd96d64bfc5a14daeb75fc7b40a29579c",
   "template_items": [
     "10.1.006"
   ],
@@ -15,33 +15,33 @@
   "provenance": {
     "method": "deterministic_generation",
     "generator": "library-checker-template-solutions/tools/generate_cpp_variants.py",
-    "generator_sha256": "d3978149aeca2d84607000428f1e01c5fde0c9c70b39e9659cbe4101996ca910",
+    "generator_sha256": "29d629d2c97a25094710896d11c6ece73e7e9d610cc8e91684197d0cc50b2500",
     "inputs": [
       {
         "path": "hushuqi算法竞赛模板/include/full/10_1_006.hpp",
-        "sha256": "2b198cb7e16529858c6bdd372684c4c3e79125073ce21cd082e87ea7b4b52925"
+        "sha256": "8adc279db307ac604dc257cc10b1e71e2290fa5a7b45b49e8984678f1e9b395a"
       },
       {
         "path": "hushuqi算法竞赛模板/tests/test_ch10_transform_edges.cpp",
-        "sha256": "40ddff530f1a809ad69983624c6eb7661363b1170c601aa1297b32fbf03c50de"
+        "sha256": "dd5d2a4afdc8af22866f4fa56f32417aecee29ba82725cc851695ac544dabf65"
       }
     ],
-    "generated_sha256": "3a94c57e53c73de320a6aa54f94c0c3bd59d999d63e178afb96d565d3ef2c828"
+    "generated_sha256": "48b8838b9b0c6331b0019f67258b767bd96d64bfc5a14daeb75fc7b40a29579c"
   },
   "validation": {
     "status": "online_ac",
-    "current_source_sha256": "3a94c57e53c73de320a6aa54f94c0c3bd59d999d63e178afb96d565d3ef2c828",
+    "current_source_sha256": "48b8838b9b0c6331b0019f67258b767bd96d64bfc5a14daeb75fc7b40a29579c",
     "current_source_online_verdict": "AC",
-    "current_source_submission_id": 396361,
-    "server_source_sha256": "3a94c57e53c73de320a6aa54f94c0c3bd59d999d63e178afb96d565d3ef2c828",
+    "current_source_submission_id": 410707,
+    "server_source_sha256": "48b8838b9b0c6331b0019f67258b767bd96d64bfc5a14daeb75fc7b40a29579c",
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch10_transform_edges.cpp"
     ],
-    "checked_at": "2026-08-23T15:27:33.183968Z",
-    "current_source_time": 0.139,
-    "current_source_memory": 15314944,
-    "current_source_submission_time": "2026-08-23T15:27:12.959259Z",
+    "checked_at": "2026-10-15T21:59:08.538737Z",
+    "current_source_time": 0.144,
+    "current_source_memory": 15495168,
+    "current_source_submission_time": "2026-10-15T21:58:45.54899Z",
     "current_source_is_latest": true,
     "note": "当前变体源码已通过 Library Checker 在线评测。"
   },
@@ -60,6 +60,21 @@
       "compile_standard": null,
       "submitted_at": "2026-08-23T15:27:13.161560Z",
       "recorded_at": "2026-08-23T15:27:33.183950Z"
+    },
+    {
+      "submission_id": 410707,
+      "source_sha256": "48b8838b9b0c6331b0019f67258b767bd96d64bfc5a14daeb75fc7b40a29579c",
+      "server_source_sha256": "48b8838b9b0c6331b0019f67258b767bd96d64bfc5a14daeb75fc7b40a29579c",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.144,
+      "memory": 15495168,
+      "submission_time": "2026-10-15T21:58:45.54899Z",
+      "is_latest": true,
+      "compile_standard": null,
+      "submitted_at": "2026-10-15T21:58:45.791540Z",
+      "recorded_at": "2026-10-15T21:59:08.538711Z"
     }
   ]
 }

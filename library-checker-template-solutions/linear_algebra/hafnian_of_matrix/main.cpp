@@ -1,38 +1,35 @@
 
 
 
+#ifndef HUSHUQI_STATIC_MINT_HPP
+#define HUSHUQI_STATIC_MINT_HPP
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
 
-template <long long P> struct MInt
+template <uint32_t P> struct MInt
 {
-    static_assert(P > 1);
-    using V = conditional_t<(P <= numeric_limits<int32_t>::max()),
-                            uint32_t, unsigned long long>;
-    static constexpr V M = (V)P; // 与 x 同宽的模数，避免热路径被 P 提升为有符号 64 位
-    V x = 0; // 当前剩余类在 [0,P) 内的代表元；常见小模使用无符号 32 位
+    static_assert(1 < P && P <= 1000000007);
+    uint32_t x = 0; // 固定 32 位以保证对象为 4 字节，提高大数组的缓存密度。
 
-    MInt() = default;
-
-    MInt(long long v)
+    MInt(long long v = 0)
     {
         // v 是要转入模 P 剩余类的整数；构造其最小非负代表元。
-        v %= P;
+        v %= (long long)P;
         if (v < 0)
         {
             v += P;
         }
-        x = (V)v;
+        x = (uint32_t)v;
     }
 
-    static constexpr long long mod()
+    static constexpr uint32_t mod()
     {
         // 无参数；返回编译期模数 P。
         return P;
     }
 
-    long long val() const
+    uint32_t val() const
     {
         // 无参数；返回当前剩余类的最小非负代表元。
         return x;
@@ -42,7 +39,7 @@ template <long long P> struct MInt
     {
         // 无参数；返回当前剩余类的加法逆元。
         MInt ans;
-        ans.x = x ? M - x : 0;
+        ans.x = x ? P - x : 0;
         return ans;
     }
 
@@ -50,9 +47,9 @@ template <long long P> struct MInt
     {
         // o 是要加到当前值上的同模剩余类；原地完成模加并返回当前对象引用。
         x += o.x;
-        if (x >= M)
+        if (x >= P)
         {
-            x -= M;
+            x -= P;
         }
         return *this;
     }
@@ -60,10 +57,10 @@ template <long long P> struct MInt
     MInt &operator-=(const MInt &o)
     {
         // o 是要从当前值减去的同模剩余类；原地完成模减并返回当前对象引用。
-        x += M - o.x;
-        if (x >= M)
+        x += P - o.x;
+        if (x >= P)
         {
-            x -= M;
+            x -= P;
         }
         return *this;
     }
@@ -71,14 +68,8 @@ template <long long P> struct MInt
     MInt &operator*=(const MInt &o)
     {
         // o 是要乘到当前值上的同模剩余类；原地完成模乘并返回当前对象引用。
-        if constexpr (P <= 2147483647LL)
-        {
-            x = (unsigned long long)x * o.x % M;
-        }
-        else
-        {
-            x = (unsigned __int128)x * o.x % M;
-        }
+        // 乘积可能超过 32 位，显式提升到无符号 64 位。
+        x = (uint64_t)x * o.x % P;
         return *this;
     }
 
@@ -114,7 +105,7 @@ template <long long P> struct MInt
 
     friend bool operator==(const MInt &, const MInt &) = default;
 
-    MInt pow(unsigned long long b) const
+    MInt pow(uint64_t b) const
     {
         // b 是非负指数；返回当前剩余类的 b 次幂。
         MInt a = *this;
@@ -139,10 +130,10 @@ template <long long P> struct MInt
     }
 };
 
-template <long long P> const vector<MInt<P>> &invTable(int n)
+template <uint32_t P> const vector<MInt<P>> &invTable(int n)
 {
     // n 是需要的最大下标且 0<=n<P；返回至少覆盖 0..n 的共享模逆元表，其中位置 0 为 0。
-    assert(0 <= n && n < P); // 调试检查，可删
+    assert(0 <= n && (uint64_t)n < P); // 调试检查，可删
     static vector<MInt<P>> iv{0, 1};
     int old = iv.size();
     if (old <= n)
@@ -156,8 +147,10 @@ template <long long P> const vector<MInt<P>> &invTable(int n)
     return iv;
 }
 
-constexpr int mod = 998244353;
+constexpr uint32_t mod = 998244353;
 using Z = MInt<mod>;
+
+#endif
 using namespace std;
 #define int long long
 
@@ -170,8 +163,9 @@ enum class BitOp
 
 template <bool Inv = false, class T> void orFWT(T *a, int n, int d)
 {
-    // a 指向 n 行、每行 d 项的连续集合函数，n 是 2 的幂；沿行掩码做批量 OR 变换。
-    assert(a && n > 0 && d > 0 && n <= UINT32_MAX && d <= UINT32_MAX &&
+    // a 提供 n*d 项连续空间，每行 d 个通道，n 是至多 2^30 的正 2 的幂；Inv 指定逆变换，原地修改，无返回值。
+    assert(a && n > 0 && d > 0 && n <= (1ULL << 30) && d <= 2147483647ULL &&
+           (size_t)n <= numeric_limits<size_t>::max() / sizeof(T) / (size_t)d &&
            has_single_bit((unsigned long long)n)); // 调试检查，可删。
     uint32_t m = n;
     uint32_t w = d;
@@ -204,7 +198,7 @@ template <bool Inv = false, class T> void orFWT(T *a, int n, int d)
 
 template <class T> void orFWT(T *a, int n, int d, bool inv)
 {
-    // a、n、d 的含义同三参数版本；inv 指定正变换或逆变换。
+    // a 提供 n*d 项连续空间，每行 d 个通道；inv=false/true 指定正/逆 OR 变换，原地修改，无返回值。
     if (inv)
     {
         orFWT<true>(a, n, d);
@@ -217,8 +211,8 @@ template <class T> void orFWT(T *a, int n, int d, bool inv)
 
 template <bool Inv = false, class T> void orFWT(vector<T> &a)
 {
-    // a 是按掩码编号的一维集合函数；原地完成 OR 正变换或逆变换。
-    assert(!a.empty() && a.size() <= UINT32_MAX && has_single_bit(a.size())); // 调试检查，可删。
+    // a 按掩码编号，长度是至多 2^30 的正 2 的幂；Inv 指定逆变换，原地修改，无返回值。
+    assert(!a.empty() && a.size() <= (1ULL << 30) && has_single_bit(a.size())); // 调试检查，可删。
     uint32_t n = a.size();
     for (uint32_t h = 1; h < n; h <<= 1)
     {
@@ -242,8 +236,8 @@ template <bool Inv = false, class T> void orFWT(vector<T> &a)
 template <class T> void fwt(vector<T> &a, BitOp op, bool inv = false)
 {
     // a 是按掩码编号的系数，op 指定或、与或异或，inv 指定正变换或逆变换；原地完成变换。
+    assert(!a.empty() && a.size() <= (1ULL << 30) && has_single_bit(a.size()));
     int n = a.size();
-    assert(n > 0 && has_single_bit((unsigned long long)n)); // 调试检查，可删。
     if (op == BitOp::Or)
     {
         if (inv)
@@ -292,6 +286,23 @@ template <class T> void fwt(vector<T> &a, BitOp op, bool inv = false)
     }
 }
 
+// 方向由函数名表达；BitOp 版本保留给旧代码。
+template <class T> void orFwt(vector<T> &a, bool inv = false)
+{
+    // a 按掩码编号，长度是正 2 的幂；inv=false/true 指定正/逆 OR 变换，原地修改，无返回值。
+    fwt(a, BitOp::Or, inv);
+}
+template <class T> void andFwt(vector<T> &a, bool inv = false)
+{
+    // a 按掩码编号，长度是正 2 的幂；inv=false/true 指定正/逆 AND 变换，原地修改，无返回值。
+    fwt(a, BitOp::And, inv);
+}
+template <class T> void xorFwt(vector<T> &a, bool inv = false)
+{
+    // a 按掩码编号，长度是正 2 的幂；inv=false/true 指定正/逆 XOR 变换，原地修改，无返回值。
+    fwt(a, BitOp::Xor, inv);
+}
+
 template <class T> vector<T> bitConv(vector<T> a, vector<T> b, BitOp op)
 {
     // a、b 是等长的掩码系数，op 指定卷积下标使用或、与或异或；返回对应的按位卷积。
@@ -304,6 +315,440 @@ template <class T> vector<T> bitConv(vector<T> a, vector<T> b, BitOp op)
     }
     fwt(a, op, true);
     return a;
+}
+
+template <class T> vector<T> orConv(vector<T> a, vector<T> b)
+{
+    // a、b 等长且长度是正 2 的幂；返回按掩码顺序的 OR 卷积，不修改调用者的输入。
+    return bitConv(move(a), move(b), BitOp::Or);
+}
+template <class T> vector<T> andConv(vector<T> a, vector<T> b)
+{
+    // a、b 等长且长度是正 2 的幂；返回按掩码顺序的 AND 卷积，不修改调用者的输入。
+    return bitConv(move(a), move(b), BitOp::And);
+}
+template <class T> vector<T> xorConv(vector<T> a, vector<T> b)
+{
+    // a、b 等长且长度是正 2 的幂；返回按掩码顺序的 XOR 卷积，不修改调用者的输入。
+    return bitConv(move(a), move(b), BitOp::Xor);
+}
+
+template <uint32_t P> uint32_t fwtAdd(uint32_t x, uint32_t y)
+{
+    // x、y 在 [0,P) 内，1<P<2^31；返回 (x+y) mod P，加宽中间和以兼容有符号打印版。
+    unsigned long long s = (unsigned long long)x + y;
+    return s >= P ? s - P : s;
+}
+
+template <uint32_t P> uint32_t fwtSub(uint32_t x, uint32_t y)
+{
+    // x、y 在 [0,P) 内，1<P<2^31；返回 (x-y) mod P，各分支结果均在 [0,P)。
+    return x >= y ? x - y : x + (P - y);
+}
+
+template <uint32_t P, BitOp Op, bool Inv, uint32_t N> void fwtRec(uint32_t *a)
+{
+    // a 指向 N 项 [0,P) 代表元；N 是正 2 的幂，Op 指定位运算，Inv 指定逆变换；原地修改，无返回值。
+    constexpr uint32_t h = N / 2;
+    if constexpr (h)
+    {
+        fwtRec<P, Op, Inv, h>(a);
+        fwtRec<P, Op, Inv, h>(a + h);
+        for (uint32_t i = 0; i < h; i++)
+        {
+            uint32_t x = a[i], y = a[i + h];
+            if constexpr (Op == BitOp::Or)
+            {
+                a[i + h] = Inv ? fwtSub<P>(y, x) : fwtAdd<P>(x, y);
+            }
+            else if constexpr (Op == BitOp::And)
+            {
+                a[i] = Inv ? fwtSub<P>(x, y) : fwtAdd<P>(x, y);
+            }
+            else
+            {
+                uint32_t s = fwtAdd<P>(x, y);
+                uint32_t d = fwtSub<P>(x, y);
+                if constexpr (Inv)
+                {
+                    s = ((unsigned long long)s + (s & 1) * P) >> 1;
+                    d = ((unsigned long long)d + (d & 1) * P) >> 1;
+                }
+                a[i] = s;
+                a[i + h] = d;
+            }
+        }
+    }
+}
+
+template <uint32_t P, BitOp Op, bool Inv = false, uint32_t N = 1>
+void fwtMod(uint32_t *a, uint32_t n)
+{
+    // a 指向 n 项 [0,P) 代表元，n 是至多 2^30 的正 2 的幂；Op 指定位运算，Inv 指定逆变换。
+    // N 是递归分派起点，调用时保持默认值；原地修改 a，无返回值。
+    static_assert(1 < P && P < (1U << 31));
+    static_assert(Op != BitOp::Xor || (P & 1));
+    static_assert(N > 0 && N <= (1U << 30) && has_single_bit((unsigned long long)N));
+    assert(a && n >= N && n <= (1U << 30) && has_single_bit((unsigned long long)n));
+    if (n == N)
+    {
+        fwtRec<P, Op, Inv, N>(a);
+    }
+    else if constexpr (N < (1U << 30))
+    {
+        fwtMod<P, Op, Inv, N << 1>(a, n);
+    }
+}
+
+template <uint32_t P, BitOp Op, bool Inv = false> void fwtMod(vector<uint32_t> &a)
+{
+    // a 按掩码保存 [0,P) 代表元；Op 指定位运算，Inv 指定逆变换，原地修改，无返回值。
+    assert(!a.empty() && a.size() <= (1ULL << 30) && has_single_bit(a.size()));
+    fwtMod<P, Op, Inv>(a.data(), a.size());
+}
+
+template <uint32_t P, bool Inv = false> void orFwtMod(vector<uint32_t> &a)
+{
+    // a 按掩码保存 [0,P) 代表元；Inv 指定逆 OR 变换，原地修改，无返回值。
+    fwtMod<P, BitOp::Or, Inv>(a);
+}
+template <uint32_t P, bool Inv = false> void andFwtMod(vector<uint32_t> &a)
+{
+    // a 按掩码保存 [0,P) 代表元；Inv 指定逆 AND 变换，原地修改，无返回值。
+    fwtMod<P, BitOp::And, Inv>(a);
+}
+template <uint32_t P, bool Inv = false> void xorFwtMod(vector<uint32_t> &a)
+{
+    // a 按掩码保存 [0,P) 代表元；Inv 指定逆 XOR 变换，原地修改，无返回值。
+    fwtMod<P, BitOp::Xor, Inv>(a);
+}
+
+template <uint32_t P, BitOp Op>
+vector<uint32_t> bitConvMod(vector<uint32_t> a, vector<uint32_t> b)
+{
+    // a、b 等长，长度是正 2 的幂，各项在 [0,P)；返回 c[i Op j]+=a[i]*b[j] 的模 P 代表元。
+    assert(!a.empty() && a.size() == b.size()); // 调试检查，可删
+    fwtMod<P, Op>(a);
+    fwtMod<P, Op>(b);
+    for (uint32_t i = 0; i < a.size(); i++)
+    {
+        a[i] = (unsigned long long)a[i] * b[i] % P;
+    }
+    fwtMod<P, Op, true>(a);
+    return a;
+}
+
+template <uint32_t P> vector<uint32_t> orConvMod(vector<uint32_t> a, vector<uint32_t> b)
+{
+    // a、b 等长，长度是正 2 的幂，各项在 [0,P)；返回模 P 的 OR 卷积，不修改调用者输入。
+    return bitConvMod<P, BitOp::Or>(move(a), move(b));
+}
+template <uint32_t P> vector<uint32_t> andConvMod(vector<uint32_t> a, vector<uint32_t> b)
+{
+    // a、b 等长，长度是正 2 的幂，各项在 [0,P)；返回模 P 的 AND 卷积，不修改调用者输入。
+    return bitConvMod<P, BitOp::And>(move(a), move(b));
+}
+template <uint32_t P> vector<uint32_t> xorConvMod(vector<uint32_t> a, vector<uint32_t> b)
+{
+    // a、b 等长，长度是正 2 的幂，各项在 [0,P)；返回模 P 的 XOR 卷积，不修改调用者输入。
+    return bitConvMod<P, BitOp::Xor>(move(a), move(b));
+}
+
+// 稀疏 XOR 卷积专用接口，模数固定为大素数。
+constexpr uint64_t sparseXorMod = 1000000000000125953ULL;
+
+class XorMint
+{
+private:
+    uint64_t x = 0;
+    static uint64_t mulRaw(uint64_t a, uint64_t b)
+    {
+        return (uint64_t)((unsigned __int128)a * b % sparseXorMod);
+    }
+
+public:
+    XorMint() = default;
+    XorMint(long long v)
+    {
+        v %= (long long)sparseXorMod;
+        if (v < 0) v += sparseXorMod;
+        x = (uint64_t)v;
+    }
+    static XorMint raw(uint64_t v)
+    {
+        XorMint r;
+        r.x = v;
+        return r;
+    }
+    uint64_t val() const { return x; }
+    XorMint operator-() const { return raw(x ? sparseXorMod - x : 0); }
+    XorMint &operator+=(const XorMint &o)
+    {
+        x += o.x;
+        if (x >= sparseXorMod) x -= sparseXorMod;
+        return *this;
+    }
+    XorMint &operator-=(const XorMint &o)
+    {
+        x += sparseXorMod - o.x;
+        if (x >= sparseXorMod) x -= sparseXorMod;
+        return *this;
+    }
+    XorMint &operator*=(const XorMint &o)
+    {
+        x = mulRaw(x, o.x);
+        return *this;
+    }
+    friend XorMint operator+(XorMint a, const XorMint &b) { return a += b; }
+    friend XorMint operator-(XorMint a, const XorMint &b) { return a -= b; }
+    friend XorMint operator*(XorMint a, const XorMint &b) { return a *= b; }
+    friend bool operator==(const XorMint &a, const XorMint &b) { return a.x == b.x; }
+    XorMint pow(uint64_t e) const
+    {
+        XorMint a = *this, r = 1;
+        while (e)
+        {
+            if (e & 1) r *= a;
+            a *= a;
+            e >>= 1;
+        }
+        return r;
+    }
+    XorMint inv() const
+    {
+        assert(x != 0); // 调试检查，可删
+        return pow(sparseXorMod - 2);
+    }
+};
+
+class XorInfo
+{
+private:
+    static XorMint t, invt;
+    static int maxBit;
+    static int legendre(const XorMint &x)
+    {
+        XorMint z = x.pow((sparseXorMod - 1) / 2);
+        if (z == XorMint(1)) return 1;
+        if (z == XorMint(0)) return 0;
+        return -1;
+    }
+    static XorMint sqrt(const XorMint &x)
+    {
+        assert(legendre(x) >= 0); // 调试检查，可删
+        if (x == XorMint(0)) return 0;
+        XorMint w2, a = 0;
+        while (true)
+        {
+            w2 = a * a - x;
+            if (legendre(w2) == -1) break;
+            a += XorMint(1);
+        }
+        auto mul = [w2](pair<XorMint, XorMint> u,
+                        pair<XorMint, XorMint> v)
+        {
+            return make_pair(u.first * v.first + u.second * v.second * w2,
+                             u.first * v.second + u.second * v.first);
+        };
+        pair<XorMint, XorMint> r{1, 0}, b{a, 1};
+        uint64_t e = (sparseXorMod + 1) / 2;
+        while (e)
+        {
+            if (e & 1) r = mul(r, b);
+            b = mul(b, b);
+            e >>= 1;
+        }
+        return r.first;
+    }
+    XorInfo(XorMint p, XorMint q, long long e, int zero)
+        : xp(p), xq(q), power(e), zeroCount(zero) {}
+
+public:
+    XorMint xp = 1, xq = 1;
+    long long power = 0;
+    int zeroCount = 0;
+    XorInfo() = default;
+    static void setMaxBit(int k) { maxBit = k; }
+    XorInfo(XorMint x, int bits) : xp(x)
+    {
+        if (x == XorMint(0))
+        {
+            xp = 1;
+            zeroCount = 1;
+            return;
+        }
+        for (int i = 0; i < bits; i++)
+        {
+            if (legendre(xp) == 1) xp = sqrt(xp);
+            else
+            {
+                xp = sqrt(xp * invt);
+                power |= 1LL << i;
+            }
+        }
+        power <<= maxBit - bits;
+    }
+    XorInfo operator*(const XorInfo &o) const
+    {
+        return {xp * o.xp, xq * o.xq, power + o.power, zeroCount + o.zeroCount};
+    }
+    XorInfo operator/(const XorInfo &o) const
+    {
+        return {xp * o.xq, xq * o.xp, power - o.power, zeroCount - o.zeroCount};
+    }
+    XorInfo &operator*=(const XorInfo &o)
+    {
+        xp *= o.xp;
+        xq *= o.xq;
+        power += o.power;
+        zeroCount += o.zeroCount;
+        return *this;
+    }
+    XorInfo &operator/=(const XorInfo &o)
+    {
+        xp *= o.xq;
+        xq *= o.xp;
+        power -= o.power;
+        zeroCount -= o.zeroCount;
+        return *this;
+    }
+    XorMint value() const
+    {
+        if (zeroCount) return 0;
+        XorMint r = xp * xq.inv();
+        if (power > 0) r *= t.pow(power >> maxBit);
+        else if (power < 0) r *= invt.pow((-power) >> maxBit);
+        return r;
+    }
+    static void init()
+    {
+        XorMint a = 0, w2;
+        while (true)
+        {
+            w2 = a * a - XorMint(1);
+            if (legendre(w2) == -1)
+            {
+                t = w2;
+                break;
+            }
+            a += XorMint(1);
+        }
+        invt = t.inv();
+    }
+};
+
+inline XorMint XorInfo::t;
+inline XorMint XorInfo::invt;
+inline int XorInfo::maxBit = 0;
+
+// factors 每项为 {局部 Walsh 基向量, 基准掩码/偏移}，返回长度 2^n 的异或卷积。
+inline vector<uint64_t> sparseXor(
+    int n, const vector<vector<pair<int, long long>>> &factors)
+{
+    assert(0 <= n && n < 30); // 调试检查，可删
+    int size = 1LL << n, maxBit = 0;
+    for (const auto &factor : factors)
+    {
+        assert(!factor.empty());
+        maxBit = max(maxBit, (int)factor.size() - 1);
+    }
+    assert(maxBit < 60); // 调试检查，可删
+    XorInfo::setMaxBit(maxBit);
+    XorInfo::init();
+    vector<XorInfo> all(size);
+    int delta = 0;
+    for (const auto &factor : factors)
+    {
+        int bits = factor.size() - 1, base = factor.back().first;
+        XorMint offset = factor.back().second;
+        delta ^= base;
+        int localSize = 1LL << bits;
+        vector<int> mask(localSize);
+        vector<XorMint> walsh(localSize);
+        for (int i = 0; i < bits; i++)
+        {
+            mask[1LL << i] = factor[i].first ^ base;
+            walsh[1LL << i] = factor[i].second;
+        }
+        for (int s = 1; s < localSize; s++)
+        {
+            int b = s & -s;
+            mask[s] = mask[s ^ b] ^ mask[b];
+        }
+        for (int h = 1; h < localSize; h <<= 1)
+        {
+            for (int l = 0; l < localSize; l += h << 1)
+            {
+                for (int j = 0; j < h; j++)
+                {
+                    auto x = walsh[l + j], y = walsh[l + j + h];
+                    walsh[l + j] = x + y;
+                    walsh[l + j + h] = x - y;
+                }
+            }
+        }
+        for (auto &x : walsh)
+        {
+            x += offset;
+        }
+        vector<XorInfo> local(localSize);
+        for (int s = 0; s < localSize; s++)
+        {
+            local[s] = XorInfo(walsh[s], bits);
+        }
+        for (int h = 1; h < localSize; h <<= 1)
+        {
+            for (int l = 0; l < localSize; l += h << 1)
+            {
+                for (int j = 0; j < h; j++)
+                {
+                    auto x = local[l + j], y = local[l + j + h];
+                    local[l + j] = x * y;
+                    local[l + j + h] = x / y;
+                }
+            }
+        }
+        for (int s = 0; s < localSize; s++)
+        {
+            all[mask[s]] *= local[s];
+        }
+    }
+    for (int h = 1; h < size; h <<= 1)
+    {
+        for (int l = 0; l < size; l += h << 1)
+        {
+            for (int j = 0; j < h; j++)
+            {
+                auto x = all[l + j], y = all[l + j + h];
+                all[l + j] = x * y;
+                all[l + j + h] = x / y;
+            }
+        }
+    }
+    vector<XorMint> ans(size);
+    for (int i = 0; i < size; i++)
+    {
+        ans[i] = all[i].value();
+    }
+    XorMint inv2 = XorMint(2).inv();
+    for (int h = 1; h < size; h <<= 1)
+    {
+        for (int l = 0; l < size; l += h << 1)
+        {
+            for (int j = 0; j < h; j++)
+            {
+                auto x = ans[l + j], y = ans[l + j + h];
+                ans[l + j] = (x + y) * inv2;
+                ans[l + j + h] = (x - y) * inv2;
+            }
+        }
+    }
+    vector<uint64_t> res(size);
+    for (int i = 0; i < size; i++)
+    {
+        res[i] = ans[i ^ delta].val();
+    }
+    return res;
 }
 
 template <class T> struct Ranked
@@ -363,7 +808,7 @@ template <class T> vector<T> rankedMobius(Ranked<T> r)
     return a;
 }
 
-template <class T> vector<T> subsetConvolution(const vector<T> &a, const vector<T> &b)
+template <class T> vector<T> subsetConv(const vector<T> &a, const vector<T> &b)
 {
     // a、b 是等长且长度为 2 的幂的集合函数；返回 c[S]=sum(T subset S) a[T]*b[S\T]。
     assert(a.size() == b.size() && !a.empty() && has_single_bit(a.size())); // 调试检查，可删。
@@ -389,33 +834,11 @@ template <class T> vector<T> subsetConvolution(const vector<T> &a, const vector<
     return rankedMobius(move(f));
 }
 
+#ifndef HUSHUQI_MOD_ARITH_HPP
+#define HUSHUQI_MOD_ARITH_HPP
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
-
-constexpr int inf = 1E9;
-constexpr long long INF = numeric_limits<long long>::max() / 4;
-constexpr long double eps = 1E-12L;
-
-template <class T> bool chmin(T &a, const T &b)
-{
-    if (b < a)
-    {
-        a = b;
-        return true;
-    }
-    return false;
-}
-
-template <class T> bool chmax(T &a, const T &b)
-{
-    if (a < b)
-    {
-        a = b;
-        return true;
-    }
-    return false;
-}
 
 long long mulMod(long long a, long long b, long long m)
 {
@@ -669,6 +1092,78 @@ vector<int> batchInv(const vector<int> &a, int mod)
     }
     return ans;
 }
+
+template <int Mod> class InvTable
+{
+private:
+    static_assert(Mod == 998244353);
+    static const vector<pair<uint16_t, uint16_t>> frac;
+    static const vector<uint32_t> small;
+
+public:
+    // x 是 1<=x<Mod 的非零余数；返回 x 在模 Mod 下的乘法逆元。
+    static int get(int x)
+    {
+        assert(1 <= x && x < Mod); // 调试检查，可删
+        auto [a, b] = frac[x >> 10];
+        int pos = 2 * (1 << 20) + x * b - (int)a * Mod;
+        return (long long)small[pos] * b % Mod;
+    }
+};
+
+template <int Mod>
+inline const vector<pair<uint16_t, uint16_t>> InvTable<Mod>::frac = []
+{
+    vector<pair<uint16_t, uint16_t>> res(1 << 20);
+    array<array<int, 4>, 2048> st{};
+    int top = 0;
+    st[top++] = {0, 1, 1, 1};
+    while (top)
+    {
+        auto [a, b, c, d] = st[--top];
+        if (b + d < 2048)
+        {
+            st[top++] = {a + c, b + d, c, d};
+            st[top++] = {a, b, a + c, b + d};
+            continue;
+        }
+        int l = (long long)a * Mod / (1024 * b);
+        int r = (long long)c * Mod / (1024 * d);
+        res[l] = {(uint16_t)a, (uint16_t)b};
+        res[r] = {(uint16_t)c, (uint16_t)d};
+        if (a > c)
+        {
+            a = c;
+        }
+        if (b > d)
+        {
+            b = d;
+        }
+        for (int i = l + 1; i < r; i++)
+        {
+            res[i] = {(uint16_t)a, (uint16_t)b};
+        }
+    }
+    return res;
+}();
+
+template <int Mod>
+inline const vector<uint32_t> InvTable<Mod>::small = []
+{
+    vector<uint32_t> res(4 * (1 << 20) + 1);
+    constexpr int mid = 2 * (1 << 20);
+    res[mid + 1] = 1;
+    res[mid - 1] = Mod - 1;
+    for (int i = 2; i <= mid; i++)
+    {
+        uint32_t x = (uint64_t)(Mod - res[mid + (Mod % i)]) * (Mod / i) % Mod;
+        res[mid + i] = x;
+        res[mid - i] = Mod - x;
+    }
+    return res;
+}();
+
+#endif
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
@@ -718,7 +1213,7 @@ unsigned long long kthRoot(unsigned long long n, int k)
 optional<long long> bsgs(long long a, long long b, long long m,
                          long long ord = -1)
 {
-    // 在 [0,ord) 内求最小解；ord=-1 时使用通用上界 m，无解返回空。
+    // 在 [0,ord) 内求最小解 x；ord=-1 时使用通用上界 m，无解返回空。
     assert(m > 0); // 调试检查，可删
     if (m == 1)
     {
@@ -775,7 +1270,7 @@ optional<long long> bsgs(long long a, long long b, long long m,
 
 optional<long long> exbsgs(long long a, long long b, long long m)
 {
-    // 求 a^x=b (mod m) 的最小非负解，不要求 a 与 m 互素。
+    // a 是底数，b 是右端值，m 是模数（不要求与 a 互质）；返回满足 a^x=b (mod m) 的最小非负 x，不存在时返回空。
     assert(m > 0); // 调试检查，可删
     a %= m;
     b %= m;
@@ -827,7 +1322,7 @@ optional<long long> exbsgs(long long a, long long b, long long m)
 
 optional<long long> sqrtMod(long long n, long long p)
 {
-    // n 是被开方数，p 是素数模；返回较小平方根，非二次剩余返回空。
+    // n 是被开方数，p 是素数模；返回较小的平方根，非二次剩余返回空。
     assert(p >= 2); // 调试检查，可删
     n %= p;
     if (n < 0)
@@ -963,7 +1458,7 @@ class FastNTT
         assert(n > 0 && has_single_bit((unsigned long long)n) && n <= NTT_LIM); // 调试检查，可删。
         init();
         int z = n;
-        int h = countr_zero((uint32_t)z);
+        int h = countr_zero((unsigned long long)z);
         int len = 0;
         while (len < h)
         {
@@ -983,7 +1478,7 @@ class FastNTT
                     }
                     if (s + 1 != (1 << len))
                     {
-                        rot = (uint64_t)rot * rate2[countr_zero((uint32_t)~s)] % mod;
+                        rot = (uint64_t)rot * rate2[countr_zero((unsigned long long)~s)] % mod;
                     }
                 }
                 len++;
@@ -1014,7 +1509,7 @@ class FastNTT
                     }
                     if (s + 1 != (1 << len))
                     {
-                        rot = (uint64_t)rot * rate3[countr_zero((uint32_t)~s)] % mod;
+                        rot = (uint64_t)rot * rate3[countr_zero((unsigned long long)~s)] % mod;
                     }
                 }
                 len += 2;
@@ -1034,7 +1529,7 @@ class FastNTT
         assert(n > 0 && has_single_bit((unsigned long long)n) && n <= NTT_LIM); // 调试检查，可删。
         init();
         int z = n;
-        int h = countr_zero((uint32_t)z);
+        int h = countr_zero((unsigned long long)z);
         int len = h;
         while (len)
         {
@@ -1054,7 +1549,7 @@ class FastNTT
                     }
                     if (s + 1 != (1 << (len - 1)))
                     {
-                        rot = (uint64_t)rot * irate2[countr_zero((uint32_t)~s)] % mod;
+                        rot = (uint64_t)rot * irate2[countr_zero((unsigned long long)~s)] % mod;
                     }
                 }
                 len--;
@@ -1083,7 +1578,7 @@ class FastNTT
                     }
                     if (s + 1 != (1 << (len - 2)))
                     {
-                        rot = (uint64_t)rot * irate3[countr_zero((uint32_t)~s)] % mod;
+                        rot = (uint64_t)rot * irate3[countr_zero((unsigned long long)~s)] % mod;
                     }
                 }
                 len -= 2;
@@ -1350,88 +1845,85 @@ vector<Z> convLarge(const vector<Z> &a, const vector<Z> &b)
 
 namespace plain_ntt
 {
-void dft(vector<Z> &a)
+constexpr int mod = 998244353, G = 3;
+
+int qpow(int a, int b)
 {
-    // a 的长度是至多 2^23 的正 2 的幂；原地完成自然顺序的正 NTT。
-    int n = a.size();
-    assert(n > 0 && has_single_bit((unsigned long long)n) && n <= NTT_LIM); // 调试检查，可删。
-    int rev = 0;
-    for (int i = 1; i < n; i++)
+    int r = 1;
+    for (; b; b >>= 1, a = (long long)a * a % mod)
     {
-        int b = n >> 1;
-        for (; rev & b; b >>= 1)
+        if (b & 1) r = (long long)r * a % mod;
+    }
+    return r;
+}
+
+void dft(vector<int> &a, bool inv = false)
+{
+    int n = a.size();
+    assert(n > 0 && n <= (1 << 23) && has_single_bit((unsigned long long)n));
+    for (int i = 1, j = 0; i < n; i++)
+    {
+        int bit = n >> 1;
+        for (; j & bit; bit >>= 1)
         {
-            rev ^= b;
+            j ^= bit;
         }
-        rev ^= b;
-        if (i < rev)
-        {
-            swap(a[i], a[rev]);
-        }
+        if ((j ^= bit) > i) swap(a[i], a[j]);
     }
     for (int len = 2; len <= n; len <<= 1)
     {
-        Z w = Z(3).pow((mod - 1) / len);
+        int wlen = qpow(G, (mod - 1) / len);
+        if (inv) wlen = qpow(wlen, mod - 2);
         for (int i = 0; i < n; i += len)
         {
-            Z x = 1;
+            int w = 1;
             for (int j = 0; j < len / 2; j++)
             {
-                Z u = a[i + j];
-                Z v = a[i + j + len / 2] * x;
-                a[i + j] = u + v;
-                a[i + j + len / 2] = u - v;
-                x *= w;
+                int u = a[i + j], v = (long long)a[i + j + len / 2] * w % mod;
+                a[i + j] = u + v < mod ? u + v : u + v - mod;
+                a[i + j + len / 2] = u - v < 0 ? u - v + mod : u - v;
+                w = (long long)w * wlen % mod;
             }
         }
     }
-}
-
-void idft(vector<Z> &a)
-{
-    // a 是自然顺序的频域值；原地完成逆 NTT 并除以长度。
-    assert(!a.empty() && has_single_bit((unsigned long long)a.size()) && a.size() <= NTT_LIM); // 调试检查，可删。
-    reverse(a.begin() + 1, a.end());
-    plain_ntt::dft(a);
-    Z iv = Z(a.size()).inv();
-    for (auto &x : a)
+    if (inv)
     {
-        x *= iv;
-    }
-}
-
-vector<Z> conv(vector<Z> a, vector<Z> b)
-{
-    // a、b 按低次到高次保存系数；返回普通线性卷积，任一输入为空时返回空。
-    if (a.empty() || b.empty())
-    {
-        return {};
-    }
-    int s = a.size() + b.size() - 1;
-    if (min(a.size(), b.size()) <= 32)
-    {
-        vector<Z> c(s);
-        for (int i = 0; i < (int)a.size(); i++)
+        int iv = qpow(n, mod - 2);
+        for (int &x : a)
         {
-            for (int j = 0; j < (int)b.size(); j++)
-            {
-                c[i + j] += a[i] * b[j];
-            }
+            x = (long long)x * iv % mod;
         }
-        return c;
     }
-    assert(nttFit(a.size(), b.size())); // 调试检查，可删。
-    int n = bit_ceil((unsigned long long)s);
-    a.resize(n);
-    b.resize(n);
-    plain_ntt::dft(a);
-    plain_ntt::dft(b);
+}
+
+void idft(vector<int> &a)
+{
+    dft(a, true);
+}
+
+vector<int> conv(vector<int> a, vector<int> b)
+{
+    if (a.empty() || b.empty()) return {};
+    int s = a.size() + b.size() - 1, n = 1;
+    while (n < s)
+    {
+        n <<= 1;
+    }
+    for (int &x : a)
+    {
+        x = (x % mod + mod) % mod;
+    }
+    for (int &x : b)
+    {
+        x = (x % mod + mod) % mod;
+    }
+    a.resize(n), b.resize(n);
+    dft(a), dft(b);
     for (int i = 0; i < n; i++)
     {
-        a[i] *= b[i];
+        a[i] = (long long)a[i] * b[i] % mod;
     }
-    plain_ntt::idft(a);
-    a.resize(s);
+    idft(a), a.resize(s);
     return a;
 }
 }
@@ -1886,7 +2378,7 @@ struct RExp
 };
 }
 
-Poly fpsExpRelaxed(const Poly &a, int n)
+Poly fpsExpRelax(const Poly &a, int n)
 {
     // a 的常数项必须为 0，n 不超过 2^20；用 16 叉在线卷积返回 exp(a) mod x^n。
     assert(n >= 0 && n <= rexp::LIM); // 调试检查，可删。
@@ -1904,7 +2396,7 @@ Poly fpsExp(const Poly &a, int n)
     assert(n >= 0 && n <= (1 << 22)); // 调试检查，可删。
     if (n <= rexp::LIM)
     {
-        return fpsExpRelaxed(a, n);
+        return fpsExpRelax(a, n);
     }
     return fpsExpNewton(a, n);
 }
@@ -2081,7 +2573,7 @@ template <class T> vector<T> transConv(const vector<T> &f, vector<T> x)
     // f 是固定右因子，x 是输出线性泛函；返回子集卷积算子关于 f 的转置作用结果。
     assert(!f.empty() && f.size() == x.size() && has_single_bit(f.size())); // 调试检查，可删。
     reverse(x.begin(), x.end());
-    x = subsetConvolution(x, f);
+    x = subsetConv(x, f);
     reverse(x.begin(), x.end());
     return x;
 }
@@ -2130,7 +2622,7 @@ template <class T> vector<T> setExp(const vector<T> &f)
         int m = 1LL << i;
         vector<T> a(f.begin() + m, f.begin() + 2 * m);
         vector<T> b(g.begin(), g.begin() + m);
-        a = subsetConvolution(a, b);
+        a = subsetConv(a, b);
         copy(a.begin(), a.end(), g.begin() + m);
     }
     return g;
@@ -2234,7 +2726,7 @@ template <class T> vector<T> setPowerProj(const vector<T> &f, const vector<T> &w
     return ans;
 }
 
-vector<Z> sharpSubsetSum(const vector<int> &a, int t)
+vector<Z> sharpSubSum(const vector<int> &a, int t)
 {
     // a 是全部正元素且每项不超过 t，t 是目标上界；返回各和 0..t 的子集计数。
     assert(t >= 0);
@@ -2246,7 +2738,10 @@ vector<Z> sharpSubsetSum(const vector<int> &a, int t)
     }
     vector<Z> inv(t + 1), f(t + 1);
     if (t >= 1) inv[1] = 1;
-    for (int i = 2; i <= t; i++) inv[i] = -Z(mod / i) * inv[mod % i];
+    for (int i = 2; i <= t; i++)
+    {
+        inv[i] = -Z(mod / i) * inv[mod % i];
+    }
     for (int x = 1; x <= t; x++)
     {
         for (int k = 1; x * k <= t; k++)
@@ -2260,19 +2755,15 @@ vector<Z> sharpSubsetSum(const vector<int> &a, int t)
 template <class T> T hafnian(const vector<vector<T>> &a)
 {
     int N = a.size();
-    // 调试检查，可删。
-    assert(N % 2 == 0);
+    assert(N % 2 == 0); // 调试检查，可删。
     int n = N / 2;
-    // 调试检查，可删。
-    assert(n <= 20);
+    assert(n <= 20); // 调试检查，可删。
     for (int i = 0; i < N; i++)
     {
-        // 调试检查，可删。
-        assert((int)a[i].size() == N);
+        assert((int)a[i].size() == N); // 调试检查，可删。
         for (int j = 0; j < N; j++)
         {
-            // 调试检查，可删。
-            assert(a[i][j] == a[j][i]);
+            assert(a[i][j] == a[j][i]); // 调试检查，可删。
         }
     }
     vector<T> cyc(1 << n);

@@ -6,31 +6,28 @@
   "provenance": {
     "kind": "template_solution",
     "source": "set_power_series/log_of_set_power_series/main.cpp",
-    "source_sha256": "abe3a4c8b47e504aa2ff4f4db6c225d7be83b4975f0491fe6df935f77154646f"
+    "source_sha256": "5b6c4fd1cb3c732c8b7e33046488bf77b241fc3d8d07ec54f23554f09f6dadb5"
   },
-  "reference": {
-    "kind": "official_adapted",
-    "repository": "https://github.com/yosupo06/library-checker-problems",
+  "official_reference": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
-    "path": "set_power_series/log_of_set_power_series/sol/correct.cpp",
-    "license": "Apache-2.0",
-    "imported_sha256": "feeb22ebdccb670ae8186b04f46ffebf58d37de9f3a78602594d03e7ca11c381"
+    "category": "set_power_series",
+    "problem": "log_of_set_power_series"
   },
   "validation": {
     "status": "online_ac",
-    "checked_at": "2026-08-21T13:42:10.052930Z",
+    "current_source_sha256": "5b6c4fd1cb3c732c8b7e33046488bf77b241fc3d8d07ec54f23554f09f6dadb5",
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch10_set_fps.cpp"
     ],
-    "current_source_sha256": "abe3a4c8b47e504aa2ff4f4db6c225d7be83b4975f0491fe6df935f77154646f",
+    "checked_at": "2026-10-15T22:05:31.105388Z",
     "current_source_online_verdict": "AC",
-    "current_source_submission_id": 395644,
-    "current_source_time": 0.871,
-    "current_source_memory": 99651584,
-    "current_source_submission_time": "2026-08-21T13:41:46.681524Z",
+    "current_source_submission_id": 410712,
+    "current_source_time": 0.847,
+    "current_source_memory": 99672064,
+    "current_source_submission_time": "2026-10-15T22:05:02.268078Z",
     "current_source_is_latest": true,
-    "server_source_sha256": "abe3a4c8b47e504aa2ff4f4db6c225d7be83b4975f0491fe6df935f77154646f",
+    "server_source_sha256": "5b6c4fd1cb3c732c8b7e33046488bf77b241fc3d8d07ec54f23554f09f6dadb5",
     "note": "当前独立源码已通过 Library Checker 在线评测。"
   },
   "submission_attempts": [
@@ -63,9 +60,21 @@
       "compile_standard": "gnu++20",
       "submitted_at": "2026-08-21T13:41:46.873689Z",
       "recorded_at": "2026-08-21T13:42:10.052076Z"
+    },
+    {
+      "submission_id": 410712,
+      "source_sha256": "5b6c4fd1cb3c732c8b7e33046488bf77b241fc3d8d07ec54f23554f09f6dadb5",
+      "server_source_sha256": "5b6c4fd1cb3c732c8b7e33046488bf77b241fc3d8d07ec54f23554f09f6dadb5",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.847,
+      "memory": 99672064,
+      "submission_time": "2026-10-15T22:05:02.268078Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-10-15T22:05:02.493452Z",
+      "recorded_at": "2026-10-15T22:05:31.103677Z"
     }
-  ],
-  "notes": [
-    "reference、historical_submission 和旧 submission_attempts 只描述历史源码，不是当前 main.cpp 的在线判定。"
   ]
 }
