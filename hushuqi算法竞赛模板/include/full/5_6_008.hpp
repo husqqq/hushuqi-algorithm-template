@@ -12,7 +12,10 @@ inline vector<int> maxIS(int n, const vector<pair<int, int>> &edges)
     vector<unsigned long long> adj(n);
     vector<bool> loop(n);
     unsigned long long all = n ? (1ULL << n) - 1 : 0;
-    for (int u = 0; u < n; u++) adj[u] = all ^ (1ULL << u);
+    for (int u = 0; u < n; u++)
+    {
+        adj[u] = all ^ (1ULL << u);
+    }
     for (auto [u, v] : edges)
     {
         assert(0 <= u && u < n && 0 <= v && v < n); // 调试检查，可删。
@@ -67,7 +70,10 @@ inline vector<int> maxIS(int n, const vector<pair<int, int>> &edges)
         }
     };
     unsigned long long can = all;
-    for (int u = 0; u < n; u++) if (loop[u]) can &= ~(1ULL << u);
+    for (int u = 0; u < n; u++)
+    {
+        if (loop[u]) can &= ~(1ULL << u);
+    }
     dfs(dfs, can);
     return best;
 }

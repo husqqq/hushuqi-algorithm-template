@@ -3,27 +3,28 @@
 using namespace std;
 #define int long long
 
-inline long long permanentRyser(const vector<vector<long long>> &a, long long mod)
+int permanent(const vector<vector<int>> &a, int mod)
 {
+    // a 是 n<=24 的方阵，mod>0；返回积和式 perm(a) 模 mod 的非负值。
+    // Ryser 公式：perm = sum_{S} (-1)^{n-|S|} prod_i sum_{j in S} a[i][j]，按格雷码每次改一列。
     int n = a.size();
-    if (mod <= 0 || n > 24) throw invalid_argument("permanent: mod>0 and n<=24 required");
-    for (const auto &row : a) if ((int)row.size() != n) throw invalid_argument("square matrix required");
-    if (!n) return 1 % mod;
-    vector<long long> sum(n); long long ans = 0;
-    unsigned long long last = 0;
-    for (unsigned long long t = 1; t < (1ULL << n); ++t)
+    assert(mod > 0 && n <= 24); // 调试检查，可删。
+    vector<int> row(n); // row[i] 是当前列集合 S 在第 i 行上的元素和 (模 mod)。
+    int ans = 0;
+    for (int t = 1; t < (1LL << n); t++)
     {
-        auto mask = t ^ (t >> 1), diff = mask ^ last;
-        int b = countr_zero(diff); bool add = mask & diff;
-        for (int i = 0; i < n; ++i)
+        int s = t ^ (t >> 1), b = __builtin_ctzll(t), sg = s >> b & 1 ? 1 : -1;
+        int prod = 1 % mod;
+        for (int i = 0; i < n; i++)
         {
-            __int128 v = (__int128)sum[i] + (add ? (__int128)a[i][b] : -(__int128)a[i][b]);
-            sum[i] = v % mod; if (sum[i] < 0) sum[i] += mod;
+            row[i] = (((__int128)row[i] + (__int128)sg * a[i][b]) % mod + mod) % mod;
+            prod = (__int128)prod * row[i] % mod;
         }
-        long long prod = 1 % mod;
-        for (auto x : sum) prod = (__int128)prod * x % mod;
-        __int128 v = (__int128)ans + ((n - popcount(mask)) & 1 ? -(__int128)prod : prod);
-        ans = v % mod; if (ans < 0) ans += mod; last = mask;
+        if ((n - __builtin_popcountll(s)) & 1)
+        {
+            prod = (mod - prod) % mod;
+        }
+        ans = ((__int128)ans + prod) % mod;
     }
-    return ans;
+    return n ? ans : 1 % mod;
 }

@@ -470,7 +470,9 @@ int qpow(int a, int b)
 {
     int r = 1;
     for (; b; b >>= 1, a = (long long)a * a % mod)
+    {
         if (b & 1) r = (long long)r * a % mod;
+    }
     return r;
 }
 
@@ -481,7 +483,10 @@ void dft(vector<int> &a, bool inv = false)
     for (int i = 1, j = 0; i < n; i++)
     {
         int bit = n >> 1;
-        for (; j & bit; bit >>= 1) j ^= bit;
+        for (; j & bit; bit >>= 1)
+        {
+            j ^= bit;
+        }
         if ((j ^= bit) > i) swap(a[i], a[j]);
     }
     for (int len = 2; len <= n; len <<= 1)
@@ -503,7 +508,10 @@ void dft(vector<int> &a, bool inv = false)
     if (inv)
     {
         int iv = qpow(n, mod - 2);
-        for (int &x : a) x = (long long)x * iv % mod;
+        for (int &x : a)
+        {
+            x = (long long)x * iv % mod;
+        }
     }
 }
 
@@ -516,12 +524,24 @@ vector<int> conv(vector<int> a, vector<int> b)
 {
     if (a.empty() || b.empty()) return {};
     int s = a.size() + b.size() - 1, n = 1;
-    while (n < s) n <<= 1;
-    for (int &x : a) x = (x % mod + mod) % mod;
-    for (int &x : b) x = (x % mod + mod) % mod;
+    while (n < s)
+    {
+        n <<= 1;
+    }
+    for (int &x : a)
+    {
+        x = (x % mod + mod) % mod;
+    }
+    for (int &x : b)
+    {
+        x = (x % mod + mod) % mod;
+    }
     a.resize(n), b.resize(n);
     dft(a), dft(b);
-    for (int i = 0; i < n; i++) a[i] = (long long)a[i] * b[i] % mod;
+    for (int i = 0; i < n; i++)
+    {
+        a[i] = (long long)a[i] * b[i] % mod;
+    }
     idft(a), a.resize(s);
     return a;
 }

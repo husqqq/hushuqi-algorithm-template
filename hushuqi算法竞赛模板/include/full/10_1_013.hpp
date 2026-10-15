@@ -232,7 +232,10 @@ vector<Z> sharpSubSum(const vector<int> &a, int t)
     }
     vector<Z> inv(t + 1), f(t + 1);
     if (t >= 1) inv[1] = 1;
-    for (int i = 2; i <= t; i++) inv[i] = -Z(mod / i) * inv[mod % i];
+    for (int i = 2; i <= t; i++)
+    {
+        inv[i] = -Z(mod / i) * inv[mod % i];
+    }
     for (int x = 1; x <= t; x++)
     {
         for (int k = 1; x * k <= t; k++)

@@ -11,7 +11,10 @@ template <uint32_t mod> struct LinearMint
     static constexpr uint32_t inv32()
     {
         uint32_t x = mod;
-        for (int i = 0; i < 4; i++) x *= 2 - mod * x;
+        for (int i = 0; i < 4; i++)
+        {
+            x *= 2 - mod * x;
+        }
         return x;
     }
     static constexpr uint32_t r = inv32();
@@ -89,13 +92,19 @@ struct F2Vector
     F2Vector &operator^=(const F2Vector &b)
     {
         assert(n == b.n);
-        for (int i = 0; i < (int)a.size(); i++) a[i] ^= b.a[i];
+        for (int i = 0; i < (int)a.size(); i++)
+        {
+            a[i] ^= b.a[i];
+        }
         return *this;
     }
     string str() const
     {
         string s(n, '0');
-        for (int i = 0; i < n; i++) s[i] += get(i);
+        for (int i = 0; i < n; i++)
+        {
+            s[i] += get(i);
+        }
         return s;
     }
 };
@@ -109,7 +118,10 @@ inline vector<F2Vector> matMulF2(const vector<F2Vector> &a,
     vector<F2Vector> c(a.size(), F2Vector(k));
     for (int i = 0; i < (int)a.size(); i++)
     {
-        for (int j = 0; j < m; j++) if (a[i].get(j)) c[i] ^= b[j];
+        for (int j = 0; j < m; j++)
+        {
+            if (a[i].get(j)) c[i] ^= b[j];
+        }
     }
     return c;
 }
@@ -122,17 +134,29 @@ inline int rankF2(vector<F2Vector> a)
     if (n > m)
     {
         vector<F2Vector> t(m, F2Vector(n));
-        for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) if (a[i].get(j)) t[j].set(i);
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < m; j++)
+            {
+                if (a[i].get(j)) t[j].set(i);
+            }
+        }
         a.swap(t);
         swap(n, m);
     }
     for (int col = 0; col < m && rk < n; col++)
     {
         int p = rk;
-        while (p < n && !a[p].get(col)) p++;
+        while (p < n && !a[p].get(col))
+        {
+            p++;
+        }
         if (p == n) continue;
         swap(a[p], a[rk]);
-        for (int i = rk + 1; i < n; i++) if (a[i].get(col)) a[i] ^= a[rk];
+        for (int i = rk + 1; i < n; i++)
+        {
+            if (a[i].get(col)) a[i] ^= a[rk];
+        }
         rk++;
     }
     return rk;
@@ -143,18 +167,27 @@ inline optional<vector<F2Vector>> matInvF2(vector<F2Vector> a)
     // a 是 n 阶 F2 方阵；可逆时返回逆矩阵的各行，否则返回空。
     int n = a.size();
     vector<F2Vector> b(n, F2Vector(n));
-    for (int i = 0; i < n; i++) b[i].set(i);
+    for (int i = 0; i < n; i++)
+    {
+        b[i].set(i);
+    }
     for (int col = 0; col < n; col++)
     {
         int p = col;
-        while (p < n && !a[p].get(col)) p++;
+        while (p < n && !a[p].get(col))
+        {
+            p++;
+        }
         if (p == n) return nullopt;
         swap(a[p], a[col]);
         swap(b[p], b[col]);
-        for (int i = 0; i < n; i++) if (i != col && a[i].get(col))
+        for (int i = 0; i < n; i++)
         {
-            a[i] ^= a[col];
-            b[i] ^= b[col];
+            if (i != col && a[i].get(col))
+{
+a[i] ^= a[col];
+b[i] ^= b[col];
+}
         }
     }
     return b;
@@ -173,30 +206,51 @@ inline optional<F2LinearSol> gaussF2(vector<F2Vector> a, const F2Vector &rhs)
     assert(rhs.n == n);
     vector<int> pivot(m, -1);
     vector<int> b(n);
-    for (int i = 0; i < n; i++) b[i] = rhs.get(i);
+    for (int i = 0; i < n; i++)
+    {
+        b[i] = rhs.get(i);
+    }
     for (int col = 0; col < m && rk < n; col++)
     {
         int p = rk;
-        while (p < n && !a[p].get(col)) p++;
+        while (p < n && !a[p].get(col))
+        {
+            p++;
+        }
         if (p == n) continue;
         swap(a[p], a[rk]);
         swap(b[p], b[rk]);
-        for (int i = 0; i < n; i++) if (i != rk && a[i].get(col))
+        for (int i = 0; i < n; i++)
         {
-            a[i] ^= a[rk];
-            b[i] ^= b[rk];
+            if (i != rk && a[i].get(col))
+{
+a[i] ^= a[rk];
+b[i] ^= b[rk];
+}
         }
         pivot[col] = rk++;
     }
-    for (int i = rk; i < n; i++) if (b[i]) return nullopt;
-    F2LinearSol sol{F2Vector(m), {}};
-    for (int col = 0; col < m; col++) if (pivot[col] != -1) sol.part.set(col, b[pivot[col]]);
-    for (int free = 0; free < m; free++) if (pivot[free] == -1)
+    for (int i = rk; i < n; i++)
     {
-        F2Vector x(m);
-        x.set(free);
-        for (int col = 0; col < m; col++) if (pivot[col] != -1 && a[pivot[col]].get(free)) x.set(col);
-        sol.basis.push_back(move(x));
+        if (b[i]) return nullopt;
+    }
+    F2LinearSol sol{F2Vector(m), {}};
+    for (int col = 0; col < m; col++)
+    {
+        if (pivot[col] != -1) sol.part.set(col, b[pivot[col]]);
+    }
+    for (int free = 0; free < m; free++)
+    {
+        if (pivot[free] == -1)
+{
+F2Vector x(m);
+x.set(free);
+for (int col = 0; col < m; col++)
+{
+    if (pivot[col] != -1 && a[pivot[col]].get(free)) x.set(col);
+}
+sol.basis.push_back(move(x));
+}
     }
     return sol;
 }
@@ -215,7 +269,10 @@ inline optional<F2Vector> solveF2(vector<F2Vector> a, const F2Vector &rhs)
     for (int col = 0; col < m && rk < n; col++)
     {
         int p = rk;
-        while (p < n && !a[p].get(col)) p++;
+        while (p < n && !a[p].get(col))
+        {
+            p++;
+        }
         if (p == n) continue;
         swap(a[p], a[rk]);
         swap(b[p], b[rk]);
@@ -318,7 +375,10 @@ inline optional<vector<int>> solveMod3(const vector<vector<int>> &mat, int vars)
     for (int col = 0; col < vars && rk < rows; col++)
     {
         int p = rk;
-        while (p < rows && !a[p].get(col)) p++;
+        while (p < rows && !a[p].get(col))
+        {
+            p++;
+        }
         if (p == rows) continue;
         swap(a[p], a[rk]);
         int lead = a[rk].get(col);
@@ -330,9 +390,15 @@ inline optional<vector<int>> solveMod3(const vector<vector<int>> &mat, int vars)
         }
         pivot[col] = rk++;
     }
-    for (int i = rk; i < rows; i++) if (a[i].get(vars)) return nullopt;
+    for (int i = rk; i < rows; i++)
+    {
+        if (a[i].get(vars)) return nullopt;
+    }
     vector<int> ans(vars);
-    for (int col = 0; col < vars; col++) if (pivot[col] != -1)
-        ans[col] = a[pivot[col]].get(col) * a[pivot[col]].get(vars) % 3;
+    for (int col = 0; col < vars; col++)
+    {
+        if (pivot[col] != -1)
+ans[col] = a[pivot[col]].get(col) * a[pivot[col]].get(vars) % 3;
+    }
     return ans;
 }

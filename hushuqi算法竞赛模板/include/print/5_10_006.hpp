@@ -152,7 +152,10 @@ long long weightClique(int n, const vector<long long> &val, const vector<pair<in
         if (x == -1)
         {
             vector<int> vs;
-            for (int u = 0; u < n; u++) if (alive[u]) vs.push_back(u);
+            for (int u = 0; u < n; u++)
+            {
+                if (alive[u]) vs.push_back(u);
+            }
             long long ans = 0;
             for (int mask = 1; mask < (1 << vs.size()); mask++)
             {

@@ -119,10 +119,19 @@ template <class T> vector<T> monoValues(int d, int n)
 {
     // d 是非负指数，n 是值数；返回 0^d 到 (n-1)^d。
     vector<int> lpf(n);
-    for (int i = 2; i < n; i++) lpf[i] = i;
-    for (int p = 2; p < n; p++) if (lpf[p] == p)
+    for (int i = 2; i < n; i++)
     {
-        for (int x = 2 * p; x < n; x += p) if (lpf[x] > p) lpf[x] = p;
+        lpf[i] = i;
+    }
+    for (int p = 2; p < n; p++)
+    {
+        if (lpf[p] == p)
+{
+for (int x = 2 * p; x < n; x += p)
+{
+    if (lpf[x] > p) lpf[x] = p;
+}
+}
     }
     vector<T> f(n);
     for (int i = 0; i < n; i++)
@@ -139,10 +148,19 @@ template <class T> T sumExpMLim(T r, int d)
     assert(r != T(1) && d >= 0);
     auto f = monoValues<T>(d, d + 1);
     vector<T> fac(d + 2, T(1)), ifac(d + 2, T(1)), pw(d + 1, T(1));
-    for (int i = 1; i <= d + 1; i++) fac[i] = fac[i - 1] * T(i);
+    for (int i = 1; i <= d + 1; i++)
+    {
+        fac[i] = fac[i - 1] * T(i);
+    }
     ifac[d + 1] = T(1) / fac[d + 1];
-    for (int i = d + 1; i; i--) ifac[i - 1] = ifac[i] * T(i);
-    for (int i = 1; i <= d; i++) pw[i] = pw[i - 1] * r;
+    for (int i = d + 1; i; i--)
+    {
+        ifac[i - 1] = ifac[i] * T(i);
+    }
+    for (int i = 1; i <= d; i++)
+    {
+        pw[i] = pw[i - 1] * r;
+    }
     T ans = 0, prefix = 0;
     for (int i = 0; i <= d; i++)
     {

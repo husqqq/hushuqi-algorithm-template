@@ -169,7 +169,10 @@ optional<DMSTResult> dmstTree(int n, int root, const vector<DMSTFastEdge> &e)
                 }
             }
             rt = nullptr;
-            for (int i = (int)a.size() - 1; i >= 0; i--) rt = meld(rt, a[i]);
+            for (int i = (int)a.size() - 1; i >= 0; i--)
+            {
+                rt = meld(rt, a[i]);
+            }
             sz--;
         }
 
@@ -224,7 +227,10 @@ optional<DMSTResult> dmstTree(int n, int root, const vector<DMSTFastEdge> &e)
                 u = c;
             }
             vis[u] = stamp;
-            while (heap[u].sz && find(find, heap[u].top().u) == u) heap[u].pop();
+            while (heap[u].sz && find(find, heap[u].top().u) == u)
+            {
+                heap[u].pop();
+            }
             if (!heap[u].sz) return nullopt;
             pick[u] = heap[u].top();
             u = find(find, pick[u].u);

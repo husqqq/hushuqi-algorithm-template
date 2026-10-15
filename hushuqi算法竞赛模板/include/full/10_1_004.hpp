@@ -107,7 +107,10 @@ template <uint32_t mod, uint32_t primitive> struct StaticNTT
     static constexpr uint32_t montInv()
     {
         uint32_t x = mod;
-        for (int i = 0; i < 4; i++) x *= 2 - mod * x;
+        for (int i = 0; i < 4; i++)
+        {
+            x *= 2 - mod * x;
+        }
         return x;
     }
     static constexpr uint32_t inv32 = montInv();
@@ -294,7 +297,10 @@ template <uint32_t mod, uint32_t primitive> struct StaticNTT
             }
         }
         uint32_t iv = toMont(power(n, mod - 2));
-        for (auto &x : a) x = fromMont(mul(x, iv));
+        for (auto &x : a)
+        {
+            x = fromMont(mul(x, iv));
+        }
     }
 
     static void dftCompact(vector<uint32_t> &a)
@@ -422,7 +428,10 @@ template <uint32_t mod, uint32_t primitive> struct StaticNTT
             }
         }
         uint32_t iv = toMont(power(n, mod - 2));
-        for (auto &x : a) x = fromMont(mul(x, iv));
+        for (auto &x : a)
+        {
+            x = fromMont(mul(x, iv));
+        }
     }
 
     static vector<uint32_t> conv(const vector<unsigned long long> &x,
@@ -433,11 +442,20 @@ template <uint32_t mod, uint32_t primitive> struct StaticNTT
         int need = x.size() + y.size() - 1;
         int n = bit_ceil((unsigned long long)need);
         vector<uint32_t> a(n), b(n);
-        for (int i = 0; i < (int)x.size(); i++) a[i] = toMont(x[i] % mod);
-        for (int i = 0; i < (int)y.size(); i++) b[i] = toMont(y[i] % mod);
+        for (int i = 0; i < (int)x.size(); i++)
+        {
+            a[i] = toMont(x[i] % mod);
+        }
+        for (int i = 0; i < (int)y.size(); i++)
+        {
+            b[i] = toMont(y[i] % mod);
+        }
         dft(a);
         dft(b);
-        for (int i = 0; i < n; i++) a[i] = mul(a[i], b[i]);
+        for (int i = 0; i < n; i++)
+        {
+            a[i] = mul(a[i], b[i]);
+        }
         idft(a);
         a.resize(need);
         return a;

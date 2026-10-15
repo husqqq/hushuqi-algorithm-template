@@ -97,14 +97,18 @@ private:
         if (x == stop) return true;
         tree[x].active = value;
         for (int y : tree[x].children)
+        {
             if (!negInf[y] && change(y, stop, value)) return true;
+        }
         return false;
     }
     void maintain(int x)
     {
         if (negInf[x]) return;
         for (int y : tree[x].children)
+        {
             if (!negInf[y]) tree[y].depth = tree[x].depth + 1, maintain(y);
+        }
     }
     void cut(int x)
     {
@@ -145,7 +149,10 @@ private:
         {
             int x = pending.front();
             pending.pop();
-            for (int id : graph[x]) markBad(edges[id].to, pending);
+            for (int id : graph[x])
+            {
+                markBad(edges[id].to, pending);
+            }
         }
     }
 
@@ -156,7 +163,10 @@ public:
         n = n_;
         edges = edges_;
         graph.assign(n, {});
-        for (int i = 0; i < (int)edges.size(); i++) graph[edges[i].from].push_back(i);
+        for (int i = 0; i < (int)edges.size(); i++)
+        {
+            graph[edges[i].from].push_back(i);
+        }
         tree.assign(n, {});
         dist.assign(n, 0);
         reachable.assign(n, false);
@@ -195,7 +205,9 @@ public:
         }
         vector<optional<int>> finite(n);
         for (int i = 0; i < n; i++)
+        {
             if (reachable[i] && !negInf[i]) finite[i] = dist[i];
+        }
         return {finite, negInf};
     }
 };

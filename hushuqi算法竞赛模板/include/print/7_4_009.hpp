@@ -1,31 +1,36 @@
 #pragma once
 #include "7_2_003.hpp"
 
-// 多项式系数低次在前；仅提升简单根，p 为素数，目标 p^k <= LLONG_MAX。
-inline optional<long long> hensel(const vector<long long> &a, long long root,
-                                   long long p, int k)
+optional<int> hensel(const vector<int> &a, int x, int p, int k)
 {
-    if (p < 2 || !isPrime(p) || k < 1) throw invalid_argument("Hensel needs prime p and k>=1");
-    auto eval = [&](long long x, long long mod, bool derivative)
+    // a 是整系数多项式 f，低次在前；p 是素数，x 是 f 模 p 的根；p^k 不超过 LLONG_MAX。
+    // 当 x 是单根（f'(x) 模 p 非零）时返回 f 模 p^k 的唯一提升根 (在 [0,p^k) 内)，否则返回空。
+    assert(isPrime(p) && k >= 1); // 调试检查，可删。
+    auto eval = [&](int y, int mod, bool der)
     {
+        // 返回 f(y) 或 f'(y) (der 为真) 模 mod 的非负值，秦九韶求值。
         __int128 s = 0;
-        for (int i = a.size() - 1; i >= (derivative ? 1 : 0); --i)
+        for (int i = (int)a.size() - 1; i >= der; i--)
         {
-            __int128 c = derivative ? (__int128)a[i] * i : a[i];
-            s = (s * x + c) % mod;
+            s = (s * y + (__int128)a[i] * (der ? i : 1)) % mod;
         }
-        if (s < 0) s += mod; return (long long)s;
+        return (int)((s + mod) % mod);
     };
-    root %= p; if (root < 0) root += p;
-    if (eval(root, p, false)) return nullopt;
-    long long d = eval(root, p, true); if (!d) return nullopt;
-    long long inv = pow64(d, p - 2, p), mod = p;
-    for (int i = 1; i < k; ++i)
+    x = (x % p + p) % p;
+    int d = eval(x, p, true);
+    if (eval(x, p, false) || !d)
     {
-        if ((__int128)mod * p > LLONG_MAX) return nullopt;
-        long long next = mod * p, f = eval(root, next, false);
-        long long t = (__int128)(p - f / mod) * inv % p;
-        root = (__int128)root + (__int128)t * mod; mod = next;
+        return nullopt;
     }
-    return root;
+    // 牛顿迭代：若 f(x)≡0 (mod q)，则 x - f(x)/f'(x) 是模 qp 的根，且 f'(x) 的逆只需模 p。
+    int inv = pow64(d, p - 2, p), q = p;
+    for (int i = 1; i < k; i++)
+    {
+        assert((__int128)q * p <= LLONG_MAX); // 调试检查，可删。
+        int nq = q * p, f = eval(x, nq, false);
+        int t = (__int128)(p - f / q) * inv % p;
+        x += t * q;
+        q = nq;
+    }
+    return x;
 }

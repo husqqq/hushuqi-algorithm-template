@@ -23,7 +23,10 @@ template <uint32_t MOD, uint32_t ROOT> struct NTT
         for (int i = 1, j = 0; i < n; i++)
         {
             int bit = n >> 1;
-            while (j & bit) j ^= bit, bit >>= 1;
+            while (j & bit)
+            {
+                j ^= bit, bit >>= 1;
+            }
             j ^= bit;
             if (i < j) swap(a[i], a[j]);
         }
@@ -47,7 +50,10 @@ template <uint32_t MOD, uint32_t ROOT> struct NTT
         if (inverse)
         {
             uint32_t inv = power(n, MOD - 2);
-            for (auto &x : a) x = (uint64_t)x * inv % MOD;
+            for (auto &x : a)
+            {
+                x = (uint64_t)x * inv % MOD;
+            }
         }
     }
     static vector<uint32_t> square(const vector<int> &a)
@@ -57,16 +63,26 @@ template <uint32_t MOD, uint32_t ROOT> struct NTT
         {
             vector<uint32_t> c(2 * a.size() - 1);
             for (int i = 0; i < (int)a.size(); i++)
+            {
                 for (int j = 0; j < (int)a.size(); j++)
+                {
                     c[i + j] = (c[i + j] + (uint64_t)a[i] * a[j]) % MOD;
+                }
+            }
             return c;
         }
         int need = 2 * a.size() - 1;
         int n = bit_ceil((unsigned long long)need);
         vector<uint32_t> f(n);
-        for (int i = 0; i < (int)a.size(); i++) f[i] = a[i] % MOD;
+        for (int i = 0; i < (int)a.size(); i++)
+        {
+            f[i] = a[i] % MOD;
+        }
         transform(f, false);
-        for (auto &x : f) x = (uint64_t)x * x % MOD;
+        for (auto &x : f)
+        {
+            x = (uint64_t)x * x % MOD;
+        }
         transform(f, true);
         f.resize(need);
         return f;
@@ -89,23 +105,32 @@ vector<uint32_t> solveMod(const vector<vector<int>> &g)
         for (int i = 0; i < (int)order.size(); i++)
         {
             int u = order[i];
-            for (int v : g[u]) if (v != parent[u] && !blocked[v])
+            for (int v : g[u])
             {
-                parent[v] = u;
-                order.push_back(v);
+                if (v != parent[u] && !blocked[v])
+{
+ parent[v] = u;
+ order.push_back(v);
+}
             }
         }
         for (int i = order.size() - 1; i >= 0; i--)
         {
             int u = order[i];
             size[u] = 1;
-            for (int v : g[u]) if (!blocked[v] && parent[v] == u) size[u] += size[v];
+            for (int v : g[u])
+            {
+                if (!blocked[v] && parent[v] == u) size[u] += size[v];
+            }
         }
         int sz = order.size(), cen = start;
         for (int u : order)
         {
             int largest = sz - size[u];
-            for (int v : g[u]) if (!blocked[v] && parent[v] == u) largest = max(largest, size[v]);
+            for (int v : g[u])
+            {
+                if (!blocked[v] && parent[v] == u) largest = max(largest, size[v]);
+            }
             if (largest * 2 <= sz)
             {
                 cen = u;
@@ -114,26 +139,35 @@ vector<uint32_t> solveMod(const vector<vector<int>> &g)
         }
 
         vector<int> total(1, 1);
-        for (int first : g[cen]) if (!blocked[first])
+        for (int first : g[cen])
         {
-            vector<int> histogram(2);
-            vector<array<int, 3>> stack{{first, cen, 1}};
-            while (!stack.empty())
-            {
-                auto [u, p, d] = stack.back();
-                stack.pop_back();
-                if ((int)histogram.size() <= d) histogram.resize(d + 1);
-                histogram[d]++;
-                for (int v : g[u]) if (v != p && !blocked[v]) stack.push_back({v, u, d + 1});
-            }
-            auto subtract = NTT<MOD, ROOT>::square(histogram);
-            for (int d = 0; d < (int)subtract.size() && d < n; d++)
-            {
-                ans[d] -= subtract[d];
-                if (ans[d] < 0) ans[d] += MOD;
-            }
-            if (total.size() < histogram.size()) total.resize(histogram.size());
-            for (int d = 0; d < (int)histogram.size(); d++) total[d] += histogram[d];
+            if (!blocked[first])
+{
+vector<int> histogram(2);
+vector<array<int, 3>> stack{{first, cen, 1}};
+while (!stack.empty())
+{
+auto [u, p, d] = stack.back();
+stack.pop_back();
+if ((int)histogram.size() <= d) histogram.resize(d + 1);
+histogram[d]++;
+for (int v : g[u])
+{
+    if (v != p && !blocked[v]) stack.push_back({v, u, d + 1});
+}
+}
+auto subtract = NTT<MOD, ROOT>::square(histogram);
+for (int d = 0; d < (int)subtract.size() && d < n; d++)
+{
+ans[d] -= subtract[d];
+if (ans[d] < 0) ans[d] += MOD;
+}
+if (total.size() < histogram.size()) total.resize(histogram.size());
+for (int d = 0; d < (int)histogram.size(); d++)
+{
+    total[d] += histogram[d];
+}
+}
         }
         auto add = NTT<MOD, ROOT>::square(total);
         for (int d = 0; d < (int)add.size() && d < n; d++)
@@ -142,10 +176,16 @@ vector<uint32_t> solveMod(const vector<vector<int>> &g)
             if (ans[d] >= MOD) ans[d] -= MOD;
         }
         blocked[cen] = true;
-        for (int v : g[cen]) if (!blocked[v]) work.push_back(v);
+        for (int v : g[cen])
+        {
+            if (!blocked[v]) work.push_back(v);
+        }
     }
     vector<uint32_t> res(n);
-    for (int i = 0; i < n; i++) res[i] = ans[i];
+    for (int i = 0; i < n; i++)
+    {
+        res[i] = ans[i];
+    }
     return res;
 }
 }

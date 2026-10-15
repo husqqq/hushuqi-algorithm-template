@@ -72,7 +72,10 @@ long long weightedTri(int n, const vector<long long> &val, const vector<pair<int
     long long ans = 0;
     for (int u = 0; u < n; u++)
     {
-        for (int v : g[u]) mark[v] = u;
+        for (int v : g[u])
+        {
+            mark[v] = u;
+        }
         for (int v : g[u])
         {
             for (int w : g[v])
@@ -108,9 +111,15 @@ inline int triWeight998(int n, const vector<int> &value,
     {
         return pair{deg[u], u} < pair{deg[v], v};
     });
-    for (int i = 0; i < n; i++) rk[ord[i]] = i;
+    for (int i = 0; i < n; i++)
+    {
+        rk[ord[i]] = i;
+    }
     vector<Z> w(n);
-    for (int i = 0; i < n; i++) w[i] = value[ord[i]];
+    for (int i = 0; i < n; i++)
+    {
+        w[i] = value[ord[i]];
+    }
     vector<vector<int>> g(n);
     for (auto [u, v] : edges)
     {
@@ -122,12 +131,18 @@ inline int triWeight998(int n, const vector<int> &value,
     Z ans = 0;
     for (int u = 0; u < n; u++)
     {
-        for (int v : g[u]) mark[v] = u;
+        for (int v : g[u])
+        {
+            mark[v] = u;
+        }
         Z sum = 0;
         for (int v : g[u])
         {
             Z cur = 0;
-            for (int x : g[v]) if (mark[x] == u) cur += w[x];
+            for (int x : g[v])
+            {
+                if (mark[x] == u) cur += w[x];
+            }
             sum += cur * w[v];
         }
         ans += sum * w[u];
@@ -178,7 +193,10 @@ vector<long long> fourCycleCnt(int n, const vector<pair<int, int>> &edges)
     {
         return deg[u] < deg[v];
     });
-    for (int i = 0; i < n; i++) rk[ord[i]] = i;
+    for (int i = 0; i < n; i++)
+    {
+        rk[ord[i]] = i;
+    }
     map<pair<int, int>, int> pos;
     vector<pair<int, int>> es;
     vector<vector<int>> group;
@@ -205,7 +223,10 @@ vector<long long> fourCycleCnt(int n, const vector<pair<int, int>> &edges)
         g[u].push_back({v, id});
         g[v].push_back({u, id});
     }
-    for (auto &a : g) sort(a.begin(), a.end());
+    for (auto &a : g)
+    {
+        sort(a.begin(), a.end());
+    }
     vector<long long> path(n);
     for (int top = n - 1; top >= 0; top--)
     {
@@ -235,13 +256,19 @@ vector<long long> fourCycleCnt(int n, const vector<pair<int, int>> &edges)
         {
             if (mid >= top) break;
             int lim = lower_bound(g[mid].begin(), g[mid].end(), pair{top, -1}) - g[mid].begin();
-            for (int i = 0; i < lim; i++) path[g[mid][i].first] = 0;
+            for (int i = 0; i < lim; i++)
+            {
+                path[g[mid][i].first] = 0;
+            }
         }
     }
     vector<long long> res(m);
     for (int i = 0; i < (int)es.size(); i++)
     {
-        for (int id : group[i]) res[id] = ans[i];
+        for (int id : group[i])
+        {
+            res[id] = ans[i];
+        }
     }
     return res;
 }

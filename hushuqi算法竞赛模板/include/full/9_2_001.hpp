@@ -18,7 +18,10 @@ inline int rankMod(vector<vector<long long>> a, int m, long long mod)
     for (auto &r : a)
     {
         assert((int)r.size() == m);
-        for (auto &x : r) x = (x % mod + mod) % mod;
+        for (auto &x : r)
+        {
+            x = (x % mod + mod) % mod;
+        }
     }
     auto power = [&](long long x, long long b)
     {
@@ -34,18 +37,24 @@ inline int rankMod(vector<vector<long long>> a, int m, long long mod)
     for (int col = 0; col < m && rk < n; col++)
     {
         int p = rk;
-        while (p < n && a[p][col] == 0) p++;
+        while (p < n && a[p][col] == 0)
+        {
+            p++;
+        }
         if (p == n) continue;
         swap(a[p], a[rk]);
         long long inv = power(a[rk][col], mod - 2);
-        for (int i = rk + 1; i < n; i++) if (a[i][col])
+        for (int i = rk + 1; i < n; i++)
         {
-            long long q = mulMod(a[i][col], inv, mod);
-            for (int j = col; j < m; j++)
-            {
-                a[i][j] -= mulMod(q, a[rk][j], mod);
-                if (a[i][j] < 0) a[i][j] += mod;
-            }
+            if (a[i][col])
+{
+long long q = mulMod(a[i][col], inv, mod);
+for (int j = col; j < m; j++)
+{
+a[i][j] -= mulMod(q, a[rk][j], mod);
+if (a[i][j] < 0) a[i][j] += mod;
+}
+}
         }
         rk++;
     }

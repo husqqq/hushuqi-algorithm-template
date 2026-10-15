@@ -47,7 +47,7 @@ signed main()
     {
         int n = rng() % 18 + 1; vector<int> to(n); vector<long long> w(n);
         for (int i = 0; i < n; ++i) to[i] = rng() % n, w[i] = (int)(rng() % 21) - 10;
-        FunctionalGraph f(to, w);
+        FuncGraph f(to, w);
         for (int u = 0; u < n; ++u)
         {
             int v = u; __int128 sum = 0; optional<long long> mn;
@@ -60,14 +60,14 @@ signed main()
             }
         }
     }
-    FunctionalGraph one({0}, {LLONG_MIN}); assert(one.jump(0, ULLONG_MAX) == 0);
-    assert(one.walk(0, ULLONG_MAX).total == (__int128)LLONG_MIN * ULLONG_MAX);
+    FuncGraph one({0}, {-LLONG_MAX}); assert(one.jump(0, ULLONG_MAX) == 0);
+    assert(one.walk(0, ULLONG_MAX).total == (__int128)(-LLONG_MAX) * ULLONG_MAX);
     for (int n = 0; n <= 7; ++n) for (int tc = 0; tc < 12; ++tc)
     {
         vector<vector<long long>> a(n, vector<long long>(n)); for (auto &r : a) for (auto &x : r) x = (int)(rng() % 9) - 4;
         long long mod = tc == 0 ? LLONG_MAX : 97; vector<int> p(n); iota(p.begin(), p.end(), 0); __int128 ans = 0;
         do { __int128 prod = 1; for (int i = 0; i < n; ++i) prod *= a[i][p[i]]; ans += prod; } while (next_permutation(p.begin(), p.end()));
-        ans %= mod; if (ans < 0) ans += mod; assert(permanentRyser(a, mod) == ans);
+        ans %= mod; if (ans < 0) ans += mod; assert(permanent(a, mod) == ans);
     }
     assert(havelHakimi({})); assert(!havelHakimi({3, 3, 1, 1}));
     for (int tc = 0; tc < 100; ++tc)
@@ -108,7 +108,7 @@ signed main()
         int n = rng() % 6 + 2; YenPaths g(n);
         for (int u = 0; u < n; ++u) for (int v = 0; v < n; ++v) if (u != v && rng() % 3 == 0) g.add(u, v, rng() % 5);
         vector<__int128> costs; vector<char> vis(n);
-        auto dfs = [&](auto &&self, int u, __int128 cost) -> void { if (u == n - 1) { costs.push_back(cost); return; } vis[u] = true; for (int id : g.adj[u]) if (!vis[g.edges[id].v]) self(self, g.edges[id].v, cost + g.edges[id].w); vis[u] = false; };
+        auto dfs = [&](auto &&self, int u, __int128 cost) -> void { if (u == n - 1) { costs.push_back(cost); return; } vis[u] = true; for (int id : g.adj[u]) if (!vis[g.edges[id][1]]) self(self, g.edges[id][1], cost + g.edges[id][2]); vis[u] = false; };
         dfs(dfs, 0, 0); sort(costs.begin(), costs.end()); auto got = g.solve(0, n - 1, 10); assert(got.size() == min<size_t>(10, costs.size()));
         for (int i = 0; i < (int)got.size(); ++i) { assert(got[i].cost == costs[i]); set<int> v(got[i].vertices.begin(), got[i].vertices.end()); assert(v.size() == got[i].vertices.size()); }
     }
@@ -124,7 +124,7 @@ signed main()
     SlopeTrick slope; vector<long long> points;
     for (int i = 0; i < 80; ++i) { long long a = (int)(rng() % 31) - 15; slope.addAbs(a); points.push_back(a); for (int x = -20; x <= 20; ++x) { long long want = 0; for (auto p : points) want += abs(x - p); assert(slope.eval(x) == want); } }
     SlopeTrick convex; convex.addAbs(4); convex.shift(-2, 3); assert(convex.eval(0) == 2 && convex.eval(4) == 0 && convex.eval(8) == 1); convex.prefixMin(); assert(convex.eval(100) == 0);
-    EulerTourTree ett(18); vector<set<int>> adj(18); vector<long long> values(18);
+    EulerTour ett(18); vector<set<int>> adj(18); vector<long long> values(18);
     auto component = [&](int s) { vector<int> v{s}; vector<char> seen(18); seen[s] = true; for (int i = 0; i < (int)v.size(); ++i) for (int x : adj[v[i]]) if (!seen[x]) seen[x] = true, v.push_back(x); return v; };
     for (int step = 0; step < 1600; ++step)
     {
@@ -132,8 +132,8 @@ signed main()
         if (op == 0) { assert(ett.link(u, v) == !same); if (!same) adj[u].insert(v), adj[v].insert(u); }
         if (op == 1) { bool exists = adj[u].count(v); assert(ett.cut(u, v) == exists); if (exists) adj[u].erase(v), adj[v].erase(u); }
         if (op == 2) { long long d = (int)(rng() % 21) - 10; ett.add(u, d); values[u] += d; }
-        if (op == 3) { long long d = (int)(rng() % 21) - 10; ett.componentAdd(u, d); for (int x : c) values[x] += d; }
-        for (int i = 0; i < 18; ++i) { auto group = component(i); long long s = 0; for (int x : group) s += values[x]; assert(ett.componentSum(i) == s && ett.componentSize(i) == (int)group.size()); }
+        if (op == 3) { long long d = (int)(rng() % 21) - 10; ett.compAdd(u, d); for (int x : c) values[x] += d; }
+        for (int i = 0; i < 18; ++i) { auto group = component(i); long long s = 0; for (int x : group) s += values[x]; assert(ett.compSum(i) == s && ett.compSize(i) == (int)group.size()); }
     }
     for (int n = 1; n < 250; ++n)
     {
@@ -144,17 +144,17 @@ signed main()
     auto lattice = lll({{1, 1, 1}, {-1, 0, 2}, {3, 5, 6}}); assert(lattice); assert(!lll({{1, 1}, {2, 2}}));
     for (int tc = 0; tc < 50; ++tc)
     {
-        int n = rng() % 6 + 2; vector<tuple<int, int, long long>> e;
+        int n = rng() % 6 + 2; vector<array<int, 3>> e;
         vector<vector<int>> a(n, vector<int>(n));
         for (int u = 0; u < n; ++u) for (int v = 0; v < n; ++v) if (u != v) { long long w = rng() % 7; e.push_back({u, v, w}); a[u][v] = w; }
         long long best = LLONG_MAX;
         for (int mask = 1; mask + 1 < (1LL << n); ++mask) { long long sum = 0; for (auto [u, v, w] : e) if ((mask >> u & 1) && !(mask >> v & 1)) sum += w; best = min(best, sum); }
-        auto [cost, side] = directedGlobalCut(n, e); assert(cost == best); long long sum = 0; for (auto [u, v, w] : e) if (side[u] && !side[v]) sum += w; assert(sum == cost);
+        auto [cost, side] = dirMinCut(n, e); assert(cost == best); long long sum = 0; for (auto [u, v, w] : e) if (side[u] && !side[v]) sum += w; assert(sum == cost);
         vector<int> p(n); iota(p.begin(), p.end(), 0); shuffle(p.begin(), p.end(), rng); auto b = a;
         for (int u = 0; u < n; ++u) for (int v = 0; v < n; ++v) b[p[u]][p[v]] = a[u][v]; auto iso = graphIso(a, b); assert(iso);
         for (int u = 0; u < n; ++u) for (int v = 0; v < n; ++v) assert(a[u][v] == b[(*iso)[u]][(*iso)[v]]);
     }
-    for (int tc = 0; tc < 500; ++tc) { string a, b; for (int j = rng() % 65; j--;) a += char(rng() % 5); for (int j = rng() % 90; j--;) b += char(rng() % 5); assert(edit_distance::myers(a, b) == edit_distance::dp(a, b)); }
+    for (int tc = 0; tc < 500; ++tc) { string a, b; for (int j = rng() % 65; j--;) a += char(rng() % 5); for (int j = rng() % 90; j--;) b += char(rng() % 5); assert(myersDist(a, b) == editDist(a, b)); }
     for (int tc = 0; tc < 100; ++tc)
     {
         vector<int> a(rng() % 14); for (auto &x : a) x = rng() % 12; int T = 20; vector<Z> want(T + 1); want[0] = 1;

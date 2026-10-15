@@ -498,46 +498,77 @@ inline vector<uint64_t> sparseXor(
             mask[s] = mask[s ^ b] ^ mask[b];
         }
         for (int h = 1; h < localSize; h <<= 1)
+        {
             for (int l = 0; l < localSize; l += h << 1)
+            {
                 for (int j = 0; j < h; j++)
                 {
                     auto x = walsh[l + j], y = walsh[l + j + h];
                     walsh[l + j] = x + y;
                     walsh[l + j + h] = x - y;
                 }
-        for (auto &x : walsh) x += offset;
+            }
+        }
+        for (auto &x : walsh)
+        {
+            x += offset;
+        }
         vector<XorInfo> local(localSize);
-        for (int s = 0; s < localSize; s++) local[s] = XorInfo(walsh[s], bits);
+        for (int s = 0; s < localSize; s++)
+        {
+            local[s] = XorInfo(walsh[s], bits);
+        }
         for (int h = 1; h < localSize; h <<= 1)
+        {
             for (int l = 0; l < localSize; l += h << 1)
+            {
                 for (int j = 0; j < h; j++)
                 {
                     auto x = local[l + j], y = local[l + j + h];
                     local[l + j] = x * y;
                     local[l + j + h] = x / y;
                 }
-        for (int s = 0; s < localSize; s++) all[mask[s]] *= local[s];
+            }
+        }
+        for (int s = 0; s < localSize; s++)
+        {
+            all[mask[s]] *= local[s];
+        }
     }
     for (int h = 1; h < size; h <<= 1)
+    {
         for (int l = 0; l < size; l += h << 1)
+        {
             for (int j = 0; j < h; j++)
             {
                 auto x = all[l + j], y = all[l + j + h];
                 all[l + j] = x * y;
                 all[l + j + h] = x / y;
             }
+        }
+    }
     vector<XorMint> ans(size);
-    for (int i = 0; i < size; i++) ans[i] = all[i].value();
+    for (int i = 0; i < size; i++)
+    {
+        ans[i] = all[i].value();
+    }
     XorMint inv2 = XorMint(2).inv();
     for (int h = 1; h < size; h <<= 1)
+    {
         for (int l = 0; l < size; l += h << 1)
+        {
             for (int j = 0; j < h; j++)
             {
                 auto x = ans[l + j], y = ans[l + j + h];
                 ans[l + j] = (x + y) * inv2;
                 ans[l + j + h] = (x - y) * inv2;
             }
+        }
+    }
     vector<uint64_t> res(size);
-    for (int i = 0; i < size; i++) res[i] = ans[i ^ delta].val();
+    for (int i = 0; i < size; i++)
+    {
+        res[i] = ans[i ^ delta].val();
+    }
     return res;
 }

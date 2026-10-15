@@ -124,9 +124,9 @@ signed main()
             for (int i = 0; i <= n; i++)
             {
                 long long x = 1, y = 1;
-                for (int k = 0; k < p; k++) x = x * i % floor_m::floorMomentMod;
-                for (int k = 0; k < q; k++) y = y * ((a * i + b) / c) % floor_m::floorMomentMod;
-                want = (want + x * y) % floor_m::floorMomentMod;
+                for (int k = 0; k < p; k++) x = x * i % 1000000007;
+                for (int k = 0; k < q; k++) y = y * ((a * i + b) / c) % 1000000007;
+                want = (want + x * y) % 1000000007;
             }
             assert(t[p][q] == want);
         }

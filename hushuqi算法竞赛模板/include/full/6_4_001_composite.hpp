@@ -70,8 +70,14 @@ private:
     {
         // x 是内部下标；把 x 旋到辅助树根。
         vector<int> st{x};
-        for (int y = x; !root(y); y = t[y].p) st.push_back(t[y].p);
-        while (!st.empty()) push(st.back()), st.pop_back();
+        for (int y = x; !root(y); y = t[y].p)
+        {
+            st.push_back(t[y].p);
+        }
+        while (!st.empty())
+        {
+            push(st.back()), st.pop_back();
+        }
         while (!root(x))
         {
             int y = t[x].p, z = t[y].p;
@@ -101,7 +107,10 @@ private:
         // x 是内部下标；返回所在 repr tree 的根。
         access(x);
         push(x);
-        while (t[x].ch[0]) x = t[x].ch[0], push(x);
+        while (t[x].ch[0])
+        {
+            x = t[x].ch[0], push(x);
+        }
         splay(x);
         return x;
     }
@@ -111,7 +120,10 @@ public:
     {
         // f[u] 是点 u 的初始函数。
         t[0].val = t[0].fw = t[0].bw = {};
-        for (int u = 0; u < (int)f.size(); u++) t[u + 1].val = t[u + 1].fw = t[u + 1].bw = f[u];
+        for (int u = 0; u < (int)f.size(); u++)
+        {
+            t[u + 1].val = t[u + 1].fw = t[u + 1].bw = f[u];
+        }
     }
     bool link(int u, int v)
     {

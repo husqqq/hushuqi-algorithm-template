@@ -55,7 +55,10 @@ public:
         for (int i = 0; i < (int)order.size(); i++)
         {
             int u = order[i];
-            for (int v : g[u]) if (v != fa[u]) fa[v] = u, dep[v] = dep[u] + 1, order.push_back(v);
+            for (int v : g[u])
+            {
+                if (v != fa[u]) fa[v] = u, dep[v] = dep[u] + 1, order.push_back(v);
+            }
         }
         for (int i = (int)order.size() - 1; i > 0; i--)
         {
@@ -67,12 +70,21 @@ public:
         for (int u : order)
         {
             if (u != root && son[fa[u]] == u) continue;
-            for (int v = u; v >= 0; v = son[v]) top[v] = u, in[v] = timer++;
+            for (int v = u; v >= 0; v = son[v])
+            {
+                top[v] = u, in[v] = timer++;
+            }
         }
-        while (n < (int)g.size()) n <<= 1;
+        while (n < (int)g.size())
+        {
+            n <<= 1;
+        }
         fw.assign(2 * n, {});
         bw.assign(2 * n, {});
-        for (int u = 0; u < (int)g.size(); u++) fw[n + in[u]] = bw[n + in[u]] = f[u];
+        for (int u = 0; u < (int)g.size(); u++)
+        {
+            fw[n + in[u]] = bw[n + in[u]] = f[u];
+        }
         for (int i = n - 1; i; i--)
         {
             fw[i] = compose(fw[2 * i], fw[2 * i + 1]);

@@ -44,7 +44,10 @@ template <class T> vector<T> BM(const vector<T> &s)
     for (int n = 0; n < (int)s.size(); n++)
     {
         T d = s[n];
-        for (int i = 1; i <= l; i++) d += c[i] * s[n - i];
+        for (int i = 1; i <= l; i++)
+        {
+            d += c[i] * s[n - i];
+        }
         if (d == T(0))
         {
             m++;
@@ -53,7 +56,10 @@ template <class T> vector<T> BM(const vector<T> &s)
         vector<T> old = c;
         T q = d / last;
         if ((int)c.size() < (int)b.size() + m) c.resize(b.size() + m, T(0));
-        for (int i = 0; i < (int)b.size(); i++) c[i + m] -= q * b[i];
+        for (int i = 0; i < (int)b.size(); i++)
+        {
+            c[i + m] -= q * b[i];
+        }
         if (2 * l <= n)
         {
             l = n + 1 - l;
@@ -87,9 +93,15 @@ template <class T> T sparseDet(const SparseMat<T> &a)
         vector<T> seq(2 * n);
         for (int k = 0; k < 2 * n; k++)
         {
-            for (int i = 0; i < n; i++) seq[k] += left[i] * right[i];
+            for (int i = 0; i < n; i++)
+            {
+                seq[k] += left[i] * right[i];
+            }
             auto next = a * right;
-            for (int i = 0; i < n; i++) right[i] = next[i] * diag[i];
+            for (int i = 0; i < n; i++)
+            {
+                right[i] = next[i] * diag[i];
+            }
         }
         auto c = BM(seq);
         if (c.back() == T(0)) return T(0);

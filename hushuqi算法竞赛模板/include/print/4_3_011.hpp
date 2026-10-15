@@ -14,7 +14,10 @@ struct BasicFactors
         // s 按无符号字节字典序比较；建立所有二次幂长度子串的分层排名。
         int n = this->s.size();
         vector<int> first;
-        for (unsigned char c : this->s) first.push_back(c);
+        for (unsigned char c : this->s)
+        {
+            first.push_back(c);
+        }
         rk.push_back(move(first));
         for (int k = 1; (1LL << k) <= n; k++)
         {
@@ -77,9 +80,18 @@ inline vector<BorderInfo> basicDict(const string &s,
         atR[r].push_back(i);
     }
     vector<int> sa(n + 1), rk(n + 1), id(2 * n + 3), cnt(256);
-    for (int i = 1; i <= n; i++) cnt[(unsigned char)s[i - 1]]++;
-    for (int i = 1; i < 256; i++) cnt[i] += cnt[i - 1];
-    for (int i = n; i; i--) sa[cnt[(unsigned char)s[i - 1]]--] = i;
+    for (int i = 1; i <= n; i++)
+    {
+        cnt[(unsigned char)s[i - 1]]++;
+    }
+    for (int i = 1; i < 256; i++)
+    {
+        cnt[i] += cnt[i - 1];
+    }
+    for (int i = n; i; i--)
+    {
+        sa[cnt[(unsigned char)s[i - 1]]--] = i;
+    }
     int cls = 0;
     for (int i = 1; i <= n; i++)
     {
@@ -103,12 +115,18 @@ inline vector<BorderInfo> basicDict(const string &s,
     {
         if (r1 - l1 <= d1)
         {
-            for (int x = l1; x <= r1; x += d1) addOne(idq, x, l2, r2, d2);
+            for (int x = l1; x <= r1; x += d1)
+            {
+                addOne(idq, x, l2, r2, d2);
+            }
             return;
         }
         if (r2 - l2 <= d2)
         {
-            for (int x = l2; x <= r2; x += d2) addOne(idq, x, l1, r1, d1);
+            for (int x = l2; x <= r2; x += d2)
+            {
+                addOne(idq, x, l1, r1, d1);
+            }
             return;
         }
         if ((l1 - l2) % d1) return;
@@ -123,27 +141,62 @@ inline vector<BorderInfo> basicDict(const string &s,
     auto work = [&](int len)
     {
         fill(buf.begin(), buf.begin() + cls + 1, n + 1);
-        for (int i = n - len + 1; i >= 1; i--) nxt[i] = buf[rk[i]], buf[rk[i]] = i;
+        for (int i = n - len + 1; i >= 1; i--)
+        {
+            nxt[i] = buf[rk[i]], buf[rk[i]] = i;
+        }
         fill(buf.begin(), buf.begin() + cls + 1, -1);
         for (int i = 2 - len; i <= n; i++)
         {
             if (1 <= i && i <= n) buf[rk[i]] = i;
             int j = i + len - 1;
-            if (1 <= j && j <= n) for (int idq : atR[j]) if (que[idq].r - que[idq].l + 1 > len)
-                rightMost[idq] = buf[rk[que[idq].l]];
+            if (1 <= j && j <= n)
+            {
+                for (int idq : atR[j])
+                {
+                    if (que[idq].r - que[idq].l + 1 > len)
+                    {
+                        rightMost[idq] = buf[rk[que[idq].l]];
+                    }
+                }
+            }
             j = i - len + 1;
-            if (1 <= j && j <= n) for (int idq : atL[j]) if (que[idq].r - que[idq].l + 1 > len)
-                rightRev[idq] = min(buf[rk[que[idq].r - len + 1]], que[idq].r - len + 1);
+            if (1 <= j && j <= n)
+            {
+                for (int idq : atL[j])
+                {
+                    if (que[idq].r - que[idq].l + 1 > len)
+                    {
+                        rightRev[idq] = min(buf[rk[que[idq].r - len + 1]], que[idq].r - len + 1);
+                    }
+                }
+            }
         }
         fill(buf.begin(), buf.begin() + cls + 1, n + 1);
         for (int i = n; i + len - 1; i--)
         {
             if (1 <= i && i <= n) buf[rk[i]] = i;
             int j = i + 2 * len - 2;
-            if (1 <= j && j <= n) for (int idq : atR[j]) if (que[idq].r - que[idq].l + 1 > len)
-                leftMost[idq] = max(buf[rk[que[idq].l]], nxt[que[idq].l]);
-            if (1 <= i && i <= n) for (int idq : atL[i]) if (que[idq].r - que[idq].l + 1 > len)
-                leftRev[idq] = buf[rk[que[idq].r - len + 1]];
+            if (1 <= j && j <= n)
+            {
+                for (int idq : atR[j])
+                {
+                    if (que[idq].r - que[idq].l + 1 > len)
+                    {
+                        leftMost[idq] = max(buf[rk[que[idq].l]], nxt[que[idq].l]);
+                    }
+                }
+            }
+            if (1 <= i && i <= n)
+            {
+                for (int idq : atL[i])
+                {
+                    if (que[idq].r - que[idq].l + 1 > len)
+                    {
+                        leftRev[idq] = buf[rk[que[idq].r - len + 1]];
+                    }
+                }
+            }
         }
         for (int i = 0; i < q; i++)
         {
@@ -159,11 +212,26 @@ inline vector<BorderInfo> basicDict(const string &s,
         if (cls == n) return;
         fill(buf.begin(), buf.begin() + cls + 1, 0);
         int z = 0;
-        for (int i = n; i > n - len; i--) id[++z] = i;
-        for (int i = 1; i <= n; i++) if (sa[i] > len) id[++z] = sa[i] - len;
-        for (int i = 1; i <= n; i++) buf[rk[i]]++;
-        for (int i = 2; i <= cls; i++) buf[i] += buf[i - 1];
-        for (int i = n; i; i--) sa[buf[rk[id[i]]]--] = id[i], id[i] = rk[i];
+        for (int i = n; i > n - len; i--)
+        {
+            id[++z] = i;
+        }
+        for (int i = 1; i <= n; i++)
+        {
+            if (sa[i] > len) id[++z] = sa[i] - len;
+        }
+        for (int i = 1; i <= n; i++)
+        {
+            buf[rk[i]]++;
+        }
+        for (int i = 2; i <= cls; i++)
+        {
+            buf[i] += buf[i - 1];
+        }
+        for (int i = n; i; i--)
+        {
+            sa[buf[rk[id[i]]]--] = id[i], id[i] = rk[i];
+        }
         cls = 0;
         for (int i = 1; i <= n; i++)
         {
@@ -172,7 +240,13 @@ inline vector<BorderInfo> basicDict(const string &s,
             rk[x] = cls;
         }
     };
-    for (int len = 1; len <= n; len <<= 1) work(len);
-    for (int i = 0; i < q; i++) if (number[i]) ans[i] = {low[i], high[i], number[i]};
+    for (int len = 1; len <= n; len <<= 1)
+    {
+        work(len);
+    }
+    for (int i = 0; i < q; i++)
+    {
+        if (number[i]) ans[i] = {low[i], high[i], number[i]};
+    }
     return ans;
 }

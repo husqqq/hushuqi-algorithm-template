@@ -83,7 +83,10 @@ vector<int> findDirCycle(int n, const vector<pair<int, int>> &edges)
             else if (state[v] == 1)
             {
                 vector<int> ans{id};
-                for (int x = u; x != v; x = par[x]) ans.push_back(pe[x]);
+                for (int x = u; x != v; x = par[x])
+                {
+                    ans.push_back(pe[x]);
+                }
                 reverse(ans.begin(), ans.end());
                 return ans;
             }
@@ -130,7 +133,10 @@ vector<int> findUndirCyc(int n, const vector<pair<int, int>> &edges)
             else if (state[v] == 1)
             {
                 vector<int> ans{id};
-                for (int x = u; x != v; x = par[x]) ans.push_back(pe[x]);
+                for (int x = u; x != v; x = par[x])
+                {
+                    ans.push_back(pe[x]);
+                }
                 reverse(ans.begin(), ans.end());
                 return ans;
             }

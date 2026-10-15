@@ -59,7 +59,10 @@ struct BipEdgeColor
                 return fa[u] < 0 ? u : fa[u] = self(self, fa[u]);
             };
             priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> q;
-            for (int i = 0; i < sz; i++) q.push({deg[i], i});
+            for (int i = 0; i < sz; i++)
+            {
+                q.push({deg[i], i});
+            }
             while (q.size() > 1)
             {
                 auto [x, u] = q.top(); q.pop();
@@ -102,11 +105,20 @@ struct BipEdgeColor
         int u = 0, v = 0;
         while (u < z && v < z)
         {
-            while (u < z && cl[u] == k) u++;
-            while (v < z && cr[v] == k) v++;
+            while (u < z && cl[u] == k)
+            {
+                u++;
+            }
+            while (v < z && cr[v] == k)
+            {
+                v++;
+            }
             if (u == z || v == z) break;
             int cnt = min(k - cl[u], k - cr[v]);
-            for (int i = 0; i < cnt; i++) es.push_back({u, v, -1});
+            for (int i = 0; i < cnt; i++)
+            {
+                es.push_back({u, v, -1});
+            }
             cl[u] += cnt;
             cr[v] += cnt;
         }
@@ -115,7 +127,10 @@ struct BipEdgeColor
         {
             // ids 是正则二分图边编号；返回一组覆盖全部合并点的完美匹配边。
             vector<vector<int>> g(z);
-            for (int id : ids) g[es[id].u].push_back(id);
+            for (int id : ids)
+            {
+                g[es[id].u].push_back(id);
+            }
             vector<int> ml(z, -1), mr(z, -1), dep(z), it(z);
             auto bfs = [&]() -> bool
             {
@@ -123,7 +138,10 @@ struct BipEdgeColor
                 queue<int> q;
                 fill(dep.begin(), dep.end(), -1);
                 int lim = -1;
-                for (int x = 0; x < z; x++) if (ml[x] == -1) dep[x] = 0, q.push(x);
+                for (int x = 0; x < z; x++)
+                {
+                    if (ml[x] == -1) dep[x] = 0, q.push(x);
+                }
                 while (!q.empty())
                 {
                     int x = q.front(); q.pop();
@@ -157,7 +175,10 @@ struct BipEdgeColor
             while (bfs())
             {
                 fill(it.begin(), it.end(), 0);
-                for (int x = 0; x < z; x++) if (ml[x] == -1 && dfs(dfs, x)) got++;
+                for (int x = 0; x < z; x++)
+                {
+                    if (ml[x] == -1 && dfs(dfs, x)) got++;
+                }
             }
             assert(got == z); // 调试检查，可删：正则二分图总有完美匹配。
             return ml;
@@ -168,7 +189,10 @@ struct BipEdgeColor
             if (!d) return;
             if (d == 1)
             {
-                for (int id : ids) if (es[id].id != -1) ans[es[id].id] = first;
+                for (int id : ids)
+                {
+                    if (es[id].id != -1) ans[es[id].id] = first;
+                }
                 return;
             }
             if (d & 1)
@@ -182,7 +206,10 @@ struct BipEdgeColor
                 }
                 vector<int> rest;
                 rest.reserve(ids.size() - take.size());
-                for (int id : ids) if (!used[id]) rest.push_back(id);
+                for (int id : ids)
+                {
+                    if (!used[id]) rest.push_back(id);
+                }
                 self(self, move(rest), d - 1, first + 1);
                 return;
             }
@@ -197,13 +224,19 @@ struct BipEdgeColor
             vector<int> ptr(2 * z), a, b;
             for (int s = 0; s < 2 * z; s++)
             {
-                while (ptr[s] < (int)g[s].size() && used[g[s][ptr[s]].second]) ptr[s]++;
+                while (ptr[s] < (int)g[s].size() && used[g[s][ptr[s]].second])
+                {
+                    ptr[s]++;
+                }
                 if (ptr[s] == (int)g[s].size()) continue;
                 vector<pair<int, int>> stk{{s, -1}}, tour;
                 while (!stk.empty())
                 {
                     int x = stk.back().first;
-                    while (ptr[x] < (int)g[x].size() && used[g[x][ptr[x]].second]) ptr[x]++;
+                    while (ptr[x] < (int)g[x].size() && used[g[x][ptr[x]].second])
+                    {
+                        ptr[x]++;
+                    }
                     if (ptr[x] == (int)g[x].size())
                     {
                         int id = stk.back().second;
@@ -216,7 +249,10 @@ struct BipEdgeColor
                         if (!used[id]) used[id] = true, stk.push_back({y, id});
                     }
                 }
-                for (int i = 0; i < (int)tour.size(); i++) (i & 1 ? b : a).push_back(tour[i].second);
+                for (int i = 0; i < (int)tour.size(); i++)
+                {
+                    (i & 1 ? b : a).push_back(tour[i].second);
+                }
             }
             self(self, move(a), d / 2, first);
             self(self, move(b), d / 2, first + d / 2);

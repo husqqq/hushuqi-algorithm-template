@@ -75,9 +75,15 @@ class PrimeBinom
         int n = min(p - 1, maxN);
         fac.assign(n + 1, 1);
         ifac.assign(n + 1, 1);
-        for (int i = 1; i <= n; i++) fac[i] = combMulMod(fac[i - 1], i, p);
+        for (int i = 1; i <= n; i++)
+        {
+            fac[i] = combMulMod(fac[i - 1], i, p);
+        }
         ifac[n] = powPrime(fac[n], p - 2, p);
-        for (int i = n; i; i--) ifac[i - 1] = combMulMod(ifac[i], i, p);
+        for (int i = n; i; i--)
+        {
+            ifac[i - 1] = combMulMod(ifac[i], i, p);
+        }
     }
 
     int C(int n, int k) const

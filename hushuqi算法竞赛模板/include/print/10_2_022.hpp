@@ -1,17 +1,43 @@
 #pragma once
 #include "10_2_005.hpp"
 
-// 固定模 998244353，非负整数权；一次返回所有 0<=s<=T 的子集计数。
-inline vector<Z> subsetCount(const vector<int> &a, int T)
+vector<Z> subsetCount(const vector<int> &a, int T)
 {
-    if (T < 0 || T >= (int)Z::mod() || T >= (1LL << 22)) throw invalid_argument("subsetCount: 0<=T<2^22 required");
-    vector<int> cnt(T + 1); int zeros = 0;
-    for (int x : a) { if (x < 0) throw invalid_argument("nonnegative weights required"); if (!x) ++zeros; else if (x <= T) ++cnt[x]; }
-    vector<Z> inv(T + 1); if (T) inv[1] = 1;
-    for (int i = 2; i <= T; ++i) inv[i] = -Z((int)Z::mod() / i) * inv[(int)Z::mod() % i];
-    Poly logarithm(T + 1);
-    for (int x = 1; x <= T; ++x) if (cnt[x])
-        for (int k = 1; k <= T / x; ++k) logarithm[k * x] += Z(cnt[x]) * inv[k] * Z(k & 1 ? 1 : -1);
-    Poly p = fpsExp(logarithm, T + 1); Z scale = Z(2).pow(zeros);
-    for (auto &x : p) x *= scale; return p;
+    // a 是非负整数权，0<=T<2^22；返回 f[0..T]，f[s] 是和为 s 的子集个数模 998244353。
+    // prod (1+x^v) = exp(sum_v sum_k (-1)^{k+1} x^{kv}/k)，按权值合并后调和级数求 ln，再 exp。
+    assert(0 <= T && T < (1LL << 22)); // 调试检查，可删。
+    vector<int> cnt(T + 1); // cnt[v] 是权值为 v 的元素个数（只统计 1..T）。
+    int zeros = 0;
+    for (int x : a)
+    {
+        assert(x >= 0); // 调试检查，可删。
+        if (!x)
+        {
+            zeros++;
+        }
+        else if (x <= T)
+        {
+            cnt[x]++;
+        }
+    }
+    const auto &iv = invTable<mod>(T);
+    Poly lg(T + 1);
+    for (int v = 1; v <= T; v++)
+    {
+        if (cnt[v])
+        {
+            for (int k = 1; k * v <= T; k++)
+            {
+                lg[k * v] += Z(cnt[v]) * (k & 1 ? iv[k] : -iv[k]);
+            }
+        }
+    }
+    // 权为 0 的元素可选可不选，整体乘 2^zeros。
+    Poly f = fpsExp(lg, T + 1);
+    Z sc = Z(2).pow(zeros);
+    for (auto &x : f)
+    {
+        x *= sc;
+    }
+    return f;
 }

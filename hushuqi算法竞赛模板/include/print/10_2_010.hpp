@@ -65,8 +65,14 @@ vector<Z> factBatch(const vector<int> &q)
     {
         int cnt = (mod - 1) / BLOCK;
         vector<Z> roots(BLOCK), xs(cnt);
-        for (int i = 0; i < BLOCK; i++) roots[i] = -Z(i + 1);
-        for (int i = 0; i < cnt; i++) xs[i] = Z(i * BLOCK);
+        for (int i = 0; i < BLOCK; i++)
+        {
+            roots[i] = -Z(i + 1);
+        }
+        for (int i = 0; i < cnt; i++)
+        {
+            xs[i] = Z(i * BLOCK);
+        }
         Poly f;
         {
             PolyTree prod(roots);
@@ -78,7 +84,10 @@ vector<Z> factBatch(const vector<int> &q)
             val = eval.eval(f);
         }
         vector<Z> fac(cnt + 1, 1);
-        for (int i = 0; i < cnt; i++) fac[i + 1] = fac[i] * val[i];
+        for (int i = 0; i < cnt; i++)
+        {
+            fac[i + 1] = fac[i] * val[i];
+        }
         return fac;
     }();
 

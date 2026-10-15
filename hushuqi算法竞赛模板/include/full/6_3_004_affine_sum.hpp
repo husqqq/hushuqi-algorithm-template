@@ -26,11 +26,14 @@ vector<long long> treeAffRoots(const vector<long long> &value,
     for (int i = 0; i < (int)order.size(); i++)
     {
         int u = order[i];
-        for (auto [v, id] : g[u]) if (v != parent[u])
+        for (auto [v, id] : g[u])
         {
-            parent[v] = u;
-            parEdge[v] = id;
-            order.push_back(v);
+            if (v != parent[u])
+{
+parent[v] = u;
+parEdge[v] = id;
+order.push_back(v);
+}
         }
     }
     assert((int)order.size() == n);
@@ -39,11 +42,14 @@ vector<long long> treeAffRoots(const vector<long long> &value,
     {
         int u = order[i];
         down[u] = (value[u] % P + P) % P;
-        for (auto [v, id] : g[u]) if (parent[v] == u)
+        for (auto [v, id] : g[u])
         {
-            auto e = edges[id];
-            down[u] = (down[u] + e.a * down[v] + e.b * size[v]) % P;
-            size[u] += size[v];
+            if (parent[v] == u)
+{
+auto e = edges[id];
+down[u] = (down[u] + e.a * down[v] + e.b * size[v]) % P;
+size[u] += size[v];
+}
         }
     }
     ans[0] = down[0];
@@ -148,8 +154,14 @@ private:
     void splay(int x)
     {
         vector<int> stack{x};
-        for (int y = x; !auxRoot(y); y = t[y].p) stack.push_back(t[y].p);
-        while (!stack.empty()) push(stack.back()), stack.pop_back();
+        for (int y = x; !auxRoot(y); y = t[y].p)
+        {
+            stack.push_back(t[y].p);
+        }
+        while (!stack.empty())
+        {
+            push(stack.back()), stack.pop_back();
+        }
         while (!auxRoot(x))
         {
             int y = t[x].p, z = t[y].p;
@@ -187,7 +199,10 @@ private:
     {
         access(x);
         push(x);
-        while (t[x].ch[0]) x = t[x].ch[0], push(x);
+        while (t[x].ch[0])
+        {
+            x = t[x].ch[0], push(x);
+        }
         splay(x);
         return x;
     }

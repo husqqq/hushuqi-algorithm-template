@@ -16,12 +16,18 @@ struct Fenwick
     explicit Fenwick(int n) : bit(n + 1) {}
     void add(int p, long long value)
     {
-        for (++p; p < (int)bit.size(); p += p & -p) bit[p] += value;
+        for (++p; p < (int)bit.size(); p += p & -p)
+        {
+            bit[p] += value;
+        }
     }
     long long sumPrefix(int p) const
     {
         long long res = 0;
-        for (; p; p -= p & -p) res += bit[p];
+        for (; p; p -= p & -p)
+        {
+            res += bit[p];
+        }
         return res;
     }
 };
@@ -89,19 +95,28 @@ class Index
         for (int i = 0; i < (int)order.size(); i++)
         {
             int u = order[i];
-            for (int v : graph[u]) if (!removed[v] && v != parent[u]) parent[v] = u, order.push_back(v);
+            for (int v : graph[u])
+            {
+                if (!removed[v] && v != parent[u]) parent[v] = u, order.push_back(v);
+            }
         }
         int total = order.size();
         for (int i = total - 1; i >= 0; i--)
         {
             int u = order[i];
             subtree[u] = 1;
-            for (int v : graph[u]) if (!removed[v] && parent[v] == u) subtree[u] += subtree[v];
+            for (int v : graph[u])
+            {
+                if (!removed[v] && parent[v] == u) subtree[u] += subtree[v];
+            }
         }
         for (int u : order)
         {
             int largest = total - subtree[u];
-            for (int v : graph[u]) if (!removed[v] && parent[v] == u) largest = max(largest, subtree[v]);
+            for (int v : graph[u])
+            {
+                if (!removed[v] && parent[v] == u) largest = max(largest, subtree[v]);
+            }
             if (largest * 2 <= total) return u;
         }
         return start;
@@ -116,7 +131,10 @@ class Index
             paths[u].push_back({cen, branch, d});
             allCoord[cen].push_back(d);
             branchCoord[cen][branch].push_back(d);
-            for (int v : graph[u]) if (!removed[v] && v != p) stack.push_back({v, u, d + 1});
+            for (int v : graph[u])
+            {
+                if (!removed[v] && v != p) stack.push_back({v, u, d + 1});
+            }
         }
     }
     void buildComp(int start)
@@ -125,14 +143,20 @@ class Index
         removed[cen] = true;
         paths[cen].push_back({cen, -1, 0});
         allCoord[cen].push_back(0);
-        for (int v : graph[cen]) if (!removed[v])
+        for (int v : graph[cen])
         {
-            int branch = branches[cen].size();
-            branches[cen].emplace_back();
-            branchCoord[cen].emplace_back();
-            enumerate(cen, v, branch);
+            if (!removed[v])
+{
+int branch = branches[cen].size();
+branches[cen].emplace_back();
+branchCoord[cen].emplace_back();
+enumerate(cen, v, branch);
+}
         }
-        for (int v : graph[cen]) if (!removed[v]) buildComp(v);
+        for (int v : graph[cen])
+        {
+            if (!removed[v]) buildComp(v);
+        }
     }
 
 public:
@@ -144,7 +168,10 @@ public:
         for (int c = 0; c < n; c++)
         {
             all[c].build(allCoord[c]);
-            for (int b = 0; b < (int)branches[c].size(); b++) branches[c][b].build(branchCoord[c][b]);
+            for (int b = 0; b < (int)branches[c].size(); b++)
+            {
+                branches[c][b].build(branchCoord[c][b]);
+            }
         }
     }
     const vector<PathEntry> &path(int u) const { return paths[u]; }
@@ -163,7 +190,10 @@ public:
     PtSetRngSum(const vector<vector<int>> &g, const vector<T> &a) : index(g), value(a.size())
     {
         assert(g.size() == a.size());
-        for (int u = 0; u < (int)a.size(); u++) set(u, a[u]);
+        for (int u = 0; u < (int)a.size(); u++)
+        {
+            set(u, a[u]);
+        }
     }
     T get(int u) const { return value[u]; }
     void set(int u, T x)

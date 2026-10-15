@@ -57,10 +57,16 @@ vector<Z> fastPart(int n)
     assert(0 <= n && n < mod);
     vector<Z> inv(n + 1), f(n + 1);
     if (n >= 1) inv[1] = 1;
-    for (int i = 2; i <= n; i++) inv[i] = -Z(mod / i) * inv[mod % i];
+    for (int i = 2; i <= n; i++)
+    {
+        inv[i] = -Z(mod / i) * inv[mod % i];
+    }
     for (int i = 1; i <= n; i++)
     {
-        for (int j = 1; i * j <= n; j++) f[i * j] += inv[j];
+        for (int j = 1; i * j <= n; j++)
+        {
+            f[i * j] += inv[j];
+        }
     }
     return fpsExp(f, n + 1);
 }

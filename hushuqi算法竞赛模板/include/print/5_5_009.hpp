@@ -158,7 +158,10 @@ struct Steiner
                 }
             }
             priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> q;
-            for (int u = 0; u < n; u++) if (dp[s][u]) q.push({*dp[s][u], u});
+            for (int u = 0; u < n; u++)
+            {
+                if (dp[s][u]) q.push({*dp[s][u], u});
+            }
             while (!q.empty())
             {
                 auto [d, u] = q.top();
@@ -177,7 +180,10 @@ struct Steiner
             }
         }
         int all = lim - 1, at = -1;
-        for (int u = 0; u < n; u++) if (dp[all][u] && (at == -1 || *dp[all][u] < *dp[all][at])) at = u;
+        for (int u = 0; u < n; u++)
+        {
+            if (dp[all][u] && (at == -1 || *dp[all][u] < *dp[all][at])) at = u;
+        }
         if (at == -1) return nullopt;
         vector<bool> used(ed.size());
         auto trace = [&](auto &&self, int s, int u) -> void
@@ -198,7 +204,10 @@ struct Steiner
         };
         trace(trace, all, at);
         vector<int> take;
-        for (int i = 0; i < (int)ed.size(); i++) if (used[i]) take.push_back(i);
+        for (int i = 0; i < (int)ed.size(); i++)
+        {
+            if (used[i]) take.push_back(i);
+        }
         return pair<int, vector<int>>{*dp[all][at], take};
     }
 };

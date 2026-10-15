@@ -256,7 +256,10 @@ struct HexBigInt
         group.resize(z);
         vector<HexBigInt> power;
         power.emplace_back(1000000000LL);
-        for (int n = 2; n < z; n <<= 1) power.push_back(power.back() * power.back());
+        for (int n = 2; n < z; n <<= 1)
+        {
+            power.push_back(power.back() * power.back());
+        }
         auto build = [&](auto &&self, int l, int len, int level) -> HexBigInt
         {
             if (len == 1) return HexBigInt((long long)group[l]);
@@ -296,7 +299,10 @@ struct HexBigInt
             self(self, high, l + (1LL << (lv - 1)), lv - 1);
         };
         split(split, x, 0, level);
-        while (group.size() > 1 && group.back() == 0) group.pop_back();
+        while (group.size() > 1 && group.back() == 0)
+        {
+            group.pop_back();
+        }
         string s = neg ? "-" : "";
         s += to_string(group.back());
         for (int i = group.size() - 2; i >= 0; i--)
@@ -848,13 +854,18 @@ struct BigInt
 private:
     static void trim(vector<uint32_t> &x)
     {
-        while (!x.empty() && x.back() == 0) x.pop_back();
+        while (!x.empty() && x.back() == 0)
+        {
+            x.pop_back();
+        }
     }
     static int cmp(const vector<uint32_t> &x, const vector<uint32_t> &y)
     {
         if (x.size() != y.size()) return x.size() < y.size() ? -1 : 1;
         for (int i = (int)x.size() - 1; i >= 0; i--)
+        {
             if (x[i] != y[i]) return x[i] < y[i] ? -1 : 1;
+        }
         return 0;
     }
     static vector<uint32_t> addVec(const vector<uint32_t> &x, const vector<uint32_t> &y)
@@ -919,7 +930,12 @@ private:
         {
             vector<__uint128_t> c(x.size() + y.size());
             for (int i = 0; i < (int)x.size(); i++)
-                for (int j = 0; j < (int)y.size(); j++) c[i + j] += (__uint128_t)x[i] * y[j];
+            {
+                for (int j = 0; j < (int)y.size(); j++)
+                {
+                    c[i + j] += (__uint128_t)x[i] * y[j];
+                }
+            }
             vector<uint32_t> z(c.size());
             __uint128_t carry = 0;
             for (int i = 0; i < (int)c.size(); i++)
@@ -987,9 +1003,15 @@ private:
             uint64_t top = r.size() > b.size() ? (uint64_t)r.back() * B + r[r.size() - 2] : 0;
             uint32_t d = top ? min<uint64_t>(B - 1, top / b.back()) : 1;
             vector<uint32_t> z = mulSmall(b, d);
-            while (cmp(r, z) < 0) d--, z = subVec(z, b);
+            while (cmp(r, z) < 0)
+            {
+                d--, z = subVec(z, b);
+            }
             r = subVec(r, z);
-            while (cmp(r, b) >= 0) d++, r = subVec(r, b);
+            while (cmp(r, b) >= 0)
+            {
+                d++, r = subVec(r, b);
+            }
             q[i] = d;
             if (i) r.insert(r.begin(), a[i - 1]);
             trim(r);
@@ -1002,7 +1024,10 @@ private:
     static vector<uint32_t> calcInv(const vector<uint32_t> &a, int deg)
     {
         int k = deg, c = a.size();
-        while (k > 64) k = (k + 1) / 2;
+        while (k > 64)
+        {
+            k = (k + 1) / 2;
+        }
         vector<uint32_t> z(c + k + 1);
         z.back() = 1;
         z = divNaive(z, a).first;
@@ -1038,9 +1063,15 @@ private:
         vector<uint32_t> q = mulVec(a, inv);
         if ((int)q.size() > (int)b.size() + deg) q.erase(q.begin(), q.begin() + b.size() + deg); else q.clear();
         vector<uint32_t> prod = mulVec(b, q);
-        while (cmp(a, prod) < 0) q = subVec(q, {1}), prod = subVec(prod, b);
+        while (cmp(a, prod) < 0)
+        {
+            q = subVec(q, {1}), prod = subVec(prod, b);
+        }
         vector<uint32_t> r = subVec(a, prod);
-        while (cmp(r, b) >= 0) q = addVec(q, {1}), r = subVec(r, b);
+        while (cmp(r, b) >= 0)
+        {
+            q = addVec(q, {1}), r = subVec(r, b);
+        }
         auto rr = divSmall(r, norm);
         assert(rr.second == 0);
         trim(q);

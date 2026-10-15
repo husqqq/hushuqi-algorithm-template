@@ -24,7 +24,10 @@ struct RangeSubMax
     RangeSubMax(int n) : n(n)
     {
         // n 是叶子数；初始各位置均为 0。
-        while (z < n) z <<= 1;
+        while (z < n)
+        {
+            z <<= 1;
+        }
         tr.assign(2 * z, 0);
     }
 
@@ -32,7 +35,9 @@ struct RangeSubMax
     {
         // p 是位置，v 是候选值；执行单点取最大。
         for (p += z, tr[p] = max(tr[p], v); p >>= 1;)
+        {
             tr[p] = max(tr[2 * p], tr[2 * p + 1]);
+        }
     }
 
     int query(int l, int r) const
@@ -64,7 +69,10 @@ inline vector<int> rangeSubs(const string &s,
     SAM<26, 'a'> sam(s);
     int states = sam.t.size();
     vector<vector<int>> son(states);
-    for (int i = 1; i < states; i++) son[sam.t[i].link].push_back(i);
+    for (int i = 1; i < states; i++)
+    {
+        son[sam.t[i].link].push_back(i);
+    }
     vector<int> in(states), out(states), it(states), st{0};
     int tim = 0;
     while (!st.empty())
@@ -83,7 +91,10 @@ inline vector<int> rangeSubs(const string &s,
     {
         u = sam.t[u].next[s[r - 1] - 'a'];
         int v = u;
-        while (v && !seen[v]) seen[v] = 1, v = sam.t[v].link;
+        while (v && !seen[v])
+        {
+            seen[v] = 1, v = sam.t[v].link;
+        }
         while (v)
         {
             int p = mx.query(in[v] - 1, out[v]);

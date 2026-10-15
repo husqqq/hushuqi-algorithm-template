@@ -99,15 +99,24 @@ vector<pair<long long, long long>> twoSqRep(long long n)
                 return {};
             }
             __int128 scale = 1;
-            for (int i = 0; i < e / 2; i++) scale *= p;
-            for (auto &z : reps) z.first *= scale, z.second *= scale;
+            for (int i = 0; i < e / 2; i++)
+            {
+                scale *= p;
+            }
+            for (auto &z : reps)
+            {
+                z.first *= scale, z.second *= scale;
+            }
             continue;
         }
         G pi = primeRep(p);
         if (p == 2)
         {
             G z = power(pi, e);
-            for (auto &v : reps) v = mul(v, z);
+            for (auto &v : reps)
+            {
+                v = mul(v, z);
+            }
             continue;
         }
         vector<G> left(e + 1), right(e + 1);

@@ -155,7 +155,10 @@ vector<Acc> minPlusConc(const vector<Acc> &concave,
             {
                 int lo = max<int>(yl, max<int>(0, x - m + 1));
                 int hi = min<int>(yr, min<int>(n - 1, x));
-                for (int y = lo; y <= hi; y++) ans[x] = min(ans[x], arbitrary[y] + concave[x - y]);
+                for (int y = lo; y <= hi; y++)
+                {
+                    ans[x] = min(ans[x], arbitrary[y] + concave[x - y]);
+                }
             }
             return;
         }

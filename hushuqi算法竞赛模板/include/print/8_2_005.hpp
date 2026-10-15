@@ -55,9 +55,15 @@ vector<Z> stirling2F(int n)
     // n 是行号；返回第二类 Stirling 数 S(n,0..n)，复杂度 O(n log n)。
     assert(0 <= n && n < mod);
     vector<Z> fac(n + 1, 1), ifac(n + 1, 1);
-    for (int i = 1; i <= n; i++) fac[i] = fac[i - 1] * i;
+    for (int i = 1; i <= n; i++)
+    {
+        fac[i] = fac[i - 1] * i;
+    }
     ifac[n] = fac[n].inv();
-    for (int i = n; i; i--) ifac[i - 1] = ifac[i] * i;
+    for (int i = n; i; i--)
+    {
+        ifac[i - 1] = ifac[i] * i;
+    }
     vector<Z> a(n + 1), b(n + 1);
     for (int i = 0; i <= n; i++)
     {

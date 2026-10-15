@@ -130,7 +130,10 @@ public:
     explicit DynSubAddSum(const vector<Acc> &value = {}) : t(value.size() + 1)
     {
         t[0].size = 0;
-        for (int i = 0; i < (int)value.size(); i++) t[i + 1].value = t[i + 1].sum = value[i];
+        for (int i = 0; i < (int)value.size(); i++)
+        {
+            t[i + 1].value = t[i + 1].sum = value[i];
+        }
     }
     bool link(int child, int parent)
     {

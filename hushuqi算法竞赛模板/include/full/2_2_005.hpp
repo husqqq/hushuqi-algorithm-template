@@ -132,12 +132,18 @@ inline long long dom4Cross(vector<Dom4Event> a, int m)
     vector<int> bit(m + 1);
     auto add = [&](int p, int v)
     {
-        for (++p; p <= m; p += p & -p) bit[p] += v;
+        for (++p; p <= m; p += p & -p)
+        {
+            bit[p] += v;
+        }
     };
     auto sum = [&](int p)
     {
         int ans = 0;
-        for (; p; p -= p & -p) ans += bit[p];
+        for (; p; p -= p & -p)
+        {
+            ans += bit[p];
+        }
         return ans;
     };
     long long ans = 0;
@@ -157,7 +163,10 @@ inline long long dom4Cross(vector<Dom4Event> a, int m)
             }
             if (!a[j].src) ans += sum(a[j].w);
         }
-        for (int k = l; k < i; k++) if (a[k].src) add(a[k].w, -1);
+        for (int k = l; k < i; k++)
+        {
+            if (a[k].src) add(a[k].w, -1);
+        }
         merge(a.begin() + l, a.begin() + mid, a.begin() + mid, a.begin() + r,
               buf.begin() + l, [](const auto &u, const auto &v)
         {
@@ -173,10 +182,16 @@ inline long long countFourDimensional(vector<Point4> a)
 {
     // a 是四维点集；返回两点四维坐标均严格递增的有序点对数量。
     vector<int> ws;
-    for (auto p : a) ws.push_back(p.w);
+    for (auto p : a)
+    {
+        ws.push_back(p.w);
+    }
     sort(ws.begin(), ws.end());
     ws.erase(unique(ws.begin(), ws.end()), ws.end());
-    for (auto &p : a) p.w = lower_bound(ws.begin(), ws.end(), p.w) - ws.begin();
+    for (auto &p : a)
+    {
+        p.w = lower_bound(ws.begin(), ws.end(), p.w) - ws.begin();
+    }
     sort(a.begin(), a.end(), [](const auto &u, const auto &v)
     {
         return tie(u.x, u.y, u.z, u.w) < tie(v.x, v.y, v.z, v.w);
@@ -186,19 +201,31 @@ inline long long countFourDimensional(vector<Point4> a)
     {
         if (r - l <= 1) return;
         int mid = (l + r) / 2;
-        while (mid < r && a[mid - 1].x == a[mid].x) mid++;
+        while (mid < r && a[mid - 1].x == a[mid].x)
+        {
+            mid++;
+        }
         if (mid == r)
         {
             mid = (l + r) / 2;
-            while (mid > l && a[mid - 1].x == a[mid].x) mid--;
+            while (mid > l && a[mid - 1].x == a[mid].x)
+            {
+                mid--;
+            }
             if (mid == l) return;
         }
         self(self, l, mid);
         self(self, mid, r);
         vector<Dom4Event> e;
         e.reserve(r - l);
-        for (int i = l; i < mid; i++) e.push_back({a[i].y, a[i].z, a[i].w, true});
-        for (int i = mid; i < r; i++) e.push_back({a[i].y, a[i].z, a[i].w, false});
+        for (int i = l; i < mid; i++)
+        {
+            e.push_back({a[i].y, a[i].z, a[i].w, true});
+        }
+        for (int i = mid; i < r; i++)
+        {
+            e.push_back({a[i].y, a[i].z, a[i].w, false});
+        }
         ans += dom4Cross(move(e), ws.size());
     };
     solve(solve, 0, a.size());
