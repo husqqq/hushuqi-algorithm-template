@@ -32,6 +32,16 @@ def load_generator():
     return module
 
 
+def load_audit():
+    path = ROOT / "tools" / "audit_all_chapters.py"
+    spec = importlib.util.spec_from_file_location("audit_all_chapters", path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError("cannot load audit_all_chapters.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
 def read_rows() -> dict[str, list[tuple[str, str]]]:
     result: dict[str, list[tuple[str, str]]] = defaultdict(list)
     for line in MAPPING.read_text(encoding="utf-8").splitlines():
@@ -137,6 +147,9 @@ def refresh_status_table(
     local_column: int,
     online_column: int,
 ) -> None:
+    audit = load_audit()
+    manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    receipts = audit.receipt_records(manifest)
     for index in range(start + 2, end):
         columns = lines[index].split("|")
         if len(columns) != column_count:
@@ -149,13 +162,14 @@ def refresh_status_table(
         if entry is None:
             raise RuntimeError(f"chapter {chapter}: {problem} is absent from manifest")
         meta = json.loads((ROOT / entry["meta"]).read_text(encoding="utf-8"))
-        validation = meta["validation"]
-        submission = validation["current_source_submission_id"]
+        validation = meta.get("validation", {})
+        _, _, local, online_ac = audit.row_state(problem, entries, receipts)
+        submission = validation.get("current_source_submission_id")
         seconds = validation.get("current_source_time")
-        online = f"`online_ac` #{submission}"
-        if seconds is not None:
+        online = f"`online_ac` #{submission}" if online_ac else "`missing`；旧提交仅见 meta 历史"
+        if online_ac and seconds is not None:
             online += f" ({seconds}s)"
-        columns[local_column] = " `current_verified` "
+        columns[local_column] = " `current_verified` " if local else " `missing` "
         columns[online_column] = f" {online} "
         lines[index] = "|".join(columns)
 
@@ -195,22 +209,6 @@ def refresh_prose(text: str, chapter: str, count: int) -> str:
             "当前第 10 章全部独立 `main.cpp` 均已重新绑定本地官方 checker 收据并取得同哈希线上 AC；后续任一模板或生成源码变化都必须重新执行本地验证与逐题在线提交。",
             text,
         )
-    if chapter == "03":
-        text = re.sub(
-            r"已建立真实模板映射、独立源码和本轮本地收据 `\d+/47`；",
-            "已建立真实模板映射、独立源码和本轮本地收据 `47/47`；",
-            text,
-        )
-        text = re.sub(
-            r"当前默认本地收据覆盖 \d+/47 题；",
-            "当前默认本地收据覆盖 47/47 题；",
-            text,
-        )
-        text = re.sub(
-            r"- Local receipt SHA256: `[0-9a-f]+`",
-            f"- Local receipt SHA256: `{sha256_file(RECEIPT)}`",
-            text,
-        )
     return text
 
 
@@ -230,6 +228,14 @@ def render_chapter(
     entries: dict[str, dict],
     generator,
 ) -> tuple[Path, str]:
+    if chapter == "03":
+        path = ROOT / "tools" / "refresh_ch03_audit.py"
+        spec = importlib.util.spec_from_file_location("refresh_ch03_audit", path)
+        if spec is None or spec.loader is None:
+            raise RuntimeError("cannot load refresh_ch03_audit.py")
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        return module.AUDIT, module.render()
     doc = chapter_doc(chapter)
     lines = doc.read_text(encoding="utf-8").splitlines()
     ranges = table_ranges(lines, {problem for _item, problem in scoped})
@@ -245,19 +251,8 @@ def render_chapter(
             end,
             entries,
             chapter=chapter,
-            column_count=11,
-            local_column=8,
-            online_column=9,
-        )
-    elif chapter == "03":
-        refresh_status_table(
-            lines,
-            start,
-            end,
-            entries,
-            chapter=chapter,
             column_count=10,
-            local_column=6,
+            local_column=7,
             online_column=8,
         )
     elif chapter == "04":
@@ -272,6 +267,14 @@ def render_chapter(
             online_column=8,
         )
     else:
+        # 这些章节的既有散文宣称本地及线上全部闭合，证据不足时禁止生成该结论。
+        audit = load_audit()
+        manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+        receipts = audit.receipt_records(manifest)
+        incomplete = [problem for _item, problem in scoped
+                      if not all(audit.row_state(problem, entries, receipts)[1:])]
+        if incomplete:
+            raise RuntimeError("cannot assert complete local/online evidence: " + ", ".join(incomplete))
         lines[start:end] = table_for(scoped, entries, generator)
     text = refresh_prose("\n".join(lines) + "\n", chapter, len(scoped))
     return doc, text

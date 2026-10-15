@@ -17,6 +17,7 @@ OUT = ROOT / "library-checker-template-solutions"
 COMMIT = "04c8de378bab67be926325de2871f0babb8e6451"
 NAME = "longest_increasing_subsequence"
 HEADER = "2_2_010.hpp"
+CHAPTER = "02-基础算法与离线算法.md"
 TEST = "tests/test_ch02_lis.cpp"
 TITLE = "Longest Increasing Subsequence"
 INCLUDE_RE = re.compile(r'^\s*#\s*include\s+"([^"]+)"\s*$')
@@ -30,7 +31,10 @@ signed main()
     int n;
     cin >> n;
     vector<int> a(n);
-    for (int &x : a) cin >> x;
+    for (int &x : a)
+    {
+        cin >> x;
+    }
     auto ans = lis(a);
     cout << ans.size() << '\n';
     for (int i = 0; i < (int)ans.size(); i++)
@@ -47,6 +51,8 @@ def sha256(path: Path) -> str:
 
 def expand(path: Path, seen: set[Path]) -> str:
     path = path.resolve()
+    if not path.is_relative_to((TEMPLATE / "include").resolve()):
+        raise ValueError(f"include outside template headers: {path}")
     if path in seen:
         return ""
     seen.add(path)
@@ -59,7 +65,24 @@ def expand(path: Path, seen: set[Path]) -> str:
     return "".join(result)
 
 
+def validate_template_sync() -> None:
+    """Reject drift between the complete LIS implementations in all three views."""
+    implementations = []
+    for branch in ("full", "print"):
+        source = (TEMPLATE / "include" / branch / HEADER).read_text(encoding="utf-8")
+        start = source.find("template <class T> vector<int> lis(")
+        if start < 0:
+            raise ValueError(f"missing LIS implementation: {branch}/{HEADER}")
+        implementations.append(source[start:].strip())
+    chapter = (TEMPLATE / CHAPTER).read_text(encoding="utf-8")
+    topic = re.search(r"^### 2\.2\.010 [^\n]*\n(.*?)(?=^### |\Z)", chapter, re.M | re.S)
+    blocks = re.findall(r"^```cpp\n(.*?)^```", topic.group(1), re.M | re.S) if topic else []
+    if not blocks or any(code != blocks[0].strip() for code in implementations):
+        raise ValueError("LIS implementation differs between Markdown, full and print")
+
+
 def generated_source() -> bytes:
+    validate_template_sync()
     return (
         expand(TEMPLATE / "include" / "full" / HEADER, set()).rstrip()
         + "\n\n"
@@ -69,12 +92,14 @@ def generated_source() -> bytes:
 
 
 def template_inputs() -> list[dict[str, str]]:
-    """Return the source and test files that define this candidate."""
-    paths = [
-        TEMPLATE / "include" / "full" / HEADER,
-        TEMPLATE / "include" / "base.hpp",
+    """Record actual transitive headers and the Markdown/print/test sync inputs."""
+    paths: set[Path] = set()
+    expand(TEMPLATE / "include" / "full" / HEADER, paths)
+    paths.update({
+        TEMPLATE / CHAPTER,
+        TEMPLATE / "include" / "print" / HEADER,
         TEMPLATE / TEST,
-    ]
+    })
     return [
         {"path": path.relative_to(ROOT).as_posix(), "sha256": sha256(path)}
         for path in sorted(paths)

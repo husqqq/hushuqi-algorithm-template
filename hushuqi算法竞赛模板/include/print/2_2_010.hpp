@@ -6,7 +6,8 @@ using namespace std;
 
 template <class T> vector<int> lis(const vector<T> &a)
 {
-    // a 是原序列；返回一条严格上升子序列的原下标。
+    // a 的元素以 < 构成严格弱序；返回一条最长严格上升子序列的递增原下标，空序列返回空。
+    // 改求最长非降子序列时，只将 lower_bound 换成 upper_bound，重建步骤不变。
     int n = a.size();
     vector<T> v;
     vector<int> at, pre(n, -1);

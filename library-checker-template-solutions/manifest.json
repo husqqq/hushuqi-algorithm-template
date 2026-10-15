@@ -1005,7 +1005,7 @@
       "title": "Longest Increasing Subsequence",
       "category": "other",
       "source": "other/longest_increasing_subsequence/main.cpp",
-      "source_sha256": "a2a0b54c74f6ad10789615250edabe502d0cd58f6bf98924ee0995199ebf215f",
+      "source_sha256": "33d005811494fa1428536b8c3214301dd39743a2a7f85504302d7fb92932e73b",
       "meta": "other/longest_increasing_subsequence/meta.json",
       "state": "template_solution"
     },
