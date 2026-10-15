@@ -4,112 +4,132 @@ using namespace std;
 
 #include "../topic_common.hpp"
 
-class KthOffline
+#include "2_2_002.hpp"
+
+struct Fenwick
 {
-    struct Query
-    {
-        // left、right 是查询半开区间；kth 是该区间内从 1 开始的排名；id 是答案下标。
-        int left, right, kth, id;
-    };
+    int n = 0;     // n 是下标范围长度。
+    vector<int> a; // a 保存从 1 开始的树状数组节点和。
 
-    // values 是去重升序值域，rank[i] 是原数组第 i 项的值域编号。
-    // bit 在当前分治层统计左半值域中各位置的出现次数，ans 按查询编号保存第 k 小。
-    vector<int> values, rank, bit, ans;
-
-    void add(int x, int value)
+    Fenwick(int m = 0)
     {
-        // 在位置 x 的 Fenwick 计数上加 value。
-        for (++x; x < bit.size(); x += x & -x)
+        // m 是初始下标范围长度。
+        init(m);
+    }
+
+    void init(int m)
+    {
+        // m 是新的下标范围长度；调用后全部频率清零。
+        assert(m >= 0); // 调试检查，可删
+        n = m;
+        a.assign(n + 1, 0);
+    }
+
+    void add(int p, int v)
+    {
+        // p 是从 0 开始的位置，v 是增量。
+        assert(0 <= p && p < n); // 调试检查，可删
+        for (p++; p <= n; p += p & -p)
         {
-            bit[x] += value;
+            a[p] += v;
         }
     }
 
-    int prefixSum(int x) const
+    int sum(int r) const
     {
-        // 返回 Fenwick 中半开前缀 [0,x) 的计数。
-        int res = 0;
-        for (; x > 0; x -= x & -x)
+        // r 是右端点；返回半开前缀 [0,r) 的和。
+        assert(0 <= r && r <= n); // 调试检查，可删
+        int ans = 0;
+        for (; r > 0; r -= r & -r)
         {
-            res += bit[x];
+            ans += a[r];
         }
-        return res;
-    }
-
-    void solve(int low, int high, vector<int> positions, vector<Query> queries)
-    {
-        // [low,high) 是当前值域，positions 的 rank 落在其中，queries 的答案也落在其中。
-        if (queries.empty())
-        {
-            return;
-        }
-        if (high - low == 1)
-        {
-            for (auto query : queries)
-            {
-                ans[query.id] = values[low];
-            }
-            return;
-        }
-        int middle = midpoint(low, high);
-        vector<int> lp, rp;
-        for (int position : positions)
-        {
-            if (rank[position] < middle)
-            {
-                add(position, 1), lp.push_back(position);
-            }
-            else
-            {
-                rp.push_back(position);
-            }
-        }
-        vector<Query> leftQs, rightQs;
-        for (auto query : queries)
-        {
-            int count = prefixSum(query.right) - prefixSum(query.left);
-            if (query.kth <= count)
-            {
-                leftQs.push_back(query);
-            }
-            else
-            {
-                query.kth -= count, rightQs.push_back(query);
-            }
-        }
-        for (int position : lp)
-        {
-            add(position, -1);
-        }
-        solve(low, middle, move(lp), move(leftQs));
-        solve(middle, high, move(rp), move(rightQs));
-    }
-
-  public:
-    // 每个询问使用左闭右开区间 [left,right)，k 从 1 开始。
-    vector<int> solve(const vector<int> &a, const vector<array<int, 3>> &inQs)
-    {
-        // a 是原数组；inQs 的每项为 {left,right,kth}，返回对应区间第 kth 小。
-        values = a;
-        ranges::sort(values);
-        values.erase(unique(values.begin(), values.end()), values.end());
-        rank.resize(a.size());
-        for (int i = 0; i < a.size(); ++i)
-        {
-            rank[i] = lower_bound(values.begin(), values.end(), a[i]) - values.begin();
-        }
-        vector<int> positions(a.size());
-        iota(positions.begin(), positions.end(), 0);
-        vector<Query> queries;
-        for (int id = 0; id < inQs.size(); ++id)
-        {
-            auto [left, right, kth] = inQs[id];
-            assert(0 <= left && left < right && right <= a.size() && 1 <= kth && kth <= right - left);
-            queries.push_back({left, right, kth, id});
-        }
-        bit.assign(a.size() + 1, 0);
-        ans.resize(queries.size());
-        solve(0, values.size(), move(positions), move(queries));
         return ans;
     }
+
+    int sum(int l, int r) const
+    {
+        // l、r 是半开区间端点；返回 [l,r) 的和。
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
+        return sum(r) - sum(l);
+    }
 };
+
+// KthQuery[0..2] 依次表示左端点、右端点、从 1 开始的排名。
+using KthQuery = array<int, 3>;
+
+vector<int> rangeKth(const vector<int> &a, vector<KthQuery> qs)
+{
+    // a 是静态数组，qs 中每项是 {l,r,k}；返回各半开区间第 k 小值。
+    if (qs.empty())
+    {
+        return {};
+    }
+    assert(!a.empty()); // 调试检查，可删
+    for (auto q : qs)
+    {
+        assert(0 <= q[0] && q[0] < q[1] && q[1] <= (int)a.size()); // 调试检查，可删
+        assert(1 <= q[2] && q[2] <= q[1] - q[0]);                  // 调试检查，可删
+    }
+    Discrete<int> dis(a);
+    vector<int> rk(a.size());
+    for (int i = 0; i < (int)a.size(); i++)
+    {
+        rk[i] = dis.id(a[i]);
+    }
+    vector<int> es(a.size()), ids(qs.size()), ans(qs.size());
+    iota(es.begin(), es.end(), 0);
+    iota(ids.begin(), ids.end(), 0);
+    Fenwick bit(a.size());
+    auto solve = [&](auto &&self, int vl, int vr, vector<int> ps, vector<int> qi) -> void
+    {
+        if (qi.empty())
+        {
+            return;
+        }
+        if (vr - vl == 1)
+        {
+            for (auto id : qi)
+            {
+                ans[id] = dis.value(vl);
+            }
+            return;
+        }
+        auto vm = midpoint(vl, vr);
+        vector<int> pl, pr, ql, qr;
+        for (auto p : ps)
+        {
+            if (rk[p] < vm)
+            {
+                bit.add(p, 1);
+                pl.push_back(p);
+            }
+            else
+            {
+                pr.push_back(p);
+            }
+        }
+        for (auto id : qi)
+        {
+            auto &q = qs[id];
+            auto c = bit.sum(q[0], q[1]);
+            if (q[2] <= c)
+            {
+                ql.push_back(id);
+            }
+            else
+            {
+                q[2] -= c;
+                qr.push_back(id);
+            }
+        }
+        for (auto p : pl)
+        {
+            bit.add(p, -1);
+        }
+        self(self, vl, vm, move(pl), move(ql));
+        self(self, vm, vr, move(pr), move(qr));
+    };
+    solve(solve, 0, dis.a.size(), move(es), move(ids));
+    return ans;
+}

@@ -126,8 +126,7 @@ signed main()
     assert(dis.id(4) == 1 && dis.lower(5) == 2 && dis.value(0) == -2);
     assert(inversion_topic::invMerge(vector<int>{3, 1, 2, 1}) == 4);
     assert(inversion_topic::invBit(vector<int>{3, 1, 2, 1}) == 4);
-    kth_topic::KthOffline kth;
-    assert((kth.solve({5, 1, 4, 1, 3}, {{0, 5, 3}, {1, 4, 2}, {2, 5, 1}}) == vector<ll>{3, 1, 1}));
+    assert((kth_topic::rangeKth({5, 1, 4, 1, 3}, {{0, 5, 3}, {1, 4, 2}, {2, 5, 1}}) == vector<ll>{3, 1, 1}));
 
     using dominance_topic::Point3;
     assert((dominance_topic::dom3(vector<Point3>{{1, 1, 1, 0}, {2, 1, 2, 1}, {1, 1, 1, 2}, {3, 3, 3, 3}})
