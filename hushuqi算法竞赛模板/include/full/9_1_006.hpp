@@ -6,14 +6,12 @@ using namespace std;
 
 inline long long detPrime(vector<vector<long long>> a, long long mod)
 {
-    // 调试检查，可删。
-    assert(mod > 1);
+    assert(mod > 1); // 调试检查，可删。
     int n = a.size();
     long long ans = 1;
     for (auto &r : a)
     {
-        // 调试检查，可删。
-        assert((int)r.size() == n);
+        assert((int)r.size() == n); // 调试检查，可删。
         for (auto &x : r)
         {
             x %= mod;
@@ -70,14 +68,12 @@ inline long long detPrime(vector<vector<long long>> a, long long mod)
 
 inline long long detAny(vector<vector<long long>> a, long long mod)
 {
-    // 调试检查，可删。
-    assert(mod > 1);
+    assert(mod > 1); // 调试检查，可删。
     int n = a.size();
     long long ans = 1;
     for (auto &r : a)
     {
-        // 调试检查，可删。
-        assert((int)r.size() == n);
+        assert((int)r.size() == n); // 调试检查，可删。
         for (auto &x : r)
         {
             x %= mod;

@@ -8,12 +8,10 @@ namespace bin_packing
 int firstFitDec(vector<int> a, int cap)
 {
     // a 是物品体积，cap 是箱容量；返回降序首次适应使用的箱数。
-    // 调试检查，可删。
-    assert(cap >= 0);
+    assert(cap >= 0); // 调试检查，可删。
     for (int x : a)
     {
-        // 调试检查，可删。
-        assert(0 <= x && x <= cap);
+        assert(0 <= x && x <= cap); // 调试检查，可删。
     }
     sort(a.begin(), a.end(), greater<>());
     vector<int> rem;
@@ -60,14 +58,11 @@ int exactBins(const vector<int> &a, int cap)
 {
     // a 是至多 24 个物品体积，cap 是箱容量；返回最少箱数。
     int n = (int)a.size();
-    // 调试检查，可删。
-    assert(0 <= n && n <= 24);
-    // 调试检查，可删。
-    assert(cap >= 0);
+    assert(0 <= n && n <= 24); // 调试检查，可删。
+    assert(cap >= 0); // 调试检查，可删。
     for (int x : a)
     {
-        // 调试检查，可删。
-        assert(0 <= x && x <= cap);
+        assert(0 <= x && x <= cap); // 调试检查，可删。
     }
     // State[0..1] 依次是已用箱数与最后一个箱的已用容量。
     using State = array<int, 2>;

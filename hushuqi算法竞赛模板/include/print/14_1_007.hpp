@@ -58,8 +58,7 @@ struct Sudoku
         {
             for (int j = 0; j < 9; j++)
             {
-                // 调试检查，可删。
-                assert(0 <= a[i][j] && a[i][j] <= 9);
+                assert(0 <= a[i][j] && a[i][j] <= 9); // 调试检查，可删。
                 if (a[i][j])
                 {
                     int b = i / 3 * 3 + j / 3;

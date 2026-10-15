@@ -22,8 +22,7 @@ struct Date
         // y、m 是公历年份和月份；返回该月的天数。
         static constexpr int a[] = {0, 31, 28, 31, 30, 31, 30,
                                     31, 31, 30, 31, 30, 31};
-        // 调试检查，可删。
-        assert(1 <= m && m <= 12);
+        assert(1 <= m && m <= 12); // 调试检查，可删。
         return a[m] + (m == 2 && leap(y));
     }
 
@@ -36,8 +35,7 @@ struct Date
     long long days() const
     {
         // 无参数；返回当前日期与 1970-01-01 相差的天数。
-        // 调试检查，可删。
-        assert(valid());
+        assert(valid()); // 调试检查，可删。
         __int128 yy = (__int128)y - (m <= 2);
         __int128 era = (yy >= 0 ? yy : yy - 399) / 400;
         __int128 yo = yy - era * 400;
@@ -45,10 +43,7 @@ struct Date
         __int128 dy = (153 * mp + 2) / 5 + d - 1;
         __int128 de = yo * 365 + yo / 4 - yo / 100 + dy;
         __int128 z = era * 146097 + de - 719468;
-        if (z < LLONG_MIN || z > LLONG_MAX)
-        {
-            throw overflow_error("Date: day index out of range");
-        }
+        assert(LLONG_MIN <= z && z <= LLONG_MAX); // 调试检查，可删。
         return (long long)z;
     }
 

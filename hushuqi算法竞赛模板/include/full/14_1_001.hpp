@@ -51,16 +51,10 @@ struct BigInt
             s = x[0] == '-' ? -1 : 1;
             p = 1;
         }
-        if (p == (int)x.size())
-        {
-            throw invalid_argument("BigInt: empty digits");
-        }
+        assert(p < (int)x.size()); // 调试检查，可删。
         for (int i = p; i < (int)x.size(); i++)
         {
-            if (x[i] < '0' || x[i] > '9')
-            {
-                throw invalid_argument("BigInt: invalid digit");
-            }
+            assert('0' <= x[i] && x[i] <= '9'); // 调试检查，可删。
         }
         for (int r = (int)x.size(); r > p; r -= 9)
         {

@@ -4,12 +4,10 @@ using namespace std;
 
 inline optional<vector<long double>> gaussPivot(vector<vector<long double>> a, int n)
 {
-    // 调试检查，可删。
-    assert(n >= 0);
+    assert(n >= 0); // 调试检查，可删。
     for (const auto &r : a)
     {
-        // 调试检查，可删。
-        assert((int)r.size() == n + 1);
+        assert((int)r.size() == n + 1); // 调试检查，可删。
     }
     constexpr long double eps = 1E-12L;
     int m = a.size();

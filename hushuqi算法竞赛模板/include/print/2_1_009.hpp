@@ -48,10 +48,8 @@ struct DLX
         for (int k = 0; k < (int)columns.size(); k++)
         {
             int c = columns[k];
-            // 调试检查，可删。
-            assert(1 <= c && c <= m);
-            // 调试检查，可删。
-            assert(find(columns.begin(), columns.begin() + k, c) == columns.begin() + k);
+            assert(1 <= c && c <= m); // 调试检查，可删。
+            assert(find(columns.begin(), columns.begin() + k, c) == columns.begin() + k); // 调试检查，可删。
             int x = (int)l.size();
             l.push_back(x);
             r.push_back(x);

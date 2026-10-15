@@ -5,21 +5,17 @@
 string convertBase(string s, int from, int to)
 {
     // s 是字符序 0-9A-Za-z 下带可选正负号的 from 进制整数；返回同字符序、无前导零的 to 进制字符串。
-    // 调试检查，可删。
-    assert(!s.empty());
-    // 调试检查，可删。
-    assert(2 <= from && from <= 62 && 2 <= to && to <= 62);
+    assert(!s.empty()); // 调试检查，可删。
+    assert(2 <= from && from <= 62 && 2 <= to && to <= 62); // 调试检查，可删。
     const string digit = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     bool neg = s[0] == '-';
     int p = neg || s[0] == '+';
-    // 调试检查，可删。
-    assert(p < (int)s.size());
+    assert(p < (int)s.size()); // 调试检查，可删。
     vector<int> a;
     for (; p < (int)s.size(); p++)
     {
         size_t pos = digit.find(s[p]);
-        // 调试检查，可删。
-        assert(pos != string::npos && pos < (size_t)from);
+        assert(pos != string::npos && pos < (size_t)from); // 调试检查，可删。
         int x = pos;
         a.push_back(x);
     }
@@ -55,8 +51,7 @@ string convertBase(string s, int from, int to)
 BigInt bigPow(BigInt a, int e)
 {
     // a 是任意精度整数，e 是非负整数；返回 a^e，依赖 14.1.001 的 BigInt 乘法。
-    // 调试检查，可删。
-    assert(e >= 0);
+    assert(e >= 0); // 调试检查，可删。
     BigInt ans = 1;
     while (e)
     {

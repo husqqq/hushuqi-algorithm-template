@@ -63,12 +63,10 @@ if (a[i][j] < 0) a[i][j] += mod;
 
 inline optional<ModLinearSol> gaussMod(vector<vector<long long>> a, int n, long long mod)
 {
-    // 调试检查，可删。
-    assert(n >= 0 && mod > 1);
+    assert(n >= 0 && mod > 1); // 调试检查，可删。
     for (auto &r : a)
     {
-        // 调试检查，可删。
-        assert((int)r.size() == n + 1);
+        assert((int)r.size() == n + 1); // 调试检查，可删。
         for (auto &x : r)
         {
             x %= mod;

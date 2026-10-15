@@ -14,15 +14,13 @@ template <class T> struct SparseMat
 
     void add(int i, int j, T x)
     {
-        // 调试检查，可删。
-        assert(0 <= i && i < n && 0 <= j && j < m);
+        assert(0 <= i && i < n && 0 <= j && j < m); // 调试检查，可删。
         a[i].push_back({j, x});
     }
 
     vector<T> operator*(const vector<T> &x) const
     {
-        // 调试检查，可删。
-        assert((int)x.size() == m);
+        assert((int)x.size() == m); // 调试检查，可删。
         vector<T> y(n);
         for (int i = 0; i < n; i++)
         {

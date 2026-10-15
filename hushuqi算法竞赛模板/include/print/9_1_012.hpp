@@ -4,19 +4,15 @@
 template <class T> T hafnian(const vector<vector<T>> &a)
 {
     int N = a.size();
-    // 调试检查，可删。
-    assert(N % 2 == 0);
+    assert(N % 2 == 0); // 调试检查，可删。
     int n = N / 2;
-    // 调试检查，可删。
-    assert(n <= 20);
+    assert(n <= 20); // 调试检查，可删。
     for (int i = 0; i < N; i++)
     {
-        // 调试检查，可删。
-        assert((int)a[i].size() == N);
+        assert((int)a[i].size() == N); // 调试检查，可删。
         for (int j = 0; j < N; j++)
         {
-            // 调试检查，可删。
-            assert(a[i][j] == a[j][i]);
+            assert(a[i][j] == a[j][i]); // 调试检查，可删。
         }
     }
     vector<T> cyc(1 << n);

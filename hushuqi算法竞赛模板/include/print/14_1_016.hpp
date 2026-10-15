@@ -67,8 +67,7 @@ string addSmall(string a, int b)
 string subNum(string a, const string &b)
 {
     // a、b 是规范非负十进制数且 a>=b；返回精确差。
-    // 调试检查，可删。
-    assert(cmpNum(a, b) >= 0);
+    assert(cmpNum(a, b) >= 0); // 调试检查，可删。
     int borrow = 0;
     int j = (int)b.size() - 1;
     for (int i = (int)a.size() - 1; i >= 0; i--)
@@ -88,12 +87,10 @@ string subNum(string a, const string &b)
 string bigSqrt(string s)
 {
     // s 是无符号非负十进制整数；返回 floor(sqrt(s)) 的规范十进制表示。
-    // 调试检查，可删。
-    assert(!s.empty());
+    assert(!s.empty()); // 调试检查，可删。
     for (char c : s)
     {
-        // 调试检查，可删。
-        assert('0' <= c && c <= '9');
+        assert('0' <= c && c <= '9'); // 调试检查，可删。
     }
     s = trimNum(s);
     if (s == "0")

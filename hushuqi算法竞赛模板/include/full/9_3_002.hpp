@@ -4,8 +4,7 @@ using namespace std;
 
 template <class F> long double romberg(F f, long double l, long double r, int levels = 15)
 {
-    // 调试检查，可删。
-    assert(1 <= levels && levels <= 25);
+    assert(1 <= levels && levels <= 25); // 调试检查，可删。
     vector<long double> a(levels);
     a[0] = (f(l) + f(r)) * (r - l) / 2;
     for (int i = 1; i < levels; i++)
