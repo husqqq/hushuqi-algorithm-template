@@ -4,7 +4,9 @@
 
 template <class T, class Cmp = less<T>> void mergeSort(vector<T> &a, Cmp cmp = {})
 {
-    // a 是待排序数组，cmp 是严格弱序比较器；排序结果直接写回 a。
+    // a 是待排序数组，cmp 比较两个 const T& 并构成严格弱序；稳定排序后写回 a，无返回值。
+    // 降序传 greater<T> 或反向比较器；不要用 <=，等价元素仍须先取左段。
+    assert(cmp_less_equal(a.size(), numeric_limits<int>::max()));
     vector<T> b;
     b.reserve(a.size());
     auto dfs = [&](auto &&self, int l, int r) -> void
@@ -35,35 +37,36 @@ template <class T, class Cmp = less<T>> void mergeSort(vector<T> &a, Cmp cmp = {
     dfs(dfs, 0, a.size());
 }
 
-void radixSort(vector<int> &a)
+template <class T> void radixSort(vector<T> &a)
 {
-    // a 是待排序的有符号 64 位整数数组；排序结果直接写回 a。
-    static_assert(numeric_limits<int>::digits == 63);
-    vector<unsigned long long> x(a.size()), b(a.size());
-    for (int i = 0; i < (int)a.size(); i++)
+    // a 是非 bool、至多 64 位的整数数组；按自然升序稳定排序后写回 a，无返回值。
+    // 降序可在排序后 reverse；整数相等时无可区分的附加记录，本接口不排序带载荷对象。
+    static_assert(is_integral_v<T> && !is_same_v<T, bool> && sizeof(T) <= 8);
+    assert(cmp_less_equal(a.size(), numeric_limits<int>::max()));
+    if (a.size() < 2)
     {
-        x[i] = (unsigned long long)a[i] ^ (1ULL << 63);
+        return;
     }
-    constexpr int B = 1 << 16;
+    using U = make_unsigned_t<T>; // 无符号键用于定义移位；原值始终保存在 T 中。
+    constexpr int W = numeric_limits<U>::digits;
+    constexpr int D = min<int>(16, W), B = 1 << D;
+    constexpr U sign = is_signed_v<T> ? (U)1 << (W - 1) : 0;
+    vector<T> b(a.size());
     vector<int> cnt(B);
-    for (int sh = 0; sh < 64; sh += 16)
+    for (int sh = 0; sh < W; sh += D)
     {
         fill(cnt.begin(), cnt.end(), 0);
-        for (auto v : x)
+        for (auto x : a)
         {
-            cnt[v >> sh & (B - 1)]++;
+            cnt[(((U)x ^ sign) >> sh) & (B - 1)]++;
         }
         partial_sum(cnt.begin(), cnt.end(), cnt.begin());
-        for (auto it = x.rbegin(); it != x.rend(); it++)
+        for (auto it = a.rbegin(); it != a.rend(); it++)
         {
-            auto p = *it >> sh & (B - 1);
+            auto p = (((U)*it ^ sign) >> sh) & (B - 1);
             b[--cnt[p]] = *it;
         }
-        x.swap(b);
-    }
-    for (int i = 0; i < (int)a.size(); i++)
-    {
-        a[i] = bit_cast<int>(x[i] ^ (1ULL << 63));
+        a.swap(b);
     }
 }
 

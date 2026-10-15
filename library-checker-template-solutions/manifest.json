@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "updated_at": "2026-10-15T17:55:11.408673Z",
+  "updated_at": "2026-10-15T19:35:30.585869Z",
   "official_repository": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
     "url": "https://github.com/yosupo06/library-checker-problems"
@@ -1878,7 +1878,7 @@
       "title": "Static Range Count Distinct",
       "category": "data_structure",
       "source": "data_structure/static_range_count_distinct/main.cpp",
-      "source_sha256": "2e0e51eaa69fc7c333d024c700775e9055390bcffa7404faa4ff25955b21f31e",
+      "source_sha256": "3344e068cc2345348b901bd6ba12607e543a03585d0fa71323d3dac786d6ae05",
       "meta": "data_structure/static_range_count_distinct/meta.json",
       "state": "template_solution"
     },
@@ -1896,7 +1896,7 @@
       "title": "Static Range Inversions Query",
       "category": "data_structure",
       "source": "data_structure/static_range_inversions_query/main.cpp",
-      "source_sha256": "be347b79e6ebe32923acc01781db24899a2d77f83257906acef37b811d87cfca",
+      "source_sha256": "4320d2434b00957ec2d96f0fe73e80cd1482670a4a65e57b20ffb8e513d1fd48",
       "meta": "data_structure/static_range_inversions_query/meta.json",
       "state": "template_solution"
     },

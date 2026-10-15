@@ -32,7 +32,7 @@
           "inputs": [
             {
               "path": "hushuqi算法竞赛模板/02-基础算法与离线算法.md",
-              "sha256": "f93727113bb78c10059beee0de3dedc094057ac158e928aa402082d74b9e19d2"
+              "sha256": "c740e50a013b1f959f705523baabbcbad548e0ec07dbd1f6e2b2cd422e641b0f"
             },
             {
               "path": "hushuqi算法竞赛模板/include/common.hpp",
@@ -58,7 +58,7 @@
           "generated_sha256": "33d005811494fa1428536b8c3214301dd39743a2a7f85504302d7fb92932e73b",
           "byte_equal": true
         },
-        "generation_evidence_sha256": "5337accbca184921418f7c31356d6918dbc1cf871dea8509fef64b616f66da25"
+        "generation_evidence_sha256": "f10bfd946f8e0ad10c3369ad6ce3d47fb896175ebfe155c2b1cf1c28a5f81b3e"
       }
     }
   },

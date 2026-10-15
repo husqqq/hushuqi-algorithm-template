@@ -6,56 +6,67 @@ using namespace std;
 
 template <class T, class Cmp = less<T>> void mergeSort(vector<T> &a, Cmp cmp = {})
 {
-    // 按严格弱序 cmp 稳定排序 a。
-    vector<T> b(a.size());
+    // a 是待排序数组，cmp 比较两个 const T& 并构成严格弱序；稳定排序后写回 a，无返回值。
+    // 降序传 greater<T> 或反向比较器；不要用 <=，等价元素仍须先取左段。
+    assert(cmp_less_equal(a.size(), numeric_limits<int>::max()));
+    vector<T> b;
+    b.reserve(a.size());
     auto dfs = [&](auto &&self, int l, int r) -> void
     {
         if (r - l <= 1)
         {
             return;
         }
-        int m = (l + r) / 2;
+        auto m = midpoint(l, r);
         self(self, l, m);
         self(self, m, r);
-        int i = l, j = m, k = l;
+        auto i = l;
+        auto j = m;
+        b.clear();
         while (i < m || j < r)
         {
             if (j == r || (i < m && !cmp(a[j], a[i])))
             {
-                b[k++] = move(a[i++]);
+                b.push_back(move(a[i++]));
             }
             else
             {
-                b[k++] = move(a[j++]);
+                b.push_back(move(a[j++]));
             }
         }
-        for (i = l; i < r; i++)
-        {
-            a[i] = move(b[i]);
-        }
+        move(b.begin(), b.end(), a.begin() + l);
     };
     dfs(dfs, 0, a.size());
 }
 
 template <class T> void radixSort(vector<T> &a)
 {
-    // 按整数自然顺序稳定排序 a。
-    static_assert(is_integral_v<T> && sizeof(T) <= 8);
-    using U = make_unsigned_t<T>;
-    vector<T> b(a.size());
-    constexpr U sign = is_signed_v<T> ? U(1) << (sizeof(T) * 8 - 1) : 0;
-    for (int k = 0; k < (int)(sizeof(T)); k++)
+    // a 是非 bool、至多 64 位的整数数组；按自然升序稳定排序后写回 a，无返回值。
+    // 降序可在排序后 reverse；整数相等时无可区分的附加记录，本接口不排序带载荷对象。
+    static_assert(is_integral_v<T> && !is_same_v<T, bool> && sizeof(T) <= 8);
+    assert(cmp_less_equal(a.size(), numeric_limits<int>::max()));
+    if (a.size() < 2)
     {
-        array<int, 256> c{};
-        for (T x : a)
+        return;
+    }
+    using U = make_unsigned_t<T>; // 无符号键用于定义移位；原值始终保存在 T 中。
+    constexpr int W = numeric_limits<U>::digits;
+    constexpr int D = min<int>(16, W), B = 1 << D;
+    constexpr U sign = is_signed_v<T> ? (U)1 << (W - 1) : 0;
+    vector<T> b(a.size());
+    vector<int> cnt(B);
+    for (int sh = 0; sh < W; sh += D)
+    {
+        fill(cnt.begin(), cnt.end(), 0);
+        for (auto x : a)
         {
-            c[((U(x) ^ sign) >> (8 * k)) & 255]++;
+            cnt[(((U)x ^ sign) >> sh) & (B - 1)]++;
         }
-        partial_sum(c.begin(), c.end(), c.begin());
-        for (int i = (int)a.size() - 1; i >= 0; i--)
+        partial_sum(cnt.begin(), cnt.end(), cnt.begin());
+        for (auto it = a.rbegin(); it != a.rend(); it++)
         {
-            int x = ((U(a[i]) ^ sign) >> (8 * k)) & 255;
-            b[--c[x]] = a[i];
+            auto p = (((U)*it ^ sign) >> sh) & (B - 1);
+            b[--cnt[p]] = *it;
         }
         a.swap(b);
     }

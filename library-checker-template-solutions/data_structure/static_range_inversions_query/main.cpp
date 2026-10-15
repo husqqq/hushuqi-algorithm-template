@@ -8,30 +8,36 @@ using namespace std;
 
 #define int long long
 
+
+#include <limits>
+
+using namespace std;
+
 constexpr long long INF = numeric_limits<long long>::max() / 4;
+
+template <class T> bool chmin(T &a, const T &b)
+{
+    // a 是待更新值，b 是候选值；若 b 更小则更新 a 并返回 true。
+    if (b < a)
+    {
+        a = b;
+        return true;
+    }
+    return false;
+}
+
+template <class T> bool chmax(T &a, const T &b)
+{
+    // a 是待更新值，b 是候选值；若 b 更大则更新 a 并返回 true。
+    if (a < b)
+    {
+        a = b;
+        return true;
+    }
+    return false;
+}
+
 constexpr long double EPS = 1E-12L;
-
-template <class T> bool chmin(T &x, const T &y)
-{
-    // y<x 时把 x 降到 y 并返回 true
-    if (y < x)
-    {
-        x = y;
-        return true;
-    }
-    return false;
-}
-
-template <class T> bool chmax(T &x, const T &y)
-{
-    // x<y 时把 x 升到 y 并返回 true
-    if (x < y)
-    {
-        x = y;
-        return true;
-    }
-    return false;
-}
 
 int sgn(long double x, long double eps = EPS)
 {
@@ -67,7 +73,7 @@ struct FastInput
 
     template <class T> bool read(T &x)
     {
-        // 读一个 T 范围内的整数，成功返回 true
+        // 题面保证整数能由 T 表示；EOF 或格式错误返回 false
         static_assert(is_integral_v<T> && !is_same_v<remove_cv_t<T>, bool>);
         using U = make_unsigned_t<T>;
         auto c = get();
@@ -88,29 +94,11 @@ struct FastInput
         {
             return false;
         }
-        U lim = numeric_limits<U>::max();
-        if constexpr (is_signed_v<T>)
-        {
-            lim = (U)numeric_limits<T>::max() + (neg ? 1 : 0);
-        }
-        bool fit = true;
         U v = 0;
         while ('0' <= c && c <= '9')
         {
-            U d = (U)(c - '0');
-            if (fit && v > (lim - d) / 10)
-            {
-                fit = false;
-            }
-            if (fit)
-            {
-                v = v * 10 + d;
-            }
+            v = v * 10 + (U)(c - '0');
             c = get();
-        }
-        if (!fit)
-        {
-            return false;
         }
         if constexpr (is_unsigned_v<T>)
         {
@@ -122,15 +110,7 @@ struct FastInput
         }
         else if (neg)
         {
-            U absMin = (U)numeric_limits<T>::max() + 1;
-            if (v == absMin)
-            {
-                x = numeric_limits<T>::min();
-            }
-            else
-            {
-                x = -((T)v);
-            }
+            x = (T)(U(0) - v);
         }
         else
         {
@@ -232,7 +212,7 @@ struct i128
     unsigned long long hi = 0; // 补码的高 64 位
     unsigned long long lo = 0; // 补码的低 64 位
 
-    i128(int64_t x = 0) : hi(x < 0 ? ~0ULL : 0), lo((unsigned long long)x)
+    i128(long long x = 0) : hi(x < 0 ? ~0ULL : 0), lo((unsigned long long)x)
     {
         // 把 64 位有符号整数按补码符号扩展到 128 位
     }
@@ -430,7 +410,7 @@ vector<string> split(const string &s, char sep = ' ')
 
 struct CustomHash
 {
-    static uint64_t mix(uint64_t x)
+    static unsigned long long mix(unsigned long long x)
     {
         // 返回 x 经 SplitMix64 finalizer 扰动后的值
         x += 0x9e3779b97f4a7c15ULL;
@@ -439,31 +419,31 @@ struct CustomHash
         return x ^ (x >> 31);
     }
 
-    size_t operator()(uint64_t x) const
+    size_t operator()(unsigned long long x) const
     {
         // 返回混入进程随机种子的整数哈希值
-        static const uint64_t seed =
-            (uint64_t)chrono::steady_clock::now().time_since_epoch().count();
+        static const unsigned long long seed =
+            (unsigned long long)chrono::steady_clock::now().time_since_epoch().count();
         return mix(x + seed);
     }
 
     size_t operator()(const pair<int, int> &x) const
     {
         // 只接受两个不超过 64 位的整数分量
-        static const uint64_t seed =
-            (uint64_t)chrono::steady_clock::now().time_since_epoch().count();
-        uint64_t a = mix((uint64_t)x.first + seed);
-        uint64_t b = mix((uint64_t)x.second + seed + 0x9e3779b97f4a7c15ULL);
+        static const unsigned long long seed =
+            (unsigned long long)chrono::steady_clock::now().time_since_epoch().count();
+        unsigned long long a = mix((unsigned long long)x.first + seed);
+        unsigned long long b = mix((unsigned long long)x.second + seed + 0x9e3779b97f4a7c15ULL);
         return mix(a ^ rotl(b, 32));
     }
 };
 
-struct DynamicBitset
+struct DynBitset
 {
     int n = 0;                    // 有效位数
     vector<unsigned long long> a; // 按 64 位机器字打包
 
-    DynamicBitset(int m = 0)
+    DynBitset(int m = 0)
     {
         // 构造 m 位的全零集合，要求 m>=0
         init(m);
@@ -516,7 +496,7 @@ struct DynamicBitset
         return ans;
     }
 
-    DynamicBitset &operator|=(const DynamicBitset &o)
+    DynBitset &operator|=(const DynBitset &o)
     {
         // 逐位或入 o，返回当前集合
         assert(n == o.n); // 调试检查，可删
@@ -527,7 +507,7 @@ struct DynamicBitset
         return *this;
     }
 
-    DynamicBitset &operator&=(const DynamicBitset &o)
+    DynBitset &operator&=(const DynBitset &o)
     {
         // 逐位与入 o，返回当前集合
         assert(n == o.n); // 调试检查，可删
@@ -541,7 +521,9 @@ struct DynamicBitset
 
 template <class T, class Cmp = less<T>> void mergeSort(vector<T> &a, Cmp cmp = {})
 {
-    // a 是待排序数组，cmp 是严格弱序比较器；排序结果直接写回 a。
+    // a 是待排序数组，cmp 比较两个 const T& 并构成严格弱序；稳定排序后写回 a，无返回值。
+    // 降序传 greater<T> 或反向比较器；不要用 <=，等价元素仍须先取左段。
+    assert(cmp_less_equal(a.size(), numeric_limits<int>::max()));
     vector<T> b;
     b.reserve(a.size());
     auto dfs = [&](auto &&self, int l, int r) -> void
@@ -572,35 +554,36 @@ template <class T, class Cmp = less<T>> void mergeSort(vector<T> &a, Cmp cmp = {
     dfs(dfs, 0, a.size());
 }
 
-void radixSort(vector<int> &a)
+template <class T> void radixSort(vector<T> &a)
 {
-    // a 是待排序的有符号 64 位整数数组；排序结果直接写回 a。
-    static_assert(numeric_limits<int>::digits == 63);
-    vector<unsigned long long> x(a.size()), b(a.size());
-    for (int i = 0; i < (int)a.size(); i++)
+    // a 是非 bool、至多 64 位的整数数组；按自然升序稳定排序后写回 a，无返回值。
+    // 降序可在排序后 reverse；整数相等时无可区分的附加记录，本接口不排序带载荷对象。
+    static_assert(is_integral_v<T> && !is_same_v<T, bool> && sizeof(T) <= 8);
+    assert(cmp_less_equal(a.size(), numeric_limits<int>::max()));
+    if (a.size() < 2)
     {
-        x[i] = (unsigned long long)a[i] ^ (1ULL << 63);
+        return;
     }
-    constexpr int B = 1 << 16;
+    using U = make_unsigned_t<T>; // 无符号键用于定义移位；原值始终保存在 T 中。
+    constexpr int W = numeric_limits<U>::digits;
+    constexpr int D = min<int>(16, W), B = 1 << D;
+    constexpr U sign = is_signed_v<T> ? (U)1 << (W - 1) : 0;
+    vector<T> b(a.size());
     vector<int> cnt(B);
-    for (int sh = 0; sh < 64; sh += 16)
+    for (int sh = 0; sh < W; sh += D)
     {
         fill(cnt.begin(), cnt.end(), 0);
-        for (auto v : x)
+        for (auto x : a)
         {
-            cnt[v >> sh & (B - 1)]++;
+            cnt[(((U)x ^ sign) >> sh) & (B - 1)]++;
         }
         partial_sum(cnt.begin(), cnt.end(), cnt.begin());
-        for (auto it = x.rbegin(); it != x.rend(); it++)
+        for (auto it = a.rbegin(); it != a.rend(); it++)
         {
-            auto p = *it >> sh & (B - 1);
+            auto p = (((U)*it ^ sign) >> sh) & (B - 1);
             b[--cnt[p]] = *it;
         }
-        x.swap(b);
-    }
-    for (int i = 0; i < (int)a.size(); i++)
-    {
-        a[i] = bit_cast<int64_t>(x[i] ^ (1ULL << 63));
+        a.swap(b);
     }
 }
 
@@ -1066,6 +1049,7 @@ int rectArea(const vector<Rect> &rs)
 template <class T> vector<int> prevLess(const vector<T> &a)
 {
     // a 是原序列；返回每个位置左侧最近严格更小元素的下标，不存在时为 -1。
+    // 改求最近严格更大时，把弹栈条件 >= 改为 <=；若允许相等，则分别用 > 或 <。
     vector<int> stk, ans(a.size(), -1);
     for (int i = 0; i < (int)a.size(); i++)
     {
@@ -1085,6 +1069,7 @@ template <class T> vector<int> prevLess(const vector<T> &a)
 template <class T> vector<T> windowMin(const vector<T> &a, int k)
 {
     // a 是原序列，k 是固定窗口长度；返回每个连续窗口的最小值。
+    // 改最大值时把维护队尾的 >= 改为 <=；过期下标的队首删除条件不变。
     assert(1 <= k && k <= (int)a.size()); // 调试检查，可删
     deque<int> q;
     vector<T> ans;
@@ -1110,6 +1095,7 @@ template <class T> vector<T> windowMin(const vector<T> &a, int k)
 template <class T> vector<T> windowMax(const vector<T> &a, int k)
 {
     // a 是原序列，k 是固定窗口长度；返回每个连续窗口的最大值。
+    // 改最小值时把维护队尾的 <= 改为 >=；过期下标的队首删除条件不变。
     assert(1 <= k && k <= (int)a.size()); // 调试检查，可删
     deque<int> q;
     vector<T> ans;
