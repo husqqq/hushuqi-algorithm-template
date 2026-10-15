@@ -3,9 +3,9 @@
 from pathlib import Path
 import re
 import shutil
-import subprocess
-import sys
 import tempfile
+from itertools import combinations
+from pypdf import PdfReader
 from render_pdf import render_pdf
 
 
@@ -115,38 +115,98 @@ def unlink_foreign(text):
     return re.sub(r"\[([^\]]+)\]\((?:[^)#\s]*\.md)?#(\d+)\)", repl, text)
 
 
-def build_one(name, files, with_toc, tmp):
-    """构建一册 PDF；files 是按顺序排列的章节文件。"""
+def build_one(name, files, tmp, out):
+    """构建一册到临时 out；files 是按顺序排列的章节文件，返回实际页数。"""
     text = "\n\n".join(p.read_text(encoding="utf-8") for p in files)
     md = tmp / f"volume-{name}.md"
     body = unlink_foreign(strip_maintenance_notes(strip_chapter_intro(strip_preamble(text))))
     md.write_text(body + "\n\n", encoding="utf-8")
     cover_path = tmp / f"cover-{name}.tex"
     cover(f"hushuqi算法竞赛模板({name})", cover_path, reset_body=name != "上")
-    VOLUME_DIR.mkdir(exist_ok=True)
-    out = VOLUME_DIR / f"hushuqi算法竞赛模板({name}).pdf"
-    cmd = ["pandoc", str(md)]
-    if with_toc:
-        cmd.append("--toc")
-    cmd += PANDOC_COMMON
-    cmd += ["--include-before-body=" + str(cover_path)]
-    pages = render_pdf(cmd, out, ROOT)
-    if pages > 600:
-        raise ValueError(f"分册 {name} 有 {pages} 页，须按章节重新平衡分册")
-    print(f"{name}: {out}")
+    cmd = ["pandoc", str(md), "--toc", *PANDOC_COMMON,
+           "--include-before-body=" + str(cover_path)]
+    return render_pdf(cmd, out, ROOT)
+
+
+def chapter_pages(files, full_pdf):
+    """从本次合订本的一级书签取得每章正文页数；书签必须与当前章节一致。"""
+    reader = PdfReader(full_pdf)
+    chapters = [item for item in reader.outline if not isinstance(item, list)]
+    titles = []
+    for path in files:
+        headings = re.findall(r"^#\s+(\d+\.\s+.+)$", path.read_text(encoding="utf-8"), re.M)
+        if len(headings) != 1:
+            raise ValueError(f"{path.name}: 必须恰有一个章标题")
+        titles.append(headings[0])
+    if [item.title for item in chapters] != titles:
+        raise ValueError("合订本章书签与当前 Markdown 不一致，请先重建合订本")
+    starts = [reader.get_destination_page_number(item) for item in chapters]
+    if starts != sorted(set(starts)):
+        raise ValueError("合订本章节页序异常")
+    ends = starts[1:] + [len(reader.pages)]
+    return [end - start for start, end in zip(starts, ends)]
+
+
+def candidate_partitions(weights):
+    """枚举三段非空连续章节，按最大正文页数、页数差、边界依次排序。"""
+    if len(weights) < 3 or any(weight <= 0 for weight in weights):
+        raise ValueError("至少需要三章，且每章页数必须为正")
+    prefix = [0]
+    for weight in weights:
+        prefix.append(prefix[-1] + weight)
+    candidates = []
+    for first, second in combinations(range(1, len(weights)), 2):
+        bounds = (0, first, second, len(weights))
+        sizes = [prefix[end] - prefix[start] for start, end in zip(bounds, bounds[1:])]
+        candidates.append((max(sizes), max(sizes) - min(sizes), bounds))
+    return [bounds for _, _, bounds in sorted(candidates)]
+
+
+def build_volumes(full_pdf):
+    """按本次合订本估计最均衡边界；实际分册均不超 600 页才更新正式文件。"""
+    files = sorted(ROOT.glob("[0-9][0-9]-*.md"))
+    numbers = [int(path.name.split("-", 1)[0]) for path in files]
+    if len(numbers) != len(set(numbers)):
+        raise ValueError("章号重复")
+    candidates = candidate_partitions(chapter_pages(files, full_pdf))
+    names = ("上", "中", "下")
+    with tempfile.TemporaryDirectory(prefix="hushuqi-volumes-") as path:
+        tmp = Path(path)
+        cached = {}
+        for bounds in candidates:
+            ranges = list(zip(bounds, bounds[1:]))
+            keys = [(name, start, end) for name, (start, end) in zip(names, ranges)]
+            if any(key in cached and cached[key][0] > 600 for key in keys):
+                continue
+            for key in keys:
+                name, start, end = key
+                if key not in cached:
+                    out = tmp / f"volume-{name}-{start}-{end}.pdf"
+                    pages = build_one(name, files[start:end], tmp, out)
+                    cached[key] = (pages, out)
+                if cached[key][0] > 600:
+                    print(f"VOLUME_REBALANCE {name}:{start}..{end - 1} "
+                          f"pages={cached[key][0]}", flush=True)
+                    break
+            else:
+                VOLUME_DIR.mkdir(parents=True, exist_ok=True)
+                for key in keys:
+                    name, start, end = key
+                    pages, source = cached[key]
+                    out = VOLUME_DIR / f"hushuqi算法竞赛模板({name}).pdf"
+                    pending = out.with_suffix(".pdf.tmp")
+                    shutil.copyfile(source, pending)
+                    pending.replace(out)
+                    print(f"VOLUME_READY {name}:{files[start].stem}.."
+                          f"{files[end - 1].stem} pages={pages}", flush=True)
+                return
+        raise ValueError("没有满足每册不超过 600 页的连续章节划分；正式分册未更新")
 
 
 def main():
-    if shutil.which("pandoc") is None:
-        raise SystemExit("pandoc not found; cannot build volume PDFs")
-    files = sorted(ROOT.glob("[0-9][0-9]-*.md"), key=lambda p: p.name)
-    if len(files) != 16:
-        raise SystemExit(f"expected 16 chapter files, found {len(files)}")
-    groups = [("上", files[:5], True), ("中", files[5:9], True), ("下", files[9:], True)]
-    with tempfile.TemporaryDirectory(prefix="hushuqi-volumes-") as path:
-        tmp = Path(path)
-        for name, part, with_toc in groups:
-            build_one(name, part, with_toc, tmp)
+    # 单独运行时也先构建当前合订本，避免用旧 PDF 的页数划分新章节。
+    from build import build_full
+    build_volumes(build_full())
 
 
 if __name__ == "__main__":

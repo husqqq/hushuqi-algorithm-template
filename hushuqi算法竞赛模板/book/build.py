@@ -9,10 +9,8 @@ from render_pdf import render_pdf
 ROOT = Path(__file__).resolve().parents[1]
 BOOK = ROOT / 'book'
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('format', nargs='?', choices=('pdf', 'tex'), default='pdf')
-    args = parser.parse_args()
+def build_full(output_format='pdf'):
+    """合并当前全部章节并构建合订本；返回最终 PDF 或 TeX 路径。"""
     subprocess.run([sys.executable, str(BOOK/'combine.py')], cwd=ROOT, check=True)
     subprocess.run([sys.executable, str(BOOK/'strip_preamble.py')], cwd=ROOT, check=True)
     common = ['pandoc', str(BOOK/'hushuqi算法竞赛模板-合订.md'), '--toc', '--toc-depth=3',
@@ -21,11 +19,23 @@ def main():
               '-V', 'documentclass=ctexart', '-V', 'geometry:a4paper', '-V', 'geometry:margin=2cm',
               '-V', 'colorlinks=true', '-V', 'linkcolor=teal', '-V', 'urlcolor=blue', '-V', 'toccolor=black',
               '--highlight-style='+str(BOOK/'jblight.theme')]
-    if args.format == 'tex':
+    if output_format == 'tex':
         subprocess.run(common+['-s', '-o', str(BOOK/'hushuqi算法竞赛模板.tex')], cwd=ROOT, check=True)
+        return BOOK/'hushuqi算法竞赛模板.tex'
+    out = BOOK/'hushuqi算法竞赛模板.pdf'
+    render_pdf(common, out, ROOT)
+    return out
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('format', nargs='?', choices=('pdf', 'tex'), default='pdf')
+    args = parser.parse_args()
+    full = build_full(args.format)
+    if args.format == 'tex':
         return
-    render_pdf(common, BOOK/'hushuqi算法竞赛模板.pdf', ROOT)
-    subprocess.run([sys.executable, str(BOOK/'build_volumes.py')], cwd=ROOT, check=True)
+    from build_volumes import build_volumes
+    build_volumes(full)
     subprocess.run([sys.executable, str(ROOT/'tools'/'check_markdown_render.py'), '--pdf'], cwd=ROOT, check=True)
     print('BOOK_BUILD_OK', flush=True)
 
