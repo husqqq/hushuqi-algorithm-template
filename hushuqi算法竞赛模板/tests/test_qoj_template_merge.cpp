@@ -82,7 +82,12 @@ signed main()
             int l = rng() % n, r = l + 1 + rng() % (n - l);
             qs.push_back({l, r});
         }
-        auto got = s9::rangeSubs(s, qs);
+        vector<array<long long, 2>> intervals; // 与 s9 的 64 位接口一致，各项依次为左端、右端。
+        for (auto [l, r] : qs)
+        {
+            intervals.push_back({l, r});
+        }
+        auto got = s9::rangeSubs(s, intervals);
         for (int q = 0; q < (int)qs.size(); q++) assert(got[q] == distinct(s.substr(qs[q].first, qs[q].second - qs[q].first)));
         vector<pair<long long, long long>> closed;
         for (auto [l, r] : qs) closed.push_back({l, r - 1});

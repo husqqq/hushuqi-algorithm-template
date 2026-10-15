@@ -1,8 +1,9 @@
 #pragma once
+#include "3_3_001.hpp"
 #include "3_3_002.hpp"
 #include "4_3_002.hpp"
 #include "4_3_004.hpp"
-#include "../supplement_string.hpp"
+#include "../supplement_string.hpp" // 正文依赖 4.3.003
 
 inline long long subDistinct(const string &s, int l, int r)
 {
@@ -11,81 +12,68 @@ inline long long subDistinct(const string &s, int l, int r)
     string t = s.substr(l, r - l);
     auto sa = suffixArray(t);
     auto h = suffix_lcp::lcpArray(t, sa);
-    long long n = t.size();
+    long long n = t.size(); // 子串数可达平方级，三角数乘积使用 64 位。
     return n * (n + 1) / 2 - accumulate(h.begin(), h.end(), 0LL);
 }
 
-struct RangeSubMax
+inline vector<long long> rangeSubs(const string &s, const vector<array<int, 2>> &qs)
 {
-    // n、z 是叶子数和补齐后的二次幂；tr 保存区间最大值。
-    int n, z = 1;
-    vector<int> tr;
-
-    RangeSubMax(int n) : n(n)
+    // s 是小写字母串；qs 每项依次为左端、右端，区间左闭右开，允许空串与空区间。
+    // 返回与 qs 同序的本质不同非空子串数；计数可达平方级，关闭整数宏仍用 long long。
+    int n = 0, q = qs.size();
+    vector<long long> ans(q);
+    for (auto [l, r] : qs)
     {
-        // n 是叶子数；初始各位置均为 0。
-        while (z < n)
-        {
-            z <<= 1;
-        }
-        tr.assign(2 * z, 0);
+        assert(0 <= l && l <= r && r <= (int)s.size());
+        if (l < r) n = max(n, r);
     }
-
-    void setMax(int p, int v)
-    {
-        // p 是位置，v 是候选值；执行单点取最大。
-        for (p += z, tr[p] = max(tr[p], v); p >>= 1;)
-        {
-            tr[p] = max(tr[2 * p], tr[2 * p + 1]);
-        }
-    }
-
-    int query(int l, int r) const
-    {
-        // l、r 是半开端点；返回 [l,r) 的最大值。
-        int ans = 0;
-        for (l += z, r += z; l < r; l >>= 1, r >>= 1)
-        {
-            if (l & 1) ans = max(ans, tr[l++]);
-            if (r & 1) ans = max(ans, tr[--r]);
-        }
-        return ans;
-    }
-};
-
-inline vector<int> rangeSubs(const string &s,
-                             const vector<pair<int, int>> &qs)
-{
-    // s 是小写字母串；qs 是 0 下标半开区间；返回各区间的本质不同子串数。
-    int n = s.size(), q = qs.size();
-    assert(n > 0); // 调试检查，可删
-    vector<vector<pair<int, int>>> at(n + 1);
+    if (!n) return ans;
+    // at[r] 的记录依次为左端、原查询编号。
+    vector<vector<array<int, 2>>> at(n + 1);
     for (int i = 0; i < q; i++)
     {
         auto [l, r] = qs[i];
-        assert(0 <= l && l < r && r <= n); // 调试检查，可删
-        at[r].push_back({l + 1, i});
+        if (l < r) at[r].push_back({l, i});
     }
-    SAM<26, 'a'> sam(s);
+    SAM<26, 'a'> sam;
+    for (int i = 0; i < n; i++)
+    {
+        sam.add(s[i]);
+    }
     int states = sam.t.size();
-    vector<vector<int>> son(states);
-    for (int i = 1; i < states; i++)
+    // sz[u] 是后缀链接树的子树大小；子树占编号区间 [in[u],in[u]+sz[u])。
+    vector<int> sz(states, 1), in(states);
     {
-        son[sam.t[i].link].push_back(i);
+        // deg 是尚未处理的儿子数，ord 按叶到根拓扑排序，pos 是各子树的下一空位。
+        vector<int> deg(states), ord, pos(states);
+        for (int v = 1; v < states; v++)
+        {
+            deg[sam.t[v].link]++;
+        }
+        for (int v = 0; v < states; v++)
+        {
+            if (!deg[v]) ord.push_back(v);
+        }
+        for (int i = 0; i < (int)ord.size(); i++)
+        {
+            int v = ord[i], p = sam.t[v].link;
+            if (p < 0) continue;
+            sz[p] += sz[v];
+            if (!--deg[p]) ord.push_back(p);
+        }
+        pos[0] = 1;
+        for (int i = states - 2; i >= 0; i--)
+        {
+            int v = ord[i], p = sam.t[v].link;
+            in[v] = pos[p];
+            pos[p] += sz[v];
+            pos[v] = in[v] + 1;
+        }
     }
-    vector<int> in(states), out(states), it(states), st{0};
-    int tim = 0;
-    while (!st.empty())
-    {
-        int u = st.back();
-        if (!in[u]) in[u] = ++tim;
-        if (it[u] < (int)son[u].size()) st.push_back(son[u][it[u]++]);
-        else out[u] = tim, st.pop_back();
-    }
-    LazySeg<Info, Tag> seg(n);
-    RangeSubMax mx(states + 1);
-    vector<int> top(n + 1), ans(q);
-    vector<unsigned char> seen(states);
+    LazySeg<Info, Tag> seg(n); // 各起点已被后续相同子串替代的出现次数取负。
+    Seg<MaxInfo> mx(vector<MaxInfo>(states, MaxInfo{0})); // 子树中最近的已扫描前缀末位置。
+    vector<int> top(n + 1); // top[p] 是颜色 p 所在链段的上边界，不含该状态。
+    vector<unsigned char> seen(states); // 标记已出现过的后缀链接树状态。
     int u = 0;
     for (int r = 1; r <= n; r++)
     {
@@ -93,21 +81,22 @@ inline vector<int> rangeSubs(const string &s,
         int v = u;
         while (v && !seen[v])
         {
-            seen[v] = 1, v = sam.t[v].link;
+            seen[v] = 1;
+            v = sam.t[v].link;
         }
         while (v)
         {
-            int p = mx.query(in[v] - 1, out[v]);
+            int p = mx.query(in[v], in[v] + sz[v]).val;
             int old = top[p];
             seg.apply(p - sam.t[v].len, p - sam.t[old].len, Tag{-1});
             swap(top[p], v);
         }
-        mx.setMax(in[u] - 1, r);
+        mx.set(in[u], MaxInfo{r}); // r 严格递增，直接覆盖等价于单点取最大。
         top[r] = 0;
         for (auto [l, id] : at[r])
         {
-            int len = r - l + 1;
-            ans[id] = len * (len + 1) / 2 + seg.query(l - 1, r).sum;
+            long long len = r - l; // 区间长度乘积必须在 64 位中计算。
+            ans[id] = len * (len + 1) / 2 + seg.query(l, r).sum;
         }
     }
     return ans;
