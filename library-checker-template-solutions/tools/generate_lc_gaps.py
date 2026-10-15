@@ -731,11 +731,19 @@ signed main()
         "4_5_007.hpp", "Prefix-Substring LCS", "tests/test_lc_gap_string_number.cpp", r'''
 signed main()
 {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
     int q; string s, t;
     cin >> q >> s >> t;
     vector<array<int, 3>> ask(q);
-    for (auto &x : ask) cin >> x[0] >> x[1] >> x[2];
-    for (int x : PrefixSubstringLCS::solve(s, t, ask)) cout << x << '\n';
+    for (auto &x : ask)
+    {
+        cin >> x[0] >> x[1] >> x[2];
+    }
+    for (int x : prefixSubLCS(s, t, ask))
+    {
+        cout << x << '\n';
+    }
 }
 '''),
     ("number_theory", "gcd_of_gaussian_integers"): (

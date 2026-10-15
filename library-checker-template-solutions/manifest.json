@@ -1563,7 +1563,7 @@
       "title": "Prefix-Substring LCS",
       "category": "string",
       "source": "string/prefix_substring_lcs/main.cpp",
-      "source_sha256": "8d1c5891fc101da01d773697d029273d22ba960c81be1037ef3cacc1818da291",
+      "source_sha256": "eaafd02bbf789cf74d5a5051b53c19a868cd2346b9fed4d12e354cb250ef6035",
       "meta": "string/prefix_substring_lcs/meta.json",
       "state": "template_solution"
     },

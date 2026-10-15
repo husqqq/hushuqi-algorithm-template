@@ -6,7 +6,56 @@
   "provenance": {
     "kind": "template_solution",
     "source": "string/prefix_substring_lcs/main.cpp",
-    "source_sha256": "8d1c5891fc101da01d773697d029273d22ba960c81be1037ef3cacc1818da291"
+    "source_sha256": "eaafd02bbf789cf74d5a5051b53c19a868cd2346b9fed4d12e354cb250ef6035",
+    "evidence": {
+      "method": "deterministic_generation",
+      "generator": {
+        "path": "library-checker-template-solutions/tools/generate_lc_gaps.py",
+        "sha256": "c9181ba6301e5550cdbe0e44e6df5cd3d1fbd8aedb017ed9df1b41c2bb77cff0",
+        "argv": [
+          "python",
+          "library-checker-template-solutions/tools/generate_lc_gaps.py",
+          "--only",
+          "prefix_substring_lcs",
+          "--write"
+        ],
+        "working_directory": ".",
+        "runner": "Python 3.13.14"
+      },
+      "template_inputs": [
+        {
+          "path": "hushuqi算法竞赛模板/include/common.hpp",
+          "sha256": "0624448a3c6ae430b3fe4f652123d0819a8404cea348ac10b150732a54095bf3"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/full/3_2_001.hpp",
+          "sha256": "96e65ebfb1159e8d2cfc5f8ab5744ca4f2159623820229ff99b5df65c477de68"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/full/4_5_007.hpp",
+          "sha256": "08c57b9ee1f88e628877637e7cd35b75bdecd6d5f5e4b3465455019b2b22b15e"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/topic_common.hpp",
+          "sha256": "8352c9e997b91d70953abf0ab9b1e1e440c7e24369c0ca7be5d7c61f7b817930"
+        }
+      ],
+      "documentation_inputs": [
+        {
+          "path": "hushuqi算法竞赛模板/04-字符串.md",
+          "sha256": "30d1ab83bf5f3e12cffd35a4be8d3663780965df67592c7e1897c4a8415c7b7b"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/print/4_5_007.hpp",
+          "sha256": "08c57b9ee1f88e628877637e7cd35b75bdecd6d5f5e4b3465455019b2b22b15e"
+        }
+      ],
+      "adapter_sha256": "573c3e6fc345db254be027863c2e0eb47407ba8d7af498c7f6fe30bf559861b8",
+      "temporary_regenerations": 2,
+      "byte_identical": true,
+      "source_sha256": "eaafd02bbf789cf74d5a5051b53c19a868cd2346b9fed4d12e354cb250ef6035",
+      "evidence_sha256": "e1ba6cb036b156638000bec547d3ad8fca3049c810d184c927ef1c34e5f7c16e"
+    }
   },
   "official_reference": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
@@ -15,19 +64,19 @@
   },
   "validation": {
     "status": "online_ac",
-    "current_source_sha256": "8d1c5891fc101da01d773697d029273d22ba960c81be1037ef3cacc1818da291",
+    "current_source_sha256": "eaafd02bbf789cf74d5a5051b53c19a868cd2346b9fed4d12e354cb250ef6035",
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_lc_gap_string_number.cpp"
     ],
-    "checked_at": "2026-08-20T15:57:46.947400Z",
+    "checked_at": "2026-10-15T23:21:46.722786Z",
     "current_source_online_verdict": "AC",
-    "current_source_submission_id": 395253,
-    "current_source_time": 0.26,
-    "current_source_memory": 39546880,
-    "current_source_submission_time": "2026-08-20T15:57:25.757997Z",
+    "current_source_submission_id": 410720,
+    "current_source_time": 0.125,
+    "current_source_memory": 34144256,
+    "current_source_submission_time": "2026-10-15T23:21:26.717601Z",
     "current_source_is_latest": true,
-    "server_source_sha256": "8d1c5891fc101da01d773697d029273d22ba960c81be1037ef3cacc1818da291",
+    "server_source_sha256": "eaafd02bbf789cf74d5a5051b53c19a868cd2346b9fed4d12e354cb250ef6035",
     "note": "当前独立源码已通过 Library Checker 在线评测。"
   },
   "submission_attempts": [
@@ -45,6 +94,26 @@
       "compile_standard": "gnu++20",
       "submitted_at": "2026-08-20T15:57:26.045347Z",
       "recorded_at": "2026-08-20T15:57:46.946715Z"
+    },
+    {
+      "submission_id": 410720,
+      "source_sha256": "eaafd02bbf789cf74d5a5051b53c19a868cd2346b9fed4d12e354cb250ef6035",
+      "server_source_sha256": "eaafd02bbf789cf74d5a5051b53c19a868cd2346b9fed4d12e354cb250ef6035",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.125,
+      "memory": 34144256,
+      "submission_time": "2026-10-15T23:21:26.717601Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-10-15T23:21:26.911747Z",
+      "recorded_at": "2026-10-15T23:21:46.721808Z"
     }
-  ]
+  ],
+  "reference": {
+    "kind": "read_only_baseline",
+    "source": "library-checker-solutions/string/prefix_substring_lcs/main.cpp",
+    "source_sha256": "62e3e0b0bdc5c7f3d36b33a5f215a656c22aecc121e1eeaeece3825923fd8f34"
+  }
 }

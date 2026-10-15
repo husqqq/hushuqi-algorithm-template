@@ -25,6 +25,21 @@ def load_generator():
 
 
 class GenerateLcGapsTest(unittest.TestCase):
+    def test_prefix_substring_adapter_uses_current_template(self) -> None:
+        generator = load_generator()
+        header, _, _, adapter = generator.SPECS[("string", "prefix_substring_lcs")]
+        code = generator.expand(WORKSPACE / "hushuqi算法竞赛模板" / "include" / "full" / header, set())
+        with tempfile.TemporaryDirectory(prefix="lc-prefix-lcs-adapter-") as td:
+            source = Path(td) / "main.cpp"
+            binary = Path(td) / "main.exe"
+            source.write_text(code + adapter, encoding="utf-8")
+            subprocess.run(["g++", "-std=c++20", "-O2", str(source), "-o", str(binary)], check=True)
+            result = subprocess.run(
+                [str(binary)], input="4\nabac\nbaca\n0 0 4\n1 0 4\n4 1 4\n4 0 0\n",
+                text=True, capture_output=True, check=True,
+            )
+            self.assertEqual(result.stdout.split(), ["0", "1", "2", "0"])
+
     def test_matching_output_takes_one_snapshot(self) -> None:
         generator = load_generator()
         adapter = generator.SPECS[("graph", "bipartitematching")][3]
