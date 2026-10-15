@@ -9,6 +9,9 @@ ROOT = Path(__file__).resolve().parents[1]
 MARK = re.compile(r"(<!-- BEGIN HEADER: ([\w_]+\.hpp) -->\n).*?(\n<!-- END HEADER -->)", re.S)
 TOPIC_HEADING = re.compile(r"^###\s+(\d+\.\d+\.\d{3})\s+.*$", re.M)
 HEADER_NOTE = re.compile(r"^头文件：[ `]*include/full/(\d+_\d+_\d+)\.hpp[ `]*，打印版由生成器同步。\s*$", re.M)
+# 目录中的「编号 → 标题」，用于把依赖头改写成可读的注释。
+TITLES = dict(re.findall(r"^- \*\*(\d+\.\d+\.\d{3})\*\* (.+?)\s*$",
+                         (ROOT / "目录.md").read_text(encoding="utf-8"), re.M))
 
 # 新补条目的说明写在这里，避免只贴代码却没有可直接使用的接口约定。
 TOPIC_GUIDES = {
@@ -37,6 +40,10 @@ def snippet(name: str) -> str:
     data = re.sub(r'^#pragma once\s*\n', '', data, flags=re.M)
     data = re.sub(r'^#include (?:<[^>]+>|"support/checks.hpp")\s*\n', '', data, flags=re.M)
     data = re.sub(r'^using namespace std;\s*\n|^#define int long long\s*\n', '', data, flags=re.M)
+    # 打印版不出现仓库路径：依赖的头改写成「依赖 编号 标题」注释。
+    data = re.sub(r'^#include "(\d+)_(\d+)_(\d+)\.hpp"',
+                  lambda m: f"// 依赖 {m[1]}.{m[2]}.{m[3]} {TITLES.get(f'{m[1]}.{m[2]}.{m[3]}', '').replace('`', '')}".rstrip(),
+                  data, flags=re.M)
     data = re.sub(r'^#include "([^"]+)"', r'#include "include/print/\1"', data, flags=re.M)
     return "```cpp\n" + data.strip() + "\n```"
 

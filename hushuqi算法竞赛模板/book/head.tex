@@ -57,6 +57,8 @@
 
 % ---- 段落用间距代替首行缩进，贴近 WIDA 的紧凑观感 ----
 \usepackage{parskip}
+% 行内代码不可断行；遇到长标识符时允许适度放宽字距，避免整行冲出版心。
+\setlength{\emergencystretch}{3em}
 
 % 页眉只显示当前一级章节；进入新章时清空旧的右标记。
 \usepackage{fancyhdr}

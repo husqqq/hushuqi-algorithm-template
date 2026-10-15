@@ -15,3 +15,13 @@ function Header(el)
   end
   return el
 end
+
+-- 章节之间的引用写成 (05-图论.md#55001)；合订 PDF 里只有书内锚点，
+-- 去掉文件名部分，否则 hyperref 会把它当作指向外部文件的链接。
+function Link(el)
+  local anchor = el.target:match("^[^#/]+%.md#(.+)$")
+  if anchor then
+    el.target = "#" .. anchor
+  end
+  return el
+end
