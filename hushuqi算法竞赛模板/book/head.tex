@@ -10,15 +10,14 @@
 \setCJKsansfont{NotoSansSC-VF.ttf}
 % 等宽（代码）：Cascadia Code，符号覆盖广（∈ ≠ ≡ ⌊ ⌋ ∘ 等），顺带消掉缺字警告。
 % 【务必按文件名从 TeX Live 静态 OTF 加载】：本机同时装了 Windows 版可变字体
-% CascadiaCode.ttf，按族名 {Cascadia Code} 会命中偏粗默认实例。Path 必须 Windows
-% 盘符风格（xelatex 原生 Windows 程序，读不懂 MSYS 的 /d/...）。
+% CascadiaCode.ttf，按族名 {Cascadia Code} 会命中偏粗默认实例。静态字体
+% 文件由 TeX 的字体搜索路径定位，不绑定本机盘符。
 % 【字重取 SemiLight 且把 Bold 也映射到 SemiLight】：Cascadia 的 Regular 相对思源宋体
 % 偏重，行内代码 `vector` 挨着正文时会显得“加粗”；标题是 \bfseries，若 Bold face 更粗，
 % 标题里的行内代码会真加粗并顺带污染目录。统一用 SemiLight 且不给独立 Bold face，
 % 让行内代码在正文/标题/目录里都与宋体粗细相称、任何语境都不再变粗。
 % （jblight 主题仅 Alert 一个 token 用到 bold，C++ 代码里几乎不出现，无损。）
 \setmonofont{CascadiaCode}[
-  Path=D:/texlive/2026/texmf-dist/fonts/opentype/public/cascadia-code/,
   Extension=.otf,
   UprightFont=*-SemiLight,
   BoldFont=*-SemiLight,

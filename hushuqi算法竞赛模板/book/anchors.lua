@@ -25,3 +25,12 @@ function Link(el)
   end
   return el
 end
+
+-- GitHub 的显式锚点不进入 LaTeX，PDF 目标由 Header 统一生成，避免重复目标。
+function RawBlock(el)
+  if FORMAT:match("latex") and el.format == "html" and
+     el.text:match('^%s*<a id="[%w_-]+"></a>%s*$') then
+    return {}
+  end
+  return el
+end

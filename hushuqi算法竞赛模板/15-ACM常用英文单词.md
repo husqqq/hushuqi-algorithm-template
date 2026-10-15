@@ -1,8 +1,14 @@
+<a id="c15"></a>
+
 # 15. ACM 常用英文单词
 
 > 本章收录 ACM 与 OJ 题面中常见的英文词汇及中文释义，整理自《ACM常用英文单词》附件。原表中的释义和拼写保留为记忆与查阅参考，遇到具体题面仍应结合上下文判断。
 
+<a id="151"></a>
+
 ## 15.1 按字母索引
+
+<a id="151001"></a>
 
 ### 15.1.001 A
 
@@ -44,6 +50,8 @@
 | average temperature | 顺时针 |
 | axis axes | 轴 |
 
+<a id="151002"></a>
+
 ### 15.1.002 B
 
 | English | 中文释义 |
@@ -64,6 +72,8 @@
 | blank string | 空白（空格）串 |
 | block search | 分块查找 |
 | boundary | 界限 |
+
+<a id="151003"></a>
 
 ### 15.1.003 C
 
@@ -103,6 +113,8 @@
 | critical path | 关键路径 |
 | Cryptography | 密码 |
 | Cube root | 立方根 |
+
+<a id="151004"></a>
 
 ### 15.1.004 D
 
@@ -154,6 +166,8 @@
 | duplicated | 复制；打印的 |
 | duplicates | 复制品 |
 
+<a id="151005"></a>
+
 ### 15.1.005 E
 
 | English | 中文释义 |
@@ -177,6 +191,8 @@
 | exponent | 指数；幂 |
 | external sort | 外部排序 |
 
+<a id="151006"></a>
+
 ### 15.1.006 F
 
 | English | 中文释义 |
@@ -195,6 +211,8 @@
 | fraction | 分数;小部分 |
 | front | 队头 |
 | full binary tree | 满二叉树 |
+
+<a id="151007"></a>
 
 ### 15.1.007 G
 
@@ -216,6 +234,8 @@
 | greatest integer | 最大整数 |
 | grid | 网格；方格；（地图上的）坐标方格 |
 
+<a id="151008"></a>
+
 ### 15.1.008 H
 
 | English | 中文释义 |
@@ -230,6 +250,8 @@
 | horizontally | adv水平地 |
 | horizontal | adj水平的 |
 | Huffman tree | 哈夫曼树 |
+
+<a id="151009"></a>
 
 ### 15.1.009 I
 
@@ -274,12 +296,16 @@
 | inverted file | 倒排文件 |
 | irreparably | 不能恢复地 |
 
+<a id="151010"></a>
+
 ### 15.1.010 J
 
 | English | 中文释义 |
 | --- | --- |
 | Job Scheduling | 工程安排 |
 | justified | 合理的，合法化的 |
+
+<a id="151011"></a>
 
 ### 15.1.011 K
 
@@ -288,6 +314,8 @@
 | Kd-Trees | 线段树 |
 | Knapsack Problem | 背包问题 |
 | Knight | 骑士（马）每步棋先横走或直走一格，然后再往外斜走一格；或者先斜走一格，最后再往外横走或竖走一格（即走“日”字）。可以越子，没有象棋中的“蹩马腿”限制。 |
+
+<a id="151012"></a>
 
 ### 15.1.012 L
 
@@ -309,6 +337,8 @@
 | logical structure | 逻辑结构 |
 | Longest Common Substring | 最长公共子串 |
 | loop | 环 |
+
+<a id="151013"></a>
 
 ### 15.1.013 M
 
@@ -341,6 +371,8 @@
 | multiplication | 乘法 |
 | municipal | 市政的 |
 
+<a id="151014"></a>
+
 ### 15.1.014 N
 
 | English | 中文释义 |
@@ -355,6 +387,8 @@
 | numerator | 分子 |
 | numerical coefficient | 数字系数 |
 | Numerical Problems | 数值问题 |
+
+<a id="151015"></a>
 
 ### 15.1.015 O
 
@@ -377,6 +411,8 @@
 | overflow | 上溢 |
 | Overlapping | 覆盖 |
 | ox | 牛 |
+
+<a id="151016"></a>
 
 ### 15.1.016 P
 
@@ -413,6 +449,8 @@
 | Protrusions | 凸起物 |
 | Pyramid | 金字塔，渐增 |
 
+<a id="151017"></a>
+
 ### 15.1.017 Q
 
 | English | 中文释义 |
@@ -420,6 +458,8 @@
 | quadrant | 象限，四分之一圆 |
 | Queen | 皇后 横、直、斜都可以走，步数不受限制，但不能越子 |
 | quotient | 商 |
+
+<a id="151018"></a>
 
 ### 15.1.018 R
 
@@ -444,6 +484,8 @@
 | rounded to n decimal places | 精确到小数点后n位 |
 | row major order | 以行为主的顺序分配 |
 | Rows and columns | 行与列 |
+
+<a id="151019"></a>
 
 ### 15.1.019 S
 
@@ -501,6 +543,8 @@
 | Supervisor | 监督人 |
 | symmetric matrix | 对称矩阵 |
 
+<a id="151020"></a>
+
 ### 15.1.020 T
 
 | English | 中文释义 |
@@ -529,6 +573,8 @@
 | two-dimensional array | 二维数组 |
 | two-dimensional | 维数 |
 
+<a id="151021"></a>
+
 ### 15.1.021 U
 
 | English | 中文释义 |
@@ -545,6 +591,8 @@
 | uppercase（Capital） | 大写字母 |
 | （Lowercase letters） | （小写字母） |
 
+<a id="151022"></a>
+
 ### 15.1.022 V
 
 | English | 中文释义 |
@@ -558,6 +606,8 @@
 | volume | 数量，容量 |
 | Voronoi Diagrams Voronoi | 图 |
 | vulnerable | 容易受到攻击的 |
+
+<a id="151023"></a>
 
 ### 15.1.023 W
 

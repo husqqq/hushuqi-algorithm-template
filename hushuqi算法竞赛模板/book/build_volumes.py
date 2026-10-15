@@ -6,6 +6,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from render_pdf import render_pdf
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -27,7 +28,6 @@ PANDOC_COMMON = [
     "-V", "urlcolor=blue",
     "-V", "toccolor=black",
     "--highlight-style=" + str(BOOK / "jblight.theme"),
-    "--pdf-engine=xelatex",
 ]
 
 
@@ -129,8 +129,10 @@ def build_one(name, files, with_toc, tmp):
     if with_toc:
         cmd.append("--toc")
     cmd += PANDOC_COMMON
-    cmd += ["--include-before-body=" + str(cover_path), "-o", str(out)]
-    subprocess.run(cmd, cwd=ROOT, check=True)
+    cmd += ["--include-before-body=" + str(cover_path)]
+    pages = render_pdf(cmd, out, ROOT)
+    if pages > 600:
+        raise ValueError(f"分册 {name} 有 {pages} 页，须按章节重新平衡分册")
     print(f"{name}: {out}")
 
 

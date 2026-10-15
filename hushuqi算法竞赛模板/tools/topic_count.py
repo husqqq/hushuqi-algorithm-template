@@ -15,14 +15,56 @@ REPORT = ROOT / "知识点覆盖统计.md"
 
 
 def count_topics() -> int:
-    ids = set()
+    topics = {}
     for chapter in range(1, 15):
         files = list(ROOT.glob(f"{chapter:02d}-*.md"))
         if len(files) != 1:
             raise ValueError(f"第 {chapter} 章正文数量异常：{len(files)}")
-        ids.update(m.group(1) for m in PATTERN.finditer(
-            files[0].read_text(encoding="utf-8")))
-    return len(ids)
+        data = files[0].read_text(encoding="utf-8")
+        section = None
+        last = (0, 0, 0)
+        fence = None
+        for line in data.splitlines():
+            marker = re.match(r"^ {0,3}(`{3,}|~{3,})(.*)$", line)
+            if marker:
+                run, tail = marker.groups()
+                if fence is None:
+                    fence = run
+                elif run[0] == fence[0] and len(run) >= len(fence) and not tail.strip():
+                    fence = None
+                continue
+            if fence:
+                continue
+            match = re.match(r"^## (\d+)\.(\d+)\s+", line)
+            if match:
+                section = tuple(map(int, match.groups()))
+                if section[0] != chapter:
+                    raise ValueError(f"{files[0].name}: 错误小节编号 {match[0]}")
+            match = re.match(r"^### (\d+\.\d+\.\d{3})\s+(.+?)\s*$", line)
+            if not match:
+                continue
+            num, title = match.groups()
+            key = tuple(map(int, num.split('.')))
+            if key[:2] != section or key <= last or num in topics:
+                raise ValueError(f"{files[0].name}: 编号重复、乱序或父小节错误：{num}")
+            topics[num] = title
+            last = key
+    entries = re.findall(r"^- \*\*(\d+\.\d+\.\d{3})\*\* (.+?)\s*$",
+                         (ROOT / '目录.md').read_text(encoding='utf-8'), re.M)
+    entries = [(num, title) for num, title in entries
+               if 1 <= int(num.split('.')[0]) <= 14]
+    directory = dict(entries)
+    if len(directory) != len(entries):
+        raise ValueError("目录包含重复知识点编号")
+    normalized = {num: re.sub(r"（兼容索引，正文见 1\.1\.008）$", "", title)
+                  for num, title in directory.items()}
+    if set(topics) != set(normalized):
+        missing = topics.keys() ^ directory.keys()
+        raise ValueError(f"目录与正文编号不一致：{sorted(missing)}")
+    titles = [num for num in topics if topics[num] != normalized[num]]
+    if titles:
+        raise ValueError(f"目录与正文标题不一致：{titles}")
+    return len(topics)
 
 
 def main() -> None:

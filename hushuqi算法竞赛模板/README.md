@@ -1,6 +1,6 @@
 # hushuqi 算法竞赛模板
 
-这是一份以 Markdown 为阅读与复制入口的 C++20 算法竞赛模板。全册含第 0–15 章，其中第 1–14 章共 691 个算法知识点，第 0 章为比赛检查清单，第 15 章为题面英文词表；代码、接口说明、复杂度和快速检查均收录在各章正文中，`include/` 保留可独立编译的实现，`tests/` 保留固定样例和随机对拍。
+这是一份以 Markdown 为阅读与复制入口的 C++20 算法竞赛模板。全册含第 0–15 章，其中第 1–14 章共 697 个算法知识点，第 0 章为比赛检查清单，第 15 章为题面英文词表；代码、接口说明、复杂度和快速检查均收录在各章正文中，`include/` 保留可独立编译的实现，`tests/` 保留固定样例和随机对拍。
 
 ## 阅读入口
 
@@ -51,8 +51,8 @@
 每个 C++ 测试都可在模板根目录独立编译，例如：
 
 ```powershell
-g++ -std=c++20 -O2 .\tests\test_ch05_flow.cpp -o .\tests\test_ch05_flow.exe
-.\tests\test_ch05_flow.exe
+g++ -std=c++20 -O2 .\tests\test_ch05_flow.cpp -o "$env:TEMP\test_ch05_flow.exe"
+& "$env:TEMP\test_ch05_flow.exe"
 
 python .\tests\test_python_topics.py
 ```
@@ -64,3 +64,7 @@ PDF 的依赖与生成命令见 [`book/构建说明.md`](book/构建说明.md)�
 运行 `python tools/check_print_variants.py` 可独立编译两套知识点头；运行 `python tools/check_test_variants.py` 可在系统临时目录中分别编译、运行两套头文件对应的全部非 benchmark C++ 测试。
 
 运行 `python tools/check_non_lc_test_coverage.py` 可检查每个含 C++ 实现的知识点头是否至少有 Library Checker 映射，或被一份带断言的本地行为测试直接引用；纯文档索引单独列入白名单。
+
+运行 `python tools/check_markdown_render.py` 可用 Pandoc 的 GitHub 风格解析器检查章节与索引文件中的本地链接及目标锚点，并试写 HTML；这不替代浏览器排版与数学渲染检查。加上 `--pdf` 会解析全部 PDF 页面、内容流与书签，并检查每册不超过 600 页。修改正文、目录或构建脚本后应先运行该检查，再运行 `book\build.bat` 重建 PDF。
+
+运行 `python tools/sync_markdown_anchors.py` 可同步数字锚点；`--check` 检查新增或改号条目是否同步。显式 HTML 锚点与标题之间必须保留空行，PDF 目标由 `anchors.lua` 从真实标题生成。
