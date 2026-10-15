@@ -2,11 +2,11 @@
 
 signed main()
 {
-    vector<MoQ> q{{0, 3, 0, 0}, {1, 5, 1, 0}, {2, 2, 2, 0}};
+    vector<MoQuery> q{{0, 3, 0}, {1, 5, 1}, {2, 2, 2}};
     vector<int> a{1, 2, 3, 4, 5};
     int cur = 0;
     auto ans = moHilbert<int>(
-        q,
+        5, q,
         [&](int i)
         {
             cur += a[i];

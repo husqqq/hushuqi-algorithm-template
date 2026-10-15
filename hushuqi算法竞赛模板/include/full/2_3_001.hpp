@@ -4,52 +4,46 @@ using namespace std;
 
 #include "../topic_common.hpp"
 
-// MoQ[0..3] 依次是左端点、右端点、答案编号与修改时间。
-using MoQ = array<int, 4>;
+// MoQuery[0..2] 依次表示左端点、右端点、答案编号。
+using MoQuery = array<int, 3>;
 
 template <class Ans, class AddL, class AddR, class DelL, class DelR, class Get>
-vector<Ans> mo(vector<MoQ> q, AddL addL, AddR addR, DelL delL, DelR delR, Get get)
+vector<Ans> mo(int n, vector<MoQuery> qs, AddL addL, AddR addR, DelL delL, DelR delR, Get get)
 {
-    // q 的每项为 {l,r,id,time}；四个回调移动区间端点，get 返回当前答案。
-    // 本接口忽略 time，返回值按 id 排列。
-    int n = 0;
-    for (auto x : q)
-    {
-        chmax(n, x[1]);
-    }
-    int z = max<int>(1, (int)(sqrt(max<int>(1, n))));
-    sort(q.begin(),
-         q.end(),
-         [&](const MoQ &a, const MoQ &b)
+    // n 是数组长度，qs 是询问；四个端点回调维护状态。
+    auto z = max<int>(1, (int)(n / sqrtl(max<int>(1, qs.size()))));
+    sort(qs.begin(),
+         qs.end(),
+         [&](const auto &a, const auto &b)
          {
-             int x = a[0] / z, y = b[0] / z;
+             auto x = a[0] / z, y = b[0] / z;
              if (x != y)
              {
                  return x < y;
              }
              return x & 1 ? a[1] > b[1] : a[1] < b[1];
          });
-    vector<Ans> ans(q.size());
+    vector<Ans> ans(qs.size());
     int l = 0, r = 0;
-    for (auto x : q)
+    for (auto q : qs)
     {
-        while (l > x[0])
+        while (l > q[0])
         {
             addL(--l);
         }
-        while (r < x[1])
+        while (r < q[1])
         {
             addR(r++);
         }
-        while (l < x[0])
+        while (l < q[0])
         {
             delL(l++);
         }
-        while (r > x[1])
+        while (r > q[1])
         {
             delR(--r);
         }
-        ans[x[2]] = get();
+        ans[q[2]] = get();
     }
     return ans;
 }
@@ -72,21 +66,16 @@ unsigned long long hilbertOrder(int x, int y, int power, int rotate = 0)
 }
 
 template <class Ans, class Add, class Del, class Get>
-vector<Ans> moHilbert(vector<MoQ> q, Add add, Del del, Get get)
+vector<Ans> moHilbert(int n, vector<MoQuery> qs, Add add, Del del, Get get)
 {
-    // q 的每项为 {l,r,id,time}，区间为半开 [l,r)；add/del 接收被加入或删除的下标，get 返回答案。
-    int n = 0;
-    for (auto x : q)
-    {
-        chmax(n, x[1]);
-    }
+    // n 是数组长度，qs 是半开区间询问；add/del 接收下标，get 返回答案。
     int power = 0;
     while ((1LL << power) < max<int>(1, n))
     {
         power++;
     }
     assert(power <= 31);
-    sort(q.begin(), q.end(), [&](const MoQ &a, const MoQ &b)
+    sort(qs.begin(), qs.end(), [&](const MoQuery &a, const MoQuery &b)
     {
         int ax = min<int>(a[0], max<int>(0, n - 1));
         int ay = min<int>(max<int>(0, a[1] - 1), max<int>(0, n - 1));
@@ -94,88 +83,84 @@ vector<Ans> moHilbert(vector<MoQ> q, Add add, Del del, Get get)
         int by = min<int>(max<int>(0, b[1] - 1), max<int>(0, n - 1));
         return hilbertOrder(ax, ay, power) < hilbertOrder(bx, by, power);
     });
-    vector<Ans> ans(q.size());
+    vector<Ans> ans(qs.size());
     int l = 0, r = 0;
-    for (auto x : q)
+    for (auto q : qs)
     {
-        while (l > x[0])
+        while (l > q[0])
         {
             add(--l);
         }
-        while (r < x[1])
+        while (r < q[1])
         {
             add(r++);
         }
-        while (l < x[0])
+        while (l < q[0])
         {
             del(l++);
         }
-        while (r > x[1])
+        while (r > q[1])
         {
             del(--r);
         }
-        ans[x[2]] = get();
+        ans[q[2]] = get();
     }
     return ans;
 }
 
-// change(k, forward, l, r)：执行/撤销第 k 次修改，并自行维护落在 [l,r) 内的贡献。
-template <class Ans, class AddL, class AddR, class DelL, class DelR, class Change, class Get>
-vector<Ans> moModify(vector<MoQ> q, AddL addL, AddR addR, DelL delL, DelR delR, Change change, Get get)
+// ModifyQuery[0..3] 依次表示左端点、右端点、答案编号、修改时间。
+using ModifyQuery = array<int, 4>;
+
+template <class Ans, class Add, class Del, class Change, class Get>
+vector<Ans> moModify(int n, vector<ModifyQuery> qs, Add add, Del del, Change change, Get get)
 {
-    // q 的每项为 {l,r,id,time}；端点回调维护区间，change 执行或撤销修改。
-    // get 返回当前答案，结果按 id 排列。
-    int n = 0;
-    for (auto x : q)
-    {
-        chmax(n, x[1]);
-    }
-    int z = max<int>(1, (int)(powl(max<int>(1, n), 2.0L / 3)));
-    sort(q.begin(),
-         q.end(),
-         [&](const MoQ &a, const MoQ &b)
+    // n 是数组长度，qs 含修改时间；add/del 维护端点，change(p,forward,l,r) 切换第 p 次修改。
+    auto z = max<int>(1, (int)powl(max<int>(1, n), 2.0L / 3));
+    sort(qs.begin(),
+         qs.end(),
+         [&](const auto &a, const auto &b)
          {
-             int al = a[0] / z, bl = b[0] / z;
+             auto al = a[0] / z, bl = b[0] / z;
              if (al != bl)
              {
                  return al < bl;
              }
-             int ar = a[1] / z, br = b[1] / z;
+             auto ar = a[1] / z, br = b[1] / z;
              if (ar != br)
              {
                  return al & 1 ? ar > br : ar < br;
              }
              return ar & 1 ? a[3] > b[3] : a[3] < b[3];
          });
-    vector<Ans> ans(q.size());
+    vector<Ans> ans(qs.size());
     int l = 0, r = 0, t = 0;
-    for (auto x : q)
+    for (auto q : qs)
     {
-        while (t < x[3])
+        while (t < q[3])
         {
             change(t++, true, l, r);
         }
-        while (t > x[3])
+        while (t > q[3])
         {
             change(--t, false, l, r);
         }
-        while (l > x[0])
+        while (l > q[0])
         {
-            addL(--l);
+            add(--l);
         }
-        while (r < x[1])
+        while (r < q[1])
         {
-            addR(r++);
+            add(r++);
         }
-        while (l < x[0])
+        while (l < q[0])
         {
-            delL(l++);
+            del(l++);
         }
-        while (r > x[1])
+        while (r > q[1])
         {
-            delR(--r);
+            del(--r);
         }
-        ans[x[2]] = get();
+        ans[q[2]] = get();
     }
     return ans;
 }
