@@ -105,11 +105,21 @@ def cover(title, path, reset_body=False):
     path.write_text(text, encoding="utf-8")
 
 
+def unlink_foreign(text):
+    """分册里指向其他分册知识点的链接没有落点，改成普通文字。"""
+    present = {re.sub(r"\D", "", m) for m in re.findall(r"^#{1,3}\s+(\d+(?:\.\d+)*)", text, re.M)}
+
+    def repl(m):
+        return m[0] if m[2] in present else m[1]
+
+    return re.sub(r"\[([^\]]+)\]\((?:[^)#\s]*\.md)?#(\d+)\)", repl, text)
+
+
 def build_one(name, files, with_toc, tmp):
     """构建一册 PDF；files 是按顺序排列的章节文件。"""
     text = "\n\n".join(p.read_text(encoding="utf-8") for p in files)
     md = tmp / f"volume-{name}.md"
-    body = strip_maintenance_notes(strip_chapter_intro(strip_preamble(text)))
+    body = unlink_foreign(strip_maintenance_notes(strip_chapter_intro(strip_preamble(text))))
     md.write_text(body + "\n\n", encoding="utf-8")
     cover_path = tmp / f"cover-{name}.tex"
     cover(f"hushuqi算法竞赛模板({name})", cover_path, reset_body=name != "上")
