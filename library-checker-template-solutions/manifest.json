@@ -141,7 +141,7 @@
       "title": "Matching on Bipartite Graph",
       "category": "graph",
       "source": "graph/bipartitematching/main.cpp",
-      "source_sha256": "33671f81b91b624ae84122b686188aee4230546c908380c4f75baaeb6687690c",
+      "source_sha256": "f273392c8650ebbd3dc130a13d43fcef0f59840ad48b4645cee68ea20f4274fc",
       "meta": "graph/bipartitematching/meta.json",
       "state": "template_solution"
     },
@@ -1302,7 +1302,7 @@
       "title": "Nim Product ($\\mathbb{F}_{2^{64}}$)",
       "category": "number_theory",
       "source": "number_theory/nim_product_64/main.cpp",
-      "source_sha256": "6a5acbcbdb682728be45c39e3378f141b654e0a5fce6c42d4c000a1416c76018",
+      "source_sha256": "d334298ced7468b6ea2a57d7a05a222fa7699cdc4cfdd51f1e4038c33399a01c",
       "meta": "number_theory/nim_product_64/meta.json",
       "state": "template_solution"
     },

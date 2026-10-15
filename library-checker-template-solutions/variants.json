@@ -546,7 +546,7 @@
       "category": "graph",
       "language": "cpp20",
       "source": "graph/bipartitematching/variants/5_6_003_hopcroft_karp_cpp20/main.cpp",
-      "source_sha256": "f51e5d1ec1b3ba6a357e36757d030b794ec51de8080ccb08929822d2eecfc05c",
+      "source_sha256": "f273392c8650ebbd3dc130a13d43fcef0f59840ad48b4645cee68ea20f4274fc",
       "meta": "graph/bipartitematching/variants/5_6_003_hopcroft_karp_cpp20/meta.json",
       "template_items": [
         "5.6.003"
@@ -722,5 +722,5 @@
       "test": "hushuqi算法竞赛模板/tests/test_ch09_revised.cpp"
     }
   ],
-  "updated_at": "2026-08-23T15:32:01.671067Z"
+  "updated_at": "2026-10-15T17:08:31.765654Z"
 }

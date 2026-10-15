@@ -74,30 +74,35 @@ def source_entries(manifest: dict) -> dict[str, dict]:
     return result
 
 
-def receipt_records_from(path: Path, manifest: dict) -> dict[str, dict]:
+def receipt_records_from(path: Path, manifest: dict, require_manifest: bool = True) -> dict[str, dict]:
     """Return current records from one full or single-problem local receipt."""
     if not path.is_file():
         return {}
     receipt = read_json(path)
     if (receipt.get("status") != "passed"
             or receipt.get("official_repository") != {"commit": COMMIT}
-            or receipt.get("manifest_sha256") != canonical_json_sha256(manifest)):
+            or (require_manifest
+                and receipt.get("manifest_sha256") != canonical_json_sha256(manifest))):
         return {}
     records = receipt.get("problems")
     return records if isinstance(records, dict) else {}
 
 
 def receipt_records(manifest: dict) -> dict[str, dict]:
-    """Combine the default receipt with named scoped receipts for their own item."""
+    """Combine default and scoped receipts; row_state checks each current source."""
     records = receipt_records_from(RECEIPT, manifest)
     if not SCOPED_RECEIPTS.is_dir():
         return records
     for path in sorted(SCOPED_RECEIPTS.glob("*.json")):
-        name = path.stem
-        scoped = receipt_records_from(path, manifest)
-        record = scoped.get(name)
-        if isinstance(record, dict):
-            records[name] = record
+        # 单题及小批收据按源码 SHA 和官方 commit 逐项判定；其他题变化不使其失效。
+        scoped = receipt_records_from(path, manifest, require_manifest=False)
+        for name, record in scoped.items():
+            if not isinstance(record, dict):
+                continue
+            previous = records.get(name)
+            if (not isinstance(previous, dict)
+                    or record.get("verified_at", "") >= previous.get("verified_at", "")):
+                records[name] = record
     return records
 
 

@@ -11,6 +11,8 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 
+from generate_lc_gaps import SPECS as PRIMARY_SPECS
+
 
 ROOT = Path(__file__).resolve().parent.parent
 WORKSPACE = ROOT.parent
@@ -200,18 +202,6 @@ signed main()
 }}
 '''
     return code.replace("SCC_ID", "k - 1 - bel[u]" if reverse else "bel[u]")
-
-
-def hk_adapter(class_name: str) -> str:
-    return rf'''
-signed main()
-{{
-    ios::sync_with_stdio(false); cin.tie(nullptr);
-    int l, r, m; cin >> l >> r >> m; {class_name} h(l, r);
-    while (m--) {{ int u, v; cin >> u >> v; h.addEdge(u, v); }}
-    cout << h.matching() << '\n'; for (int u = 0; u < l; ++u) if (h.leftMatch()[u] != -1) cout << u << ' ' << h.leftMatch()[u] << '\n';
-}}
-'''
 
 
 def two_sat_adapter(class_name: str) -> str:
@@ -514,7 +504,7 @@ signed main(){ios::sync_with_stdio(false);cin.tie(nullptr);int l,r,m;cin>>l>>r>>
 signed main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;vector<vector<int>>g(n);while(m--){int u,v;cin>>u>>v;g[u].push_back(v);}auto b=kosarajuSCC(g);int k=*max_element(b.begin(),b.end())+1;vector<vector<int>>p(k);for(int i=0;i<n;i++)p[b[i]].push_back(i);cout<<k<<'\n';for(auto&v:p){cout<<v.size();for(int x:v)cout<<' '<<x;cout<<'\n';}}
 ''', "O(V+E)"),
     Spec("5_3_001_tarjan_cpp20", "scc", "Strongly Connected Components", "graph", "5.3.001", "5_3_001.hpp", "tests/test_ch05_components.cpp", scc_adapter("tarjanSCC", True), "O(V+E)"),
-    Spec("5_6_003_hopcroft_karp_cpp20", "bipartitematching", "Matching on Bipartite Graph", "graph", "5.6.003", "5_6_003.hpp", "tests/test_ch05_matching_variants.cpp", hk_adapter("HopcroftKarp"), "O(E sqrt(V))"),
+    Spec("5_6_003_hopcroft_karp_cpp20", "bipartitematching", "Matching on Bipartite Graph", "graph", "5.6.003", "5_6_003.hpp", "tests/test_ch05_matching_variants.cpp", PRIMARY_SPECS[("graph", "bipartitematching")][3], "O((V+E) sqrt(V)) including output"),
     Spec("5_5_013_prim_cpp20", "minimum_spanning_tree", "Minimum Spanning Tree", "graph", "5.5.013", "5_5_013.hpp", "tests/test_ch05_foundations.cpp", r'''
 signed main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;vector<vector<pair<int,int>>>g(n);map<tuple<int,int,int>,vector<int>>ids;for(int i=0;i<m;i++){int u,v,w;cin>>u>>v>>w;g[u].push_back({v,w});g[v].push_back({u,w});ids[{min(u,v),max(u,v),w}].push_back(i);}auto z=primSparse(g);assert(z);cout<<z->sum<<'\n';for(int v=0;v<n;v++)if(z->fa[v]!=-1){int u=z->fa[v],w=LLONG_MAX;for(auto[x,c]:g[v])if(x==u)w=min(w,c);auto&a=ids[{min(u,v),max(u,v),w}];cout<<a.back()<<' ';a.pop_back();}cout<<'\n';}
 ''', "O(E log V)"),
@@ -536,14 +526,29 @@ def write_json(path: Path, value: object) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true")
+    parser.add_argument("--only", help="comma-separated variant ids")
     args = parser.parse_args()
+    selected = set(args.only.split(",")) if args.only else None
+    if selected is not None:
+        unknown = selected - {spec.variant_id for spec in SPECS}
+        if unknown:
+            raise SystemExit("UNKNOWN_VARIANT: " + ",".join(sorted(unknown)))
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     entries = {entry["variant_id"]: entry for entry in manifest["variants"]}
-    entries.pop("5_8_010_hlpp_cpp20", None)
+    if selected is None:
+        entries.pop("5_8_010_hlpp_cpp20", None)
     generator_hash = digest(Path(__file__))
     for spec in SPECS:
+        if selected is not None and spec.variant_id not in selected:
+            continue
         test = TEMPLATE / spec.test
         header_source, header_inputs = source_header(spec)
+        if spec.variant_id == "5_6_003_hopcroft_karp_cpp20":
+            adapter_source = Path(__file__).with_name("generate_lc_gaps.py")
+            header_inputs.append({
+                "path": "library-checker-template-solutions/tools/generate_lc_gaps.py",
+                "sha256": digest(adapter_source),
+            })
         source_data = (header_source.rstrip() + "\n\n" + spec.adapter.strip() + "\n").encode("utf-8")
         source_hash = hashlib.sha256(source_data).hexdigest()
         rel_dir = Path(spec.category) / spec.problem / "variants" / spec.variant_id

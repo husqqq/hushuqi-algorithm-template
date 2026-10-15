@@ -686,6 +686,9 @@ signed main()
         "5_6_003.hpp", "Matching on Bipartite Graph", "tests/test_ch05_matching_variants.cpp", r'''
 signed main()
 {
+    // 无参数；读入二分图，输出最大匹配大小与各匹配边，成功返回 0。
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
     int l, r, m; cin >> l >> r >> m;
     HopcroftKarp match(l, r);
     while (m--)
@@ -694,8 +697,11 @@ signed main()
         match.addEdge(u, v);
     }
     cout << match.matching() << '\n';
-    for (int u = 0; u < l; u++) if (match.leftMatch()[u] != -1)
-        cout << u << ' ' << match.leftMatch()[u] << '\n';
+    auto ml = match.leftMatch();
+    for (int u = 0; u < l; u++)
+    {
+        if (ml[u] != -1) cout << u << ' ' << ml[u] << '\n';
+    }
 }
 '''),
     ("other", "two_sat"): (
@@ -1056,6 +1062,9 @@ signed main()
         "13_1_009.hpp", "Nim Product ($\\mathbb{F}_{2^{64}}$)", "tests/test_ch13_nim_product.cpp", r'''
 signed main()
 {
+    // 无参数；逐组读入两个 64 位 nimber 并输出其 nim 积，成功返回 0。
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
     int t; cin >> t;
     while (t--)
     {
@@ -1256,7 +1265,7 @@ signed main()
 }
 '''),
     ("enumerative_combinatorics", "sharp_p_subset_sum"): (
-        "10_1_013.hpp", "$\#_p$ Subset Sum", "tests/test_ch10_poly_misc.cpp", r'''
+        "10_1_013.hpp", r"$\#_p$ Subset Sum", "tests/test_ch10_poly_misc.cpp", r'''
 signed main()
 {
     int n, t; cin >> n >> t;
@@ -2336,7 +2345,7 @@ def main() -> None:
     if args.check:
         print(f"GENERATION_CURRENT: {len(SPECS) if selected is None else len(selected)}")
         return
-    manifest["problems"] = [entries[key] for key in sorted(entries)]
+    manifest["problems"] = list(entries.values())
     manifest["problem_count"] = len(manifest["problems"])
     manifest["counts"] = {"template_solution": len(manifest["problems"])}
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
