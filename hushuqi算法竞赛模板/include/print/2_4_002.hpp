@@ -6,60 +6,65 @@ using namespace std;
 
 template <class T> struct Diff
 {
-    // d 是长度多一位的一维差分数组。
-    vector<T> d;
+    int n = 0;   // n 是目标数组长度。
+    vector<T> d; // d 保存长度为 n+1 的边界差分。
 
-    Diff(int n = 0) : d(n + 1)
+    Diff(int m = 0) : n(m), d(m + 1)
     {
-        // n 是原数组长度；初值全为零。
+        // m 是目标数组长度。
     }
 
     void add(int l, int r, T x)
     {
-        // 给半开区间 [l,r) 的每项增加 x。
+        // l、r 是半开区间端点，x 是区间增量。
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         d[l] += x;
         d[r] -= x;
     }
 
-    vector<T> build()
+    vector<T> build() const
     {
-        // 还原并返回原数组；本对象不应再次调用 build。
-        d.pop_back();
-        partial_sum(d.begin(), d.end(), d.begin());
-        return d;
+        // 返回执行全部区间修改后的长度 n 数组。
+        vector<T> a(n);
+        T cur{};
+        for (int i = 0; i < n; i++)
+        {
+            cur += d[i];
+            a[i] = cur;
+        }
+        return a;
     }
 };
 
 template <class T> struct Diff2
 {
-    // n、m 是原矩阵的行数和列数。
-    int n, m;
-    // d 是各维多一位的二维差分数组。
-    vector<vector<T>> d;
+    int n = 0, m = 0;    // n、m 是目标矩阵行数与列数。
+    vector<vector<T>> d; // d 保存带额外边界的二维差分。
 
-    Diff2(int n = 0, int m = 0) : n(n), m(m), d(n + 1, vector<T>(m + 1))
+    Diff2(int x = 0, int y = 0) : n(x), m(y), d(x + 1, vector<T>(y + 1))
     {
-        // n、m 是原矩阵大小；初值全为零。
+        // x、y 是目标矩阵行数与列数。
     }
 
-    void add(int u, int l, int dwn, int r, T x)
+    void add(int x1, int y1, int x2, int y2, T v)
     {
-        // 给半开矩形 [u,dwn) × [l,r) 的每项增加 x。
-        d[u][l] += x;
-        d[u][r] -= x;
-        d[dwn][l] -= x;
-        d[dwn][r] += x;
+        // 四个坐标描述半开子矩形，v 是矩形增量。
+        assert(0 <= x1 && x1 <= x2 && x2 <= n); // 调试检查，可删
+        assert(0 <= y1 && y1 <= y2 && y2 <= m); // 调试检查，可删
+        d[x1][y1] += v;
+        d[x1][y2] -= v;
+        d[x2][y1] -= v;
+        d[x2][y2] += v;
     }
 
-    vector<vector<T>> build()
+    vector<vector<T>> build() const
     {
-        // 做二维前缀和并返回还原后的矩阵。
-        vector<vector<T>> a(n, vector<T>(m));
+        // 返回执行全部矩形修改后的 n 行 m 列矩阵。
+        auto a = d;
         for (int i = 0; i < n; i++)
         {
             for (int j = 0; j < m; j++)
             {
-                a[i][j] = d[i][j];
                 if (i)
                 {
                     a[i][j] += a[i - 1][j];
@@ -74,48 +79,60 @@ template <class T> struct Diff2
                 }
             }
         }
+        a.resize(n);
+        for (auto &row : a)
+        {
+            row.resize(m);
+        }
         return a;
     }
 };
 
 template <class T> vector<T> kthDiff(vector<T> a, int k)
 {
-    // 返回序列 a 做 k 次相邻差分后的结果。
-    while (k--)
+    // a 是按值复制的原序列，k 是差分阶数；返回 k 阶差分序列。
+    assert(k >= 0); // 调试检查，可删
+    auto t = min<int>(k, a.size());
+    for (int z = 0; z < t; z++)
     {
-        for (int i = 1; i < a.size(); i++)
+        for (int i = 1; i < (int)a.size(); i++)
         {
             a[i - 1] = a[i] - a[i - 1];
         }
-        if (!a.empty())
-        {
-            a.pop_back();
-        }
+        a.pop_back();
     }
     return a;
 }
 
-template <class T> T maxSubarray(const vector<T> &a)
+template <class T> T maxSub(const vector<T> &a)
 {
-    // a 非空；返回最大非空连续子段和。
-    // 改求最小子段和时，保留首元素初始化，把 max 改成 min、chmax 改成 chmin；
-    // 必须同时反向“接上/重新开始”的比较，不能只改最终 ans。
-    assert(!a.empty());
-    T ans = a[0], cur = a[0];
-    for (int i = 1; i < a.size(); i++)
+    // a 是非空序列；返回非空最大子段和。
+    // 若要最小子段和，保留“非空、从首元素初始化”的结构，把 max 改成 min、chmax 改成 chmin；
+    // 不要只改最后的答案比较，否则 cur 的“接上或重新开始”不变量会仍然求最大值。
+    assert(!a.empty()); // 调试检查，可删
+    T ans = a[0];
+    T cur = a[0];
+    for (int i = 1; i < (int)a.size(); i++)
     {
-        cur = max(a[i], cur + a[i]);
+        T x = a[i];
+        cur = max(x, cur + x);
         chmax(ans, cur);
     }
     return ans;
 }
 
-template <class T> T maxSubmatrix(const vector<vector<T>> &a)
+template <class T> T maxSubMat(const vector<vector<T>> &a)
 {
-    // a 是非空规则矩阵；返回最大非空子矩形和。
-    // 改求最小子矩形和时，同步使用最小子段版本并把 chmax 改为 chmin；边界仍以 a[0][0] 初始化。
-    assert(!a.empty() && !a[0].empty());
-    int n = a.size(), m = a[0].size();
+    // a 是非空规则矩阵；返回非空最大子矩阵和。
+    // 若要最小子矩阵和，同步把内部 maxSub、chmax 改为最小子段版本、chmin；边界仍以 a[0][0] 初始化，
+    // 不需要正负无穷单位元，也不能只把最终 ans 的 max 改成 min。
+    assert(!a.empty() && !a[0].empty()); // 调试检查，可删
+    auto n = (int)a.size();
+    auto m = (int)a[0].size();
+    for (auto &row : a)
+    {
+        assert((int)row.size() == m); // 调试检查，可删
+    }
     T ans = a[0][0];
     for (int u = 0; u < n; u++)
     {
@@ -126,7 +143,7 @@ template <class T> T maxSubmatrix(const vector<vector<T>> &a)
             {
                 s[j] += a[d][j];
             }
-            chmax(ans, maxSubarray(s));
+            chmax(ans, maxSub(s));
         }
     }
     return ans;
@@ -134,7 +151,7 @@ template <class T> T maxSubmatrix(const vector<vector<T>> &a)
 
 unsigned long long prefixXor(unsigned long long n)
 {
-    // 返回 0 xor 1 xor ... xor n。
+    // n 是非负端点；返回闭区间 [0,n] 的按位异或和。
     if ((n & 3) == 0)
     {
         return n;
@@ -152,6 +169,7 @@ unsigned long long prefixXor(unsigned long long n)
 
 unsigned long long rangeXor(unsigned long long l, unsigned long long r)
 {
-    // 返回闭区间 [l,r] 内所有整数的异或和。
+    // l、r 是非负闭区间端点；返回 [l,r] 的按位异或和。
+    assert(l <= r); // 调试检查，可删
     return prefixXor(r) ^ (l ? prefixXor(l - 1) : 0);
 }

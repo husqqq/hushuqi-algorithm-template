@@ -4,49 +4,65 @@ using namespace std;
 
 #include "support/topic_common.hpp"
 
-template <class T> class GcdSegs
+template <class T> struct GcdRanges
 {
-    // groups[r] 按左端点递增保存以 r 结尾的各段 gcd 分组。
-    vector<vector<pair<int, T>>> groups;
+    using U = make_unsigned_t<T>;
 
-  public:
-    explicit GcdSegs(const vector<T> &a) : groups(a.size())
+    vector<vector<pair<int, U>>> g; // g[r] 保存以 r 结尾的不同 GCD 及最小左端点。
+
+    static U mag(T x)
     {
-        // a 是原序列；预处理每个右端点的 gcd 分组。
-        vector<pair<int, T>> pre;
-        for (int r = 0; r < a.size(); ++r)
+        // x 是原数组元素；返回不对最小负数取正值的无符号幅值。
+        auto u = (U)x;
+        if constexpr (is_signed_v<T>)
         {
-            vector<pair<int, T>> cur{{r, abs(a[r])}};
-            for (auto [left, value] : pre)
+            if (x < 0)
             {
-                value = gcd(value, abs(a[r]));
-                if (cur.back().second == value)
+                return (U)0 - u;
+            }
+        }
+        return u;
+    }
+
+    explicit GcdRanges(const vector<T> &a) : g(a.size())
+    {
+        // a 是用于预处理所有右端点 GCD 分段的原数组。
+        static_assert(is_integral_v<T>);
+        vector<pair<int, U>> pre;
+        for (int r = 0; r < (int)a.size(); r++)
+        {
+            auto v = mag(a[r]);
+            vector<pair<int, U>> cur{{r, v}};
+            for (auto [l, x] : pre)
+            {
+                x = gcd(x, v);
+                if (cur.back().second == x)
                 {
-                    cur.back().first = left;
+                    cur.back().first = l;
                 }
                 else
                 {
-                    cur.push_back({left, value});
+                    cur.push_back({l, x});
                 }
             }
-            ranges::reverse(cur);
-            groups[r] = cur;
+            reverse(cur.begin(), cur.end());
+            g[r] = cur;
             pre = cur;
-            ranges::reverse(pre);
+            reverse(pre.begin(), pre.end());
         }
     }
 
-    T query(int left, int right) const
+    U query(int l, int r) const
     {
-        // 返回闭区间 [left,right] 的 gcd。
-        assert(0 <= left && left <= right && right < groups.size());
-        auto it = upper_bound(groups[right].begin(), groups[right].end(), pair{left, numeric_limits<T>::max()});
+        // l、r 是闭区间端点；返回 a[l..r] 的绝对值 GCD。
+        assert(0 <= l && l <= r && r < (int)g.size()); // 调试检查，可删
+        auto it = upper_bound(g[r].begin(),
+                              g[r].end(),
+                              l,
+                              [](int x, const auto &p)
+                              {
+                                  return x < p.first;
+                              });
         return prev(it)->second;
-    }
-
-    const vector<pair<int, T>> &endingAt(int right) const
-    {
-        // 返回所有以 right 结尾的 gcd 分组，按左端点递增排列。
-        return groups[right];
     }
 };

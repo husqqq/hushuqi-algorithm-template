@@ -166,15 +166,21 @@ signed main()
     diff_topic::Diff<int> d(5);
     d.add(1, 4, 3);
     d.add(2, 5, -1);
-    assert((d.build() == vector<int>{0, 3, 2, 2, -1}));
+    auto dWant = vector<int>{0, 3, 2, 2, -1};
+    assert(d.build() == dWant);
+    assert(d.build() == dWant);
     diff_topic::Diff2<int> d2(2, 3);
     d2.add(0, 1, 2, 3, 4);
-    assert((d2.build() == vector<vector<int>>{{0, 4, 4}, {0, 4, 4}}));
+    auto d2Want = vector<vector<int>>{{0, 4, 4}, {0, 4, 4}};
+    assert(d2.build() == d2Want);
+    assert(d2.build() == d2Want);
     assert((diff_topic::kthDiff(vector<int>{1, 4, 9, 16}, 2) == vector<int>{2, 2}));
-    assert(diff_topic::maxSubarray(vector<int>{-2, 3, -1, 4, -5}) == 6);
-    assert(diff_topic::maxSubmatrix(vector<vector<int>>{{-1, 2}, {3, 4}}) == 8);
+    assert(diff_topic::maxSub(vector<int>{-2, 3, -1, 4, -5}) == 6);
+    assert(diff_topic::maxSubMat(vector<vector<int>>{{-1, 2}, {3, 4}}) == 8);
     assert(diff_topic::rangeXor(3, 9) == (3ULL ^ 4 ^ 5 ^ 6 ^ 7 ^ 8 ^ 9));
-    gcd_topic::GcdSegs<int> gs({12, 18, 6, 15});
-    assert(gs.query(0, 2) == 6 && gs.query(2, 3) == 3 && !gs.endingAt(3).empty());
+    gcd_topic::GcdRanges<int> gs({12, 18, 6, 15});
+    assert(gs.query(0, 2) == 6 && gs.query(2, 3) == 3);
+    gcd_topic::GcdRanges<long long> gsMin({numeric_limits<long long>::min()});
+    assert(gsMin.query(0, 0) == (1ULL << 63));
     cout << "OK\n";
 }
