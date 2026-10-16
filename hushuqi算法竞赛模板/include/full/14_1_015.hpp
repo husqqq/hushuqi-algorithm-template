@@ -1,14 +1,15 @@
 #pragma once
 
-#include "14_1_001.hpp"
+#include "5_6_001.hpp"
 
 namespace factor_ext
 {
 optional<vector<vector<int>>> extendFactor(vector<vector<int>> a, int m)
 {
     // a 是部分染色矩阵，m 是颜色数；成功时返回完整染色，本策略失败时返回空。
+    // used[v][c] 标记顶点 v 已用颜色 c，ec[c] 是颜色 c 的已有边数。
     int n = (int)a.size();
-    if (m <= 0 || m % 2 == 0 || n > m + 1)
+    if (m <= 0 || m % 2 == 0 || m == numeric_limits<int>::max() || n > m + 1)
     {
         return nullopt;
     }
@@ -55,57 +56,35 @@ optional<vector<vector<int>>> extendFactor(vector<vector<int>> a, int m)
             }
         }
 
-        vector<vector<int>> g(m);
+        vector<int> ord(m), deg(m); // ord 是增广次序到颜色的映射，deg 是每种颜色的候选数。
+        iota(ord.begin(), ord.end(), 0);
         for (int c = 0; c < m; c++)
         {
+            deg[c] = n - 2 * ec[c] + (n - ec[c] < cap ? m - n : 0);
+        }
+        stable_sort(ord.begin(), ord.end(), [&](int x, int y)
+        {
+            // x、y 是颜色；候选点较少者先增广，同度保持原颜色顺序。
+            return deg[x] < deg[y];
+        });
+        Hungarian match(m, m);
+        for (int u = 0; u < m; u++)
+        {
+            int c = ord[u];
             for (int v = 0; v < n; v++)
             {
-                if (!used[v][c])
-                {
-                    g[c].push_back(v);
-                }
+                if (!used[v][c]) match.addEdge(u, v);
             }
             if (n - ec[c] < cap)
             {
                 for (int v = n; v < m; v++)
                 {
-                    g[c].push_back(v);
+                    match.addEdge(u, v);
                 }
             }
         }
-
-        vector<int> mt(m, -1);
-        vector<int> ord(m);
-        iota(ord.begin(), ord.end(), 0);
-        stable_sort(ord.begin(), ord.end(), [&](int x, int y)
-        {
-            return g[x].size() < g[y].size();
-        });
-        auto dfs = [&](auto &&self, int c, vector<char> &vis) -> bool
-        {
-            for (int v : g[c])
-            {
-                if (vis[v])
-                {
-                    continue;
-                }
-                vis[v] = true;
-                if (mt[v] == -1 || self(self, mt[v], vis))
-                {
-                    mt[v] = c;
-                    return true;
-                }
-            }
-            return false;
-        };
-        for (int c : ord)
-        {
-            vector<char> vis(m);
-            if (!dfs(dfs, c, vis))
-            {
-                return nullopt;
-            }
-        }
+        if (match.matching() != m) return nullopt;
+        const auto &mt = match.matchR(); // 右点匹配的是增广次序，需经 ord 还原颜色。
 
         for (auto &r : a)
         {
@@ -115,7 +94,7 @@ optional<vector<vector<int>>> extendFactor(vector<vector<int>> a, int m)
         used.push_back(vector<char>(m));
         for (int v = 0; v < n; v++)
         {
-            int c = mt[v];
+            int c = ord[mt[v]];
             a[v][n] = c;
             a[n][v] = c;
             used[v][c] = true;
@@ -126,4 +105,4 @@ optional<vector<vector<int>>> extendFactor(vector<vector<int>> a, int m)
     }
     return a;
 }
-}
+} // 命名空间 factor_ext

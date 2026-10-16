@@ -1,109 +1,78 @@
 #pragma once
 
-#include "14_1_001.hpp"
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
 
 array<int, 6> pokerScore(vector<int> r, vector<int> suit)
 {
-    // r、suit 依次给出五张牌的点数与花色；返回可直接字典序比较的六元评分。
-    assert(r.size() == 5 && suit.size() == 5); // 调试检查，可删。
-    set<pair<int, int>> card;
+    // r、suit 对应五张不同实体牌；点数 2..14，花色 0..3；返回越大越强的六元评分。
+    assert(r.size() == 5 && suit.size() == 5);
+    array<array<bool, 4>, 15> seen{}; // seen[点数][花色] 标记实体牌是否已出现。
+    array<int, 15> cnt{};             // cnt[x] 是点数 x 的张数，仅使用 2..14。
     for (int i = 0; i < 5; i++)
     {
-        assert(2 <= r[i] && r[i] <= 14); // 调试检查，可删。
-        assert(0 <= suit[i] && suit[i] < 4); // 调试检查，可删。
-        card.insert({r[i], suit[i]});
+        assert(2 <= r[i] && r[i] <= 14 && 0 <= suit[i] && suit[i] < 4);
+        assert(!seen[r[i]][suit[i]]);
+        seen[r[i]][suit[i]] = true;
+        cnt[r[i]]++;
     }
-    assert(card.size() == 5); // 调试检查，可删。
     sort(r.begin(), r.end(), greater<>());
-    if (r == vector<int>{14, 5, 4, 3, 2})
-    {
-        r = {5, 4, 3, 2, 1};
-    }
     bool flush = count(suit.begin(), suit.end(), suit[0]) == 5;
-    bool straight = true;
-    for (int i = 1; i < 5; i++)
+    int high = 0; // 顺子最高点数；A-2-3-4-5 记为 5，无顺子为 0。
+    if (r == vector<int>{14, 5, 4, 3, 2}) high = 5;
+    else if (r[0] - r[4] == 4 && adjacent_find(r.begin(), r.end()) == r.end()) high = r[0];
+    if (high) return {flush ? 8 : 4, high, 0, 0, 0, 0};
+
+    vector<array<int, 2>> g; // 每项 [0] 张数、[1] 点数，按二者降序排列。
+    for (int x = 2; x <= 14; x++)
     {
-        straight &= r[i - 1] == r[i] + 1;
+        if (cnt[x]) g.push_back({cnt[x], x});
     }
-    map<int, int, greater<>> f;
-    for (int x : r)
+    sort(g.begin(), g.end(), greater<>());
+    array<int, 6> z{}; // [0] 牌型，后五维是依次比较的点数，未使用维为 0。
+    if (g[0][0] == 4) z[0] = 7;
+    else if (g[0][0] == 3 && g[1][0] == 2) z[0] = 6;
+    else if (flush) z[0] = 5;
+    else if (g[0][0] == 3) z[0] = 3;
+    else if (g[0][0] == 2 && g[1][0] == 2) z[0] = 2;
+    else if (g[0][0] == 2) z[0] = 1;
+    for (int i = 0; i < (int)g.size(); i++)
     {
-        f[x]++;
-    }
-    vector<pair<int, int>> a;
-    for (auto [x, c] : f)
-    {
-        a.push_back({c, x});
-    }
-    sort(a.begin(), a.end(), greater<>());
-    array<int, 6> z{};
-    if (straight && flush)
-    {
-        z[0] = 8;
-        z[1] = r[0];
-    }
-    else if (a[0].first == 4)
-    {
-        z[0] = 7;
-        z[1] = a[0].second;
-        z[2] = a[1].second;
-    }
-    else if (a[0].first == 3 && a[1].first == 2)
-    {
-        z[0] = 6;
-        z[1] = a[0].second;
-        z[2] = a[1].second;
-    }
-    else if (flush)
-    {
-        z[0] = 5;
-        copy(r.begin(), r.end(), z.begin() + 1);
-    }
-    else if (straight)
-    {
-        z[0] = 4;
-        z[1] = r[0];
-    }
-    else if (a[0].first == 3)
-    {
-        z[0] = 3;
-        z[1] = a[0].second;
-        vector<int> q;
-        for (auto [c, x] : a)
-        {
-            if (c == 1)
-            {
-                q.push_back(x);
-            }
-        }
-        sort(q.begin(), q.end(), greater<>());
-        copy(q.begin(), q.end(), z.begin() + 2);
-    }
-    else if (a[0].first == 2 && a[1].first == 2)
-    {
-        z[0] = 2;
-        z[1] = max(a[0].second, a[1].second);
-        z[2] = min(a[0].second, a[1].second);
-        z[3] = a[2].second;
-    }
-    else if (a[0].first == 2)
-    {
-        z[0] = 1;
-        z[1] = a[0].second;
-        vector<int> q;
-        for (auto [c, x] : a)
-        {
-            if (c == 1)
-            {
-                q.push_back(x);
-            }
-        }
-        sort(q.begin(), q.end(), greater<>());
-        copy(q.begin(), q.end(), z.begin() + 2);
-    }
-    else
-    {
-        copy(r.begin(), r.end(), z.begin() + 1);
+        z[i + 1] = g[i][1];
     }
     return z;
+}
+
+array<int, 6> pokerBest(const vector<int> &r, const vector<int> &suit)
+{
+    // r、suit 对应 n 张不同实体牌，5<=n<=52；返回任选五张的最大 pokerScore，花色不决胜。
+    int n = (int)r.size();
+    assert(5 <= n && n <= 52 && suit.size() == r.size());
+    array<array<bool, 4>, 15> seen{}; // seen[点数][花色] 标记实体牌是否已出现。
+    for (int i = 0; i < n; i++)
+    {
+        assert(2 <= r[i] && r[i] <= 14 && 0 <= suit[i] && suit[i] < 4);
+        assert(!seen[r[i]][suit[i]]);
+        seen[r[i]][suit[i]] = true;
+    }
+    vector<int> a(5), b(5); // 当前选五张的点数和花色。
+    array<int, 6> ans{};    // 已枚举子集的最佳六元评分。
+    auto dfs = [&](auto &&self, int pos, int k) -> void
+    {
+        // self 是递归自身；pos 是下一个可选下标，k 是已选张数；枚举五张子集并更新 ans。
+        if (k == 5)
+        {
+            ans = max(ans, pokerScore(a, b));
+            return;
+        }
+        for (int i = pos; i <= n - (5 - k); i++)
+        {
+            a[k] = r[i];
+            b[k] = suit[i];
+            self(self, i + 1, k + 1);
+        }
+    };
+    dfs(dfs, 0, 0);
+    return ans;
 }

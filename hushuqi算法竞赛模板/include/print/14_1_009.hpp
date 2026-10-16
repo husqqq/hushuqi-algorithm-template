@@ -1,15 +1,17 @@
 #pragma once
 
-#include "14_1_001.hpp"
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
 
 // 知识点 14.1.009：障碍点网格最短路径计数。
 namespace grid_count
 {
-template<class T, class C>
-T gridPaths(int h, int w, vector<array<int, 2>> ban, C &comb)
+template <class T, class C> T gridPaths(int h, int w, vector<array<int, 2>> ban, C &comb)
 {
-    // h、w 是网格尺寸，ban[i] 是障碍坐标，comb 提供 C(n,k)；返回模 T::mod() 的路径数。
-    assert(h > 0 && w > 0); // 调试检查，可删。
+    // h、w 是正网格尺寸；ban[i][0]、[1] 为障碍行、列；comb.C(n,k) 返回类型 T 的组合数。
+    // 坐标从 0 开始，要求 h+w-2<T::mod()；返回从左上到右下只向下、向右的路径数。
+    assert(h > 0 && w > 0);                                 // 调试检查，可删。
     assert(h - 1 < T::mod() && w - 1 < T::mod() - (h - 1)); // 调试检查，可删。
     for (auto p : ban)
     {
@@ -22,9 +24,7 @@ T gridPaths(int h, int w, vector<array<int, 2>> ban, C &comb)
     {
         return T(0);
     }
-    ban.push_back(goal);
-    sort(ban.begin(), ban.end());
-    int goalPos = lower_bound(ban.begin(), ban.end(), goal) - ban.begin();
+    ban.push_back(goal); // 终点不小于任意合法障碍，追加后仍保持坐标序。
     vector<T> dp(ban.size());
     for (int i = 0; i < (int)ban.size(); i++)
     {
@@ -39,6 +39,6 @@ T gridPaths(int h, int w, vector<array<int, 2>> ban, C &comb)
             }
         }
     }
-    return dp[goalPos];
+    return dp.back();
 }
-}
+} // 命名空间 grid_count

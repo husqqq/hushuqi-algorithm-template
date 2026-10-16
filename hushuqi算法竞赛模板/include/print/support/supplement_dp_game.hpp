@@ -299,109 +299,20 @@ vector<int> divideLayer(const vector<int> &pre, int n, Cost w)
 #include "../13_1_007.hpp"
 #include "../13_1_008.hpp"
 
-// 知识点 14.1.008：装箱问题的近似与小规模精确解。
-namespace bin_packing
-{
-int firstFitDec(vector<int> a, int cap)
-{
-    // a 是物品体积，cap 是箱容量；返回降序首次适应使用的箱数。
-    sort(a.begin(), a.end(), greater<>());
-    vector<int> rem;
-    for (int x : a)
-    {
-        assert(0 <= x && x <= cap);
-        int p = 0;
-        while (p < static_cast<int>(rem.size()) && rem[p] < x)
-        {
-            p++;
-        }
-        if (p == static_cast<int>(rem.size())) rem.push_back(cap);
-        rem[p] -= x;
-    }
-    return rem.size();
-}
+// 兼容聚合入口；装箱和网格转移只维护知识点头中的实现。
+#include "../14_1_008.hpp"
+#include "../14_1_009.hpp"
+#include "../8_1_001.hpp"
 
-int exactBins(const vector<int> &a, int cap)
-{
-    // a 是至多 24 个物品体积，cap 是箱容量；返回最少箱数。
-    int n = a.size();
-    assert(n <= 24);
-    // State[0..1] 依次是已用箱数与最后一个箱的已用容量。
-    using State = array<int, 2>;
-    State inf{n + 1, 0};
-    vector<State> dp(1LL << n, inf);
-    dp[0] = {1, 0};
-    for (int s = 0; s < (1LL << n); s++)
-    {
-        for (int i = 0; i < n; i++)
-        {
-            if (s >> i & 1) continue;
-            assert(0 <= a[i] && a[i] <= cap);
-            State cur = dp[s];
-            if (cur[1] + a[i] <= cap) cur[1] += a[i];
-            else cur[0]++, cur[1] = a[i];
-            dp[s | 1LL << i] = min(dp[s | 1LL << i], cur);
-        }
-    }
-    return n == 0 ? 0 : dp.back()[0];
-}
-}
-
-// 知识点 14.1.009：障碍点网格最短路径计数。
 namespace grid_count
 {
 constexpr int mod = 1000000007;
 
-int qpow(int a, int n)
-{
-    // a 是底数，n 是非负指数；返回模 mod 幂。
-    int r = 1;
-    while (n)
-    {
-        if (n & 1) r = r * a % mod;
-        a = a * a % mod;
-        n >>= 1;
-    }
-    return r;
-}
-
 int gridPaths(int h, int w, vector<array<int, 2>> ban)
 {
-    // h、w 是正网格尺寸，ban[i] 两维是 0 下标障碍坐标；返回只向下或向右到右下角的路径数。
-    int n = h + w + 5;
-    vector<int> fac(n, 1), ifac(n, 1);
-    for (int i = 1; i < n; i++)
-    {
-        fac[i] = fac[i - 1] * i % mod;
-    }
-    ifac.back() = qpow(fac.back(), mod - 2);
-    for (int i = n - 1; i; i--)
-    {
-        ifac[i - 1] = ifac[i] * i % mod;
-    }
-    auto comb = [&](int a, int b)
-    {
-        // a、b 是组合数参数；返回模 mod 的 C(a,b)。
-        if (b < 0 || b > a) return 0LL;
-        return fac[a] * ifac[b] % mod * ifac[a - b] % mod;
-    };
-    ban.push_back({h - 1, w - 1});
-    sort(ban.begin(), ban.end());
-    vector<int> dp(ban.size());
-    for (int i = 0; i < static_cast<int>(ban.size()); i++)
-    {
-        auto [x, y] = ban[i];
-        dp[i] = comb(x + y, x);
-        for (int j = 0; j < i; j++)
-        {
-            auto [u, v] = ban[j];
-            if (u <= x && v <= y)
-            {
-                dp[i] = (dp[i] - dp[j] * comb(x - u + y - v, x - u)) % mod;
-            }
-        }
-        if (dp[i] < 0) dp[i] += mod;
-    }
-    return dp.back();
+    // h、w 是正网格尺寸，ban 每项为 0 下标行、列；兼容旧接口，返回模 mod 的单调路径数。
+    // 要求 h+w-2<mod；组合数和取模运算复用公共模板。
+    Comb<MInt<mod>> comb;
+    return gridPaths<MInt<mod>>(h, w, move(ban), comb).val();
 }
 }
