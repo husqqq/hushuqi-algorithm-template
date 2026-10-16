@@ -21,6 +21,12 @@ struct RNG
         return s;
     }
 
+    long double unit()
+    {
+        // 无参数；返回 [0,1) 内含 53 个随机位的伪随机实数，不用于密码学安全场景。
+        return ldexpl((long double)(next() >> 11), -53);
+    }
+
     unsigned long long operator()(unsigned long long n)
     {
         // n 是正上界；返回 [0,n) 内的伪随机整数；无符号类型用于 64 位移位与自然溢出。
