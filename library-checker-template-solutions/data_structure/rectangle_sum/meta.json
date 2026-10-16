@@ -11,9 +11,9 @@
       "method": "deterministic_generation",
       "generator": {
         "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-        "sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+        "sha256": "76803f175ee62c3dbf1e4f625f6480a16f60049c612c0d17180bf77a1266bde1",
         "working_directory": ".",
-        "runner": "Python 3.13.14",
+        "runner": "Python 3.12.14",
         "argv": [
           "--only",
           "rectangle_sum",
@@ -25,9 +25,9 @@
           "source_path": "library-checker-template-solutions/data_structure/rectangle_sum/main.cpp",
           "source_sha256": "b39b86802b7890b7312756d3ad8fce5d0e111484278b44cc55d6341e1eda801b",
           "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-          "generator_sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+          "generator_sha256": "76803f175ee62c3dbf1e4f625f6480a16f60049c612c0d17180bf77a1266bde1",
           "working_directory": ".",
-          "runner": "Python 3.13.14",
+          "runner": "Python 3.12.14",
           "argv": [
             "--only",
             "rectangle_sum",
@@ -36,7 +36,7 @@
           "inputs": [
             {
               "path": "hushuqi算法竞赛模板/03-数据结构.md",
-              "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+              "sha256": "f5f59f52ce1a3058daebf4ba3f23d97ddfe3056d9339f30f14ef80152011b013"
             },
             {
               "path": "hushuqi算法竞赛模板/include/full/3_2_010.hpp",
@@ -50,13 +50,13 @@
           "generated_sha256": "b39b86802b7890b7312756d3ad8fce5d0e111484278b44cc55d6341e1eda801b",
           "byte_equal": true
         },
-        "generation_evidence_sha256": "af2033946d7196d338f9292d48ea92888d7387bc1bcd38930390ea9ce57b239a"
+        "generation_evidence_sha256": "6698f3f69e622d2b1c8334ad971ce8f4d4457773983725edd615776189e074b6"
       },
       "adapter_sha256": "454babaef169c7ad903cb77ca86072b6cf397faa5a5678004c48b09827d007d5",
       "template_inputs": [
         {
           "path": "hushuqi算法竞赛模板/03-数据结构.md",
-          "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+          "sha256": "f5f59f52ce1a3058daebf4ba3f23d97ddfe3056d9339f30f14ef80152011b013"
         },
         {
           "path": "hushuqi算法竞赛模板/include/full/3_2_010.hpp",
@@ -70,7 +70,7 @@
       "temporary_regenerations": 2,
       "byte_identical": true,
       "source_sha256": "b39b86802b7890b7312756d3ad8fce5d0e111484278b44cc55d6341e1eda801b",
-      "evidence_sha256": "61688cd008d6b52534779348d72f03699be8877357cf8a8ee46b394e74d57061"
+      "evidence_sha256": "9d5780fe999b1af3431cea4166f26a9840beb524adc1a6eec5ed4df70e9fb80e"
     }
   },
   "reference": {
@@ -88,21 +88,21 @@
     "content_sha256": "e070667b659441496d08244bede4bbf379fdff6d2fa0fe95eb5ba15f756bf5ef"
   },
   "validation": {
-    "status": "local_only",
-    "checked_at": null,
+    "status": "online_ac",
+    "checked_at": "2026-10-16T05:53:04.597173Z",
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch03_static_rect_sum.cpp"
     ],
     "current_source_sha256": "b39b86802b7890b7312756d3ad8fce5d0e111484278b44cc55d6341e1eda801b",
-    "current_source_online_verdict": null,
-    "current_source_submission_id": null,
-    "current_source_time": null,
-    "current_source_memory": null,
-    "current_source_submission_time": null,
-    "current_source_is_latest": null,
-    "server_source_sha256": null,
-    "note": "Generated from the current chapter 03 template; online verification has not run for this source."
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 410903,
+    "current_source_time": 0.277,
+    "current_source_memory": 37756928,
+    "current_source_submission_time": "2026-10-16T05:52:40.933911Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "b39b86802b7890b7312756d3ad8fce5d0e111484278b44cc55d6341e1eda801b",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
   },
   "submission_attempts": [
     {
@@ -119,6 +119,21 @@
       "compile_standard": "gnu++20",
       "submitted_at": "2026-08-20T13:29:07.819630Z",
       "recorded_at": "2026-08-20T13:29:39.365103Z"
+    },
+    {
+      "submission_id": 410903,
+      "source_sha256": "b39b86802b7890b7312756d3ad8fce5d0e111484278b44cc55d6341e1eda801b",
+      "server_source_sha256": "b39b86802b7890b7312756d3ad8fce5d0e111484278b44cc55d6341e1eda801b",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.277,
+      "memory": 37756928,
+      "submission_time": "2026-10-16T05:52:40.933911Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-10-16T05:52:41.114012Z",
+      "recorded_at": "2026-10-16T05:53:04.596671Z"
     }
   ],
   "notes": [
