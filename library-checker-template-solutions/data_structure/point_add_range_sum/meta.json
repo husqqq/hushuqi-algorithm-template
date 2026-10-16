@@ -36,7 +36,7 @@
           "inputs": [
             {
               "path": "hushuqi算法竞赛模板/03-数据结构.md",
-              "sha256": "bbc912069a67e3b5afaba1294397e6a3d37b36b9b46f20f3c07f1c5c5f7656a9"
+              "sha256": "59ffad219be8da5a349f88e2b25c4bc2d5f632cad5867ea19cfb63e7ab35b57f"
             },
             {
               "path": "hushuqi算法竞赛模板/include/common.hpp",
@@ -58,13 +58,13 @@
           "generated_sha256": "775d28a9f6d260e58680f6cefdc9411297ff285cb4374102cfd7285dc97b937c",
           "byte_equal": true
         },
-        "generation_evidence_sha256": "838dacba4444a2f11e89c634e29554d757133115106808aa51a45976e7dea035"
+        "generation_evidence_sha256": "2220a00978716c60c699eb1fc99ea5c7df6c8156de5cb2075de3716c414f1ab4"
       },
       "adapter_sha256": "995fcd6d0b99200a31c20b590bbd1a9ebdb386e6c6319273ea8f48cc5aef8606",
       "template_inputs": [
         {
           "path": "hushuqi算法竞赛模板/03-数据结构.md",
-          "sha256": "bbc912069a67e3b5afaba1294397e6a3d37b36b9b46f20f3c07f1c5c5f7656a9"
+          "sha256": "59ffad219be8da5a349f88e2b25c4bc2d5f632cad5867ea19cfb63e7ab35b57f"
         },
         {
           "path": "hushuqi算法竞赛模板/include/common.hpp",
@@ -86,7 +86,7 @@
       "temporary_regenerations": 2,
       "byte_identical": true,
       "source_sha256": "775d28a9f6d260e58680f6cefdc9411297ff285cb4374102cfd7285dc97b937c",
-      "evidence_sha256": "b0b68b0caccca2c83a28d1ae65bc2c66d05a12da4c63added5ff2c6f7f26ed58"
+      "evidence_sha256": "2c076274205c309040621d56b2f34831efddf52271cc49859ce736d1ae22e3e2"
     }
   },
   "reference": {

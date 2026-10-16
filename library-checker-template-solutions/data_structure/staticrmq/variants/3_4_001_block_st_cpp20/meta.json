@@ -29,15 +29,21 @@
     "generated_sha256": "9be2bcd2a575f2680570221c7c4ea20446a5c26ab5d439ba594253f879e78511"
   },
   "validation": {
-    "status": "local_only",
+    "status": "online_ac",
     "current_source_sha256": "9be2bcd2a575f2680570221c7c4ea20446a5c26ab5d439ba594253f879e78511",
-    "current_source_online_verdict": null,
-    "current_source_submission_id": null,
-    "server_source_sha256": null,
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 410930,
+    "server_source_sha256": "9be2bcd2a575f2680570221c7c4ea20446a5c26ab5d439ba594253f879e78511",
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch03_block_st.cpp"
-    ]
+    ],
+    "checked_at": "2026-10-16T08:07:40.896159Z",
+    "current_source_time": 0.106,
+    "current_source_memory": 24805376,
+    "current_source_submission_time": "2026-10-16T08:07:09.851411Z",
+    "current_source_is_latest": true,
+    "note": "当前变体源码已通过 Library Checker 在线评测。"
   },
   "submission_attempts": [
     {
@@ -54,6 +60,21 @@
       "compile_standard": null,
       "submitted_at": "2026-08-23T15:26:33.938049Z",
       "recorded_at": "2026-08-23T15:27:03.732164Z"
+    },
+    {
+      "submission_id": 410930,
+      "source_sha256": "9be2bcd2a575f2680570221c7c4ea20446a5c26ab5d439ba594253f879e78511",
+      "server_source_sha256": "9be2bcd2a575f2680570221c7c4ea20446a5c26ab5d439ba594253f879e78511",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.106,
+      "memory": 24805376,
+      "submission_time": "2026-10-16T08:07:09.851411Z",
+      "is_latest": true,
+      "compile_standard": null,
+      "submitted_at": "2026-10-16T08:07:10.013239Z",
+      "recorded_at": "2026-10-16T08:07:40.896159Z"
     }
   ]
 }
