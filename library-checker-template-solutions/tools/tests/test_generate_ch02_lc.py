@@ -39,9 +39,10 @@ def snapshot() -> dict[Path, str | None]:
 class GenerateChapter02Test(unittest.TestCase):
     def run_tool(self, *args: str) -> subprocess.CompletedProcess[str]:
         return subprocess.run(
-            [sys.executable, str(SCRIPT), *args],
+            [sys.executable, "-X", "utf8", str(SCRIPT), *args],
             cwd=WORKSPACE,
             text=True,
+            encoding="utf-8",
             capture_output=True,
             check=False,
         )

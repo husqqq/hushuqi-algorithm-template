@@ -45,9 +45,10 @@ def generator():
 class GenerateChapter04Test(unittest.TestCase):
     def run_tool(self, *args: str) -> subprocess.CompletedProcess[str]:
         return subprocess.run(
-            [sys.executable, str(SCRIPT), *args],
+            [sys.executable, "-X", "utf8", str(SCRIPT), *args],
             cwd=WORKSPACE,
             text=True,
+            encoding="utf-8",
             capture_output=True,
             check=False,
         )
@@ -114,7 +115,10 @@ class GenerateChapter04Test(unittest.TestCase):
             previous = {"submission_attempts": [{"submission_id": 123}],
                         "validation": {"status": "online_ac"}}
             source.with_name("meta.json").write_text(json.dumps(previous), encoding="utf-8")
-            result = module.current_meta_or_reset("wildcard_pattern_matching", source, "0" * 64, True)
+            name = "wildcard_pattern_matching"
+            data = module.generated_source(name, *module.SPECS[name])
+            digest = hashlib.sha256(data).hexdigest()
+            result = module.current_meta_or_reset(name, source, digest, True)
             self.assertEqual(result["submission_attempts"], previous["submission_attempts"])
             self.assertEqual(result["validation"]["status"], "local_only")
 

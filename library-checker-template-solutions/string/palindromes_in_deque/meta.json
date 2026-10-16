@@ -20,7 +20,7 @@
           "--write"
         ],
         "working_directory": ".",
-        "runner": "Python 3.13.14"
+        "runner": "Python 3.12.14"
       },
       "template_inputs": [
         {
@@ -50,7 +50,7 @@
       "temporary_regenerations": 2,
       "byte_identical": true,
       "source_sha256": "74d5192e77c467d350ee72d27e2f9cda9d3fbf0aabddd099eaa25c3e5930987e",
-      "evidence_sha256": "3c0100abb21edf02aeb8adcdf9053385b73ecd5ae660fe2ee8bb6b8e65838226"
+      "evidence_sha256": "2e8ea91f200085709f360a6cddd53dbb9d9b8ada0a4938071c0a80be1a400436"
     }
   },
   "official_reference": {

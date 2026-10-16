@@ -65,12 +65,12 @@ class GenerateChapter03Test(unittest.TestCase):
             cpp.write_bytes(source)
             result = subprocess.run(
                 ["g++", "-std=c++20", "-O2", str(cpp), "-o", str(exe)],
-                capture_output=True, text=True, timeout=120,
+                capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=120,
             )
             self.assertEqual(result.returncode, 0, result.stderr)
             result = subprocess.run(
                 [str(exe)], input="4 7\n1 2 3 4\n1 0 4\n0 1 3 2 3\n0 0 4 5 7\n1 0 4\n0 1 2 3 1\n1 0 4\n1 1 2\n",
-                capture_output=True, text=True, timeout=10,
+                capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=10,
             )
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertEqual(result.stdout.split(), ["10", "133", "218", "127"])

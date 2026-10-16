@@ -13,7 +13,7 @@
         "path": "library-checker-template-solutions/tools/generate_ch02_lc.py",
         "sha256": "135c1913e362c3506d8e5d1a1b93d7bf9b3a4c11b79a322c9dda1b88468762ac",
         "working_directory": ".",
-        "runner": "Python 3.13.14 (tags/v3.13.14:fd17997, Jun 10 2026, 13:03:48) [MSC v.1944 64 bit (AMD64)]",
+        "runner": "Python 3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
         "argv": [
           "--write"
         ],
@@ -25,14 +25,14 @@
           "generator_path": "library-checker-template-solutions/tools/generate_ch02_lc.py",
           "generator_sha256": "135c1913e362c3506d8e5d1a1b93d7bf9b3a4c11b79a322c9dda1b88468762ac",
           "working_directory": ".",
-          "runner": "Python 3.13.14 (tags/v3.13.14:fd17997, Jun 10 2026, 13:03:48) [MSC v.1944 64 bit (AMD64)]",
+          "runner": "Python 3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
           "argv": [
             "--write"
           ],
           "inputs": [
             {
               "path": "hushuqi算法竞赛模板/02-基础算法与离线算法.md",
-              "sha256": "c740e50a013b1f959f705523baabbcbad548e0ec07dbd1f6e2b2cd422e641b0f"
+              "sha256": "033d611db27482a83a01c4eb92332a0f94c15a235ec2b6eff301c56bdb365a2b"
             },
             {
               "path": "hushuqi算法竞赛模板/include/common.hpp",
@@ -58,7 +58,7 @@
           "generated_sha256": "33d005811494fa1428536b8c3214301dd39743a2a7f85504302d7fb92932e73b",
           "byte_equal": true
         },
-        "generation_evidence_sha256": "f10bfd946f8e0ad10c3369ad6ce3d47fb896175ebfe155c2b1cf1c28a5f81b3e"
+        "generation_evidence_sha256": "6eb6e8e35efd782b0100ce542967c87e7e97c085548a1bcfd8d8c9ac387ae9ad"
       }
     }
   },
