@@ -54,5 +54,67 @@ signed main()
 
     assert(boundSubset({2, 1}, {3, 5}, 11));
     assert(!boundSubset({2, 1}, {3, 5}, 10));
+    for (int seed = 0; seed < 256; seed++)
+    {
+        mt19937 rng(seed);
+        int n = rng() % 11, cap = rng() % 18;
+        vector<pair<int, long long>> a(n);
+        for (auto &[w, v] : a)
+        {
+            w = 1 + rng() % 7;
+            v = (int)(rng() % 13) - 6;
+        }
+        long long val = 0, ways = 0;
+        for (int mask = 0; mask < (1 << n); mask++)
+        {
+            int weight = 0;
+            long long sum = 0;
+            for (int i = 0; i < n; i++)
+            {
+                if (mask >> i & 1)
+                {
+                    weight += a[i].first;
+                    sum += a[i].second;
+                }
+            }
+            if (weight <= cap)
+            {
+                if (sum > val)
+                {
+                    val = sum;
+                    ways = 0;
+                }
+                if (sum == val) ways++;
+            }
+        }
+        for (int mod : vector<int>{1, 2, 6, 1000000007, numeric_limits<int>::max() - 24})
+        {
+            auto res = packPlan(cap, a, mod);
+            bool ok = res.val == val && res.ways == ways % mod;
+            int weight = 0, prev = -1;
+            long long sum = 0;
+            for (int i : res.pick)
+            {
+                ok &= 0 <= i && i < n && i > prev;
+                if (!ok) break;
+                weight += a[i].first;
+                sum += a[i].second;
+                prev = i;
+            }
+            ok &= weight <= cap && sum == val;
+            if (!ok)
+            {
+                cerr << "cap=" << cap << " mod=" << mod << " items:";
+                for (auto [w, v] : a)
+                {
+                    cerr << ' ' << w << ',' << v;
+                }
+                cerr << '\n';
+                cout << "WA " << seed << '\n';
+                return 1;
+            }
+        }
+        cout << "AC " << seed << '\n';
+    }
     cout << "OK\n";
 }

@@ -13,10 +13,10 @@ struct SlopeTrick
 
     void addLeft(int a)
     {
-        // 给 f 加上 max(a-x,0)。
+        // a 是折点；给 f 加上 max(a-x,0)，不返回值。
         if (!r.empty())
         {
-            mn += max(0LL, a - (r.top() + dr));
+            mn += max<int>(0, a - (r.top() + dr));
         }
         r.push(a - dr);
         int v = r.top() + dr;
@@ -26,10 +26,10 @@ struct SlopeTrick
 
     void addRight(int a)
     {
-        // 给 f 加上 max(x-a,0)。
+        // a 是折点；给 f 加上 max(x-a,0)，不返回值。
         if (!l.empty())
         {
-            mn += max(0LL, l.top() + dl - a);
+            mn += max<int>(0, l.top() + dl - a);
         }
         l.push(a - dl);
         int v = l.top() + dl;
@@ -39,7 +39,7 @@ struct SlopeTrick
 
     void addAbs(int a)
     {
-        // 给 f 加上 |x-a|。
+        // a 是折点；给 f 加上 |x-a|，不返回值。
         addLeft(a);
         addRight(a);
     }
@@ -81,17 +81,17 @@ struct SlopeTrick
 
     int eval(int x) const
     {
-        // 返回 f(x)，O(|L|+|R|) 并复制堆，仅用于调试或少量查询。
+        // x 是查询位置；返回 f(x)。复制并逐个弹堆，s 个拐点耗时 O(s log(s+1))、额外空间 O(s)。
         auto a = l;
         auto b = r;
         int ans = mn;
         for (; !a.empty(); a.pop())
         {
-            ans += max(0LL, a.top() + dl - x);
+            ans += max<int>(0, a.top() + dl - x);
         }
         for (; !b.empty(); b.pop())
         {
-            ans += max(0LL, x - b.top() - dr);
+            ans += max<int>(0, x - b.top() - dr);
         }
         return ans;
     }
