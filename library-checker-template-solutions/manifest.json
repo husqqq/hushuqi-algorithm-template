@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "updated_at": "2026-10-16T07:03:04.603643Z",
+  "updated_at": "2026-10-16T07:28:10.198521Z",
   "official_repository": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
     "url": "https://github.com/yosupo06/library-checker-problems"
@@ -2184,7 +2184,7 @@
       "title": "Unionfind",
       "category": "data_structure",
       "source": "data_structure/unionfind/main.cpp",
-      "source_sha256": "c2160992719ac23465356cb3729d7a702270f7fd00c41eecc1f275fc5851f1f4",
+      "source_sha256": "24401e40dba1765301ae32110a3ac2c4bf04376bed7de88028331034cad3ef7b",
       "meta": "data_structure/unionfind/meta.json",
       "state": "template_solution"
     },

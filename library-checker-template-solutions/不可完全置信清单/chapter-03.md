@@ -4,7 +4,6 @@
 
 | 模板条目 | LC 题目 | 映射 | 候选哈希 | 模板生成 | 本地 | 在线 | 未完成原因 |
 |---|---|---|---|---|---|---|---|
-| `3.1.001` | `data_structure/unionfind` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
 | `3.2.008` | `data_structure/point_add_rectangle_sum` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
 | `3.2.009` | `data_structure/static_rectangle_add_rectangle_sum` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
 | `3.2.011` | `data_structure/rectangle_add_point_get` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
