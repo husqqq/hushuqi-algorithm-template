@@ -74,7 +74,8 @@ def transform_header(text: str, name: str, *, support: bool = False) -> str:
     if (support and name in FIXED_SUPPORT) or (not support and name in FIXED_HEADERS):
         out = text
     elif name == "13_1_009.hpp":
-        out = replace_general_types(text)
+        # 32 位 nimber 可能超过有符号 int，关闭整数宏时也须显式加宽。
+        out = replace_general_types(text.replace("uint32_t", "long long"))
     elif name == "10_1_004.hpp":
         begin = "// LC_GENERATOR_CH14_ONLY_BEGIN"
         end = "// LC_GENERATOR_CH14_ONLY_END"
