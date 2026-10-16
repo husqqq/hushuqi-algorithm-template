@@ -11,6 +11,7 @@ from unittest.mock import patch
 
 
 TOOLS = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(TOOLS))
 
 
 def load(name: str):
@@ -31,15 +32,35 @@ class AllChapterAuditTest(unittest.TestCase):
         self.assertIn("| 03 | 47 |", text)
         self.assertIn("| 10 | 53 |", text)
         self.assertRegex(
-            text, r"\| 03 \| 47 \| 47 \| 47 \| 47 \| \d+ \| \d+ \| \d+ \| 47 \|"
+            text, r"\| 03 \| 47 \| 47 \| 47 \| 47 \| \d+ \| \d+ \| \d+ \| \d+ \| 47 \|"
         )
         self.assertRegex(
-            text, r"\| 10 \| 53 \| 53 \| 53 \| 53 \| \d+ \| \d+ \| \d+ \| 53 \|"
+            text, r"\| 10 \| 53 \| 53 \| 53 \| 53 \| \d+ \| \d+ \| \d+ \| 未核验 \| 53 \|"
         )
         self.assertRegex(
-            text, r"\| 02 \| 1 \| 1 \| 1 \| 1 \| \d+ \| \d+ \| 1 \| 1 \|"
+            text, r"\| 02 \| 1 \| 1 \| 1 \| 1 \| \d+ \| \d+ \| 1 \| 未核验 \| 1 \|"
         )
         self.assertRegex(text, r"当前 `\d+/251` 道官方题均已通过")
+
+    def test_local_evidence_and_stale_generation_cannot_close_chapter(self):
+        rows = [{"chapter": "03", "item": "3.1.001", "problem": "data_structure/p", "confidence": "audited"}]
+        with tempfile.TemporaryDirectory() as td:
+            doc = Path(td) / "audit.md"
+            doc.write_text("`data_structure/p`", encoding="utf-8")
+            with (
+                patch.object(audit, "read_mapping", return_value=rows),
+                patch.object(audit, "source_entries", return_value={}),
+                patch.object(audit, "receipt_records", return_value={}),
+                patch.object(audit, "chapter_doc", return_value=doc),
+                patch.object(audit, "chapter03_states", return_value={"data_structure/p": "generation_stale"}),
+                patch.object(audit, "row_state", return_value=(True, True, True, False)),
+            ):
+                text = audit.render()
+                self.assertNotIn("章节 LC 闭环完成", text)
+                with patch.object(audit, "row_state", return_value=(True, True, True, True)):
+                    self.assertIn("候选与当前模板尚未全部同步", audit.render())
+                    with patch.object(audit, "chapter03_states", return_value={"data_structure/p": "generation_current"}):
+                        self.assertIn("章节 LC 闭环完成", audit.render())
 
     def test_scoped_receipt_survives_unrelated_manifest_change(self):
         with tempfile.TemporaryDirectory(prefix="lc-audit-receipt-") as td:

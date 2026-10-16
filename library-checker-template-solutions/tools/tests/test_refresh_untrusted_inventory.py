@@ -9,6 +9,7 @@ from unittest.mock import patch
 
 
 TOOLS = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(TOOLS))
 SPEC = importlib.util.spec_from_file_location(
     "refresh_untrusted_inventory", TOOLS / "refresh_untrusted_inventory.py"
 )
@@ -26,7 +27,7 @@ class UntrustedInventoryTest(unittest.TestCase):
             "mapping_confidence": "audited",
         }
 
-    def inspect(self, *, local=False, online=False):
+    def inspect(self, *, local=False, online=False, generation=None):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             source = root / "main.cpp"
@@ -59,15 +60,28 @@ class UntrustedInventoryTest(unittest.TestCase):
                     "official_commit": inventory.COMMIT,
                     "source_sha256": source_sha,
                 }
+            row = self.row()
+            generations = {}
+            if generation is not None:
+                row["chapter"] = "03"
+                generations[row["problem"]] = generation
             with patch.object(inventory, "ROOT", root):
                 return inventory.inspect_row(
-                    self.row(), {"sample/aplusb": entry}, receipts
+                    row, {"sample/aplusb": entry}, receipts, generations
                 )
 
     def test_local_or_online_evidence_is_fully_trusted(self):
         self.assertEqual(self.inspect(local=True)["reasons"], "fully_trusted")
         self.assertEqual(self.inspect(online=True)["reasons"], "fully_trusted")
         self.assertEqual(self.inspect()["reasons"], "verification_missing")
+
+    def test_old_candidate_ac_does_not_prove_current_template(self):
+        stale = self.inspect(online=True, generation="generation_stale")
+        self.assertEqual(stale["online_state"], "current_ac")
+        self.assertEqual(stale["source_state"], "current")
+        self.assertEqual(stale["reasons"], "generation_stale")
+        self.assertEqual(self.inspect(online=True, generation="generation_current")["reasons"], "fully_trusted")
+        self.assertEqual(self.inspect(local=True, generation="generation_failed")["reasons"], "generation_failed")
 
     def test_empty_inventory_removes_old_directory(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -81,6 +95,7 @@ class UntrustedInventoryTest(unittest.TestCase):
                 patch.object(inventory, "read_json", return_value=manifest),
                 patch.object(inventory, "source_entries", return_value={}),
                 patch.object(inventory, "receipt_records", return_value={}),
+                patch.object(inventory, "chapter03_states", return_value={}),
                 patch.object(inventory, "read_mapping", return_value=[self.row()]),
                 patch.object(inventory, "inspect_row", return_value=trusted),
             ):

@@ -9,6 +9,8 @@ import json
 from collections import Counter
 from pathlib import Path
 
+from template_generation import chapter03_states
+
 
 ROOT = Path(__file__).resolve().parent.parent
 WORKSPACE = ROOT.parent
@@ -142,6 +144,7 @@ def render() -> str:
     rows = read_mapping()
     entries = source_entries(manifest)
     receipts = receipt_records(manifest)
+    generations = chapter03_states(ROOT, entries)
     by_chapter: dict[str, list[dict[str, str]]] = {
         f"{i:02d}": [] for i in range(1, 15)
     }
@@ -153,15 +156,15 @@ def render() -> str:
         "",
         "本快照由 `tools/audit_all_chapters.py` 从 `LC_TEMPLATE_MAPPING.tsv`、当前 "
         "manifest、逐题元数据、当前全量或单题本地收据、参考目录和章节审计文档重新计算。它只报告当前证据，"
-        "不把候选数量或历史提交误写为章节 LC 闭环；当前本地验证与同哈希线上 AC 均可独立作为正确性证据。",
+        "当前本地验证与同哈希线上 AC 均可独立作为候选正确性证据。第 03 章另行重生成并逐字节核对模板同步；其他章的生成一致性未由本工具核验。",
         "",
         f"- 官方题库 commit：`{COMMIT}`",
         f"- TSV 路由题数：`{len(rows)}`",
         f"- 当前 manifest 候选数：`{len(entries)}`",
         f"- 可用本地收据记录：`{len(receipts)}`",
         "",
-        "| 章节 | TSV 范围 | 映射已审计 | 受控参考 | 当前候选 | 当前本地收据 | 当前线上 AC | 可置信验证 | 唯一标识矩阵 | 结论 |",
-        "|---|---:|---:|---:|---:|---:|---:|---:|---:|---|",
+        "| 章节 | TSV 范围 | 映射已审计 | 受控参考 | 候选哈希一致 | 候选本地收据 | 候选线上 AC | 候选正确性证据 | 模板生成一致 | 唯一标识矩阵 | 结论 |",
+        "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|",
     ]
     complete = 0
     trusted_total = 0
@@ -175,16 +178,22 @@ def render() -> str:
         online = sum(state[3] for state in states)
         verified = sum(state[2] or state[3] for state in states)
         mapped = sum(row["confidence"] == "audited" for row in scoped)
+        generated = sum(generations.get(row["problem"]) == "generation_current" for row in scoped)
+        generation_count = str(generated) if chapter == "03" else "未核验"
         # The workflow requires the full official identifier in the matrix.
         matrix = sum(f"`{row['problem']}`" in doc_text for row in scoped)
         if not scoped:
             conclusion = "无主责 LC 题；模板与测试仍须持续审阅"
         elif (reference == len(scoped) and source == len(scoped)
-              and verified == len(scoped) and mapped == len(scoped)):
-            conclusion = "章节 LC 闭环完成"
+              and online == len(scoped) and mapped == len(scoped)
+              and matrix == len(scoped)):
+            conclusion = "候选线上验证完成；模板同步另查"
+            if chapter == "03":
+                conclusion = ("章节 LC 闭环完成" if generated == len(scoped)
+                              else "未完成：候选与当前模板尚未全部同步")
             complete += 1
         else:
-            conclusion = "未完成，详见不可完全置信清单"
+            conclusion = "未完成：仍缺候选同哈希线上 AC 或映射证据"
         trusted_total += sum(
             row["confidence"] == "audited" and all(state[:2])
             and (state[2] or state[3])
@@ -192,7 +201,7 @@ def render() -> str:
         )
         text.append(
             f"| {chapter} | {len(scoped)} | {mapped} | {reference} | {source} | "
-            f"{local} | {online} | {verified} | {matrix} | {conclusion} |"
+            f"{local} | {online} | {verified} | {generation_count} | {matrix} | {conclusion} |"
         )
     text.extend([
         "",
@@ -200,7 +209,7 @@ def render() -> str:
         "",
         f"1. 当前 `{trusted_total}/{len(rows)}` 道官方题均已通过映射审计、受控参考、当前候选，"
         "并至少具备当前本地验证或同哈希线上 AC 之一；"
-        f"共有 `{complete}` 个含 LC 题的章节达到闭环标准。",
+        f"共有 `{complete}` 个含 LC 题的章节完成候选同哈希线上验证；这不证明当前模板同步完成。",
         "2. 第 12、13 章的 TSV 范围为零，不得据此跳过模板正文、公共依赖和章节测试审阅。",
         "3. `唯一标识矩阵` 只统计章节文档中按流程要求以反引号写出的完整 ``<category>/<problem>``；"
         "低于 TSV 范围时，文档虽可能提到裸题名，却不能作为可机械核验的逐题覆盖矩阵。",
