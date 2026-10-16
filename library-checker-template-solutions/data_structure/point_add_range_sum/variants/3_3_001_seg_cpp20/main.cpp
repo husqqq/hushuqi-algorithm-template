@@ -3,24 +3,40 @@
 using namespace std;
 #define int long long
 
-#ifndef HUSHUQI_FULL_COMMON
-#define HUSHUQI_FULL_COMMON
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
+
+
+#include <limits>
+
+using namespace std;
+
+constexpr long long INF = numeric_limits<long long>::max() / 4;
 
 template <class T> bool chmin(T &a, const T &b)
 {
-    // a 是当前值，b 是候选值；若 b 更小则更新 a 并返回 true。
-    return b < a ? a = b, true : false;
+    // a 是待更新值，b 是候选值；若 b 更小则更新 a 并返回 true。
+    if (b < a)
+    {
+        a = b;
+        return true;
+    }
+    return false;
 }
+
 template <class T> bool chmax(T &a, const T &b)
 {
-    // a 是当前值，b 是候选值；若 b 更大则更新 a 并返回 true。
-    return a < b ? a = b, true : false;
+    // a 是待更新值，b 是候选值；若 b 更大则更新 a 并返回 true。
+    if (a < b)
+    {
+        a = b;
+        return true;
+    }
+    return false;
 }
-#endif
 
+constexpr int inf = 1E9;
+constexpr long double eps = 1E-12L;
+
+// 区间和实例：Sum{} 是合并单位元，Sum{x} 表示一个值为 x 的叶子。
 struct Sum
 {
     // val 是当前区间的元素和。
@@ -41,6 +57,8 @@ struct Sum
 
 struct MaxInfo
 {
+    // 当前信息取区间最大值。改成最小值信息时，把 lowest 改为 numeric_limits<long long>::max()、max 改为 min，
+    // 并同步把类型名、查询谓词中的 >= 改成 <=。
     // val 是区间最大值；空区间以 long long 最小值作为 max 的单位元。
     long long val = numeric_limits<long long>::lowest();
 
@@ -137,6 +155,8 @@ template <class Info> struct Seg
     template <class F>
     int findFirst(int p, int l, int r, int ql, int qr, F &ok) const
     {
+        // p 管辖 [l,r)，查询 [ql,qr)；ok(Info) 为假须保证该段没有满足条件的叶子。
+        // 返回最左满足 ok 的叶子下标，无解返回 -1；摘要有假阳性时可能遍历整段。
         if (r <= ql || qr <= l)
         {
             return -1;
@@ -157,6 +177,7 @@ template <class Info> struct Seg
     template <class F>
     int findFirst(int l, int r, F ok) const
     {
+        // [l,r) 是查询区间；ok 为假须整段无解，返回最左满足 ok 的叶子下标或 -1。
         assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         return l == r ? -1 : findFirst(1, 0, size, l, r, ok);
     }
@@ -164,6 +185,8 @@ template <class Info> struct Seg
     template <class F>
     int findLast(int p, int l, int r, int ql, int qr, F &ok) const
     {
+        // p 管辖 [l,r)，查询 [ql,qr)；ok(Info) 为假须保证该段没有满足条件的叶子。
+        // 返回最右满足 ok 的叶子下标，无解返回 -1；摘要有假阳性时可能遍历整段。
         if (r <= ql || qr <= l)
         {
             return -1;
@@ -184,9 +207,36 @@ template <class Info> struct Seg
     template <class F>
     int findLast(int l, int r, F ok) const
     {
+        // [l,r) 是查询区间；ok 为假须整段无解，返回最右满足 ok 的叶子下标或 -1。
         assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         return l == r ? -1 : findLast(1, 0, size, l, r, ok);
     }
 };
 
-signed main(){ ios::sync_with_stdio(false);cin.tie(nullptr);int n,q;cin>>n>>q;vector<Sum>a(n);for(auto&x:a)cin>>x.val;Seg<Sum>s(a);while(q--){int t,x,y;cin>>t>>x>>y;if(t==0){a[x].val+=y;s.set(x,a[x]);}else cout<<s.query(x,y).val<<'\n';}}
+signed main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n, q;
+    cin >> n >> q;
+    vector<Sum> a(n);
+    for (auto &x : a)
+    {
+        cin >> x.val;
+    }
+    Seg<Sum> seg(a);
+    while (q--)
+    {
+        int t, x, y;
+        cin >> t >> x >> y;
+        if (t == 0)
+        {
+            a[x].val += y;
+            seg.set(x, a[x]);
+        }
+        else
+        {
+            cout << seg.query(x, y).val << '\n';
+        }
+    }
+}

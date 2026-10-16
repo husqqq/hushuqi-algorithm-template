@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "updated_at": "2026-10-16T08:02:27.389880Z",
+  "updated_at": "2026-10-16T08:25:33.271564Z",
   "official_repository": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
     "url": "https://github.com/yosupo06/library-checker-problems"
@@ -1419,7 +1419,7 @@
       "title": "Point Set Range Composite",
       "category": "data_structure",
       "source": "data_structure/point_set_range_composite/main.cpp",
-      "source_sha256": "fcbbdc143b1f4f58cb35fd3d46c6c6b96e8851badf594991fc67770573f24acb",
+      "source_sha256": "904f7e1910b931ca5dba1a9532c0ef0e229725cf11b7a794503e2ad933448cd5",
       "meta": "data_structure/point_set_range_composite/meta.json",
       "state": "template_solution"
     },

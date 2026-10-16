@@ -7,7 +7,6 @@
 | `3.2.008` | `data_structure/point_add_rectangle_sum` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
 | `3.2.009` | `data_structure/static_rectangle_add_rectangle_sum` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
 | `3.2.011` | `data_structure/rectangle_add_point_get` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
-| `3.3.001` | `data_structure/point_set_range_composite` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
 | `3.3.004` | `data_structure/range_add_range_min` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
 | `3.3.018` | `data_structure/point_set_range_sort_range_composite` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
 | `3.3.019` | `data_structure/range_linear_add_range_min` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |

@@ -1550,10 +1550,11 @@ signed main()
         r'''
 struct Aff
 {
-    Z a = 1, b = 0;
+    Z a = 1, b = 0; // 函数 a*x+b；默认值为恒等函数。
 
     friend Aff operator+(Aff f, Aff g)
     {
+        // f、g 是左右两段函数；返回先执行 f 再执行 g 的复合。
         return {g.a * f.a, g.a * f.b + g.b};
     }
 };

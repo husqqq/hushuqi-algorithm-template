@@ -1,35 +1,32 @@
+#ifndef HUSHUQI_STATIC_MINT_HPP
+#define HUSHUQI_STATIC_MINT_HPP
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
 
-template <long long P> struct MInt
+template <uint32_t P> struct MInt
 {
-    static_assert(P > 1);
-    using V = conditional_t<(P <= numeric_limits<int32_t>::max()),
-                            uint32_t, unsigned long long>;
-    static constexpr V M = (V)P; // 与 x 同宽的模数，避免热路径被 P 提升为有符号 64 位
-    V x = 0; // 当前剩余类在 [0,P) 内的代表元；常见小模使用无符号 32 位
+    static_assert(1 < P && P <= 1000000007);
+    uint32_t x = 0; // 固定 32 位以保证对象为 4 字节，提高大数组的缓存密度。
 
-    MInt() = default;
-
-    MInt(long long v)
+    MInt(long long v = 0)
     {
         // v 是要转入模 P 剩余类的整数；构造其最小非负代表元。
-        v %= P;
+        v %= (long long)P;
         if (v < 0)
         {
             v += P;
         }
-        x = (V)v;
+        x = (uint32_t)v;
     }
 
-    static constexpr long long mod()
+    static constexpr uint32_t mod()
     {
         // 无参数；返回编译期模数 P。
         return P;
     }
 
-    long long val() const
+    uint32_t val() const
     {
         // 无参数；返回当前剩余类的最小非负代表元。
         return x;
@@ -39,7 +36,7 @@ template <long long P> struct MInt
     {
         // 无参数；返回当前剩余类的加法逆元。
         MInt ans;
-        ans.x = x ? M - x : 0;
+        ans.x = x ? P - x : 0;
         return ans;
     }
 
@@ -47,9 +44,9 @@ template <long long P> struct MInt
     {
         // o 是要加到当前值上的同模剩余类；原地完成模加并返回当前对象引用。
         x += o.x;
-        if (x >= M)
+        if (x >= P)
         {
-            x -= M;
+            x -= P;
         }
         return *this;
     }
@@ -57,10 +54,10 @@ template <long long P> struct MInt
     MInt &operator-=(const MInt &o)
     {
         // o 是要从当前值减去的同模剩余类；原地完成模减并返回当前对象引用。
-        x += M - o.x;
-        if (x >= M)
+        x += P - o.x;
+        if (x >= P)
         {
-            x -= M;
+            x -= P;
         }
         return *this;
     }
@@ -68,14 +65,8 @@ template <long long P> struct MInt
     MInt &operator*=(const MInt &o)
     {
         // o 是要乘到当前值上的同模剩余类；原地完成模乘并返回当前对象引用。
-        if constexpr (P <= 2147483647LL)
-        {
-            x = (unsigned long long)x * o.x % M;
-        }
-        else
-        {
-            x = (unsigned __int128)x * o.x % M;
-        }
+        // 乘积可能超过 32 位，显式提升到无符号 64 位。
+        x = (uint64_t)x * o.x % P;
         return *this;
     }
 
@@ -111,7 +102,7 @@ template <long long P> struct MInt
 
     friend bool operator==(const MInt &, const MInt &) = default;
 
-    MInt pow(unsigned long long b) const
+    MInt pow(uint64_t b) const
     {
         // b 是非负指数；返回当前剩余类的 b 次幂。
         MInt a = *this;
@@ -136,10 +127,10 @@ template <long long P> struct MInt
     }
 };
 
-template <long long P> const vector<MInt<P>> &invTable(int n)
+template <uint32_t P> const vector<MInt<P>> &invTable(int n)
 {
     // n 是需要的最大下标且 0<=n<P；返回至少覆盖 0..n 的共享模逆元表，其中位置 0 为 0。
-    assert(0 <= n && n < P); // 调试检查，可删
+    assert(0 <= n && (uint64_t)n < P); // 调试检查，可删
     static vector<MInt<P>> iv{0, 1};
     int old = iv.size();
     if (old <= n)
@@ -153,31 +144,49 @@ template <long long P> const vector<MInt<P>> &invTable(int n)
     return iv;
 }
 
-constexpr int mod = 998244353;
+constexpr uint32_t mod = 998244353;
 using Z = MInt<mod>;
+
+#endif
 
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
 
-#ifndef HUSHUQI_FULL_COMMON
-#define HUSHUQI_FULL_COMMON
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
+
+
+#include <limits>
+
+using namespace std;
+
+constexpr long long INF = numeric_limits<long long>::max() / 4;
 
 template <class T> bool chmin(T &a, const T &b)
 {
-    // a 是当前值，b 是候选值；若 b 更小则更新 a 并返回 true。
-    return b < a ? a = b, true : false;
+    // a 是待更新值，b 是候选值；若 b 更小则更新 a 并返回 true。
+    if (b < a)
+    {
+        a = b;
+        return true;
+    }
+    return false;
 }
+
 template <class T> bool chmax(T &a, const T &b)
 {
-    // a 是当前值，b 是候选值；若 b 更大则更新 a 并返回 true。
-    return a < b ? a = b, true : false;
+    // a 是待更新值，b 是候选值；若 b 更大则更新 a 并返回 true。
+    if (a < b)
+    {
+        a = b;
+        return true;
+    }
+    return false;
 }
-#endif
 
+constexpr int inf = 1E9;
+constexpr long double eps = 1E-12L;
+
+// 区间和实例：Sum{} 是合并单位元，Sum{x} 表示一个值为 x 的叶子。
 struct Sum
 {
     // val 是当前区间的元素和。
@@ -198,6 +207,8 @@ struct Sum
 
 struct MaxInfo
 {
+    // 当前信息取区间最大值。改成最小值信息时，把 lowest 改为 numeric_limits<long long>::max()、max 改为 min，
+    // 并同步把类型名、查询谓词中的 >= 改成 <=。
     // val 是区间最大值；空区间以 long long 最小值作为 max 的单位元。
     long long val = numeric_limits<long long>::lowest();
 
@@ -294,6 +305,8 @@ template <class Info> struct Seg
     template <class F>
     int findFirst(int p, int l, int r, int ql, int qr, F &ok) const
     {
+        // p 管辖 [l,r)，查询 [ql,qr)；ok(Info) 为假须保证该段没有满足条件的叶子。
+        // 返回最左满足 ok 的叶子下标，无解返回 -1；摘要有假阳性时可能遍历整段。
         if (r <= ql || qr <= l)
         {
             return -1;
@@ -314,6 +327,7 @@ template <class Info> struct Seg
     template <class F>
     int findFirst(int l, int r, F ok) const
     {
+        // [l,r) 是查询区间；ok 为假须整段无解，返回最左满足 ok 的叶子下标或 -1。
         assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         return l == r ? -1 : findFirst(1, 0, size, l, r, ok);
     }
@@ -321,6 +335,8 @@ template <class Info> struct Seg
     template <class F>
     int findLast(int p, int l, int r, int ql, int qr, F &ok) const
     {
+        // p 管辖 [l,r)，查询 [ql,qr)；ok(Info) 为假须保证该段没有满足条件的叶子。
+        // 返回最右满足 ok 的叶子下标，无解返回 -1；摘要有假阳性时可能遍历整段。
         if (r <= ql || qr <= l)
         {
             return -1;
@@ -341,6 +357,7 @@ template <class Info> struct Seg
     template <class F>
     int findLast(int l, int r, F ok) const
     {
+        // [l,r) 是查询区间；ok 为假须整段无解，返回最右满足 ok 的叶子下标或 -1。
         assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         return l == r ? -1 : findLast(1, 0, size, l, r, ok);
     }
@@ -348,10 +365,11 @@ template <class Info> struct Seg
 
 struct Aff
 {
-    Z a = 1, b = 0;
+    Z a = 1, b = 0; // 函数 a*x+b；默认值为恒等函数。
 
     friend Aff operator+(Aff f, Aff g)
     {
+        // f、g 是左右两段函数；返回先执行 f 再执行 g 的复合。
         return {g.a * f.a, g.a * f.b + g.b};
     }
 };

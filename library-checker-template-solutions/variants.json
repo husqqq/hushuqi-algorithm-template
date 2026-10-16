@@ -266,7 +266,7 @@
       "category": "data_structure",
       "language": "cpp20",
       "source": "data_structure/point_add_range_sum/variants/3_3_001_seg_cpp20/main.cpp",
-      "source_sha256": "58e49d41793ccb1dfed7e92dbaff096f93918dbe74008972b9bdc245510e2aa7",
+      "source_sha256": "930ccb814e945ea7e078bbffeffe48631aee9d21971e853dddbce91976577a5e",
       "meta": "data_structure/point_add_range_sum/variants/3_3_001_seg_cpp20/meta.json",
       "template_items": [
         "3.3.001"
@@ -722,5 +722,5 @@
       "test": "hushuqi算法竞赛模板/tests/test_ch09_revised.cpp"
     }
   ],
-  "updated_at": "2026-10-16T08:02:27.556715Z"
+  "updated_at": "2026-10-16T08:26:29.119902Z"
 }

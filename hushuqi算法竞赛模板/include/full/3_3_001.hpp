@@ -125,8 +125,8 @@ template <class Info> struct Seg
     template <class F>
     int findFirst(int p, int l, int r, int ql, int qr, F &ok) const
     {
-        // p 管辖 [l,r)，查询区间 [ql,qr)，ok 对区间信息单调（父真则至少一个儿子真）；
-        // 返回 [ql,qr) 内使 ok(tr[叶]) 为真的最小下标，不存在返回 -1。
+        // p 管辖 [l,r)，查询 [ql,qr)；ok(Info) 为假须保证该段没有满足条件的叶子。
+        // 返回最左满足 ok 的叶子下标，无解返回 -1；摘要有假阳性时可能遍历整段。
         if (r <= ql || qr <= l)
         {
             return -1;
@@ -147,7 +147,7 @@ template <class Info> struct Seg
     template <class F>
     int findFirst(int l, int r, F ok) const
     {
-        // l、r 是半开区间，ok(Info) 判断区间是否含目标；返回最左满足的叶子下标，不存在返回 -1。
+        // [l,r) 是查询区间；ok 为假须整段无解，返回最左满足 ok 的叶子下标或 -1。
         assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         return l == r ? -1 : findFirst(1, 0, size, l, r, ok);
     }
@@ -155,7 +155,8 @@ template <class Info> struct Seg
     template <class F>
     int findLast(int p, int l, int r, int ql, int qr, F &ok) const
     {
-        // 参数同 findFirst 的递归版；返回 [ql,qr) 内使 ok 为真的最大下标，不存在返回 -1。
+        // p 管辖 [l,r)，查询 [ql,qr)；ok(Info) 为假须保证该段没有满足条件的叶子。
+        // 返回最右满足 ok 的叶子下标，无解返回 -1；摘要有假阳性时可能遍历整段。
         if (r <= ql || qr <= l)
         {
             return -1;
@@ -176,7 +177,7 @@ template <class Info> struct Seg
     template <class F>
     int findLast(int l, int r, F ok) const
     {
-        // l、r 是半开区间，ok(Info) 判断区间是否含目标；返回最右满足的叶子下标，不存在返回 -1。
+        // [l,r) 是查询区间；ok 为假须整段无解，返回最右满足 ok 的叶子下标或 -1。
         assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         return l == r ? -1 : findLast(1, 0, size, l, r, ok);
     }

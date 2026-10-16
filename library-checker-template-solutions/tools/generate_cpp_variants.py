@@ -477,7 +477,33 @@ SPECS = (
     Spec("3_6_006_fixed_hash_cpp20", "associative_array", "Associative Array", "data_structure", "3.6.006", "3_6_006.hpp", "tests/test_ch03_fixed_hash.cpp", fixed_hash_adapter(), "O(1) expected per operation and O(2^21) memory"),
     Spec("14_1_019_decimal_bigint_add_cpp20", "addition_of_big_integers", "Addition of Big Integers", "big_integer", "14.1.019", "14_1_019.hpp", "tests/test_ch14_hex_bigint.cpp", decimal_bigint_add_adapter(), "O(N) addition over base-1e9 limbs"),
     Spec("3_3_001_seg_cpp20", "point_add_range_sum", "Point Add Range Sum", "data_structure", "3.3.001", "3_3_001.hpp", "tests/test_ch03_seg.cpp", r'''
-signed main(){ ios::sync_with_stdio(false);cin.tie(nullptr);int n,q;cin>>n>>q;vector<Sum>a(n);for(auto&x:a)cin>>x.val;Seg<Sum>s(a);while(q--){int t,x,y;cin>>t>>x>>y;if(t==0){a[x].val+=y;s.set(x,a[x]);}else cout<<s.query(x,y).val<<'\n';}}
+signed main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n, q;
+    cin >> n >> q;
+    vector<Sum> a(n);
+    for (auto &x : a)
+    {
+        cin >> x.val;
+    }
+    Seg<Sum> seg(a);
+    while (q--)
+    {
+        int t, x, y;
+        cin >> t >> x >> y;
+        if (t == 0)
+        {
+            a[x].val += y;
+            seg.set(x, a[x]);
+        }
+        else
+        {
+            cout << seg.query(x, y).val << '\n';
+        }
+    }
+}
 ''', "O((N+Q) log N)"),
     Spec("3_3_005_zkw_seg_cpp20", "point_add_range_sum", "Point Add Range Sum", "data_structure", "3.3.005", "3_3_005.hpp", "tests/test_ch03_zkw_seg.cpp", r'''
 signed main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,q;cin>>n>>q;vector<int>a(n);for(int&x:a)cin>>x;ZkwSeg<int,plus<int>>s(a,0,plus<int>{});while(q--){int t,x,y;cin>>t>>x>>y;if(t==0){a[x]+=y;s.set(x,a[x]);}else cout<<s.prod(x,y)<<'\n';}}
