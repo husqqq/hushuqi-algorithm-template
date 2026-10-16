@@ -11,12 +11,12 @@
       "method": "deterministic_generation",
       "generator": {
         "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-        "sha256": "4292478a4e886f19a75307012e429af9d6e8df16bc6c2672833c19e0a1c02db2",
+        "sha256": "199ea86b40e5f0457a9346b8f4c1c8987d21c6a919e26fbc21b80dec746057c4",
         "working_directory": ".",
         "runner": "Python 3.13.14",
         "argv": [
           "--only",
-          "range_add_range_min",
+          "area_of_union_of_rectangles,associative_array,deque,rectangle_sum,unionfind,persistent_unionfind,point_add_range_sum,range_add_range_min,range_chmin_chmax_add_range_sum,staticrmq,range_kth_smallest,static_range_frequency,static_range_sum_with_upper_bound,persistent_queue,range_affine_point_get,range_affine_range_sum,deque_operate_all_composite,queue_operate_all_composite,double_ended_priority_queue,majority_voting,point_set_range_composite,point_set_range_composite_large_array,point_add_rectangle_sum,rectangle_add_point_get,range_parallel_unionfind,static_range_count_distinct,static_range_inversions_query,static_range_lis_query,static_range_sum,unionfind_with_potential,unionfind_with_potential_non_commutative_group",
           "--write-index"
         ],
         "generation_evidence": {
@@ -25,18 +25,18 @@
           "source_path": "library-checker-template-solutions/data_structure/range_add_range_min/main.cpp",
           "source_sha256": "13b4f21ecabe15a7b4f7b7ed68f0ba5cfeeab85640c493f5cd4de0c5d84d55c1",
           "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-          "generator_sha256": "4292478a4e886f19a75307012e429af9d6e8df16bc6c2672833c19e0a1c02db2",
+          "generator_sha256": "199ea86b40e5f0457a9346b8f4c1c8987d21c6a919e26fbc21b80dec746057c4",
           "working_directory": ".",
           "runner": "Python 3.13.14",
           "argv": [
             "--only",
-            "range_add_range_min",
+            "area_of_union_of_rectangles,associative_array,deque,rectangle_sum,unionfind,persistent_unionfind,point_add_range_sum,range_add_range_min,range_chmin_chmax_add_range_sum,staticrmq,range_kth_smallest,static_range_frequency,static_range_sum_with_upper_bound,persistent_queue,range_affine_point_get,range_affine_range_sum,deque_operate_all_composite,queue_operate_all_composite,double_ended_priority_queue,majority_voting,point_set_range_composite,point_set_range_composite_large_array,point_add_rectangle_sum,rectangle_add_point_get,range_parallel_unionfind,static_range_count_distinct,static_range_inversions_query,static_range_lis_query,static_range_sum,unionfind_with_potential,unionfind_with_potential_non_commutative_group",
             "--write-index"
           ],
           "inputs": [
             {
               "path": "hushuqi算法竞赛模板/03-数据结构.md",
-              "sha256": "169ba43110029b683eb5c46c2f5f11d9c3fb194a8f70ac3ec9ad4a037287152b"
+              "sha256": "7c76d2bade0f913257f0eacac95fe403a3eb1b535e65617115083cbb2001b8a1"
             },
             {
               "path": "hushuqi算法竞赛模板/include/common.hpp",
@@ -66,13 +66,13 @@
           "generated_sha256": "13b4f21ecabe15a7b4f7b7ed68f0ba5cfeeab85640c493f5cd4de0c5d84d55c1",
           "byte_equal": true
         },
-        "generation_evidence_sha256": "6f749722aa067be10d89f3a2a926fc71010cf1b8f1f8271401c62a73bf816f39"
+        "generation_evidence_sha256": "b41ea286f3d50286d98727e13a89de5879bb81d24d6845243cf2db5ceba91b02"
       },
       "adapter_sha256": "23c755eecd8e0bc3ed056262e4cc83c9ade491fe6b9381a8c4e1acf19c9b1567",
       "template_inputs": [
         {
           "path": "hushuqi算法竞赛模板/03-数据结构.md",
-          "sha256": "169ba43110029b683eb5c46c2f5f11d9c3fb194a8f70ac3ec9ad4a037287152b"
+          "sha256": "7c76d2bade0f913257f0eacac95fe403a3eb1b535e65617115083cbb2001b8a1"
         },
         {
           "path": "hushuqi算法竞赛模板/include/common.hpp",
@@ -102,7 +102,7 @@
       "temporary_regenerations": 2,
       "byte_identical": true,
       "source_sha256": "13b4f21ecabe15a7b4f7b7ed68f0ba5cfeeab85640c493f5cd4de0c5d84d55c1",
-      "evidence_sha256": "01f25c221a34fefdb425cab7931d073f9bab0aa7bde5e8cc752da28e7701de8d"
+      "evidence_sha256": "00d5e64f731c2578c20d5379ee34f0cc769e56860519a4f6eb1c91994d7c3995"
     }
   },
   "reference": {

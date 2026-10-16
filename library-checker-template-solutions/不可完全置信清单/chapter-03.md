@@ -17,8 +17,6 @@
 | `3.6.009` | `data_structure/point_set_range_frequency` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
 | `3.6.014` | `data_structure/predecessor_problem` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
 | `3.7.001` | `data_structure/line_add_get_min` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
-| `3.7.007` | `data_structure/deque_operate_all_composite` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
-| `3.7.007` | `data_structure/queue_operate_all_composite` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
 | `3.7.009` | `data_structure/dynamic_point_set_rectangle_affine_rectangle_sum` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
 | `3.7.010` | `data_structure/segment_add_get_min` | `audited` | `current` | `generation_stale` | `missing` | `missing` | `generation_stale,verification_missing` |
 | `3.9.001` | `data_structure/ordered_set` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |

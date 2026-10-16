@@ -6,15 +6,15 @@ using namespace std;
 
 template <class T, class F> struct AggDeque
 {
-    // op 是结合律运算，e 是幺元。
+    // op 按队首到队尾合并两个摘要，须可在 const 对象上调用；e 是双侧幺元。
     F op;
     T e;
     // l、r 是队首侧与队尾侧栈；每项为 {原值,按队列方向的本栈聚合}。
     vector<pair<T, T>> l, r;
 
-    AggDeque(F combine, T identity) : op(combine), e(identity)
+    AggDeque(F combine, T identity) : op(move(combine)), e(move(identity))
     {
-        // combine 是结合律二元运算，identity 是其幺元；初始队列为空。
+        // combine(a,b) 返回相邻段 a 后接 b 的摘要，须满足结合律；identity 是幺元，初始队列为空。
     }
 
     int size() const
@@ -37,16 +37,18 @@ template <class T, class F> struct AggDeque
         // x 是新元素；插入队尾并更新右栈聚合。
         r.push_back({x, r.empty() ? x : op(r.back().second, x)});
     }
+private:
     void rebuild(int k)
     {
         // k 是重建后放入队首侧的元素数；保持整个队列顺序不变。
         assert(0 <= k && k <= size()); // 调试检查，可删
         vector<T> a;
+        a.reserve(size());
         for (auto i = l.rbegin(); i != l.rend(); i++)
         {
             a.push_back(i->first);
         }
-        for (auto x : r)
+        for (const auto &x : r)
         {
             a.push_back(x.first);
         }
@@ -61,19 +63,20 @@ template <class T, class F> struct AggDeque
             pushBack(a[i]);
         }
     }
+public:
     void popFront()
     {
-        // 删除队首元素。
+        // 当前队列须非空；删除队首元素，无返回值。
         assert(!empty()); // 调试检查，可删
         if (l.empty())
         {
-            rebuild((size() + 1) / 2);
+            rebuild(size() - size() / 2);
         }
         l.pop_back();
     }
     void popBack()
     {
-        // 删除队尾元素。
+        // 当前队列须非空；删除队尾元素，无返回值。
         assert(!empty()); // 调试检查，可删
         if (r.empty())
         {
@@ -81,15 +84,15 @@ template <class T, class F> struct AggDeque
         }
         r.pop_back();
     }
-    T front() const
+    const T &front() const
     {
-        // 返回队首元素；只读端点，不为读取重建两侧栈。
+        // 当前队列须非空；返回队首元素的只读引用，修改队列前使用。
         assert(!empty()); // 调试检查，可删
         return l.empty() ? r.front().first : l.back().first;
     }
-    T back() const
+    const T &back() const
     {
-        // 返回队尾元素；只读端点，不为读取重建两侧栈。
+        // 当前队列须非空；返回队尾元素的只读引用，修改队列前使用。
         assert(!empty()); // 调试检查，可删
         return r.empty() ? l.front().first : r.back().first;
     }

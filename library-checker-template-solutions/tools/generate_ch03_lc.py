@@ -1214,23 +1214,22 @@ signed main()
     Spec(
         "deque_operate_all_composite",
         "Deque Operate All Composite",
-        ("3_7_007.hpp",),
+        ("3_7_007.hpp", "1_1_008.hpp"),
         "3.7.007",
         ("template <class T, class F> struct AggDeque",),
-        ("tests/test_ch03_agg_deque.cpp",),
+        ("tests/test_ch03_agg_deque.cpp", "tests/test_ch01_mint.cpp"),
         r'''
-constexpr int mod = 998244353;
-
 struct Aff
 {
-    int a = 1, b = 0;
+    Z a = 1, b = 0; // 函数 x -> ax+b 的斜率与截距。
 };
 
 struct Compose
 {
     Aff operator()(const Aff &f, const Aff &g) const
     {
-        return {g.a * f.a % mod, (g.a * f.b + g.b) % mod};
+        // f、g 是相邻仿射函数；返回先作用 f、再作用 g 的复合。
+        return {g.a * f.a, g.a * f.b + g.b};
     }
 };
 
@@ -1249,13 +1248,17 @@ signed main()
         if (type == 0)
         {
             Aff f;
-            cin >> f.a >> f.b;
+            int a, b;
+            cin >> a >> b;
+            f = {Z(a), Z(b)};
             dq.pushFront(f);
         }
         else if (type == 1)
         {
             Aff f;
-            cin >> f.a >> f.b;
+            int a, b;
+            cin >> a >> b;
+            f = {Z(a), Z(b)};
             dq.pushBack(f);
         }
         else if (type == 2)
@@ -1271,33 +1274,33 @@ signed main()
             int x;
             cin >> x;
             auto f = dq.query();
-            cout << (f.a * x + f.b) % mod << '\n';
+            cout << (f.a * Z(x) + f.b).val() << '\n';
         }
     }
     return 0;
 }
 ''',
+        MODDOC,
     ),
     Spec(
         "queue_operate_all_composite",
         "Queue Operate All Composite",
-        ("3_7_007.hpp",),
+        ("3_7_007.hpp", "1_1_008.hpp"),
         "3.7.007",
         ("template <class T, class F> struct AggDeque",),
-        ("tests/test_ch03_agg_deque.cpp",),
+        ("tests/test_ch03_agg_deque.cpp", "tests/test_ch01_mint.cpp"),
         r'''
-constexpr int mod = 998244353;
-
 struct Aff
 {
-    int a = 1, b = 0;
+    Z a = 1, b = 0; // 函数 x -> ax+b 的斜率与截距。
 };
 
 struct Compose
 {
     Aff operator()(const Aff &f, const Aff &g) const
     {
-        return {g.a * f.a % mod, (g.a * f.b + g.b) % mod};
+        // f、g 是相邻仿射函数；返回先作用 f、再作用 g 的复合。
+        return {g.a * f.a, g.a * f.b + g.b};
     }
 };
 
@@ -1316,7 +1319,9 @@ signed main()
         if (type == 0)
         {
             Aff f;
-            cin >> f.a >> f.b;
+            int a, b;
+            cin >> a >> b;
+            f = {Z(a), Z(b)};
             que.pushBack(f);
         }
         else if (type == 1)
@@ -1328,12 +1333,13 @@ signed main()
             int x;
             cin >> x;
             auto f = que.query();
-            cout << (f.a * x + f.b) % mod << '\n';
+            cout << (f.a * Z(x) + f.b).val() << '\n';
         }
     }
     return 0;
 }
 ''',
+        MODDOC,
     ),
     Spec(
         "double_ended_priority_queue",
@@ -2506,7 +2512,13 @@ def canonical_sha256(value: object) -> str:
     return sha256(json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8"))
 
 
-def metadata(root: Path, spec: Spec, report: dict, generator_argv: list[str]) -> dict:
+def metadata(
+    root: Path, spec: Spec, report: dict, generator_argv: list[str],
+    *, runner: str | None = None,
+) -> dict:
+    # 写入时记录生成环境；只读核验沿用原记录，不把当前解释器误当成来源变化。
+    if runner is None:
+        runner = f"Python {platform.python_version()}"
     path = root / "library-checker-template-solutions" / meta_path(spec)
     old = {}
     if path.is_file():
@@ -2527,7 +2539,7 @@ def metadata(root: Path, spec: Spec, report: dict, generator_argv: list[str]) ->
         "generator_path": generator_path,
         "generator_sha256": generator_hash,
         "working_directory": ".",
-        "runner": f"Python {platform.python_version()}",
+        "runner": runner,
         "argv": generator_argv,
         "inputs": report["template_inputs"],
         "generated_sha256": source_hash,
@@ -2539,7 +2551,7 @@ def metadata(root: Path, spec: Spec, report: dict, generator_argv: list[str]) ->
             "path": generator_path,
             "sha256": generator_hash,
             "working_directory": ".",
-            "runner": f"Python {platform.python_version()}",
+            "runner": runner,
             "argv": generator_argv,
             "generation_evidence": generation,
             "generation_evidence_sha256": canonical_sha256(generation),
@@ -2664,8 +2676,11 @@ def check_index(root: Path, spec: Spec, report: dict) -> None:
     if entries != [expected]:
         raise ValueError(f"{spec.name}: manifest entry is out of date")
     current = json.loads(read_text(directory / meta_path(spec)))
-    argv = current.get("provenance", {}).get("evidence", {}).get("generator", {}).get("argv", [])
-    fresh = metadata(root, spec, report, argv)
+    generator = current.get("provenance", {}).get("evidence", {}).get("generator", {})
+    runner = generator.get("runner")
+    if not isinstance(runner, str) or not re.fullmatch(r"Python \d+\.\d+\.\d+\S*", runner):
+        raise ValueError(f"{spec.name}: metadata provenance has invalid runner")
+    fresh = metadata(root, spec, report, generator.get("argv", []), runner=runner)
     for field in ("provenance", "reference", "official_reference"):
         if current.get(field) != fresh[field]:
             raise ValueError(f"{spec.name}: metadata {field} is out of date")

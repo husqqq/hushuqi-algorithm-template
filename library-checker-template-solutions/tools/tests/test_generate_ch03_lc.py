@@ -139,6 +139,51 @@ class GenerateChapter03Test(unittest.TestCase):
             self.assertEqual(same["submission_attempts"], old["submission_attempts"])
             self.assertEqual(changed["submission_attempts"], old["submission_attempts"])
 
+    def test_check_accepts_other_python_but_rejects_changed_evidence(self):
+        spec = gen.selected("range_add_range_min")[0]
+        source, headers = gen.generate_twice(WORKSPACE, spec)
+        report = gen.describe(WORKSPACE, spec, source, headers)
+        expected = gen.metadata(WORKSPACE, spec, report, ["--write-index"], runner="Python 3.13.14")
+        entry = {
+            "name": spec.name, "title": spec.title, "category": "data_structure",
+            "source": gen.source_path(spec), "source_sha256": report["source_sha256"],
+            "meta": gen.meta_path(spec), "state": "template_solution",
+        }
+        with tempfile.TemporaryDirectory(prefix="ch03-runner-test-") as directory:
+            workspace = Path(directory)
+            root = workspace / ROOT.name
+            meta = root / gen.meta_path(spec)
+            meta.parent.mkdir(parents=True)
+            (root / "manifest.json").write_text(json.dumps({"problems": [entry]}), encoding="utf-8")
+            # 引用真实输入和生成器；仅把待核验元数据隔离到临时目录。
+            original = gen.metadata
+            def metadata_at_source(_root, *args, **kwargs):
+                return original(WORKSPACE, *args, **kwargs)
+            with patch.object(gen, "metadata", side_effect=metadata_at_source), \
+                    patch.object(gen.platform, "python_version", return_value="3.12.14"):
+                meta.write_text(json.dumps(expected), encoding="utf-8")
+                before = meta.read_bytes()
+                gen.check_index(workspace, spec, report)
+                self.assertEqual(meta.read_bytes(), before)
+                mutations = (
+                    ("runner", None), ("runner", ""), ("runner", 312),
+                    ("runner", "Python unknown"), ("runner", "Python 3.12.14"),
+                    ("sha256", "0" * 64),
+                    ("generation_evidence_sha256", "0" * 64),
+                )
+                for key, value in mutations:
+                    with self.subTest(key=key, value=value):
+                        changed = json.loads(json.dumps(expected))
+                        changed["provenance"]["evidence"]["generator"][key] = value
+                        meta.write_text(json.dumps(changed), encoding="utf-8")
+                        with self.assertRaisesRegex(ValueError, "metadata provenance"):
+                            gen.check_index(workspace, spec, report)
+                changed = json.loads(json.dumps(expected))
+                changed["provenance"]["evidence"]["generator"]["generation_evidence"]["runner"] = "Python 3.12.14"
+                meta.write_text(json.dumps(changed), encoding="utf-8")
+                with self.assertRaisesRegex(ValueError, "metadata provenance"):
+                    gen.check_index(workspace, spec, report)
+
 
 if __name__ == "__main__":
     unittest.main()

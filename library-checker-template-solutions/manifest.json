@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "updated_at": "2026-10-16T11:38:00.263481Z",
+  "updated_at": "2026-10-16T12:06:44.853999Z",
   "official_repository": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
     "url": "https://github.com/yosupo06/library-checker-problems"
@@ -438,7 +438,7 @@
       "title": "Deque Operate All Composite",
       "category": "data_structure",
       "source": "data_structure/deque_operate_all_composite/main.cpp",
-      "source_sha256": "be08168790d175f1266279ec2e1b9014a4e36185473412fdf57ad94f35942d7d",
+      "source_sha256": "5d9f8e29e6eb68951de95a549fb9224dee0d2cb8802037382dc8464a37aa6947",
       "meta": "data_structure/deque_operate_all_composite/meta.json",
       "state": "template_solution"
     },
@@ -1608,7 +1608,7 @@
       "title": "Queue Operate All Composite",
       "category": "data_structure",
       "source": "data_structure/queue_operate_all_composite/main.cpp",
-      "source_sha256": "f490597b8dae6bc3d1d6af6d4a9e3c5187b392c039c7371b5249a38e1bb7ef18",
+      "source_sha256": "b8b4cfd739f3c62a7d488cdb0bbdd231069d34556bda43ea28c6a0b03d42493b",
       "meta": "data_structure/queue_operate_all_composite/meta.json",
       "state": "template_solution"
     },

@@ -71,6 +71,9 @@ def snippet(name: str) -> str:
                   data, flags=re.M)
     # 依赖注释与代码之间不留空行，与手写正文的格式一致。
     data = re.sub(r'^(// 依赖 .*\n)\n+', r'\1', data.strip(), flags=re.M)
+    # 手写接口说明已覆盖同一依赖时，不再重复打印由 include 生成的通用说明。
+    data = re.sub(r'^// 依赖 (\d+\.\d+\.\d{3})[^\n]*\n(?=// 依赖 \1\b)',
+                  '', data, flags=re.M)
     return "```cpp\n" + data.strip() + "\n```"
 
 def sync_topics(data: str) -> tuple[str, set[str]]:

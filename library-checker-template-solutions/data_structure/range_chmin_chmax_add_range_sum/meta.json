@@ -11,12 +11,12 @@
       "method": "deterministic_generation",
       "generator": {
         "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-        "sha256": "095443c410decb1f6f3b70fd128a3010fa8d98ebee2322bd9f52d2449e2fee4e",
+        "sha256": "199ea86b40e5f0457a9346b8f4c1c8987d21c6a919e26fbc21b80dec746057c4",
         "working_directory": ".",
-        "runner": "Python 3.12.14",
+        "runner": "Python 3.13.14",
         "argv": [
           "--only",
-          "area_of_union_of_rectangles,deque,rectangle_sum,unionfind,persistent_unionfind,point_add_range_sum,range_chmin_chmax_add_range_sum,persistent_queue,range_affine_point_get,range_affine_range_sum,majority_voting,point_set_range_composite_large_array,range_parallel_unionfind,static_range_count_distinct,static_range_inversions_query,unionfind_with_potential,unionfind_with_potential_non_commutative_group,associative_array,double_ended_priority_queue,staticrmq,point_set_range_composite,range_kth_smallest,static_range_frequency,static_range_sum_with_upper_bound",
+          "area_of_union_of_rectangles,associative_array,deque,rectangle_sum,unionfind,persistent_unionfind,point_add_range_sum,range_add_range_min,range_chmin_chmax_add_range_sum,staticrmq,range_kth_smallest,static_range_frequency,static_range_sum_with_upper_bound,persistent_queue,range_affine_point_get,range_affine_range_sum,deque_operate_all_composite,queue_operate_all_composite,double_ended_priority_queue,majority_voting,point_set_range_composite,point_set_range_composite_large_array,point_add_rectangle_sum,rectangle_add_point_get,range_parallel_unionfind,static_range_count_distinct,static_range_inversions_query,static_range_lis_query,static_range_sum,unionfind_with_potential,unionfind_with_potential_non_commutative_group",
           "--write-index"
         ],
         "generation_evidence": {
@@ -25,18 +25,18 @@
           "source_path": "library-checker-template-solutions/data_structure/range_chmin_chmax_add_range_sum/main.cpp",
           "source_sha256": "a9b7aefcfa5b037fb0f2c15e54c8b282e71047bcb65e65d4d0a265612d5ebb23",
           "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-          "generator_sha256": "095443c410decb1f6f3b70fd128a3010fa8d98ebee2322bd9f52d2449e2fee4e",
+          "generator_sha256": "199ea86b40e5f0457a9346b8f4c1c8987d21c6a919e26fbc21b80dec746057c4",
           "working_directory": ".",
-          "runner": "Python 3.12.14",
+          "runner": "Python 3.13.14",
           "argv": [
             "--only",
-            "area_of_union_of_rectangles,deque,rectangle_sum,unionfind,persistent_unionfind,point_add_range_sum,range_chmin_chmax_add_range_sum,persistent_queue,range_affine_point_get,range_affine_range_sum,majority_voting,point_set_range_composite_large_array,range_parallel_unionfind,static_range_count_distinct,static_range_inversions_query,unionfind_with_potential,unionfind_with_potential_non_commutative_group,associative_array,double_ended_priority_queue,staticrmq,point_set_range_composite,range_kth_smallest,static_range_frequency,static_range_sum_with_upper_bound",
+            "area_of_union_of_rectangles,associative_array,deque,rectangle_sum,unionfind,persistent_unionfind,point_add_range_sum,range_add_range_min,range_chmin_chmax_add_range_sum,staticrmq,range_kth_smallest,static_range_frequency,static_range_sum_with_upper_bound,persistent_queue,range_affine_point_get,range_affine_range_sum,deque_operate_all_composite,queue_operate_all_composite,double_ended_priority_queue,majority_voting,point_set_range_composite,point_set_range_composite_large_array,point_add_rectangle_sum,rectangle_add_point_get,range_parallel_unionfind,static_range_count_distinct,static_range_inversions_query,static_range_lis_query,static_range_sum,unionfind_with_potential,unionfind_with_potential_non_commutative_group",
             "--write-index"
           ],
           "inputs": [
             {
               "path": "hushuqi算法竞赛模板/03-数据结构.md",
-              "sha256": "053912fe8743d44a0d0e76a1874a8c511ae01965f2c52688f8df4e5f54485143"
+              "sha256": "7c76d2bade0f913257f0eacac95fe403a3eb1b535e65617115083cbb2001b8a1"
             },
             {
               "path": "hushuqi算法竞赛模板/include/full/3_3_011.hpp",
@@ -50,13 +50,13 @@
           "generated_sha256": "a9b7aefcfa5b037fb0f2c15e54c8b282e71047bcb65e65d4d0a265612d5ebb23",
           "byte_equal": true
         },
-        "generation_evidence_sha256": "1f9ff0a07cd7b43f274fa05accd341ee794878cc37e4e7664edea6cdb666be8e"
+        "generation_evidence_sha256": "ec82fd234ad9d9a4bda36c4c790460f95501b151a02781418e06bb18b86454bc"
       },
       "adapter_sha256": "649a493e0b7a2ad85f72ac6fc14b40df6525bc9a63a80e2bff03e3babeb1752c",
       "template_inputs": [
         {
           "path": "hushuqi算法竞赛模板/03-数据结构.md",
-          "sha256": "053912fe8743d44a0d0e76a1874a8c511ae01965f2c52688f8df4e5f54485143"
+          "sha256": "7c76d2bade0f913257f0eacac95fe403a3eb1b535e65617115083cbb2001b8a1"
         },
         {
           "path": "hushuqi算法竞赛模板/include/full/3_3_011.hpp",
@@ -70,7 +70,7 @@
       "temporary_regenerations": 2,
       "byte_identical": true,
       "source_sha256": "a9b7aefcfa5b037fb0f2c15e54c8b282e71047bcb65e65d4d0a265612d5ebb23",
-      "evidence_sha256": "89041b692164eb46fab030bc193b4d7057599fe10189d05b9f0c3a98fe6ff0df"
+      "evidence_sha256": "c9a8273c0a8c2bb007c4278a9e0ba2c51cf3b47eb26ebe9f0a81e8ca3f248591"
     }
   },
   "reference": {

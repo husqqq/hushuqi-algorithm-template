@@ -11,12 +11,12 @@
       "method": "deterministic_generation",
       "generator": {
         "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-        "sha256": "095443c410decb1f6f3b70fd128a3010fa8d98ebee2322bd9f52d2449e2fee4e",
+        "sha256": "199ea86b40e5f0457a9346b8f4c1c8987d21c6a919e26fbc21b80dec746057c4",
         "working_directory": ".",
-        "runner": "Python 3.12.14",
+        "runner": "Python 3.13.14",
         "argv": [
           "--only",
-          "area_of_union_of_rectangles,deque,rectangle_sum,unionfind,persistent_unionfind,point_add_range_sum,range_chmin_chmax_add_range_sum,persistent_queue,range_affine_point_get,range_affine_range_sum,majority_voting,point_set_range_composite_large_array,range_parallel_unionfind,static_range_count_distinct,static_range_inversions_query,unionfind_with_potential,unionfind_with_potential_non_commutative_group,associative_array,double_ended_priority_queue,staticrmq,point_set_range_composite,range_kth_smallest,static_range_frequency,static_range_sum_with_upper_bound",
+          "area_of_union_of_rectangles,associative_array,deque,rectangle_sum,unionfind,persistent_unionfind,point_add_range_sum,range_add_range_min,range_chmin_chmax_add_range_sum,staticrmq,range_kth_smallest,static_range_frequency,static_range_sum_with_upper_bound,persistent_queue,range_affine_point_get,range_affine_range_sum,deque_operate_all_composite,queue_operate_all_composite,double_ended_priority_queue,majority_voting,point_set_range_composite,point_set_range_composite_large_array,point_add_rectangle_sum,rectangle_add_point_get,range_parallel_unionfind,static_range_count_distinct,static_range_inversions_query,static_range_lis_query,static_range_sum,unionfind_with_potential,unionfind_with_potential_non_commutative_group",
           "--write-index"
         ],
         "generation_evidence": {
@@ -25,12 +25,12 @@
           "source_path": "library-checker-template-solutions/data_structure/deque/main.cpp",
           "source_sha256": "eebe579702aa4578db74f3179a4df810371fd160132247bff83ffde78052cc3e",
           "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-          "generator_sha256": "095443c410decb1f6f3b70fd128a3010fa8d98ebee2322bd9f52d2449e2fee4e",
+          "generator_sha256": "199ea86b40e5f0457a9346b8f4c1c8987d21c6a919e26fbc21b80dec746057c4",
           "working_directory": ".",
-          "runner": "Python 3.12.14",
+          "runner": "Python 3.13.14",
           "argv": [
             "--only",
-            "area_of_union_of_rectangles,deque,rectangle_sum,unionfind,persistent_unionfind,point_add_range_sum,range_chmin_chmax_add_range_sum,persistent_queue,range_affine_point_get,range_affine_range_sum,majority_voting,point_set_range_composite_large_array,range_parallel_unionfind,static_range_count_distinct,static_range_inversions_query,unionfind_with_potential,unionfind_with_potential_non_commutative_group,associative_array,double_ended_priority_queue,staticrmq,point_set_range_composite,range_kth_smallest,static_range_frequency,static_range_sum_with_upper_bound",
+            "area_of_union_of_rectangles,associative_array,deque,rectangle_sum,unionfind,persistent_unionfind,point_add_range_sum,range_add_range_min,range_chmin_chmax_add_range_sum,staticrmq,range_kth_smallest,static_range_frequency,static_range_sum_with_upper_bound,persistent_queue,range_affine_point_get,range_affine_range_sum,deque_operate_all_composite,queue_operate_all_composite,double_ended_priority_queue,majority_voting,point_set_range_composite,point_set_range_composite_large_array,point_add_rectangle_sum,rectangle_add_point_get,range_parallel_unionfind,static_range_count_distinct,static_range_inversions_query,static_range_lis_query,static_range_sum,unionfind_with_potential,unionfind_with_potential_non_commutative_group",
             "--write-index"
           ],
           "inputs": [
@@ -46,7 +46,7 @@
           "generated_sha256": "eebe579702aa4578db74f3179a4df810371fd160132247bff83ffde78052cc3e",
           "byte_equal": true
         },
-        "generation_evidence_sha256": "84499e700f169363b621e559b6c0ae6591be3972b72f15cc086b2b0f04390475"
+        "generation_evidence_sha256": "898e04738d0a0766afaf13d5fbacef8c06a727f7bf721d4d9c34839b41e05ee2"
       },
       "adapter_sha256": "74291e6f231df6fc6c4620a39646c51011783fe3cb01517d86485c81dfc3fe97",
       "template_inputs": [
@@ -62,7 +62,7 @@
       "temporary_regenerations": 2,
       "byte_identical": true,
       "source_sha256": "eebe579702aa4578db74f3179a4df810371fd160132247bff83ffde78052cc3e",
-      "evidence_sha256": "50bb7a11eb6fe293fb70993c1c1f76292a8de4dac893f1df4b1179d78f332b35"
+      "evidence_sha256": "7ed71261ae15476f585a6fbcba464ec5e09aa266fd2b5e9d6881dc5fbdce2325"
     }
   },
   "reference": {
