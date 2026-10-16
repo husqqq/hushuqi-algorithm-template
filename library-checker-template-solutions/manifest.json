@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "updated_at": "2026-10-16T10:24:52.763707Z",
+  "updated_at": "2026-10-16T11:11:05.356231Z",
   "official_repository": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
     "url": "https://github.com/yosupo06/library-checker-problems"
@@ -1410,7 +1410,7 @@
       "title": "Point Add Rectangle Sum",
       "category": "data_structure",
       "source": "data_structure/point_add_rectangle_sum/main.cpp",
-      "source_sha256": "72c330225f6776cca9640d86423e3a292ec0005a24c1a92680223c173396b707",
+      "source_sha256": "87c8af1fb2630405e719914a0d13fc2c5176a971d79db885c1165f05b94b6271",
       "meta": "data_structure/point_add_rectangle_sum/meta.json",
       "state": "template_solution"
     },
@@ -1716,7 +1716,7 @@
       "title": "Rectangle Add Point Get",
       "category": "data_structure",
       "source": "data_structure/rectangle_add_point_get/main.cpp",
-      "source_sha256": "cac1216ef0745673b2ecfb0db7ff3d18538bb8f9cb566d7ea2bc2f288e0cbc24",
+      "source_sha256": "e8359286bf4dedb72296a578d32bcdab417bcd531de69ffdb241654e63a2490a",
       "meta": "data_structure/rectangle_add_point_get/meta.json",
       "state": "template_solution"
     },

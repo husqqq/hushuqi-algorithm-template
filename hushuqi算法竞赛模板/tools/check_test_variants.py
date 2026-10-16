@@ -18,7 +18,10 @@ ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = ROOT / "include"
 TESTS = ROOT / "tests"
 GENERATOR = ROOT / "tools" / "generate_print_headers.py"
-LOCAL_INCLUDE = re.compile(r'#include\s+"\.\./include/(full/)?([^\"]+)"')
+LOCAL_INCLUDE = re.compile(
+    r'(?m)^([ \t]*#[ \t]*(?:include[ \t]*|define[ \t]+\w+[ \t]+))'
+    r'"\.\./include/(full/)?([^\"]+)"'
+)
 
 
 def compiler() -> str:
@@ -40,14 +43,14 @@ def branch_source(source: Path, branch: str) -> str:
     text = source.read_text(encoding="utf-8")
 
     def redirect(match: re.Match[str]) -> str:
-        full_prefix, name = match.groups()
+        directive, full_prefix, name = match.groups()
         if full_prefix:
             target = INCLUDE / branch / name
         elif branch == "print":
             target = INCLUDE / "print" / "support" / name
         else:
             target = INCLUDE / name
-        return f'#include "{target.as_posix()}"'
+        return f'{directive}"{target.as_posix()}"'
 
     return LOCAL_INCLUDE.sub(redirect, text)
 

@@ -1807,14 +1807,14 @@ signed main()
 
     int n, q;
     cin >> n >> q;
-    vector<array<int, 3>> init(n);
+    vector<array<int, 3>> init(n); // 初始点的横坐标、纵坐标和权值。
     vector<pair<int, int>> plan;
     for (auto &[x, y, w] : init)
     {
         cin >> x >> y >> w;
         plan.push_back({x, y});
     }
-    vector<array<int, 5>> qs(q);
+    vector<array<int, 5>> qs(q); // 类型 0 为 {0,x,y,w,0}，类型 1 为 {1,l,d,r,u}。
     for (auto &z : qs)
     {
         cin >> z[0];
@@ -1864,10 +1864,11 @@ signed main()
 
     int n, q;
     cin >> n >> q;
-    vector<array<int, 5>> init(n);
+    vector<array<int, 5>> init(n); // 初始矩形的左、下、右、上边界和权值。
     vector<pair<int, int>> plan;
     auto addCorners = [&](const array<int, 5> &z)
     {
+        // z 为 {左,下,右,上,权值}；登记该矩形四个差分角。
         plan.push_back({z[0], z[1]});
         plan.push_back({z[0], z[3]});
         plan.push_back({z[2], z[1]});
@@ -1878,7 +1879,7 @@ signed main()
         cin >> z[0] >> z[1] >> z[2] >> z[3] >> z[4];
         addCorners(z);
     }
-    vector<array<int, 6>> qs(q);
+    vector<array<int, 6>> qs(q); // 类型 0 为 {0,l,d,r,u,w}，类型 1 为 {1,x,y,0,0,0}。
     for (auto &z : qs)
     {
         cin >> z[0];

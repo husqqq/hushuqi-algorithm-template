@@ -68,14 +68,16 @@ class BIT2
         }
     }
 
-    long long prefixSum(int x, int y) const
+    long long prefixSum(int x, int y, bool closed = false) const
     {
-        // x、y 是开前缀上界；返回横坐标小于 x 且纵坐标小于 y 的点权和。
-        int p = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
+        // x、y 是前缀上界；closed 为真时两维取 <=，否则取 <；返回点权和。
+        int p = (closed ? upper_bound(xs.begin(), xs.end(), x)
+                        : lower_bound(xs.begin(), xs.end(), x)) - xs.begin();
         long long ans = 0;
         for (int i = p; i > 0; i -= i & -i)
         {
-            int q = lower_bound(ys[i].begin(), ys[i].end(), y) - ys[i].begin();
+            int q = (closed ? upper_bound(ys[i].begin(), ys[i].end(), y)
+                            : lower_bound(ys[i].begin(), ys[i].end(), y)) - ys[i].begin();
             for (int j = q; j > 0; j -= j & -j)
             {
                 ans += tr[i][j];
@@ -97,6 +99,6 @@ class BIT2
     long long pointGet(int x, int y) const
     {
         // (x,y) 是查询点；返回所有包含该点的半开加权矩形的权值和。
-        return prefixSum(x + 1, y + 1);
+        return prefixSum(x, y, true);
     }
 };

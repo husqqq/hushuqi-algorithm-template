@@ -3,20 +3,38 @@
 using namespace std;
 #define int long long
 
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
+
+
+#include <limits>
+
+using namespace std;
+
+constexpr long long INF = numeric_limits<long long>::max() / 4;
 
 template <class T> bool chmin(T &a, const T &b)
 {
-    // 若 b 更小则更新 a，返回是否更新。
-    return b < a ? a = b, true : false;
+    // a 是待更新值，b 是候选值；若 b 更小则更新 a 并返回 true。
+    if (b < a)
+    {
+        a = b;
+        return true;
+    }
+    return false;
 }
+
 template <class T> bool chmax(T &a, const T &b)
 {
-    // 若 b 更大则更新 a，返回是否更新。
-    return a < b ? a = b, true : false;
+    // a 是待更新值，b 是候选值；若 b 更大则更新 a 并返回 true。
+    if (a < b)
+    {
+        a = b;
+        return true;
+    }
+    return false;
 }
+
+constexpr int inf = 1E9;
+constexpr long double eps = 1E-12L;
 
 class BIT2
 {
@@ -82,14 +100,16 @@ class BIT2
         }
     }
 
-    long long prefixSum(int x, int y) const
+    long long prefixSum(int x, int y, bool closed = false) const
     {
-        // x、y 是开前缀上界；返回横坐标小于 x 且纵坐标小于 y 的点权和。
-        int p = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
+        // x、y 是前缀上界；closed 为真时两维取 <=，否则取 <；返回点权和。
+        int p = (closed ? upper_bound(xs.begin(), xs.end(), x)
+                        : lower_bound(xs.begin(), xs.end(), x)) - xs.begin();
         long long ans = 0;
         for (int i = p; i > 0; i -= i & -i)
         {
-            int q = lower_bound(ys[i].begin(), ys[i].end(), y) - ys[i].begin();
+            int q = (closed ? upper_bound(ys[i].begin(), ys[i].end(), y)
+                            : lower_bound(ys[i].begin(), ys[i].end(), y)) - ys[i].begin();
             for (int j = q; j > 0; j -= j & -j)
             {
                 ans += tr[i][j];
@@ -111,7 +131,7 @@ class BIT2
     long long pointGet(int x, int y) const
     {
         // (x,y) 是查询点；返回所有包含该点的半开加权矩形的权值和。
-        return prefixSum(x + 1, y + 1);
+        return prefixSum(x, y, true);
     }
 };
 
@@ -122,10 +142,11 @@ signed main()
 
     int n, q;
     cin >> n >> q;
-    vector<array<int, 5>> init(n);
+    vector<array<int, 5>> init(n); // 初始矩形的左、下、右、上边界和权值。
     vector<pair<int, int>> plan;
     auto addCorners = [&](const array<int, 5> &z)
     {
+        // z 为 {左,下,右,上,权值}；登记该矩形四个差分角。
         plan.push_back({z[0], z[1]});
         plan.push_back({z[0], z[3]});
         plan.push_back({z[2], z[1]});
@@ -136,7 +157,7 @@ signed main()
         cin >> z[0] >> z[1] >> z[2] >> z[3] >> z[4];
         addCorners(z);
     }
-    vector<array<int, 6>> qs(q);
+    vector<array<int, 6>> qs(q); // 类型 0 为 {0,l,d,r,u,w}，类型 1 为 {1,x,y,0,0,0}。
     for (auto &z : qs)
     {
         cin >> z[0];
