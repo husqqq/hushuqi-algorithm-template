@@ -2,8 +2,6 @@
 using namespace std;
 #define int long long
 
-#include "../topic_common.hpp"
-
 template <int A = 26> class AC
 {
   public:

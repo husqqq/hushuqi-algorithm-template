@@ -15,24 +15,47 @@ OUT = ROOT / "library-checker-template-solutions"
 COMMIT = "04c8de378bab67be926325de2871f0babb8e6451"
 INC = re.compile(r'^\s*#\s*include\s+"([^"]+)"\s*(?://.*)?$')
 # 仅对已逐题复核的条目强制完整来源证明；其余条目继续公开同步缺口。
-PROVEN = {"number_of_substrings", "longest_common_substring", "runenumerate", "palindromes_in_deque", "zalgorithm", "enumerate_palindromes", "lyndon_factorization"}
+PROVEN = {"aho_corasick", "number_of_substrings", "longest_common_substring", "runenumerate", "palindromes_in_deque", "zalgorithm", "enumerate_palindromes", "lyndon_factorization"}
 
 SPECS = {
     "aho_corasick": ("4_2_002.hpp", r'''
 signed main()
 {
-    int n; cin >> n;
+    // 无参数；按题面编号输出 Trie 父边、fail 边和各模式终态，成功返回 0。
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n;
+    cin >> n;
     AC<26> ac;
-    vector<int> end(n);
-    for (auto &x : end) { string s; cin >> s; x = ac.add(s); }
+    vector<int> ends(n);
+    for (auto &x : ends)
+    {
+        string s;
+        cin >> s;
+        x = ac.add(s);
+    }
     ac.build();
-    auto &nodes = ac.nodes();
+    const auto &nodes = ac.nodes();
     vector<int> par(nodes.size(), -1);
     for (int u = 0; u < (int)nodes.size(); u++)
-        for (int c = 0; c < 26; c++) if (nodes[u].ch[c] != -1) par[nodes[u].ch[c]] = u;
+    {
+        for (int c = 0; c < 26; c++)
+        {
+            if (nodes[u].ch[c] != -1)
+            {
+                par[nodes[u].ch[c]] = u;
+            }
+        }
+    }
     cout << nodes.size() << '\n';
-    for (int u = 1; u < (int)nodes.size(); u++) cout << par[u] << ' ' << nodes[u].fail << '\n';
-    for (int i = 0; i < n; i++) cout << (i ? " " : "") << end[i];
+    for (int u = 1; u < (int)nodes.size(); u++)
+    {
+        cout << par[u] << ' ' << nodes[u].fail << '\n';
+    }
+    for (int i = 0; i < n; i++)
+    {
+        cout << (i ? " " : "") << ends[i];
+    }
     cout << '\n';
 }
 

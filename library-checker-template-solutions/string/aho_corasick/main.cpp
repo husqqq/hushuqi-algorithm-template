@@ -2,31 +2,6 @@
 using namespace std;
 #define int long long
 
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
-
-template <class T> bool chmin(T &a, const T &b)
-{
-    // a 是待更新值，b 是候选值；若 a 变小则返回 true。
-    if (b >= a)
-    {
-        return false;
-    }
-    a = b;
-    return true;
-}
-template <class T> bool chmax(T &a, const T &b)
-{
-    // a 是待更新值，b 是候选值；若 a 变大则返回 true。
-    if (a >= b)
-    {
-        return false;
-    }
-    a = b;
-    return true;
-}
-
 template <int A = 26> class AC
 {
   public:
@@ -38,6 +13,7 @@ template <int A = 26> class AC
         int fail = 0;
         Node()
         {
+            // 无参数；Trie 实边置为 -1（不存在），补全转移默认指向根 0。
             ch.fill(-1);
             nxt.fill(0);
         }
@@ -123,17 +99,40 @@ template <int A = 26> class AC
 
 signed main()
 {
-    int n; cin >> n;
+    // 无参数；按题面编号输出 Trie 父边、fail 边和各模式终态，成功返回 0。
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n;
+    cin >> n;
     AC<26> ac;
-    vector<int> end(n);
-    for (auto &x : end) { string s; cin >> s; x = ac.add(s); }
+    vector<int> ends(n);
+    for (auto &x : ends)
+    {
+        string s;
+        cin >> s;
+        x = ac.add(s);
+    }
     ac.build();
-    auto &nodes = ac.nodes();
+    const auto &nodes = ac.nodes();
     vector<int> par(nodes.size(), -1);
     for (int u = 0; u < (int)nodes.size(); u++)
-        for (int c = 0; c < 26; c++) if (nodes[u].ch[c] != -1) par[nodes[u].ch[c]] = u;
+    {
+        for (int c = 0; c < 26; c++)
+        {
+            if (nodes[u].ch[c] != -1)
+            {
+                par[nodes[u].ch[c]] = u;
+            }
+        }
+    }
     cout << nodes.size() << '\n';
-    for (int u = 1; u < (int)nodes.size(); u++) cout << par[u] << ' ' << nodes[u].fail << '\n';
-    for (int i = 0; i < n; i++) cout << (i ? " " : "") << end[i];
+    for (int u = 1; u < (int)nodes.size(); u++)
+    {
+        cout << par[u] << ' ' << nodes[u].fail << '\n';
+    }
+    for (int i = 0; i < n; i++)
+    {
+        cout << (i ? " " : "") << ends[i];
+    }
     cout << '\n';
 }

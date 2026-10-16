@@ -42,7 +42,7 @@
       "title": "Aho Corasick",
       "category": "string",
       "source": "string/aho_corasick/main.cpp",
-      "source_sha256": "9aec32d959e20fa9aa49a3b0f7448a3981642e9d94e61d587b7d54a375205687",
+      "source_sha256": "e0d73f4065493436e14293f0e9c63b7fcbcbb5227b5e6f488e3b20b29763cee9",
       "meta": "string/aho_corasick/meta.json",
       "state": "template_solution"
     },
