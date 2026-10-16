@@ -6,71 +6,87 @@
   "provenance": {
     "kind": "template_solution",
     "source": "data_structure/range_reverse_range_sum/main.cpp",
-    "source_sha256": "8605b8ac0e1a541fb1f4e02183cfa85ce7b10e0656964233bd657beced97743c",
+    "source_sha256": "0f928bc6707354b02a30b06b6ec85ddabfe50acfc47db5c8181feef2f7a1430d",
     "evidence": {
       "method": "deterministic_generation",
       "generator": {
         "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-        "sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+        "sha256": "199ea86b40e5f0457a9346b8f4c1c8987d21c6a919e26fbc21b80dec746057c4",
         "working_directory": ".",
         "runner": "Python 3.13.14",
         "argv": [
           "--only",
-          "range_reverse_range_sum",
+          "dynamic_point_set_rectangle_affine_rectangle_sum,dynamic_sequence_range_affine_range_sum,persistent_range_affine_range_sum,range_reverse_range_sum,range_set_range_composite,range_affine_range_sum_large_array,point_set_range_sort_range_composite,static_rectangle_add_rectangle_sum",
           "--write-index"
         ],
         "generation_evidence": {
           "schema_version": 2,
           "problem_id": "data_structure/range_reverse_range_sum",
           "source_path": "library-checker-template-solutions/data_structure/range_reverse_range_sum/main.cpp",
-          "source_sha256": "8605b8ac0e1a541fb1f4e02183cfa85ce7b10e0656964233bd657beced97743c",
+          "source_sha256": "0f928bc6707354b02a30b06b6ec85ddabfe50acfc47db5c8181feef2f7a1430d",
           "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-          "generator_sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+          "generator_sha256": "199ea86b40e5f0457a9346b8f4c1c8987d21c6a919e26fbc21b80dec746057c4",
           "working_directory": ".",
           "runner": "Python 3.13.14",
           "argv": [
             "--only",
-            "range_reverse_range_sum",
+            "dynamic_point_set_rectangle_affine_rectangle_sum,dynamic_sequence_range_affine_range_sum,persistent_range_affine_range_sum,range_reverse_range_sum,range_set_range_composite,range_affine_range_sum_large_array,point_set_range_sort_range_composite,static_rectangle_add_rectangle_sum",
             "--write-index"
           ],
           "inputs": [
             {
               "path": "hushuqi算法竞赛模板/03-数据结构.md",
-              "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+              "sha256": "7c76d2bade0f913257f0eacac95fe403a3eb1b535e65617115083cbb2001b8a1"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/include/common.hpp",
+              "sha256": "0624448a3c6ae430b3fe4f652123d0819a8404cea348ac10b150732a54095bf3"
             },
             {
               "path": "hushuqi算法竞赛模板/include/full/3_5_011.hpp",
-              "sha256": "becb4e08ed043a92727b3f3dd9dbaca345a004fabe583cfba74f3a581e89ac4b"
+              "sha256": "4cd97c47fc08a5f31832c2cab920b2e12d893ce447fb09d174c5a1b2c7df146e"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/include/topic_common.hpp",
+              "sha256": "8352c9e997b91d70953abf0ab9b1e1e440c7e24369c0ca7be5d7c61f7b817930"
             },
             {
               "path": "hushuqi算法竞赛模板/tests/test_ch03_implicit_treap.cpp",
-              "sha256": "0a4cc3d921da50e8637d99b226cfc352d2a9d3760c3d055e3de3ccb73246db55"
+              "sha256": "5511a85cb017d492621ecf536d2576cc864e6a3ebc47a16521b3ffe3273fed0f"
             }
           ],
-          "generated_sha256": "8605b8ac0e1a541fb1f4e02183cfa85ce7b10e0656964233bd657beced97743c",
+          "generated_sha256": "0f928bc6707354b02a30b06b6ec85ddabfe50acfc47db5c8181feef2f7a1430d",
           "byte_equal": true
         },
-        "generation_evidence_sha256": "f9b6ef518c5add21fc54b5883fee2d3ec45b649c19add91dc2fdcbc480bd217b"
+        "generation_evidence_sha256": "64842205c7385c1a7f72c1c794e08810889c2fc3c6b6d435b83db47cd2edb8b3"
       },
       "adapter_sha256": "cbfaa36d9c3f690c868763de25ecd9b59058e5f75c3f9ba5912433d8db26b403",
       "template_inputs": [
         {
           "path": "hushuqi算法竞赛模板/03-数据结构.md",
-          "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+          "sha256": "7c76d2bade0f913257f0eacac95fe403a3eb1b535e65617115083cbb2001b8a1"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/common.hpp",
+          "sha256": "0624448a3c6ae430b3fe4f652123d0819a8404cea348ac10b150732a54095bf3"
         },
         {
           "path": "hushuqi算法竞赛模板/include/full/3_5_011.hpp",
-          "sha256": "becb4e08ed043a92727b3f3dd9dbaca345a004fabe583cfba74f3a581e89ac4b"
+          "sha256": "4cd97c47fc08a5f31832c2cab920b2e12d893ce447fb09d174c5a1b2c7df146e"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/topic_common.hpp",
+          "sha256": "8352c9e997b91d70953abf0ab9b1e1e440c7e24369c0ca7be5d7c61f7b817930"
         },
         {
           "path": "hushuqi算法竞赛模板/tests/test_ch03_implicit_treap.cpp",
-          "sha256": "0a4cc3d921da50e8637d99b226cfc352d2a9d3760c3d055e3de3ccb73246db55"
+          "sha256": "5511a85cb017d492621ecf536d2576cc864e6a3ebc47a16521b3ffe3273fed0f"
         }
       ],
       "temporary_regenerations": 2,
       "byte_identical": true,
-      "source_sha256": "8605b8ac0e1a541fb1f4e02183cfa85ce7b10e0656964233bd657beced97743c",
-      "evidence_sha256": "9ccbf22a8ccc2185e7b306cd89c42197ca63d369d816f9c3ffba9a40a7c0d5f6"
+      "source_sha256": "0f928bc6707354b02a30b06b6ec85ddabfe50acfc47db5c8181feef2f7a1430d",
+      "evidence_sha256": "b26ad9bd857d14dc907389d1d4d497883e8386e2d9aaa5d374711d5ef36975be"
     }
   },
   "reference": {
@@ -94,7 +110,7 @@
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch03_implicit_treap.cpp"
     ],
-    "current_source_sha256": "8605b8ac0e1a541fb1f4e02183cfa85ce7b10e0656964233bd657beced97743c",
+    "current_source_sha256": "0f928bc6707354b02a30b06b6ec85ddabfe50acfc47db5c8181feef2f7a1430d",
     "current_source_online_verdict": null,
     "current_source_submission_id": null,
     "current_source_time": null,

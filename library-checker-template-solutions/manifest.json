@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "updated_at": "2026-10-16T13:19:36.209091Z",
+  "updated_at": "2026-10-16T13:45:51.274467Z",
   "official_repository": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
     "url": "https://github.com/yosupo06/library-checker-problems"
@@ -546,7 +546,7 @@
       "title": "Dynamic Point Rectangle Affine Rectangle Sum",
       "category": "data_structure",
       "source": "data_structure/dynamic_point_set_rectangle_affine_rectangle_sum/main.cpp",
-      "source_sha256": "5d5ec13f03c14263776fd1a8ac1b0538f118d4413410d7d849a3646410c72879",
+      "source_sha256": "af6c9ce2c722392e0444db7d2153f5b8571a2085d124a85ac307df356517fba6",
       "meta": "data_structure/dynamic_point_set_rectangle_affine_rectangle_sum/meta.json",
       "state": "template_solution"
     },
@@ -555,7 +555,7 @@
       "title": "Dynamic Sequence Range Affine Range Sum",
       "category": "data_structure",
       "source": "data_structure/dynamic_sequence_range_affine_range_sum/main.cpp",
-      "source_sha256": "fd50afed335e8c68e9722acaf1c6ece5b702b70098f09a391cbcd5f934a68954",
+      "source_sha256": "649ab74a83c70df6f41c7502ceffdc294727083f752c33cbaa51dfcacd6c641d",
       "meta": "data_structure/dynamic_sequence_range_affine_range_sum/meta.json",
       "state": "template_solution"
     },
@@ -1374,7 +1374,7 @@
       "title": "Persistent Range Affine Range Sum",
       "category": "data_structure",
       "source": "data_structure/persistent_range_affine_range_sum/main.cpp",
-      "source_sha256": "6ef34be75eddd40653804715c3374a2ad6075e4bfecebc66fbb22f5149c352cd",
+      "source_sha256": "bbc76f6d367975c6701441ec35eb8e4c643217d90a8c81550872ab1c229cbd18",
       "meta": "data_structure/persistent_range_affine_range_sum/meta.json",
       "state": "template_solution"
     },
@@ -1446,7 +1446,7 @@
       "title": "Point Set Range Sort Range Composite",
       "category": "data_structure",
       "source": "data_structure/point_set_range_sort_range_composite/main.cpp",
-      "source_sha256": "fa0d99855f90c8f9aef800579b181475c2ff67df5a2b3fe17a8dd843a5d20670",
+      "source_sha256": "fe546fa65af6739545b72720460b3f239ad64a233c933e006cd26bd9dbf897f9",
       "meta": "data_structure/point_set_range_sort_range_composite/meta.json",
       "state": "template_solution"
     },
@@ -1644,7 +1644,7 @@
       "title": "Range Affine Range Sum (Large Array)",
       "category": "data_structure",
       "source": "data_structure/range_affine_range_sum_large_array/main.cpp",
-      "source_sha256": "767db32d6fad10252f9f202976342fbe48e290aaea5b901850e3eae3bc20ab34",
+      "source_sha256": "87c7f2c28ec54212fa3f7c4a45cfb6c9af52294ed14058dfe40f182ca31da4c2",
       "meta": "data_structure/range_affine_range_sum_large_array/meta.json",
       "state": "template_solution"
     },
@@ -1689,7 +1689,7 @@
       "title": "Range Reverse Range Sum",
       "category": "data_structure",
       "source": "data_structure/range_reverse_range_sum/main.cpp",
-      "source_sha256": "8605b8ac0e1a541fb1f4e02183cfa85ce7b10e0656964233bd657beced97743c",
+      "source_sha256": "0f928bc6707354b02a30b06b6ec85ddabfe50acfc47db5c8181feef2f7a1430d",
       "meta": "data_structure/range_reverse_range_sum/meta.json",
       "state": "template_solution"
     },
@@ -1698,7 +1698,7 @@
       "title": "Range Set Range Composite",
       "category": "data_structure",
       "source": "data_structure/range_set_range_composite/main.cpp",
-      "source_sha256": "658deb1fefdb0bb0c268accffa3a9a0e1882fa8e410a8215005a98c11b4a23f7",
+      "source_sha256": "1cb2303b494e4b503769966cce6dc826e637c74007e91ec3838a29239ce3f992",
       "meta": "data_structure/range_set_range_composite/meta.json",
       "state": "template_solution"
     },
@@ -1941,7 +1941,7 @@
       "title": "Static Rectangle Add Rectangle Sum",
       "category": "data_structure",
       "source": "data_structure/static_rectangle_add_rectangle_sum/main.cpp",
-      "source_sha256": "48bda196d5fab0364d968ebdc81ffa741e29d19151e8d6d43e180d09cd1c8330",
+      "source_sha256": "3920d020c0b3223d8164d5798b0439b6400712860e383dc77431a778c210ba22",
       "meta": "data_structure/static_rectangle_add_rectangle_sum/meta.json",
       "state": "template_solution"
     },

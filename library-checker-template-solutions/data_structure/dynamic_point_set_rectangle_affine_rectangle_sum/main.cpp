@@ -1,35 +1,32 @@
+#ifndef HUSHUQI_STATIC_MINT_HPP
+#define HUSHUQI_STATIC_MINT_HPP
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
 
-template <long long P> struct MInt
+template <uint32_t P> struct MInt
 {
-    static_assert(P > 1);
-    using V = conditional_t<(P <= numeric_limits<int32_t>::max()),
-                            uint32_t, unsigned long long>;
-    static constexpr V M = (V)P; // 与 x 同宽的模数，避免热路径被 P 提升为有符号 64 位
-    V x = 0; // 当前剩余类在 [0,P) 内的代表元；常见小模使用无符号 32 位
+    static_assert(1 < P && P <= 1000000007);
+    uint32_t x = 0; // 固定 32 位以保证对象为 4 字节，提高大数组的缓存密度。
 
-    MInt() = default;
-
-    MInt(long long v)
+    MInt(long long v = 0)
     {
         // v 是要转入模 P 剩余类的整数；构造其最小非负代表元。
-        v %= P;
+        v %= (long long)P;
         if (v < 0)
         {
             v += P;
         }
-        x = (V)v;
+        x = (uint32_t)v;
     }
 
-    static constexpr long long mod()
+    static constexpr uint32_t mod()
     {
         // 无参数；返回编译期模数 P。
         return P;
     }
 
-    long long val() const
+    uint32_t val() const
     {
         // 无参数；返回当前剩余类的最小非负代表元。
         return x;
@@ -39,7 +36,7 @@ template <long long P> struct MInt
     {
         // 无参数；返回当前剩余类的加法逆元。
         MInt ans;
-        ans.x = x ? M - x : 0;
+        ans.x = x ? P - x : 0;
         return ans;
     }
 
@@ -47,9 +44,9 @@ template <long long P> struct MInt
     {
         // o 是要加到当前值上的同模剩余类；原地完成模加并返回当前对象引用。
         x += o.x;
-        if (x >= M)
+        if (x >= P)
         {
-            x -= M;
+            x -= P;
         }
         return *this;
     }
@@ -57,10 +54,10 @@ template <long long P> struct MInt
     MInt &operator-=(const MInt &o)
     {
         // o 是要从当前值减去的同模剩余类；原地完成模减并返回当前对象引用。
-        x += M - o.x;
-        if (x >= M)
+        x += P - o.x;
+        if (x >= P)
         {
-            x -= M;
+            x -= P;
         }
         return *this;
     }
@@ -68,14 +65,8 @@ template <long long P> struct MInt
     MInt &operator*=(const MInt &o)
     {
         // o 是要乘到当前值上的同模剩余类；原地完成模乘并返回当前对象引用。
-        if constexpr (P <= 2147483647LL)
-        {
-            x = (unsigned long long)x * o.x % M;
-        }
-        else
-        {
-            x = (unsigned __int128)x * o.x % M;
-        }
+        // 乘积可能超过 32 位，显式提升到无符号 64 位。
+        x = (uint64_t)x * o.x % P;
         return *this;
     }
 
@@ -111,7 +102,7 @@ template <long long P> struct MInt
 
     friend bool operator==(const MInt &, const MInt &) = default;
 
-    MInt pow(unsigned long long b) const
+    MInt pow(uint64_t b) const
     {
         // b 是非负指数；返回当前剩余类的 b 次幂。
         MInt a = *this;
@@ -136,10 +127,10 @@ template <long long P> struct MInt
     }
 };
 
-template <long long P> const vector<MInt<P>> &invTable(int n)
+template <uint32_t P> const vector<MInt<P>> &invTable(int n)
 {
     // n 是需要的最大下标且 0<=n<P；返回至少覆盖 0..n 的共享模逆元表，其中位置 0 为 0。
-    assert(0 <= n && n < P); // 调试检查，可删
+    assert(0 <= n && (uint64_t)n < P); // 调试检查，可删
     static vector<MInt<P>> iv{0, 1};
     int old = iv.size();
     if (old <= n)
@@ -153,8 +144,10 @@ template <long long P> const vector<MInt<P>> &invTable(int n)
     return iv;
 }
 
-constexpr int mod = 998244353;
+constexpr uint32_t mod = 998244353;
 using Z = MInt<mod>;
+
+#endif
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -165,20 +158,21 @@ struct KDRectAffine
 {
     struct Node
     {
-        Coord xl{}, xr{}, yl{}, yr{};
-        int cnt = 0;
-        T sum = 0, mul = 1, add = 0;
+        Coord xl{}, xr{}, yl{}, yr{}; // 子树内全部点的坐标包围盒（闭区间）。
+        int cnt = 0; // cnt 是子树内已激活点数。
+        T sum = 0, mul = 1, add = 0; // sum 是激活点权值和，mul、add 是未下传的 w->mul*w+add 标记。
     };
 
-    int n;
-    vector<Coord> x, y;
-    vector<int> ord, pos;
-    vector<Node> tr;
+    int n; // n 是预收集的点数。
+    vector<Coord> x, y; // x[id]、y[id] 是第 id 个点的坐标。
+    vector<int> ord, pos; // ord 是建树时的点序，pos[id] 是点 id 所在叶子的节点编号。
+    vector<Node> tr; // tr 是按堆式编号存放的 KD 树节点。
 
     KDRectAffine(vector<Coord> x, vector<Coord> y, const vector<optional<T>> &w)
         : n(x.size()), x(move(x)), y(move(y)), ord(n), pos(n), tr(max<int>(1, 4 * n))
     {
-        assert((int)this->y.size() == n && (int)w.size() == n);
+        // x、y 是全部已知点坐标，w[id] 为空表示该点尚未激活。
+        assert((int)this->y.size() == n && (int)w.size() == n); // 调试检查，可删。
         iota(ord.begin(), ord.end(), 0);
         if (n)
         {
@@ -188,6 +182,7 @@ struct KDRectAffine
 
     void pull(int k)
     {
+        // k 是内部节点；由两个儿子重算包围盒、激活点数与权值和。
         auto &a = tr[2 * k];
         auto &b = tr[2 * k + 1];
         tr[k].xl = min(a.xl, b.xl);
@@ -200,6 +195,7 @@ struct KDRectAffine
 
     void build(int k, int l, int r, int d, const vector<optional<T>> &w)
     {
+        // k 管辖 ord[l..r)，d 是切分维度（0 按 x、1 按 y），w 是初始权值；递归建 KD 树。
         if (r - l == 1)
         {
             int id = ord[l];
@@ -225,6 +221,7 @@ struct KDRectAffine
 
     void applyAt(int k, T a, T b)
     {
+        // k 是节点；对其子树内激活点执行 w=a*w+b，并复合到延迟标记。
         tr[k].sum = a * tr[k].sum + b * T(tr[k].cnt);
         tr[k].mul = a * tr[k].mul;
         tr[k].add = a * tr[k].add + b;
@@ -232,6 +229,7 @@ struct KDRectAffine
 
     void push(int k)
     {
+        // k 是内部节点；把延迟标记下传给两个儿子。
         if (tr[k].mul == T(1) && tr[k].add == T(0))
         {
             return;
@@ -244,16 +242,19 @@ struct KDRectAffine
 
     bool disjoint(int k, Coord xl, Coord xr, Coord yl, Coord yr) const
     {
+        // 返回节点 k 的包围盒是否与半开矩形 [xl,xr)x[yl,yr) 不相交。
         return xr <= tr[k].xl || tr[k].xr < xl || yr <= tr[k].yl || tr[k].yr < yl;
     }
 
     bool covered(int k, Coord xl, Coord xr, Coord yl, Coord yr) const
     {
+        // 返回节点 k 的包围盒是否完全落在半开矩形 [xl,xr)x[yl,yr) 内。
         return xl <= tr[k].xl && tr[k].xr < xr && yl <= tr[k].yl && tr[k].yr < yr;
     }
 
     T query(int k, Coord xl, Coord xr, Coord yl, Coord yr)
     {
+        // k 是当前节点；返回其子树内落在半开矩形中的激活点权值和。
         if (disjoint(k, xl, xr, yl, yr))
         {
             return T(0);
@@ -268,6 +269,7 @@ struct KDRectAffine
 
     void apply(int k, Coord xl, Coord xr, Coord yl, Coord yr, T a, T b)
     {
+        // k 是当前节点；对其子树内落在半开矩形中的激活点执行 w=a*w+b。
         if (disjoint(k, xl, xr, yl, yr))
         {
             return;
@@ -285,7 +287,8 @@ struct KDRectAffine
 
     void set(int id, T w)
     {
-        assert(0 <= id && id < n);
+        // id 是预收集点编号，w 是当前新权值；激活或覆盖该点。
+        assert(0 <= id && id < n); // 调试检查，可删。
         int k = pos[id];
         vector<int> path;
         for (int z = k / 2; z; z /= 2)
@@ -309,13 +312,15 @@ struct KDRectAffine
 
     T query(Coord xl, Coord xr, Coord yl, Coord yr)
     {
-        assert(xl <= xr && yl <= yr);
+        // 四个边界给出半开矩形；返回全部激活点权值和。
+        assert(xl <= xr && yl <= yr); // 调试检查，可删。
         return n ? query(1, xl, xr, yl, yr) : T(0);
     }
 
     void apply(Coord xl, Coord xr, Coord yl, Coord yr, T a, T b)
     {
-        assert(xl <= xr && yl <= yr);
+        // 四个边界给出半开矩形；对其中激活点执行 w=a*w+b。
+        assert(xl <= xr && yl <= yr); // 调试检查，可删。
         if (n)
         {
             apply(1, xl, xr, yl, yr, a, b);

@@ -2,20 +2,38 @@
 using namespace std;
 #define int long long
 
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
+
+
+#include <limits>
+
+using namespace std;
+
+constexpr long long INF = numeric_limits<long long>::max() / 4;
 
 template <class T> bool chmin(T &a, const T &b)
 {
-    // a 是当前值，b 是候选值；若 b 更小则更新 a 并返回 true。
-    return b < a ? a = b, true : false;
+    // a 是待更新值，b 是候选值；若 b 更小则更新 a 并返回 true。
+    if (b < a)
+    {
+        a = b;
+        return true;
+    }
+    return false;
 }
+
 template <class T> bool chmax(T &a, const T &b)
 {
-    // a 是当前值，b 是候选值；若 b 更大则更新 a 并返回 true。
-    return a < b ? a = b, true : false;
+    // a 是待更新值，b 是候选值；若 b 更大则更新 a 并返回 true。
+    if (a < b)
+    {
+        a = b;
+        return true;
+    }
+    return false;
 }
+
+constexpr int inf = 1E9;
+constexpr long double eps = 1E-12L;
 
 template <class T> struct ImpTreap
 {
@@ -33,8 +51,8 @@ template <class T> struct ImpTreap
 
     // tr 是节点池，root 是当前序列根，seed 是 xorshift 优先级状态。
     vector<Node> tr{Node{}};
-    int root = 0;
-    unsigned seed = 712367821;
+    int root = 0; // root 是当前序列根，0 表示空序列。
+    unsigned seed = 712367821; // seed 是 xorshift 随机优先级状态。
 
     unsigned rnd()
     {
