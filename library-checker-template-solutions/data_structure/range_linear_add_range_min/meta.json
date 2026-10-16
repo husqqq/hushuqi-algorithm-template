@@ -6,67 +6,71 @@
   "provenance": {
     "kind": "template_solution",
     "source": "data_structure/range_linear_add_range_min/main.cpp",
-    "source_sha256": "36832b5e610e1be7a12807b312c03fa41ffa99988a1ddb39ad7d52d504138534",
+    "source_sha256": "d01ce879ac630a58fe6e5d38d53d8fd6a717bc2ad34be3869538ebbe0e439ab7",
     "evidence": {
       "method": "deterministic_generation",
       "generator": {
         "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-        "sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+        "sha256": "199ea86b40e5f0457a9346b8f4c1c8987d21c6a919e26fbc21b80dec746057c4",
         "working_directory": ".",
         "runner": "Python 3.13.14",
         "argv": [
+          "--only",
+          "range_linear_add_range_min,segment_add_get_min",
           "--write-index"
         ],
         "generation_evidence": {
           "schema_version": 2,
           "problem_id": "data_structure/range_linear_add_range_min",
           "source_path": "library-checker-template-solutions/data_structure/range_linear_add_range_min/main.cpp",
-          "source_sha256": "36832b5e610e1be7a12807b312c03fa41ffa99988a1ddb39ad7d52d504138534",
+          "source_sha256": "d01ce879ac630a58fe6e5d38d53d8fd6a717bc2ad34be3869538ebbe0e439ab7",
           "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-          "generator_sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+          "generator_sha256": "199ea86b40e5f0457a9346b8f4c1c8987d21c6a919e26fbc21b80dec746057c4",
           "working_directory": ".",
           "runner": "Python 3.13.14",
           "argv": [
+            "--only",
+            "range_linear_add_range_min,segment_add_get_min",
             "--write-index"
           ],
           "inputs": [
             {
               "path": "hushuqi算法竞赛模板/03-数据结构.md",
-              "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+              "sha256": "7c76d2bade0f913257f0eacac95fe403a3eb1b535e65617115083cbb2001b8a1"
             },
             {
               "path": "hushuqi算法竞赛模板/include/full/3_3_019.hpp",
-              "sha256": "571a040e4d368a929730f2bb25afcc5791921b04f1b6cec4b783f5aaec0c024d"
+              "sha256": "a5bd0bf7a90c69a732de72e68d9e746cbaf92da3668f4fa7873e2b4077a1d8b4"
             },
             {
               "path": "hushuqi算法竞赛模板/tests/test_ch03_revised.cpp",
-              "sha256": "668462995fa6277c5f03c8e6f86ecba974a84be54e2a000f95cb0ef4dbbd2696"
+              "sha256": "623e466a7cb511d92b8318532c5b80236d6ec3ba22e937a9d7421ab4d56e7cad"
             }
           ],
-          "generated_sha256": "36832b5e610e1be7a12807b312c03fa41ffa99988a1ddb39ad7d52d504138534",
+          "generated_sha256": "d01ce879ac630a58fe6e5d38d53d8fd6a717bc2ad34be3869538ebbe0e439ab7",
           "byte_equal": true
         },
-        "generation_evidence_sha256": "f9aeb934fef8be0140c54ac547ea1e2943842b9431a6732b6fd4ea2ceb48f5d2"
+        "generation_evidence_sha256": "646383978424caf690a001c3b03da9744c027ff67f9e058700e515e67d47af0d"
       },
       "adapter_sha256": "a4acc29645f7d4303608cff1d28d29972833e1ac19137bd4877cd0876175f151",
       "template_inputs": [
         {
           "path": "hushuqi算法竞赛模板/03-数据结构.md",
-          "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+          "sha256": "7c76d2bade0f913257f0eacac95fe403a3eb1b535e65617115083cbb2001b8a1"
         },
         {
           "path": "hushuqi算法竞赛模板/include/full/3_3_019.hpp",
-          "sha256": "571a040e4d368a929730f2bb25afcc5791921b04f1b6cec4b783f5aaec0c024d"
+          "sha256": "a5bd0bf7a90c69a732de72e68d9e746cbaf92da3668f4fa7873e2b4077a1d8b4"
         },
         {
           "path": "hushuqi算法竞赛模板/tests/test_ch03_revised.cpp",
-          "sha256": "668462995fa6277c5f03c8e6f86ecba974a84be54e2a000f95cb0ef4dbbd2696"
+          "sha256": "623e466a7cb511d92b8318532c5b80236d6ec3ba22e937a9d7421ab4d56e7cad"
         }
       ],
       "temporary_regenerations": 2,
       "byte_identical": true,
-      "source_sha256": "36832b5e610e1be7a12807b312c03fa41ffa99988a1ddb39ad7d52d504138534",
-      "evidence_sha256": "badc936109433723d9ef13e100f86e8b8786b479b67400c3f85affcbaf252863"
+      "source_sha256": "d01ce879ac630a58fe6e5d38d53d8fd6a717bc2ad34be3869538ebbe0e439ab7",
+      "evidence_sha256": "764aa7edcc5ac07411c21306cd1c9e750579d18c1048422ff333d1ccd79a4cc6"
     }
   },
   "reference": {
@@ -84,21 +88,21 @@
     "content_sha256": "0c8ad35bc020666c6c590bcd6f90750407f0887eea0e2d3c03b3d318287ce241"
   },
   "validation": {
-    "status": "online_ac",
-    "checked_at": "2026-08-19T20:50:44.690202Z",
+    "status": "local_only",
+    "checked_at": null,
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch03_revised.cpp"
     ],
-    "current_source_sha256": "36832b5e610e1be7a12807b312c03fa41ffa99988a1ddb39ad7d52d504138534",
-    "current_source_online_verdict": "AC",
-    "current_source_submission_id": 394406,
-    "current_source_time": 0.885,
-    "current_source_memory": 19664896,
-    "current_source_submission_time": "2026-08-18T18:59:42.292839Z",
-    "current_source_is_latest": true,
-    "server_source_sha256": "36832b5e610e1be7a12807b312c03fa41ffa99988a1ddb39ad7d52d504138534",
-    "note": "当前独立源码已通过 Library Checker 在线评测。"
+    "current_source_sha256": "d01ce879ac630a58fe6e5d38d53d8fd6a717bc2ad34be3869538ebbe0e439ab7",
+    "current_source_online_verdict": null,
+    "current_source_submission_id": null,
+    "current_source_time": null,
+    "current_source_memory": null,
+    "current_source_submission_time": null,
+    "current_source_is_latest": null,
+    "server_source_sha256": null,
+    "note": "Generated from the current chapter 03 template; online verification has not run for this source."
   },
   "submission_attempts": [
     {

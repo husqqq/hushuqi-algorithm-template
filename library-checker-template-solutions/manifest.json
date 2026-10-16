@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "updated_at": "2026-10-16T12:06:44.853999Z",
+  "updated_at": "2026-10-16T12:56:32.118946Z",
   "official_repository": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
     "url": "https://github.com/yosupo06/library-checker-problems"
@@ -1671,7 +1671,7 @@
       "title": "Range Linear Add Range Min",
       "category": "data_structure",
       "source": "data_structure/range_linear_add_range_min/main.cpp",
-      "source_sha256": "36832b5e610e1be7a12807b312c03fa41ffa99988a1ddb39ad7d52d504138534",
+      "source_sha256": "d01ce879ac630a58fe6e5d38d53d8fd6a717bc2ad34be3869538ebbe0e439ab7",
       "meta": "data_structure/range_linear_add_range_min/meta.json",
       "state": "template_solution"
     },
@@ -1770,7 +1770,7 @@
       "title": "Segment Add Get Min",
       "category": "data_structure",
       "source": "data_structure/segment_add_get_min/main.cpp",
-      "source_sha256": "4e6fcb7171b41bb9b428aaa280eca3939755a96b64cf45c8cb10a5d97fd7e1aa",
+      "source_sha256": "ffe9ff1e0a5c2d9a05e5c5b029eebe7ec1e0863c8dc3617f3e6326fdc6945d87",
       "meta": "data_structure/segment_add_get_min/meta.json",
       "state": "template_solution"
     },

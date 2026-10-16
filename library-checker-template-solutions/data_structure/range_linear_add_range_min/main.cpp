@@ -4,6 +4,8 @@ using namespace std;
 
 class LineMinSeg
 {
+    // 当前维护区间最小值。若 a、b、c 均能安全取反，可保存 -a[i]：每次 add(l,r,b,c) 改为
+    // add(l,r,-b,-c)，查询结果再取负；若存在最小负数则完整反向桥判定，不要只改最后一个 min。
     struct P
     {
         // x 是数组下标，y 是该位置的当前值。
