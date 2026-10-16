@@ -600,7 +600,7 @@
       "title": "Eertree",
       "category": "string",
       "source": "string/eertree/main.cpp",
-      "source_sha256": "414953a745298f2c626d37b0473e3fc3e0ca7af102f8f212b004e2f1c86e2576",
+      "source_sha256": "4db0b00959527bbe8f7d0c1869d49a2f494c466d81a733f838288ac9654b4efa",
       "meta": "string/eertree/meta.json",
       "state": "template_solution"
     },

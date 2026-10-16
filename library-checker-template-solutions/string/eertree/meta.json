@@ -6,7 +6,52 @@
   "provenance": {
     "kind": "template_solution",
     "source": "string/eertree/main.cpp",
-    "source_sha256": "414953a745298f2c626d37b0473e3fc3e0ca7af102f8f212b004e2f1c86e2576"
+    "source_sha256": "4db0b00959527bbe8f7d0c1869d49a2f494c466d81a733f838288ac9654b4efa",
+    "evidence": {
+      "method": "deterministic_generation",
+      "generator": {
+        "path": "library-checker-template-solutions/tools/generate_ch04_lc.py",
+        "sha256": "bcf137d1381d0f7ba6d4ddcce371572a13f54b2f6c728e4146b75cdee62e297a",
+        "argv": [
+          "python",
+          "library-checker-template-solutions/tools/generate_ch04_lc.py",
+          "--only",
+          "eertree",
+          "--write"
+        ],
+        "working_directory": ".",
+        "runner": "Python 3.13.14"
+      },
+      "template_inputs": [
+        {
+          "path": "hushuqi算法竞赛模板/include/full/4_4_001.hpp",
+          "sha256": "c7711080406a7fedce8161223aaccffecf9b622095c22e6a7c13aff780c3621f"
+        }
+      ],
+      "documentation_inputs": [
+        {
+          "path": "hushuqi算法竞赛模板/04-字符串.md",
+          "sha256": "15f5faa9d40310fc06342679bde12824b940a82ba6dcaa3d6fc502b820f670e1"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/tools/sync_topic_docs.py",
+          "sha256": "70ccce225e3cf0bfe47fbce830f2ea6c37f75afce0e9f3b51088d0749285bec6"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/print/4_4_001.hpp",
+          "sha256": "c7711080406a7fedce8161223aaccffecf9b622095c22e6a7c13aff780c3621f"
+        }
+      ],
+      "adapter_sha256": "4c01dacf0e7fc43c022da8e3bf1c2ae89667938bf65f1aa91bd3b94d21b4c553",
+      "controlled_reference": {
+        "path": "library-checker-solutions/string/eertree/main.cpp",
+        "sha256": "43bb08571440c76049e9e759ca2cc2d7b52ea6adf5a5cf4267d4d2e03374aa84"
+      },
+      "temporary_regenerations": 2,
+      "byte_identical": true,
+      "source_sha256": "4db0b00959527bbe8f7d0c1869d49a2f494c466d81a733f838288ac9654b4efa",
+      "evidence_sha256": "5f6695cab93593c943c82d9f8e2940a993c6714d792c6dec21fde9ecd22e69fb"
+    }
   },
   "official_reference": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
@@ -15,19 +60,19 @@
   },
   "validation": {
     "status": "online_ac",
-    "current_source_sha256": "414953a745298f2c626d37b0473e3fc3e0ca7af102f8f212b004e2f1c86e2576",
+    "current_source_sha256": "4db0b00959527bbe8f7d0c1869d49a2f494c466d81a733f838288ac9654b4efa",
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch04_pam.cpp"
     ],
-    "checked_at": "2026-08-21T08:27:59.851948Z",
+    "checked_at": "2026-10-16T03:54:28.285793Z",
     "current_source_online_verdict": "AC",
-    "current_source_submission_id": 395558,
-    "current_source_time": 0.446,
-    "current_source_memory": 285106176,
-    "current_source_submission_time": "2026-08-21T08:27:20.717977Z",
+    "current_source_submission_id": 410831,
+    "current_source_time": 0.413,
+    "current_source_memory": 285069312,
+    "current_source_submission_time": "2026-10-16T03:53:51.578391Z",
     "current_source_is_latest": true,
-    "server_source_sha256": "414953a745298f2c626d37b0473e3fc3e0ca7af102f8f212b004e2f1c86e2576",
+    "server_source_sha256": "4db0b00959527bbe8f7d0c1869d49a2f494c466d81a733f838288ac9654b4efa",
     "note": "当前独立源码已通过 Library Checker 在线评测。"
   },
   "submission_attempts": [
@@ -45,6 +90,21 @@
       "compile_standard": "gnu++20",
       "submitted_at": "2026-08-21T08:27:20.879789Z",
       "recorded_at": "2026-08-21T08:27:59.851260Z"
+    },
+    {
+      "submission_id": 410831,
+      "source_sha256": "4db0b00959527bbe8f7d0c1869d49a2f494c466d81a733f838288ac9654b4efa",
+      "server_source_sha256": "4db0b00959527bbe8f7d0c1869d49a2f494c466d81a733f838288ac9654b4efa",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.413,
+      "memory": 285069312,
+      "submission_time": "2026-10-16T03:53:51.578391Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-10-16T03:53:51.783146Z",
+      "recorded_at": "2026-10-16T03:54:28.284905Z"
     }
   ]
 }

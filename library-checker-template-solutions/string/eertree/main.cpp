@@ -2,42 +2,18 @@
 using namespace std;
 #define int long long
 
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
-
-template <class T> bool chmin(T &a, const T &b)
-{
-    // a 是待更新值，b 是候选值；若 a 变小则返回 true。
-    if (b >= a)
-    {
-        return false;
-    }
-    a = b;
-    return true;
-}
-template <class T> bool chmax(T &a, const T &b)
-{
-    // a 是待更新值，b 是候选值；若 a 变大则返回 true。
-    if (a >= b)
-    {
-        return false;
-    }
-    a = b;
-    return true;
-}
-
 template <int A = 26, char S = 'a'> struct PAM
 {
+    static_assert(A > 0 && (unsigned char)S + A <= 256);
     struct Node
     {
-        array<int, A> ch{};
+        array<int, A> ch{}; // ch[c] 是两侧各加字符 c 得到的回文节点，0 表示不存在。
         // len 是回文长度，link 是回文后缀链接，cnt 是出现次数。
         int len = 0, link = 0, cnt = 0;
     };
 
     vector<Node> t{{{}, -1, 0, 0}, {{}, 0, 0, 0}};
-    vector<int> s{-1};
+    vector<int> s{-1}; // s 是已加入的字符，s[0]=-1 作为哨兵。
     // last 是当前最长回文后缀节点，counted 记录出现次数是否已经上传。
     int last = 1;
     bool counted = false;
@@ -53,12 +29,11 @@ template <int A = 26, char S = 'a'> struct PAM
         return p;
     }
 
-    // 追加字符，返回当前最长回文后缀节点；节点数-2 即不同回文串数。
     int add(char c)
     {
         // c 是追加到原串末尾的字符；返回新的最长回文后缀节点。
         assert(!counted); // 调试检查，可删
-        int x = c - S;
+        int x = (unsigned char)c - (unsigned char)S;
         assert(0 <= x && x < A); // 调试检查，可删
         s.push_back(x);
         int p = getLink(last);
@@ -90,7 +65,6 @@ template <int A = 26, char S = 'a'> struct PAM
         }
     }
 
-    // 调用一次后 cnt 变为每个不同回文在整串中的出现次数。
     void count()
     {
         // 沿后缀链接上传出现次数；重复调用不再二次累计。
@@ -108,13 +82,37 @@ template <int A = 26, char S = 'a'> struct PAM
 
 signed main()
 {
-    string s; cin >> s; PAM<26, 'a'> pam; vector<int> last;
-    for (char c : s) last.push_back(pam.add(c));
-    vector<int> par(pam.t.size(), -1);
-    for (int u = 0; u < (int)pam.t.size(); u++)
-        for (int c = 0; c < 26; c++) if (pam.t[u].ch[c]) par[pam.t[u].ch[c]] = u;
-    cout << pam.t.size() - 2 << '\n';
-    for (int u = 2; u < (int)pam.t.size(); u++) cout << par[u] - 1 << ' ' << pam.t[u].link - 1 << '\n';
-    for (int i = 0; i < (int)s.size(); i++) cout << (i ? " " : "") << last[i] - 1;
+    // 无参数；输出回文树父边、后缀链接和每个前缀的最长回文后缀，成功返回 0。
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    string s;
+    cin >> s;
+    PAM<26, 'a'> pam;
+    vector<int> last;
+    for (char c : s)
+    {
+        last.push_back(pam.add(c));
+    }
+    const auto &nodes = pam.t;
+    vector<int> par(nodes.size(), -1);
+    for (int u = 0; u < (int)nodes.size(); u++)
+    {
+        for (int c = 0; c < 26; c++)
+        {
+            if (nodes[u].ch[c])
+            {
+                par[nodes[u].ch[c]] = u;
+            }
+        }
+    }
+    cout << nodes.size() - 2 << '\n';
+    for (int u = 2; u < (int)nodes.size(); u++)
+    {
+        cout << par[u] - 1 << ' ' << nodes[u].link - 1 << '\n';
+    }
+    for (int i = 0; i < (int)s.size(); i++)
+    {
+        cout << (i ? " " : "") << last[i] - 1;
+    }
     cout << '\n';
 }

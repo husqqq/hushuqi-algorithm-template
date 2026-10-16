@@ -15,7 +15,7 @@ OUT = ROOT / "library-checker-template-solutions"
 COMMIT = "04c8de378bab67be926325de2871f0babb8e6451"
 INC = re.compile(r'^\s*#\s*include\s+"([^"]+)"\s*(?://.*)?$')
 # 仅对已逐题复核的条目强制完整来源证明；其余条目继续公开同步缺口。
-PROVEN = {"aho_corasick", "number_of_substrings", "longest_common_substring", "runenumerate", "palindromes_in_deque", "zalgorithm", "enumerate_palindromes", "lyndon_factorization"}
+PROVEN = {"aho_corasick", "eertree", "number_of_substrings", "longest_common_substring", "runenumerate", "palindromes_in_deque", "zalgorithm", "enumerate_palindromes", "lyndon_factorization"}
 
 SPECS = {
     "aho_corasick": ("4_2_002.hpp", r'''
@@ -63,14 +63,38 @@ signed main()
     "eertree": ("4_4_001.hpp", r'''
 signed main()
 {
-    string s; cin >> s; PAM<26, 'a'> pam; vector<int> last;
-    for (char c : s) last.push_back(pam.add(c));
-    vector<int> par(pam.t.size(), -1);
-    for (int u = 0; u < (int)pam.t.size(); u++)
-        for (int c = 0; c < 26; c++) if (pam.t[u].ch[c]) par[pam.t[u].ch[c]] = u;
-    cout << pam.t.size() - 2 << '\n';
-    for (int u = 2; u < (int)pam.t.size(); u++) cout << par[u] - 1 << ' ' << pam.t[u].link - 1 << '\n';
-    for (int i = 0; i < (int)s.size(); i++) cout << (i ? " " : "") << last[i] - 1;
+    // 无参数；输出回文树父边、后缀链接和每个前缀的最长回文后缀，成功返回 0。
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    string s;
+    cin >> s;
+    PAM<26, 'a'> pam;
+    vector<int> last;
+    for (char c : s)
+    {
+        last.push_back(pam.add(c));
+    }
+    const auto &nodes = pam.t;
+    vector<int> par(nodes.size(), -1);
+    for (int u = 0; u < (int)nodes.size(); u++)
+    {
+        for (int c = 0; c < 26; c++)
+        {
+            if (nodes[u].ch[c])
+            {
+                par[nodes[u].ch[c]] = u;
+            }
+        }
+    }
+    cout << nodes.size() - 2 << '\n';
+    for (int u = 2; u < (int)nodes.size(); u++)
+    {
+        cout << par[u] - 1 << ' ' << nodes[u].link - 1 << '\n';
+    }
+    for (int i = 0; i < (int)s.size(); i++)
+    {
+        cout << (i ? " " : "") << last[i] - 1;
+    }
     cout << '\n';
 }
 '''),

@@ -2,10 +2,9 @@
 using namespace std;
 #define int long long
 
-#include "support/topic_common.hpp"
-
 template <int A = 26, char S = 'a'> struct PAM
 {
+    static_assert(A > 0 && (unsigned char)S + A <= 256);
     struct Node
     {
         array<int, A> ch{}; // ch[c] 是两侧各加字符 c 得到的回文节点，0 表示不存在。
@@ -34,7 +33,7 @@ template <int A = 26, char S = 'a'> struct PAM
     {
         // c 是追加到原串末尾的字符；返回新的最长回文后缀节点。
         assert(!counted); // 调试检查，可删
-        int x = c - S;
+        int x = (unsigned char)c - (unsigned char)S;
         assert(0 <= x && x < A); // 调试检查，可删
         s.push_back(x);
         int p = getLink(last);
