@@ -15,7 +15,7 @@ OUT = ROOT / "library-checker-template-solutions"
 COMMIT = "04c8de378bab67be926325de2871f0babb8e6451"
 INC = re.compile(r'^\s*#\s*include\s+"([^"]+)"\s*(?://.*)?$')
 # 仅对已逐题复核的条目强制完整来源证明；其余条目继续公开同步缺口。
-PROVEN = {"number_of_substrings", "longest_common_substring", "runenumerate"}
+PROVEN = {"number_of_substrings", "longest_common_substring", "runenumerate", "palindromes_in_deque"}
 
 SPECS = {
     "aho_corasick": ("4_2_002.hpp", r'''
@@ -98,12 +98,25 @@ signed main()
     "palindromes_in_deque": ("4_4_002.hpp", r'''
 signed main()
 {
-    int q; cin >> q; DequePAM<26, 'a'> d;
+    // 无参数；逐次输出当前非空回文种数、最长回文前缀和后缀长度，成功返回 0。
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int q;
+    cin >> q;
+    DequePAM<26, 'a'> d;
     while (q--)
     {
-        int type; cin >> type;
-        if (type < 2) { char c; cin >> c; if (type == 0) d.pushFront(c); else d.pushBack(c); }
-        else if (type == 2) d.popFront(); else d.popBack();
+        int type;
+        cin >> type;
+        if (type < 2)
+        {
+            char c;
+            cin >> c;
+            if (type == 0) d.pushFront(c);
+            else d.pushBack(c);
+        }
+        else if (type == 2) d.popFront();
+        else d.popBack();
         cout << d.distinct() << ' ' << d.longPrefix() << ' ' << d.longSuffix() << '\n';
     }
 }

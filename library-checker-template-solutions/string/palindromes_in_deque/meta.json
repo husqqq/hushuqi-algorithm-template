@@ -6,7 +6,52 @@
   "provenance": {
     "kind": "template_solution",
     "source": "string/palindromes_in_deque/main.cpp",
-    "source_sha256": "eaa7e1ef24a6e3874d9af435c98afbf756ad697437567c1aa6db67497a3bfed6"
+    "source_sha256": "74d5192e77c467d350ee72d27e2f9cda9d3fbf0aabddd099eaa25c3e5930987e",
+    "evidence": {
+      "method": "deterministic_generation",
+      "generator": {
+        "path": "library-checker-template-solutions/tools/generate_ch04_lc.py",
+        "sha256": "5b963d4fe3443928ef4087a48f00e030f97132ccbfb1bed9593f0d885a93c306",
+        "argv": [
+          "python",
+          "library-checker-template-solutions/tools/generate_ch04_lc.py",
+          "--only",
+          "palindromes_in_deque",
+          "--write"
+        ],
+        "working_directory": ".",
+        "runner": "Python 3.13.14"
+      },
+      "template_inputs": [
+        {
+          "path": "hushuqi算法竞赛模板/include/full/4_4_002.hpp",
+          "sha256": "2454146c947f83cf11bf9cbd58d2b8f13da5c0be3b0b5caa5f8155c4e27edf40"
+        }
+      ],
+      "documentation_inputs": [
+        {
+          "path": "hushuqi算法竞赛模板/04-字符串.md",
+          "sha256": "60d25a211212a6f13cfc268f8b02c79281a2fb4fd86d8aec05f8e27b989696b0"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/tools/sync_topic_docs.py",
+          "sha256": "70ccce225e3cf0bfe47fbce830f2ea6c37f75afce0e9f3b51088d0749285bec6"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/print/4_4_002.hpp",
+          "sha256": "414b56b9a282081d959a6b5b627fa61b6939e083e23033e0d17cb4e8690d33f3"
+        }
+      ],
+      "adapter_sha256": "7ebf8754b3d66646dcf4a58d0be989fd3eb846684d34f1f0b44594e429575eea",
+      "controlled_reference": {
+        "path": "library-checker-solutions/string/palindromes_in_deque/main.cpp",
+        "sha256": "153419b057a2b1fc05744675743e358a614ea3b7d725afc176fd0a8b4ec24de4"
+      },
+      "temporary_regenerations": 2,
+      "byte_identical": true,
+      "source_sha256": "74d5192e77c467d350ee72d27e2f9cda9d3fbf0aabddd099eaa25c3e5930987e",
+      "evidence_sha256": "4f59e11615eff96887009fba13a0a148bfca4c5082ed5cbbb85ffebb64364d08"
+    }
   },
   "official_reference": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
@@ -14,12 +59,21 @@
     "problem": "palindromes_in_deque"
   },
   "validation": {
-    "status": "local_only",
-    "current_source_sha256": "eaa7e1ef24a6e3874d9af435c98afbf756ad697437567c1aa6db67497a3bfed6",
+    "status": "online_ac",
+    "current_source_sha256": "74d5192e77c467d350ee72d27e2f9cda9d3fbf0aabddd099eaa25c3e5930987e",
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch04_deque_pam.cpp"
-    ]
+    ],
+    "checked_at": "2026-10-16T01:14:40.592631Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 410744,
+    "current_source_time": 0.164,
+    "current_source_memory": 81424384,
+    "current_source_submission_time": "2026-10-16T01:14:09.490954Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "74d5192e77c467d350ee72d27e2f9cda9d3fbf0aabddd099eaa25c3e5930987e",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
   },
   "submission_attempts": [
     {
@@ -36,6 +90,21 @@
       "compile_standard": "gnu++20",
       "submitted_at": "2026-08-21T08:34:23.779689Z",
       "recorded_at": "2026-08-21T08:35:10.241598Z"
+    },
+    {
+      "submission_id": 410744,
+      "source_sha256": "74d5192e77c467d350ee72d27e2f9cda9d3fbf0aabddd099eaa25c3e5930987e",
+      "server_source_sha256": "74d5192e77c467d350ee72d27e2f9cda9d3fbf0aabddd099eaa25c3e5930987e",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.164,
+      "memory": 81424384,
+      "submission_time": "2026-10-16T01:14:09.490954Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-10-16T01:14:09.695961Z",
+      "recorded_at": "2026-10-16T01:14:40.591991Z"
     }
   ]
 }

@@ -1347,7 +1347,7 @@
       "title": "Palindromes in Deque",
       "category": "string",
       "source": "string/palindromes_in_deque/main.cpp",
-      "source_sha256": "eaa7e1ef24a6e3874d9af435c98afbf756ad697437567c1aa6db67497a3bfed6",
+      "source_sha256": "74d5192e77c467d350ee72d27e2f9cda9d3fbf0aabddd099eaa25c3e5930987e",
       "meta": "string/palindromes_in_deque/meta.json",
       "state": "template_solution"
     },
