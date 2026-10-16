@@ -43,7 +43,7 @@
         },
         {
           "path": "hushuqi算法竞赛模板/tools/sync_topic_docs.py",
-          "sha256": "22de7bde21f35f36afb1d80bac2059cf20aeeec3efd19836bffd53f2af9fb326"
+          "sha256": "3c5f69a19bfbf7fcbc69b1c184bdaf151b04318854e05dba4bd5d5e8a8bd34b3"
         },
         {
           "path": "hushuqi算法竞赛模板/include/print/10_1_003.hpp",
@@ -66,7 +66,7 @@
       "temporary_regenerations": 2,
       "byte_identical": true,
       "source_sha256": "f9657ee5e5a3dd76cc9601a8334bc4b21831e61bad37e8a97c2feeacfc489294",
-      "evidence_sha256": "d090b2bc373572258f4de435bc2a2771981e24b2360749bbbc8731e0719c4bfb"
+      "evidence_sha256": "29795b4ed0bd2a3d50a47d8a61dbaeee856eb498aa2879785b3d0460bf2cdd33"
     }
   },
   "official_reference": {
