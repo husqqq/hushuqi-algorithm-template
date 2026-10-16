@@ -711,75 +711,15 @@ long double maxRatio(const vector<long double> &a, const vector<long double> &b,
 }
 }
 
-// 知识点 13.2.001：条件概率、Bayes 与全概率公式。
-namespace prob_formula
-{
-long double condProb(long double pab, long double pb)
-{
-    // pab 是 P(A∩B)，pb 是 P(B)>0；返回 P(A|B)。
-    assert(pb > 0);
-    return pab / pb;
-}
+// 概率接口复用独立知识点，避免旧聚合入口保留不同的数值算法。
+#include "full/13_2_001.hpp"
+#include "full/13_2_002.hpp"
+#include "full/13_2_003.hpp"
 
-vector<long double> bayes(const vector<long double> &prior, const vector<long double> &like)
-{
-    // prior 是先验概率，like 是各假设下证据似然；返回观察证据后的后验分布。
-    assert(prior.size() == like.size());
-    long double z = 0;
-    for (int i = 0; i < static_cast<int>(prior.size()); i++)
-    {
-        z += prior[i] * like[i];
-    }
-    assert(z > 0);
-    vector<long double> ans(prior.size());
-    for (int i = 0; i < static_cast<int>(prior.size()); i++)
-    {
-        ans[i] = prior[i] * like[i] / z;
-    }
-    return ans;
-}
-}
-
-// 知识点 13.2.002：常见离散概率分布。
 namespace probDist
 {
-long double binomialPmf(int n, int k, long double p)
-{
-    // n、k、p 是试验数、成功数和单次成功率；返回二项分布概率。
-    if (k < 0 || k > n) return 0;
-    long double c = 1;
-    for (int i = 1; i <= k; i++)
-    {
-        c = c * (n - k + i) / i;
-    }
-    return c * pow(p, k) * pow(1 - p, n - k);
-}
-
-array<long double, 2> geomMoments(long double p)
-{
-    // p 是每次成功概率；返回计到首次成功的试验次数之期望与方差。
-    assert(0 < p && p <= 1);
-    return {1 / p, (1 - p) / (p * p)};
-}
-}
-
-// 知识点 13.2.003：随机变量期望、方差与协方差。
-namespace exp_var
-{
-array<long double, 2> moments(const vector<long double> &x, const vector<long double> &p)
-{
-    // x 是取值，p 是对应概率且总和为 1；返回期望与方差。
-    assert(x.size() == p.size());
-    long double e = 0, e2 = 0, sum = 0;
-    for (int i = 0; i < static_cast<int>(x.size()); i++)
-    {
-        sum += p[i];
-        e += p[i] * x[i];
-        e2 += p[i] * x[i] * x[i];
-    }
-    assert(abs(sum - 1) <= 1E-12L);
-    return {e, e2 - e * e};
-}
+using ::binomialPmf;
+using ::geomMoments;
 }
 
 // 知识点 13.3.001：多项式导数与不定积分系数表。
