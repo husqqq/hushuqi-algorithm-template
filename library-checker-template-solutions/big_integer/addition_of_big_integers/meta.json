@@ -6,7 +6,7 @@
   "provenance": {
     "kind": "template_solution",
     "source": "big_integer/addition_of_big_integers/main.cpp",
-    "source_sha256": "30a6f36326edcfd455a2ae1dce3819897bf64faf58d9892b519fb5add697c520"
+    "source_sha256": "dc262bae9e3f80c902f4b2c8d64ec9f949242cad0396c31e6dd4c3e5c5502af8"
   },
   "official_reference": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
@@ -14,21 +14,12 @@
     "problem": "addition_of_big_integers"
   },
   "validation": {
-    "status": "online_ac",
-    "current_source_sha256": "30a6f36326edcfd455a2ae1dce3819897bf64faf58d9892b519fb5add697c520",
+    "status": "local_only",
+    "current_source_sha256": "dc262bae9e3f80c902f4b2c8d64ec9f949242cad0396c31e6dd4c3e5c5502af8",
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch14_core.cpp"
-    ],
-    "checked_at": "2026-08-21T21:57:07.758754Z",
-    "current_source_online_verdict": "AC",
-    "current_source_submission_id": 395886,
-    "current_source_time": 0.387,
-    "current_source_memory": 17375232,
-    "current_source_submission_time": "2026-08-21T21:56:41.313495Z",
-    "current_source_is_latest": true,
-    "server_source_sha256": "30a6f36326edcfd455a2ae1dce3819897bf64faf58d9892b519fb5add697c520",
-    "note": "当前独立源码已通过 Library Checker 在线评测。"
+    ]
   },
   "submission_attempts": [
     {

@@ -103,12 +103,12 @@ signed main()
         assert(r.isZero() || (r.neg == a.neg && r < (b.neg ? -b : b)));
     }
     {
-        BigInt a("1234567890123456789012345678901234567890");
-        BigInt b("98765432109876543210987654321");
+        FastBigInt a("1234567890123456789012345678901234567890");
+        FastBigInt b("98765432109876543210987654321");
         assert((a * b).toDecimal() == "121932631137021795226185032733744855963362292333223746380111126352690");
         auto [q, r] = divmod(a, b);
-        assert(q * b + r == a && r >= BigInt(0) && r < b);
-        assert((BigInt("999999999999999999999999") / BigInt("3")).toDecimal() == "333333333333333333333333");
+        assert(q * b + r == a && r >= FastBigInt(0) && r < b);
+        assert((FastBigInt("999999999999999999999999") / FastBigInt("3")).toDecimal() == "333333333333333333333333");
     }
     string s(1000000, 'F');
     HexBigInt x(s);

@@ -51,7 +51,7 @@ class VolumeTests(unittest.TestCase):
                     self.assertTrue(all(p.read_bytes() == b"previous" for p in output.glob("*.pdf")))
                 else:
                     volumes.build_volumes(root / "full.pdf")
-                    texts = [(output / f"hushuqi算法竞赛模板({name}).pdf").read_text() for name in ("上", "中", "下")]
+                    texts = [(output / f"hushuqi算法竞赛模板({name}).pdf").read_text(encoding="utf-8") for name in ("上", "中", "下")]
                     self.assertEqual(texts, ["上:00-chapter,01-chapter", "中:02-chapter", "下:03-chapter"])
 
     def test_actual_page_limit_rebalances(self):

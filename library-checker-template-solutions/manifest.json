@@ -15,7 +15,7 @@
       "title": "Addition of Big Integers",
       "category": "big_integer",
       "source": "big_integer/addition_of_big_integers/main.cpp",
-      "source_sha256": "30a6f36326edcfd455a2ae1dce3819897bf64faf58d9892b519fb5add697c520",
+      "source_sha256": "dc262bae9e3f80c902f4b2c8d64ec9f949242cad0396c31e6dd4c3e5c5502af8",
       "meta": "big_integer/addition_of_big_integers/meta.json",
       "state": "template_solution"
     },
@@ -24,7 +24,7 @@
       "title": "Addition of Hex Big Integers",
       "category": "big_integer",
       "source": "big_integer/addition_of_hex_big_integers/main.cpp",
-      "source_sha256": "7cee3d8067b7ec9053becc074dbd5a07f76250c8fe59f7925faa0fcb0726a274",
+      "source_sha256": "cefc5357adba2d7d41482b78ea4f112e668f77b3e104301f39a2b975b1ead00d",
       "meta": "big_integer/addition_of_hex_big_integers/meta.json",
       "state": "template_solution"
     },
@@ -492,7 +492,7 @@
       "title": "Division of Big Integers",
       "category": "big_integer",
       "source": "big_integer/division_of_big_integers/main.cpp",
-      "source_sha256": "9ff1b3d12ec565967527ea2bf0bca7443ae9fd6b24c7f43766177373fcc8e936",
+      "source_sha256": "f4675b0e04ed37a37c18f896c6560d4783903dbf37f05b477ea062b85d08a88f",
       "meta": "big_integer/division_of_big_integers/meta.json",
       "state": "template_solution"
     },
@@ -501,7 +501,7 @@
       "title": "Division of Hex Big Integers",
       "category": "big_integer",
       "source": "big_integer/division_of_hex_big_integers/main.cpp",
-      "source_sha256": "d24ff31a01f775dd383cc331ac625aec18eec9abc4516653b8ff9a9cae547ee9",
+      "source_sha256": "9bee43e044182e91da1d460cfef3f0bc60faa6b790c7ed13b82290c57f70d89f",
       "meta": "big_integer/division_of_hex_big_integers/meta.json",
       "state": "template_solution"
     },
@@ -1248,7 +1248,7 @@
       "title": "Multiplication of Big Integers",
       "category": "big_integer",
       "source": "big_integer/multiplication_of_big_integers/main.cpp",
-      "source_sha256": "a421dd24a995ee5ddf87542695ad3f81c05efb158fd503ec079b11daae863f78",
+      "source_sha256": "011826415a2e6acfd68f9fe22fa163ede472e960a2eddfbef9277a10c38df890",
       "meta": "big_integer/multiplication_of_big_integers/meta.json",
       "state": "template_solution"
     },
@@ -1257,7 +1257,7 @@
       "title": "Multiplication of Hex Big Integers",
       "category": "big_integer",
       "source": "big_integer/multiplication_of_hex_big_integers/main.cpp",
-      "source_sha256": "790837e6ff6fe6e8d3849e2820d4e045525585399bb145a2a0d255d9ba31474a",
+      "source_sha256": "119130deb458ee434872660f25e99f6789e439e3b7fe660703c35ee9105672f0",
       "meta": "big_integer/multiplication_of_hex_big_integers/meta.json",
       "state": "template_solution"
     },

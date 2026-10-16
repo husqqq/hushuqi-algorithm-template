@@ -2238,7 +2238,7 @@ signed main()
     while (t--)
     {
         string a, b; cin >> a >> b;
-        DecimalBigInt x(a), y(b);
+        FastBigInt x(a), y(b);
         auto [q, r] = divmod(x, y);
         cout << q.toDecimal() << ' ' << r.toDecimal() << '\n';
     }
@@ -2252,7 +2252,7 @@ signed main()
     while (t--)
     {
         string a, b; cin >> a >> b;
-        cout << (DecimalBigInt(a) * DecimalBigInt(b)).toDecimal() << '\n';
+        cout << (FastBigInt(a) * FastBigInt(b)).toDecimal() << '\n';
     }
 }
 '''),

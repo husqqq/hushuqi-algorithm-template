@@ -47,8 +47,58 @@ SYNCED = {
     "11.3.012", "11.3.013", "11.3.014", "11.4.003", "11.4.005", "11.4.008", "11.4.009", "11.4.011",
     "11.5.001", "11.5.002", "11.5.003", "11.5.005", "11.5.006", "11.5.007", "11.6.001", "11.6.002",
     "11.6.003", "11.6.004", "11.6.005", "11.6.008", "11.6.009", "12.1.008", "12.1.011", "12.2.005", "12.2.006", "12.2.011", "12.3.006", "12.3.007",
-    "2.4.007", "7.3.014", "7.3.015", "8.1.013", "8.2.018", "13.1.001", "13.2.005", "13.3.009", "14.1.001", "14.1.006", "14.1.008", "14.1.020", "14.1.021",
+    "2.4.007", "7.3.014", "7.3.015", "8.1.013", "8.2.018", "13.1.001", "13.2.005", "13.3.009", "14.1.001", "14.1.006", "14.1.008", "14.1.019", "14.1.020", "14.1.021",
 }
+
+
+def bigint_blocks(data: str) -> str:
+    """Print both public integer types and their existing static NTT dependency."""
+    binary, decimal = data.split("// 十进制百万位整数：", 1)
+    binary = re.sub(r'^// 依赖 .*\n', '', binary, flags=re.M).strip()
+    source = (ROOT / "include/print/10_1_004.hpp").read_text(encoding="utf-8")
+    kernel = source.split("// LC_GENERATOR_CH14_ONLY_BEGIN", 1)[1].split(
+        "// LC_GENERATOR_CH14_ONLY_END", 1)[0].strip()
+    # Preserve the caller's macro setting instead of enabling it after a copied kernel.
+    kernel = kernel.removeprefix("#undef int\n").removesuffix("#define int long long").strip()
+    # These are documentation and layout changes only; the shared arithmetic stays unchanged.
+    kernel = re.sub(r'^(    [^\n]+\)) \{ (return [^\n]+;) \}$',
+                    r'\1\n    {\n        \2\n    }', kernel, flags=re.M)
+    notes = {
+        "static constexpr uint32_t montInv()": "无参数；返回 mod 在模 2^32 下的逆元，供 Montgomery 约减使用。",
+        "static uint32_t toMont(uint32_t x)": "0<=x<mod；返回 x 的 Montgomery 表示。",
+        "static uint32_t fromMont(uint32_t x)": "x 是小于 2mod 的 Montgomery 表示；返回 [0,mod) 内的普通剩余。",
+        "static uint32_t mul(uint32_t x, uint32_t y)": "x、y 是小于 2mod 的 Montgomery 表示；返回乘积的 Montgomery 表示。",
+        "static uint32_t add(uint32_t x, uint32_t y)": "x、y 是 [0,2mod) 内的表示；返回同区间内的和。",
+        "static uint32_t sub(uint32_t x, uint32_t y)": "x、y 是 [0,2mod) 内的表示；返回同区间内的差。",
+    }
+    for sig, note in notes.items():
+        kernel = kernel.replace(sig + "\n    {\n", sig + "\n    {\n        // " + note + "\n")
+    kernel = kernel.replace("static constexpr int level = countr_zero(mod - 1);",
+                            "static constexpr int level = countr_zero(mod - 1); // 最大二进制变换层数。")
+    kernel = kernel.replace("static constexpr uint32_t inv32 = montInv();",
+                            "static constexpr uint32_t inv32 = montInv(); // 模 2^32 的逆元。")
+    kernel = kernel.replace("static constexpr uint32_t r2 = -uint64_t(mod) % mod;",
+                            "static constexpr uint32_t r2 = -uint64_t(mod) % mod; // 2^64 mod mod。")
+    kernel = kernel.replace("static inline array<uint32_t, 32> root, iroot, rate2, irate2, rate3, irate3, dw, dy;",
+                            "// 正逆单位根、radix-2/4 旋转步长，以及连续布局的正逆旋转因子。\n"
+                            "    static inline array<uint32_t, 32> root, iroot, rate2, irate2, rate3, irate3, dw, dy;")
+    kernel = kernel.replace("static inline bool ready = false;",
+                            "static inline bool ready = false; // 是否已建立根表。")
+    kernel = kernel.replace("x 小于 mod^2；返回其 Montgomery 约减结果。",
+                            "0<=x<mod*2^32；返回 [0,2mod) 内的 Montgomery 约减结果。")
+    kernel = kernel.replace("uint64_t", "unsigned long long")
+    kernel = kernel.replace("-unsigned long long(mod)", "-(unsigned long long)(mod)")
+    kernel = ('#pragma push_macro("int")\n#undef int\nnamespace arbModConv\n{\n'
+              + kernel + '\n}\n#pragma pop_macro("int")')
+    return ("```cpp\n" + binary + "\n```\n\n"
+            "快速十进制版复用以下静态 Montgomery NTT 内核；固定 32 位约减要求素数 "
+            "$p<2^{30}$，原根与变换长度必须合法。内核在本条完整打印，普通模逆元仍依赖 "
+            "[10.1.004 任意模数卷积](10-多项式、变换与线性递推.md#101004) 的 `arbModConv::inv`。\n\n"
+            "```cpp\n" + kernel + "\n```\n\n"
+            "`FastBigInt` 直接读写十进制分组；与普通 `BigInt`、`HexBigInt` 可以同时使用。\n\n"
+            "```cpp\n// 依赖 10.1.004 的 arbModConv::inv 及上面的 StaticNTT。\n"
+            "// 十进制百万位整数：" + decimal.strip() + "\n```")
+
 
 def snippet(name: str) -> str:
     data = (ROOT / "include/print" / name).read_text(encoding="utf-8")
@@ -78,7 +128,7 @@ def snippet(name: str) -> str:
     # 手写接口说明已覆盖同一依赖时，不再重复打印由 include 生成的通用说明。
     data = re.sub(r'^// 依赖 (\d+\.\d+\.\d{3})[^\n]*\n(?=// 依赖 \1\b)',
                   '', data, flags=re.M)
-    return "```cpp\n" + data.strip() + "\n```"
+    return bigint_blocks(data) if name == "14_1_019.hpp" else "```cpp\n" + data.strip() + "\n```"
 
 def sync_topics(data: str) -> tuple[str, set[str]]:
     seen = set()
@@ -94,7 +144,15 @@ def sync_topics(data: str) -> tuple[str, set[str]]:
         if not fence:
             raise ValueError(f"{topic}: missing C++ block")
         code = snippet(topic.replace(".", "_") + ".hpp")
-        section = section[:fence.start()] + code + section[fence.end():]
+        if topic == "14.1.019" and "struct FastBigInt" in section:
+            # This topic owns three implementation blocks; preserve its final fixed-answer check.
+            fences = list(re.finditer(r"```cpp\n.*?\n```", section, re.S))
+            if len(fences) < 3:
+                raise ValueError("14.1.019: incomplete integer implementation blocks")
+            fence_end = fences[2].end()
+        else:
+            fence_end = fence.end()
+        section = section[:fence.start()] + code + section[fence_end:]
         data = data[:start] + section + data[end:]
         seen.add(topic)
     return data, seen

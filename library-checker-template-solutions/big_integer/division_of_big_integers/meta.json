@@ -6,7 +6,7 @@
   "provenance": {
     "kind": "template_solution",
     "source": "big_integer/division_of_big_integers/main.cpp",
-    "source_sha256": "9ff1b3d12ec565967527ea2bf0bca7443ae9fd6b24c7f43766177373fcc8e936"
+    "source_sha256": "f4675b0e04ed37a37c18f896c6560d4783903dbf37f05b477ea062b85d08a88f"
   },
   "official_reference": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
@@ -14,21 +14,12 @@
     "problem": "division_of_big_integers"
   },
   "validation": {
-    "status": "online_ac",
-    "current_source_sha256": "9ff1b3d12ec565967527ea2bf0bca7443ae9fd6b24c7f43766177373fcc8e936",
+    "status": "local_only",
+    "current_source_sha256": "f4675b0e04ed37a37c18f896c6560d4783903dbf37f05b477ea062b85d08a88f",
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch14_hex_bigint.cpp"
-    ],
-    "checked_at": "2026-08-22T00:42:58.619595Z",
-    "current_source_online_verdict": "AC",
-    "current_source_submission_id": 395927,
-    "current_source_time": 1.152,
-    "current_source_memory": 24633344,
-    "current_source_submission_time": "2026-08-22T00:42:16.932192Z",
-    "current_source_is_latest": true,
-    "server_source_sha256": "9ff1b3d12ec565967527ea2bf0bca7443ae9fd6b24c7f43766177373fcc8e936",
-    "note": "当前独立源码已通过 Library Checker 在线评测。"
+    ]
   },
   "submission_attempts": [
     {

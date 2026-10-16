@@ -3,15 +3,17 @@
 using namespace std;
 #define int long long
 
-#ifndef HUSHUQI_FULL_COMMON
-#define HUSHUQI_FULL_COMMON
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
+
+
+#include <limits>
+
+using namespace std;
+
+constexpr long long INF = numeric_limits<long long>::max() / 4;
 
 template <class T> bool chmin(T &a, const T &b)
 {
-    // a 是当前值，b 是候选值；若 b 更小则更新 a 并返回 true。
+    // a 是待更新值，b 是候选值；若 b 更小则更新 a 并返回 true。
     if (b < a)
     {
         a = b;
@@ -19,9 +21,10 @@ template <class T> bool chmin(T &a, const T &b)
     }
     return false;
 }
+
 template <class T> bool chmax(T &a, const T &b)
 {
-    // a 是当前值，b 是候选值；若 b 更大则更新 a 并返回 true。
+    // a 是待更新值，b 是候选值；若 b 更大则更新 a 并返回 true。
     if (a < b)
     {
         a = b;
@@ -29,7 +32,9 @@ template <class T> bool chmax(T &a, const T &b)
     }
     return false;
 }
-#endif
+
+constexpr int inf = 1E9;
+constexpr long double eps = 1E-12L;
 
 struct BigInt
 {
@@ -76,16 +81,10 @@ struct BigInt
             s = x[0] == '-' ? -1 : 1;
             p = 1;
         }
-        if (p == (int)x.size())
-        {
-            throw invalid_argument("BigInt: empty digits");
-        }
+        assert(p < (int)x.size()); // 调试检查，可删。
         for (int i = p; i < (int)x.size(); i++)
         {
-            if (x[i] < '0' || x[i] > '9')
-            {
-                throw invalid_argument("BigInt: invalid digit");
-            }
+            assert('0' <= x[i] && x[i] <= '9'); // 调试检查，可删。
         }
         for (int r = (int)x.size(); r > p; r -= 9)
         {
@@ -120,7 +119,7 @@ struct BigInt
 
     void norm()
     {
-        // 无参数；删除多项式末尾多余的零系数，无返回值。
+        // 删除最高端零块并同步零值符号，无返回值。
         while (!a.empty() && !a.back())
         {
             a.pop_back();
@@ -345,7 +344,7 @@ struct BigInt
     static pair<BigInt, BigInt> divmod(const BigInt &x, const BigInt &y)
     {
         // x 是被除数，y 是非零除数；返回向零取整的商和与 x 同号的余数。
-        assert(y.s);
+        assert(y.s); // 调试检查，可删。
         BigInt q, r, d = y;
         d.s = 1;
         q.a.resize(x.a.size());

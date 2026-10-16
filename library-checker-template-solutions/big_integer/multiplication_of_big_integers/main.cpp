@@ -82,7 +82,7 @@ vector<long double> convolution(const vector<long double> &a, const vector<long 
     return c;
 }
 
-namespace arbitrary_mod_convolution
+namespace arbModConv
 {
 struct NTT
 {
@@ -180,13 +180,17 @@ struct NTT
 
 // LC_GENERATOR_CH14_ONLY_BEGIN
 #undef int
+// 固定 32 位 Montgomery 模运算内核；约减、移位和槽布局依赖该位宽。
 template <uint32_t mod, uint32_t primitive> struct StaticNTT
 {
     static constexpr int level = countr_zero(mod - 1);
     static constexpr uint32_t montInv()
     {
         uint32_t x = mod;
-        for (int i = 0; i < 4; i++) x *= 2 - mod * x;
+        for (int i = 0; i < 4; i++)
+        {
+            x *= 2 - mod * x;
+        }
         return x;
     }
     static constexpr uint32_t inv32 = montInv();
@@ -373,7 +377,10 @@ template <uint32_t mod, uint32_t primitive> struct StaticNTT
             }
         }
         uint32_t iv = toMont(power(n, mod - 2));
-        for (auto &x : a) x = fromMont(mul(x, iv));
+        for (auto &x : a)
+        {
+            x = fromMont(mul(x, iv));
+        }
     }
 
     static void dftCompact(vector<uint32_t> &a)
@@ -501,7 +508,10 @@ template <uint32_t mod, uint32_t primitive> struct StaticNTT
             }
         }
         uint32_t iv = toMont(power(n, mod - 2));
-        for (auto &x : a) x = fromMont(mul(x, iv));
+        for (auto &x : a)
+        {
+            x = fromMont(mul(x, iv));
+        }
     }
 
     static vector<uint32_t> conv(const vector<unsigned long long> &x,
@@ -512,11 +522,20 @@ template <uint32_t mod, uint32_t primitive> struct StaticNTT
         int need = x.size() + y.size() - 1;
         int n = bit_ceil((unsigned long long)need);
         vector<uint32_t> a(n), b(n);
-        for (int i = 0; i < (int)x.size(); i++) a[i] = toMont(x[i] % mod);
-        for (int i = 0; i < (int)y.size(); i++) b[i] = toMont(y[i] % mod);
+        for (int i = 0; i < (int)x.size(); i++)
+        {
+            a[i] = toMont(x[i] % mod);
+        }
+        for (int i = 0; i < (int)y.size(); i++)
+        {
+            b[i] = toMont(y[i] % mod);
+        }
         dft(a);
         dft(b);
-        for (int i = 0; i < n; i++) a[i] = mul(a[i], b[i]);
+        for (int i = 0; i < n; i++)
+        {
+            a[i] = mul(a[i], b[i]);
+        }
         idft(a);
         a.resize(need);
         return a;
@@ -592,11 +611,11 @@ vector<long long> convNTTMod(const vector<long long> &a, const vector<long long>
     array<vector<uint32_t>, 3> rem;
     for (int k = 0; k < 3; k++)
     {
-        rem[k] = arbitrary_mod_convolution::NTT{prime[k], root[k]}.conv(x, y);
+        rem[k] = arbModConv::NTT{prime[k], root[k]}.conv(x, y);
     }
-    uint64_t inv01 = arbitrary_mod_convolution::inv(prime[0] % prime[1], prime[1]);
+    uint64_t inv01 = arbModConv::inv(prime[0] % prime[1], prime[1]);
     uint64_t p01mod2 = (uint64_t)prime[0] * prime[1] % prime[2];
-    uint64_t inv012 = arbitrary_mod_convolution::inv(p01mod2, prime[2]);
+    uint64_t inv012 = arbModConv::inv(p01mod2, prime[2]);
     uint64_t p0mod = prime[0] % mod;
     uint64_t p01mod = p0mod * (prime[1] % mod) % mod;
     vector<long long> ans(need);
@@ -692,20 +711,25 @@ vector<long long> convMod(vector<long long> a, vector<long long> b, long long mo
 using namespace std;
 #define int long long
 
+// limb、进位和移位槽固定为 32 位，依赖截断与二进制位布局；64 位中间量承载双字运算。
 struct HexBigInt
 {
     using It = vector<uint32_t>::iterator;
     using CIt = vector<uint32_t>::const_iterator;
 
-    bool neg = false;
-    vector<uint32_t> a;
+    bool neg = false;   // 是否为负数，零恒为非负。
+    vector<uint32_t> a; // 绝对值的固定 32 位小端 limb，无高位零，零为空。
 
-    HexBigInt() = default;
+    HexBigInt()
+    {
+        // 无参数；构造整数零。
+    }
 
     HexBigInt(long long x)
     {
+        // x 是任意 64 位有符号整数（含 LLONG_MIN）；按符号与绝对值的 32 位小端 limb 构造。
         neg = x < 0;
-        uint64_t y = neg ? 0 - (uint64_t)x : (uint64_t)x;
+        unsigned long long y = neg ? 0 - (unsigned long long)x : (unsigned long long)x;
         while (y)
         {
             a.push_back((uint32_t)y);
@@ -715,11 +739,13 @@ struct HexBigInt
 
     HexBigInt(const string &s)
     {
+        // s 是带可选 +/- 号、至少一位数字的十六进制串（大小写均可）；解析为对应大整数。
         assign(s);
     }
 
     HexBigInt(bool sgn, vector<uint32_t> v) : neg(sgn), a(move(v))
     {
+        // sgn 为真表示负数，v 是绝对值的 32 位小端 limb；构造后去高零，值为零时强制非负。
         trim(this->a);
         if (this->a.empty())
         {
@@ -729,6 +755,7 @@ struct HexBigInt
 
     HexBigInt &assign(const string &s)
     {
+        // s 是带可选 +/- 号、至少一位数字的十六进制串（0-9A-Fa-f）；覆盖当前值并返回 *this，零非负。
         assert(!s.empty());
         int p = 0;
         neg = s[0] == '-';
@@ -771,6 +798,7 @@ struct HexBigInt
 
     string toHex() const
     {
+        // 无参数；返回大写十六进制串，负数带前导 -，无前导零，零返回 "0"。
         if (a.empty())
         {
             return "0";
@@ -797,11 +825,13 @@ struct HexBigInt
 
     bool isZero() const
     {
+        // 无参数；返回当前值是否为零（limb 数组为空）。
         return a.empty();
     }
 
     HexBigInt operator-() const
     {
+        // 无参数；返回相反数，零仍保持非负。
         HexBigInt x = *this;
         if (!x.a.empty())
         {
@@ -812,11 +842,13 @@ struct HexBigInt
 
     friend bool operator==(const HexBigInt &x, const HexBigInt &y)
     {
+        // x、y 是规范整数；返回 x 是否相等 y。
         return x.neg == y.neg && x.a == y.a;
     }
 
     friend bool operator<(const HexBigInt &x, const HexBigInt &y)
     {
+        // x、y 是规范大整数；返回按有符号数值比较 x<y 是否成立。
         if (x.neg != y.neg)
         {
             return x.neg;
@@ -827,26 +859,31 @@ struct HexBigInt
 
     friend bool operator!=(const HexBigInt &x, const HexBigInt &y)
     {
+        // x、y 是规范整数；返回 x 是否不等 y。
         return !(x == y);
     }
 
     friend bool operator>(const HexBigInt &x, const HexBigInt &y)
     {
+        // x、y 是规范大整数；返回 x>y 是否成立（即 y<x）。
         return y < x;
     }
 
     friend bool operator<=(const HexBigInt &x, const HexBigInt &y)
     {
+        // x、y 是规范整数；返回 x 是否小于等于 y。
         return !(y < x);
     }
 
     friend bool operator>=(const HexBigInt &x, const HexBigInt &y)
     {
+        // x、y 是规范整数；返回 x 是否大于等于 y。
         return !(x < y);
     }
 
     friend HexBigInt operator+(const HexBigInt &x, const HexBigInt &y)
     {
+        // x、y 是规范大整数；返回 x+y：同号相加绝对值，异号用较大绝对值减较小绝对值。
         if (x.neg == y.neg)
         {
             return {x.neg, addVec(x.a, y.a)};
@@ -861,70 +898,83 @@ struct HexBigInt
 
     friend HexBigInt operator-(const HexBigInt &x, const HexBigInt &y)
     {
+        // x、y 是规范大整数；返回 x-y，即 x+(-y)。
         return x + (-y);
     }
 
     friend HexBigInt operator*(const HexBigInt &x, const HexBigInt &y)
     {
+        // x、y 是规范大整数；返回 x*y，积为零时非负。
         auto z = mulVec(x.a, y.a);
         return {z.empty() ? false : x.neg != y.neg, move(z)};
     }
 
     friend pair<HexBigInt, HexBigInt> divmod(const HexBigInt &x, const HexBigInt &y)
     {
+        // x 是被除数，y 是非零除数；返回 {商,余数}，商向零截断，余数与 x 同号（零非负）。
         assert(!y.a.empty());
         auto [q, r] = divVec(x.a, y.a);
-        return {{q.empty() ? false : x.neg != y.neg, move(q)},
-                {r.empty() ? false : x.neg, move(r)}};
+        return {{q.empty() ? false : x.neg != y.neg, move(q)}, {r.empty() ? false : x.neg, move(r)}};
     }
 
     friend HexBigInt operator/(const HexBigInt &x, const HexBigInt &y)
     {
+        // x 是被除数，y 是非零除数；返回向零截断的商。
         return divmod(x, y).first;
     }
 
     friend HexBigInt operator%(const HexBigInt &x, const HexBigInt &y)
     {
+        // x 是被除数，y 是非零除数；返回与 x 同号的余数 x-(x/y)*y。
         return divmod(x, y).second;
     }
 
     HexBigInt &operator+=(const HexBigInt &x)
     {
+        // x 是右操作数；原地加上 x，返回 *this。
         return *this = *this + x;
     }
 
     HexBigInt &operator-=(const HexBigInt &x)
     {
+        // x 是右操作数；原地减去 x，返回 *this。
         return *this = *this - x;
     }
 
     HexBigInt &operator*=(const HexBigInt &x)
     {
+        // x 是右操作数；原地乘以 x，返回 *this。
         return *this = *this * x;
     }
 
     HexBigInt &operator/=(const HexBigInt &x)
     {
+        // x 是右操作数；原地除以非零 x，向零截断，返回 *this。
         return *this = *this / x;
     }
 
     HexBigInt &operator%=(const HexBigInt &x)
     {
+        // x 是右操作数；原地对非零 x 取余，余数与原值同号，返回 *this。
         return *this = *this % x;
     }
 
     friend ostream &operator<<(ostream &out, const HexBigInt &x)
     {
+        // out 是输出流，x 是大整数；写入 x.toHex() 并返回 out。
         return out << x.toHex();
     }
 
     static HexBigInt fromDecimal(const string &s)
     {
-        // s 是带可选正负号的十进制整数串；按 10^9 分组并分治合并到二进制 limb。
+        // s 是带可选正负号的非空十进制整数串；返回其精确值，以二进制 limb 保存。
         assert(!s.empty());
         int p = 0;
         bool sign = s[0] == '-';
-        if (s[0] == '-' || s[0] == '+') p++;
+        if (s[0] == '-' || s[0] == '+')
+        {
+            p++;
+        }
         assert(p < (int)s.size());
         vector<uint32_t> group;
         for (int r = s.size(); r > p; r -= 9)
@@ -942,24 +992,37 @@ struct HexBigInt
         group.resize(z);
         vector<HexBigInt> power;
         power.emplace_back(1000000000LL);
-        for (int n = 2; n < z; n <<= 1) power.push_back(power.back() * power.back());
+        for (int n = 2; n < z; n <<= 1)
+        {
+            power.push_back(power.back() * power.back());
+        }
         auto build = [&](auto &&self, int l, int len, int level) -> HexBigInt
         {
-            if (len == 1) return HexBigInt((long long)group[l]);
+            // self 是递归自身；合并 group 的 [l,l+len)，len=2^level，返回对应非负整数。
+            if (len == 1)
+            {
+                return HexBigInt((long long)group[l]);
+            }
             int half = len / 2;
             HexBigInt low = self(self, l, half, level - 1);
             HexBigInt high = self(self, l + half, half, level - 1);
             return low + high * power[level - 1];
         };
         HexBigInt ans = build(build, 0, z, countr_zero((unsigned long long)z));
-        if (!ans.a.empty()) ans.neg = sign;
+        if (!ans.a.empty())
+        {
+            ans.neg = sign;
+        }
         return ans;
     }
 
     string toDecimal() const
     {
         // 无参数；按 10^9 幂递归分裂为十进制分组，返回规范字符串。
-        if (a.empty()) return "0";
+        if (a.empty())
+        {
+            return "0";
+        }
         HexBigInt x = *this;
         x.neg = false;
         vector<HexBigInt> power{HexBigInt(1000000000LL)};
@@ -972,6 +1035,7 @@ struct HexBigInt
         vector<uint32_t> group(1LL << level);
         auto split = [&](auto &&self, const HexBigInt &v, int l, int lv) -> void
         {
+            // self 是递归自身；把非负 v 的 2^lv 个十进制块写入 group[l..l+2^lv)，无返回值。
             if (lv == 0)
             {
                 group[l] = v.a.empty() ? 0 : v.a[0];
@@ -982,7 +1046,10 @@ struct HexBigInt
             self(self, high, l + (1LL << (lv - 1)), lv - 1);
         };
         split(split, x, 0, level);
-        while (group.size() > 1 && group.back() == 0) group.pop_back();
+        while (group.size() > 1 && group.back() == 0)
+        {
+            group.pop_back();
+        }
         string s = neg ? "-" : "";
         s += to_string(group.back());
         for (int i = group.size() - 2; i >= 0; i--)
@@ -994,10 +1061,11 @@ struct HexBigInt
     }
 
   private:
-    static constexpr int naiveDivision = 64;
+    static constexpr int naiveDiv = 64; // 改用竖式除法的 limb 数阈值。
 
     static void trim(vector<uint32_t> &x)
     {
+        // x 是小端 limb 数组；原地弹掉最高位的零 limb，零变为空数组。
         while (!x.empty() && x.back() == 0)
         {
             x.pop_back();
@@ -1006,6 +1074,7 @@ struct HexBigInt
 
     static bool less(CIt x, CIt xe, CIt y, CIt ye)
     {
+        // [x,xe)、[y,ye) 是小端 limb 区间，长度可不同且允许高位零；返回无符号值 x<y 是否成立。
         int nx = xe - x, ny = ye - y;
         while (nx && x[nx - 1] == 0)
         {
@@ -1031,6 +1100,7 @@ struct HexBigInt
 
     static int cmp(const vector<uint32_t> &x, const vector<uint32_t> &y)
     {
+        // x、y 是已去高零的小端 limb 数组；返回无符号比较结果 -1（x<y）、0（相等）、1（x>y）。
         if (x == y)
         {
             return 0;
@@ -1040,6 +1110,8 @@ struct HexBigInt
 
     static void add(CIt x, CIt xe, CIt y, CIt ye, It z, It ze)
     {
+        // [x,xe)、[y,ye) 是小端 limb 区间；把无符号和 x+y 写入 z 的低 max(|x|,|y|) 个 limb，有进位时再写一位。
+        // z 至少长 max(|x|,|y|)，产生最高进位时须再多一位；z 中更高的位不被改动。
         if (xe - x < ye - y)
         {
             swap(x, y);
@@ -1050,13 +1122,13 @@ struct HexBigInt
         uint32_t carry = 0;
         for (int i = 0; i < ny; i++)
         {
-            uint64_t v = (uint64_t)x[i] + y[i] + carry;
+            unsigned long long v = (unsigned long long)x[i] + y[i] + carry;
             z[i] = v;
             carry = v >> 32;
         }
         for (int i = ny; i < nx; i++)
         {
-            uint64_t v = (uint64_t)x[i] + carry;
+            unsigned long long v = (unsigned long long)x[i] + carry;
             z[i] = v;
             carry = v >> 32;
         }
@@ -1069,17 +1141,18 @@ struct HexBigInt
 
     static void addTo(It x, It xe, CIt y, CIt ye)
     {
+        // [x,xe)、[y,ye) 是小端 limb 区间且 |x|≥|y|；原地令 x+=y，要求最终进位能在 x 的长度内吸收。
         int nx = xe - x, ny = ye - y;
         uint32_t carry = 0;
         for (int i = 0; i < ny; i++)
         {
-            uint64_t v = (uint64_t)x[i] + y[i] + carry;
+            unsigned long long v = (unsigned long long)x[i] + y[i] + carry;
             x[i] = v;
             carry = v >> 32;
         }
         for (int i = ny; carry && i < nx; i++)
         {
-            uint64_t v = (uint64_t)x[i] + carry;
+            unsigned long long v = (unsigned long long)x[i] + carry;
             x[i] = v;
             carry = v >> 32;
         }
@@ -1088,17 +1161,18 @@ struct HexBigInt
 
     static void subFrom(It x, It xe, CIt y, CIt ye)
     {
+        // [x,xe)、[y,ye) 是小端 limb 区间且 |x|≥|y|；原地令 x-=y，要求 x 的值不小于 y（无最终借位）。
         int nx = xe - x, ny = ye - y;
-        int32_t borrow = 0;
+        int borrow = 0;
         for (int i = 0; i < ny; i++)
         {
-            int64_t v = (int64_t)x[i] - y[i] + borrow;
+            long long v = (long long)x[i] - y[i] + borrow;
             x[i] = v;
             borrow = v >> 32;
         }
         for (int i = ny; borrow && i < nx; i++)
         {
-            int64_t v = (int64_t)x[i] + borrow;
+            long long v = (long long)x[i] + borrow;
             x[i] = v;
             borrow = v >> 32;
         }
@@ -1107,6 +1181,7 @@ struct HexBigInt
 
     static vector<uint32_t> addVec(const vector<uint32_t> &x, const vector<uint32_t> &y)
     {
+        // x、y 是小端 limb 数组；返回去高零后的无符号和 x+y。
         vector<uint32_t> z(max(x.size(), y.size()) + 1);
         add(x.begin(), x.end(), y.begin(), y.end(), z.begin(), z.end());
         trim(z);
@@ -1115,6 +1190,7 @@ struct HexBigInt
 
     static vector<uint32_t> subVec(const vector<uint32_t> &x, const vector<uint32_t> &y)
     {
+        // x、y 是去高零的小端 limb 数组且 x≥y；返回去高零后的无符号差 x-y。
         assert(cmp(x, y) >= 0);
         vector<uint32_t> z = x;
         subFrom(z.begin(), z.end(), y.begin(), y.end());
@@ -1124,6 +1200,8 @@ struct HexBigInt
 
     static void mulNaive(CIt x, CIt xe, CIt y, CIt ye, It z, It ze)
     {
+        // [x,xe)、[y,ye) 是小端 limb 区间；竖式乘法把无符号积 x*y 写入 z。
+        // z 长度恰为 |x|+|y|，且低 |y| 个 limb 须为零（通常整体清零）。
         int nx = xe - x, ny = ye - y;
         assert(ze - z == nx + ny);
         for (int i = 0; i < nx; i++)
@@ -1131,7 +1209,7 @@ struct HexBigInt
             uint32_t carry = 0;
             for (int j = 0; j < ny; j++)
             {
-                uint64_t v = (uint64_t)x[i] * y[j] + carry + z[i + j];
+                unsigned long long v = (unsigned long long)x[i] * y[j] + carry + z[i + j];
                 z[i + j] = v;
                 carry = v >> 32;
             }
@@ -1141,6 +1219,8 @@ struct HexBigInt
 
     static void mul(CIt x, CIt xe, CIt y, CIt ye, It z, It ze)
     {
+        // [x,xe)、[y,ye) 是小端 limb 区间，z 长度恰为 |x|+|y| 且须预先清零；把无符号积 x*y 写入 z。
+        // 较短因子不超过 128 个 limb 时用竖式，否则用 Karatsuba（长短悬殊时先把长因子对半拆开）。
         if (xe - x < ye - y)
         {
             swap(x, y);
@@ -1177,6 +1257,7 @@ struct HexBigInt
 
     static vector<uint32_t> mulVec(const vector<uint32_t> &x, const vector<uint32_t> &y)
     {
+        // x、y 是去高零的小端 limb 数组；返回去高零后的无符号积，任一为空（零）时返回空。
         if (x.empty() || y.empty())
         {
             return {};
@@ -1189,6 +1270,7 @@ struct HexBigInt
 
     static void leftShift(It x, It xe, int s)
     {
+        // [x,xe) 是小端 limb 区间，0<=s<32；原地整体左移 s 位，要求最高 limb 被移出的位全为零。
         assert(0 <= s && s < 32);
         if (!s)
         {
@@ -1205,8 +1287,9 @@ struct HexBigInt
         assert(!carry);
     }
 
-    static void rightShift(It x, It xe, int s)
+    static void shiftR(It x, It xe, int s)
     {
+        // [x,xe) 是小端 limb 区间，0<=s<32；原地整体右移 s 位，要求最低 limb 的低 s 位为零（值能被 2^s 整除）。
         assert(0 <= s && s < 32);
         if (!s)
         {
@@ -1226,24 +1309,26 @@ struct HexBigInt
 
     static void divNaive(CIt x, CIt xe, CIt y, CIt ye, It q, It qe, It r, It re)
     {
+        // [x,xe) 是被除数、[y,ye) 是除数（最高 limb 非零）的小端 limb 区间；规格化长除法把商写入 q、余数写入 r。
+        // 只写商与余数的有效低位，q 须能容纳商、r 至少 |y| 个 limb，二者须预先清零。
         int nx = xe - x, ny = ye - y;
         if (ny == 1)
         {
-            uint64_t carry = 0;
+            unsigned long long carry = 0;
             for (int i = nx - 1; i >= 0; i--)
             {
-                uint64_t v = (carry << 32) | x[i];
+                unsigned long long v = (carry << 32) | x[i];
                 q[i] = v / y[0];
-                carry = v - (uint64_t)q[i] * y[0];
+                carry = v - (unsigned long long)q[i] * y[0];
             }
             r[0] = carry;
             return;
         }
         if (max(nx, ny) <= 2)
         {
-            uint64_t xv = x[0] | (nx == 2 ? (uint64_t)x[1] << 32 : 0);
-            uint64_t yv = y[0] | (ny == 2 ? (uint64_t)y[1] << 32 : 0);
-            uint64_t qv = xv / yv, rv = xv % yv;
+            unsigned long long xv = x[0] | (nx == 2 ? (unsigned long long)x[1] << 32 : 0);
+            unsigned long long yv = y[0] | (ny == 2 ? (unsigned long long)y[1] << 32 : 0);
+            unsigned long long qv = xv / yv, rv = xv % yv;
             if (q != qe)
             {
                 q[0] = qv;
@@ -1285,8 +1370,8 @@ struct HexBigInt
             }
             else if (rv.size() > b.size())
             {
-                uint64_t top2 = ((uint64_t)rv.back() << 32) | rv[rv.size() - 2];
-                uint64_t z = min<uint64_t>(UINT32_MAX, top2 / top);
+                unsigned long long top2 = ((unsigned long long)rv.back() << 32) | rv[rv.size() - 2];
+                unsigned long long z = min<unsigned long long>(UINT32_MAX, top2 / top);
                 vector<uint32_t> bz = mulVec(b, vector<uint32_t>{(uint32_t)z});
                 while (less(rv.begin(), rv.end(), bz.begin(), bz.end()))
                 {
@@ -1307,7 +1392,7 @@ struct HexBigInt
             }
             trim(rv);
         }
-        rightShift(rv.begin(), rv.end(), shift);
+        shiftR(rv.begin(), rv.end(), shift);
         trim(qv);
         trim(rv);
         copy(qv.begin(), qv.end(), q);
@@ -1316,10 +1401,12 @@ struct HexBigInt
 
     static void div2n1n(CIt x, CIt xe, CIt y, CIt ye, It q, It qe, It r, It re)
     {
+        // x 长 2n、y 长 n（divide 规格化后的除数），要求 x 的高 n 个 limb 小于 y；q 长 n、r 长 n+1，均须预先清零。
+        // 把 x/y 的商写入 q、余数写入 r；n 为奇数或不超过 naiveDiv 时用长除法，否则拆成两次 3n/2n 除法。
         int n = ye - y;
         assert(xe - x == 2 * n && qe - q == n && re - r == n + 1);
         assert(less(x + n, xe, y, ye));
-        if (n % 2 || n <= naiveDivision)
+        if (n % 2 || n <= naiveDiv)
         {
             divNaive(x, xe, y, ye, q, qe, r, re);
             return;
@@ -1333,6 +1420,8 @@ struct HexBigInt
 
     static void div3n2n(CIt x, CIt xe, CIt y, CIt ye, It q, It qe, It r, It re)
     {
+        // x 长 3n、y 长 2n，要求 x 的高 2n 个 limb 小于 y；q 长 n、r 长 2n+1，均须预先清零。
+        // 用高位 2n/n 除法（或全 1）估商，再反复 q--、r+=y 修正，把 x/y 的商写入 q、余数写入 r。
         int n = (ye - y) / 2;
         assert(xe - x == 3 * n && qe - q == n && re - r == 2 * n + 1);
         assert(less(x + n, xe, y, ye));
@@ -1361,14 +1450,16 @@ struct HexBigInt
 
     static void divide(CIt x, CIt xe, CIt y, CIt ye, It q, It qe, It r, It re)
     {
+        // [x,xe)、[y,ye) 是小端 limb 区间（y 非空且最高 limb 非零），q 长 |x|-|y|+1、r 长 |y|，均须预先清零。
+        // 把 x/y 的商写入 q、余数写入 r；较短时用长除法，否则补零规格化后逐块调用 2n/n 除法。
         int nx = xe - x, ny = ye - y;
         assert(ny > 0 && qe - q == nx - ny + 1 && re - r == ny);
-        if (min(nx - ny, ny) <= naiveDivision)
+        if (min(nx - ny, ny) <= naiveDiv)
         {
             divNaive(x, xe, y, ye, q, qe, r, re);
             return;
         }
-        int blocks = (ny + naiveDivision - 1) / naiveDivision;
+        int blocks = (ny + naiveDiv - 1) / naiveDiv;
         if (blocks > 1)
         {
             blocks = bit_ceil((unsigned long long)blocks);
@@ -1393,24 +1484,22 @@ struct HexBigInt
         }
         else
         {
-            div2n1n(z.begin(), z.end(), b.begin(), b.end(), q + (t - 2) * n,
-                    q + (t - 1) * n, rem.begin(), rem.end());
+            div2n1n(z.begin(), z.end(), b.begin(), b.end(), q + (t - 2) * n, q + (t - 1) * n, rem.begin(), rem.end());
         }
         for (int i = t - 3; i >= 0; i--)
         {
             copy(a.begin() + i * n, a.begin() + (i + 1) * n, z.begin());
             copy(rem.begin(), rem.begin() + n, z.begin() + n);
             fill(rem.begin(), rem.end(), 0);
-            div2n1n(z.begin(), z.end(), b.begin(), b.end(), q + i * n,
-                    q + (i + 1) * n, rem.begin(), rem.end());
+            div2n1n(z.begin(), z.end(), b.begin(), b.end(), q + i * n, q + (i + 1) * n, rem.begin(), rem.end());
         }
         copy(rem.begin() + digit, rem.begin() + digit + (re - r), r);
-        rightShift(r, re, shift);
+        shiftR(r, re, shift);
     }
 
-    static pair<vector<uint32_t>, vector<uint32_t>> divVec(const vector<uint32_t> &x,
-                                                            const vector<uint32_t> &y)
+    static pair<vector<uint32_t>, vector<uint32_t>> divVec(const vector<uint32_t> &x, const vector<uint32_t> &y)
     {
+        // x、y 是去高零的小端 limb 数组且 y 非空；返回去高零后的无符号 {商,余数}，x<y 时为 {空,x}。
         assert(!y.empty());
         if (cmp(x, y) < 0)
         {
@@ -1425,34 +1514,46 @@ struct HexBigInt
 };
 
 // 十进制百万位整数：以 10^9 为基数，长乘法复用公共三模 NTT，除法使用 Newton 逆。
-struct DecimalBigInt
+struct FastBigInt
 {
-    static constexpr uint32_t B = 1000000000;
-    bool neg = false;
-    vector<uint32_t> a;
+    static constexpr uint32_t B = 1000000000; // 十进制分组基数。
+    bool neg = false;                         // 是否为负数，零恒为非负。
+    vector<uint32_t> a;                       // 绝对值的 B 进制小端块，无高位零；性能版用紧凑存储。
 
-    DecimalBigInt() = default;
-    DecimalBigInt(long long x)
+    FastBigInt()
     {
-        if (x < 0) neg = true, x = -x;
-        while (x)
+        // 无参数；构造整数零。
+    }
+    FastBigInt(long long x)
+    {
+        // x 是任意有符号 64 位整数；构造其精确值，包含 LLONG_MIN。
+        neg = x < 0;
+        // 无符号取绝对值，避免对 LLONG_MIN 做有符号取反。
+        unsigned long long y = neg ? 0 - (unsigned long long)x : (unsigned long long)x;
+        while (y)
         {
-            a.push_back(x % B);
-            x /= B;
+            a.push_back(y % B);
+            y /= B;
         }
     }
-    DecimalBigInt(const string &s)
+    FastBigInt(const string &s)
     {
+        // s 是带可选正负号的非空十进制串；构造其精确值。
         assign(s);
     }
-    DecimalBigInt(bool s, vector<uint32_t> v) : neg(s), a(move(v))
+    FastBigInt(bool s, vector<uint32_t> v) : neg(s), a(move(v))
     {
+        // s 指定负号，v 是小端 B 进制块且各块小于 B；去高零并消除负零。
         trim(a);
-        if (a.empty()) neg = false;
+        if (a.empty())
+        {
+            neg = false;
+        }
     }
 
-    DecimalBigInt &assign(const string &s)
+    FastBigInt &assign(const string &s)
     {
+        // s 是带可选正负号的非空十进制串；覆盖当前值并返回 *this。
         assert(!s.empty());
         int p = (s[0] == '-' || s[0] == '+');
         neg = s[0] == '-';
@@ -1470,13 +1571,20 @@ struct DecimalBigInt
             a.push_back(v);
         }
         trim(a);
-        if (a.empty()) neg = false;
+        if (a.empty())
+        {
+            neg = false;
+        }
         return *this;
     }
 
     string toDecimal() const
     {
-        if (a.empty()) return "0";
+        // 无参数；返回无前导零的十进制串，负数带负号，零返回 "0"。
+        if (a.empty())
+        {
+            return "0";
+        }
         string s = neg ? "-" : "";
         s += to_string(a.back());
         for (int i = (int)a.size() - 2; i >= 0; i--)
@@ -1487,69 +1595,129 @@ struct DecimalBigInt
         return s;
     }
 
-    friend bool operator==(const DecimalBigInt &x, const DecimalBigInt &y)
+    friend bool operator==(const FastBigInt &x, const FastBigInt &y)
     {
+        // x、y 是规范整数；返回 x 是否相等 y。
         return x.neg == y.neg && x.a == y.a;
     }
-    friend bool operator<(const DecimalBigInt &x, const DecimalBigInt &y)
+    friend bool operator<(const FastBigInt &x, const FastBigInt &y)
     {
-        if (x.neg != y.neg) return x.neg;
+        // x、y 是规范整数；返回 x 是否小于 y。
+        if (x.neg != y.neg)
+        {
+            return x.neg;
+        }
         int c = cmp(x.a, y.a);
         return x.neg ? c > 0 : c < 0;
     }
-    friend bool operator!=(const DecimalBigInt &x, const DecimalBigInt &y) { return !(x == y); }
-    friend bool operator>(const DecimalBigInt &x, const DecimalBigInt &y) { return y < x; }
-    friend bool operator<=(const DecimalBigInt &x, const DecimalBigInt &y) { return !(y < x); }
-    friend bool operator>=(const DecimalBigInt &x, const DecimalBigInt &y) { return !(x < y); }
-
-    friend DecimalBigInt operator-(const DecimalBigInt &x)
+    friend bool operator!=(const FastBigInt &x, const FastBigInt &y)
     {
-        DecimalBigInt y = x;
-        if (!y.a.empty()) y.neg = !y.neg;
+        // x、y 是规范整数；返回 x 是否不等 y。
+        return !(x == y);
+    }
+    friend bool operator>(const FastBigInt &x, const FastBigInt &y)
+    {
+        // x、y 是规范整数；返回 x 是否大于 y。
+        return y < x;
+    }
+    friend bool operator<=(const FastBigInt &x, const FastBigInt &y)
+    {
+        // x、y 是规范整数；返回 x 是否小于等于 y。
+        return !(y < x);
+    }
+    friend bool operator>=(const FastBigInt &x, const FastBigInt &y)
+    {
+        // x、y 是规范整数；返回 x 是否大于等于 y。
+        return !(x < y);
+    }
+
+    friend FastBigInt operator-(const FastBigInt &x)
+    {
+        // x 是规范整数；返回相反数，零仍为非负。
+        FastBigInt y = x;
+        if (!y.a.empty())
+        {
+            y.neg = !y.neg;
+        }
         return y;
     }
-    friend DecimalBigInt operator+(const DecimalBigInt &x, const DecimalBigInt &y)
+    friend FastBigInt operator+(const FastBigInt &x, const FastBigInt &y)
     {
-        if (x.neg == y.neg) return {x.neg, addVec(x.a, y.a)};
+        // x、y 是规范整数；返回和。
+        if (x.neg == y.neg)
+        {
+            return {x.neg, addVec(x.a, y.a)};
+        }
         int c = cmp(x.a, y.a);
-        if (c <= 0) return {c ? y.neg : false, subVec(y.a, x.a)};
+        if (c <= 0)
+        {
+            return {c ? y.neg : false, subVec(y.a, x.a)};
+        }
         return {x.neg, subVec(x.a, y.a)};
     }
-    friend DecimalBigInt operator-(const DecimalBigInt &x, const DecimalBigInt &y) { return x + (-y); }
-    friend DecimalBigInt operator*(const DecimalBigInt &x, const DecimalBigInt &y)
+    friend FastBigInt operator-(const FastBigInt &x, const FastBigInt &y)
     {
+        // x、y 是规范整数；返回差。
+        return x + (-y);
+    }
+    friend FastBigInt operator*(const FastBigInt &x, const FastBigInt &y)
+    {
+        // x、y 是规范整数；返回积。
         auto z = mulVec(x.a, y.a);
         return {z.empty() ? false : x.neg != y.neg, move(z)};
     }
-    friend pair<DecimalBigInt, DecimalBigInt> divmod(const DecimalBigInt &x, const DecimalBigInt &y)
+    friend pair<FastBigInt, FastBigInt> divmod(const FastBigInt &x, const FastBigInt &y)
     {
+        // x 是被除数，y 是非零除数；返回 {向零截断的商,与 x 同号的余数}，零非负。
         assert(!y.a.empty());
         auto z = divVec(x.a, y.a);
         return {{z.first.empty() ? false : x.neg != y.neg, move(z.first)},
                 {z.second.empty() ? false : x.neg, move(z.second)}};
     }
-    friend DecimalBigInt operator/(const DecimalBigInt &x, const DecimalBigInt &y) { return divmod(x, y).first; }
-    friend DecimalBigInt operator%(const DecimalBigInt &x, const DecimalBigInt &y) { return divmod(x, y).second; }
+    friend FastBigInt operator/(const FastBigInt &x, const FastBigInt &y)
+    {
+        // x、y 是规范整数且 y 非零；返回向零截断的商。
+        return divmod(x, y).first;
+    }
+    friend FastBigInt operator%(const FastBigInt &x, const FastBigInt &y)
+    {
+        // x、y 是规范整数且 y 非零；返回与 x 同号的余数。
+        return divmod(x, y).second;
+    }
 
-private:
+  private:
     static void trim(vector<uint32_t> &x)
     {
-        while (!x.empty() && x.back() == 0) x.pop_back();
+        // x 是小端 B 进制块；原地删除高位零，零变为空，无返回值。
+        while (!x.empty() && x.back() == 0)
+        {
+            x.pop_back();
+        }
     }
     static int cmp(const vector<uint32_t> &x, const vector<uint32_t> &y)
     {
-        if (x.size() != y.size()) return x.size() < y.size() ? -1 : 1;
+        // x、y 是无高零的小端块；按绝对值比较，返回 -1、0 或 1。
+        if (x.size() != y.size())
+        {
+            return x.size() < y.size() ? -1 : 1;
+        }
         for (int i = (int)x.size() - 1; i >= 0; i--)
-            if (x[i] != y[i]) return x[i] < y[i] ? -1 : 1;
+        {
+            if (x[i] != y[i])
+            {
+                return x[i] < y[i] ? -1 : 1;
+            }
+        }
         return 0;
     }
     static vector<uint32_t> addVec(const vector<uint32_t> &x, const vector<uint32_t> &y)
     {
+        // x、y 是规范非负小端块；返回去高零的和。
         vector<uint32_t> z(max(x.size(), y.size()) + 1);
-        uint64_t carry = 0;
+        unsigned long long carry = 0;
         for (int i = 0; i < (int)z.size() - 1; i++)
         {
-            uint64_t v = carry + (i < (int)x.size() ? x[i] : 0) + (i < (int)y.size() ? y[i] : 0);
+            unsigned long long v = carry + (i < (int)x.size() ? x[i] : 0) + (i < (int)y.size() ? y[i] : 0);
             z[i] = v % B;
             carry = v / B;
         }
@@ -1559,13 +1727,21 @@ private:
     }
     static vector<uint32_t> subVec(const vector<uint32_t> &x, const vector<uint32_t> &y)
     {
+        // x、y 是规范非负小端块且 x>=y；返回去高零的差。
         assert(cmp(x, y) >= 0);
         vector<uint32_t> z = x;
-        int64_t borrow = 0;
+        long long borrow = 0;
         for (int i = 0; i < (int)z.size(); i++)
         {
-            int64_t v = (int64_t)z[i] - (i < (int)y.size() ? y[i] : 0) - borrow;
-            if (v < 0) v += B, borrow = 1; else borrow = 0;
+            long long v = (long long)z[i] - (i < (int)y.size() ? y[i] : 0) - borrow;
+            if (v < 0)
+            {
+                v += B, borrow = 1;
+            }
+            else
+            {
+                borrow = 0;
+            }
             z[i] = v;
         }
         trim(z);
@@ -1573,11 +1749,12 @@ private:
     }
     static vector<uint32_t> mulSmall(const vector<uint32_t> &x, uint32_t m)
     {
+        // x 是规范非负小端块，0<=m<B；返回去高零的 x*m。
         vector<uint32_t> z(x.size() + 1);
-        uint64_t carry = 0;
+        unsigned long long carry = 0;
         for (int i = 0; i < (int)x.size(); i++)
         {
-            uint64_t v = (uint64_t)x[i] * m + carry;
+            unsigned long long v = (unsigned long long)x[i] * m + carry;
             z[i] = v % B;
             carry = v / B;
         }
@@ -1587,11 +1764,12 @@ private:
     }
     static pair<vector<uint32_t>, uint32_t> divSmall(const vector<uint32_t> &x, uint32_t d)
     {
+        // x 是规范非负小端块，0<d<B；返回 {去高零的商,整型余数}。
         vector<uint32_t> q(x.size());
-        uint64_t rem = 0;
+        unsigned long long rem = 0;
         for (int i = (int)x.size() - 1; i >= 0; i--)
         {
-            uint64_t v = rem * B + x[i];
+            unsigned long long v = rem * B + x[i];
             q[i] = v / d;
             rem = v % d;
         }
@@ -1600,14 +1778,24 @@ private:
     }
     static vector<uint32_t> mulVec(const vector<uint32_t> &x, const vector<uint32_t> &y)
     {
-        if (x.empty() || y.empty()) return {};
+        // x、y 是规范非负小端块；返回精确积，长乘法的卷积长度不得超过 2^24。
+        if (x.empty() || y.empty())
+        {
+            return {};
+        }
         if (min(x.size(), y.size()) <= 64)
         {
+            // 竖式系数累计与 CRT 重建需要超过 64 位的非负中间量。
             vector<__uint128_t> c(x.size() + y.size());
             for (int i = 0; i < (int)x.size(); i++)
-                for (int j = 0; j < (int)y.size(); j++) c[i + j] += (__uint128_t)x[i] * y[j];
+            {
+                for (int j = 0; j < (int)y.size(); j++)
+                {
+                    c[i + j] += (__uint128_t)x[i] * y[j];
+                }
+            }
             vector<uint32_t> z(c.size());
-            __uint128_t carry = 0;
+            __uint128_t carry = 0; // 保存跨十进制块进位，不能缩成 64 位。
             for (int i = 0; i < (int)c.size(); i++)
             {
                 __uint128_t v = c[i] + carry;
@@ -1617,33 +1805,24 @@ private:
             trim(z);
             return z;
         }
+        // 三素数共同支持长度 2^24；该范围内整数卷积系数严格小于三模乘积。
+        assert(x.size() + y.size() - 1 <= (1ULL << 24));
         constexpr uint32_t p0 = 167772161, p1 = 469762049, p2 = 754974721;
         constexpr uint32_t r0 = 3, r1 = 3, r2 = 11;
         vector<unsigned long long> a(x.begin(), x.end()), b(y.begin(), y.end());
-        auto c0 = arbitrary_mod_convolution::StaticNTT<p0, r0>::conv(a, b);
-        auto c1 = arbitrary_mod_convolution::StaticNTT<p1, r1>::conv(a, b);
-        auto c2 = arbitrary_mod_convolution::StaticNTT<p2, r2>::conv(a, b);
-        auto inv = [](uint32_t a, uint32_t m)
-        {
-            uint64_t r = 1, b = a;
-            uint32_t e = m - 2;
-            while (e)
-            {
-                if (e & 1) r = r * b % m;
-                b = b * b % m;
-                e >>= 1;
-            }
-            return (uint32_t)r;
-        };
-        uint32_t i01 = inv(p0 % p1, p1), i012 = inv((uint64_t)p0 * p1 % p2, p2);
+        auto c0 = arbModConv::StaticNTT<p0, r0>::conv(a, b);
+        auto c1 = arbModConv::StaticNTT<p1, r1>::conv(a, b);
+        auto c2 = arbModConv::StaticNTT<p2, r2>::conv(a, b);
+        uint32_t i01 = arbModConv::inv(p0 % p1, p1);
+        uint32_t i012 = arbModConv::inv((unsigned long long)p0 * p1 % p2, p2);
         vector<uint32_t> z(c0.size());
-        __uint128_t carry = 0;
+        __uint128_t carry = 0; // 保存跨十进制块进位，不能缩成 64 位。
         for (int i = 0; i < (int)c0.size(); i++)
         {
-            uint64_t u = c0[i];
-            uint64_t v = ((c1[i] + p1 - u % p1) % p1) * (uint64_t)i01 % p1;
-            uint64_t seen = (u + (uint64_t)p0 * v) % p2;
-            uint64_t w = ((c2[i] + p2 - seen) % p2) * (uint64_t)i012 % p2;
+            unsigned long long u = c0[i];
+            unsigned long long v = ((c1[i] + p1 - u % p1) % p1) * (unsigned long long)i01 % p1;
+            unsigned long long seen = (u + (unsigned long long)p0 * v) % p2;
+            unsigned long long w = ((c2[i] + p2 - seen) % p2) * (unsigned long long)i012 % p2;
             __uint128_t cur = carry + u + (__uint128_t)p0 * v + (__uint128_t)p0 * p1 * w;
             z[i] = cur % B;
             carry = cur / B;
@@ -1656,10 +1835,13 @@ private:
         trim(z);
         return z;
     }
-    static pair<vector<uint32_t>, vector<uint32_t>> divNaive(const vector<uint32_t> &x,
-                                                              const vector<uint32_t> &y)
+    static pair<vector<uint32_t>, vector<uint32_t>> divNaive(const vector<uint32_t> &x, const vector<uint32_t> &y)
     {
-        if (x.empty() || cmp(x, y) < 0) return {{}, x};
+        // x、y 是规范非负小端块且 y 非零；竖式除法返回 {商,余数}。
+        if (x.empty() || cmp(x, y) < 0)
+        {
+            return {{}, x};
+        }
         if (y.size() == 1)
         {
             auto [q, r] = divSmall(x, y[0]);
@@ -1670,14 +1852,23 @@ private:
         vector<uint32_t> q(a.size() - b.size() + 1), r(a.end() - b.size(), a.end());
         for (int i = (int)q.size() - 1; i >= 0; i--)
         {
-            uint64_t top = r.size() > b.size() ? (uint64_t)r.back() * B + r[r.size() - 2] : 0;
-            uint32_t d = top ? min<uint64_t>(B - 1, top / b.back()) : 1;
+            unsigned long long top = r.size() > b.size() ? (unsigned long long)r.back() * B + r[r.size() - 2] : 0;
+            uint32_t d = top ? min<unsigned long long>(B - 1, top / b.back()) : 1;
             vector<uint32_t> z = mulSmall(b, d);
-            while (cmp(r, z) < 0) d--, z = subVec(z, b);
+            while (cmp(r, z) < 0)
+            {
+                d--, z = subVec(z, b);
+            }
             r = subVec(r, z);
-            while (cmp(r, b) >= 0) d++, r = subVec(r, b);
+            while (cmp(r, b) >= 0)
+            {
+                d++, r = subVec(r, b);
+            }
             q[i] = d;
-            if (i) r.insert(r.begin(), a[i - 1]);
+            if (i)
+            {
+                r.insert(r.begin(), a[i - 1]);
+            }
             trim(r);
         }
         auto rr = divSmall(r, norm);
@@ -1687,8 +1878,12 @@ private:
     }
     static vector<uint32_t> calcInv(const vector<uint32_t> &a, int deg)
     {
+        // a 是最高块至少 B/2 的规范正整数，deg>0；返回 B^(|a|+deg)/a 的整数近似逆。
         int k = deg, c = a.size();
-        while (k > 64) k = (k + 1) / 2;
+        while (k > 64)
+        {
+            k = (k + 1) / 2;
+        }
         vector<uint32_t> z(c + k + 1);
         z.back() = 1;
         z = divNaive(z, a).first;
@@ -1700,33 +1895,64 @@ private:
             int take = min<int>(a.size(), t.size());
             copy(a.end() - take, a.end(), t.end() - take);
             vector<uint32_t> u = mulVec(s, t);
-            if ((int)u.size() > 2 * k + 1) u.erase(u.begin(), u.begin() + 2 * k + 1);
-            else u.clear();
+            if ((int)u.size() > 2 * k + 1)
+            {
+                u.erase(u.begin(), u.begin() + 2 * k + 1);
+            }
+            else
+            {
+                u.clear();
+            }
             vector<uint32_t> w(k + 1), w2 = addVec(z, z);
             copy(w2.begin(), w2.end(), back_inserter(w));
             z = subVec(w, u);
-            if (!z.empty()) z.erase(z.begin());
+            if (!z.empty())
+            {
+                z.erase(z.begin());
+            }
             k *= 2;
         }
-        if (k > deg) z.erase(z.begin(), z.begin() + k - deg);
+        if (k > deg)
+        {
+            z.erase(z.begin(), z.begin() + k - deg);
+        }
         return z;
     }
-    static pair<vector<uint32_t>, vector<uint32_t>> divVec(const vector<uint32_t> &x,
-                                                            const vector<uint32_t> &y)
+    static pair<vector<uint32_t>, vector<uint32_t>> divVec(const vector<uint32_t> &x, const vector<uint32_t> &y)
     {
+        // x、y 是规范非负小端块且 y 非零；返回精确 {商,余数}，长除用 Newton 逆估商后修正。
         assert(!y.empty());
-        if (cmp(x, y) < 0) return {{}, x};
-        if (y.size() <= 64 || x.size() - y.size() <= 64) return divNaive(x, y);
+        if (cmp(x, y) < 0)
+        {
+            return {{}, x};
+        }
+        if (y.size() <= 64 || x.size() - y.size() <= 64)
+        {
+            return divNaive(x, y);
+        }
         uint32_t norm = B / (y.back() + 1);
         vector<uint32_t> a = mulSmall(x, norm), b = mulSmall(y, norm);
         int deg = a.size() - b.size() + 2;
         vector<uint32_t> inv = calcInv(b, deg);
         vector<uint32_t> q = mulVec(a, inv);
-        if ((int)q.size() > (int)b.size() + deg) q.erase(q.begin(), q.begin() + b.size() + deg); else q.clear();
+        if ((int)q.size() > (int)b.size() + deg)
+        {
+            q.erase(q.begin(), q.begin() + b.size() + deg);
+        }
+        else
+        {
+            q.clear();
+        }
         vector<uint32_t> prod = mulVec(b, q);
-        while (cmp(a, prod) < 0) q = subVec(q, {1}), prod = subVec(prod, b);
+        while (cmp(a, prod) < 0)
+        {
+            q = subVec(q, {1}), prod = subVec(prod, b);
+        }
         vector<uint32_t> r = subVec(a, prod);
-        while (cmp(r, b) >= 0) q = addVec(q, {1}), r = subVec(r, b);
+        while (cmp(r, b) >= 0)
+        {
+            q = addVec(q, {1}), r = subVec(r, b);
+        }
         auto rr = divSmall(r, norm);
         assert(rr.second == 0);
         trim(q);
@@ -1740,6 +1966,6 @@ signed main()
     while (t--)
     {
         string a, b; cin >> a >> b;
-        cout << (DecimalBigInt(a) * DecimalBigInt(b)).toDecimal() << '\n';
+        cout << (FastBigInt(a) * FastBigInt(b)).toDecimal() << '\n';
     }
 }

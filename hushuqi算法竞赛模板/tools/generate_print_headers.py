@@ -19,7 +19,6 @@ CHAPTERS = sorted(ROOT.glob("[0-9][0-9]-*.md"))
 # Fixed machine words, natural overflow, an external ABI, or a fixed bit layout.
 FIXED_TOPICS = {
     "1.1.006", "1.1.008",
-    "14.1.019",
 }
 FIXED_HEADERS = {topic.replace(".", "_") + ".hpp" for topic in FIXED_TOPICS}
 FIXED_SUPPORT = {
@@ -73,6 +72,8 @@ def replace_general_types(text: str) -> str:
 def transform_header(text: str, name: str, *, support: bool = False) -> str:
     if (support and name in FIXED_SUPPORT) or (not support and name in FIXED_HEADERS):
         out = text
+    elif name == "14_1_019.hpp":
+        out = transform_bigint(text)
     elif name == "13_1_009.hpp":
         # 32 位 nimber 可能超过有符号 int，关闭整数宏时也须显式加宽。
         out = replace_general_types(text.replace("uint32_t", "long long"))
@@ -96,6 +97,36 @@ def transform_header(text: str, name: str, *, support: bool = False) -> str:
     return out
 
 
+def transform_bigint(text: str) -> str:
+    """Keep binary limbs only; decimal groups and CRT residues are ordinary ints."""
+    binary, decimal = text.split("// 十进制百万位整数：", 1)
+    binary = binary.replace("vector<uint32_t> group", "vector<int> group")
+    start = binary.index("    static HexBigInt fromDecimal")
+    end = binary.index("    string toDecimal", start)
+    binary = binary[:start] + binary[start:end].replace("uint32_t x", "int x") + binary[end:]
+    binary = replace_general_types(binary.replace("uint32_t", "__BINARY_LIMB__"))
+    binary = binary.replace("__BINARY_LIMB__", "uint32_t")
+    # UINT32_MAX represents an actual all-one binary limb, including with int disabled.
+    binary = binary.replace("numeric_limits<int>::max()", "UINT32_MAX")
+    decimal = replace_general_types(decimal)
+    # Decimal carries, remainders and CRT residues fit in 32-bit signed int.
+    # Only products retain visible widening, including when the int macro is off.
+    begin = decimal.index("    static vector<int> addVec")
+    end = decimal.index("    static vector<int> mulSmall", begin)
+    simple = decimal[begin:end].replace("unsigned long long", "int").replace("long long", "int")
+    decimal = decimal[:begin] + simple + decimal[end:]
+    decimal = decimal.replace("unsigned long long carry = 0;", "int carry = 0;")
+    decimal = decimal.replace("unsigned long long rem = 0;", "int rem = 0;")
+    decimal = decimal.replace("v = rem * B + x[i]", "v = (unsigned long long)rem * B + x[i]")
+    for var in ("u", "v", "seen", "w"):
+        # Restrict this rewrite to the CRT reconstruction loop.
+        begin = decimal.index("        vector<int> z(c0.size());")
+        left, crt = decimal[:begin], decimal[begin:]
+        crt = crt.replace(f"unsigned long long {var} =", f"int {var} =")
+        decimal = left + crt
+    return binary + "// 十进制百万位整数：" + decimal
+
+
 def transform_chapter(text: str) -> str:
     matches = list(HEADING.finditer(text))
     if not matches:
@@ -105,7 +136,8 @@ def transform_chapter(text: str) -> str:
         end = matches[i + 1].start() if i + 1 < len(matches) else len(text)
         section = text[match.start() : end]
         topic = match.group(1)
-        if topic not in FIXED_TOPICS:
+        # 14.1.019 is synchronized from the controlled header and the fixed Montgomery kernel.
+        if topic not in FIXED_TOPICS and topic != "14.1.019":
             section = replace_general_types(section)
             if topic == "10.1.011":
                 section = section.replace("popcount(s)", "popcount((unsigned long long)s)")
@@ -166,6 +198,9 @@ def check() -> int:
             left, rest = text.split(begin, 1)
             _, right = rest.split(end, 1)
             text = left + right
+        if path.name == "14_1_019.hpp":
+            binary, decimal = text.split("// 十进制百万位整数：", 1)
+            text = binary.replace("uint32_t", "") + decimal
         for line_number, line in enumerate(text.splitlines(), 1):
             types = FIXED_WIDTH.findall(line)
             if not types:
