@@ -21,7 +21,7 @@ signed main()
     vector<int> empty;
     vector<pair<int, int>> emptyQueries{{0, 0}, {0, 0}};
     assert((distinct(empty, emptyQueries) == vector<int>{0, 0}));
-    assert((rangeInv(empty, emptyQueries) == vector<int>{0, 0}));
+    assert((rangeInv(empty, emptyQueries) == vector<long long>{0, 0}));
     assert((prefix(empty) == vector<int>{0}));
 
     vector<int> sumValues{7, -3, 5, -11, 13};

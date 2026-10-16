@@ -2148,6 +2148,7 @@ signed main()
     return 0;
 }
 ''',
+        extra_markdown=(("02-基础算法与离线算法.md", "2.4.001", ("template <class T> vector<T> prefix",)),),
     ),
     Spec(
         "unionfind_with_potential",
