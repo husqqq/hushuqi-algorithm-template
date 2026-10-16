@@ -2,32 +2,45 @@
 using namespace std;
 #define int long long
 
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
+
+
+#include <limits>
+
+using namespace std;
+
+constexpr long long INF = numeric_limits<long long>::max() / 4;
 
 template <class T> bool chmin(T &a, const T &b)
 {
-    // 若 b 更小则更新 a，返回是否更新。
-    return b < a ? a = b, true : false;
+    // a 是待更新值，b 是候选值；若 b 更小则更新 a 并返回 true。
+    if (b < a)
+    {
+        a = b;
+        return true;
+    }
+    return false;
 }
+
 template <class T> bool chmax(T &a, const T &b)
 {
-    // 若 b 更大则更新 a，返回是否更新。
-    return a < b ? a = b, true : false;
+    // a 是待更新值，b 是候选值；若 b 更大则更新 a 并返回 true。
+    if (a < b)
+    {
+        a = b;
+        return true;
+    }
+    return false;
 }
+
+constexpr int inf = 1E9;
+constexpr long double eps = 1E-12L;
 
 struct PerDSU
 {
-    struct N
-    {
-        // l、r 是持久化数组的左右儿子；value 为叶子覆盖值，负数编码根的集合大小，非负数是父亲。
-        int32_t l = 0, r = 0, value = -1;
-    };
-
     // n 是元素个数；t[0] 是全未写的初始版本，隐含每个元素自成集合。
     int n;
-    vector<N> t{{}};
+    // 每项依次为左儿子、右儿子、叶子值；负值是根的大小取负，非负值是父亲。
+    vector<array<int32_t, 3>> t{{0, 0, -1}};
 
     PerDSU(int n) : n(n)
     {
@@ -57,10 +70,10 @@ struct PerDSU
         }
         if (r - l == 1)
         {
-            return t[x].value;
+            return t[x][2];
         }
         int m = (l + r) / 2;
-        return p < m ? value(t[x].l, l, m, p) : value(t[x].r, m, r, p);
+        return p < m ? value(t[x][0], l, m, p) : value(t[x][1], m, r, p);
     }
 
     pair<int, int> get(int rt, int p) const
@@ -79,17 +92,17 @@ struct PerDSU
         t.push_back(t[x]);
         if (r - l == 1)
         {
-            t[y].value = v;
+            t[y][2] = v;
             return y;
         }
         int m = (l + r) / 2;
         if (p < m)
         {
-            t[y].l = set(t[y].l, l, m, p, v);
+            t[y][0] = set(t[y][0], l, m, p, v);
         }
         else
         {
-            t[y].r = set(t[y].r, m, r, p, v);
+            t[y][1] = set(t[y][1], m, r, p, v);
         }
         return y;
     }

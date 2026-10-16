@@ -29,6 +29,28 @@ struct AffMonoid3
 
 void testRangeDSU()
 {
+    struct Count
+    {
+        int cnt = 0;
+        Count() = default;
+        Count(const Count &) = delete;
+        void operator()(int root, int absorbed)
+        {
+            assert(root != absorbed);
+            cnt++;
+        }
+    } count;
+    RangeDSU empty(0);
+    empty.merge(0, 0, 0, count);
+    assert(count.cnt == 0);
+    RangeDSU pairs(8);
+    pairs.merge(0, 4, 4, count);
+    pairs.merge(0, 4, 4, count);
+    assert(count.cnt == 4);
+    pairs.merge(0, 1, 7, count);
+    assert(count.cnt == 7);
+    pairs.merge(0, 0, 8, Count{});
+
     for (int n : {2, 4})
     {
         RangeDSU rd(n);

@@ -6,8 +6,6 @@
 |---|---|---|---|---|---|---|---|
 | `3.1.001` | `data_structure/unionfind` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
 | `3.1.003` | `data_structure/unionfind_with_potential` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
-| `3.1.005` | `data_structure/persistent_unionfind` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
-| `3.1.006` | `data_structure/range_parallel_unionfind` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
 | `3.1.008` | `data_structure/unionfind_with_potential_non_commutative_group` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
 | `3.2.008` | `data_structure/point_add_rectangle_sum` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
 | `3.2.009` | `data_structure/static_rectangle_add_rectangle_sum` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |

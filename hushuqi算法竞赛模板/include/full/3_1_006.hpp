@@ -5,7 +5,8 @@ struct RangeDSU
     struct D
     {
         // f[x]<0 表示 x 是块集合根且大小为 -f[x]；否则 f[x] 是父亲。
-        vector<int> f;
+        // 性能头压缩父亲和负大小；元素数须在有符号 32 位范围内。
+        vector<int32_t> f;
         D(int n = 0) : f(n, -1)
         {
             // n 是本层可作为块起点的位置数。
@@ -66,9 +67,10 @@ struct RangeDSU
         mergeBlock(k - 1, x + h, y + h, f);
     }
 
-    template <class F> void merge(int x, int y, int len, F f)
+    template <class F> void merge(int x, int y, int len, F &&f)
     {
-        // 合并 [x,x+len) 与 [y,y+len)；每个新单点合并调用一次 f(新根,被吸收根)。
+        // x、y 是起点，len 是长度；合并对应位置，每个新单点合并调用一次 f(新根,被吸收根)。
+        // f 返回 void，按引用调用且不复制；本方法无返回值。
         assert(0 <= x && x <= n && 0 <= y && y <= n && 0 <= len && len <= n - x && len <= n - y); // 调试检查，可删
         if (!len)
         {

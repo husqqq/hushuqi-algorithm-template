@@ -16,7 +16,7 @@
         "runner": "Python 3.12.14",
         "argv": [
           "--only",
-          "area_of_union_of_rectangles,deque,rectangle_sum,point_add_range_sum,range_chmin_chmax_add_range_sum,persistent_queue,range_affine_point_get,range_affine_range_sum,majority_voting,point_set_range_composite_large_array,static_range_count_distinct,static_range_inversions_query",
+          "area_of_union_of_rectangles,deque,rectangle_sum,persistent_unionfind,point_add_range_sum,range_chmin_chmax_add_range_sum,persistent_queue,range_affine_point_get,range_affine_range_sum,majority_voting,point_set_range_composite_large_array,range_parallel_unionfind,static_range_count_distinct,static_range_inversions_query",
           "--write-index"
         ],
         "generation_evidence": {
@@ -30,13 +30,13 @@
           "runner": "Python 3.12.14",
           "argv": [
             "--only",
-            "area_of_union_of_rectangles,deque,rectangle_sum,point_add_range_sum,range_chmin_chmax_add_range_sum,persistent_queue,range_affine_point_get,range_affine_range_sum,majority_voting,point_set_range_composite_large_array,static_range_count_distinct,static_range_inversions_query",
+            "area_of_union_of_rectangles,deque,rectangle_sum,persistent_unionfind,point_add_range_sum,range_chmin_chmax_add_range_sum,persistent_queue,range_affine_point_get,range_affine_range_sum,majority_voting,point_set_range_composite_large_array,range_parallel_unionfind,static_range_count_distinct,static_range_inversions_query",
             "--write-index"
           ],
           "inputs": [
             {
               "path": "hushuqi算法竞赛模板/03-数据结构.md",
-              "sha256": "f5f59f52ce1a3058daebf4ba3f23d97ddfe3056d9339f30f14ef80152011b013"
+              "sha256": "0e6d0565c6162fa45f8980155cf604b3534268705dd7da2e4212cab9afa05327"
             },
             {
               "path": "hushuqi算法竞赛模板/include/full/3_3_011.hpp",
@@ -50,13 +50,13 @@
           "generated_sha256": "a9b7aefcfa5b037fb0f2c15e54c8b282e71047bcb65e65d4d0a265612d5ebb23",
           "byte_equal": true
         },
-        "generation_evidence_sha256": "5592654930e2b5a8a87408459df6637b6c3d9fdafb829ed28057efc07b418711"
+        "generation_evidence_sha256": "8b35557f03946ec6b98dacc67cc962fd18e440eabe0faddbe04cb35be295d7ed"
       },
       "adapter_sha256": "649a493e0b7a2ad85f72ac6fc14b40df6525bc9a63a80e2bff03e3babeb1752c",
       "template_inputs": [
         {
           "path": "hushuqi算法竞赛模板/03-数据结构.md",
-          "sha256": "f5f59f52ce1a3058daebf4ba3f23d97ddfe3056d9339f30f14ef80152011b013"
+          "sha256": "0e6d0565c6162fa45f8980155cf604b3534268705dd7da2e4212cab9afa05327"
         },
         {
           "path": "hushuqi算法竞赛模板/include/full/3_3_011.hpp",
@@ -70,7 +70,7 @@
       "temporary_regenerations": 2,
       "byte_identical": true,
       "source_sha256": "a9b7aefcfa5b037fb0f2c15e54c8b282e71047bcb65e65d4d0a265612d5ebb23",
-      "evidence_sha256": "1422dd5780d0f6ba8b32d1a50b8392d21a90617491d071b9731636aeb646e829"
+      "evidence_sha256": "8b34ce49b68e2a80cda48a869af5232d27cf9030f204e43ba36858c129d1cf1f"
     }
   },
   "reference": {

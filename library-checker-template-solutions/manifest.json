@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "updated_at": "2026-10-16T06:10:27.848265Z",
+  "updated_at": "2026-10-16T06:43:36.163665Z",
   "official_repository": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
     "url": "https://github.com/yosupo06/library-checker-problems"
@@ -1383,7 +1383,7 @@
       "title": "Persistent Unionfind",
       "category": "data_structure",
       "source": "data_structure/persistent_unionfind/main.cpp",
-      "source_sha256": "dfb86277d331cb62160baa625d62117b16b191e3594c1ec0315db1f775c7380e",
+      "source_sha256": "7b3f7dea97ac1e43a3d19988ded07ac0c1192562d28696e1de09c007846b89ea",
       "meta": "data_structure/persistent_unionfind/meta.json",
       "state": "template_solution"
     },
@@ -1680,7 +1680,7 @@
       "title": "Range Parallel Unionfind",
       "category": "data_structure",
       "source": "data_structure/range_parallel_unionfind/main.cpp",
-      "source_sha256": "fe7e8437cd5391e4fcf4f22f2b08b008a2338ad2e8c8ccfcc7f4e9f83e488ea6",
+      "source_sha256": "003fe5ce72be0e771943ef5171e2caea786ace35566d2ca21dd0c51a2d4007e8",
       "meta": "data_structure/range_parallel_unionfind/meta.json",
       "state": "template_solution"
     },

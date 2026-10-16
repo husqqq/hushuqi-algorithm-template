@@ -6,67 +6,87 @@
   "provenance": {
     "kind": "template_solution",
     "source": "data_structure/persistent_unionfind/main.cpp",
-    "source_sha256": "dfb86277d331cb62160baa625d62117b16b191e3594c1ec0315db1f775c7380e",
+    "source_sha256": "7b3f7dea97ac1e43a3d19988ded07ac0c1192562d28696e1de09c007846b89ea",
     "evidence": {
       "method": "deterministic_generation",
       "generator": {
         "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-        "sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+        "sha256": "14c9c6189e7725537b11b9c2950dd4699a648c1df1a361a6770d56a6589720cb",
         "working_directory": ".",
-        "runner": "Python 3.13.14",
+        "runner": "Python 3.12.14",
         "argv": [
+          "--only",
+          "area_of_union_of_rectangles,deque,rectangle_sum,persistent_unionfind,point_add_range_sum,range_chmin_chmax_add_range_sum,persistent_queue,range_affine_point_get,range_affine_range_sum,majority_voting,point_set_range_composite_large_array,range_parallel_unionfind,static_range_count_distinct,static_range_inversions_query",
           "--write-index"
         ],
         "generation_evidence": {
           "schema_version": 2,
           "problem_id": "data_structure/persistent_unionfind",
           "source_path": "library-checker-template-solutions/data_structure/persistent_unionfind/main.cpp",
-          "source_sha256": "dfb86277d331cb62160baa625d62117b16b191e3594c1ec0315db1f775c7380e",
+          "source_sha256": "7b3f7dea97ac1e43a3d19988ded07ac0c1192562d28696e1de09c007846b89ea",
           "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-          "generator_sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+          "generator_sha256": "14c9c6189e7725537b11b9c2950dd4699a648c1df1a361a6770d56a6589720cb",
           "working_directory": ".",
-          "runner": "Python 3.13.14",
+          "runner": "Python 3.12.14",
           "argv": [
+            "--only",
+            "area_of_union_of_rectangles,deque,rectangle_sum,persistent_unionfind,point_add_range_sum,range_chmin_chmax_add_range_sum,persistent_queue,range_affine_point_get,range_affine_range_sum,majority_voting,point_set_range_composite_large_array,range_parallel_unionfind,static_range_count_distinct,static_range_inversions_query",
             "--write-index"
           ],
           "inputs": [
             {
               "path": "hushuqi算法竞赛模板/03-数据结构.md",
-              "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+              "sha256": "0e6d0565c6162fa45f8980155cf604b3534268705dd7da2e4212cab9afa05327"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/include/common.hpp",
+              "sha256": "0624448a3c6ae430b3fe4f652123d0819a8404cea348ac10b150732a54095bf3"
             },
             {
               "path": "hushuqi算法竞赛模板/include/full/3_1_005.hpp",
-              "sha256": "af4c65f763d75d72211e9004db2fd9ffb16ea89bcf53925fb5fb407e131c4500"
+              "sha256": "66dbe07db3f2f58c8c776a4c6b82bf0e0f80437c2902305b575c24c8ff3b3d3d"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/include/topic_common.hpp",
+              "sha256": "8352c9e997b91d70953abf0ab9b1e1e440c7e24369c0ca7be5d7c61f7b817930"
             },
             {
               "path": "hushuqi算法竞赛模板/tests/test_ch03_perdsu.cpp",
-              "sha256": "4e25f503e1c0058e79d8bc79e7538e08a8adff9e41e6e884fad3b274f1d8db4c"
+              "sha256": "95ffec356184c3b2ace76472d01c5423dc92ffd837239582a213df5c6335dd87"
             }
           ],
-          "generated_sha256": "dfb86277d331cb62160baa625d62117b16b191e3594c1ec0315db1f775c7380e",
+          "generated_sha256": "7b3f7dea97ac1e43a3d19988ded07ac0c1192562d28696e1de09c007846b89ea",
           "byte_equal": true
         },
-        "generation_evidence_sha256": "7963d24f00882107f39e6ee5e81006184be3c2cf7713dfdcac64d92f00a50d51"
+        "generation_evidence_sha256": "f684a9b3a7f276855217d87732a82a3859e14c3fd126fa9b224b8be83ca40484"
       },
       "adapter_sha256": "80637c5fe5ad4d650e5bb3aed78407c1b62a264d9cda5e9353a3c7743609b5fb",
       "template_inputs": [
         {
           "path": "hushuqi算法竞赛模板/03-数据结构.md",
-          "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+          "sha256": "0e6d0565c6162fa45f8980155cf604b3534268705dd7da2e4212cab9afa05327"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/common.hpp",
+          "sha256": "0624448a3c6ae430b3fe4f652123d0819a8404cea348ac10b150732a54095bf3"
         },
         {
           "path": "hushuqi算法竞赛模板/include/full/3_1_005.hpp",
-          "sha256": "af4c65f763d75d72211e9004db2fd9ffb16ea89bcf53925fb5fb407e131c4500"
+          "sha256": "66dbe07db3f2f58c8c776a4c6b82bf0e0f80437c2902305b575c24c8ff3b3d3d"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/topic_common.hpp",
+          "sha256": "8352c9e997b91d70953abf0ab9b1e1e440c7e24369c0ca7be5d7c61f7b817930"
         },
         {
           "path": "hushuqi算法竞赛模板/tests/test_ch03_perdsu.cpp",
-          "sha256": "4e25f503e1c0058e79d8bc79e7538e08a8adff9e41e6e884fad3b274f1d8db4c"
+          "sha256": "95ffec356184c3b2ace76472d01c5423dc92ffd837239582a213df5c6335dd87"
         }
       ],
       "temporary_regenerations": 2,
       "byte_identical": true,
-      "source_sha256": "dfb86277d331cb62160baa625d62117b16b191e3594c1ec0315db1f775c7380e",
-      "evidence_sha256": "d54c61c2adaa1444fe707e765986eef4235d2d824ceee22538b44fb197f575e2"
+      "source_sha256": "7b3f7dea97ac1e43a3d19988ded07ac0c1192562d28696e1de09c007846b89ea",
+      "evidence_sha256": "672dc1162a12b73a405b3ae765f0a54408b23babc1024793b5b3625b3bb10aeb"
     }
   },
   "reference": {
@@ -84,21 +104,21 @@
     "content_sha256": "aa264438d10008204a1808b6a0f522957d6e7fa20d0739bf61f12b5aefaef65c"
   },
   "validation": {
-    "status": "online_ac",
-    "checked_at": "2026-08-20T12:54:58.688823Z",
+    "status": "local_only",
+    "checked_at": null,
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch03_perdsu.cpp"
     ],
-    "current_source_sha256": "dfb86277d331cb62160baa625d62117b16b191e3594c1ec0315db1f775c7380e",
-    "current_source_online_verdict": "AC",
-    "current_source_submission_id": 395183,
-    "current_source_time": 0.196,
-    "current_source_memory": 53067776,
-    "current_source_submission_time": "2026-08-20T12:54:37.554004Z",
-    "current_source_is_latest": true,
-    "server_source_sha256": "dfb86277d331cb62160baa625d62117b16b191e3594c1ec0315db1f775c7380e",
-    "note": "当前独立源码已通过 Library Checker 在线评测。"
+    "current_source_sha256": "7b3f7dea97ac1e43a3d19988ded07ac0c1192562d28696e1de09c007846b89ea",
+    "current_source_online_verdict": null,
+    "current_source_submission_id": null,
+    "current_source_time": null,
+    "current_source_memory": null,
+    "current_source_submission_time": null,
+    "current_source_is_latest": null,
+    "server_source_sha256": null,
+    "note": "Generated from the current chapter 03 template; online verification has not run for this source."
   },
   "submission_attempts": [
     {
