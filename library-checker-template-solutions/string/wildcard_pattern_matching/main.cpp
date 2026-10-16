@@ -1,37 +1,33 @@
 
-
+#ifndef HUSHUQI_STATIC_MINT_HPP
+#define HUSHUQI_STATIC_MINT_HPP
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
 
-template <long long P> struct MInt
+template <uint32_t P> struct MInt
 {
-    static_assert(P > 1);
-    using V = conditional_t<(P <= numeric_limits<int32_t>::max()),
-                            uint32_t, unsigned long long>;
-    static constexpr V M = (V)P; // 与 x 同宽的模数，避免热路径被 P 提升为有符号 64 位
-    V x = 0; // 当前剩余类在 [0,P) 内的代表元；常见小模使用无符号 32 位
+    static_assert(1 < P && P <= 1000000007);
+    uint32_t x = 0; // 固定 32 位以保证对象为 4 字节，提高大数组的缓存密度。
 
-    MInt() = default;
-
-    MInt(long long v)
+    MInt(long long v = 0)
     {
         // v 是要转入模 P 剩余类的整数；构造其最小非负代表元。
-        v %= P;
+        v %= (long long)P;
         if (v < 0)
         {
             v += P;
         }
-        x = (V)v;
+        x = (uint32_t)v;
     }
 
-    static constexpr long long mod()
+    static constexpr uint32_t mod()
     {
         // 无参数；返回编译期模数 P。
         return P;
     }
 
-    long long val() const
+    uint32_t val() const
     {
         // 无参数；返回当前剩余类的最小非负代表元。
         return x;
@@ -41,7 +37,7 @@ template <long long P> struct MInt
     {
         // 无参数；返回当前剩余类的加法逆元。
         MInt ans;
-        ans.x = x ? M - x : 0;
+        ans.x = x ? P - x : 0;
         return ans;
     }
 
@@ -49,9 +45,9 @@ template <long long P> struct MInt
     {
         // o 是要加到当前值上的同模剩余类；原地完成模加并返回当前对象引用。
         x += o.x;
-        if (x >= M)
+        if (x >= P)
         {
-            x -= M;
+            x -= P;
         }
         return *this;
     }
@@ -59,10 +55,10 @@ template <long long P> struct MInt
     MInt &operator-=(const MInt &o)
     {
         // o 是要从当前值减去的同模剩余类；原地完成模减并返回当前对象引用。
-        x += M - o.x;
-        if (x >= M)
+        x += P - o.x;
+        if (x >= P)
         {
-            x -= M;
+            x -= P;
         }
         return *this;
     }
@@ -70,14 +66,8 @@ template <long long P> struct MInt
     MInt &operator*=(const MInt &o)
     {
         // o 是要乘到当前值上的同模剩余类；原地完成模乘并返回当前对象引用。
-        if constexpr (P <= 2147483647LL)
-        {
-            x = (unsigned long long)x * o.x % M;
-        }
-        else
-        {
-            x = (unsigned __int128)x * o.x % M;
-        }
+        // 乘积可能超过 32 位，显式提升到无符号 64 位。
+        x = (uint64_t)x * o.x % P;
         return *this;
     }
 
@@ -113,7 +103,7 @@ template <long long P> struct MInt
 
     friend bool operator==(const MInt &, const MInt &) = default;
 
-    MInt pow(unsigned long long b) const
+    MInt pow(uint64_t b) const
     {
         // b 是非负指数；返回当前剩余类的 b 次幂。
         MInt a = *this;
@@ -138,10 +128,10 @@ template <long long P> struct MInt
     }
 };
 
-template <long long P> const vector<MInt<P>> &invTable(int n)
+template <uint32_t P> const vector<MInt<P>> &invTable(int n)
 {
     // n 是需要的最大下标且 0<=n<P；返回至少覆盖 0..n 的共享模逆元表，其中位置 0 为 0。
-    assert(0 <= n && n < P); // 调试检查，可删
+    assert(0 <= n && (uint64_t)n < P); // 调试检查，可删
     static vector<MInt<P>> iv{0, 1};
     int old = iv.size();
     if (old <= n)
@@ -155,8 +145,10 @@ template <long long P> const vector<MInt<P>> &invTable(int n)
     return iv;
 }
 
-constexpr int mod = 998244353;
+constexpr uint32_t mod = 998244353;
 using Z = MInt<mod>;
+
+#endif
 
 constexpr int NTT_LIM = 1 << 23;
 
@@ -233,7 +225,7 @@ class FastNTT
         assert(n > 0 && has_single_bit((unsigned long long)n) && n <= NTT_LIM); // 调试检查，可删。
         init();
         int z = n;
-        int h = countr_zero((uint32_t)z);
+        int h = countr_zero((unsigned long long)z);
         int len = 0;
         while (len < h)
         {
@@ -253,7 +245,7 @@ class FastNTT
                     }
                     if (s + 1 != (1 << len))
                     {
-                        rot = (uint64_t)rot * rate2[countr_zero((uint32_t)~s)] % mod;
+                        rot = (uint64_t)rot * rate2[countr_zero((unsigned long long)~s)] % mod;
                     }
                 }
                 len++;
@@ -284,7 +276,7 @@ class FastNTT
                     }
                     if (s + 1 != (1 << len))
                     {
-                        rot = (uint64_t)rot * rate3[countr_zero((uint32_t)~s)] % mod;
+                        rot = (uint64_t)rot * rate3[countr_zero((unsigned long long)~s)] % mod;
                     }
                 }
                 len += 2;
@@ -304,7 +296,7 @@ class FastNTT
         assert(n > 0 && has_single_bit((unsigned long long)n) && n <= NTT_LIM); // 调试检查，可删。
         init();
         int z = n;
-        int h = countr_zero((uint32_t)z);
+        int h = countr_zero((unsigned long long)z);
         int len = h;
         while (len)
         {
@@ -324,7 +316,7 @@ class FastNTT
                     }
                     if (s + 1 != (1 << (len - 1)))
                     {
-                        rot = (uint64_t)rot * irate2[countr_zero((uint32_t)~s)] % mod;
+                        rot = (uint64_t)rot * irate2[countr_zero((unsigned long long)~s)] % mod;
                     }
                 }
                 len--;
@@ -353,7 +345,7 @@ class FastNTT
                     }
                     if (s + 1 != (1 << (len - 2)))
                     {
-                        rot = (uint64_t)rot * irate3[countr_zero((uint32_t)~s)] % mod;
+                        rot = (uint64_t)rot * irate3[countr_zero((unsigned long long)~s)] % mod;
                     }
                 }
                 len -= 2;
@@ -620,88 +612,85 @@ vector<Z> convLarge(const vector<Z> &a, const vector<Z> &b)
 
 namespace plain_ntt
 {
-void dft(vector<Z> &a)
+constexpr int mod = 998244353, G = 3;
+
+int qpow(int a, int b)
 {
-    // a 的长度是至多 2^23 的正 2 的幂；原地完成自然顺序的正 NTT。
-    int n = a.size();
-    assert(n > 0 && has_single_bit((unsigned long long)n) && n <= NTT_LIM); // 调试检查，可删。
-    int rev = 0;
-    for (int i = 1; i < n; i++)
+    int r = 1;
+    for (; b; b >>= 1, a = (long long)a * a % mod)
     {
-        int b = n >> 1;
-        for (; rev & b; b >>= 1)
+        if (b & 1) r = (long long)r * a % mod;
+    }
+    return r;
+}
+
+void dft(vector<int> &a, bool inv = false)
+{
+    int n = a.size();
+    assert(n > 0 && n <= (1 << 23) && has_single_bit((unsigned long long)n));
+    for (int i = 1, j = 0; i < n; i++)
+    {
+        int bit = n >> 1;
+        for (; j & bit; bit >>= 1)
         {
-            rev ^= b;
+            j ^= bit;
         }
-        rev ^= b;
-        if (i < rev)
-        {
-            swap(a[i], a[rev]);
-        }
+        if ((j ^= bit) > i) swap(a[i], a[j]);
     }
     for (int len = 2; len <= n; len <<= 1)
     {
-        Z w = Z(3).pow((mod - 1) / len);
+        int wlen = qpow(G, (mod - 1) / len);
+        if (inv) wlen = qpow(wlen, mod - 2);
         for (int i = 0; i < n; i += len)
         {
-            Z x = 1;
+            int w = 1;
             for (int j = 0; j < len / 2; j++)
             {
-                Z u = a[i + j];
-                Z v = a[i + j + len / 2] * x;
-                a[i + j] = u + v;
-                a[i + j + len / 2] = u - v;
-                x *= w;
+                int u = a[i + j], v = (long long)a[i + j + len / 2] * w % mod;
+                a[i + j] = u + v < mod ? u + v : u + v - mod;
+                a[i + j + len / 2] = u - v < 0 ? u - v + mod : u - v;
+                w = (long long)w * wlen % mod;
             }
         }
     }
-}
-
-void idft(vector<Z> &a)
-{
-    // a 是自然顺序的频域值；原地完成逆 NTT 并除以长度。
-    assert(!a.empty() && has_single_bit((unsigned long long)a.size()) && a.size() <= NTT_LIM); // 调试检查，可删。
-    reverse(a.begin() + 1, a.end());
-    plain_ntt::dft(a);
-    Z iv = Z(a.size()).inv();
-    for (auto &x : a)
+    if (inv)
     {
-        x *= iv;
-    }
-}
-
-vector<Z> conv(vector<Z> a, vector<Z> b)
-{
-    // a、b 按低次到高次保存系数；返回普通线性卷积，任一输入为空时返回空。
-    if (a.empty() || b.empty())
-    {
-        return {};
-    }
-    int s = a.size() + b.size() - 1;
-    if (min(a.size(), b.size()) <= 32)
-    {
-        vector<Z> c(s);
-        for (int i = 0; i < (int)a.size(); i++)
+        int iv = qpow(n, mod - 2);
+        for (int &x : a)
         {
-            for (int j = 0; j < (int)b.size(); j++)
-            {
-                c[i + j] += a[i] * b[j];
-            }
+            x = (long long)x * iv % mod;
         }
-        return c;
     }
-    assert(nttFit(a.size(), b.size())); // 调试检查，可删。
-    int n = bit_ceil((unsigned long long)s);
-    a.resize(n);
-    b.resize(n);
-    plain_ntt::dft(a);
-    plain_ntt::dft(b);
+}
+
+void idft(vector<int> &a)
+{
+    dft(a, true);
+}
+
+vector<int> conv(vector<int> a, vector<int> b)
+{
+    if (a.empty() || b.empty()) return {};
+    int s = a.size() + b.size() - 1, n = 1;
+    while (n < s)
+    {
+        n <<= 1;
+    }
+    for (int &x : a)
+    {
+        x = (x % mod + mod) % mod;
+    }
+    for (int &x : b)
+    {
+        x = (x % mod + mod) % mod;
+    }
+    a.resize(n), b.resize(n);
+    dft(a), dft(b);
     for (int i = 0; i < n; i++)
     {
-        a[i] *= b[i];
+        a[i] = (long long)a[i] * b[i] % mod;
     }
-    plain_ntt::idft(a);
-    a.resize(s);
+    idft(a), a.resize(s);
     return a;
 }
 }
@@ -757,7 +746,15 @@ vector<bool> wildcard(const string &s, string t, char any = '*')
 
 signed main()
 {
-    string s, t; cin >> s >> t; auto a = wildcard(s, t);
-    for (bool x : a) cout << x;
+    // 无参数；输出每个合法起点是否匹配，成功返回 0。
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    string s, t;
+    cin >> s >> t;
+    auto a = wildcard(s, t);
+    for (bool x : a)
+    {
+        cout << x;
+    }
     cout << '\n';
 }

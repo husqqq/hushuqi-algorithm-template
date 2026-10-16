@@ -15,7 +15,7 @@ OUT = ROOT / "library-checker-template-solutions"
 COMMIT = "04c8de378bab67be926325de2871f0babb8e6451"
 INC = re.compile(r'^\s*#\s*include\s+"([^"]+)"\s*(?://.*)?$')
 # 仅对已逐题复核的条目强制完整来源证明；其余条目继续公开同步缺口。
-PROVEN = {"aho_corasick", "eertree", "number_of_substrings", "longest_common_substring", "runenumerate", "palindromes_in_deque", "zalgorithm", "enumerate_palindromes", "lyndon_factorization", "suffixarray"}
+PROVEN = {"aho_corasick", "eertree", "number_of_substrings", "longest_common_substring", "runenumerate", "palindromes_in_deque", "zalgorithm", "enumerate_palindromes", "lyndon_factorization", "suffixarray", "wildcard_pattern_matching"}
 
 SPECS = {
     "aho_corasick": ("4_2_002.hpp", r'''
@@ -213,8 +213,16 @@ signed main()
     "wildcard_pattern_matching": ("4_1_011.hpp", r'''
 signed main()
 {
-    string s, t; cin >> s >> t; auto a = wildcard(s, t);
-    for (bool x : a) cout << x;
+    // 无参数；输出每个合法起点是否匹配，成功返回 0。
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    string s, t;
+    cin >> s >> t;
+    auto a = wildcard(s, t);
+    for (bool x : a)
+    {
+        cout << x;
+    }
     cout << '\n';
 }
 '''),
