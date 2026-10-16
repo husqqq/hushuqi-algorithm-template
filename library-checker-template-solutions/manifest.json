@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "updated_at": "2026-10-16T09:56:53.432746Z",
+  "updated_at": "2026-10-16T10:24:52.763707Z",
   "official_repository": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
     "url": "https://github.com/yosupo06/library-checker-problems"
@@ -1923,7 +1923,7 @@
       "title": "Static Range Sum",
       "category": "data_structure",
       "source": "data_structure/static_range_sum/main.cpp",
-      "source_sha256": "38f9585b931e1ed50b7fa0814c825a167105072c208ca61e987c51bd436c4ef6",
+      "source_sha256": "af488d53e499b183114db063f13cb77ec47edf329e3c6e73ed59391252947894",
       "meta": "data_structure/static_range_sum/meta.json",
       "state": "template_solution"
     },
