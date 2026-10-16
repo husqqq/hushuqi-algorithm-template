@@ -74,6 +74,8 @@ def transform_header(text: str, name: str, *, support: bool = False) -> str:
         out = text
     elif name == "14_1_019.hpp":
         out = transform_bigint(text)
+    elif name == "14_1_002.hpp":
+        out = replace_general_types(text.replace("long long", "int").replace("llabs", "abs"))
     elif name == "13_1_009.hpp":
         # 32 位 nimber 可能超过有符号 int，关闭整数宏时也须显式加宽。
         out = replace_general_types(text.replace("uint32_t", "long long"))

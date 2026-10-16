@@ -58,3 +58,29 @@ struct Frac
         return (__int128)a.x * b.y < (__int128)b.x * a.y;
     }
 };
+
+optional<Frac> ratRecover(int a, int m, int b)
+{
+    // 0<=a<m，b>=1，2b^2<m；返回满足 p=a*q (mod m)、|p|<=b、1<=q<=b
+    // 且 gcd(q,m)=1 的唯一既约分数 p/q；不存在时返回空。
+    assert(0 <= a && a < m && b >= 1 && 2 * (__int128)b * b < m);
+    int r0 = m, r1 = a, t0 = 0, t1 = 1; // 始终有 ri=a*ti (mod m)。
+    while (r1 > b)
+    {
+        int k = r0 / r1;
+        int r = r0 - k * r1;
+        // 系数幅值不超过 m；乘减局部加宽，避免中间乘积溢出。
+        int t = (int)((__int128)t0 - (__int128)k * t1);
+        r0 = r1;
+        r1 = r;
+        t0 = t1;
+        t1 = t;
+    }
+    if (t1 < 0)
+    {
+        r1 = -r1;
+        t1 = -t1;
+    }
+    if (t1 > b || gcd(abs(r1), t1) != 1 || gcd(t1, m) != 1) return nullopt;
+    return Frac(r1, t1);
+}
