@@ -82,7 +82,7 @@ signed main()
         ("3_6_006.hpp",),
         "3.6.006",
         ("template <class K, class V> using HashMap",),
-        ("tests/test_ch03_hash_map.cpp",),
+        ("tests/test_ch03_hash_map.cpp", "tests/test_ch03_fixed_hash.cpp"),
         r'''
 signed main()
 {

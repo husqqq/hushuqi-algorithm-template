@@ -11,12 +11,12 @@
       "method": "deterministic_generation",
       "generator": {
         "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-        "sha256": "dbfd00b7d010cb76ef087658ff8b53929367930b78b066d8c845e80596d1c0ff",
+        "sha256": "3043a31168604bed217da0a8e005e17876e284562bcbdb91e03d95685080272e",
         "working_directory": ".",
         "runner": "Python 3.12.14",
         "argv": [
           "--only",
-          "area_of_union_of_rectangles,deque,rectangle_sum,persistent_unionfind,point_add_range_sum,range_chmin_chmax_add_range_sum,persistent_queue,range_affine_point_get,range_affine_range_sum,majority_voting,point_set_range_composite_large_array,range_parallel_unionfind,static_range_count_distinct,static_range_inversions_query,unionfind_with_potential,unionfind_with_potential_non_commutative_group",
+          "area_of_union_of_rectangles,deque,rectangle_sum,unionfind,persistent_unionfind,point_add_range_sum,range_chmin_chmax_add_range_sum,persistent_queue,range_affine_point_get,range_affine_range_sum,majority_voting,point_set_range_composite_large_array,range_parallel_unionfind,static_range_count_distinct,static_range_inversions_query,unionfind_with_potential,unionfind_with_potential_non_commutative_group,associative_array,double_ended_priority_queue",
           "--write-index"
         ],
         "generation_evidence": {
@@ -25,12 +25,12 @@
           "source_path": "library-checker-template-solutions/data_structure/unionfind_with_potential_non_commutative_group/main.cpp",
           "source_sha256": "85c6da2393a23d66f22ce665055d42ec75ed262c9063dbaf0e2a25777484a631",
           "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-          "generator_sha256": "dbfd00b7d010cb76ef087658ff8b53929367930b78b066d8c845e80596d1c0ff",
+          "generator_sha256": "3043a31168604bed217da0a8e005e17876e284562bcbdb91e03d95685080272e",
           "working_directory": ".",
           "runner": "Python 3.12.14",
           "argv": [
             "--only",
-            "area_of_union_of_rectangles,deque,rectangle_sum,persistent_unionfind,point_add_range_sum,range_chmin_chmax_add_range_sum,persistent_queue,range_affine_point_get,range_affine_range_sum,majority_voting,point_set_range_composite_large_array,range_parallel_unionfind,static_range_count_distinct,static_range_inversions_query,unionfind_with_potential,unionfind_with_potential_non_commutative_group",
+            "area_of_union_of_rectangles,deque,rectangle_sum,unionfind,persistent_unionfind,point_add_range_sum,range_chmin_chmax_add_range_sum,persistent_queue,range_affine_point_get,range_affine_range_sum,majority_voting,point_set_range_composite_large_array,range_parallel_unionfind,static_range_count_distinct,static_range_inversions_query,unionfind_with_potential,unionfind_with_potential_non_commutative_group,associative_array,double_ended_priority_queue",
             "--write-index"
           ],
           "inputs": [
@@ -70,7 +70,7 @@
           "generated_sha256": "85c6da2393a23d66f22ce665055d42ec75ed262c9063dbaf0e2a25777484a631",
           "byte_equal": true
         },
-        "generation_evidence_sha256": "f95ee48e970cb29bf042097c7497f27e3cb26c876d37bebd33f9bc611ba1d3d6"
+        "generation_evidence_sha256": "64adf0aacfdce5f713f9f6e656f42f437bfa6aca942165b729d51d2d4dc6950b"
       },
       "adapter_sha256": "7ed319a9dd385ec5213fefccb32d101c5c5a4bab6556f93c62b2861de4579d2e",
       "template_inputs": [
@@ -110,7 +110,7 @@
       "temporary_regenerations": 2,
       "byte_identical": true,
       "source_sha256": "85c6da2393a23d66f22ce665055d42ec75ed262c9063dbaf0e2a25777484a631",
-      "evidence_sha256": "db27a09125baa4e10e0f73703999025b53c4c0b8b981bb0df5ad41f5e1fa0eb6"
+      "evidence_sha256": "da6c73481237cf8579633f7731de9732c0d0cac6b65e6d26f8fa32699332b490"
     }
   },
   "reference": {

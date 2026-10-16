@@ -21,11 +21,9 @@
 | `3.4.008` | `data_structure/static_range_mode_query` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
 | `3.4.009` | `data_structure/static_range_lis_query` | `audited` | `current` | `generation_stale` | `missing` | `missing` | `generation_stale,verification_missing` |
 | `3.4.012` | `data_structure/static_range_sum` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
-| `3.5.007` | `data_structure/double_ended_priority_queue` | `audited` | `current` | `generation_stale` | `missing` | `missing` | `generation_stale,verification_missing` |
 | `3.5.011` | `data_structure/dynamic_sequence_range_affine_range_sum` | `audited` | `current` | `generation_stale` | `missing` | `missing` | `generation_stale,verification_missing` |
 | `3.5.011` | `data_structure/range_reverse_range_sum` | `audited` | `current` | `generation_stale` | `missing` | `missing` | `generation_stale,verification_missing` |
 | `3.6.003` | `data_structure/set_xor_min` | `audited` | `current` | `generation_stale` | `missing` | `missing` | `generation_stale,verification_missing` |
-| `3.6.006` | `data_structure/associative_array` | `audited` | `current` | `generation_stale` | `missing` | `missing` | `generation_stale,verification_missing` |
 | `3.6.009` | `data_structure/point_set_range_frequency` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
 | `3.6.014` | `data_structure/predecessor_problem` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
 | `3.7.001` | `data_structure/line_add_get_min` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
