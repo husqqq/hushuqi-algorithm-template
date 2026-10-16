@@ -6,23 +6,26 @@ using namespace std;
 
 template <int A = 26, char S = 'a'> struct SAM
 {
+    static_assert(A > 0 && (unsigned char)S + A <= 256);
     struct Node
     {
-        array<int, A> next{}; // next[c] 是字符 c 的转移，0 表示不存在（根没有入边）。
+        array<int32_t, A> next{}; // next[c] 是字符 c 的转移，0 表示不存在（根没有入边）。
         // link 是后缀链接，len 是最长长度，cnt 是当前出现次数，first 是一个最长串的末位置。
-        int link = -1, len = 0, cnt = 0, first = -1;
+        int32_t link = -1, len = 0, cnt = 0, first = -1;
     };
 
-    vector<Node> t{{}};
+    vector<Node> t{{}}; // t[0] 是根；追加前状态数加二须小于 2^31。
     // last 是当前整串对应的末状态。
     int last = 0;
     // counted 表示出现次数是否已经沿后缀链接上传。
     bool counted = false;
+    long long subs = 0; // 本质不同非空子串数，可达平方级，关闭整数宏仍用 64 位。
 
-    SAM() = default;
+    SAM() = default; // 构造只含根的空串自动机。
     SAM(const string &s)
     {
-        // s 是原字符串；按顺序插入其全部字符。
+        // s 是原字符串；预留状态上界，按顺序插入，避免克隆引起整池搬迁。
+        t.reserve(2 * s.size() + 1);
         for (char c : s)
         {
             add(c);
@@ -31,9 +34,9 @@ template <int A = 26, char S = 'a'> struct SAM
 
     void add(char c)
     {
-        // c 是要追加到原串末尾的字符。
-        assert(!counted); // 调试检查，可删
-        int x = c - S;
+        // c 是要追加到原串末尾的字符；无返回值，上传次数后不能追加。
+        assert(!counted && t.size() + 2 < (1LL << 31));
+        int x = (unsigned char)c - (unsigned char)S;
         assert(0 <= x && x < A); // 调试检查，可删
         int p = last, q = t.size();
         t.push_back({});
@@ -71,6 +74,7 @@ template <int A = 26, char S = 'a'> struct SAM
             }
         }
         last = q;
+        subs += t[q].len - t[t[q].link].len;
     }
 
     int find(const string &s) const
@@ -79,7 +83,7 @@ template <int A = 26, char S = 'a'> struct SAM
         int p = 0;
         for (char c : s)
         {
-            int x = c - S;
+            int x = (unsigned char)c - (unsigned char)S;
             if (x < 0 || x >= A || !t[p].next[x])
             {
                 return -1;
@@ -92,12 +96,7 @@ template <int A = 26, char S = 'a'> struct SAM
     long long distinct() const
     {
         // 返回当前自动机表示的本质不同非空子串数。
-        long long ans = 0;
-        for (int i = 1; i < (int)t.size(); i++)
-        {
-            ans += t[i].len - t[t[i].link].len;
-        }
-        return ans;
+        return subs;
     }
 
     void count()
@@ -110,7 +109,7 @@ template <int A = 26, char S = 'a'> struct SAM
         int n = 0;
         for (auto &v : t)
         {
-            chmax(n, v.len);
+            n = max<int>(n, v.len);
         }
         vector<int> c(n + 1), p(t.size());
         for (auto &v : t)
@@ -147,19 +146,24 @@ template <int A = 26, char S = 'a'> struct SAM
     }
 };
 
+template <int A = 26, char S = 'a'>
 array<int, 4> commonSubstr(const string &a, const string &b)
 {
-    // a、b 是小写字符串；返回 {a_l,a_r,b_l,b_r} 的一组最长公共子串半开区间。
-    SAM<26, 'a'> sam(a);
+    // a、b 的无符号字节属于 [S,S+A)；返回 {a_l,a_r,b_l,b_r} 半开区间，无解全零。
+    if (a.empty() || b.empty()) return {};
+    bool rev = a.size() > b.size(); // 对短串建表，返回时恢复原参数的坐标顺序。
+    const string &s = rev ? b : a, &t = rev ? a : b;
+    SAM<A, S> sam(s);
     int p = 0, len = 0, best = 0;
     array<int, 4> ans{};
-    for (int i = 0; i < (int)b.size(); i++)
+    for (int i = 0; i < (int)t.size(); i++)
     {
-        int x = b[i] - 'a';
+        int x = (unsigned char)t[i] - (unsigned char)S;
+        assert(0 <= x && x < A);
         while (p && !sam.t[p].next[x])
         {
             p = sam.t[p].link;
-            len = min(len, sam.t[p].len);
+            len = min<int>(len, sam.t[p].len);
         }
         if (sam.t[p].next[x])
         {
@@ -174,7 +178,8 @@ array<int, 4> commonSubstr(const string &a, const string &b)
         {
             best = len;
             int end = sam.t[p].first;
-            ans = {end - len + 1, end + 1, i - len + 1, i + 1};
+            ans = rev ? array<int, 4>{i - len + 1, i + 1, end - len + 1, end + 1}
+                      : array<int, 4>{end - len + 1, end + 1, i - len + 1, i + 1};
         }
     }
     return ans;

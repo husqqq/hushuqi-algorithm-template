@@ -6,7 +6,68 @@
   "provenance": {
     "kind": "template_solution",
     "source": "string/longest_common_substring/main.cpp",
-    "source_sha256": "a43a94697b91f803512b77366278194119ddae4b7b14f67f68e85d4c45ff32ba"
+    "source_sha256": "025886112d6dc43619b50032cf9ddbea123c88b7f6d1eab5107b18736cde8896",
+    "evidence": {
+      "method": "deterministic_generation",
+      "generator": {
+        "path": "library-checker-template-solutions/tools/generate_ch04_lc.py",
+        "sha256": "82d5740adc15205efa5fae565ca1e16409f273387a6395d59349bcc00c3da92c",
+        "argv": [
+          "python",
+          "library-checker-template-solutions/tools/generate_ch04_lc.py",
+          "--only",
+          "longest_common_substring",
+          "--write"
+        ],
+        "working_directory": ".",
+        "runner": "Python 3.13.14"
+      },
+      "template_inputs": [
+        {
+          "path": "hushuqi算法竞赛模板/include/common.hpp",
+          "sha256": "0624448a3c6ae430b3fe4f652123d0819a8404cea348ac10b150732a54095bf3"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/full/4_3_004.hpp",
+          "sha256": "b1924d8b2691fc112482ab8374249052388620823dbfca7bf7eccc35759ca4a1"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/topic_common.hpp",
+          "sha256": "8352c9e997b91d70953abf0ab9b1e1e440c7e24369c0ca7be5d7c61f7b817930"
+        }
+      ],
+      "documentation_inputs": [
+        {
+          "path": "hushuqi算法竞赛模板/04-字符串.md",
+          "sha256": "addc27c569cc31898e26b000303b39cac35c002746d54479c86618a74c600fad"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/tools/sync_topic_docs.py",
+          "sha256": "3e293d91d598ea1f50f349313866e97fefc43a9e7e66370c3d689e872112a644"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/print/4_3_004.hpp",
+          "sha256": "4d89a892fade65a699f2417855044014a30f6460436f01a6e214f5c565e9d389"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/print/support/common.hpp",
+          "sha256": "0624448a3c6ae430b3fe4f652123d0819a8404cea348ac10b150732a54095bf3"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/print/support/topic_common.hpp",
+          "sha256": "8352c9e997b91d70953abf0ab9b1e1e440c7e24369c0ca7be5d7c61f7b817930"
+        }
+      ],
+      "adapter_sha256": "4de873cf9701b7180ccd7ed21493d46f0ea8067d675e6e5a15d992eca71c9d41",
+      "controlled_reference": {
+        "path": "library-checker-solutions/string/longest_common_substring/main.cpp",
+        "sha256": "976fbfc405c089ab7a51cc08ffb8fb80e76c1e42d17eed91981c23842b4a5d0d"
+      },
+      "temporary_regenerations": 2,
+      "byte_identical": true,
+      "source_sha256": "025886112d6dc43619b50032cf9ddbea123c88b7f6d1eab5107b18736cde8896",
+      "evidence_sha256": "4aa015a6fc7af32db8a3c7d7265e2695e4d8f923ed91ab5c78f327e8860ad597"
+    }
   },
   "official_reference": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
@@ -14,12 +75,21 @@
     "problem": "longest_common_substring"
   },
   "validation": {
-    "status": "local_only",
-    "current_source_sha256": "a43a94697b91f803512b77366278194119ddae4b7b14f67f68e85d4c45ff32ba",
+    "status": "online_ac",
+    "current_source_sha256": "025886112d6dc43619b50032cf9ddbea123c88b7f6d1eab5107b18736cde8896",
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch04_longest_common_substring.cpp"
-    ]
+    ],
+    "checked_at": "2026-10-16T00:18:03.436449Z",
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 410726,
+    "current_source_time": 0.164,
+    "current_source_memory": 122212352,
+    "current_source_submission_time": "2026-10-16T00:17:35.925373Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "025886112d6dc43619b50032cf9ddbea123c88b7f6d1eab5107b18736cde8896",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
   },
   "submission_attempts": [
     {
@@ -36,6 +106,21 @@
       "compile_standard": "gnu++20",
       "submitted_at": "2026-08-21T08:30:06.256548Z",
       "recorded_at": "2026-08-21T08:30:38.417131Z"
+    },
+    {
+      "submission_id": 410726,
+      "source_sha256": "025886112d6dc43619b50032cf9ddbea123c88b7f6d1eab5107b18736cde8896",
+      "server_source_sha256": "025886112d6dc43619b50032cf9ddbea123c88b7f6d1eab5107b18736cde8896",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.164,
+      "memory": 122212352,
+      "submission_time": "2026-10-16T00:17:35.925373Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-10-16T00:17:36.104739Z",
+      "recorded_at": "2026-10-16T00:18:03.435730Z"
     }
   ]
 }

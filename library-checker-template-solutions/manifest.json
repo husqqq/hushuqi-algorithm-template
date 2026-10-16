@@ -996,7 +996,7 @@
       "title": "Longest Common Substring",
       "category": "string",
       "source": "string/longest_common_substring/main.cpp",
-      "source_sha256": "a43a94697b91f803512b77366278194119ddae4b7b14f67f68e85d4c45ff32ba",
+      "source_sha256": "025886112d6dc43619b50032cf9ddbea123c88b7f6d1eab5107b18736cde8896",
       "meta": "string/longest_common_substring/meta.json",
       "state": "template_solution"
     },
@@ -1329,7 +1329,7 @@
       "title": "Number of Substrings",
       "category": "string",
       "source": "string/number_of_substrings/main.cpp",
-      "source_sha256": "789c95e523fe54443f2ae6c0368ab53f62886f458e6b57d29cc842452a4e5afc",
+      "source_sha256": "e9d4f2022249369ce7658f6a82af67d470bccabd84961fd1f4523ae21ce33176",
       "meta": "string/number_of_substrings/meta.json",
       "state": "template_solution"
     },

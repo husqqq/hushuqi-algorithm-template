@@ -2,16 +2,20 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.util
 import json
 import re
 import sys
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 TEMPLATE = next(p for p in ROOT.iterdir() if p.is_dir() and p.name.startswith("hushuqi"))
 OUT = ROOT / "library-checker-template-solutions"
 COMMIT = "04c8de378bab67be926325de2871f0babb8e6451"
-INC = re.compile(r'^\s*#\s*include\s+"([^"]+)"\s*$')
+INC = re.compile(r'^\s*#\s*include\s+"([^"]+)"\s*(?://.*)?$')
+# 仅对已逐题复核的条目强制完整来源证明；其余条目继续公开同步缺口。
+PROVEN = {"number_of_substrings", "longest_common_substring"}
 
 SPECS = {
     "aho_corasick": ("4_2_002.hpp", r'''
@@ -63,7 +67,11 @@ signed main()
     "longest_common_substring": ("4_3_004.hpp", r'''
 signed main()
 {
-    string a, b; cin >> a >> b;
+    // 无参数；输出两串的一组最长公共子串半开坐标，成功返回 0。
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    string a, b;
+    cin >> a >> b;
     auto ans = commonSubstr(a, b);
     cout << ans[0] << ' ' << ans[1] << ' ' << ans[2] << ' ' << ans[3] << '\n';
 }
@@ -76,10 +84,15 @@ signed main()
     cout << '\n';
 }
 '''),
-    "number_of_substrings": ("4_3_004.hpp", r'''
+    "number_of_substrings": ("4_3_010.hpp", r'''
 signed main()
 {
-    string s; cin >> s; SAM<26, 'a'> sam(s); cout << sam.distinct() << '\n';
+    // 无参数；输出小写串的本质不同非空子串数，成功返回 0。
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    string s;
+    cin >> s;
+    cout << subDistinct(s, 0, s.size()) << '\n';
 }
 '''),
     "palindromes_in_deque": ("4_4_002.hpp", r'''
@@ -134,7 +147,7 @@ TESTS = {
     "enumerate_palindromes": "tests/test_ch04_manacher.cpp",
     "longest_common_substring": "tests/test_ch04_longest_common_substring.cpp",
     "lyndon_factorization": "tests/test_ch04_lyndon.cpp",
-    "number_of_substrings": "tests/test_ch04_sam.cpp",
+    "number_of_substrings": "tests/test_ch04_range_substrings.cpp",
     "palindromes_in_deque": "tests/test_ch04_deque_pam.cpp",
     "runenumerate": "tests/test_ch04_runs.cpp",
     "suffixarray": "tests/test_ch04_suffix_array.cpp",
@@ -164,9 +177,65 @@ def expand(path: Path, seen: set[Path]) -> str:
 def sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
+def check_documentation(header: str) -> None:
+    """核对已复核条目的正文代码与打印头，不只记录文件哈希。"""
+    chapter = (TEMPLATE / "04-字符串.md").read_text(encoding="utf-8")
+    topic = header.removesuffix(".hpp").replace("_", ".")
+    section = re.search(rf"^### {re.escape(topic)} .*?(?=^### |\Z)", chapter, re.M | re.S)
+    fence = re.search(r"```cpp\n(.*?)\n```", section[0], re.S) if section else None
+    path = TEMPLATE / "tools/sync_topic_docs.py"
+    spec = importlib.util.spec_from_file_location("ch04_doc_sync", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    if fence is None or "```cpp\n" + fence[1] + "\n```" != module.snippet(header):
+        raise ValueError(f"{topic}: documentation differs from print header")
+
+
+def generation_evidence(name: str, digest: str) -> dict:
+    header, adapter = SPECS[name]
+    check_documentation(header)
+    seen: set[Path] = set()
+    expand(TEMPLATE / "include/full" / header, seen)
+    printed: set[Path] = set()
+    expand(TEMPLATE / "include/print" / header, printed)
+    # 两个独立系统临时目录各自重新展开，不保留第二棵候选源码。
+    for _ in range(2):
+        with tempfile.TemporaryDirectory(prefix="template-ch04-proof-") as td:
+            candidate = Path(td) / "main.cpp"
+            data = generated_source(name, header, adapter)
+            candidate.write_bytes(data)
+            if candidate.read_bytes() != data or sha(candidate) != digest:
+                raise ValueError(f"{name}: nondeterministic generation")
+    def record(path: Path) -> dict:
+        return {"path": path.relative_to(ROOT).as_posix(), "sha256": sha(path)}
+    proof = {
+        "method": "deterministic_generation",
+        "generator": {
+            **record(Path(__file__).resolve()),
+            "argv": ["python", "library-checker-template-solutions/tools/generate_ch04_lc.py",
+                     "--only", name, "--write"],
+            "working_directory": ".",
+            "runner": f"Python {sys.version.split()[0]}",
+        },
+        "template_inputs": [record(p) for p in sorted(seen)],
+        "documentation_inputs": [record(TEMPLATE / "04-字符串.md"),
+                                 record(TEMPLATE / "tools/sync_topic_docs.py"),
+                                 *[record(p) for p in sorted(printed)]],
+        "adapter_sha256": hashlib.sha256(adapter.strip().encode()).hexdigest(),
+        "controlled_reference": record(ROOT / "library-checker-solutions/string" / name / "main.cpp"),
+        "temporary_regenerations": 2,
+        "byte_identical": True,
+        "source_sha256": digest,
+    }
+    proof["evidence_sha256"] = hashlib.sha256(
+        json.dumps(proof, sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode()
+    ).hexdigest()
+    return proof
+
+
 def expected_meta(name: str, digest: str) -> dict:
     source_rel = f"string/{name}/main.cpp"
-    return {
+    result = {
         "schema_version": 3,
         "name": name,
         "title": TITLES[name],
@@ -188,6 +257,9 @@ def expected_meta(name: str, digest: str) -> dict:
         },
         "submission_attempts": [],
     }
+    if name in PROVEN:
+        result["provenance"]["evidence"] = generation_evidence(name, digest)
+    return result
 
 
 def generated_source(name: str, header: str, adapter: str) -> bytes:
@@ -241,15 +313,17 @@ def current_meta_or_reset(name: str, target: Path, digest: str, source_changed: 
     return previous
 
 
-def check_current(manifest: dict) -> list[str]:
+def check_current(manifest: dict, names=None) -> list[str]:
     entries = {x["name"]: x for x in manifest.get("problems", [])}
     problems: list[str] = []
-    for name, (header, adapter) in SPECS.items():
+    for name in SPECS if names is None else names:
+        header, adapter = SPECS[name]
         data = generated_source(name, header, adapter)
         digest = hashlib.sha256(data).hexdigest()
         target = OUT / "string" / name / "main.cpp"
         meta = read_json(target.parent / "meta.json")
         expected = generated_entry(name, digest)
+        baseline = expected_meta(name, digest)
         if not target.is_file() or target.read_bytes() != data:
             problems.append(f"source out of date: {target.relative_to(ROOT)}")
         if entries.get(name) != expected:
@@ -257,25 +331,26 @@ def check_current(manifest: dict) -> list[str]:
         if meta is None:
             problems.append(f"missing or invalid metadata: string/{name}")
         elif (
-            meta.get("provenance") != expected_meta(name, digest)["provenance"]
-            or meta.get("official_reference") != expected_meta(name, digest)["official_reference"]
+            meta.get("provenance") != baseline["provenance"]
+            or meta.get("official_reference") != baseline["official_reference"]
         ):
             problems.append(f"metadata provenance out of date: string/{name}")
     return problems
 
 
-def write_current(manifest: dict) -> None:
+def write_current(manifest: dict, names=None) -> None:
     manifest_path = OUT / "manifest.json"
     entries = {x["name"]: x for x in manifest["problems"]}
-    for name, (header, adapter) in SPECS.items():
+    for name in SPECS if names is None else names:
+        header, adapter = SPECS[name]
         data = generated_source(name, header, adapter)
         target = OUT / "string" / name / "main.cpp"
         source_changed = not target.is_file() or target.read_bytes() != data
         target.parent.mkdir(parents=True, exist_ok=True)
-        if source_changed:
-            target.write_bytes(data)
         digest = hashlib.sha256(data).hexdigest()
         meta = current_meta_or_reset(name, target, digest, source_changed)
+        if source_changed:
+            target.write_bytes(data)
         (target.parent / "meta.json").write_text(
             json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
         )
@@ -295,17 +370,21 @@ def main() -> None:
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument("--check", action="store_true", help="verify without writing")
     mode.add_argument("--write", action="store_true", help="refresh generated files explicitly")
+    parser.add_argument("--only", help="comma-separated problem names; default is all")
     args = parser.parse_args()
+    names = list(dict.fromkeys(args.only.split(","))) if args.only is not None else None
+    if names is not None and any(name not in SPECS for name in names):
+        parser.error("unknown problem in --only")
     manifest_path = OUT / "manifest.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     if args.check:
-        problems = check_current(manifest)
+        problems = check_current(manifest, names)
         if problems:
             print("CH04_GENERATION_OUT_OF_DATE", file=sys.stderr)
             print("\n".join(problems), file=sys.stderr)
             raise SystemExit(1)
         print("CH04_GENERATION_CURRENT")
         return
-    write_current(manifest)
+    write_current(manifest, names)
 
 if __name__ == "__main__": main()
