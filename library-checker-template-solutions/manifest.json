@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "updated_at": "2026-10-16T07:43:14.964183Z",
+  "updated_at": "2026-10-16T08:02:27.389880Z",
   "official_repository": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
     "url": "https://github.com/yosupo06/library-checker-problems"
@@ -1950,7 +1950,7 @@
       "title": "Static RMQ",
       "category": "data_structure",
       "source": "data_structure/staticrmq/main.cpp",
-      "source_sha256": "e0233eac5bdd0abca00b488e4afd24494d1f808cd231bb5c43a0ae028ccc371b",
+      "source_sha256": "cf0fc87030cd808a09d8ede403b16db049a6dd44ffe76cfd66f120862e3fdea2",
       "meta": "data_structure/staticrmq/meta.json",
       "state": "template_solution"
     },

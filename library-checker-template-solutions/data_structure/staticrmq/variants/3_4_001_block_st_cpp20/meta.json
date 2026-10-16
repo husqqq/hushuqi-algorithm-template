@@ -7,7 +7,7 @@
   "category": "data_structure",
   "language": "cpp20",
   "source": "data_structure/staticrmq/variants/3_4_001_block_st_cpp20/main.cpp",
-  "source_sha256": "c82d4dc803f50e05bdce823fcc407379ba4ce22b194281861b29daddb97d05fc",
+  "source_sha256": "9be2bcd2a575f2680570221c7c4ea20446a5c26ab5d439ba594253f879e78511",
   "template_items": [
     "3.4.001"
   ],
@@ -15,35 +15,29 @@
   "provenance": {
     "method": "deterministic_generation",
     "generator": "library-checker-template-solutions/tools/generate_cpp_variants.py",
-    "generator_sha256": "d3978149aeca2d84607000428f1e01c5fde0c9c70b39e9659cbe4101996ca910",
+    "generator_sha256": "29d629d2c97a25094710896d11c6ece73e7e9d610cc8e91684197d0cc50b2500",
     "inputs": [
       {
         "path": "hushuqi算法竞赛模板/include/full/3_4_001.hpp",
-        "sha256": "316b11425335591b4fd1723a79e6a99808f5d49a51612ddc733d4ec744c013fc"
+        "sha256": "3a175051da6742593382b319bd64d20ba95d9cda520c087eac49e8a62c54deff"
       },
       {
         "path": "hushuqi算法竞赛模板/tests/test_ch03_block_st.cpp",
-        "sha256": "94421a03de249b86a254c8a1f511284f136c4aa0fdddf56b3eac18fcc7d411be"
+        "sha256": "b2a9476660a14076fbb4ef5848bcb746f88cadf0e58219298abcaf9a696645db"
       }
     ],
-    "generated_sha256": "c82d4dc803f50e05bdce823fcc407379ba4ce22b194281861b29daddb97d05fc"
+    "generated_sha256": "9be2bcd2a575f2680570221c7c4ea20446a5c26ab5d439ba594253f879e78511"
   },
   "validation": {
-    "status": "online_ac",
-    "current_source_sha256": "c82d4dc803f50e05bdce823fcc407379ba4ce22b194281861b29daddb97d05fc",
-    "current_source_online_verdict": "AC",
-    "current_source_submission_id": 396360,
-    "server_source_sha256": "c82d4dc803f50e05bdce823fcc407379ba4ce22b194281861b29daddb97d05fc",
+    "status": "local_only",
+    "current_source_sha256": "9be2bcd2a575f2680570221c7c4ea20446a5c26ab5d439ba594253f879e78511",
+    "current_source_online_verdict": null,
+    "current_source_submission_id": null,
+    "server_source_sha256": null,
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch03_block_st.cpp"
-    ],
-    "checked_at": "2026-08-23T15:27:03.732179Z",
-    "current_source_time": 0.102,
-    "current_source_memory": 24735744,
-    "current_source_submission_time": "2026-08-23T15:26:33.740268Z",
-    "current_source_is_latest": true,
-    "note": "当前变体源码已通过 Library Checker 在线评测。"
+    ]
   },
   "submission_attempts": [
     {

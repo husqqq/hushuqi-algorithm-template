@@ -453,7 +453,7 @@ signed main()
         ("3_4_001.hpp",),
         "3.4.001",
         ("struct ST",),
-        ("tests/test_ch03_st.cpp",),
+        ("tests/test_ch03_st.cpp", "tests/test_ch03_block_st.cpp"),
         r'''
 signed main()
 {

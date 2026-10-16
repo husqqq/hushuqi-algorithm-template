@@ -14,7 +14,6 @@
 | `3.3.020` | `data_structure/persistent_range_affine_range_sum` | `audited` | `current` | `generation_stale` | `missing` | `missing` | `generation_stale,verification_missing` |
 | `3.3.021` | `data_structure/range_affine_range_sum_large_array` | `audited` | `current` | `generation_stale` | `missing` | `missing` | `generation_stale,verification_missing` |
 | `3.3.022` | `data_structure/range_set_range_composite` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
-| `3.4.001` | `data_structure/staticrmq` | `audited` | `current` | `generation_stale` | `missing` | `missing` | `generation_stale,verification_missing` |
 | `3.4.005` | `data_structure/range_kth_smallest` | `audited` | `current` | `generation_stale` | `missing` | `missing` | `generation_stale,verification_missing` |
 | `3.4.005` | `data_structure/static_range_frequency` | `audited` | `current` | `generation_stale` | `missing` | `missing` | `generation_stale,verification_missing` |
 | `3.4.005` | `data_structure/static_range_sum_with_upper_bound` | `audited` | `current` | `generation_stale` | `missing` | `missing` | `generation_stale,verification_missing` |

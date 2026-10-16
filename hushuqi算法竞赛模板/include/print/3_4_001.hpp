@@ -46,18 +46,21 @@ template <class T, class F, int B = 16> struct BlockST
     // 与 ST 相同，最小/最大只切换 f；不要改重叠块的查询结构。
     static_assert(B > 0);
 
+    // n 是原数组长度，m 是块数；f 按从左到右的顺序合并。
     int n = 0, m = 0;
     F f;
-    vector<T> val, pre, suf;
-    vector<vector<T>> st;
+    vector<T> val, pre, suf; // 补齐后的元素、块内前缀和后缀结果。
+    vector<vector<T>> st; // st[k][i] 合并从第 i 块起的连续 2^k 块。
 
     BlockST(const vector<T> &v, F f = {}) : f(f)
     {
+        // v 是静态数组；f 满足结合律和幂等性，不要求交换律。
         build(v);
     }
 
     void build(const vector<T> &v)
     {
+        // v 是新数组；重建块内前后缀与块间表，空数组清空旧状态。
         n = v.size();
         m = (n + B - 1) / B;
         if (!n)
@@ -101,7 +104,8 @@ template <class T, class F, int B = 16> struct BlockST
 
     T query(int l, int r) const
     {
-        assert(l < r && r <= n); // 调试检查，可删
+        // [l,r) 是非空半开区间；返回按原数组顺序合并的结果。
+        assert(0 <= l && l < r && r <= n); // 调试检查，可删
         r--;
         int x = l / B, y = r / B;
         if (x == y)
@@ -113,12 +117,12 @@ template <class T, class F, int B = 16> struct BlockST
             }
             return ans;
         }
-        T ans = f(suf[l], pre[r]);
+        T ans = suf[l];
         if (++x < y)
         {
             int k = bit_width((unsigned long long)(y - x)) - 1;
             ans = f(ans, f(st[k][x], st[k][y - (1U << k)]));
         }
-        return ans;
+        return f(ans, pre[r]);
     }
 };

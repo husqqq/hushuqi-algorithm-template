@@ -2,23 +2,42 @@
 using namespace std;
 #define int long long
 
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
+
+
+#include <limits>
+
+using namespace std;
+
+constexpr long long INF = numeric_limits<long long>::max() / 4;
 
 template <class T> bool chmin(T &a, const T &b)
 {
-    // a 是待更新值，b 是候选上界；若 b 更小则写入 a 并返回 true。
-    return b < a ? a = b, true : false;
+    // a 是待更新值，b 是候选值；若 b 更小则更新 a 并返回 true。
+    if (b < a)
+    {
+        a = b;
+        return true;
+    }
+    return false;
 }
+
 template <class T> bool chmax(T &a, const T &b)
 {
-    // a 是待更新值，b 是候选下界；若 b 更大则写入 a 并返回 true。
-    return a < b ? a = b, true : false;
+    // a 是待更新值，b 是候选值；若 b 更大则更新 a 并返回 true。
+    if (a < b)
+    {
+        a = b;
+        return true;
+    }
+    return false;
 }
+
+constexpr int inf = 1E9;
+constexpr long double eps = 1E-12L;
 
 template <class T, class F> struct ST
 {
+    // 最小值与最大值只由 f 决定：分别传 min 或 max；ST 的建表和查询代码无需修改。
     // n 是数组长度，f 是幂等合并运算，a[k][i] 保存长度 2^k 的区间信息。
     int n;
     F f;
@@ -55,20 +74,24 @@ template <class T, class F> struct ST
 
 template <class T, class F, uint32_t B = 16> struct BlockST
 {
+    // 与 ST 相同，最小/最大只切换 f；不要改重叠块的查询结构。
     static_assert(B > 0);
 
+    // n 是原数组长度，m 是块数；f 按从左到右的顺序合并。
     uint32_t n = 0, m = 0;
     F f;
-    vector<T> val, pre, suf;
-    vector<vector<T>> st;
+    vector<T> val, pre, suf; // 补齐后的元素、块内前缀和后缀结果。
+    vector<vector<T>> st; // st[k][i] 合并从第 i 块起的连续 2^k 块。
 
     BlockST(const vector<T> &v, F f = {}) : f(f)
     {
+        // v 是静态数组；f 满足结合律和幂等性，不要求交换律。
         build(v);
     }
 
     void build(const vector<T> &v)
     {
+        // v 是新数组；重建块内前后缀与块间表，空数组清空旧状态。
         n = v.size();
         m = (n + B - 1) / B;
         if (!n)
@@ -112,7 +135,8 @@ template <class T, class F, uint32_t B = 16> struct BlockST
 
     T query(uint32_t l, uint32_t r) const
     {
-        assert(l < r && r <= n); // 调试检查，可删
+        // [l,r) 是非空半开区间；返回按原数组顺序合并的结果。
+        assert(0 <= l && l < r && r <= n); // 调试检查，可删
         r--;
         uint32_t x = l / B, y = r / B;
         if (x == y)
@@ -124,13 +148,13 @@ template <class T, class F, uint32_t B = 16> struct BlockST
             }
             return ans;
         }
-        T ans = f(suf[l], pre[r]);
+        T ans = suf[l];
         if (++x < y)
         {
             uint32_t k = bit_width((unsigned long long)(y - x)) - 1;
             ans = f(ans, f(st[k][x], st[k][y - (1U << k)]));
         }
-        return ans;
+        return f(ans, pre[r]);
     }
 };
 

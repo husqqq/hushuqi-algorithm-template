@@ -308,7 +308,7 @@
       "category": "data_structure",
       "language": "cpp20",
       "source": "data_structure/staticrmq/variants/3_4_001_block_st_cpp20/main.cpp",
-      "source_sha256": "c82d4dc803f50e05bdce823fcc407379ba4ce22b194281861b29daddb97d05fc",
+      "source_sha256": "9be2bcd2a575f2680570221c7c4ea20446a5c26ab5d439ba594253f879e78511",
       "meta": "data_structure/staticrmq/variants/3_4_001_block_st_cpp20/meta.json",
       "template_items": [
         "3.4.001"
@@ -722,5 +722,5 @@
       "test": "hushuqi算法竞赛模板/tests/test_ch09_revised.cpp"
     }
   ],
-  "updated_at": "2026-10-15T22:11:05.472634Z"
+  "updated_at": "2026-10-16T08:02:27.556715Z"
 }
