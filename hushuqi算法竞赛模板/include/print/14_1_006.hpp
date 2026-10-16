@@ -2,7 +2,7 @@
 
 #include "14_1_001.hpp"
 
-string convertBase(string s, int from, int to)
+string convertBase(const string &s, int from, int to)
 {
     // s 是字符序 0-9A-Za-z 下带可选正负号的 from 进制整数；返回同字符序、无前导零的 to 进制字符串。
     assert(!s.empty()); // 调试检查，可删。
@@ -16,33 +16,53 @@ string convertBase(string s, int from, int to)
     {
         size_t pos = digit.find(s[p]);
         assert(pos != string::npos && pos < (size_t)from); // 调试检查，可删。
-        int x = pos;
-        a.push_back(x);
+        if (pos || !a.empty()) a.push_back((int)pos);
     }
-    while (a.size() > 1 && a[0] == 0)
-    {
-        a.erase(a.begin());
-    }
+    if (a.empty()) return "0";
     string ans;
-    while (!(a.size() == 1 && a[0] == 0))
+    if (from == to)
     {
-        vector<int> b;
-        int rem = 0;
         for (int x : a)
         {
-            int cur = rem * from + x;
-            if (!b.empty() || cur / to)
-            {
-                b.push_back(cur / to);
-            }
-            rem = cur % to;
+            ans.push_back(digit[x]);
         }
-        ans.push_back(digit[rem]);
-        a = b.empty() ? vector<int>{0} : move(b);
+        return neg ? "-" + ans : ans;
     }
-    if (ans.empty())
+    if (has_single_bit((unsigned)from) && has_single_bit((unsigned)to))
     {
-        return "0";
+        int fb = countr_zero((unsigned)from), tb = countr_zero((unsigned)to);
+        int buf = 0, bits = 0; // buf 保存尚未输出的低位，bits 是其有效位数。
+        for (int i = (int)a.size() - 1; i >= 0; i--)
+        {
+            buf |= a[i] << bits;
+            bits += fb;
+            while (bits >= tb)
+            {
+                ans.push_back(digit[buf & (to - 1)]);
+                buf >>= tb;
+                bits -= tb;
+            }
+        }
+        if (bits) ans.push_back(digit[buf]);
+        while (ans.size() > 1 && ans.back() == '0')
+        {
+            ans.pop_back();
+        }
+    }
+    else
+    {
+        while (!a.empty())
+        {
+            int rem = 0, k = 0; // k 是本轮商的有效位数，商原地覆盖已读数码。
+            for (int x : a)
+            {
+                int cur = rem * from + x;
+                if (cur / to || k) a[k++] = cur / to;
+                rem = cur % to;
+            }
+            ans.push_back(digit[rem]);
+            a.resize(k);
+        }
     }
     reverse(ans.begin(), ans.end());
     return neg ? "-" + ans : ans;
