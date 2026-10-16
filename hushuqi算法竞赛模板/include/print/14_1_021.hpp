@@ -43,16 +43,17 @@ Decimal piChudnovsky(int digits)
     Decimal::setPrecision(digits + 8);
     BigInt mul = 1;
     BigInt power = 1;
-    int linear = 13591409;
+    BigInt linear = 13591409;
     Decimal sum(linear);
     for (int k = 1;; k++)
     {
-        int x = 6 + 12 * (k - 1);
-        mul *= BigInt(x * x * x - 16 * x);
-        mul /= BigInt(k * k * k);
+        // kk、x 保存项编号及 12k-6；立方在大整数中计算，关闭整数宏也不溢出。
+        BigInt kk(k), x = BigInt(12) * kk - BigInt(6);
+        mul *= x * x * x - BigInt(16) * x;
+        mul /= kk * kk * kk;
         linear += 545140134;
         power *= BigInt("-262537412640768000");
-        Decimal term(mul * BigInt(linear));
+        Decimal term(mul * linear);
         term /= Decimal(power);
         if (term.isZero())
         {

@@ -7,7 +7,7 @@ struct Decimal
     // man 是带符号十进制尾数，scale 是小数点后的十进制位数。
     BigInt man = 0;
     int scale = 0;
-    // prec 是乘除、幂和平方根保留的小数位数。
+    // prec 是构造及加减乘除、幂和平方根保留的小数位数；取模保留精确余数。
     inline static int prec = 50;
 
     Decimal() = default;
@@ -285,7 +285,7 @@ struct Decimal
 
     friend Decimal operator%(const Decimal &a, const Decimal &b)
     {
-        // a 是被除数，b 是非零除数；返回 a-trunc(a/b)*b。
+        // a 是被除数，b 是非零除数；返回向零取商的精确余数，不按 prec 舍入。
         assert(b.man.s);
         BigInt num = a.man, den = b.man;
         if (b.scale >= a.scale)
@@ -296,8 +296,11 @@ struct Decimal
         {
             den = shift10(den, a.scale - b.scale);
         }
-        Decimal quotient(num / den);
-        return a - quotient * b;
+        Decimal ans;
+        ans.man = num % den;
+        ans.scale = max(a.scale, b.scale);
+        ans.normalize();
+        return ans;
     }
 
     friend bool operator==(const Decimal &a, const Decimal &b)

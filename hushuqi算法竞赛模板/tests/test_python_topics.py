@@ -1,9 +1,13 @@
 from __future__ import annotations
 
 import bisect
+import io
 import random
 import re
+import sys
+import tempfile
 from pathlib import Path
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -36,7 +40,62 @@ def main() -> None:
         compile(block(topic_id), topic_id, "exec")
 
     ns: dict[str, object] = {}
+    out = io.StringIO()
+    with patch.object(sys, "stdin", io.TextIOWrapper(io.BytesIO(b"1 2\n3\n"))), patch.object(sys, "stdout", out):
+        exec(block("14.1.011"), ns)
+        assert ns["tokens"]() == [b"1", b"2", b"3"]
+    assert out.getvalue() == "19\n"
+    assert ns["lo"] == 1 and ns["hi"] == 3
+    assert ns["root"] == 10**50 and ns["joined"] == "acm/template"
+
+    ns = {}
+    out = io.StringIO()
+    limit = sys.getrecursionlimit()
+    try:
+        with patch.object(sys, "stdin", io.TextIOWrapper(io.BytesIO(b"7 8\n"))), patch.object(sys, "stdout", out):
+            exec(block("14.1.014"), ns)
+    finally:
+        sys.setrecursionlimit(limit)
+    assert out.getvalue() == "29/21 22\n"
+    assert ns["data"] == [b"7", b"8"] and ns["stamp"] == "2026/07/24 12:30:00"
+    assert ns["day_diff"](2000, 2, 28, 2000, 3, 1) == 2
+    assert ns["day_diff"](1900, 2, 28, 1900, 3, 1) == 1
+    with tempfile.TemporaryDirectory(prefix="ch14-python-") as temp:
+        path = Path(temp) / "日期.txt"
+        ns["write_text"](path, "算法\n29/21\n")
+        assert ns["read_text"](path) == "算法\n29/21\n"
+
+    ns: dict[str, object] = {}
     exec(block("14.1.012"), ns)
+
+    def check_pairs(net):
+        for u, edges in enumerate(net.g):
+            for i, e in enumerate(edges):
+                rev = net.g[e[0]][e[1]]
+                assert rev is not e and rev[:2] == [u, i]
+                assert e[2] >= 0
+                if len(e) == 4:
+                    assert rev[3] == -e[3]
+
+    for cls in ("Dinic", "MinCostFlow"):
+        net = ns[cls](2)
+        for u, v, c in [(0, 0, 5), (0, 0, 0), (0, 1, 3), (1, 0, 2), (1, 1, 7)]:
+            net.add(u, v, c, 0) if cls == "MinCostFlow" else net.add(u, v, c)
+        check_pairs(net)
+        total = sum(e[2] for edges in net.g for e in edges)
+        assert net.flow(0, 1) == ((3, 0) if cls == "MinCostFlow" else 3)
+        check_pairs(net)
+        assert sum(e[2] for edges in net.g for e in edges) == total
+
+    net = ns["MinCostFlow"](2)
+    net.add(0, 0, 1, -1)
+    net.add(0, 1, 1, 0)
+    try:
+        net.flow(0, 1)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("negative self-loop must be rejected")
 
     dsu = ns["DSU"](6)
     assert dsu.merge(0, 1) and dsu.merge(1, 2)

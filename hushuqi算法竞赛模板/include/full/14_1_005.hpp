@@ -4,23 +4,23 @@
 
 struct Date
 {
-    // y 保存公历年份。
-    int y;
+    // y 保存公历年份；完整 64 位日序对应的年份可能超过 32 位。
+    long long y;
     // m 保存公历月份。
     int m;
     // d 保存公历月内日期。
     int d;
 
-    static bool leap(int y)
+    static bool leap(long long y)
     {
         // y 是公历年份；返回该年是否为闰年。
         return y % 4 == 0 && (y % 100 != 0 || y % 400 == 0);
     }
 
-    static int monthDays(int y, int m)
+    static int monthDays(long long y, int m)
     {
         // y、m 是公历年份和月份；返回该月的天数。
-        static constexpr int a[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        static constexpr array<int, 13> a = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         assert(1 <= m && m <= 12); // 调试检查，可删。
         return a[m] + (m == 2 && leap(y));
     }
@@ -61,7 +61,7 @@ struct Date
         __int128 dd = dy - (153 * mp + 2) / 5 + 1;
         __int128 mm = mp + (mp < 10 ? 3 : -9);
         yy += mm <= 2;
-        return {(long long)yy, (long long)mm, (long long)dd};
+        return {(long long)yy, (int)mm, (int)dd};
     }
 
     // 周日为 0，周一为 1，...，周六为 6。

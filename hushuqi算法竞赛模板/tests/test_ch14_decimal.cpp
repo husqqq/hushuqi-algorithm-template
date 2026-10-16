@@ -20,5 +20,27 @@ signed main()
     Decimal::setPrecision(30);
     assert(Decimal(2).sqrt().str(30) == "1.414213562373095048801688724210");
     assert(Decimal("0.0004").sqrt().str() == "0.02");
+    Decimal a("5.55"), b("0.11");
+    Decimal::setPrecision(0);
+    assert((a % b).str() == "0.05");
+    assert((-a % b).str() == "-0.05");
+    assert((a % -b).str() == "0.05");
+    assert((-a % -b).str() == "-0.05");
+    assert((b % a).str() == "0.11");
+    assert((a % a).isZero());
+    mt19937_64 rng(14020);
+    for (int i = 0; i < 600; i++)
+    {
+        long long x = (long long)(rng() % 20000001) - 10000000;
+        long long y = (long long)(rng() % 20000000) - 10000000;
+        if (!y) y = 1;
+        Decimal::setPrecision(6);
+        Decimal a = Decimal(x) / Decimal(1000000);
+        Decimal b = Decimal(y) / Decimal(1000000);
+        Decimal rem = Decimal(x % y) / Decimal(1000000);
+        Decimal::setPrecision(i % 3);
+        assert(a % b == rem);
+        assert((a % b).abs() < b.abs());
+    }
     cout << "OK\n";
 }
