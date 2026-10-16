@@ -1,155 +1,688 @@
+
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
 
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
+
+
+#include <limits>
+
+using namespace std;
+
+constexpr long long INF = numeric_limits<long long>::max() / 4;
 
 template <class T> bool chmin(T &a, const T &b)
 {
-    // a 是待更新值，b 是候选值；若 a 变小则返回 true。
-    if (b >= a)
+    // a 是待更新值，b 是候选值；若 b 更小则更新 a 并返回 true。
+    if (b < a)
     {
-        return false;
+        a = b;
+        return true;
     }
-    a = b;
-    return true;
+    return false;
 }
+
 template <class T> bool chmax(T &a, const T &b)
 {
-    // a 是待更新值，b 是候选值；若 a 变大则返回 true。
-    if (a >= b)
+    // a 是待更新值，b 是候选值；若 b 更大则更新 a 并返回 true。
+    if (a < b)
     {
-        return false;
+        a = b;
+        return true;
     }
-    a = b;
-    return true;
+    return false;
 }
 
-struct Run
+constexpr int inf = 1E9;
+constexpr long double eps = 1E-12L;
+
+// 区间和实例：Sum{} 是合并单位元，Sum{x} 表示一个值为 x 的叶子。
+struct Sum
 {
-    // p 是最小周期，[l,r) 是极大周期区间。
-    int32_t p, l, r;
-    auto operator<=>(const Run &) const = default;
+    // val 是当前区间的元素和。
+    long long val = 0;
+
+    Sum() = default;
+    Sum(long long x) : val(x)
+    {
+        // x 是单个叶子的值。
+    }
+
+    friend Sum operator+(Sum a, Sum b)
+    {
+        // a、b 是相邻区间信息；返回合并后的区间和。
+        return a.val + b.val;
+    }
 };
 
-using RunIndex = int32_t;
-
-vector<RunIndex> runZ(const vector<RunIndex> &a)
+struct MaxInfo
 {
-    // a 是整数序列；返回带一个尾哨兵的 Z 数组，供 Runs 计算 LCE。
-    RunIndex n = a.size();
-    vector<RunIndex> z(n + 1);
-    for (RunIndex i = 1, l = 0; i <= n; i++)
+    // 当前信息取区间最大值。改成最小值信息时，把 lowest 改为 numeric_limits<long long>::max()、max 改为 min，
+    // 并同步把类型名、查询谓词中的 >= 改成 <=。
+    // val 是区间最大值；空区间以 long long 最小值作为 max 的单位元。
+    long long val = numeric_limits<long long>::lowest();
+
+    MaxInfo() = default;
+    MaxInfo(long long x) : val(x)
     {
-        z[i] = l + z[l] <= i ? 0 : min(l + z[l] - i, z[i - l]);
-        while (i + z[i] < n && a[z[i]] == a[i + z[i]])
+        // x 是单个叶子的值。
+    }
+
+    friend MaxInfo operator+(MaxInfo a, MaxInfo b)
+    {
+        // a、b 是按顺序相邻的区间信息；返回两段的最大值。
+        return max(a.val, b.val);
+    }
+};
+
+template <class Info> struct Seg
+{
+    // n 是真实叶子数，size 是不小于 n 的二次幂；tr 保存区间信息。
+    int n;
+    int size;
+    vector<Info> tr;
+
+    Seg(int n = 0)
+    {
+        // n 是叶子数；初始信息均为合并单位元。
+        init(n);
+    }
+    Seg(const vector<Info> &a)
+    {
+        // a 是各叶子的初始信息。
+        init(a);
+    }
+
+    void init(int n_)
+    {
+        // n_ 是新的叶子数；幂次二基址让每个内部节点对应连续区间。
+        assert(n_ >= 0); // 调试检查，可删
+        n = n_;
+        size = 1;
+        while (size < n)
         {
-            z[i]++;
+            size <<= 1;
         }
-        if (l + z[l] < i + z[i])
+        tr.assign(2 * size, Info{});
+    }
+
+    void init(const vector<Info> &a)
+    {
+        // a 是新的叶子信息；线性重建整棵树。
+        init(a.size());
+        copy(a.begin(), a.end(), tr.begin() + size);
+        for (int i = size - 1; i > 0; --i)
         {
-            l = i;
+            pull(i);
         }
     }
-    return z;
+
+    void pull(int p)
+    {
+        // p 是内部节点编号；按左右顺序合并两个儿子。
+        tr[p] = tr[2 * p] + tr[2 * p + 1];
+    }
+
+    void set(int p, Info v)
+    {
+        // p 是 0 下标位置，v 是新叶子信息；修改后重算祖先。
+        assert(0 <= p && p < n); // 调试检查，可删
+        for (tr[p += size] = v; p >>= 1;)
+        {
+            pull(p);
+        }
+    }
+
+    Info query(int l, int r) const
+    {
+        // l、r 是半开区间端点；按原顺序返回 [l,r) 的合并结果。
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
+        Info x{}, y{};
+        for (l += size, r += size; l < r; l >>= 1, r >>= 1)
+        {
+            if (l & 1)
+            {
+                x = x + tr[l++];
+            }
+            if (r & 1)
+            {
+                y = tr[--r] + y;
+            }
+        }
+        return x + y;
+    }
+
+    template <class F>
+    int findFirst(int p, int l, int r, int ql, int qr, F &ok) const
+    {
+        // p 管辖 [l,r)，查询区间 [ql,qr)，ok 对区间信息单调（父真则至少一个儿子真）；
+        // 返回 [ql,qr) 内使 ok(tr[叶]) 为真的最小下标，不存在返回 -1。
+        if (r <= ql || qr <= l)
+        {
+            return -1;
+        }
+        if (ql <= l && r <= qr && !ok(tr[p]))
+        {
+            return -1;
+        }
+        if (r - l == 1)
+        {
+            return l < n ? l : -1;
+        }
+        int m = l + (r - l) / 2;
+        int x = findFirst(2 * p, l, m, ql, qr, ok);
+        return x == -1 ? findFirst(2 * p + 1, m, r, ql, qr, ok) : x;
+    }
+
+    template <class F>
+    int findFirst(int l, int r, F ok) const
+    {
+        // l、r 是半开区间，ok(Info) 判断区间是否含目标；返回最左满足的叶子下标，不存在返回 -1。
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
+        return l == r ? -1 : findFirst(1, 0, size, l, r, ok);
+    }
+
+    template <class F>
+    int findLast(int p, int l, int r, int ql, int qr, F &ok) const
+    {
+        // 参数同 findFirst 的递归版；返回 [ql,qr) 内使 ok 为真的最大下标，不存在返回 -1。
+        if (r <= ql || qr <= l)
+        {
+            return -1;
+        }
+        if (ql <= l && r <= qr && !ok(tr[p]))
+        {
+            return -1;
+        }
+        if (r - l == 1)
+        {
+            return l < n ? l : -1;
+        }
+        int m = l + (r - l) / 2;
+        int x = findLast(2 * p + 1, m, r, ql, qr, ok);
+        return x == -1 ? findLast(2 * p, l, m, ql, qr, ok) : x;
+    }
+
+    template <class F>
+    int findLast(int l, int r, F ok) const
+    {
+        // l、r 是半开区间，ok(Info) 判断区间是否含目标；返回最右满足的叶子下标，不存在返回 -1。
+        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
+        return l == r ? -1 : findLast(1, 0, size, l, r, ok);
+    }
+};
+
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+
+vector<int> saNaive(const vector<int> &s)
+{
+    // s 是整数序列；返回按字典序排列的全部后缀起点。
+    int n = s.size();
+    vector<int> sa(n);
+    iota(sa.begin(), sa.end(), 0);
+    sort(sa.begin(),
+         sa.end(),
+         [&](int x, int y)
+         {
+             while (x < n && y < n && s[x] == s[y])
+             {
+                 x++;
+                 y++;
+             }
+             return y < n && (x == n || s[x] < s[y]);
+         });
+    return sa;
 }
 
-struct RunEnum
+vector<int> saDouble(const vector<int> &s)
 {
-    // all[p] 收集最小周期候选为 p 的极大区间。
-    vector<vector<pair<RunIndex, RunIndex>>> all;
-    vector<RunIndex> a;
-
-    vector<RunIndex> rev(vector<RunIndex> v)
+    // s 是整数序列；返回倍增法求得的后缀数组。
+    int n = s.size();
+    vector<int> sa(n), rk(n), nrk(n), v = s;
+    sort(v.begin(), v.end());
+    v.erase(unique(v.begin(), v.end()), v.end());
+    for (int i = 0; i < n; i++)
     {
-        reverse(v.begin(), v.end());
-        return v;
+        rk[i] = lower_bound(v.begin(), v.end(), s[i]) - v.begin();
+    }
+    iota(sa.begin(), sa.end(), 0);
+    for (int k = 1; k < n; k *= 2)
+    {
+        auto cmp = [&](int x, int y)
+        {
+            if (rk[x] != rk[y])
+            {
+                return rk[x] < rk[y];
+            }
+            int a = x + k < n ? rk[x + k] : -1;
+            int b = y + k < n ? rk[y + k] : -1;
+            return a < b;
+        };
+        sort(sa.begin(), sa.end(), cmp);
+        nrk[sa[0]] = 0;
+        for (int i = 1; i < n; i++)
+        {
+            nrk[sa[i]] = nrk[sa[i - 1]] + cmp(sa[i - 1], sa[i]);
+        }
+        swap(rk, nrk);
+    }
+    return sa;
+}
+
+vector<int> saIs(const vector<int> &s, int m)
+{
+    // s 是整数序列，元素须在 [0,m] 内，m 是最大符号值；返回后缀数组。
+    int n = s.size();
+    if (n == 0)
+    {
+        return {};
+    }
+    if (n == 1)
+    {
+        return {0};
+    }
+    if (n == 2)
+    {
+        return s[0] < s[1] ? vector<int>{0, 1} : vector<int>{1, 0};
+    }
+    if (n < 10)
+    {
+        return saNaive(s);
+    }
+    if (n < 40)
+    {
+        return saDouble(s);
     }
 
-    vector<RunIndex> sub(RunIndex l, RunIndex r)
+    vector<int> sa(n, -1), sl(m + 1), ss(m + 1);
+    vector<bool> ls(n);
+    for (int i = n - 2; i >= 0; i--)
     {
-        return {a.begin() + l, a.begin() + r};
+        ls[i] = s[i] == s[i + 1] ? ls[i + 1] : s[i] < s[i + 1];
+    }
+    for (int i = 0; i < n; i++)
+    {
+        if (ls[i])
+        {
+            sl[s[i] + 1]++;
+        }
+        else
+        {
+            ss[s[i]]++;
+        }
+    }
+    for (int i = 0; i <= m; i++)
+    {
+        ss[i] += sl[i];
+        if (i < m)
+        {
+            sl[i + 1] += ss[i];
+        }
     }
 
-    void solve(RunIndex l, RunIndex r, RunIndex rounding)
+    auto induce = [&](const vector<int> &lms)
     {
-        if (r - l <= 1)
+        fill(sa.begin(), sa.end(), -1);
+        vector<int> b = ss;
+        for (int x : lms)
+        {
+            if (x < n)
+            {
+                sa[b[s[x]]++] = x;
+            }
+        }
+        b = sl;
+        sa[b[s[n - 1]]++] = n - 1;
+        for (int i = 0; i < n; i++)
+        {
+            int x = sa[i];
+            if (x > 0 && !ls[x - 1])
+            {
+                sa[b[s[x - 1]]++] = x - 1;
+            }
+        }
+        b = sl;
+        for (int i = n - 1; i >= 0; i--)
+        {
+            int x = sa[i];
+            if (x > 0 && ls[x - 1])
+            {
+                sa[--b[s[x - 1] + 1]] = x - 1;
+            }
+        }
+    };
+
+    vector<int> id(n + 1, -1), lms;
+    for (int i = 1; i < n; i++)
+    {
+        if (!ls[i - 1] && ls[i])
+        {
+            id[i] = lms.size();
+            lms.push_back(i);
+        }
+    }
+    induce(lms);
+    int z = lms.size();
+    if (z)
+    {
+        vector<int> ord;
+        for (int x : sa)
+        {
+            if (x >= 0 && id[x] != -1)
+            {
+                ord.push_back(x);
+            }
+        }
+        vector<int> ns(z);
+        int nm = 0;
+        ns[id[ord[0]]] = 0;
+        for (int i = 1; i < z; i++)
+        {
+            int x = ord[i - 1], y = ord[i];
+            int ex = id[x] + 1 < z ? lms[id[x] + 1] : n;
+            int ey = id[y] + 1 < z ? lms[id[y] + 1] : n;
+            bool same = ex - x == ey - y;
+            while (same && x < ex)
+            {
+                if (s[x] != s[y])
+                {
+                    same = false;
+                }
+                x++;
+                y++;
+            }
+            if (same && (x == n || s[x] != s[y]))
+            {
+                same = false;
+            }
+            if (!same)
+            {
+                nm++;
+            }
+            ns[id[ord[i]]] = nm;
+        }
+        vector<int> rsa = saIs(ns, nm);
+        for (int i = 0; i < z; i++)
+        {
+            ord[i] = lms[rsa[i]];
+        }
+        induce(ord);
+    }
+    return sa;
+}
+
+template <class T> vector<int> suffixArray(const vector<T> &s)
+{
+    // s 是可比较序列；先离散化，再返回按字典序排列的全部后缀起点。
+    int n = s.size();
+    vector<int> p(n), a(n);
+    iota(p.begin(), p.end(), 0);
+    sort(p.begin(),
+         p.end(),
+         [&](int x, int y)
+         {
+             return s[x] < s[y];
+         });
+    int m = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (i && s[p[i - 1]] != s[p[i]])
+        {
+            m++;
+        }
+        a[p[i]] = m;
+    }
+    return saIs(a, m);
+}
+
+vector<int> suffixArray(const string &s)
+{
+    // s 按无符号字节比较；返回按后缀字典序排列的起点下标。
+    vector<int> a;
+    a.reserve(s.size());
+    for (unsigned char c : s)
+    {
+        a.push_back(c);
+    }
+    return saIs(a, 255);
+}
+
+template <class T> vector<int> lcpArray(const vector<T> &s, const vector<int> &sa)
+{
+    // s 是原序列，sa 是后缀数组；返回相邻后缀 LCP，ans[i]=lcp(sa[i],sa[i+1])。
+    int n = s.size();
+    vector<int> rk(n), lcp(max<int>(0, n - 1));
+    for (int i = 0; i < n; i++)
+    {
+        rk[sa[i]] = i;
+    }
+    for (int i = 0, h = 0; i < n; i++)
+    {
+        if (rk[i] == 0)
+        {
+            continue;
+        }
+        int j = sa[rk[i] - 1];
+        while (i + h < n && j + h < n && s[i + h] == s[j + h])
+        {
+            h++;
+        }
+        lcp[rk[i] - 1] = h;
+        if (h)
+        {
+            h--;
+        }
+    }
+    return lcp;
+}
+
+vector<int> lcpArray(const string &s, const vector<int> &sa)
+{
+    // s 是原字符串，sa 是后缀数组；返回相邻后缀的 LCP 数组。
+    vector<int> a;
+    a.reserve(s.size());
+    for (unsigned char c : s)
+    {
+        a.push_back(c);
+    }
+    return lcpArray(a, sa);
+}
+
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+// 知识点 4.3.003：LCP、Height 与 RMQ。
+namespace suffix_lcp
+{
+vector<int> lcpArray(const string &s, const vector<int> &sa)
+{
+    // s 是原字符串，sa 是全部后缀按字典序排列的起点；返回相邻后缀 LCP，ans[i]=lcp(sa[i],sa[i+1])。
+    auto n = (int)s.size();
+    assert((int)sa.size() == n);
+    vector<int> rk(n), ht(max<int>(0, n - 1));
+    vector<char> seen(n);
+    for (int i = 0; i < n; i++)
+    {
+        assert(0 <= sa[i] && sa[i] < n && !seen[sa[i]]);
+        seen[sa[i]] = true;
+        rk[sa[i]] = i;
+    }
+    int h = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (rk[i] == n - 1)
+        {
+            h = 0;
+            continue;
+        }
+        auto j = sa[rk[i] + 1];
+        while (i + h < n && j + h < n && s[i + h] == s[j + h])
+        {
+            h++;
+        }
+        ht[rk[i]] = h;
+        if (h)
+        {
+            h--;
+        }
+    }
+    return ht;
+}
+
+struct LcpRMQ
+{
+    int n = 0;              // n 是字符串长度。
+    vector<int> sa;         // sa[r] 是排名 r 的后缀起点。
+    vector<int> rk;         // rk[i] 是后缀 s[i..n) 的排名。
+    vector<int> ht;         // ht[i] 是 sa[i] 与 sa[i+1] 的最长公共前缀长度。
+    vector<int> lg;         // lg[len] 是不超过 len 的最大二次幂指数。
+    vector<vector<int>> st; // st[k][i] 是 ht[i..i+2^k) 的最小值。
+
+    LcpRMQ(const string &s, vector<int> order)
+        : n((int)s.size()), sa(move(order)), rk(n), ht(lcpArray(s, sa)), lg(n + 1)
+    {
+        // s 是原字符串，order 是已构造好的后缀数组；建立 Height 的 ST 表，无返回值。
+        for (int i = 0; i < n; i++)
+        {
+            rk[sa[i]] = i;
+        }
+        for (int i = 2; i <= n; i++)
+        {
+            lg[i] = lg[i / 2] + 1;
+        }
+        if (n <= 1)
         {
             return;
         }
-        RunIndex m = (l + r + rounding) / 2;
-        solve(l, m, rounding);
-        solve(m, r, rounding);
-        auto zl = runZ(rev(sub(l, m)));
-        auto y = sub(m, r), suffix = sub(l, r);
-        y.insert(y.end(), suffix.begin(), suffix.end());
-        auto zr = runZ(y);
-        for (RunIndex i = m - 1; i >= l; i--)
+        st.assign(lg[n - 1] + 1, {});
+        st[0] = ht;
+        for (int k = 1; k < (int)st.size(); k++)
         {
-            RunIndex le = min(i - l, zl[m - i]);
-            RunIndex ri = min(r - m, zr[r - l - (m - i)]);
-            RunIndex p = m - i, ql = i - le, qr = m + ri;
-            if (qr - ql >= 2 * p)
+            auto len = 1LL << k;
+            st[k].resize(n - len);
+            for (int i = 0; i + len <= n - 1; i++)
             {
-                all[p].push_back({ql, qr});
+                st[k][i] = min(st[k - 1][i], st[k - 1][i + len / 2]);
             }
         }
     }
 
-    explicit RunEnum(const string &s) : all(s.size() / 2 + 1), a(s.begin(), s.end())
+    int queryRank(int l, int r) const
     {
-        RunIndex n = a.size();
-        reverse(a.begin(), a.end());
-        solve(0, n, 0);
-        for (auto &v : all)
+        // l、r 是后缀排名且 l<r；返回 sa[l] 与 sa[r] 的最长公共前缀长度。
+        assert(0 <= l && l < r && r < n);
+        auto k = lg[r - l];
+        return min(st[k][l], st[k][r - (1LL << k)]);
+    }
+
+    int query(int i, int j) const
+    {
+        // i、j 是两个后缀起点；返回 s[i..n) 与 s[j..n) 的最长公共前缀长度。
+        assert(0 <= i && i < n && 0 <= j && j < n);
+        if (i == j)
         {
-            for (auto &[l, r] : v)
-            {
-                tie(l, r) = pair{n - r, n - l};
-            }
+            return n - i;
         }
-        reverse(a.begin(), a.end());
-        solve(0, n, 1);
+        auto x = rk[i];
+        auto y = rk[j];
+        if (x > y)
+        {
+            swap(x, y);
+        }
+        return queryRank(x, y);
     }
 };
+}
 
-vector<Run> runs(const string &s)
+vector<array<int, 3>> runs(const string &s)
 {
-    // s 是原字符串；返回全部极大周期区间及其最小周期。
-    RunEnum e(s);
-    set<pair<RunIndex, RunIndex>> seen;
-    vector<Run> ans;
-    for (RunIndex p = 1; p < (RunIndex)e.all.size(); p++)
+    // s 可含任意字节；返回按字典序排列的 {最小周期 p, 左端点 l, 右端点 r}，区间为 [l,r)。
+    int n = s.size();
+    if (n < 2) return {};
+    auto make = [&](const string &text)
     {
-        auto &v = e.all[p];
-        sort(v.begin(), v.end(), [](auto x, auto y)
+        // text 是原串或反串；返回后缀排名及负 LCP 的最大值线段树。
+        auto sa = suffixArray(text), h = suffix_lcp::lcpArray(text, sa);
+        vector<int> rank(n);
+        vector<MaxInfo> v(n - 1);
+        for (int i = 0; i < n; i++)
         {
-            return x.first != y.first ? x.first < y.first : x.second > y.second;
-        });
-        vector<pair<RunIndex, RunIndex>> filtered;
-        for (auto [l, r] : v)
+            rank[sa[i]] = i;
+            if (i < n - 1) v[i] = MaxInfo{-h[i]};
+        }
+        return pair{move(rank), Seg<MaxInfo>(v)};
+    };
+    string rev(s.rbegin(), s.rend());
+    auto [rk, pre] = make(s);
+    auto [rr, suf] = make(rev);
+    auto lce = [&](bool back, int i, int j) -> int
+    {
+        // back 选反串，否则选原串；i、j 是合法后缀起点，返回其 LCP 长度。
+        const auto &text = back ? rev : s;
+        if (i == j) return n - i;
+        if (text[i] != text[j]) return 0;
+        const auto &rank = back ? rr : rk;
+        const auto &seg = back ? suf : pre;
+        int l = rank[i], r = rank[j];
+        if (l > r) swap(l, r);
+        // 非空区间上 max(-h) 取反即 min(h)；不对空区间的负无穷单位元取反。
+        return -seg.query(l, r).val;
+    };
+    // 每项依次为 {最小周期, 左端点, 右端点}。
+    vector<array<int, 3>> ans;
+    for (int dir = 0; dir < 2; dir++)
+    {
+        vector<int> rank = rk, st;
+        st.reserve(n);
+        if (dir)
         {
-            if (filtered.empty() || filtered.back().second < r)
+            string opp = s;
+            for (char &c : opp)
             {
-                filtered.push_back({l, r});
+                c = (char)(255 - (unsigned char)c);
+            }
+            auto sa = suffixArray(opp);
+            for (int i = 0; i < n; i++)
+            {
+                rank[sa[i]] = i;
             }
         }
-        for (auto [l, r] : filtered)
+        // st 顶端给出右侧第一个后缀排名更小的位置，即当前最长 Lyndon 根的右端点。
+        for (int i = n - 1; i >= 0; i--)
         {
-            if (seen.insert({l, r}).second)
+            while (!st.empty() && rank[st.back()] > rank[i])
             {
-                ans.push_back({p, l, r});
+                st.pop_back();
             }
+            int j = st.empty() ? n : st.back();
+            st.push_back(i);
+            if (j == n) continue;
+            int p = j - i, x = i ? lce(true, n - i, n - j) : 0;
+            if (x >= p) continue;
+            int y = lce(false, i, j);
+            if (x + y >= p) ans.push_back({p, i - x, j + y});
         }
     }
     sort(ans.begin(), ans.end());
+    ans.erase(unique(ans.begin(), ans.end()), ans.end());
     return ans;
 }
 
 signed main()
 {
-    string s; cin >> s; auto a = runs(s); cout << a.size() << '\n';
-    for (auto x : a) cout << x.p << ' ' << x.l << ' ' << x.r << '\n';
+    // 无参数；按最小周期、左端点、右端点的字典序输出全部极大重复，成功返回 0。
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    string s;
+    cin >> s;
+    auto a = runs(s);
+    cout << a.size() << '\n';
+    for (auto [p, l, r] : a)
+    {
+        cout << p << ' ' << l << ' ' << r << '\n';
+    }
 }

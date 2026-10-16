@@ -1752,7 +1752,7 @@
       "title": "Run Enumerate",
       "category": "string",
       "source": "string/runenumerate/main.cpp",
-      "source_sha256": "b101dfdd6f97483fc8591e8fa075aae395a0cebb2c4f39271b3daef60d85c115",
+      "source_sha256": "d7dccbff5dcb05b065c1593744201378cb195a3a23dec8f1ff514036dc4dcb1a",
       "meta": "string/runenumerate/meta.json",
       "state": "template_solution"
     },

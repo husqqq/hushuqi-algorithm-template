@@ -15,7 +15,7 @@ OUT = ROOT / "library-checker-template-solutions"
 COMMIT = "04c8de378bab67be926325de2871f0babb8e6451"
 INC = re.compile(r'^\s*#\s*include\s+"([^"]+)"\s*(?://.*)?$')
 # 仅对已逐题复核的条目强制完整来源证明；其余条目继续公开同步缺口。
-PROVEN = {"number_of_substrings", "longest_common_substring"}
+PROVEN = {"number_of_substrings", "longest_common_substring", "runenumerate"}
 
 SPECS = {
     "aho_corasick": ("4_2_002.hpp", r'''
@@ -111,8 +111,17 @@ signed main()
     "runenumerate": ("4_1_007.hpp", r'''
 signed main()
 {
-    string s; cin >> s; auto a = runs(s); cout << a.size() << '\n';
-    for (auto x : a) cout << x.p << ' ' << x.l << ' ' << x.r << '\n';
+    // 无参数；按最小周期、左端点、右端点的字典序输出全部极大重复，成功返回 0。
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    string s;
+    cin >> s;
+    auto a = runs(s);
+    cout << a.size() << '\n';
+    for (auto [p, l, r] : a)
+    {
+        cout << p << ' ' << l << ' ' << r << '\n';
+    }
 }
 '''),
     "suffixarray": ("4_3_002.hpp", r'''

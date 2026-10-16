@@ -1,150 +1,77 @@
-#include <bits/stdc++.h>
-using namespace std;
-#define int long long
+#pragma once
+#include "3_3_001.hpp"
+#include "4_3_002.hpp"
+#include "support/supplement_string.hpp" // 正文依赖 4.3.003
 
-struct Run
+vector<array<int, 3>> runs(const string &s)
 {
-    // p 是最小周期，[l,r) 是极大周期区间；32 位字段用于降低百万规模候选的内存占用。
-    int p, l, r;
-    auto operator<=>(const Run &) const = default;
-};
-
-struct RunHash
-{
-    // a 是 1 下标字符串值；h、pw 用于单模哈希 LCE。
-    int n;
-    vector<int> a, h, pw;
-
-    explicit RunHash(const string &s) : n(s.size()), a(n + 1), h(n + 1), pw(n + 1, 1)
+    // s 可含任意字节；返回按字典序排列的 {最小周期 p, 左端点 l, 右端点 r}，区间为 [l,r)。
+    int n = s.size();
+    if (n < 2) return {};
+    auto make = [&](const string &text)
     {
-        for (int i = 1; i <= n; i++)
+        // text 是原串或反串；返回后缀排名及负 LCP 的最大值线段树。
+        auto sa = suffixArray(text), h = suffix_lcp::lcpArray(text, sa);
+        vector<int> rank(n);
+        vector<MaxInfo> v(n - 1);
+        for (int i = 0; i < n; i++)
         {
-            a[i] = s[i - 1] - 'a' + 1;
+            rank[sa[i]] = i;
+            if (i < n - 1) v[i] = MaxInfo{-h[i]};
         }
-        build();
-    }
-
-    void build()
+        return pair{move(rank), Seg<MaxInfo>(v)};
+    };
+    string rev(s.rbegin(), s.rend());
+    auto [rk, pre] = make(s);
+    auto [rr, suf] = make(rev);
+    auto lce = [&](bool back, int i, int j) -> int
     {
-        // 根据当前 a 建立前缀哈希。
-        constexpr int mod = 998244353, bs = 31;
-        h[0] = 0;
-        pw[0] = 1;
-        for (int i = 1; i <= n; i++)
-        {
-            pw[i] = 1LL * pw[i - 1] * bs % mod;
-            h[i] = (1LL * h[i - 1] * bs + a[i]) % mod;
-        }
-    }
-
-    int get(int l, int len) const
+        // back 选反串，否则选原串；i、j 是合法后缀起点，返回其 LCP 长度。
+        const auto &text = back ? rev : s;
+        if (i == j) return n - i;
+        if (text[i] != text[j]) return 0;
+        const auto &rank = back ? rr : rk;
+        const auto &seg = back ? suf : pre;
+        int l = rank[i], r = rank[j];
+        if (l > r) swap(l, r);
+        // 非空区间上 max(-h) 取反即 min(h)；不对空区间的负无穷单位元取反。
+        return -seg.query(l, r).val;
+    };
+    // 每项依次为 {最小周期, 左端点, 右端点}。
+    vector<array<int, 3>> ans;
+    for (int dir = 0; dir < 2; dir++)
     {
-        // 返回 1 下标区间 a[l..l+len) 的哈希值。
-        constexpr int mod = 998244353;
-        return (h[l + len - 1] - 1LL * h[l - 1] * pw[len] % mod + mod) % mod;
-    }
-
-    int lcp(int x, int y, int up) const
-    {
-        // 返回从 x、y 开始的最长公共前缀，长度不超过 up。
-        if (x > n || y > n || a[x] != a[y])
+        vector<int> rank = rk, st;
+        st.reserve(n);
+        if (dir)
         {
-            return 0;
-        }
-        int l = 0, r = min({up, n - x + 1, n - y + 1});
-        while (l < r)
-        {
-            int m = (l + r + 1) / 2;
-            if (get(x, m) == get(y, m))
+            string opp = s;
+            for (char &c : opp)
             {
-                l = m;
+                c = (char)(255 - (unsigned char)c);
             }
-            else
+            auto sa = suffixArray(opp);
+            for (int i = 0; i < n; i++)
             {
-                r = m - 1;
+                rank[sa[i]] = i;
             }
         }
-        return l;
-    }
-
-    int lcs(int x, int y, int up) const
-    {
-        // 返回以 x、y 结尾的最长公共后缀，长度不超过 up。
-        if (x <= 0 || y <= 0 || a[x] != a[y])
+        // st 顶端给出右侧第一个后缀排名更小的位置，即当前最长 Lyndon 根的右端点。
+        for (int i = n - 1; i >= 0; i--)
         {
-            return 0;
-        }
-        int l = 0, r = min({up, x, y});
-        while (l < r)
-        {
-            int m = (l + r + 1) / 2;
-            if (get(x - m + 1, m) == get(y - m + 1, m))
+            while (!st.empty() && rank[st.back()] > rank[i])
             {
-                l = m;
+                st.pop_back();
             }
-            else
-            {
-                r = m - 1;
-            }
-        }
-        return l;
-    }
-
-    void flip()
-    {
-        // 互补字符值，枚举另一种 Lyndon 方向。
-        for (int i = 1; i <= n; i++)
-        {
-            a[i] = 27 - a[i];
-        }
-        build();
-    }
-
-    void getRuns(vector<Run> &ans)
-    {
-        // 用 Lyndon 单调栈枚举当前方向的全部 Runs。
-        vector<int> st(n + 1);
-        st[0] = n + 1;
-        for (int i = n, top = 0, lt = 0; i >= 1; i--)
-        {
-            while (top)
-            {
-                int x = min(st[top] - i, st[top - 1] - st[top]);
-                lt = lcp(i, st[top], x);
-                if ((lt == x && st[top] - i < st[top - 1] - st[top]) ||
-                    (lt < x && a[i + lt] < a[st[top] + lt]))
-                {
-                    top--;
-                    lt = 0;
-                }
-                else
-                {
-                    break;
-                }
-            }
-            int j = st[top];
-            st[++top] = i;
-            int x = lcs(i - 1, j - 1, j - i), y;
-            if (x < j - i)
-            {
-                y = lt + lcp(i + lt, j + lt, n);
-                if (x + y >= j - i)
-                {
-                    ans.push_back({j - i, i - x - 1, j + y - 1});
-                }
-            }
+            int j = st.empty() ? n : st.back();
+            st.push_back(i);
+            if (j == n) continue;
+            int p = j - i, x = i ? lce(true, n - i, n - j) : 0;
+            if (x >= p) continue;
+            int y = lce(false, i, j);
+            if (x + y >= p) ans.push_back({p, i - x, j + y});
         }
     }
-};
-
-vector<Run> runs(const string &s)
-{
-    // s 是原字符串；返回全部极大周期区间及其最小周期。哈希碰撞概率极低。
-    RunHash e(s);
-    vector<Run> ans;
-    e.getRuns(ans);
-    e.flip();
-    e.getRuns(ans);
     sort(ans.begin(), ans.end());
     ans.erase(unique(ans.begin(), ans.end()), ans.end());
     return ans;
