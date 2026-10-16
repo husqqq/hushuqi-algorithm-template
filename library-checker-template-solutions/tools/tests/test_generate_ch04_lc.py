@@ -66,7 +66,7 @@ class GenerateChapter04Test(unittest.TestCase):
 
     def test_scoped_check_is_read_only(self) -> None:
         before = snapshot()
-        result = self.run_tool("--check", "--only", "number_of_substrings,longest_common_substring,runenumerate,palindromes_in_deque,zalgorithm")
+        result = self.run_tool("--check", "--only", "number_of_substrings,longest_common_substring,runenumerate,palindromes_in_deque,zalgorithm,enumerate_palindromes")
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(before, snapshot())
 

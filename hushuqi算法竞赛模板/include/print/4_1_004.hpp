@@ -2,8 +2,6 @@
 using namespace std;
 #define int long long
 
-#include "support/topic_common.hpp"
-
 struct Manacher
 {
     // odd、even 分别保存奇回文与偶回文半径。

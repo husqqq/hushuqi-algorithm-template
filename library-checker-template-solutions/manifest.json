@@ -618,7 +618,7 @@
       "title": "Enumerate Palindromes",
       "category": "string",
       "source": "string/enumerate_palindromes/main.cpp",
-      "source_sha256": "771ed8a62987a2fc00cd309ac833eab4ec352a50677c5f49d3dec4e656bc1d14",
+      "source_sha256": "8c84b249abf113ec437b6c65fabc5a0e7e525a77cd8bcf7d39c3947ec29fc56d",
       "meta": "string/enumerate_palindromes/meta.json",
       "state": "template_solution"
     },

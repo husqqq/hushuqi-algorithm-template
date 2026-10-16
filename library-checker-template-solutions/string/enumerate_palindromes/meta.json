@@ -6,7 +6,52 @@
   "provenance": {
     "kind": "template_solution",
     "source": "string/enumerate_palindromes/main.cpp",
-    "source_sha256": "771ed8a62987a2fc00cd309ac833eab4ec352a50677c5f49d3dec4e656bc1d14"
+    "source_sha256": "8c84b249abf113ec437b6c65fabc5a0e7e525a77cd8bcf7d39c3947ec29fc56d",
+    "evidence": {
+      "method": "deterministic_generation",
+      "generator": {
+        "path": "library-checker-template-solutions/tools/generate_ch04_lc.py",
+        "sha256": "01ef3d2a724227449cb9c59d097c869fcdee75378127a18bc90384170ee5f7b4",
+        "argv": [
+          "python",
+          "library-checker-template-solutions/tools/generate_ch04_lc.py",
+          "--only",
+          "enumerate_palindromes",
+          "--write"
+        ],
+        "working_directory": ".",
+        "runner": "Python 3.13.14"
+      },
+      "template_inputs": [
+        {
+          "path": "hushuqi算法竞赛模板/include/full/4_1_004.hpp",
+          "sha256": "a0d9fd596833113782edbe02f4329f20d123883f8c6e2d4b831fb18937e5cd52"
+        }
+      ],
+      "documentation_inputs": [
+        {
+          "path": "hushuqi算法竞赛模板/04-字符串.md",
+          "sha256": "60d25a211212a6f13cfc268f8b02c79281a2fb4fd86d8aec05f8e27b989696b0"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/tools/sync_topic_docs.py",
+          "sha256": "70ccce225e3cf0bfe47fbce830f2ea6c37f75afce0e9f3b51088d0749285bec6"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/print/4_1_004.hpp",
+          "sha256": "a0d9fd596833113782edbe02f4329f20d123883f8c6e2d4b831fb18937e5cd52"
+        }
+      ],
+      "adapter_sha256": "5df7dc35049eec63f8a85a28e5f2ec4343128182f25e10ba43a6065a0555424b",
+      "controlled_reference": {
+        "path": "library-checker-solutions/string/enumerate_palindromes/main.cpp",
+        "sha256": "10942b984f218327a5a00868e1ee2f08d67f4e62fa938286093e08f3b0ab77c3"
+      },
+      "temporary_regenerations": 2,
+      "byte_identical": true,
+      "source_sha256": "8c84b249abf113ec437b6c65fabc5a0e7e525a77cd8bcf7d39c3947ec29fc56d",
+      "evidence_sha256": "645020f700a783be3ff61584fcac858ddb314018fbc484ffd2bb67eec76b1634"
+    }
   },
   "official_reference": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
@@ -15,19 +60,19 @@
   },
   "validation": {
     "status": "online_ac",
-    "current_source_sha256": "771ed8a62987a2fc00cd309ac833eab4ec352a50677c5f49d3dec4e656bc1d14",
+    "current_source_sha256": "8c84b249abf113ec437b6c65fabc5a0e7e525a77cd8bcf7d39c3947ec29fc56d",
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch04_manacher.cpp"
     ],
-    "checked_at": "2026-08-21T07:38:58.269138Z",
+    "checked_at": "2026-10-16T02:36:51.185348Z",
     "current_source_online_verdict": "AC",
-    "current_source_submission_id": 395546,
-    "current_source_time": 0.054,
-    "current_source_memory": 16277504,
-    "current_source_submission_time": "2026-08-21T07:38:33.028472Z",
+    "current_source_submission_id": 410752,
+    "current_source_time": 0.045,
+    "current_source_memory": 16191488,
+    "current_source_submission_time": "2026-10-16T02:36:20.810901Z",
     "current_source_is_latest": true,
-    "server_source_sha256": "771ed8a62987a2fc00cd309ac833eab4ec352a50677c5f49d3dec4e656bc1d14",
+    "server_source_sha256": "8c84b249abf113ec437b6c65fabc5a0e7e525a77cd8bcf7d39c3947ec29fc56d",
     "note": "当前独立源码已通过 Library Checker 在线评测。"
   },
   "submission_attempts": [
@@ -45,6 +90,21 @@
       "compile_standard": "gnu++20",
       "submitted_at": "2026-08-21T07:38:33.210569Z",
       "recorded_at": "2026-08-21T07:38:58.268377Z"
+    },
+    {
+      "submission_id": 410752,
+      "source_sha256": "8c84b249abf113ec437b6c65fabc5a0e7e525a77cd8bcf7d39c3947ec29fc56d",
+      "server_source_sha256": "8c84b249abf113ec437b6c65fabc5a0e7e525a77cd8bcf7d39c3947ec29fc56d",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.045,
+      "memory": 16191488,
+      "submission_time": "2026-10-16T02:36:20.810901Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-10-16T02:36:21.025271Z",
+      "recorded_at": "2026-10-16T02:36:51.184146Z"
     }
   ]
 }

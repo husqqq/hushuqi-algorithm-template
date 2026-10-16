@@ -11,7 +11,7 @@
       "method": "deterministic_generation",
       "generator": {
         "path": "library-checker-template-solutions/tools/generate_ch04_lc.py",
-        "sha256": "0d5444c2604792d22193430f015565438a09a9099a68c57999487769e3971e7f",
+        "sha256": "01ef3d2a724227449cb9c59d097c869fcdee75378127a18bc90384170ee5f7b4",
         "argv": [
           "python",
           "library-checker-template-solutions/tools/generate_ch04_lc.py",
@@ -50,7 +50,7 @@
       "temporary_regenerations": 2,
       "byte_identical": true,
       "source_sha256": "74d5192e77c467d350ee72d27e2f9cda9d3fbf0aabddd099eaa25c3e5930987e",
-      "evidence_sha256": "269e3c6a3d60b409af7cdf57af55fd14898c5dbda78e9c9ef970a2899a979c8d"
+      "evidence_sha256": "22da3075a28c17023199e90cc08bf98dea12fd06896fa725196f62a008f4ebcb"
     }
   },
   "official_reference": {

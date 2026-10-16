@@ -2,31 +2,6 @@
 using namespace std;
 #define int long long
 
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
-
-template <class T> bool chmin(T &a, const T &b)
-{
-    // a 是待更新值，b 是候选值；若 a 变小则返回 true。
-    if (b >= a)
-    {
-        return false;
-    }
-    a = b;
-    return true;
-}
-template <class T> bool chmax(T &a, const T &b)
-{
-    // a 是待更新值，b 是候选值；若 a 变大则返回 true。
-    if (a >= b)
-    {
-        return false;
-    }
-    a = b;
-    return true;
-}
-
 struct Manacher
 {
     // odd、even 分别保存奇回文与偶回文半径。
@@ -88,7 +63,12 @@ struct Manacher
 
 signed main()
 {
-    string s; cin >> s; Manacher m(s);
+    // 无参数；按字符中心、相邻字符缝中心的顺序输出最长回文长度，成功返回 0。
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    string s;
+    cin >> s;
+    Manacher m(s);
     for (int i = 0; i < (int)s.size(); i++)
     {
         if (i) cout << ' ';

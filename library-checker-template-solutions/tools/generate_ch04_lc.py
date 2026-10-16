@@ -15,7 +15,7 @@ OUT = ROOT / "library-checker-template-solutions"
 COMMIT = "04c8de378bab67be926325de2871f0babb8e6451"
 INC = re.compile(r'^\s*#\s*include\s+"([^"]+)"\s*(?://.*)?$')
 # 仅对已逐题复核的条目强制完整来源证明；其余条目继续公开同步缺口。
-PROVEN = {"number_of_substrings", "longest_common_substring", "runenumerate", "palindromes_in_deque", "zalgorithm"}
+PROVEN = {"number_of_substrings", "longest_common_substring", "runenumerate", "palindromes_in_deque", "zalgorithm", "enumerate_palindromes"}
 
 SPECS = {
     "aho_corasick": ("4_2_002.hpp", r'''
@@ -54,7 +54,12 @@ signed main()
     "enumerate_palindromes": ("4_1_004.hpp", r'''
 signed main()
 {
-    string s; cin >> s; Manacher m(s);
+    // 无参数；按字符中心、相邻字符缝中心的顺序输出最长回文长度，成功返回 0。
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    string s;
+    cin >> s;
+    Manacher m(s);
     for (int i = 0; i < (int)s.size(); i++)
     {
         if (i) cout << ' ';
