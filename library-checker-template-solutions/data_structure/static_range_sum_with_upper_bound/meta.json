@@ -6,71 +6,71 @@
   "provenance": {
     "kind": "template_solution",
     "source": "data_structure/static_range_sum_with_upper_bound/main.cpp",
-    "source_sha256": "d968cd8c2abb5e4d28821b6edf6dd2628adb8c3176a2862162efc04969659390",
+    "source_sha256": "b6303839a8a635e3dd1de26af976fa6dc1c90af64b2c3b96c58210dd8eb47ab0",
     "evidence": {
       "method": "deterministic_generation",
       "generator": {
         "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-        "sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+        "sha256": "095443c410decb1f6f3b70fd128a3010fa8d98ebee2322bd9f52d2449e2fee4e",
         "working_directory": ".",
-        "runner": "Python 3.13.14",
+        "runner": "Python 3.12.14",
         "argv": [
           "--only",
-          "static_range_sum_with_upper_bound",
+          "area_of_union_of_rectangles,deque,rectangle_sum,unionfind,persistent_unionfind,point_add_range_sum,range_chmin_chmax_add_range_sum,persistent_queue,range_affine_point_get,range_affine_range_sum,majority_voting,point_set_range_composite_large_array,range_parallel_unionfind,static_range_count_distinct,static_range_inversions_query,unionfind_with_potential,unionfind_with_potential_non_commutative_group,associative_array,double_ended_priority_queue,staticrmq,point_set_range_composite,range_kth_smallest,static_range_frequency,static_range_sum_with_upper_bound",
           "--write-index"
         ],
         "generation_evidence": {
           "schema_version": 2,
           "problem_id": "data_structure/static_range_sum_with_upper_bound",
           "source_path": "library-checker-template-solutions/data_structure/static_range_sum_with_upper_bound/main.cpp",
-          "source_sha256": "d968cd8c2abb5e4d28821b6edf6dd2628adb8c3176a2862162efc04969659390",
+          "source_sha256": "b6303839a8a635e3dd1de26af976fa6dc1c90af64b2c3b96c58210dd8eb47ab0",
           "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-          "generator_sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+          "generator_sha256": "095443c410decb1f6f3b70fd128a3010fa8d98ebee2322bd9f52d2449e2fee4e",
           "working_directory": ".",
-          "runner": "Python 3.13.14",
+          "runner": "Python 3.12.14",
           "argv": [
             "--only",
-            "static_range_sum_with_upper_bound",
+            "area_of_union_of_rectangles,deque,rectangle_sum,unionfind,persistent_unionfind,point_add_range_sum,range_chmin_chmax_add_range_sum,persistent_queue,range_affine_point_get,range_affine_range_sum,majority_voting,point_set_range_composite_large_array,range_parallel_unionfind,static_range_count_distinct,static_range_inversions_query,unionfind_with_potential,unionfind_with_potential_non_commutative_group,associative_array,double_ended_priority_queue,staticrmq,point_set_range_composite,range_kth_smallest,static_range_frequency,static_range_sum_with_upper_bound",
             "--write-index"
           ],
           "inputs": [
             {
               "path": "hushuqi算法竞赛模板/03-数据结构.md",
-              "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+              "sha256": "053912fe8743d44a0d0e76a1874a8c511ae01965f2c52688f8df4e5f54485143"
             },
             {
               "path": "hushuqi算法竞赛模板/include/full/3_4_005.hpp",
-              "sha256": "590a198efc48ceb58f6d7faf80d53c1c5f33b6cfedcc960c10542a8ee6168693"
+              "sha256": "bab119a7998a691f5e711c585d26840eb2b54526427b4291fc5b27abaf0d901d"
             },
             {
               "path": "hushuqi算法竞赛模板/tests/test_ch03_wavelet.cpp",
-              "sha256": "eff55000407f2939579aa95acc7e386a2f916868c5356005b977001365efc220"
+              "sha256": "e83e4321b93177d4ff295980d4c72d41743463aeb5fe8cd5ef41748777fd5f07"
             }
           ],
-          "generated_sha256": "d968cd8c2abb5e4d28821b6edf6dd2628adb8c3176a2862162efc04969659390",
+          "generated_sha256": "b6303839a8a635e3dd1de26af976fa6dc1c90af64b2c3b96c58210dd8eb47ab0",
           "byte_equal": true
         },
-        "generation_evidence_sha256": "63047606c54b2fc26975c82ef733916257c2060b5d5a72c51b12f53c6ca7f7d4"
+        "generation_evidence_sha256": "cdbde37497c402fef4bb29259ece7628848082d1d3ca20aad8b3350c3977b6c3"
       },
       "adapter_sha256": "2fec25cceb3a8a71bf2d56b1dff43443b1d229c7593606fe734e3dbb8a238418",
       "template_inputs": [
         {
           "path": "hushuqi算法竞赛模板/03-数据结构.md",
-          "sha256": "a0225ac2cbb3e76b5db9f3d5200f84b242ddcd7399dfdf9e801f90b3678132bd"
+          "sha256": "053912fe8743d44a0d0e76a1874a8c511ae01965f2c52688f8df4e5f54485143"
         },
         {
           "path": "hushuqi算法竞赛模板/include/full/3_4_005.hpp",
-          "sha256": "590a198efc48ceb58f6d7faf80d53c1c5f33b6cfedcc960c10542a8ee6168693"
+          "sha256": "bab119a7998a691f5e711c585d26840eb2b54526427b4291fc5b27abaf0d901d"
         },
         {
           "path": "hushuqi算法竞赛模板/tests/test_ch03_wavelet.cpp",
-          "sha256": "eff55000407f2939579aa95acc7e386a2f916868c5356005b977001365efc220"
+          "sha256": "e83e4321b93177d4ff295980d4c72d41743463aeb5fe8cd5ef41748777fd5f07"
         }
       ],
       "temporary_regenerations": 2,
       "byte_identical": true,
-      "source_sha256": "d968cd8c2abb5e4d28821b6edf6dd2628adb8c3176a2862162efc04969659390",
-      "evidence_sha256": "2fcfaf78d5f2d9b04ec1a2cbd3bae2c1a099eff14bd5175d5621a005ebbd570c"
+      "source_sha256": "b6303839a8a635e3dd1de26af976fa6dc1c90af64b2c3b96c58210dd8eb47ab0",
+      "evidence_sha256": "d3b4ddc101ac42976633d61e68b660bfc60d72405e0255c44d248e8f056d3d61"
     }
   },
   "reference": {
@@ -94,7 +94,7 @@
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch03_wavelet.cpp"
     ],
-    "current_source_sha256": "d968cd8c2abb5e4d28821b6edf6dd2628adb8c3176a2862162efc04969659390",
+    "current_source_sha256": "b6303839a8a635e3dd1de26af976fa6dc1c90af64b2c3b96c58210dd8eb47ab0",
     "current_source_online_verdict": null,
     "current_source_submission_id": null,
     "current_source_time": null,

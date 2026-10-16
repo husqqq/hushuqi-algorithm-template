@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "updated_at": "2026-10-16T08:25:33.271564Z",
+  "updated_at": "2026-10-16T08:51:46.283065Z",
   "official_repository": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
     "url": "https://github.com/yosupo06/library-checker-problems"
@@ -1662,7 +1662,7 @@
       "title": "Range Kth Smallest",
       "category": "data_structure",
       "source": "data_structure/range_kth_smallest/main.cpp",
-      "source_sha256": "404ca20dd11889338f2cc931729c3f879f395bc498f6a52769f519ecdfa51aec",
+      "source_sha256": "db73cecc2b612f20a4211f7551a234363a1ba14307cb83d5de1d8297b7492ef1",
       "meta": "data_structure/range_kth_smallest/meta.json",
       "state": "template_solution"
     },
@@ -1887,7 +1887,7 @@
       "title": "Static Range Frequency",
       "category": "data_structure",
       "source": "data_structure/static_range_frequency/main.cpp",
-      "source_sha256": "993c84a5f6caacd968004d7f6f5c278ec652ffb26e48138038676efe479b8abb",
+      "source_sha256": "08d8e45edcb4d39eade1dd35157b86e2684f2d56f6673af670f7a13ab567ac9e",
       "meta": "data_structure/static_range_frequency/meta.json",
       "state": "template_solution"
     },
@@ -1932,7 +1932,7 @@
       "title": "Static Range Sum with Upper Bound",
       "category": "data_structure",
       "source": "data_structure/static_range_sum_with_upper_bound/main.cpp",
-      "source_sha256": "d968cd8c2abb5e4d28821b6edf6dd2628adb8c3176a2862162efc04969659390",
+      "source_sha256": "b6303839a8a635e3dd1de26af976fa6dc1c90af64b2c3b96c58210dd8eb47ab0",
       "meta": "data_structure/static_range_sum_with_upper_bound/meta.json",
       "state": "template_solution"
     },

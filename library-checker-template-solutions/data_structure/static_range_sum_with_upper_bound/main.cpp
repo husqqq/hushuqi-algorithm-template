@@ -9,11 +9,12 @@ template <int LOG = 30> struct Wavelet
     // size 是序列长度，middle[bit] 是该层零段长度。
     int size;
     array<int, LOG> middle;
-    // prefixOne[bit][i] 是该层前 i 位的一数；pre0 是零分支原值和。
+    // prefixOne[bit][i] 是该层前 i 位的一数。
     array<vector<int>, LOG> prefixOne;
-    array<vector<int>, LOG> pre0;
-    // prefixSum[i] 是原序列前 i 项的值和。
-    vector<int> prefixSum;
+    // pre0[bit][i] 是该层前 i 项中零分支的原值和；显式 64 位累加。
+    array<vector<long long>, LOG> pre0;
+    // prefixSum[i] 是原序列前 i 项的值和；关闭整数宏后仍用 64 位。
+    vector<long long> prefixSum;
 
     explicit Wavelet(vector<int> values = {})
     {
@@ -23,8 +24,9 @@ template <int LOG = 30> struct Wavelet
 
     void init(vector<int> values)
     {
-        // values 是新的静态序列；清空旧层并重新稳定划分。
-        size = values.size();
+        // values 是新的静态序列；重建全部状态，无返回值；总和须能用 long long 表示。
+        assert(values.size() < numeric_limits<int>::max()); // 调试检查，可删
+        size = (int)values.size();
         prefixSum.assign(size + 1, 0);
         constexpr unsigned long long limit = 1ULL << LOG;
         for (int i = 0; i < size; i++)
@@ -65,7 +67,7 @@ template <int LOG = 30> struct Wavelet
         // left、right 是半开区间端点，rank 从 0 开始；返回第 rank 小的原值。
         assert(0 <= left && left < right && right <= size); // 调试检查，可删
         assert(0 <= rank && rank < right - left); // 调试检查，可删
-        int answer = 0;
+        int ans = 0;
         for (int bit = LOG - 1; bit >= 0; --bit)
         {
             int onesLeft = prefixOne[bit][left];
@@ -78,16 +80,16 @@ template <int LOG = 30> struct Wavelet
             }
             else
             {
-                answer |= 1LL << bit;
+                ans |= 1LL << bit;
                 rank -= zeros;
                 left = middle[bit] + onesLeft;
                 right = middle[bit] + onesR;
             }
         }
-        return answer;
+        return ans;
     }
 
-    pair<int, int> countSumLT(int left, int right, int hi) const
+    pair<int, long long> countSumLT(int left, int right, int hi) const
     {
         // 返回 [left,right) 内严格小于 hi 的元素个数与元素值和。
         assert(0 <= left && left <= right && right <= size); // 调试检查，可删
@@ -101,7 +103,7 @@ template <int LOG = 30> struct Wavelet
             return {right - left, prefixSum[right] - prefixSum[left]};
         }
         int count = 0;
-        int sum = 0;
+        long long sum = 0; // 元素和可能超过 32 位。
         for (int bit = LOG - 1; bit >= 0; --bit)
         {
             int onesLeft = prefixOne[bit][left];
@@ -138,10 +140,25 @@ template <int LOG = 30> struct Wavelet
         {
             return 0;
         }
-        return countLess(left, right, value + 1) - countLess(left, right, value);
+        for (int bit = LOG - 1; bit >= 0; --bit)
+        {
+            int onesLeft = prefixOne[bit][left];
+            int onesR = prefixOne[bit][right];
+            if (value >> bit & 1)
+            {
+                left = middle[bit] + onesLeft;
+                right = middle[bit] + onesR;
+            }
+            else
+            {
+                left -= onesLeft;
+                right -= onesR;
+            }
+        }
+        return right - left;
     }
 
-    pair<int, int> countSumLE(int left, int right, int hi) const
+    pair<int, long long> countSumLE(int left, int right, int hi) const
     {
         // 返回 [left,right) 内不大于 hi 的元素个数与元素值和。
         assert(0 <= left && left <= right && right <= size); // 调试检查，可删
@@ -162,7 +179,7 @@ template <int LOG = 30> struct KthWavelet
 {
     static_assert(1 <= LOG && LOG <= 62);
 
-    // size 是序列长度，middle[bit] 是该层零段长度；固定 32 位以节省只求第 k 小时的常驻空间。
+    // size 是序列长度，middle[bit] 是该层零段长度；只保存第 k 小所需的计数。
     int32_t size = 0;
     array<int32_t, LOG> middle;
     // prefixOne[bit][i] 是该层前 i 位的一数。
@@ -176,8 +193,8 @@ template <int LOG = 30> struct KthWavelet
 
     void init(vector<int> values)
     {
-        // values 是新的静态序列；清空旧层并重新稳定划分。
-        assert(values.size() <= INT32_MAX); // 调试检查，可删
+        // values 是新的静态序列；重建全部状态，无返回值；不要求元素总和可表示。
+        assert(values.size() < (1ULL << 31)); // 调试检查，可删
         size = (int32_t)values.size();
         constexpr unsigned long long limit = 1ULL << LOG;
         for (int value : values)
@@ -187,7 +204,7 @@ template <int LOG = 30> struct KthWavelet
         vector<int> next(size);
         for (int bit = LOG - 1; bit >= 0; --bit)
         {
-            prefixOne[bit].assign(size + 1, 0);
+            prefixOne[bit].assign((size_t)size + 1, 0);
             for (int i = 0; i < size; ++i)
             {
                 prefixOne[bit][i + 1] = prefixOne[bit][i] + (values[i] >> bit & 1);
@@ -214,7 +231,7 @@ template <int LOG = 30> struct KthWavelet
         // left、right 是半开区间端点，rank 从 0 开始；返回第 rank 小的原值。
         assert(0 <= left && left < right && right <= size); // 调试检查，可删
         assert(0 <= rank && rank < right - left); // 调试检查，可删
-        int answer = 0;
+        int ans = 0;
         for (int bit = LOG - 1; bit >= 0; --bit)
         {
             int onesLeft = prefixOne[bit][left];
@@ -227,13 +244,13 @@ template <int LOG = 30> struct KthWavelet
             }
             else
             {
-                answer |= 1LL << bit;
+                ans |= 1LL << bit;
                 rank -= zeros;
                 left = middle[bit] + onesLeft;
                 right = middle[bit] + onesR;
             }
         }
-        return answer;
+        return ans;
     }
 };
 
