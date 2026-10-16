@@ -6,37 +6,45 @@
   "provenance": {
     "kind": "template_solution",
     "source": "data_structure/point_set_range_frequency/main.cpp",
-    "source_sha256": "1e15224a0dce9bb3282f8082e25526f4b94c8a1c9945f5d349812e06c03122cf",
+    "source_sha256": "c61f6ac5509785301402d0fda61f83e235b01e7faf463703667b53cbe9f13b20",
     "evidence": {
       "method": "deterministic_generation",
       "generator": {
         "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-        "sha256": "ee86e2a494663a36c7af724dd39147f5552cea4aa03cbf68787eac8e112562fa",
+        "sha256": "199ea86b40e5f0457a9346b8f4c1c8987d21c6a919e26fbc21b80dec746057c4",
         "working_directory": ".",
         "runner": "Python 3.13.14",
         "argv": [
+          "--only",
+          "set_xor_min,line_add_get_min,predecessor_problem,ordered_set,point_set_range_frequency,static_range_mode_query",
           "--write-index"
         ],
         "generation_evidence": {
           "schema_version": 2,
           "problem_id": "data_structure/point_set_range_frequency",
           "source_path": "library-checker-template-solutions/data_structure/point_set_range_frequency/main.cpp",
-          "source_sha256": "1e15224a0dce9bb3282f8082e25526f4b94c8a1c9945f5d349812e06c03122cf",
+          "source_sha256": "c61f6ac5509785301402d0fda61f83e235b01e7faf463703667b53cbe9f13b20",
           "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-          "generator_sha256": "ee86e2a494663a36c7af724dd39147f5552cea4aa03cbf68787eac8e112562fa",
+          "generator_sha256": "199ea86b40e5f0457a9346b8f4c1c8987d21c6a919e26fbc21b80dec746057c4",
           "working_directory": ".",
           "runner": "Python 3.13.14",
           "argv": [
+            "--only",
+            "set_xor_min,line_add_get_min,predecessor_problem,ordered_set,point_set_range_frequency,static_range_mode_query",
             "--write-index"
           ],
           "inputs": [
             {
               "path": "hushuqi算法竞赛模板/03-数据结构.md",
-              "sha256": "713045b818794d62e6aeb18614a68b2660f8e1090676d80d889461bf5f75df1d"
+              "sha256": "7c76d2bade0f913257f0eacac95fe403a3eb1b535e65617115083cbb2001b8a1"
             },
             {
               "path": "hushuqi算法竞赛模板/include/base.hpp",
-              "sha256": "06c13006169e21c2b5409d12db370ca7c7c37a63538cac68f0cbc13ae6ed0b40"
+              "sha256": "75687d40a59c9bc348019a53531d017d14850d3a01923c5bd35757919ab41f91"
+            },
+            {
+              "path": "hushuqi算法竞赛模板/include/common.hpp",
+              "sha256": "0624448a3c6ae430b3fe4f652123d0819a8404cea348ac10b150732a54095bf3"
             },
             {
               "path": "hushuqi算法竞赛模板/include/full/3_6_009.hpp",
@@ -47,20 +55,24 @@
               "sha256": "666469adca77c5eb8b9d8d3734e2c4a6fbd6b7fd740b26b2fd4729b6e103f2a0"
             }
           ],
-          "generated_sha256": "1e15224a0dce9bb3282f8082e25526f4b94c8a1c9945f5d349812e06c03122cf",
+          "generated_sha256": "c61f6ac5509785301402d0fda61f83e235b01e7faf463703667b53cbe9f13b20",
           "byte_equal": true
         },
-        "generation_evidence_sha256": "316adeb2b001301843750db007dffcc56b9d2965509f55e43dc644574fb29b67"
+        "generation_evidence_sha256": "e1c2359aa7f3bfd3474a4efc5e2607598eccff7fa1b8e749fdf9be8565cc2278"
       },
       "adapter_sha256": "1c329eb998e61dbabd23921002ca93bd0bbaa061bfa80b90d052123c5a25f981",
       "template_inputs": [
         {
           "path": "hushuqi算法竞赛模板/03-数据结构.md",
-          "sha256": "713045b818794d62e6aeb18614a68b2660f8e1090676d80d889461bf5f75df1d"
+          "sha256": "7c76d2bade0f913257f0eacac95fe403a3eb1b535e65617115083cbb2001b8a1"
         },
         {
           "path": "hushuqi算法竞赛模板/include/base.hpp",
-          "sha256": "06c13006169e21c2b5409d12db370ca7c7c37a63538cac68f0cbc13ae6ed0b40"
+          "sha256": "75687d40a59c9bc348019a53531d017d14850d3a01923c5bd35757919ab41f91"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/common.hpp",
+          "sha256": "0624448a3c6ae430b3fe4f652123d0819a8404cea348ac10b150732a54095bf3"
         },
         {
           "path": "hushuqi算法竞赛模板/include/full/3_6_009.hpp",
@@ -73,8 +85,8 @@
       ],
       "temporary_regenerations": 2,
       "byte_identical": true,
-      "source_sha256": "1e15224a0dce9bb3282f8082e25526f4b94c8a1c9945f5d349812e06c03122cf",
-      "evidence_sha256": "85cca8c2f36ba5ddbc97ccb05ca9f452269c5562bbc7d4bd650d7fbc967e50f8"
+      "source_sha256": "c61f6ac5509785301402d0fda61f83e235b01e7faf463703667b53cbe9f13b20",
+      "evidence_sha256": "c94b511e6c439c32ed7734b13b28ca033bda6130b4bed9e49581ff1ff4f3592b"
     }
   },
   "reference": {
@@ -92,21 +104,21 @@
     "content_sha256": "c9af225da3a551010d0d51972b32eda2077fb0b67fb4ca17edff1e6ab6c7d4bf"
   },
   "validation": {
-    "status": "online_ac",
-    "checked_at": "2026-08-21T07:33:30.024123Z",
+    "status": "local_only",
+    "checked_at": null,
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch03_freq.cpp"
     ],
-    "current_source_sha256": "1e15224a0dce9bb3282f8082e25526f4b94c8a1c9945f5d349812e06c03122cf",
-    "current_source_online_verdict": "AC",
-    "current_source_submission_id": 395542,
-    "current_source_time": 0.212,
-    "current_source_memory": 68743168,
-    "current_source_submission_time": "2026-08-21T07:33:00.470275Z",
-    "current_source_is_latest": true,
-    "server_source_sha256": "1e15224a0dce9bb3282f8082e25526f4b94c8a1c9945f5d349812e06c03122cf",
-    "note": "当前独立源码已通过 Library Checker 在线评测。"
+    "current_source_sha256": "c61f6ac5509785301402d0fda61f83e235b01e7faf463703667b53cbe9f13b20",
+    "current_source_online_verdict": null,
+    "current_source_submission_id": null,
+    "current_source_time": null,
+    "current_source_memory": null,
+    "current_source_submission_time": null,
+    "current_source_is_latest": null,
+    "server_source_sha256": null,
+    "note": "Generated from the current chapter 03 template; online verification has not run for this source."
   },
   "submission_attempts": [
     {
