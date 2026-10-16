@@ -66,7 +66,7 @@ class GenerateChapter04Test(unittest.TestCase):
 
     def test_scoped_check_is_read_only(self) -> None:
         before = snapshot()
-        result = self.run_tool("--check", "--only", "aho_corasick,eertree,number_of_substrings,longest_common_substring,runenumerate,palindromes_in_deque,zalgorithm,enumerate_palindromes,lyndon_factorization")
+        result = self.run_tool("--check", "--only", "aho_corasick,eertree,number_of_substrings,longest_common_substring,runenumerate,palindromes_in_deque,zalgorithm,enumerate_palindromes,lyndon_factorization,suffixarray")
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(before, snapshot())
 
@@ -114,7 +114,7 @@ class GenerateChapter04Test(unittest.TestCase):
             previous = {"submission_attempts": [{"submission_id": 123}],
                         "validation": {"status": "online_ac"}}
             source.with_name("meta.json").write_text(json.dumps(previous), encoding="utf-8")
-            result = module.current_meta_or_reset("suffixarray", source, "0" * 64, True)
+            result = module.current_meta_or_reset("wildcard_pattern_matching", source, "0" * 64, True)
             self.assertEqual(result["submission_attempts"], previous["submission_attempts"])
             self.assertEqual(result["validation"]["status"], "local_only")
 

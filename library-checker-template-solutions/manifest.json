@@ -2031,7 +2031,7 @@
       "title": "Suffix Array",
       "category": "string",
       "source": "string/suffixarray/main.cpp",
-      "source_sha256": "2f030184edb6322e6dd4debcdf2d45bfb34a456ff2cdcf72b01220e81549c569",
+      "source_sha256": "2bb8ade39fed902f2182d97dd19778435f5421672aae29f4e6a359a67f2f390e",
       "meta": "string/suffixarray/meta.json",
       "state": "template_solution"
     },

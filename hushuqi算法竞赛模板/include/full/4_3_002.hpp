@@ -4,7 +4,6 @@
 using namespace std;
 #define int long long
 
-#include "../topic_common.hpp"
 
 vector<int> saNaive(const vector<int> &s)
 {

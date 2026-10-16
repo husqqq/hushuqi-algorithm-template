@@ -11,7 +11,7 @@
       "method": "deterministic_generation",
       "generator": {
         "path": "library-checker-template-solutions/tools/generate_ch04_lc.py",
-        "sha256": "bcf137d1381d0f7ba6d4ddcce371572a13f54b2f6c728e4146b75cdee62e297a",
+        "sha256": "e41faa1fea08f20a49e755b73f115d25caaa5877da56db7c99f76216cb34efb9",
         "argv": [
           "python",
           "library-checker-template-solutions/tools/generate_ch04_lc.py",
@@ -37,7 +37,7 @@
         },
         {
           "path": "hushuqi算法竞赛模板/include/full/4_3_002.hpp",
-          "sha256": "b2761d4d2ed8d42d157b98a80ada5327bd19f18a47aa90c56db7d04ad79ec565"
+          "sha256": "bdc5250c37e0b5d8cbe4608f41792467e2b661d51343cb548f0f6c7adacba937"
         },
         {
           "path": "hushuqi算法竞赛模板/include/full/4_3_004.hpp",
@@ -59,11 +59,11 @@
       "documentation_inputs": [
         {
           "path": "hushuqi算法竞赛模板/04-字符串.md",
-          "sha256": "15f5faa9d40310fc06342679bde12824b940a82ba6dcaa3d6fc502b820f670e1"
+          "sha256": "1b679865e0032fbc559d3b7e17a0181f2bdcfb8497b2edc5abaeed644c769ce9"
         },
         {
           "path": "hushuqi算法竞赛模板/tools/sync_topic_docs.py",
-          "sha256": "70ccce225e3cf0bfe47fbce830f2ea6c37f75afce0e9f3b51088d0749285bec6"
+          "sha256": "f15ce13bee6d34a937b94c16ebd4a4bfac33321e282005d6a892f23d6fe4e722"
         },
         {
           "path": "hushuqi算法竞赛模板/include/print/3_3_001.hpp",
@@ -75,7 +75,7 @@
         },
         {
           "path": "hushuqi算法竞赛模板/include/print/4_3_002.hpp",
-          "sha256": "c8948e5c6d0b61432d9c1aaa8e9915efb480504b2bc6639e5f2fe8835a8d18cb"
+          "sha256": "bdc5250c37e0b5d8cbe4608f41792467e2b661d51343cb548f0f6c7adacba937"
         },
         {
           "path": "hushuqi算法竞赛模板/include/print/4_3_004.hpp",
@@ -106,7 +106,7 @@
       "temporary_regenerations": 2,
       "byte_identical": true,
       "source_sha256": "e9d4f2022249369ce7658f6a82af67d470bccabd84961fd1f4523ae21ce33176",
-      "evidence_sha256": "edd4ae2cf6ede6e0441272fadfd9c457290d5748786535ec4ccaf8f9f06fc1d7"
+      "evidence_sha256": "843e7f53424e68455f850cd659e333666f23d8c632956fcd3eebfb950c2618a7"
     }
   },
   "official_reference": {
