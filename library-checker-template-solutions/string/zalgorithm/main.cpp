@@ -2,31 +2,6 @@
 using namespace std;
 #define int long long
 
-constexpr int inf = 1E9;
-constexpr long long INF = 4E18;
-constexpr long double eps = 1E-12L;
-
-template <class T> bool chmin(T &a, const T &b)
-{
-    // a 是待更新值，b 是候选值；若 a 变小则返回 true。
-    if (b >= a)
-    {
-        return false;
-    }
-    a = b;
-    return true;
-}
-template <class T> bool chmax(T &a, const T &b)
-{
-    // a 是待更新值，b 是候选值；若 a 变大则返回 true。
-    if (a >= b)
-    {
-        return false;
-    }
-    a = b;
-    return true;
-}
-
 vector<int> zfunc(const string &s)
 {
     // s 是原字符串；返回 Z 数组，z[i]=lcp(s,s[i..n))。
@@ -58,7 +33,15 @@ vector<int> zfunc(const string &s)
 
 signed main()
 {
-    string s; cin >> s; auto a = zfunc(s);
-    for (int i = 0; i < (int)a.size(); i++) cout << (i ? " " : "") << a[i];
+    // 无参数；输出输入串的 Z 数组，成功返回 0。
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    string s;
+    cin >> s;
+    auto z = zfunc(s);
+    for (int i = 0; i < (int)z.size(); i++)
+    {
+        cout << (i ? " " : "") << z[i];
+    }
     cout << '\n';
 }

@@ -15,7 +15,7 @@ OUT = ROOT / "library-checker-template-solutions"
 COMMIT = "04c8de378bab67be926325de2871f0babb8e6451"
 INC = re.compile(r'^\s*#\s*include\s+"([^"]+)"\s*(?://.*)?$')
 # 仅对已逐题复核的条目强制完整来源证明；其余条目继续公开同步缺口。
-PROVEN = {"number_of_substrings", "longest_common_substring", "runenumerate", "palindromes_in_deque"}
+PROVEN = {"number_of_substrings", "longest_common_substring", "runenumerate", "palindromes_in_deque", "zalgorithm"}
 
 SPECS = {
     "aho_corasick": ("4_2_002.hpp", r'''
@@ -156,8 +156,16 @@ signed main()
     "zalgorithm": ("4_1_003.hpp", r'''
 signed main()
 {
-    string s; cin >> s; auto a = zfunc(s);
-    for (int i = 0; i < (int)a.size(); i++) cout << (i ? " " : "") << a[i];
+    // 无参数；输出输入串的 Z 数组，成功返回 0。
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    string s;
+    cin >> s;
+    auto z = zfunc(s);
+    for (int i = 0; i < (int)z.size(); i++)
+    {
+        cout << (i ? " " : "") << z[i];
+    }
     cout << '\n';
 }
 '''),

@@ -2,8 +2,6 @@
 using namespace std;
 #define int long long
 
-#include "../topic_common.hpp"
-
 vector<int> zfunc(const string &s)
 {
     // s 是原字符串；返回 Z 数组，z[i]=lcp(s,s[i..n))。
