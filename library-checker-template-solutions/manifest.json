@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "updated_at": "2026-10-16T06:43:36.163665Z",
+  "updated_at": "2026-10-16T07:03:04.603643Z",
   "official_repository": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
     "url": "https://github.com/yosupo06/library-checker-problems"
@@ -2193,7 +2193,7 @@
       "title": "Unionfind with Potential",
       "category": "data_structure",
       "source": "data_structure/unionfind_with_potential/main.cpp",
-      "source_sha256": "72edded2fb0df730b116d760c9b1786511f2716214158624f42d1b812022a6f1",
+      "source_sha256": "5fee2026b38696849155c044eb6f25914c28b65a7b22e3ed6d36e184500d2857",
       "meta": "data_structure/unionfind_with_potential/meta.json",
       "state": "template_solution"
     },
@@ -2202,7 +2202,7 @@
       "title": "Unionfind with Potential (Non-Commutative Group)",
       "category": "data_structure",
       "source": "data_structure/unionfind_with_potential_non_commutative_group/main.cpp",
-      "source_sha256": "e87c2dff7388f95b07996c4d3716bd576ba9a64441e6677065519bc5acc8e0f5",
+      "source_sha256": "85c6da2393a23d66f22ce665055d42ec75ed262c9063dbaf0e2a25777484a631",
       "meta": "data_structure/unionfind_with_potential_non_commutative_group/meta.json",
       "state": "template_solution"
     },

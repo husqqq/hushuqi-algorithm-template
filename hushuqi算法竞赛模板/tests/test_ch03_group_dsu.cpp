@@ -1,5 +1,11 @@
 #include "../include/full/3_1_008.hpp"
 
+void check(bool ok)
+{
+    // ok 是待核对的结论；失败抛出异常，关闭 assert 时仍执行所有操作和检查。
+    if (!ok) throw runtime_error("势能并查集回归失败");
+}
+
 struct MatrixGroup
 {
     using T = array<array<int, 2>, 2>; // T[i][j] 是模 998244353 的第 i 行第 j 列元素。
@@ -75,32 +81,39 @@ signed main()
     M a{{{1, 1}, {0, 1}}};
     M b{{{1, 0}, {1, 1}}};
     M ab = MatrixGroup::op(a, b);
-    assert(ab != MatrixGroup::op(b, a));
+    check(ab != MatrixGroup::op(b, a));
+
+    PotentialDSU<MatrixGroup> depth(4);
+    check(depth.merge(0, 1, a));
+    check(depth.merge(2, 3, b));
+    check(depth.merge(0, 2, a));
+    check(depth.diff(0, 3) == ab);
+    check(depth.diff(3, 0) == MatrixGroup::inv(ab));
 
     PotentialDSU<MatrixGroup> mat(4);
-    assert(mat.merge(0, 1, a));
-    assert(mat.merge(1, 2, b));
-    assert(mat.diff(0, 2) == ab);
-    assert(mat.diff(2, 0) == MatrixGroup::inv(ab));
-    assert(mat.merge(0, 2, ab));
-    assert(!mat.merge(0, 2, MatrixGroup::op(b, a)));
-    assert(mat.size(0) == 3 && mat.size(3) == 1);
+    check(mat.merge(0, 1, a));
+    check(mat.merge(1, 2, b));
+    check(mat.diff(0, 2) == ab);
+    check(mat.diff(2, 0) == MatrixGroup::inv(ab));
+    check(mat.merge(0, 2, ab));
+    check(!mat.merge(0, 2, MatrixGroup::op(b, a)));
+    check(mat.size(0) == 3 && mat.size(3) == 1);
 
     using P = PermGroup::T;
     P c{1, 2, 0};
     P d{1, 0, 2};
     P cd = PermGroup::op(c, d);
-    assert(cd != PermGroup::op(d, c));
+    check(cd != PermGroup::op(d, c));
 
     PotentialDSU<PermGroup> perm(5);
-    assert(perm.merge(0, 1, c));
-    assert(perm.merge(1, 2, d));
-    assert(perm.merge(3, 0, c));
-    assert(perm.diff(3, 2) == PermGroup::op(c, cd));
-    assert(perm.merge(3, 2, PermGroup::op(c, cd)));
-    assert(!perm.merge(3, 2, PermGroup::op(cd, c)));
-    assert(perm.merge(4, 4, PermGroup::id()));
-    assert(!perm.merge(4, 4, c));
+    check(perm.merge(0, 1, c));
+    check(perm.merge(1, 2, d));
+    check(perm.merge(3, 0, c));
+    check(perm.diff(3, 2) == PermGroup::op(c, cd));
+    check(perm.merge(3, 2, PermGroup::op(c, cd)));
+    check(!perm.merge(3, 2, PermGroup::op(cd, c)));
+    check(perm.merge(4, 4, PermGroup::id()));
+    check(!perm.merge(4, 4, c));
 
     // all[i] 是 S_3 的第 i 个置换，用固定序列覆盖不同合并方向与路径压缩。
     array<P, 6> all{{{0, 1, 2}, {0, 2, 1}, {1, 0, 2},
@@ -117,16 +130,16 @@ signed main()
         int x = rng() % value.size();
         int y = rng() % value.size();
         P rel = PermGroup::op(PermGroup::inv(value[x]), value[y]);
-        assert(random.merge(x, y, rel));
+        check(random.merge(x, y, rel));
         for (int z = 0; z < 3; z++)
         {
             int u = rng() % value.size();
             int v = rng() % value.size();
             if (random.same(u, v))
             {
-                assert(random.diff(u, v) == PermGroup::op(PermGroup::inv(value[u]), value[v]));
+                check(random.diff(u, v) == PermGroup::op(PermGroup::inv(value[u]), value[v]));
             }
         }
     }
-    cout << "OK\n";
+    cout << "AC 0\n";
 }

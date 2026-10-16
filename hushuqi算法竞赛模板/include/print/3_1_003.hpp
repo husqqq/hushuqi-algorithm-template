@@ -42,7 +42,7 @@ template <class T> struct WDSU
 
     bool merge(int x, int y, T d)
     {
-        // 施加 val[y]-val[x]=d；已连通时返回该约束是否一致。
+        // x、y 是元素编号，d 是 val[y]-val[x]；相容则合并并返回 true，矛盾返回 false。
         int a = find(x), b = find(y);
         T v = d + w[x] - w[y];
         if (a == b)
@@ -73,14 +73,15 @@ template <class T> struct WDSU
     T diff(int x, int y)
     {
         // x、y 必须连通；返回 val[y]-val[x]。
-        assert(same(x, y)); // 调试检查，可删
+        int a = find(x), b = find(y); // 必须更新到根的势能，不能藏在断言中。
+        assert(a == b); // 调试检查，可删
         return w[y] - w[x];
     }
 };
 
 struct XorDSU
 {
-    // f[x] 是 x 的父亲；s[x] 仅在 x 为根时表示集合大小。
+    // f[x] 是父亲；s[x] 是根的集合大小；xr[x] 是 val[x]^val[f[x]]。
     vector<int> f, s, xr;
 
     XorDSU(int n = 0)
@@ -114,7 +115,7 @@ struct XorDSU
 
     bool merge(int x, int y, int w)
     {
-        // 施加 val[x]^val[y]=w；已连通时返回该约束是否一致。
+        // x、y 是元素编号，w 是 val[x]^val[y]；相容则合并并返回 true，矛盾返回 false。
         int a = find(x), b = find(y);
         int v = xr[x] ^ xr[y] ^ w;
         if (a == b)
@@ -145,7 +146,8 @@ struct XorDSU
     int diff(int x, int y)
     {
         // x、y 必须连通；返回 val[x]^val[y]。
-        assert(same(x, y)); // 调试检查，可删
+        int a = find(x), b = find(y); // 必须更新到根的异或值，不能藏在断言中。
+        assert(a == b); // 调试检查，可删
         return xr[x] ^ xr[y];
     }
 

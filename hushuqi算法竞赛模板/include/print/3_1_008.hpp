@@ -46,7 +46,7 @@ template <class Group> struct PotentialDSU
 
     bool merge(int x, int y, const T &d)
     {
-        // 施加 value[x]*d=value[y]；返回约束是否与已有信息相容。
+        // x、y 是元素编号，d 是右势能差；施加 value[x]*d=value[y]，返回约束是否相容。
         int a = find(x), b = find(y);
         if (a == b)
         {
@@ -76,7 +76,8 @@ template <class Group> struct PotentialDSU
     T diff(int x, int y)
     {
         // x、y 必须连通；返回 value[x] 的逆乘 value[y]，即 value[x]^{-1}*value[y]。
-        assert(same(x, y)); // 调试检查，可删
+        int a = find(x), b = find(y); // 必须更新到根的右势能，不能藏在断言中。
+        assert(a == b); // 调试检查，可删
         return Group::op(Group::inv(pot[x]), pot[y]);
     }
 

@@ -2198,15 +2198,17 @@ signed main()
         r'''
 struct MatrixGroup
 {
-    using T = array<array<Z, 2>, 2>;
+    using T = array<array<Z, 2>, 2>; // T[i][j] 是第 i 行第 j 列元素；矩阵行列式为一。
 
     static T id()
     {
+        // 无参数；返回单位矩阵。
         return {{{1, 0}, {0, 1}}};
     }
 
     static T op(const T &a, const T &b)
     {
+        // a、b 是同域二阶矩阵；返回按 a*b 顺序相乘的矩阵。
         T c{};
         for (int i = 0; i < 2; ++i)
         {
@@ -2223,6 +2225,7 @@ struct MatrixGroup
 
     static T inv(const T &a)
     {
+        // a 的行列式为一；返回它的逆矩阵，无需再除以行列式。
         return {{{a[1][1], -a[0][1]}, {-a[1][0], a[0][0]}}};
     }
 };
