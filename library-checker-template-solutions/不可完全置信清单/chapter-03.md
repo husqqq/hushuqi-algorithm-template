@@ -10,7 +10,6 @@
 | `3.2.011` | `data_structure/rectangle_add_point_get` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
 | `3.3.001` | `data_structure/point_set_range_composite` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
 | `3.3.004` | `data_structure/range_add_range_min` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
-| `3.3.017` | `data_structure/majority_voting` | `audited` | `current` | `generation_current` | `missing` | `missing` | `verification_missing` |
 | `3.3.018` | `data_structure/point_set_range_sort_range_composite` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
 | `3.3.019` | `data_structure/range_linear_add_range_min` | `audited` | `current` | `generation_stale` | `missing` | `current_ac` | `generation_stale` |
 | `3.3.020` | `data_structure/persistent_range_affine_range_sum` | `audited` | `current` | `generation_stale` | `missing` | `missing` | `generation_stale,verification_missing` |

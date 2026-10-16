@@ -11,7 +11,7 @@
       "method": "deterministic_generation",
       "generator": {
         "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-        "sha256": "8c9134cd5593883b333eaa0189e528d19d07e870fd12b61fe09c21ad7cfa9e93",
+        "sha256": "dbfd00b7d010cb76ef087658ff8b53929367930b78b066d8c845e80596d1c0ff",
         "working_directory": ".",
         "runner": "Python 3.12.14",
         "argv": [
@@ -25,7 +25,7 @@
           "source_path": "library-checker-template-solutions/data_structure/point_set_range_composite_large_array/main.cpp",
           "source_sha256": "57bdf927b0121fb60890f236e1eb2b61cca514faaca47db1e7a68f850ea69002",
           "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-          "generator_sha256": "8c9134cd5593883b333eaa0189e528d19d07e870fd12b61fe09c21ad7cfa9e93",
+          "generator_sha256": "dbfd00b7d010cb76ef087658ff8b53929367930b78b066d8c845e80596d1c0ff",
           "working_directory": ".",
           "runner": "Python 3.12.14",
           "argv": [
@@ -74,7 +74,7 @@
           "generated_sha256": "57bdf927b0121fb60890f236e1eb2b61cca514faaca47db1e7a68f850ea69002",
           "byte_equal": true
         },
-        "generation_evidence_sha256": "95679db981bf46f09ce826648ae7161cedc28139b810f997a6e561308bc6b3cc"
+        "generation_evidence_sha256": "c70bc33e2ee6ed992dce0bd38a41c3ac590ba2c244b6dfc149691fb2dd65e8d9"
       },
       "adapter_sha256": "ce3dc8b51a199fcce1281be6a98b230d08f9aa310d09f1ca6d9d5284bd0456d2",
       "template_inputs": [
@@ -118,7 +118,7 @@
       "temporary_regenerations": 2,
       "byte_identical": true,
       "source_sha256": "57bdf927b0121fb60890f236e1eb2b61cca514faaca47db1e7a68f850ea69002",
-      "evidence_sha256": "c7e50f7d39f7b9412adba534be245f4a8731b9fa79171aa7d0b1cc4a139e6943"
+      "evidence_sha256": "62c2da15ec48a8c727d1bd880e00bd9aa0b3c97a46b578c623bdfc09ccfbd5a2"
     }
   },
   "reference": {

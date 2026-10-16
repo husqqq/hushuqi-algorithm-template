@@ -1389,7 +1389,7 @@ signed main()
         ("3_3_017.hpp",),
         "3.3.017",
         ("class MajRange",),
-        ("tests/test_ch03_revised.cpp",),
+        ("tests/test_ch03_revised.cpp", "tests/test_ch03_majority.cpp"),
         r'''
 signed main()
 {

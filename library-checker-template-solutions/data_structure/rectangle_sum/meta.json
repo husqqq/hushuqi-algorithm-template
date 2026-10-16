@@ -11,7 +11,7 @@
       "method": "deterministic_generation",
       "generator": {
         "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-        "sha256": "8c9134cd5593883b333eaa0189e528d19d07e870fd12b61fe09c21ad7cfa9e93",
+        "sha256": "dbfd00b7d010cb76ef087658ff8b53929367930b78b066d8c845e80596d1c0ff",
         "working_directory": ".",
         "runner": "Python 3.12.14",
         "argv": [
@@ -25,7 +25,7 @@
           "source_path": "library-checker-template-solutions/data_structure/rectangle_sum/main.cpp",
           "source_sha256": "b39b86802b7890b7312756d3ad8fce5d0e111484278b44cc55d6341e1eda801b",
           "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-          "generator_sha256": "8c9134cd5593883b333eaa0189e528d19d07e870fd12b61fe09c21ad7cfa9e93",
+          "generator_sha256": "dbfd00b7d010cb76ef087658ff8b53929367930b78b066d8c845e80596d1c0ff",
           "working_directory": ".",
           "runner": "Python 3.12.14",
           "argv": [
@@ -50,7 +50,7 @@
           "generated_sha256": "b39b86802b7890b7312756d3ad8fce5d0e111484278b44cc55d6341e1eda801b",
           "byte_equal": true
         },
-        "generation_evidence_sha256": "9289b3ba4b0a37a6fe22be017363fbe4d40c2f81bcf666a14ffefa993d7a5a2b"
+        "generation_evidence_sha256": "7f090929726ef0bf00ceef8d3dbfd3553c5aa4c6340b67487d31574e73262799"
       },
       "adapter_sha256": "454babaef169c7ad903cb77ca86072b6cf397faa5a5678004c48b09827d007d5",
       "template_inputs": [
@@ -70,7 +70,7 @@
       "temporary_regenerations": 2,
       "byte_identical": true,
       "source_sha256": "b39b86802b7890b7312756d3ad8fce5d0e111484278b44cc55d6341e1eda801b",
-      "evidence_sha256": "1a0812f014ccc26ba3964c4af01a66435bec6beab6d9bfc300d5d7d4df9fa004"
+      "evidence_sha256": "7c999c11fe28dde79da6f5acc0a0c8900fc38bffd5431c502736329862d8d089"
     }
   },
   "reference": {
