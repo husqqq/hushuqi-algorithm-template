@@ -1,117 +1,37 @@
-#include <bits/stdc++.h>
-using namespace std;
-#define int long long
+#pragma once
 
-#include "support/topic_common.hpp"
+#include "3_3_002.hpp"
 
-class AddMinSeg
+// 依赖 3.3.002 懒标记线段树的 LazySeg 与区间加标记 Tag。
+struct MinInfo
 {
-    // 当前是区间加、区间最小值版。改成最大值只需把 mn/rangeMin/min/正无穷单位元
-    // 成对换成 mx/rangeMax/max/负无穷；区间加和懒标记逻辑不变。
-    // n 是数组长度；mn、lz 分别保存区间最小值与待下传增量。
-    int n;
-    vector<long long> mn, lz;
+    long long mn = 0; // mn 是非空区间的最小值；默认构造一个值为 0 的叶子。
 
-    void build(int p, int l, int r, const vector<long long> &a)
+    MinInfo() = default;
+    MinInfo(long long x) : mn(x)
     {
-        // p 是当前节点，[l,r) 是其区间，a 是初始数组。
-        if (r - l == 1)
-        {
-            mn[p] = a[l];
-            return;
-        }
-        int m = (l + r) / 2;
-        build(2 * p, l, m, a);
-        build(2 * p + 1, m, r, a);
-        pull(p);
+        // x 是叶子的初始值。
     }
 
-    void apply(int p, long long v)
+    static MinInfo identity()
     {
-        // p 是整段命中的节点，v 是区间增量。
-        mn[p] += v;
-        lz[p] += v;
+        // 无参数；返回空区间的合并单位元，不向该临时结果施加区间加。
+        return MinInfo(numeric_limits<long long>::max());
     }
 
-    void push(int p)
+    void apply(const Tag &t)
     {
-        // p 是当前节点；把待执行增量下传给两个儿子。
-        if (!lz[p])
-        {
-            return;
-        }
-        apply(2 * p, lz[p]);
-        apply(2 * p + 1, lz[p]);
-        lz[p] = 0;
+        // t 是区间增量；统一平移非空区间的最小值。
+        mn += t.add;
     }
 
-    void pull(int p)
+    friend MinInfo operator+(MinInfo a, MinInfo b)
     {
-        // p 是内部节点；由两个儿子的最小值重算 mn[p]。
-        mn[p] = min(mn[2 * p], mn[2 * p + 1]);
+        // a、b 是相邻区间的信息；返回合并后的最小值。
+        return MinInfo(min(a.mn, b.mn));
     }
-
-    void add(int p, int l, int r, int ql, int qr, long long v)
-    {
-        // p、[l,r) 是当前节点， [ql,qr) 是修改区间，v 是增量。
-        if (qr <= l || r <= ql)
-        {
-            return;
-        }
-        if (ql <= l && r <= qr)
-        {
-            apply(p, v);
-            return;
-        }
-        push(p);
-        int m = (l + r) / 2;
-        add(2 * p, l, m, ql, qr, v);
-        add(2 * p + 1, m, r, ql, qr, v);
-        pull(p);
-    }
-
-    long long rangeMin(int p, int l, int r, int ql, int qr)
-    {
-        // p、[l,r) 是当前节点；返回 [ql,qr) 内的最小值。
-        if (qr <= l || r <= ql)
-        {
-            return numeric_limits<long long>::max();
-        }
-        if (ql <= l && r <= qr)
-        {
-            return mn[p];
-        }
-        push(p);
-        int m = (l + r) / 2;
-        return min(rangeMin(2 * p, l, m, ql, qr), rangeMin(2 * p + 1, m, r, ql, qr));
-    }
-
-  public:
-    explicit AddMinSeg(const vector<long long> &a)
-        : n(a.size()), mn(4 * max<int>(n, 1)), lz(4 * max<int>(n, 1))
-    {
-        // a 是初始数组；空数组建立空结构。
-        if (n)
-        {
-            build(1, 0, n, a);
-        }
-    }
-
-    void add(int l, int r, long long v)
-    {
-        // 给半开区间 [l,r) 增加 v；空区间无操作。
-        assert(0 <= l && l <= r && r <= n); // 调试检查，可删
-        if (l == r)
-        {
-            return;
-        }
-        add(1, 0, n, l, r, v);
-    }
-
-    long long rangeMin(int l, int r)
-    {
-        // 返回非空半开区间 [l,r) 的最小值。
-        assert(0 <= l && l < r && r <= n); // 调试检查，可删
-        return rangeMin(1, 0, n, l, r);
-    }
+    // 改最大值时，将 mn/最小值/min/max() 成对换为 mx/最大值/max/lowest()。
+    // 默认叶子仍为 0；Tag、增量符号与更新方向不变，不需要取反输入。
 };
+
+using AddMinSeg = LazySeg<MinInfo, Tag>;

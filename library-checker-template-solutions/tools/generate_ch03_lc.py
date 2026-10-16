@@ -320,8 +320,8 @@ signed main()
         "Range Add Range Min",
         ("3_3_004.hpp",),
         "3.3.004",
-        ("class AddMinSeg",),
-        ("tests/test_ch03_add_min_seg.cpp",),
+        ("struct MinInfo", "using AddMinSeg = LazySeg<MinInfo, Tag>;"),
+        ("tests/test_ch03_add_min_seg.cpp", "tests/test_ch03_lazy.cpp"),
         r'''
 signed main()
 {
@@ -330,10 +330,10 @@ signed main()
 
     int n, q;
     cin >> n >> q;
-    vector<long long> a(n);
+    vector<MinInfo> a(n);
     for (auto &x : a)
     {
-        cin >> x;
+        cin >> x.mn;
     }
     AddMinSeg seg(a);
     while (q--)
@@ -344,16 +344,17 @@ signed main()
         {
             long long x;
             cin >> x;
-            seg.add(l, r, x);
+            seg.apply(l, r, Tag{x});
         }
         else
         {
-            cout << seg.rangeMin(l, r) << '\n';
+            cout << seg.query(l, r).mn << '\n';
         }
     }
     return 0;
 }
 ''',
+        extra_markdown=(("03-数据结构.md", "3.3.002", ("struct Tag", "template <class Info, class Tag> struct LazySeg")),),
     ),
     Spec(
         "range_chmin_chmax_add_range_sum",

@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "updated_at": "2026-10-16T11:11:05.356231Z",
+  "updated_at": "2026-10-16T11:38:00.263481Z",
   "official_repository": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
     "url": "https://github.com/yosupo06/library-checker-problems"
@@ -1617,7 +1617,7 @@
       "title": "Range Add Range Min",
       "category": "data_structure",
       "source": "data_structure/range_add_range_min/main.cpp",
-      "source_sha256": "aa1f8f786b9b9a75fb44b52e56b2d978ad29c2f848dfc1544728ea4dc5811ef1",
+      "source_sha256": "13b4f21ecabe15a7b4f7b7ed68f0ba5cfeeab85640c493f5cd4de0c5d84d55c1",
       "meta": "data_structure/range_add_range_min/meta.json",
       "state": "template_solution"
     },
