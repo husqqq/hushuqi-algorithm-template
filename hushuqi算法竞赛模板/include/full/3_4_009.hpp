@@ -4,9 +4,9 @@
 
 template <int LOG = 17> class StaticRngLIS
 {
-    static constexpr int32_t none = -1;
+    static constexpr int32_t none = -1; // 部分排列中未定义的映射；性能版路径用 32 位节省工作区。
 
-    // n 是原排列长度；wt 保存海草边界编码后的静态顺序统计结构。
+    // n 是序列长度；wt 保存海草边界编码，只需其 countLess 接口。
     int n = 0;
     Wavelet<LOG> wt;
 
@@ -27,22 +27,23 @@ template <int LOG = 17> class StaticRngLIS
         return q;
     }
 
-    static int workSize(int n)
+    static size_t workSize(int n)
     {
-        // n 是单位 Monge 排列阶数；返回一次递归乘法所需的 int32_t 工作区长度。
-        int ans = 1;
+        // n 是正的排列阶数；返回递归乘法的工作区元素数，长度用 size_t 避免 32 位累加溢出。
+        size_t ans = 1;
         while (n > 1)
         {
-            ans += 2 * n;
-            n = (n + 1) / 2;
-            ans += 4 * n;
+            ans += 2 * (size_t)n;
+            n = n / 2 + n % 2;
+            ans += 4 * (size_t)n;
         }
         return ans;
     }
 
     static void unitMongeMul(int n, int32_t *work, const int32_t *a, const int32_t *b)
     {
-        // n 是排列阶数，work 是足够大的工作区，a、b 是两个单位 Monge 排列；把乘积行映射写入 work[0,n)。
+        // n>0；a、b 是同阶排列；work 至少有 workSize(n) 项且与输入不重叠。
+        // 把单位 Monge 的 min-plus 乘积对应的行映射写入 work[0,n)，无返回值。
         if (n == 1)
         {
             work[0] = 0;
@@ -59,8 +60,8 @@ template <int LOG = 17> class StaticRngLIS
             // len 是当前值域半边长度；inHalf 判定元素是否属于该半边；shift 把值压到半边内。
             int32_t *aHead = work;
             int32_t *aWhere = work + len;
-            int32_t *bHead = work + 2 * len;
-            int32_t *bWhere = work + 3 * len;
+            int32_t *bHead = work + 2 * (size_t)len;
+            int32_t *bWhere = work + 3 * (size_t)len;
             auto split = [&](const int32_t *src, int32_t *head, int32_t *where)
             {
                 // src 是完整排列；head 写压缩后的子排列，where 写对应原下标。
@@ -75,8 +76,8 @@ template <int LOG = 17> class StaticRngLIS
             };
             split(a, aHead, aWhere);
             split(b, bHead, bWhere);
-            unitMongeMul(len, work + 4 * len, aHead, bHead);
-            int32_t *part = work + 4 * len;
+            unitMongeMul(len, work + 4 * (size_t)len, aHead, bHead);
+            int32_t *part = work + 4 * (size_t)len;
             for (int i = 0; i < len; i++)
             {
                 int row = aWhere[i];
@@ -100,51 +101,46 @@ template <int LOG = 17> class StaticRngLIS
             return x - mid;
         });
 
-        struct Cursor
-        {
-            // delta 是当前 Monge 边界相对平衡，col 是当前列位置。
-            int delta = 0, col = 0;
-        };
         int row = n;
-        auto goRight = [&](Cursor &it)
+        auto goRight = [&](array<int, 2> &it)
         {
             // it 是当前边界游标；向右越过一列并维护其平衡量。
-            if (b[it.col] < mid)
+            if (b[it[1]] < mid)
             {
-                if (colToRow[it.col] >= row)
+                if (colToRow[it[1]] >= row)
                 {
-                    it.delta++;
+                    it[0]++;
                 }
             }
-            else if (colToRow[it.col] < row)
+            else if (colToRow[it[1]] < row)
             {
-                it.delta++;
+                it[0]++;
             }
-            it.col++;
+            it[1]++;
         };
-        auto goUp = [&](Cursor &it)
+        auto goUp = [&](array<int, 2> &it)
         {
             // it 是当前边界游标；把行边界上移一格并维护其平衡量。
             if (a[row] < mid)
             {
-                if (rowToCol[row] >= it.col)
+                if (rowToCol[row] >= it[1])
                 {
-                    it.delta--;
+                    it[0]--;
                 }
             }
-            else if (rowToCol[row] < it.col)
+            else if (rowToCol[row] < it[1])
             {
-                it.delta--;
+                it[0]--;
             }
         };
-        Cursor neg, pos;
+        array<int, 2> neg{}, pos{}; // 两维依次为边界相对平衡量、当前列；保存两条单调边界。
         while (row)
         {
-            while (pos.col != n)
+            while (pos[1] != n)
             {
-                Cursor next = pos;
+                auto next = pos;
                 goRight(next);
-                if (next.delta != 0)
+                if (next[0] != 0)
                 {
                     break;
                 }
@@ -153,20 +149,20 @@ template <int LOG = 17> class StaticRngLIS
             row--;
             goUp(neg);
             goUp(pos);
-            while (neg.delta != 0)
+            while (neg[0] != 0)
             {
                 goRight(neg);
             }
-            if (neg.col > pos.col)
+            if (neg[1] > pos[1])
             {
-                rowToCol[row] = (int32_t)pos.col;
+                rowToCol[row] = (int32_t)pos[1];
             }
         }
     }
 
     static vector<int32_t> partMongeMul(vector<int32_t> a, vector<int32_t> b)
     {
-        // a、b 是同阶部分 Monge 排列；返回它们复合后的部分排列。
+        // a、b 是同阶非空部分排列，空位为 none；返回对应 Monge 乘积的部分排列。
         int n = a.size();
         vector<int32_t> aInv = inverse(a), bInv = inverse(b);
         swap(b, bInv);
@@ -251,8 +247,8 @@ template <int LOG = 17> class StaticRngLIS
         low = seaweed(low);
         high = seaweed(high);
         vector<int32_t> lowPad(n), highPad(n);
-        iota(lowPad.begin(), lowPad.end(), int32_t(0));
-        iota(highPad.begin(), highPad.end(), int32_t(0));
+        iota(lowPad.begin(), lowPad.end(), (int32_t)0);
+        iota(highPad.begin(), highPad.end(), (int32_t)0);
         for (int i = 0; i < mid; i++)
         {
             if (low[i] == none)
@@ -279,25 +275,30 @@ template <int LOG = 17> class StaticRngLIS
     }
 
   public:
-    explicit StaticRngLIS(vector<int> p = {})
+    explicit StaticRngLIS(vector<int> a = {}, bool strict = true)
     {
-        // p 是值域 [0,n) 的静态排列；构造其区间严格 LIS 查询结构。
-        init(move(p));
+        // a 是任意静态整数序列；strict 为真查严格递增，为假查非下降长度。
+        init(move(a), strict);
     }
 
-    void init(vector<int> p)
+    void init(vector<int> a, bool strict = true)
     {
-        // p 是值域 [0,n) 的新静态排列；重建结构，不保留旧查询状态。
-        n = p.size();
-        assert(n <= numeric_limits<int32_t>::max()); // 调试检查，可删
+        // a 是新静态序列；strict 选择严格递增或非下降；覆盖全部旧状态，无返回值。
+        assert(a.size() < (1ULL << 31) - 1); // 调试检查，可删
+        n = (int)a.size();
         assert((unsigned long long)n < (1ULL << LOG)); // 调试检查，可删
-        vector<char> used(n);
+        vector<int32_t> order(n);
+        iota(order.begin(), order.end(), (int32_t)0);
+        sort(order.begin(), order.end(), [&](int i, int j)
+        {
+            // i、j 是原下标；返回排秩顺序，相等值在严格 / 非下降模式按下标降序 / 升序。
+            if (a[i] != a[j]) return a[i] < a[j];
+            return strict ? i > j : i < j;
+        });
         vector<int32_t> q(n);
         for (int i = 0; i < n; i++)
         {
-            assert(0 <= p[i] && p[i] < n && !used[p[i]]); // 调试检查，可删
-            used[p[i]] = true;
-            q[i] = (int32_t)p[i];
+            q[order[i]] = (int32_t)i;
         }
         vector<int32_t> edge = seaweed(q);
         vector<int> code(n);
@@ -310,7 +311,8 @@ template <int LOG = 17> class StaticRngLIS
 
     int query(int l, int r) const
     {
-        // l、r 是半开区间端点；返回排列 p[l,r) 的严格最长递增子序列长度。
+        // l、r 是半开区间端点；返回所选模式的最长子序列长度，空区间为 0。
+        // 递减 / 非上升：先 reverse(a)，保持 strict 选择，对原区间改查 [n-r,n-l)。
         assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         return r - l - wt.countLess(l, n, r);
     }

@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "updated_at": "2026-10-16T08:51:46.283065Z",
+  "updated_at": "2026-10-16T09:15:14.758973Z",
   "official_repository": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
     "url": "https://github.com/yosupo06/library-checker-problems"
@@ -1662,7 +1662,7 @@
       "title": "Range Kth Smallest",
       "category": "data_structure",
       "source": "data_structure/range_kth_smallest/main.cpp",
-      "source_sha256": "db73cecc2b612f20a4211f7551a234363a1ba14307cb83d5de1d8297b7492ef1",
+      "source_sha256": "d3a5368a796b52e39f01889842fb124e58c382a36feddff200e7b8ff6fed2631",
       "meta": "data_structure/range_kth_smallest/meta.json",
       "state": "template_solution"
     },
@@ -1887,7 +1887,7 @@
       "title": "Static Range Frequency",
       "category": "data_structure",
       "source": "data_structure/static_range_frequency/main.cpp",
-      "source_sha256": "08d8e45edcb4d39eade1dd35157b86e2684f2d56f6673af670f7a13ab567ac9e",
+      "source_sha256": "9d788535e93d95ba2f6c337ee6afe7b6a8cb1254afcd53eec43933afc820b519",
       "meta": "data_structure/static_range_frequency/meta.json",
       "state": "template_solution"
     },
@@ -1905,7 +1905,7 @@
       "title": "Static Range LIS Query",
       "category": "data_structure",
       "source": "data_structure/static_range_lis_query/main.cpp",
-      "source_sha256": "5136426989dee2ceed10590bffcc7c0d134df0812dc9af34290b0d52707ed997",
+      "source_sha256": "b8648e4ade6f91074ea1c5eb05b3218b7d70e0a1a3f845f26c1a03d0925eb818",
       "meta": "data_structure/static_range_lis_query/meta.json",
       "state": "template_solution"
     },
@@ -1932,7 +1932,7 @@
       "title": "Static Range Sum with Upper Bound",
       "category": "data_structure",
       "source": "data_structure/static_range_sum_with_upper_bound/main.cpp",
-      "source_sha256": "b6303839a8a635e3dd1de26af976fa6dc1c90af64b2c3b96c58210dd8eb47ab0",
+      "source_sha256": "f5d1c074dd543954409c5957f5cf353ecbd823cc9246fabce851c4946b1d9ab0",
       "meta": "data_structure/static_range_sum_with_upper_bound/meta.json",
       "state": "template_solution"
     },

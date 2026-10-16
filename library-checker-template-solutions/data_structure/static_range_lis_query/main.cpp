@@ -6,15 +6,17 @@ using namespace std;
 template <int LOG = 30> struct Wavelet
 {
     static_assert(1 <= LOG && LOG <= 62);
+    // 逐位读取先转为 64 位，关闭整数宏且 LOG>31 时也不越位移位。
 
     // size 是序列长度，middle[bit] 是该层零段长度。
     int size;
     array<int, LOG> middle;
-    // prefixOne[bit][i] 是该层前 i 位的一数；pre0 是零分支原值和。
+    // prefixOne[bit][i] 是该层前 i 位的一数。
     array<vector<int>, LOG> prefixOne;
-    array<vector<int>, LOG> pre0;
-    // prefixSum[i] 是原序列前 i 项的值和。
-    vector<int> prefixSum;
+    // pre0[bit][i] 是该层前 i 项中零分支的原值和；显式 64 位累加。
+    array<vector<long long>, LOG> pre0;
+    // prefixSum[i] 是原序列前 i 项的值和；关闭整数宏后仍用 64 位。
+    vector<long long> prefixSum;
 
     explicit Wavelet(vector<int> values = {})
     {
@@ -24,8 +26,9 @@ template <int LOG = 30> struct Wavelet
 
     void init(vector<int> values)
     {
-        // values 是新的静态序列；清空旧层并重新稳定划分。
-        size = values.size();
+        // values 是新的静态序列；重建全部状态，无返回值；总和须能用 long long 表示。
+        assert(values.size() < numeric_limits<int>::max()); // 调试检查，可删
+        size = (int)values.size();
         prefixSum.assign(size + 1, 0);
         constexpr unsigned long long limit = 1ULL << LOG;
         for (int i = 0; i < size; i++)
@@ -40,7 +43,7 @@ template <int LOG = 30> struct Wavelet
             pre0[bit].assign(size + 1, 0);
             for (int i = 0; i < size; ++i)
             {
-                bool one = values[i] >> bit & 1;
+                bool one = (unsigned long long)values[i] >> bit & 1;
                 prefixOne[bit][i + 1] = prefixOne[bit][i] + one;
                 pre0[bit][i + 1] = pre0[bit][i] + (one ? 0 : values[i]);
             }
@@ -48,7 +51,7 @@ template <int LOG = 30> struct Wavelet
             int zero = 0, one = middle[bit];
             for (int value : values)
             {
-                if (value >> bit & 1)
+                if ((unsigned long long)value >> bit & 1)
                 {
                     next[one++] = value;
                 }
@@ -66,7 +69,7 @@ template <int LOG = 30> struct Wavelet
         // left、right 是半开区间端点，rank 从 0 开始；返回第 rank 小的原值。
         assert(0 <= left && left < right && right <= size); // 调试检查，可删
         assert(0 <= rank && rank < right - left); // 调试检查，可删
-        int answer = 0;
+        int ans = 0;
         for (int bit = LOG - 1; bit >= 0; --bit)
         {
             int onesLeft = prefixOne[bit][left];
@@ -79,16 +82,16 @@ template <int LOG = 30> struct Wavelet
             }
             else
             {
-                answer |= 1LL << bit;
+                ans |= 1LL << bit;
                 rank -= zeros;
                 left = middle[bit] + onesLeft;
                 right = middle[bit] + onesR;
             }
         }
-        return answer;
+        return ans;
     }
 
-    pair<int, int> countSumLT(int left, int right, int hi) const
+    pair<int, long long> countSumLT(int left, int right, int hi) const
     {
         // 返回 [left,right) 内严格小于 hi 的元素个数与元素值和。
         assert(0 <= left && left <= right && right <= size); // 调试检查，可删
@@ -102,13 +105,13 @@ template <int LOG = 30> struct Wavelet
             return {right - left, prefixSum[right] - prefixSum[left]};
         }
         int count = 0;
-        int sum = 0;
+        long long sum = 0; // 元素和可能超过 32 位。
         for (int bit = LOG - 1; bit >= 0; --bit)
         {
             int onesLeft = prefixOne[bit][left];
             int onesR = prefixOne[bit][right];
             int zeros = right - left - onesR + onesLeft;
-            if (hi >> bit & 1)
+            if ((unsigned long long)hi >> bit & 1)
             {
                 count += zeros;
                 sum += pre0[bit][right] - pre0[bit][left];
@@ -139,10 +142,25 @@ template <int LOG = 30> struct Wavelet
         {
             return 0;
         }
-        return countLess(left, right, value + 1) - countLess(left, right, value);
+        for (int bit = LOG - 1; bit >= 0; --bit)
+        {
+            int onesLeft = prefixOne[bit][left];
+            int onesR = prefixOne[bit][right];
+            if ((unsigned long long)value >> bit & 1)
+            {
+                left = middle[bit] + onesLeft;
+                right = middle[bit] + onesR;
+            }
+            else
+            {
+                left -= onesLeft;
+                right -= onesR;
+            }
+        }
+        return right - left;
     }
 
-    pair<int, int> countSumLE(int left, int right, int hi) const
+    pair<int, long long> countSumLE(int left, int right, int hi) const
     {
         // 返回 [left,right) 内不大于 hi 的元素个数与元素值和。
         assert(0 <= left && left <= right && right <= size); // 调试检查，可删
@@ -162,8 +180,9 @@ template <int LOG = 30> struct Wavelet
 template <int LOG = 30> struct KthWavelet
 {
     static_assert(1 <= LOG && LOG <= 62);
+    // 逐位读取先转为 64 位，关闭整数宏且 LOG>31 时也不越位移位。
 
-    // size 是序列长度，middle[bit] 是该层零段长度；固定 32 位以节省只求第 k 小时的常驻空间。
+    // size 是序列长度，middle[bit] 是该层零段长度；只保存第 k 小所需的计数。
     int32_t size = 0;
     array<int32_t, LOG> middle;
     // prefixOne[bit][i] 是该层前 i 位的一数。
@@ -177,8 +196,8 @@ template <int LOG = 30> struct KthWavelet
 
     void init(vector<int> values)
     {
-        // values 是新的静态序列；清空旧层并重新稳定划分。
-        assert(values.size() <= INT32_MAX); // 调试检查，可删
+        // values 是新的静态序列；重建全部状态，无返回值；不要求元素总和可表示。
+        assert(values.size() < (1ULL << 31)); // 调试检查，可删
         size = (int32_t)values.size();
         constexpr unsigned long long limit = 1ULL << LOG;
         for (int value : values)
@@ -188,16 +207,16 @@ template <int LOG = 30> struct KthWavelet
         vector<int> next(size);
         for (int bit = LOG - 1; bit >= 0; --bit)
         {
-            prefixOne[bit].assign(size + 1, 0);
+            prefixOne[bit].assign((size_t)size + 1, 0);
             for (int i = 0; i < size; ++i)
             {
-                prefixOne[bit][i + 1] = prefixOne[bit][i] + (values[i] >> bit & 1);
+                prefixOne[bit][i + 1] = prefixOne[bit][i] + ((unsigned long long)values[i] >> bit & 1);
             }
             middle[bit] = size - prefixOne[bit][size];
             int zero = 0, one = middle[bit];
             for (int value : values)
             {
-                if (value >> bit & 1)
+                if ((unsigned long long)value >> bit & 1)
                 {
                     next[one++] = value;
                 }
@@ -215,7 +234,7 @@ template <int LOG = 30> struct KthWavelet
         // left、right 是半开区间端点，rank 从 0 开始；返回第 rank 小的原值。
         assert(0 <= left && left < right && right <= size); // 调试检查，可删
         assert(0 <= rank && rank < right - left); // 调试检查，可删
-        int answer = 0;
+        int ans = 0;
         for (int bit = LOG - 1; bit >= 0; --bit)
         {
             int onesLeft = prefixOne[bit][left];
@@ -228,21 +247,21 @@ template <int LOG = 30> struct KthWavelet
             }
             else
             {
-                answer |= 1LL << bit;
+                ans |= 1LL << bit;
                 rank -= zeros;
                 left = middle[bit] + onesLeft;
                 right = middle[bit] + onesR;
             }
         }
-        return answer;
+        return ans;
     }
 };
 
 template <int LOG = 17> class StaticRngLIS
 {
-    static constexpr int32_t none = -1;
+    static constexpr int32_t none = -1; // 部分排列中未定义的映射；性能版路径用 32 位节省工作区。
 
-    // n 是原排列长度；wt 保存海草边界编码后的静态顺序统计结构。
+    // n 是序列长度；wt 保存海草边界编码，只需其 countLess 接口。
     int n = 0;
     Wavelet<LOG> wt;
 
@@ -263,22 +282,23 @@ template <int LOG = 17> class StaticRngLIS
         return q;
     }
 
-    static int workSize(int n)
+    static size_t workSize(int n)
     {
-        // n 是单位 Monge 排列阶数；返回一次递归乘法所需的 int32_t 工作区长度。
-        int ans = 1;
+        // n 是正的排列阶数；返回递归乘法的工作区元素数，长度用 size_t 避免 32 位累加溢出。
+        size_t ans = 1;
         while (n > 1)
         {
-            ans += 2 * n;
-            n = (n + 1) / 2;
-            ans += 4 * n;
+            ans += 2 * (size_t)n;
+            n = n / 2 + n % 2;
+            ans += 4 * (size_t)n;
         }
         return ans;
     }
 
     static void unitMongeMul(int n, int32_t *work, const int32_t *a, const int32_t *b)
     {
-        // n 是排列阶数，work 是足够大的工作区，a、b 是两个单位 Monge 排列；把乘积行映射写入 work[0,n)。
+        // n>0；a、b 是同阶排列；work 至少有 workSize(n) 项且与输入不重叠。
+        // 把单位 Monge 的 min-plus 乘积对应的行映射写入 work[0,n)，无返回值。
         if (n == 1)
         {
             work[0] = 0;
@@ -295,8 +315,8 @@ template <int LOG = 17> class StaticRngLIS
             // len 是当前值域半边长度；inHalf 判定元素是否属于该半边；shift 把值压到半边内。
             int32_t *aHead = work;
             int32_t *aWhere = work + len;
-            int32_t *bHead = work + 2 * len;
-            int32_t *bWhere = work + 3 * len;
+            int32_t *bHead = work + 2 * (size_t)len;
+            int32_t *bWhere = work + 3 * (size_t)len;
             auto split = [&](const int32_t *src, int32_t *head, int32_t *where)
             {
                 // src 是完整排列；head 写压缩后的子排列，where 写对应原下标。
@@ -311,8 +331,8 @@ template <int LOG = 17> class StaticRngLIS
             };
             split(a, aHead, aWhere);
             split(b, bHead, bWhere);
-            unitMongeMul(len, work + 4 * len, aHead, bHead);
-            int32_t *part = work + 4 * len;
+            unitMongeMul(len, work + 4 * (size_t)len, aHead, bHead);
+            int32_t *part = work + 4 * (size_t)len;
             for (int i = 0; i < len; i++)
             {
                 int row = aWhere[i];
@@ -336,51 +356,46 @@ template <int LOG = 17> class StaticRngLIS
             return x - mid;
         });
 
-        struct Cursor
-        {
-            // delta 是当前 Monge 边界相对平衡，col 是当前列位置。
-            int delta = 0, col = 0;
-        };
         int row = n;
-        auto goRight = [&](Cursor &it)
+        auto goRight = [&](array<int, 2> &it)
         {
             // it 是当前边界游标；向右越过一列并维护其平衡量。
-            if (b[it.col] < mid)
+            if (b[it[1]] < mid)
             {
-                if (colToRow[it.col] >= row)
+                if (colToRow[it[1]] >= row)
                 {
-                    it.delta++;
+                    it[0]++;
                 }
             }
-            else if (colToRow[it.col] < row)
+            else if (colToRow[it[1]] < row)
             {
-                it.delta++;
+                it[0]++;
             }
-            it.col++;
+            it[1]++;
         };
-        auto goUp = [&](Cursor &it)
+        auto goUp = [&](array<int, 2> &it)
         {
             // it 是当前边界游标；把行边界上移一格并维护其平衡量。
             if (a[row] < mid)
             {
-                if (rowToCol[row] >= it.col)
+                if (rowToCol[row] >= it[1])
                 {
-                    it.delta--;
+                    it[0]--;
                 }
             }
-            else if (rowToCol[row] < it.col)
+            else if (rowToCol[row] < it[1])
             {
-                it.delta--;
+                it[0]--;
             }
         };
-        Cursor neg, pos;
+        array<int, 2> neg{}, pos{}; // 两维依次为边界相对平衡量、当前列；保存两条单调边界。
         while (row)
         {
-            while (pos.col != n)
+            while (pos[1] != n)
             {
-                Cursor next = pos;
+                auto next = pos;
                 goRight(next);
-                if (next.delta != 0)
+                if (next[0] != 0)
                 {
                     break;
                 }
@@ -389,20 +404,20 @@ template <int LOG = 17> class StaticRngLIS
             row--;
             goUp(neg);
             goUp(pos);
-            while (neg.delta != 0)
+            while (neg[0] != 0)
             {
                 goRight(neg);
             }
-            if (neg.col > pos.col)
+            if (neg[1] > pos[1])
             {
-                rowToCol[row] = (int32_t)pos.col;
+                rowToCol[row] = (int32_t)pos[1];
             }
         }
     }
 
     static vector<int32_t> partMongeMul(vector<int32_t> a, vector<int32_t> b)
     {
-        // a、b 是同阶部分 Monge 排列；返回它们复合后的部分排列。
+        // a、b 是同阶非空部分排列，空位为 none；返回对应 Monge 乘积的部分排列。
         int n = a.size();
         vector<int32_t> aInv = inverse(a), bInv = inverse(b);
         swap(b, bInv);
@@ -487,8 +502,8 @@ template <int LOG = 17> class StaticRngLIS
         low = seaweed(low);
         high = seaweed(high);
         vector<int32_t> lowPad(n), highPad(n);
-        iota(lowPad.begin(), lowPad.end(), int32_t(0));
-        iota(highPad.begin(), highPad.end(), int32_t(0));
+        iota(lowPad.begin(), lowPad.end(), (int32_t)0);
+        iota(highPad.begin(), highPad.end(), (int32_t)0);
         for (int i = 0; i < mid; i++)
         {
             if (low[i] == none)
@@ -515,25 +530,30 @@ template <int LOG = 17> class StaticRngLIS
     }
 
   public:
-    explicit StaticRngLIS(vector<int> p = {})
+    explicit StaticRngLIS(vector<int> a = {}, bool strict = true)
     {
-        // p 是值域 [0,n) 的静态排列；构造其区间严格 LIS 查询结构。
-        init(move(p));
+        // a 是任意静态整数序列；strict 为真查严格递增，为假查非下降长度。
+        init(move(a), strict);
     }
 
-    void init(vector<int> p)
+    void init(vector<int> a, bool strict = true)
     {
-        // p 是值域 [0,n) 的新静态排列；重建结构，不保留旧查询状态。
-        n = p.size();
-        assert(n <= numeric_limits<int32_t>::max()); // 调试检查，可删
+        // a 是新静态序列；strict 选择严格递增或非下降；覆盖全部旧状态，无返回值。
+        assert(a.size() < (1ULL << 31) - 1); // 调试检查，可删
+        n = (int)a.size();
         assert((unsigned long long)n < (1ULL << LOG)); // 调试检查，可删
-        vector<char> used(n);
+        vector<int32_t> order(n);
+        iota(order.begin(), order.end(), (int32_t)0);
+        sort(order.begin(), order.end(), [&](int i, int j)
+        {
+            // i、j 是原下标；返回排秩顺序，相等值在严格 / 非下降模式按下标降序 / 升序。
+            if (a[i] != a[j]) return a[i] < a[j];
+            return strict ? i > j : i < j;
+        });
         vector<int32_t> q(n);
         for (int i = 0; i < n; i++)
         {
-            assert(0 <= p[i] && p[i] < n && !used[p[i]]); // 调试检查，可删
-            used[p[i]] = true;
-            q[i] = (int32_t)p[i];
+            q[order[i]] = (int32_t)i;
         }
         vector<int32_t> edge = seaweed(q);
         vector<int> code(n);
@@ -546,7 +566,8 @@ template <int LOG = 17> class StaticRngLIS
 
     int query(int l, int r) const
     {
-        // l、r 是半开区间端点；返回排列 p[l,r) 的严格最长递增子序列长度。
+        // l、r 是半开区间端点；返回所选模式的最长子序列长度，空区间为 0。
+        // 递减 / 非上升：先 reverse(a)，保持 strict 选择，对原区间改查 [n-r,n-l)。
         assert(0 <= l && l <= r && r <= n); // 调试检查，可删
         return r - l - wt.countLess(l, n, r);
     }

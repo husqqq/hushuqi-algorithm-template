@@ -5,6 +5,7 @@ using namespace std;
 template <int LOG = 30> struct Wavelet
 {
     static_assert(1 <= LOG && LOG <= 62);
+    // 逐位读取先转为 64 位，关闭整数宏且 LOG>31 时也不越位移位。
 
     // size 是序列长度，middle[bit] 是该层零段长度。
     int size;
@@ -41,7 +42,7 @@ template <int LOG = 30> struct Wavelet
             pre0[bit].assign(size + 1, 0);
             for (int i = 0; i < size; ++i)
             {
-                bool one = values[i] >> bit & 1;
+                bool one = (unsigned long long)values[i] >> bit & 1;
                 prefixOne[bit][i + 1] = prefixOne[bit][i] + one;
                 pre0[bit][i + 1] = pre0[bit][i] + (one ? 0 : values[i]);
             }
@@ -49,7 +50,7 @@ template <int LOG = 30> struct Wavelet
             int zero = 0, one = middle[bit];
             for (int value : values)
             {
-                if (value >> bit & 1)
+                if ((unsigned long long)value >> bit & 1)
                 {
                     next[one++] = value;
                 }
@@ -109,7 +110,7 @@ template <int LOG = 30> struct Wavelet
             int onesLeft = prefixOne[bit][left];
             int onesR = prefixOne[bit][right];
             int zeros = right - left - onesR + onesLeft;
-            if (hi >> bit & 1)
+            if ((unsigned long long)hi >> bit & 1)
             {
                 count += zeros;
                 sum += pre0[bit][right] - pre0[bit][left];
@@ -144,7 +145,7 @@ template <int LOG = 30> struct Wavelet
         {
             int onesLeft = prefixOne[bit][left];
             int onesR = prefixOne[bit][right];
-            if (value >> bit & 1)
+            if ((unsigned long long)value >> bit & 1)
             {
                 left = middle[bit] + onesLeft;
                 right = middle[bit] + onesR;
@@ -178,6 +179,7 @@ template <int LOG = 30> struct Wavelet
 template <int LOG = 30> struct KthWavelet
 {
     static_assert(1 <= LOG && LOG <= 62);
+    // 逐位读取先转为 64 位，关闭整数宏且 LOG>31 时也不越位移位。
 
     // size 是序列长度，middle[bit] 是该层零段长度；只保存第 k 小所需的计数。
     int32_t size = 0;
@@ -207,13 +209,13 @@ template <int LOG = 30> struct KthWavelet
             prefixOne[bit].assign((size_t)size + 1, 0);
             for (int i = 0; i < size; ++i)
             {
-                prefixOne[bit][i + 1] = prefixOne[bit][i] + (values[i] >> bit & 1);
+                prefixOne[bit][i + 1] = prefixOne[bit][i] + ((unsigned long long)values[i] >> bit & 1);
             }
             middle[bit] = size - prefixOne[bit][size];
             int zero = 0, one = middle[bit];
             for (int value : values)
             {
-                if (value >> bit & 1)
+                if ((unsigned long long)value >> bit & 1)
                 {
                     next[one++] = value;
                 }
