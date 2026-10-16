@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "updated_at": "2026-10-15T19:35:30.585869Z",
+  "updated_at": "2026-10-16T06:06:15.916871Z",
   "official_repository": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
     "url": "https://github.com/yosupo06/library-checker-problems"
@@ -1626,7 +1626,7 @@
       "title": "Range Affine Point Get",
       "category": "data_structure",
       "source": "data_structure/range_affine_point_get/main.cpp",
-      "source_sha256": "2cfd5f007b05af9b4622c634c4dd8b446fd8d11d88fa96253c12618184ff9758",
+      "source_sha256": "f76a48fc27cc47a571f4d1e934f29ec4350476577143c71b3bbd3e23727ea149",
       "meta": "data_structure/range_affine_point_get/meta.json",
       "state": "template_solution"
     },
