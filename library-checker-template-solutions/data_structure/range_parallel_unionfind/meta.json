@@ -136,22 +136,22 @@
     "content_sha256": "968b41b438726eba70719c4b567a5a5654e0c6c4a302f2d31e61f4f8cec62fbf"
   },
   "validation": {
-    "status": "local_only",
-    "checked_at": null,
+    "status": "online_ac",
+    "checked_at": "2026-10-16T06:48:58.577595Z",
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch03_revised.cpp",
       "hushuqi算法竞赛模板/tests/test_ch01_mint.cpp"
     ],
     "current_source_sha256": "003fe5ce72be0e771943ef5171e2caea786ace35566d2ca21dd0c51a2d4007e8",
-    "current_source_online_verdict": null,
-    "current_source_submission_id": null,
-    "current_source_time": null,
-    "current_source_memory": null,
-    "current_source_submission_time": null,
-    "current_source_is_latest": null,
-    "server_source_sha256": null,
-    "note": "Generated from the current chapter 03 template; online verification has not run for this source."
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 410913,
+    "current_source_time": 0.344,
+    "current_source_memory": 43929600,
+    "current_source_submission_time": "2026-10-16T06:48:17.939134Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "003fe5ce72be0e771943ef5171e2caea786ace35566d2ca21dd0c51a2d4007e8",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
   },
   "submission_attempts": [
     {
@@ -168,6 +168,21 @@
       "compile_standard": "gnu++20",
       "submitted_at": "2026-08-20T13:10:43.940487Z",
       "recorded_at": "2026-08-20T13:11:25.177929Z"
+    },
+    {
+      "submission_id": 410913,
+      "source_sha256": "003fe5ce72be0e771943ef5171e2caea786ace35566d2ca21dd0c51a2d4007e8",
+      "server_source_sha256": "003fe5ce72be0e771943ef5171e2caea786ace35566d2ca21dd0c51a2d4007e8",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.344,
+      "memory": 43929600,
+      "submission_time": "2026-10-16T06:48:17.939134Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-10-16T06:48:18.131341Z",
+      "recorded_at": "2026-10-16T06:48:58.577595Z"
     }
   ],
   "notes": [
