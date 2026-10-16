@@ -2028,7 +2028,7 @@ signed main()
         ("3_4_011.hpp",),
         "3.4.011",
         ("rangeInv",),
-        ("tests/test_ch03_static_range_queries.cpp",),
+        ("tests/test_ch03_static_range_queries.cpp", "tests/test_ch03_range_inversions.cpp"),
         r'''
 signed main()
 {

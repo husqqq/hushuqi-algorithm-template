@@ -32,7 +32,7 @@ signed main()
     vector<int> a{3, 1, 2, 1};
     vector<pair<int, int>> fixed{{0, 4}, {1, 4}, {2, 2}, {0, 1}};
     assert((distinct(a, fixed) == vector<int>{3, 2, 0, 1}));
-    assert((rangeInv(a, fixed) == vector<int>{4, 1, 0, 0}));
+    assert((rangeInv(a, fixed) == vector<long long>{4, 1, 0, 0}));
 
     mt19937_64 rng(20260819);
     unsigned long long hash = 0;

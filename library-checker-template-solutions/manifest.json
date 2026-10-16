@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "updated_at": "2026-10-16T09:15:14.758973Z",
+  "updated_at": "2026-10-16T09:56:53.432746Z",
   "official_repository": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
     "url": "https://github.com/yosupo06/library-checker-problems"
@@ -1896,7 +1896,7 @@
       "title": "Static Range Inversions Query",
       "category": "data_structure",
       "source": "data_structure/static_range_inversions_query/main.cpp",
-      "source_sha256": "4320d2434b00957ec2d96f0fe73e80cd1482670a4a65e57b20ffb8e513d1fd48",
+      "source_sha256": "b1736052d38980520fd07dfea2ed39fd6cd36cae306ccb28a45390d8ac66e3af",
       "meta": "data_structure/static_range_inversions_query/meta.json",
       "state": "template_solution"
     },
