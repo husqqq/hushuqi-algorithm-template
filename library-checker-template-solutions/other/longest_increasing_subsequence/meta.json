@@ -11,9 +11,9 @@
       "method": "deterministic_generation",
       "generator": {
         "path": "library-checker-template-solutions/tools/generate_ch02_lc.py",
-        "sha256": "135c1913e362c3506d8e5d1a1b93d7bf9b3a4c11b79a322c9dda1b88468762ac",
+        "sha256": "5805acfc7d1359f2aca7c1e04c4a72fb4a63940386ea0856caad75edc9247eed",
         "working_directory": ".",
-        "runner": "Python 3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+        "runner": "Python 3.13.14",
         "argv": [
           "--write"
         ],
@@ -23,16 +23,16 @@
           "source_path": "library-checker-template-solutions/other/longest_increasing_subsequence/main.cpp",
           "source_sha256": "33d005811494fa1428536b8c3214301dd39743a2a7f85504302d7fb92932e73b",
           "generator_path": "library-checker-template-solutions/tools/generate_ch02_lc.py",
-          "generator_sha256": "135c1913e362c3506d8e5d1a1b93d7bf9b3a4c11b79a322c9dda1b88468762ac",
+          "generator_sha256": "5805acfc7d1359f2aca7c1e04c4a72fb4a63940386ea0856caad75edc9247eed",
           "working_directory": ".",
-          "runner": "Python 3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+          "runner": "Python 3.13.14",
           "argv": [
             "--write"
           ],
           "inputs": [
             {
               "path": "hushuqi算法竞赛模板/02-基础算法与离线算法.md",
-              "sha256": "033d611db27482a83a01c4eb92332a0f94c15a235ec2b6eff301c56bdb365a2b"
+              "sha256": "632459af5f692cf22d58f388298f6c4e7ad28fe59c06e31d2f0b9be5fb2af302"
             },
             {
               "path": "hushuqi算法竞赛模板/include/common.hpp",
@@ -58,7 +58,7 @@
           "generated_sha256": "33d005811494fa1428536b8c3214301dd39743a2a7f85504302d7fb92932e73b",
           "byte_equal": true
         },
-        "generation_evidence_sha256": "6eb6e8e35efd782b0100ce542967c87e7e97c085548a1bcfd8d8c9ac387ae9ad"
+        "generation_evidence_sha256": "a14bfcce0d18d4e15fdeb4264623068d7ee9abe40f6ba9041bac071f98da9cc8"
       }
     }
   },

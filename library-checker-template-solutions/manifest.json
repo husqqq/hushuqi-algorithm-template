@@ -1329,7 +1329,7 @@
       "title": "Number of Substrings",
       "category": "string",
       "source": "string/number_of_substrings/main.cpp",
-      "source_sha256": "e9d4f2022249369ce7658f6a82af67d470bccabd84961fd1f4523ae21ce33176",
+      "source_sha256": "b4e86d7f23c28e687082c039781af89d2094b7a02b99f8e85e12d7dca12042bc",
       "meta": "string/number_of_substrings/meta.json",
       "state": "template_solution"
     },
@@ -1752,7 +1752,7 @@
       "title": "Run Enumerate",
       "category": "string",
       "source": "string/runenumerate/main.cpp",
-      "source_sha256": "d7dccbff5dcb05b065c1593744201378cb195a3a23dec8f1ff514036dc4dcb1a",
+      "source_sha256": "81c5e7878d985f59af3e0789cb48b46ecdde7fed133ef77fd64d819db6dc19d1",
       "meta": "string/runenumerate/meta.json",
       "state": "template_solution"
     },

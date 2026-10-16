@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import hashlib
+import copy
 import importlib.util
 import json
 import shutil
@@ -111,6 +112,42 @@ class GenerateChapter02Test(unittest.TestCase):
             self.assertEqual(changed["validation"]["status"], "local_only")
             self.assertEqual(changed["validation"]["current_source_sha256"], "0" * 64)
             self.assertEqual(changed["submission_attempts"], previous["submission_attempts"])
+
+    def test_check_uses_recorded_runner_but_rejects_proof_tampering(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="ch02-runner-") as directory:
+            with patch.object(GEN, "OUT", Path(directory)), patch.object(GEN, "ROOT", WORKSPACE):
+                manifest = {"problems": []}
+                GEN.write_current(manifest)
+                target = GEN.OUT / "other" / GEN.NAME / "meta.json"
+                digest = manifest["problems"][0]["source_sha256"]
+                previous = GEN.expected_meta(digest, runner="Python 3.12.14")
+                target.write_text(json.dumps(previous), encoding="utf-8")
+                with patch.object(GEN.platform, "python_version", return_value="3.13.14"):
+                    self.assertEqual(GEN.check_current(manifest), [])
+                for field, value in (("runner", None), ("runner", "Python 3.11.0"),
+                                     ("sha256", "0" * 64), ("generation_evidence_sha256", "0" * 64)):
+                    altered = copy.deepcopy(previous)
+                    altered["provenance"]["evidence"]["generator"][field] = value
+                    target.write_text(json.dumps(altered), encoding="utf-8")
+                    self.assertTrue(GEN.check_current(manifest), field)
+                altered = copy.deepcopy(previous)
+                altered["provenance"]["evidence"]["generator"]["generation_evidence"]["inputs"][0]["sha256"] = "0" * 64
+                target.write_text(json.dumps(altered), encoding="utf-8")
+                self.assertTrue(GEN.check_current(manifest))
+
+    def test_stale_hashes_reset_current_verdict_even_without_source_write(self) -> None:
+        digest = hashlib.sha256(GEN.generated_source()).hexdigest()
+        with tempfile.TemporaryDirectory(prefix="ch02-stale-") as directory:
+            source = Path(directory) / "main.cpp"
+            for field, key in (("provenance", "source_sha256"), ("validation", "current_source_sha256")):
+                previous = GEN.expected_meta(digest)
+                previous["validation"]["status"] = "online_ac"
+                previous["submission_attempts"] = [{"submission_id": 123}]
+                previous[field][key] = "0" * 64
+                source.with_name("meta.json").write_text(json.dumps(previous), encoding="utf-8")
+                current = GEN.current_meta(source, digest, False)
+                self.assertEqual(current["validation"]["status"], "local_only")
+                self.assertEqual(current["submission_attempts"], previous["submission_attempts"])
 
 
 if __name__ == "__main__":

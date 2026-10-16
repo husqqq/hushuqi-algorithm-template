@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import platform
 import re
 import sys
 from pathlib import Path
@@ -106,7 +107,7 @@ def template_inputs() -> list[dict[str, str]]:
     ]
 
 
-def generation_evidence(digest: str) -> dict:
+def generation_evidence(digest: str, *, runner: str | None = None) -> dict:
     """Return stable deterministic-generation evidence for the current source."""
     tool = Path(__file__).resolve()
     return {
@@ -117,7 +118,7 @@ def generation_evidence(digest: str) -> dict:
         "generator_path": tool.relative_to(ROOT).as_posix(),
         "generator_sha256": sha256(tool),
         "working_directory": ".",
-        "runner": f"Python {sys.version.splitlines()[0]}",
+        "runner": runner if runner is not None else f"Python {platform.python_version()}",
         "argv": ["--write"],
         "inputs": template_inputs(),
         "generated_sha256": digest,
@@ -137,8 +138,8 @@ def entry(digest: str) -> dict:
     }
 
 
-def expected_meta(digest: str) -> dict:
-    evidence = generation_evidence(digest)
+def expected_meta(digest: str, *, runner: str | None = None) -> dict:
+    evidence = generation_evidence(digest, runner=runner)
     return {
         "schema_version": 3,
         "name": NAME,
@@ -198,7 +199,11 @@ def read_json(path: Path) -> dict | None:
 def current_meta(target: Path, digest: str, source_changed: bool) -> dict:
     baseline = expected_meta(digest)
     previous = read_json(target.parent / "meta.json")
-    if previous is None or source_changed:
+    if (previous is None or source_changed
+            or not isinstance(previous.get("provenance"), dict)
+            or previous["provenance"].get("source_sha256") != digest
+            or not isinstance(previous.get("validation"), dict)
+            or previous["validation"].get("current_source_sha256") != digest):
         if previous and isinstance(previous.get("submission_attempts"), list):
             baseline["submission_attempts"] = previous["submission_attempts"]
         return baseline
@@ -211,14 +216,8 @@ def current_meta(target: Path, digest: str, source_changed: bool) -> dict:
         "official_reference": baseline["official_reference"],
         "reference": baseline["reference"],
     })
-    validation = previous.get("validation")
-    if not isinstance(validation, dict):
-        validation = baseline["validation"]
-    else:
-        # 源码字节未变时保留既有线上认证，只刷新生成器负责的本地检查列表。
-        validation["checks"] = baseline["validation"]["checks"]
-        validation.setdefault("current_source_sha256", digest)
-    previous["validation"] = validation
+    # 两处源码哈希均已核对，只刷新生成器负责的本地检查列表。
+    previous["validation"]["checks"] = baseline["validation"]["checks"]
     return previous
 
 
@@ -233,10 +232,18 @@ def check_current(manifest: dict) -> list[str]:
         errors.append(f"source out of date: {target.relative_to(ROOT)}")
     if entries.get(NAME) != entry(digest):
         errors.append(f"manifest out of date: other/{NAME}")
-    expected = expected_meta(digest)
     if meta is None:
         errors.append(f"missing or invalid metadata: other/{NAME}")
-    elif (meta.get("provenance") != expected["provenance"]
+        return errors
+    try:
+        runner = meta["provenance"]["evidence"]["generator"]["runner"]
+    except (KeyError, TypeError):
+        runner = None
+    if not isinstance(runner, str) or not re.fullmatch(r"Python \d+\.\d+\.\d+\S*", runner):
+        errors.append(f"metadata provenance has invalid runner: other/{NAME}")
+        return errors
+    expected = expected_meta(digest, runner=runner)
+    if (meta.get("provenance") != expected["provenance"]
           or meta.get("official_reference") != expected["official_reference"]
           or meta.get("reference") != expected["reference"]):
         errors.append(f"metadata provenance out of date: other/{NAME}")

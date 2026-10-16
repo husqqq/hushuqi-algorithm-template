@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import importlib.util
 import json
+import platform
 import re
 import sys
 import tempfile
@@ -294,7 +295,7 @@ def check_documentation(header: str) -> None:
         raise ValueError(f"{topic}: documentation differs from print header")
 
 
-def generation_evidence(name: str, digest: str) -> dict:
+def generation_evidence(name: str, digest: str, *, runner: str | None = None) -> dict:
     header, adapter = SPECS[name]
     check_documentation(header)
     seen: set[Path] = set()
@@ -318,7 +319,7 @@ def generation_evidence(name: str, digest: str) -> dict:
             "argv": ["python", "library-checker-template-solutions/tools/generate_ch04_lc.py",
                      "--only", name, "--write"],
             "working_directory": ".",
-            "runner": f"Python {sys.version.split()[0]}",
+            "runner": runner if runner is not None else f"Python {platform.python_version()}",
         },
         "template_inputs": [record(p) for p in sorted(seen)],
         "documentation_inputs": [record(TEMPLATE / "04-字符串.md"),
@@ -336,7 +337,7 @@ def generation_evidence(name: str, digest: str) -> dict:
     return proof
 
 
-def expected_meta(name: str, digest: str) -> dict:
+def expected_meta(name: str, digest: str, *, runner: str | None = None) -> dict:
     source_rel = f"string/{name}/main.cpp"
     result = {
         "schema_version": 3,
@@ -361,7 +362,7 @@ def expected_meta(name: str, digest: str) -> dict:
         "submission_attempts": [],
     }
     if name in PROVEN:
-        result["provenance"]["evidence"] = generation_evidence(name, digest)
+        result["provenance"]["evidence"] = generation_evidence(name, digest, runner=runner)
     return result
 
 
@@ -388,9 +389,10 @@ def generated_entry(name: str, digest: str) -> dict:
 
 def read_json(path: Path) -> dict | None:
     try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError):
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError):
         return None
+    return data if isinstance(data, dict) else None
 
 
 def current_meta_or_reset(name: str, target: Path, digest: str, source_changed: bool) -> dict:
@@ -401,7 +403,11 @@ def current_meta_or_reset(name: str, target: Path, digest: str, source_changed: 
     """
     baseline = expected_meta(name, digest)
     previous = read_json(target.parent / "meta.json")
-    if previous is None or source_changed:
+    if (previous is None or source_changed
+            or not isinstance(previous.get("provenance"), dict)
+            or previous["provenance"].get("source_sha256") != digest
+            or not isinstance(previous.get("validation"), dict)
+            or previous["validation"].get("current_source_sha256") != digest):
         if previous and isinstance(previous.get("submission_attempts"), list):
             baseline["submission_attempts"] = previous["submission_attempts"]
         return baseline
@@ -413,6 +419,7 @@ def current_meta_or_reset(name: str, target: Path, digest: str, source_changed: 
         "provenance": baseline["provenance"],
         "official_reference": baseline["official_reference"],
     })
+    previous["validation"]["checks"] = baseline["validation"]["checks"]
     return previous
 
 
@@ -426,14 +433,24 @@ def check_current(manifest: dict, names=None) -> list[str]:
         target = OUT / "string" / name / "main.cpp"
         meta = read_json(target.parent / "meta.json")
         expected = generated_entry(name, digest)
-        baseline = expected_meta(name, digest)
         if not target.is_file() or target.read_bytes() != data:
             problems.append(f"source out of date: {target.relative_to(ROOT)}")
         if entries.get(name) != expected:
             problems.append(f"manifest out of date: string/{name}")
         if meta is None:
             problems.append(f"missing or invalid metadata: string/{name}")
-        elif (
+            continue
+        runner = None
+        if name in PROVEN:
+            try:
+                runner = meta["provenance"]["evidence"]["generator"]["runner"]
+            except (KeyError, TypeError):
+                pass
+            if not isinstance(runner, str) or not re.fullmatch(r"Python \d+\.\d+\.\d+\S*", runner):
+                problems.append(f"metadata provenance has invalid runner: string/{name}")
+                continue
+        baseline = expected_meta(name, digest, runner=runner)
+        if (
             meta.get("provenance") != baseline["provenance"]
             or meta.get("official_reference") != baseline["official_reference"]
         ):
