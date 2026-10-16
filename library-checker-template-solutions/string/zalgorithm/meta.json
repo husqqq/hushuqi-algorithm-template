@@ -11,7 +11,7 @@
       "method": "deterministic_generation",
       "generator": {
         "path": "library-checker-template-solutions/tools/generate_ch04_lc.py",
-        "sha256": "01ef3d2a724227449cb9c59d097c869fcdee75378127a18bc90384170ee5f7b4",
+        "sha256": "f1f2175cadc3cae9c5d55b4ac8b8d0ac23cb3c31f09ed7a20cdd127701d24781",
         "argv": [
           "python",
           "library-checker-template-solutions/tools/generate_ch04_lc.py",
@@ -31,7 +31,7 @@
       "documentation_inputs": [
         {
           "path": "hushuqi算法竞赛模板/04-字符串.md",
-          "sha256": "60d25a211212a6f13cfc268f8b02c79281a2fb4fd86d8aec05f8e27b989696b0"
+          "sha256": "e372c47bcbec006b4cc7d2776511568847f77b21898d6c771c50c8d8434987a1"
         },
         {
           "path": "hushuqi算法竞赛模板/tools/sync_topic_docs.py",
@@ -50,7 +50,7 @@
       "temporary_regenerations": 2,
       "byte_identical": true,
       "source_sha256": "5b7a1f75d9ead4303fa7b6c5573885d36896eda51c5186f218245ed2d0de55e0",
-      "evidence_sha256": "98b16b8ca37a0ee09ae3fbf06da14914323cfb981864d1af81440f46ce9d86fc"
+      "evidence_sha256": "4c3dfa169021a8b9a2d25005c780c14e86a3a2f6b8cf1e897b6baa5ce45ed01b"
     }
   },
   "official_reference": {

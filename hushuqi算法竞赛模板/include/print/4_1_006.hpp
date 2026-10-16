@@ -2,8 +2,6 @@
 using namespace std;
 #define int long long
 
-#include "support/topic_common.hpp"
-
 vector<int> lyndon(const string &s)
 {
     // s 是待分解字符串；返回各段左端点，并在末尾附加 s.size()。
@@ -12,9 +10,9 @@ vector<int> lyndon(const string &s)
     for (int i = 0; i < n;)
     {
         int j = i + 1, k = i;
-        while (j < n && s[k] <= s[j])
+        while (j < n && (unsigned char)s[k] <= (unsigned char)s[j])
         {
-            if (s[k] < s[j])
+            if ((unsigned char)s[k] < (unsigned char)s[j])
             {
                 k = i;
             }

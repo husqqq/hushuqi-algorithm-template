@@ -15,7 +15,7 @@ OUT = ROOT / "library-checker-template-solutions"
 COMMIT = "04c8de378bab67be926325de2871f0babb8e6451"
 INC = re.compile(r'^\s*#\s*include\s+"([^"]+)"\s*(?://.*)?$')
 # 仅对已逐题复核的条目强制完整来源证明；其余条目继续公开同步缺口。
-PROVEN = {"number_of_substrings", "longest_common_substring", "runenumerate", "palindromes_in_deque", "zalgorithm", "enumerate_palindromes"}
+PROVEN = {"number_of_substrings", "longest_common_substring", "runenumerate", "palindromes_in_deque", "zalgorithm", "enumerate_palindromes", "lyndon_factorization"}
 
 SPECS = {
     "aho_corasick": ("4_2_002.hpp", r'''
@@ -84,7 +84,12 @@ signed main()
     "lyndon_factorization": ("4_1_006.hpp", r'''
 signed main()
 {
-    string s; cin >> s; auto a = lyndon(s);
+    // 无参数；输出 Lyndon 分解左端点及末尾哨兵，成功返回 0。
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    string s;
+    cin >> s;
+    auto a = lyndon(s);
     for (int i = 0; i < (int)a.size(); i++) cout << (i ? " " : "") << a[i];
     cout << '\n';
 }

@@ -6,7 +6,52 @@
   "provenance": {
     "kind": "template_solution",
     "source": "string/lyndon_factorization/main.cpp",
-    "source_sha256": "34392a20a0d24e7f06046c3390b7511cd0997f22e320f3c88c2a6259ed63eedf"
+    "source_sha256": "d965573a9df5cce6e2b3fe18392a90826655a8bc3e32cbf186034213abd89f7a",
+    "evidence": {
+      "method": "deterministic_generation",
+      "generator": {
+        "path": "library-checker-template-solutions/tools/generate_ch04_lc.py",
+        "sha256": "f1f2175cadc3cae9c5d55b4ac8b8d0ac23cb3c31f09ed7a20cdd127701d24781",
+        "argv": [
+          "python",
+          "library-checker-template-solutions/tools/generate_ch04_lc.py",
+          "--only",
+          "lyndon_factorization",
+          "--write"
+        ],
+        "working_directory": ".",
+        "runner": "Python 3.13.14"
+      },
+      "template_inputs": [
+        {
+          "path": "hushuqi算法竞赛模板/include/full/4_1_006.hpp",
+          "sha256": "e73acee7a564b4fdb6c2071fb0dd535e56a2e2564dad85b8234a704b5d566251"
+        }
+      ],
+      "documentation_inputs": [
+        {
+          "path": "hushuqi算法竞赛模板/04-字符串.md",
+          "sha256": "e372c47bcbec006b4cc7d2776511568847f77b21898d6c771c50c8d8434987a1"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/tools/sync_topic_docs.py",
+          "sha256": "70ccce225e3cf0bfe47fbce830f2ea6c37f75afce0e9f3b51088d0749285bec6"
+        },
+        {
+          "path": "hushuqi算法竞赛模板/include/print/4_1_006.hpp",
+          "sha256": "e73acee7a564b4fdb6c2071fb0dd535e56a2e2564dad85b8234a704b5d566251"
+        }
+      ],
+      "adapter_sha256": "a8fe1beac343f60aa6de2cb63f242d5e59bf203865e49eb06edf5559b38805ce",
+      "controlled_reference": {
+        "path": "library-checker-solutions/string/lyndon_factorization/main.cpp",
+        "sha256": "a6e1447ddd663cf2669287d8ae1df4cb16babe0a27679ac26704eaa858387931"
+      },
+      "temporary_regenerations": 2,
+      "byte_identical": true,
+      "source_sha256": "d965573a9df5cce6e2b3fe18392a90826655a8bc3e32cbf186034213abd89f7a",
+      "evidence_sha256": "f26338a240692d6acb92cb929446d861a6a6a6ae3ecf860bfdf62e0322b107fa"
+    }
   },
   "official_reference": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
@@ -15,19 +60,19 @@
   },
   "validation": {
     "status": "online_ac",
-    "current_source_sha256": "34392a20a0d24e7f06046c3390b7511cd0997f22e320f3c88c2a6259ed63eedf",
+    "current_source_sha256": "d965573a9df5cce6e2b3fe18392a90826655a8bc3e32cbf186034213abd89f7a",
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch04_lyndon.cpp"
     ],
-    "checked_at": "2026-08-21T07:39:58.390817Z",
+    "checked_at": "2026-10-16T03:00:31.032996Z",
     "current_source_online_verdict": "AC",
-    "current_source_submission_id": 395547,
-    "current_source_time": 0.034,
-    "current_source_memory": 8880128,
-    "current_source_submission_time": "2026-08-21T07:39:33.179279Z",
+    "current_source_submission_id": 410760,
+    "current_source_time": 0.029,
+    "current_source_memory": 8785920,
+    "current_source_submission_time": "2026-10-16T02:59:56.029171Z",
     "current_source_is_latest": true,
-    "server_source_sha256": "34392a20a0d24e7f06046c3390b7511cd0997f22e320f3c88c2a6259ed63eedf",
+    "server_source_sha256": "d965573a9df5cce6e2b3fe18392a90826655a8bc3e32cbf186034213abd89f7a",
     "note": "当前独立源码已通过 Library Checker 在线评测。"
   },
   "submission_attempts": [
@@ -45,6 +90,21 @@
       "compile_standard": "gnu++20",
       "submitted_at": "2026-08-21T07:39:33.329668Z",
       "recorded_at": "2026-08-21T07:39:58.390037Z"
+    },
+    {
+      "submission_id": 410760,
+      "source_sha256": "d965573a9df5cce6e2b3fe18392a90826655a8bc3e32cbf186034213abd89f7a",
+      "server_source_sha256": "d965573a9df5cce6e2b3fe18392a90826655a8bc3e32cbf186034213abd89f7a",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 0.029,
+      "memory": 8785920,
+      "submission_time": "2026-10-16T02:59:56.029171Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-10-16T02:59:56.244535Z",
+      "recorded_at": "2026-10-16T03:00:31.032375Z"
     }
   ]
 }

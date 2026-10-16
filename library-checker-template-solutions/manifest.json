@@ -1014,7 +1014,7 @@
       "title": "Lyndon Factorization",
       "category": "string",
       "source": "string/lyndon_factorization/main.cpp",
-      "source_sha256": "34392a20a0d24e7f06046c3390b7511cd0997f22e320f3c88c2a6259ed63eedf",
+      "source_sha256": "d965573a9df5cce6e2b3fe18392a90826655a8bc3e32cbf186034213abd89f7a",
       "meta": "string/lyndon_factorization/meta.json",
       "state": "template_solution"
     },
