@@ -1600,16 +1600,14 @@ signed main()
         ("template <class T, class F> class SparsePtSeg",),
         ("tests/test_ch03_sparse_affine.cpp", "tests/test_ch01_mint.cpp"),
         r'''
-struct Aff
-{
-    Z a = 1, b = 0;
-};
+using Fn = array<Z, 2>; // 第 0 维是一次项系数，第 1 维是常数项。
 
 struct Compose
 {
-    Aff operator()(const Aff &f, const Aff &g) const
+    Fn operator()(const Fn &f, const Fn &g) const
     {
-        return {g.a * f.a, g.a * f.b + g.b};
+        // f、g 是左右两段函数；返回先 f 后 g 的复合 g(f(x))。
+        return {g[0] * f[0], g[0] * f[1] + g[1]};
     }
 };
 
@@ -1620,7 +1618,7 @@ signed main()
 
     int n, q;
     cin >> n >> q;
-    SparsePtSeg<Aff, Compose> st(0, n, Aff{}, Compose{});
+    SparsePtSeg<Fn, Compose> st(0, n, Fn{1, 0}, Compose{});
     st.reserveNodes(q);
     while (q--)
     {
@@ -1637,7 +1635,7 @@ signed main()
             int l, r, x;
             cin >> l >> r >> x;
             auto f = st.prod(l, r);
-            cout << (f.a * Z(x) + f.b).val() << '\n';
+            cout << (f[0] * Z(x) + f[1]).val() << '\n';
         }
     }
     return 0;

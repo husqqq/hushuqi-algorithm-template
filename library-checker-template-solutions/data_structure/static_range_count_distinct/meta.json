@@ -11,12 +11,12 @@
       "method": "deterministic_generation",
       "generator": {
         "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-        "sha256": "76803f175ee62c3dbf1e4f625f6480a16f60049c612c0d17180bf77a1266bde1",
+        "sha256": "14c9c6189e7725537b11b9c2950dd4699a648c1df1a361a6770d56a6589720cb",
         "working_directory": ".",
-        "runner": "Python 3.13.14",
+        "runner": "Python 3.12.14",
         "argv": [
           "--only",
-          "static_range_count_distinct,static_range_inversions_query",
+          "area_of_union_of_rectangles,deque,rectangle_sum,point_add_range_sum,range_chmin_chmax_add_range_sum,persistent_queue,range_affine_point_get,range_affine_range_sum,majority_voting,point_set_range_composite_large_array,static_range_count_distinct,static_range_inversions_query",
           "--write-index"
         ],
         "generation_evidence": {
@@ -25,12 +25,12 @@
           "source_path": "library-checker-template-solutions/data_structure/static_range_count_distinct/main.cpp",
           "source_sha256": "3344e068cc2345348b901bd6ba12607e543a03585d0fa71323d3dac786d6ae05",
           "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-          "generator_sha256": "76803f175ee62c3dbf1e4f625f6480a16f60049c612c0d17180bf77a1266bde1",
+          "generator_sha256": "14c9c6189e7725537b11b9c2950dd4699a648c1df1a361a6770d56a6589720cb",
           "working_directory": ".",
-          "runner": "Python 3.13.14",
+          "runner": "Python 3.12.14",
           "argv": [
             "--only",
-            "static_range_count_distinct,static_range_inversions_query",
+            "area_of_union_of_rectangles,deque,rectangle_sum,point_add_range_sum,range_chmin_chmax_add_range_sum,persistent_queue,range_affine_point_get,range_affine_range_sum,majority_voting,point_set_range_composite_large_array,static_range_count_distinct,static_range_inversions_query",
             "--write-index"
           ],
           "inputs": [
@@ -66,7 +66,7 @@
           "generated_sha256": "3344e068cc2345348b901bd6ba12607e543a03585d0fa71323d3dac786d6ae05",
           "byte_equal": true
         },
-        "generation_evidence_sha256": "e4e687b59b5eef66c343ef0f57e150843b77e7930cee381b8128d4cc6182c89e"
+        "generation_evidence_sha256": "fb13a1847fbf8ecc0728cbb75de2212a8ea1595100d93cd1a118cc85abcc0089"
       },
       "adapter_sha256": "b46e1980f1b9a15e90a4ff3138204b19ef412357470a91c921cba773d73c1ac0",
       "template_inputs": [
@@ -102,7 +102,7 @@
       "temporary_regenerations": 2,
       "byte_identical": true,
       "source_sha256": "3344e068cc2345348b901bd6ba12607e543a03585d0fa71323d3dac786d6ae05",
-      "evidence_sha256": "eef42fc2d885f4632a00b990c54bc14c72613da502b5bf11a7e17781dd87522b"
+      "evidence_sha256": "0e2dea5fdd77f02e5dfcb1a6dbba4d5c498cfa08e4cdbec72b7d74c82d577cf8"
     }
   },
   "reference": {

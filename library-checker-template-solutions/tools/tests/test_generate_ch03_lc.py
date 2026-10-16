@@ -30,7 +30,7 @@ def snapshot():
 class GenerateChapter03Test(unittest.TestCase):
     def run_tool(self, *args):
         return subprocess.run(
-            [sys.executable, str(SCRIPT), *args], cwd=WORKSPACE,
+            [sys.executable, "-X", "utf8", str(SCRIPT), *args], cwd=WORKSPACE,
             capture_output=True, text=True, encoding="utf-8", check=False,
         )
 

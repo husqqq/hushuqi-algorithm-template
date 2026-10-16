@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "updated_at": "2026-10-16T06:06:15.916871Z",
+  "updated_at": "2026-10-16T06:10:27.848265Z",
   "official_repository": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
     "url": "https://github.com/yosupo06/library-checker-problems"
@@ -1428,7 +1428,7 @@
       "title": "Point Set Range Composite (Large Array)",
       "category": "data_structure",
       "source": "data_structure/point_set_range_composite_large_array/main.cpp",
-      "source_sha256": "8fb0dfe0afc94a577be87bf938e940aacb7dbcc5cfa9c0140b0729be9c994197",
+      "source_sha256": "57bdf927b0121fb60890f236e1eb2b61cca514faaca47db1e7a68f850ea69002",
       "meta": "data_structure/point_set_range_composite_large_array/meta.json",
       "state": "template_solution"
     },

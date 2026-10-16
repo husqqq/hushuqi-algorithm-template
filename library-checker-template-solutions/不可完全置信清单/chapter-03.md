@@ -4,8 +4,6 @@
 
 | 模板条目 | LC 题目 | 映射 | 源码 | 本地 | 在线 | 未完成原因 |
 |---|---|---|---|---|---|---|
-| `3.3.003` | `data_structure/range_affine_point_get` | `audited` | `current` | `missing` | `missing` | `verification_missing` |
-| `3.3.007` | `data_structure/point_set_range_composite_large_array` | `audited` | `current` | `missing` | `missing` | `verification_missing` |
 | `3.3.017` | `data_structure/majority_voting` | `audited` | `current` | `missing` | `missing` | `verification_missing` |
 | `3.3.020` | `data_structure/persistent_range_affine_range_sum` | `audited` | `current` | `missing` | `missing` | `verification_missing` |
 | `3.3.021` | `data_structure/range_affine_range_sum_large_array` | `audited` | `current` | `missing` | `missing` | `verification_missing` |

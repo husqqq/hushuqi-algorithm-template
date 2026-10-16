@@ -11,10 +11,12 @@
       "method": "deterministic_generation",
       "generator": {
         "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-        "sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+        "sha256": "14c9c6189e7725537b11b9c2950dd4699a648c1df1a361a6770d56a6589720cb",
         "working_directory": ".",
-        "runner": "Python 3.13.14",
+        "runner": "Python 3.12.14",
         "argv": [
+          "--only",
+          "area_of_union_of_rectangles,deque,rectangle_sum,point_add_range_sum,range_chmin_chmax_add_range_sum,persistent_queue,range_affine_point_get,range_affine_range_sum,majority_voting,point_set_range_composite_large_array,static_range_count_distinct,static_range_inversions_query",
           "--write-index"
         ],
         "generation_evidence": {
@@ -23,16 +25,18 @@
           "source_path": "library-checker-template-solutions/data_structure/deque/main.cpp",
           "source_sha256": "eebe579702aa4578db74f3179a4df810371fd160132247bff83ffde78052cc3e",
           "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-          "generator_sha256": "6ca78a9015571b20e6298266ad68aea0be5699f50f4f92d6dd545294a7623528",
+          "generator_sha256": "14c9c6189e7725537b11b9c2950dd4699a648c1df1a361a6770d56a6589720cb",
           "working_directory": ".",
-          "runner": "Python 3.13.14",
+          "runner": "Python 3.12.14",
           "argv": [
+            "--only",
+            "area_of_union_of_rectangles,deque,rectangle_sum,point_add_range_sum,range_chmin_chmax_add_range_sum,persistent_queue,range_affine_point_get,range_affine_range_sum,majority_voting,point_set_range_composite_large_array,static_range_count_distinct,static_range_inversions_query",
             "--write-index"
           ],
           "inputs": [
             {
               "path": "hushuqi算法竞赛模板/01-基础与工程.md",
-              "sha256": "c57ac71fd9a60e4713a4920a5058b04f61dd452429bb7eef956f88dc24ae7e63"
+              "sha256": "fd24e376414722360aa7972401d495ab6d24b3335d3794dc890c4e5157252c5b"
             },
             {
               "path": "hushuqi算法竞赛模板/tests/test_ch03_deque.cpp",
@@ -42,13 +46,13 @@
           "generated_sha256": "eebe579702aa4578db74f3179a4df810371fd160132247bff83ffde78052cc3e",
           "byte_equal": true
         },
-        "generation_evidence_sha256": "9a325cfce1c9141a080f0d10bdc26a0ee23d2c88c38fbce859b5cf4322700f66"
+        "generation_evidence_sha256": "b62eadd021ac6e4d783bc9e6ce87578acd137d43744efe90b01ebae7584c76d7"
       },
       "adapter_sha256": "74291e6f231df6fc6c4620a39646c51011783fe3cb01517d86485c81dfc3fe97",
       "template_inputs": [
         {
           "path": "hushuqi算法竞赛模板/01-基础与工程.md",
-          "sha256": "c57ac71fd9a60e4713a4920a5058b04f61dd452429bb7eef956f88dc24ae7e63"
+          "sha256": "fd24e376414722360aa7972401d495ab6d24b3335d3794dc890c4e5157252c5b"
         },
         {
           "path": "hushuqi算法竞赛模板/tests/test_ch03_deque.cpp",
@@ -58,7 +62,7 @@
       "temporary_regenerations": 2,
       "byte_identical": true,
       "source_sha256": "eebe579702aa4578db74f3179a4df810371fd160132247bff83ffde78052cc3e",
-      "evidence_sha256": "5db3c027a8b3ec793c34e0d2ef27338b7dcad73e85b56faa303d303ea0028e26"
+      "evidence_sha256": "c173044e15c07765853521330f4b55ec72a086e746260da2f7fb9e84a8c5ae58"
     }
   },
   "reference": {

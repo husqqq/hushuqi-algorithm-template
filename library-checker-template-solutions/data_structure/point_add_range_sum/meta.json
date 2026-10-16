@@ -11,12 +11,12 @@
       "method": "deterministic_generation",
       "generator": {
         "path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-        "sha256": "0da6ab034d3d65c2c051b3604c0eb36b73e728c956ebc83363f9ac6397f2c824",
+        "sha256": "14c9c6189e7725537b11b9c2950dd4699a648c1df1a361a6770d56a6589720cb",
         "working_directory": ".",
-        "runner": "Python 3.13.14",
+        "runner": "Python 3.12.14",
         "argv": [
           "--only",
-          "point_add_range_sum",
+          "area_of_union_of_rectangles,deque,rectangle_sum,point_add_range_sum,range_chmin_chmax_add_range_sum,persistent_queue,range_affine_point_get,range_affine_range_sum,majority_voting,point_set_range_composite_large_array,static_range_count_distinct,static_range_inversions_query",
           "--write-index"
         ],
         "generation_evidence": {
@@ -25,12 +25,12 @@
           "source_path": "library-checker-template-solutions/data_structure/point_add_range_sum/main.cpp",
           "source_sha256": "775d28a9f6d260e58680f6cefdc9411297ff285cb4374102cfd7285dc97b937c",
           "generator_path": "library-checker-template-solutions/tools/generate_ch03_lc.py",
-          "generator_sha256": "0da6ab034d3d65c2c051b3604c0eb36b73e728c956ebc83363f9ac6397f2c824",
+          "generator_sha256": "14c9c6189e7725537b11b9c2950dd4699a648c1df1a361a6770d56a6589720cb",
           "working_directory": ".",
-          "runner": "Python 3.13.14",
+          "runner": "Python 3.12.14",
           "argv": [
             "--only",
-            "point_add_range_sum",
+            "area_of_union_of_rectangles,deque,rectangle_sum,point_add_range_sum,range_chmin_chmax_add_range_sum,persistent_queue,range_affine_point_get,range_affine_range_sum,majority_voting,point_set_range_composite_large_array,static_range_count_distinct,static_range_inversions_query",
             "--write-index"
           ],
           "inputs": [
@@ -58,7 +58,7 @@
           "generated_sha256": "775d28a9f6d260e58680f6cefdc9411297ff285cb4374102cfd7285dc97b937c",
           "byte_equal": true
         },
-        "generation_evidence_sha256": "c5a0c110f1db924ce657d1f317e28c4a1585ccea9a0d2cac684afba605e66ffb"
+        "generation_evidence_sha256": "c3f8ef6495663e46f51aa9c914075fc52bad3dc235da770a073b6e13f33886de"
       },
       "adapter_sha256": "995fcd6d0b99200a31c20b590bbd1a9ebdb386e6c6319273ea8f48cc5aef8606",
       "template_inputs": [
@@ -86,7 +86,7 @@
       "temporary_regenerations": 2,
       "byte_identical": true,
       "source_sha256": "775d28a9f6d260e58680f6cefdc9411297ff285cb4374102cfd7285dc97b937c",
-      "evidence_sha256": "f6de1ea34672f032c93920fe19b9f3607ae743053e4d090500caf6168b554297"
+      "evidence_sha256": "247bec2722bd463383da35225de5aa3cfb9e822eed8daf214f734a8ff099fc30"
     }
   },
   "reference": {
