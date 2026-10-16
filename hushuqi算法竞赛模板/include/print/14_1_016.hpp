@@ -1,6 +1,8 @@
 #pragma once
 
-#include "14_1_001.hpp"
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
 
 string trimNum(string s)
 {

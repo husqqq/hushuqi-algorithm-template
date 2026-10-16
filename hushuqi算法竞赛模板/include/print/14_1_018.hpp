@@ -1,6 +1,8 @@
 #pragma once
 
-#include "14_1_001.hpp"
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
 
 vector<int> nQueens(int n)
 {
@@ -15,38 +17,29 @@ vector<int> nQueens(int n)
         return {};
     }
     vector<int> p(n);
-    auto gen = [&](auto &&self, int m, vector<int> &q) -> void
+    int m = n - (n & 1); // 先构造偶数阶；奇数阶最后补主对角线上的皇后。
+    if (n & 1) p[n - 1] = n - 1;
+    if (m % 6 != 2)
     {
-        if (m & 1)
+        for (int i = 1; i <= m / 2; i++)
         {
-            vector<int> t(m - 1);
-            self(self, m - 1, t);
-            copy(t.begin(), t.end(), q.begin());
-            q[m - 1] = m - 1;
+            p[i - 1] = 2 * i - 1;
         }
-        else if (m % 6 != 2)
+        for (int i = m / 2 + 1; i <= m; i++)
         {
-            for (int i = 1; i <= m / 2; i++)
-            {
-                q[i - 1] = 2 * i - 1;
-            }
-            for (int i = m / 2 + 1; i <= m; i++)
-            {
-                q[i - 1] = 2 * i - m - 2;
-            }
+            p[i - 1] = 2 * i - m - 2;
         }
-        else
+    }
+    else
+    {
+        for (int i = 1; i <= m / 2; i++)
         {
-            for (int i = 1; i <= m / 2; i++)
-            {
-                q[i - 1] = (2 * i + m / 2 - 3) % m;
-            }
-            for (int i = m / 2 + 1; i <= m; i++)
-            {
-                q[i - 1] = m - 1 - (2 * (m - i + 1) + m / 2 - 3) % m;
-            }
+            p[i - 1] = (2 * i + m / 2 - 3) % m;
         }
-    };
-    gen(gen, n, p);
+        for (int i = m / 2 + 1; i <= m; i++)
+        {
+            p[i - 1] = m - 1 - (2 * (m - i + 1) + m / 2 - 3) % m;
+        }
+    }
     return p;
 }
