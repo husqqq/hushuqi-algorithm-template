@@ -88,21 +88,21 @@
     "content_sha256": "5e37830a24825590a58cbf52e519b8aba616b3bf7bcfc731c7f0ec6b18968343"
   },
   "validation": {
-    "status": "local_only",
-    "checked_at": null,
+    "status": "online_ac",
+    "checked_at": "2026-10-16T08:57:32.913915Z",
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch03_wavelet.cpp"
     ],
     "current_source_sha256": "08d8e45edcb4d39eade1dd35157b86e2684f2d56f6673af670f7a13ab567ac9e",
-    "current_source_online_verdict": null,
-    "current_source_submission_id": null,
-    "current_source_time": null,
-    "current_source_memory": null,
-    "current_source_submission_time": null,
-    "current_source_is_latest": null,
-    "server_source_sha256": null,
-    "note": "Generated from the current chapter 03 template; online verification has not run for this source."
+    "current_source_online_verdict": "AC",
+    "current_source_submission_id": 410944,
+    "current_source_time": 1.739,
+    "current_source_memory": 257445888,
+    "current_source_submission_time": "2026-10-16T08:57:05.44876Z",
+    "current_source_is_latest": true,
+    "server_source_sha256": "08d8e45edcb4d39eade1dd35157b86e2684f2d56f6673af670f7a13ab567ac9e",
+    "note": "当前独立源码已通过 Library Checker 在线评测。"
   },
   "submission_attempts": [
     {
@@ -134,6 +134,21 @@
       "compile_standard": "gnu++20",
       "submitted_at": "2026-08-20T13:39:01.089794Z",
       "recorded_at": "2026-08-20T13:39:35.728317Z"
+    },
+    {
+      "submission_id": 410944,
+      "source_sha256": "08d8e45edcb4d39eade1dd35157b86e2684f2d56f6673af670f7a13ab567ac9e",
+      "server_source_sha256": "08d8e45edcb4d39eade1dd35157b86e2684f2d56f6673af670f7a13ab567ac9e",
+      "lang": "cpp20",
+      "verdict": "AC",
+      "last_status": "AC",
+      "time": 1.739,
+      "memory": 257445888,
+      "submission_time": "2026-10-16T08:57:05.44876Z",
+      "is_latest": true,
+      "compile_standard": "gnu++20",
+      "submitted_at": "2026-10-16T08:57:05.628146Z",
+      "recorded_at": "2026-10-16T08:57:32.912911Z"
     }
   ],
   "notes": [
