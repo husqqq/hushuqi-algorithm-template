@@ -32,7 +32,9 @@ class ForwardStar
 
     int addResEdge(int u, int v, int w, int rw = 0)
     {
-        // u、v 是正向边端点，w、rw 是正反边初值；返回正向边编号。
+        // u、v 是正向边端点，w、rw 是正反边初值；已有边数须为偶数。
+        // 返回正向边编号 id，反向边为 id^1；普通 add 不保证反向边关系。
+        assert(e.size() % 2 == 0);
         int id = e.size();
         add(u, v, w);
         add(v, u, rw);
