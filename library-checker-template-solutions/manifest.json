@@ -1185,7 +1185,7 @@
       "title": "Minimum Diameter Spanning Tree",
       "category": "graph",
       "source": "graph/minimum_diameter_spanning_tree/main.cpp",
-      "source_sha256": "7fcb80801fcb46489fd487b84e1830a67b9cbd234c62e3187cab57aae8b3c6fe",
+      "source_sha256": "40cea6f44dccaa39e1c642279c171520b6e2aa1f93be84ac92ad6d74da1c9cb4",
       "meta": "graph/minimum_diameter_spanning_tree/meta.json",
       "state": "template_solution"
     },

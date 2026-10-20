@@ -609,7 +609,7 @@ signed main()
 signed main()
 {
     int n, m; cin >> n >> m;
-    MinimumDiameterSpanningTree tree(n);
+    MinDiamTree tree(n);
     map<pair<int, int>, pair<int, int>> best;
     for (int i = 0; i < m; i++)
     {
@@ -618,7 +618,9 @@ signed main()
         if (u > v) swap(u, v);
         if (!best.count({u, v}) || w < best[{u, v}].first) best[{u, v}] = {w, i};
     }
-    auto [diameter, e] = tree.solve();
+    auto result = tree.solve();
+    assert(result);
+    auto [diameter, e] = *result;
     cout << diameter << '\n';
     for (int i = 0; i < (int)e.size(); i++)
     {
