@@ -30,7 +30,7 @@ SYNCED = {
     "4.1.012", "4.1.013", "4.2.002", "4.3.002", "4.3.004", "4.3.005", "4.3.008", "4.3.010", "4.3.011", "4.3.012",
     "4.4.001", "4.4.002", "4.4.003", "4.4.004", "4.5.004", "4.5.007", "5.1.001", "5.1.007",
     "5.2.001", "5.2.008", "5.2.011", "5.2.013", "5.3.005", "5.3.008", "5.3.010", "5.3.011", "5.3.013", "5.4.001", "5.4.002", "5.4.003",
-    "5.5.002", "5.5.003", "5.5.004", "5.5.005", "5.5.006", "5.5.009", "5.5.010", "5.5.012", "5.6.001",
+    "5.5.002", "5.5.003", "5.5.004", "5.5.005", "5.5.006", "5.5.008", "5.5.009", "5.5.010", "5.5.012", "5.6.001",
     "5.6.002", "5.6.003", "5.6.004", "5.6.005", "5.6.006", "5.6.007", "5.6.008", "5.6.009",
     "5.6.010", "5.7.001", "5.7.002", "5.7.005", "5.7.007", "5.8.001", "5.8.002", "5.8.003",
     "5.8.004", "5.8.006", "5.8.007", "5.8.008", "5.8.009", "5.8.010", "5.8.012", "5.8.013",
@@ -147,6 +147,21 @@ def sync_topics(data: str) -> tuple[str, set[str]]:
         if not fence:
             raise ValueError(f"{topic}: missing C++ block")
         code = snippet(topic.replace(".", "_") + ".hpp")
+        if topic == "5.5.008":
+            # 两个独立算法分别同步，保留中间散文及各自的固定答案实例。
+            body = code.removeprefix("```cpp\n").removesuffix("\n```")
+            dep, body = body.split("\n", 1)
+            slow, fast = body.split("struct DMSTResult", 1)
+            parts = (slow.strip(), dep + " 的 DSU。\nstruct DMSTResult" + fast)
+            fences = list(re.finditer(r"```cpp\n.*?\n```", section, re.S))
+            if len(fences) != 4:
+                raise ValueError("5.5.008: expected two implementations and two examples")
+            for pos, part in reversed(list(zip((0, 2), parts))):
+                block = fences[pos]
+                section = section[:block.start()] + "```cpp\n" + part.strip() + "\n```" + section[block.end():]
+            data = data[:start] + section + data[end:]
+            seen.add(topic)
+            continue
         if topic == "14.1.019" and "struct FastBigInt" in section:
             # This topic owns three implementation blocks; preserve its final fixed-answer check.
             fences = list(re.finditer(r"```cpp\n.*?\n```", section, re.S))

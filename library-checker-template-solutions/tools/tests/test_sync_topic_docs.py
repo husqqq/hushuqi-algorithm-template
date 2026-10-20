@@ -65,6 +65,28 @@ class TopicDependencyTest(unittest.TestCase):
                            capture_output=True, check=True)
             subprocess.run([str(binary)], capture_output=True, check=True)
 
+    def test_directed_mst_keeps_both_implementations_and_examples(self):
+        chapter = (WORKSPACE / "hushuqi算法竞赛模板/05-图论.md").read_text(encoding="utf-8")
+        section = chapter.split("### 5.5.008 ", 1)[1].split("### 5.5.009 ", 1)[0]
+        blocks = re.findall(r"```cpp\n(.*?)\n```", section, re.S)
+        self.assertEqual(len(blocks), 4)
+        updated, seen = SYNC.sync_topics(chapter)
+        self.assertEqual(updated, chapter)
+        self.assertIn("5.5.008", seen)
+        dependency = chapter.split("### 5.5.001 ", 1)[1].split("### ", 1)[0]
+        dsu = re.findall(r"```cpp\n(.*?)\n```", dependency, re.S)[0]
+        prefix = "#include <bits/stdc++.h>\nusing namespace std;\n#define int long long\n"
+        with tempfile.TemporaryDirectory(prefix="directed-mst-docs-") as directory:
+            for pos in (0, 2):
+                with self.subTest(implementation=pos):
+                    source = Path(directory) / "main.cpp"
+                    binary = Path(directory) / "main.exe"
+                    code = prefix + (dsu + "\n" if pos == 2 else "") + blocks[pos] + "\n" + blocks[pos + 1]
+                    source.write_text(code, encoding="utf-8")
+                    subprocess.run(["g++", "-std=c++20", "-O2", str(source), "-o", str(binary)],
+                                   capture_output=True, check=True)
+                    subprocess.run([str(binary)], capture_output=True, check=True)
+
     def test_dijkstra_and_steiner_examples_share_the_documented_kernel(self):
         chapter = (WORKSPACE / "hushuqi算法竞赛模板/05-图论.md").read_text(encoding="utf-8")
 

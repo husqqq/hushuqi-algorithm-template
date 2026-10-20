@@ -447,7 +447,7 @@
       "title": "Directed MST",
       "category": "graph",
       "source": "graph/directedmst/main.cpp",
-      "source_sha256": "81c3d5c06a9fd459f1e7d34d853dc13176fda183e8bf4cf2ba5f237b4f193074",
+      "source_sha256": "f2cff2d5efac9aa76ffd19ff7dbc47de05017d0c760573362c484cdc0ccc5bac",
       "meta": "graph/directedmst/meta.json",
       "state": "template_solution"
     },

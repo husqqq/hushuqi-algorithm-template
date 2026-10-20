@@ -6,7 +6,7 @@
   "provenance": {
     "kind": "template_solution",
     "source": "graph/directedmst/main.cpp",
-    "source_sha256": "81c3d5c06a9fd459f1e7d34d853dc13176fda183e8bf4cf2ba5f237b4f193074"
+    "source_sha256": "f2cff2d5efac9aa76ffd19ff7dbc47de05017d0c760573362c484cdc0ccc5bac"
   },
   "official_reference": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
@@ -14,21 +14,12 @@
     "problem": "directedmst"
   },
   "validation": {
-    "status": "online_ac",
-    "current_source_sha256": "81c3d5c06a9fd459f1e7d34d853dc13176fda183e8bf4cf2ba5f237b4f193074",
+    "status": "local_only",
+    "current_source_sha256": "f2cff2d5efac9aa76ffd19ff7dbc47de05017d0c760573362c484cdc0ccc5bac",
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch05_directed_mst.cpp"
-    ],
-    "checked_at": "2026-08-21T10:38:11.096603Z",
-    "current_source_online_verdict": "AC",
-    "current_source_submission_id": 395589,
-    "current_source_time": 0.195,
-    "current_source_memory": 56532992,
-    "current_source_submission_time": "2026-08-21T10:37:49.027318Z",
-    "current_source_is_latest": true,
-    "server_source_sha256": "81c3d5c06a9fd459f1e7d34d853dc13176fda183e8bf4cf2ba5f237b4f193074",
-    "note": "当前独立源码已通过 Library Checker 在线评测。"
+    ]
   },
   "submission_attempts": [
     {

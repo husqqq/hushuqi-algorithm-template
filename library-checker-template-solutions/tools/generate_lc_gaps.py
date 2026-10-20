@@ -574,13 +574,22 @@ signed main()
         "5_5_008.hpp", "Directed MST", "tests/test_ch05_directed_mst.cpp", r'''
 signed main()
 {
+    // 无额外参数；读入有向图，输出最小总权与各点父点，题目保证有解。
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
     int n, m, root; cin >> n >> m >> root;
-    vector<DirectedMSTFastEdge> e(m);
-    for (auto &[u, v, w] : e) cin >> u >> v >> w;
-    auto ans = directedMSTTree(n, root, e);
+    vector<DMSTFastEdge> e(m);
+    for (auto &[u, v, w] : e)
+    {
+        cin >> u >> v >> w;
+    }
+    auto ans = dmstTree(n, root, e);
     assert(ans.has_value());
-    cout << ans->weight << '\n';
-    for (int i = 0; i < n; i++) cout << ans->parent[i] << " \n"[i + 1 == n];
+    cout << (long long)ans->weight << '\n'; // 题目保证总权不超过 2e14，输出时可缩回 64 位。
+    for (int i = 0; i < n; i++)
+    {
+        cout << ans->parent[i] << " \n"[i + 1 == n];
+    }
 }
 '''),
     ("graph", "minimum_steiner_tree"): (
