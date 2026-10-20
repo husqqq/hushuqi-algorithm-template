@@ -132,7 +132,7 @@
       "title": "Edge Coloring of Bipartite Graph",
       "category": "graph",
       "source": "graph/bipartite_edge_coloring/main.cpp",
-      "source_sha256": "9e0d1a794d9343acbc488e891fda0526a6746c86d89a5296c46a657785cafa73",
+      "source_sha256": "4484657d12d570fce5c8366309121717591ce51b0973c71ad7760e0fef8bc865",
       "meta": "graph/bipartite_edge_coloring/meta.json",
       "state": "template_solution"
     },

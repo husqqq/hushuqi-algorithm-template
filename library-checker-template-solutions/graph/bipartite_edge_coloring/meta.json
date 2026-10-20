@@ -6,7 +6,7 @@
   "provenance": {
     "kind": "template_solution",
     "source": "graph/bipartite_edge_coloring/main.cpp",
-    "source_sha256": "9e0d1a794d9343acbc488e891fda0526a6746c86d89a5296c46a657785cafa73"
+    "source_sha256": "4484657d12d570fce5c8366309121717591ce51b0973c71ad7760e0fef8bc865"
   },
   "official_reference": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
@@ -14,21 +14,12 @@
     "problem": "bipartite_edge_coloring"
   },
   "validation": {
-    "status": "online_ac",
-    "current_source_sha256": "9e0d1a794d9343acbc488e891fda0526a6746c86d89a5296c46a657785cafa73",
+    "status": "local_only",
+    "current_source_sha256": "4484657d12d570fce5c8366309121717591ce51b0973c71ad7760e0fef8bc865",
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch05_bipartite_edge_coloring.cpp"
-    ],
-    "checked_at": "2026-08-21T11:15:18.886627Z",
-    "current_source_online_verdict": "AC",
-    "current_source_submission_id": 395598,
-    "current_source_time": 0.285,
-    "current_source_memory": 31965184,
-    "current_source_submission_time": "2026-08-21T11:14:18.692103Z",
-    "current_source_is_latest": true,
-    "server_source_sha256": "9e0d1a794d9343acbc488e891fda0526a6746c86d89a5296c46a657785cafa73",
-    "note": "当前独立源码已通过 Library Checker 在线评测。"
+    ]
   },
   "submission_attempts": [
     {

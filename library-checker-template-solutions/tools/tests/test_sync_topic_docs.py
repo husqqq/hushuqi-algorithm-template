@@ -122,6 +122,26 @@ class TopicDependencyTest(unittest.TestCase):
         self.assertIn("性能版以 `int8_t` 保存选择", result)
         self.assertIn("vector<int> take;", result)
 
+    def test_edge_coloring_compiles_with_shared_dsu_and_matching(self):
+        chapter = (WORKSPACE / "hushuqi算法竞赛模板/05-图论.md").read_text(encoding="utf-8")
+
+        def blocks(topic):
+            section = chapter.split("### " + topic + " ", 1)[1].split("### ", 1)[0]
+            return re.findall(r"```cpp\n(.*?)\n```", section, re.S)
+
+        impl, example = blocks("5.6.006")
+        self.assertIn("// 依赖 5.5.001 ", impl)
+        self.assertIn("// 依赖 5.6.003 ", impl)
+        prefix = "#include <bits/stdc++.h>\nusing namespace std;\n#define int long long\n"
+        shared = blocks("5.5.001")[0] + "\n" + blocks("5.6.003")[0] + "\n"
+        with tempfile.TemporaryDirectory(prefix="edge-coloring-docs-") as directory:
+            source = Path(directory) / "main.cpp"
+            binary = Path(directory) / "main.exe"
+            source.write_text(prefix + shared + impl + "\n" + example, encoding="utf-8")
+            subprocess.run(["g++", "-std=c++20", "-O2", str(source), "-o", str(binary)],
+                           capture_output=True, check=True)
+            subprocess.run([str(binary)], capture_output=True, check=True)
+
     def test_graph_corrections_are_preserved(self):
         chapter = (WORKSPACE / "hushuqi算法竞赛模板/05-图论.md").read_text(encoding="utf-8")
 

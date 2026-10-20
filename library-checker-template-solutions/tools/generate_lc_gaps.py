@@ -38,7 +38,10 @@ signed main()
         "5_6_006.hpp", "Edge Coloring of Bipartite Graph", "tests/test_ch05_bipartite_edge_coloring.cpp", r'''
 signed main()
 {
-    int nl, nr, m; cin >> nl >> nr >> m;
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int nl, nr, m;
+    cin >> nl >> nr >> m;
     BipEdgeColor g(nl, nr);
     for (int i = 0; i < m; i++)
     {
@@ -47,7 +50,10 @@ signed main()
     }
     auto ans = g.work();
     cout << ans.k << '\n';
-    for (int x : ans.c) cout << x << '\n';
+    for (int x : ans.c)
+    {
+        cout << x << '\n';
+    }
 }
 '''),
     ("graph", "maximum_independent_set"): (

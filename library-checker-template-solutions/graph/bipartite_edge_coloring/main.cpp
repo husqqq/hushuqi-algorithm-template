@@ -3,6 +3,222 @@
 using namespace std;
 #define int long long
 
+
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+struct DSU
+{
+    // f 是并查集父亲，s 仅在根处保存连通块大小。
+    vector<int> f, s;
+
+    DSU(int n = 0)
+    {
+        // n 是元素个数；建立 n 个单点集合。
+        init(n);
+    }
+
+    void init(int n)
+    {
+        // n 是元素个数；清空旧状态并建立 n 个单点集合，无返回值。
+        f.resize(n);
+        iota(f.begin(), f.end(), 0);
+        s.assign(n, 1);
+    }
+
+    int find(int x)
+    {
+        // x 是元素编号；返回所在集合的根并压缩路径。
+        return x == f[x] ? x : f[x] = find(f[x]);
+    }
+
+    bool merge(int x, int y)
+    {
+        // x、y 是元素编号；合并所在集合，原本不连通时返回 true。
+        x = find(x);
+        y = find(y);
+        if (x == y)
+        {
+            return false;
+        }
+        if (s[x] < s[y])
+        {
+            swap(x, y);
+        }
+        f[y] = x;
+        s[x] += s[y];
+        return true;
+    }
+
+    bool same(int x, int y)
+    {
+        // x、y 是元素编号；返回二者是否属于同一集合。
+        return find(x) == find(y);
+    }
+
+    int size(int x)
+    {
+        // x 是元素编号；返回所在集合的元素个数。
+        return s[find(x)];
+    }
+};
+
+struct MEdge
+{
+    // x、y 是无向边端点，w 是边权。
+    int x, y, w;
+};
+
+optional<pair<int, vector<MEdge>>> kruskal(int n, vector<MEdge> e)
+{
+    // n 是点数，e 是无向边集；返回 MST 总权与所选边，不连通时返回空。
+    sort(e.begin(), e.end(), [](const MEdge &a, const MEdge &b)
+         { return a.w < b.w; });
+    DSU d(n);
+    int ans = 0;
+    vector<MEdge> use;
+    for (auto v : e)
+    {
+        if (!d.merge(v.x, v.y))
+        {
+            continue;
+        }
+        ans += v.w;
+        use.push_back(v);
+    }
+    if ((int)use.size() + 1 != n && n)
+    {
+        return nullopt;
+    }
+    return pair{ans, use};
+}
+
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+class HopcroftKarp
+{
+    // nl、nr 是左右部点数，g 是从左部出发的邻接表。
+    int nl, nr;
+    vector<vector<int32_t>> g;
+    // ml、mr 是左右匹配点；dep、it、que 分别是层数、当前弧和复用队列。
+    vector<int32_t> ml, mr, dep, it, que;
+
+    bool bfs()
+    {
+        // 无参数；给交替图分层，存在增广路时返回 true。
+        fill(dep.begin(), dep.end(), -1);
+        int32_t ql = 0, qr = 0;
+        bool found = false;
+        for (int32_t u = 0; u < nl; u++)
+        {
+            if (ml[u] == -1)
+            {
+                dep[u] = 0;
+                que[qr++] = u;
+            }
+        }
+        while (ql < qr)
+        {
+            int32_t u = que[ql++];
+            for (int32_t v : g[u])
+            {
+                int32_t x = mr[v];
+                if (x == -1)
+                {
+                    found = true;
+                }
+                else if (dep[x] == -1)
+                {
+                    dep[x] = dep[u] + 1;
+                    que[qr++] = x;
+                }
+            }
+        }
+        return found;
+    }
+
+    bool dfs(int32_t u)
+    {
+        // u 是当前左点；沿 BFS 层寻找增广路，成功时返回 true。
+        for (int32_t &i = it[u]; i < (int32_t)g[u].size(); i++)
+        {
+            int32_t v = g[u][i];
+            int32_t x = mr[v];
+            if (x == -1)
+            {
+                ml[u] = v;
+                mr[v] = u;
+                return true;
+            }
+            if (x != -1 && dep[x] == dep[u] + 1 && dfs(x))
+            {
+                ml[u] = v;
+                mr[v] = u;
+                return true;
+            }
+        }
+        dep[u] = -1;
+        return false;
+    }
+
+  public:
+    HopcroftKarp(int nl, int nr)
+        : nl(nl), nr(nr), g(nl), ml(nl, -1), mr(nr, -1), dep(nl), it(nl), que(nl)
+    {
+        // nl、nr 是左右部点数；构造空二分图，无返回值。
+        assert(nl <= INT32_MAX && nr <= INT32_MAX); // 调试检查，可删。
+    }
+
+    void reserve(int u, int m)
+    {
+        // u 是左点，m 是预计邻边数；预留空间但不改变图。
+        assert(0 <= u && u < nl && m >= 0); // 调试检查，可删。
+        g[u].reserve(m);
+    }
+
+    void addEdge(int u, int v)
+    {
+        // u 是左点，v 是右点；加入一条边，无返回值。
+        assert(0 <= u && u < nl && 0 <= v && v < nr); // 调试检查，可删。
+        g[u].push_back((int32_t)v);
+    }
+
+    int matching()
+    {
+        // 无参数；从空匹配重算并返回最大匹配边数。
+        fill(ml.begin(), ml.end(), -1);
+        fill(mr.begin(), mr.end(), -1);
+        int ans = 0;
+        while (bfs())
+        {
+            fill(it.begin(), it.end(), 0);
+            for (int32_t u = 0; u < nl; u++)
+            {
+                if (ml[u] == -1)
+                {
+                    ans += dfs(u);
+                }
+            }
+        }
+        return ans;
+    }
+
+    vector<int> leftMatch() const
+    {
+        // 无参数；返回左点到右点的匹配数组，未匹配为 -1。
+        return {ml.begin(), ml.end()};
+    }
+
+    vector<int> matchR() const
+    {
+        // 无参数；返回右点到左点的匹配数组，未匹配为 -1。
+        return {mr.begin(), mr.end()};
+    }
+};
+
 struct EdgeColor
 {
     // 颜色数。
@@ -13,20 +229,15 @@ struct EdgeColor
 
 struct BipEdgeColor
 {
-    struct E
-    {
-        // 左端点、右端点、原边编号；虚拟边编号为 -1。
-        int u, v, id;
-    };
-
     // 左、右部点数。
     int n, m;
-    // 原图边集。
-    vector<E> e;
+    // 每条原边依次保存左端点、右端点、插入编号。
+    vector<array<int, 3>> e;
 
     BipEdgeColor(int n, int m) : n(n), m(m)
     {
         // n、m 是左右部点数；构造空二分图。
+        assert(n >= 0 && m >= 0); // 调试检查，可删。
     }
 
     void add(int u, int v)
@@ -43,42 +254,39 @@ struct BipEdgeColor
         int k = 0;
         for (auto x : e)
         {
-            k = max(k, ++dl[x.u]);
-            k = max(k, ++dr[x.v]);
+            k = max(k, ++dl[x[0]]);
+            k = max(k, ++dr[x[1]]);
         }
         if (!k) return {0, {}};
         auto compress = [&](const vector<int> &deg) -> pair<vector<int>, int>
         {
             // deg 是一侧原点度数；返回原点到合并点的映射及合并后点数。
-            int sz = deg.size();
-            vector<int> fa(sz, -1);
-            auto find = [&](auto &&self, int u) -> int
+            int sz = (int)deg.size();
+            DSU ds(sz);
+            // 堆项依次为集合总度数、并查集根。
+            priority_queue<array<int, 2>, vector<array<int, 2>>, greater<>> q;
+            for (int i = 0; i < sz; i++)
             {
-                // u 是并查集节点；返回所在集合代表。
-                return fa[u] < 0 ? u : fa[u] = self(self, fa[u]);
-            };
-            priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> q;
-            for (int i = 0; i < sz; i++) q.push({deg[i], i});
+                q.push({deg[i], i});
+            }
             while (q.size() > 1)
             {
                 auto [x, u] = q.top(); q.pop();
                 auto [y, v] = q.top(); q.pop();
-                if (x + y > k)
+                if (x > k - y)
                 {
                     q.push({x, u});
                     q.push({y, v});
                     break;
                 }
-                if (fa[u] > fa[v]) swap(u, v);
-                fa[u] += fa[v];
-                fa[v] = u;
-                q.push({x + y, u});
+                ds.merge(u, v);
+                q.push({x + y, ds.find(u)});
             }
             vector<int> id(sz), pos(sz, -1);
             int cnt = 0;
             for (int i = 0; i < sz; i++)
             {
-                int u = find(find, i);
+                int u = ds.find(i);
                 if (pos[u] == -1) pos[u] = cnt++;
                 id[i] = pos[u];
             }
@@ -87,25 +295,35 @@ struct BipEdgeColor
         auto [pl, nl] = compress(dl);
         auto [pr, nr] = compress(dr);
         int z = max(nl, nr);
-        vector<E> es;
+        // 补图边依次保存左端点、右端点、原边编号；虚拟边编号为 -1。
+        vector<array<int, 3>> es;
         es.reserve(2 * e.size() + 2 * z);
         vector<int> cl(z), cr(z);
         for (auto x : e)
         {
-            x.u = pl[x.u];
-            x.v = pr[x.v];
+            x[0] = pl[x[0]];
+            x[1] = pr[x[1]];
             es.push_back(x);
-            cl[x.u]++;
-            cr[x.v]++;
+            cl[x[0]]++;
+            cr[x[1]]++;
         }
         int u = 0, v = 0;
         while (u < z && v < z)
         {
-            while (u < z && cl[u] == k) u++;
-            while (v < z && cr[v] == k) v++;
+            while (u < z && cl[u] == k)
+            {
+                u++;
+            }
+            while (v < z && cr[v] == k)
+            {
+                v++;
+            }
             if (u == z || v == z) break;
             int cnt = min(k - cl[u], k - cr[v]);
-            for (int i = 0; i < cnt; i++) es.push_back({u, v, -1});
+            for (int i = 0; i < cnt; i++)
+            {
+                es.push_back({u, v, -1});
+            }
             cl[u] += cnt;
             cr[v] += cnt;
         }
@@ -113,109 +331,88 @@ struct BipEdgeColor
         auto perfect = [&](const vector<int> &ids) -> vector<int>
         {
             // ids 是正则二分图边编号；返回一组覆盖全部合并点的完美匹配边。
-            vector<vector<int>> g(z);
-            for (int id : ids) g[es[id].u].push_back(id);
-            vector<int> ml(z, -1), mr(z, -1), dep(z), it(z);
-            auto bfs = [&]() -> bool
+            HopcroftKarp hk(z, z);
+            for (int id : ids)
             {
-                // 无参数；给最短增广路分层，存在时返回 true。
-                queue<int> q;
-                fill(dep.begin(), dep.end(), -1);
-                int lim = -1;
-                for (int x = 0; x < z; x++) if (ml[x] == -1) dep[x] = 0, q.push(x);
-                while (!q.empty())
-                {
-                    int x = q.front(); q.pop();
-                    if (lim != -1 && dep[x] >= lim) continue;
-                    for (int id : g[x])
-                    {
-                        int y = mr[es[id].v];
-                        if (y == -1) lim = dep[x] + 1;
-                        else if (dep[y] == -1 && (lim == -1 || dep[x] + 1 < lim)) dep[y] = dep[x] + 1, q.push(y);
-                    }
-                }
-                return lim != -1;
-            };
-            auto dfs = [&](auto &&self, int x) -> bool
-            {
-                // x 是当前左点；沿分层交替路增广，成功时返回 true。
-                for (int &i = it[x]; i < (int)g[x].size(); i++)
-                {
-                    int id = g[x][i], y = mr[es[id].v];
-                    if (y == -1 || (dep[y] == dep[x] + 1 && self(self, y)))
-                    {
-                        ml[x] = id;
-                        mr[es[id].v] = x;
-                        return true;
-                    }
-                }
-                dep[x] = -1;
-                return false;
-            };
-            int got = 0;
-            while (bfs())
-            {
-                fill(it.begin(), it.end(), 0);
-                for (int x = 0; x < z; x++) if (ml[x] == -1 && dfs(dfs, x)) got++;
+                hk.addEdge(es[id][0], es[id][1]);
             }
+            int got = hk.matching();
             assert(got == z); // 调试检查，可删：正则二分图总有完美匹配。
-            return ml;
+            auto ml = hk.leftMatch();
+            vector<int> take(z, -1);
+            for (int id : ids)
+            {
+                int u = es[id][0], v = es[id][1];
+                if (ml[u] == v && take[u] == -1) take[u] = id;
+            }
+            return take;
         };
+        // seen[id] 是该补图边最近一次被标记的轮次；共享数组避免每个递归节点全量清零。
+        vector<int> seen(es.size());
+        int turn = 0;
         auto color = [&](auto &&self, vector<int> ids, int d, int first) -> void
         {
             // ids 是 d 正则图边集，d 是度数，first 是该集合第一种可用颜色。
             if (!d) return;
             if (d == 1)
             {
-                for (int id : ids) if (es[id].id != -1) ans[es[id].id] = first;
+                for (int id : ids)
+                {
+                    if (es[id][2] != -1) ans[es[id][2]] = first;
+                }
                 return;
             }
             if (d & 1)
             {
                 auto take = perfect(ids);
-                vector<char> used(es.size());
+                turn++;
                 for (int id : take)
                 {
-                    used[id] = true;
-                    if (es[id].id != -1) ans[es[id].id] = first;
+                    seen[id] = turn;
+                    if (es[id][2] != -1) ans[es[id][2]] = first;
                 }
                 vector<int> rest;
                 rest.reserve(ids.size() - take.size());
-                for (int id : ids) if (!used[id]) rest.push_back(id);
+                for (int id : ids)
+                {
+                    if (seen[id] != turn) rest.push_back(id);
+                }
                 self(self, move(rest), d - 1, first + 1);
                 return;
             }
-            vector<vector<pair<int, int>>> g(2 * z);
+            // g[x] 的元素依次为相邻点、补图边编号。
+            vector<vector<array<int, 2>>> g(2 * z);
             for (int id : ids)
             {
-                int a = es[id].u, b = z + es[id].v;
+                int a = es[id][0], b = z + es[id][1];
                 g[a].push_back({b, id});
                 g[b].push_back({a, id});
             }
-            vector<char> used(es.size());
+            turn++;
             vector<int> ptr(2 * z), a, b;
             for (int s = 0; s < 2 * z; s++)
             {
-                while (ptr[s] < (int)g[s].size() && used[g[s][ptr[s]].second]) ptr[s]++;
-                if (ptr[s] == (int)g[s].size()) continue;
-                vector<pair<int, int>> stk{{s, -1}}, tour;
-                while (!stk.empty())
+                while (ptr[s] < (int)g[s].size() && seen[g[s][ptr[s]][1]] == turn)
                 {
-                    int x = stk.back().first;
-                    while (ptr[x] < (int)g[x].size() && used[g[x][ptr[x]].second]) ptr[x]++;
-                    if (ptr[x] == (int)g[x].size())
-                    {
-                        int id = stk.back().second;
-                        stk.pop_back();
-                        if (id != -1) tour.push_back({0, id});
-                    }
-                    else
-                    {
-                        auto [y, id] = g[x][ptr[x]++];
-                        if (!used[id]) used[id] = true, stk.push_back({y, id});
-                    }
+                    ptr[s]++;
                 }
-                for (int i = 0; i < (int)tour.size(); i++) (i & 1 ? b : a).push_back(tour[i].second);
+                if (ptr[s] == (int)g[s].size()) continue;
+                // 偶度图中极大未重复边迹必回到起点；二分图中其长度为偶数。
+                int x = s, parity = 0;
+                while (true)
+                {
+                    while (ptr[x] < (int)g[x].size() && seen[g[x][ptr[x]][1]] == turn)
+                    {
+                        ptr[x]++;
+                    }
+                    if (ptr[x] == (int)g[x].size()) break;
+                    auto [y, id] = g[x][ptr[x]++];
+                    seen[id] = turn;
+                    (parity ? b : a).push_back(id);
+                    parity ^= 1;
+                    x = y;
+                }
+                assert(x == s && parity == 0); // 调试检查，可删。
             }
             self(self, move(a), d / 2, first);
             self(self, move(b), d / 2, first + d / 2);
@@ -223,13 +420,16 @@ struct BipEdgeColor
         vector<int> ids(es.size());
         iota(ids.begin(), ids.end(), 0);
         color(color, move(ids), k, 0);
-        return {k, ans};
+        return {k, move(ans)};
     }
 };
 
 signed main()
 {
-    int nl, nr, m; cin >> nl >> nr >> m;
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int nl, nr, m;
+    cin >> nl >> nr >> m;
     BipEdgeColor g(nl, nr);
     for (int i = 0; i < m; i++)
     {
@@ -238,5 +438,8 @@ signed main()
     }
     auto ans = g.work();
     cout << ans.k << '\n';
-    for (int x : ans.c) cout << x << '\n';
+    for (int x : ans.c)
+    {
+        cout << x << '\n';
+    }
 }
