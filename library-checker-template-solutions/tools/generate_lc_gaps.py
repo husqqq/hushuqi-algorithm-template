@@ -475,9 +475,12 @@ signed main()
 }
 '''),
     ("graph", "biconnected_components"): (
-        "5_3_005.hpp", "Biconnected Components", "tests/test_ch05_components.cpp", r'''
+        "5_3_005.hpp", "Biconnected Components", "tests/test_ch05_vertex_bcc.cpp", r'''
 signed main()
 {
+    // 从标准输入读入无向图，输出各点双的顶点集合。
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
     int n, m; cin >> n >> m;
     VertexBCC bcc(n);
     while (m--)
@@ -486,12 +489,15 @@ signed main()
         bcc.addEdge(u, v);
     }
     bcc.build();
-    auto ans = bcc.components();
+    const auto &ans = bcc.comps();
     cout << ans.size() << '\n';
     for (auto &v : ans)
     {
         cout << v.size();
-        for (int u : v) cout << ' ' << u;
+        for (int u : v)
+        {
+            cout << ' ' << u;
+        }
         cout << '\n';
     }
 }

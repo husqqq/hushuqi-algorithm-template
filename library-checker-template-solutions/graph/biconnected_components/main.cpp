@@ -5,12 +5,12 @@ using namespace std;
 
 class VertexBCC
 {
-    int n, ti = 0;
-    vector<array<int, 2>> ed;
-    vector<vector<array<int, 2>>> g;
-    vector<int> dfn, low, st;
-    vector<bool> cut;
-    vector<vector<int>> bcc;
+    int n, ti = 0; // 点数与 DFS 时间戳。
+    vector<array<int, 2>> ed; // 每条边的两个端点。
+    vector<vector<array<int, 2>>> g; // 邻接项依次为邻点、边编号。
+    vector<int> dfn, low, st; // 访问次序、最低可达次序、待归属边栈。
+    vector<bool> cut; // 各点是否为割点。
+    vector<vector<int>> bcc; // 各点双的升序点集。
 
     void dfs(int u, int pe)
     {
@@ -47,8 +47,6 @@ class VertexBCC
                             break;
                         }
                     }
-                    sort(cur.begin(), cur.end());
-                    cur.erase(unique(cur.begin(), cur.end()), cur.end());
                     bcc.push_back(move(cur));
                 }
             }
@@ -67,12 +65,12 @@ class VertexBCC
   public:
     VertexBCC(int n) : n(n), g(n), dfn(n), low(n), cut(n)
     {
-        // n 是点数；构造一张无边图。
+        // n>=0 是点数；构造一张无边图。
     }
 
     int addEdge(int u, int v)
     {
-        // u、v 是端点；加入允许重边的无向边并返回边编号。
+        // u、v 是 [0,n) 内的端点；加入无向边并返回编号，允许重边，自环不参与分解。
         assert(0 <= u && u < n && 0 <= v && v < n); // 调试检查，可删。
         int id = ed.size();
         ed.push_back({u, v});
@@ -97,6 +95,27 @@ class VertexBCC
                 dfs(u, -1);
             }
         }
+        // 按分量编号登记归属，再按点编号回填，线性去重并保持点集升序。
+        vector<int> head(n, -1); // 每个点的归属链表表头。
+        vector<array<int, 2>> link; // 每项依次为分量编号、同点的上一归属位置。
+        link.reserve(n + ed.size());
+        for (int i = 0; i < (int)bcc.size(); i++)
+        {
+            for (int u : bcc[i])
+            {
+                if (head[u] != -1 && link[head[u]][0] == i) continue;
+                link.push_back({i, head[u]});
+                head[u] = (int)link.size() - 1;
+            }
+            bcc[i].clear();
+        }
+        for (int u = 0; u < n; u++)
+        {
+            for (int j = head[u]; j != -1; j = link[j][1])
+            {
+                bcc[link[j][0]].push_back(u);
+            }
+        }
     }
 
     const vector<bool> &cutVertices() const
@@ -105,15 +124,18 @@ class VertexBCC
         return cut;
     }
 
-    const vector<vector<int>> &components() const
+    const vector<vector<int>> &comps() const
     {
-        // 无参数；返回全部点双的点集。
+        // 无参数；返回全部点双，分量内点号升序，分量顺序为 DFS 出栈顺序。
         return bcc;
     }
 };
 
 signed main()
 {
+    // 从标准输入读入无向图，输出各点双的顶点集合。
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
     int n, m; cin >> n >> m;
     VertexBCC bcc(n);
     while (m--)
@@ -122,12 +144,15 @@ signed main()
         bcc.addEdge(u, v);
     }
     bcc.build();
-    auto ans = bcc.components();
+    const auto &ans = bcc.comps();
     cout << ans.size() << '\n';
     for (auto &v : ans)
     {
         cout << v.size();
-        for (int u : v) cout << ' ' << u;
+        for (int u : v)
+        {
+            cout << ' ' << u;
+        }
         cout << '\n';
     }
 }

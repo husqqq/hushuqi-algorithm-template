@@ -6,7 +6,7 @@
   "provenance": {
     "kind": "template_solution",
     "source": "graph/biconnected_components/main.cpp",
-    "source_sha256": "5730eade72b57ea2898b918b3f0e78ed6f6f0a69ba560137b0c2b702871d82de"
+    "source_sha256": "0fc1d66bbc72e6a7d48f9c97f2fc8d537ee455cdaf85605166f0e8294936ae4a"
   },
   "official_reference": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
@@ -14,21 +14,12 @@
     "problem": "biconnected_components"
   },
   "validation": {
-    "status": "online_ac",
-    "current_source_sha256": "5730eade72b57ea2898b918b3f0e78ed6f6f0a69ba560137b0c2b702871d82de",
+    "status": "local_only",
+    "current_source_sha256": "0fc1d66bbc72e6a7d48f9c97f2fc8d537ee455cdaf85605166f0e8294936ae4a",
     "checks": [
       "source_cxx20_compile",
-      "hushuqi算法竞赛模板/tests/test_ch05_components.cpp"
-    ],
-    "checked_at": "2026-08-21T10:29:27.841523Z",
-    "current_source_online_verdict": "AC",
-    "current_source_submission_id": 395585,
-    "current_source_time": 0.571,
-    "current_source_memory": 178819072,
-    "current_source_submission_time": "2026-08-21T10:28:54.942683Z",
-    "current_source_is_latest": true,
-    "server_source_sha256": "5730eade72b57ea2898b918b3f0e78ed6f6f0a69ba560137b0c2b702871d82de",
-    "note": "当前独立源码已通过 Library Checker 在线评测。"
+      "hushuqi算法竞赛模板/tests/test_ch05_vertex_bcc.cpp"
+    ]
   },
   "submission_attempts": [
     {

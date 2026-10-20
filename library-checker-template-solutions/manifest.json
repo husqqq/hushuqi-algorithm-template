@@ -105,7 +105,7 @@
       "title": "Biconnected Components",
       "category": "graph",
       "source": "graph/biconnected_components/main.cpp",
-      "source_sha256": "5730eade72b57ea2898b918b3f0e78ed6f6f0a69ba560137b0c2b702871d82de",
+      "source_sha256": "0fc1d66bbc72e6a7d48f9c97f2fc8d537ee455cdaf85605166f0e8294936ae4a",
       "meta": "graph/biconnected_components/meta.json",
       "state": "template_solution"
     },
