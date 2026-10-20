@@ -20,7 +20,9 @@ struct MinDiamTree
         bool operator>(const State &o) const
         {
             // o 是另一个状态；按 (d,u,fa) 字典序比较，供小根堆使用。
-            return tie(d, u, fa) > tie(o.d, o.u, o.fa);
+            if (d != o.d) return d > o.d;
+            if (u != o.u) return u > o.u;
+            return fa > o.fa;
         }
     };
 

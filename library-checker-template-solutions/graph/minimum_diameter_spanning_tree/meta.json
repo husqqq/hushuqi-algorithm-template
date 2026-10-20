@@ -6,7 +6,7 @@
   "provenance": {
     "kind": "template_solution",
     "source": "graph/minimum_diameter_spanning_tree/main.cpp",
-    "source_sha256": "40cea6f44dccaa39e1c642279c171520b6e2aa1f93be84ac92ad6d74da1c9cb4"
+    "source_sha256": "36f5f5d48d28783d498e31b9620a8483ae45d8ed29948461c0e328ad48fcf277"
   },
   "official_reference": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
@@ -15,7 +15,7 @@
   },
   "validation": {
     "status": "local_only",
-    "current_source_sha256": "40cea6f44dccaa39e1c642279c171520b6e2aa1f93be84ac92ad6d74da1c9cb4",
+    "current_source_sha256": "36f5f5d48d28783d498e31b9620a8483ae45d8ed29948461c0e328ad48fcf277",
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch05_mdst.cpp"

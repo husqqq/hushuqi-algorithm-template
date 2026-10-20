@@ -1,4 +1,7 @@
-#include "../include/full/5_5_012.hpp"
+#ifndef TEST_HEADER
+#define TEST_HEADER "../include/full/5_5_012.hpp"
+#endif
+#include TEST_HEADER
 
 struct E
 {
@@ -72,6 +75,36 @@ long long brute(int n, const vector<E> &e)
 
 signed main()
 {
+    vector<long long> vals{LLONG_MIN, -1, 0, 1, LLONG_MAX};
+    vector<MinDiamTree::State> states;
+    for (auto d : vals)
+    {
+        for (auto u : vals)
+        {
+            for (auto fa : vals)
+            {
+                states.push_back({d, u, fa});
+            }
+        }
+    }
+    for (auto a : states)
+    {
+        for (auto b : states)
+        {
+            assert((a > b) == (tie(a.d, a.u, a.fa) > tie(b.d, b.u, b.fa)));
+        }
+    }
+    priority_queue<MinDiamTree::State, vector<MinDiamTree::State>, greater<MinDiamTree::State>> heap;
+    for (auto s : states)
+    {
+        heap.push(s);
+    }
+    for (auto s : states)
+    {
+        auto t = heap.top();
+        heap.pop();
+        assert(tie(s.d, s.u, s.fa) == tie(t.d, t.u, t.fa));
+    }
     mt19937_64 rng(0);
     unsigned long long agg = 0;
     for (int tc = 0; tc < 800; tc++)
@@ -120,12 +153,13 @@ signed main()
         }
         assert(diameter(n, t) == got);
         agg = agg * 1000000007ULL + got;
+        cout << "AC " << tc << '\n';
     }
     MinDiamTree disconnected(2);
     assert(!disconnected.solve());
     MinDiamTree badWeight(2);
     assert(!badWeight.addEdge(0, 1, numeric_limits<long long>::max()));
     assert(!badWeight.solve());
-    cout << agg << '\n';
+    cerr << "checksum " << agg << '\n';
     return 0;
 }
