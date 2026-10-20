@@ -77,6 +77,126 @@ signed main()
     assert(!galeRyser({3, 1}, {2, 2}));
     assert(!bipDegree({3, 1}, {2, 2}));
     assert(bipDegree({0, 0}, {0, 0, 0}) == emptyEdges);
+    for (int n = 0; n <= 6; ++n)
+    {
+        set<vector<int>> possible;
+        int edgeCnt = n * (n - 1) / 2;
+        for (int mask = 0; mask < (1 << edgeCnt); ++mask)
+        {
+            vector<int> d(n);
+            int bit = 0;
+            for (int u = 0; u < n; ++u)
+            {
+                for (int v = u + 1; v < n; ++v)
+                {
+                    if (mask >> bit & 1)
+                    {
+                        ++d[u];
+                        ++d[v];
+                    }
+                    ++bit;
+                }
+            }
+            possible.insert(d);
+        }
+        int seqCnt = 1;
+        for (int i = 0; i < n; ++i)
+        {
+            seqCnt *= n;
+        }
+        for (int code = 0; code < seqCnt; ++code)
+        {
+            int x = code;
+            vector<int> d(n);
+            for (int &v : d)
+            {
+                v = x % n;
+                x /= n;
+            }
+            auto e = havelHakimi(d);
+            assert((bool)e == possible.count(d));
+            if (e)
+            {
+                vector<int> got(n);
+                set<pair<int, int>> edges;
+                for (auto [u, v] : *e)
+                {
+                    assert(u != v && edges.insert(minmax(u, v)).second);
+                    ++got[u];
+                    ++got[v];
+                }
+                assert(got == d);
+            }
+        }
+    }
+    for (int n = 0; n <= 4; ++n)
+    {
+        for (int m = 0; m <= 4; ++m)
+        {
+            set<pair<vector<int>, vector<int>>> possible;
+            for (int mask = 0; mask < (1 << (n * m)); ++mask)
+            {
+                vector<int> a(n), b(m);
+                for (int u = 0; u < n; ++u)
+                {
+                    for (int v = 0; v < m; ++v)
+                    {
+                        if (mask >> (u * m + v) & 1)
+                        {
+                            ++a[u];
+                            ++b[v];
+                        }
+                    }
+                }
+                possible.insert({a, b});
+            }
+            int seqA = 1, seqB = 1;
+            for (int i = 0; i < n; ++i)
+            {
+                seqA *= m + 1;
+            }
+            for (int j = 0; j < m; ++j)
+            {
+                seqB *= n + 1;
+            }
+            for (int ca = 0; ca < seqA; ++ca)
+            {
+                vector<int> a(n);
+                int x = ca;
+                for (int &v : a)
+                {
+                    v = x % (m + 1);
+                    x /= m + 1;
+                }
+                for (int cb = 0; cb < seqB; ++cb)
+                {
+                    vector<int> b(m);
+                    x = cb;
+                    for (int &v : b)
+                    {
+                        v = x % (n + 1);
+                        x /= n + 1;
+                    }
+                    bool want = possible.count({a, b});
+                    assert(galeRyser(a, b) == want);
+                    auto e = bipDegree(a, b);
+                    assert((bool)e == want);
+                    if (e)
+                    {
+                        vector<int> gotA(n), gotB(m);
+                        set<pair<int, int>> edges;
+                        for (auto [u, v] : *e)
+                        {
+                            assert(edges.insert({u, v}).second);
+                            ++gotA[u];
+                            ++gotB[v];
+                        }
+                        assert(gotA == a && gotB == b);
+                    }
+                }
+            }
+        }
+    }
     for (int tc = 0; tc < 100; ++tc)
     {
         int n = rng() % 9 + 1; vector<int> d(n);
