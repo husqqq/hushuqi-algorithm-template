@@ -69,7 +69,14 @@ signed main()
         do { __int128 prod = 1; for (int i = 0; i < n; ++i) prod *= a[i][p[i]]; ans += prod; } while (next_permutation(p.begin(), p.end()));
         ans %= mod; if (ans < 0) ans += mod; assert(permanent(a, mod) == ans);
     }
-    assert(havelHakimi({})); assert(!havelHakimi({3, 3, 1, 1}));
+    assert(havelHakimi({}));
+    vector<pair<int, int>> emptyEdges;
+    assert(havelHakimi({0, 0, 0}) == emptyEdges);
+    assert(!havelHakimi({3, 3, 1, 1}));
+    assert(!havelHakimi({-1, 1}));
+    assert(!galeRyser({3, 1}, {2, 2}));
+    assert(!bipDegree({3, 1}, {2, 2}));
+    assert(bipDegree({0, 0}, {0, 0, 0}) == emptyEdges);
     for (int tc = 0; tc < 100; ++tc)
     {
         int n = rng() % 9 + 1; vector<int> d(n);
