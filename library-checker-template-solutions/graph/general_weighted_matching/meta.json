@@ -6,7 +6,7 @@
   "provenance": {
     "kind": "template_solution",
     "source": "graph/general_weighted_matching/main.cpp",
-    "source_sha256": "7c145d6c3461a3cd824c27c7296e816eec6741f922de2ad772d1df28c3fb82c1"
+    "source_sha256": "b1a4ffe427ed19fac98cd1d5b46f72104715bedad99007e24cf37a5e48020756"
   },
   "official_reference": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
@@ -15,7 +15,7 @@
   },
   "validation": {
     "status": "local_only",
-    "current_source_sha256": "7c145d6c3461a3cd824c27c7296e816eec6741f922de2ad772d1df28c3fb82c1",
+    "current_source_sha256": "b1a4ffe427ed19fac98cd1d5b46f72104715bedad99007e24cf37a5e48020756",
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/check_weighted_blossom.cpp"

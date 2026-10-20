@@ -442,11 +442,20 @@ struct WBlossom
 
 signed main()
 {
-    int n, m; cin >> n >> m;
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n, m;
+    cin >> n >> m;
     vector<tuple<int, int, long long>> e(m);
-    for (auto &[u, v, w] : e) cin >> u >> v >> w;
+    for (auto &[u, v, w] : e)
+    {
+        cin >> u >> v >> w;
+    }
     WBlossom<long long> g(n);
     auto [sum, ans] = g.solve(e);
     cout << ans.size() << ' ' << sum << '\n';
-    for (auto [u, v] : ans) cout << u << ' ' << v << '\n';
+    for (auto [u, v] : ans)
+    {
+        cout << u << ' ' << v << '\n';
+    }
 }
