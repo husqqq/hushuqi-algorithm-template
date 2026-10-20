@@ -3,15 +3,18 @@
 using namespace std;
 #define int long long
 
-// 这是补图最大团的精确分支限界，只适合 n<=63 的一般图。
+// 补图最大团的精确分支限界；64 位实现，实际可行规模取决于图结构。
 inline vector<int> maxIS(int n, const vector<pair<int, int>> &edges)
 {
     // n 是点数，edges 是无向边；返回一组最大独立集顶点，允许重边和自环。
-    assert(0 <= n && n <= 63); // 调试检查，可删：位集使用 unsigned long long。
+    assert(0 <= n && n <= 64); // 调试检查，可删：位集使用 unsigned long long。
     vector<unsigned long long> adj(n);
     vector<bool> loop(n);
-    unsigned long long all = n ? (1ULL << n) - 1 : 0;
-    for (int u = 0; u < n; u++) adj[u] = all ^ (1ULL << u);
+    unsigned long long all = n == 64 ? ~0ULL : (1ULL << n) - 1;
+    for (int u = 0; u < n; u++)
+    {
+        adj[u] = all ^ (1ULL << u);
+    }
     for (auto [u, v] : edges)
     {
         assert(0 <= u && u < n && 0 <= v && v < n); // 调试检查，可删。
@@ -66,7 +69,10 @@ inline vector<int> maxIS(int n, const vector<pair<int, int>> &edges)
         }
     };
     unsigned long long can = all;
-    for (int u = 0; u < n; u++) if (loop[u]) can &= ~(1ULL << u);
+    for (int u = 0; u < n; u++)
+    {
+        if (loop[u]) can &= ~(1ULL << u);
+    }
     dfs(dfs, can);
     return best;
 }

@@ -1131,7 +1131,7 @@
       "title": "Maximum Independent Set",
       "category": "graph",
       "source": "graph/maximum_independent_set/main.cpp",
-      "source_sha256": "01f3aa8a027b5d615b7479cecac0cf5e6beb46c54f4ee124dd8fd3b668b2b18e",
+      "source_sha256": "0b62d7c0b009d162578cd97345b0b141f8913dcccf00c908a3769d124e526548",
       "meta": "graph/maximum_independent_set/meta.json",
       "state": "template_solution"
     },
