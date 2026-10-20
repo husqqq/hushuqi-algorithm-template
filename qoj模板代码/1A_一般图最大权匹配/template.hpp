@@ -2,7 +2,6 @@
 
 // QOJ contest 3936: 1A 一般图最大权匹配
 
-
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
@@ -10,6 +9,8 @@ using namespace std;
 template <class W = long long>
 struct WBlossom
 {
+    static_assert(numeric_limits<W>::is_integer && numeric_limits<W>::is_signed);
+
     struct Edge
     {
         int u = 0, v = 0;
@@ -358,6 +359,7 @@ struct WBlossom
 
     pair<W, vector<pair<int, int>>> solve(const vector<tuple<int, int, W>> &edges)
     {
+        // 输入 0 下标无向边；忽略非正权边，平行边只保留最大权。
         assert((int)e.size() >= 2 * n + 5);
         m = n;
         stamp = 0;
@@ -380,8 +382,11 @@ struct WBlossom
         {
             assert(0 <= u && u < n && 0 <= v && v < n && u != v);
             u++, v++;
-            e[u][v].w = e[v][u].w = max(e[u][v].w, w);
-            wm = max(wm, w);
+            if (w > 0)
+            {
+                e[u][v].w = e[v][u].w = max(e[u][v].w, w);
+                wm = max(wm, w);
+            }
         }
         for (int i = 1; i <= n; i++)
         {

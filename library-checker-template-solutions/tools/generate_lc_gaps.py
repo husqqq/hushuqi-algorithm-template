@@ -84,13 +84,13 @@ signed main()
 }
 '''),
     ("graph", "general_weighted_matching"): (
-        "5_7_006.hpp", "General Weighted Matching", "tests/test_ch05_general_matching.cpp", r'''
+        "5_7_006.hpp", "General Weighted Matching", "tests/check_weighted_blossom.cpp", r'''
 signed main()
 {
     int n, m; cin >> n >> m;
     vector<tuple<int, int, long long>> e(m);
     for (auto &[u, v, w] : e) cin >> u >> v >> w;
-    WeightedBlossom<long long> g(n);
+    WBlossom<long long> g(n);
     auto [sum, ans] = g.solve(e);
     cout << ans.size() << ' ' << sum << '\n';
     for (auto [u, v] : ans) cout << u << ' ' << v << '\n';

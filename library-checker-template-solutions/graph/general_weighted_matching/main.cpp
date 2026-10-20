@@ -4,8 +4,10 @@ using namespace std;
 #define int long long
 
 template <class W = long long>
-struct WeightedBlossom
+struct WBlossom
 {
+    static_assert(numeric_limits<W>::is_integer && numeric_limits<W>::is_signed);
+
     struct Edge
     {
         int u = 0, v = 0;
@@ -19,7 +21,7 @@ struct WeightedBlossom
     vector<int> link, slack, state, rep, fa, seen, q;
     vector<vector<int>> blossom, base;
 
-    explicit WeightedBlossom(int n)
+    explicit WBlossom(int n)
         : n(n), m(n), e(2 * n + 5, vector<Edge>(2 * n + 5)),
           lab(2 * n + 5), link(2 * n + 5), slack(2 * n + 5),
           state(2 * n + 5), rep(2 * n + 5), fa(2 * n + 5), seen(2 * n + 5),
@@ -354,6 +356,7 @@ struct WeightedBlossom
 
     pair<W, vector<pair<int, int>>> solve(const vector<tuple<int, int, W>> &edges)
     {
+        // 输入 0 下标无向边；忽略非正权边，平行边只保留最大权。
         assert((int)e.size() >= 2 * n + 5);
         m = n;
         stamp = 0;
@@ -376,8 +379,11 @@ struct WeightedBlossom
         {
             assert(0 <= u && u < n && 0 <= v && v < n && u != v);
             u++, v++;
-            e[u][v].w = e[v][u].w = max(e[u][v].w, w);
-            wm = max(wm, w);
+            if (w > 0)
+            {
+                e[u][v].w = e[v][u].w = max(e[u][v].w, w);
+                wm = max(wm, w);
+            }
         }
         for (int i = 1; i <= n; i++)
         {
@@ -417,7 +423,7 @@ signed main()
     int n, m; cin >> n >> m;
     vector<tuple<int, int, long long>> e(m);
     for (auto &[u, v, w] : e) cin >> u >> v >> w;
-    WeightedBlossom<long long> g(n);
+    WBlossom<long long> g(n);
     auto [sum, ans] = g.solve(e);
     cout << ans.size() << ' ' << sum << '\n';
     for (auto [u, v] : ans) cout << u << ' ' << v << '\n';
