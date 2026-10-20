@@ -2,6 +2,16 @@
 
 using Edge = tuple<int, int, long long>;
 
+
+void require(bool ok)
+{
+    if (!ok)
+    {
+        cerr << "weighted_blossom check failed\n";
+        exit(1);
+    }
+}
+
 long long brute(const vector<vector<long long>> &weight, int mask,
                 vector<long long> &memo)
 {
@@ -36,31 +46,31 @@ void check(int n, const vector<Edge> &edges)
     vector<vector<long long>> weight(n, vector<long long>(n));
     for (auto [u, v, w] : edges)
     {
-        assert(0 <= u && u < n && 0 <= v && v < n && u != v);
+        require(0 <= u && u < n && 0 <= v && v < n && u != v);
         weight[u][v] = weight[v][u] = max(weight[u][v], w);
     }
 
     WBlossom<long long> solver(n);
     auto first = solver.solve(edges);
     auto second = solver.solve(edges);
-    assert(first == second);
+    require(first == second);
 
     auto [answer, matching] = first;
-    assert(is_sorted(matching.begin(), matching.end()));
+    require(is_sorted(matching.begin(), matching.end()));
     vector<int> used(n);
     long long sum = 0;
     for (auto [u, v] : matching)
     {
-        assert(0 <= u && u < v && v < n);
-        assert(!used[u] && !used[v]);
-        assert(weight[u][v] > 0);
+        require(0 <= u && u < v && v < n);
+        require(!used[u] && !used[v]);
+        require(weight[u][v] > 0);
         used[u] = used[v] = 1;
         sum += weight[u][v];
     }
-    assert(sum == answer);
+    require(sum == answer);
 
     vector<long long> memo(1LL << n, -1);
-    assert(answer == brute(weight, 0, memo));
+    require(answer == brute(weight, 0, memo));
 }
 
 signed main()
@@ -73,9 +83,9 @@ signed main()
               {0, 2, 1000000000001LL}, {1, 3, 999999999997LL}});
 
     WBlossom<long long> reused(3);
-    assert(reused.solve({{0, 1, 7}, {1, 2, 3}}).first == 7);
-    assert(reused.solve({{0, 1, -4}, {1, 2, -2}}).first == 0);
-    assert(reused.solve({}).first == 0);
+    require(reused.solve({{0, 1, 7}, {1, 2, 3}}).first == 7);
+    require(reused.solve({{0, 1, -4}, {1, 2, -2}}).first == 0);
+    require(reused.solve({}).first == 0);
 
     mt19937_64 rng(20261020);
     for (int iteration = 0; iteration < 3000; iteration++)

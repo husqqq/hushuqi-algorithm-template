@@ -789,7 +789,7 @@
       "title": "General Weighted Matching",
       "category": "graph",
       "source": "graph/general_weighted_matching/main.cpp",
-      "source_sha256": "030d9ad696c110883d3d18f399bb2139c46c9a2d4588ce9a5775c86db5f3e4c7",
+      "source_sha256": "7c145d6c3461a3cd824c27c7296e816eec6741f922de2ad772d1df28c3fb82c1",
       "meta": "graph/general_weighted_matching/meta.json",
       "state": "template_solution"
     },

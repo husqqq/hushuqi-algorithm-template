@@ -10,23 +10,27 @@ struct WBlossom
 
     struct Edge
     {
-        int u = 0, v = 0;
-        W w = 0;
+        int u = 0, v = 0; // u、v 是边在当前收缩图中的两个端点。
+        W w = 0;          // w 是边权。
     };
 
-    int n, m, stamp = 0, head = 0, tail = 0;
-    W inf = numeric_limits<W>::max() / 4;
-    vector<vector<Edge>> e;
-    vector<W> lab;
-    vector<int> link, slack, state, rep, fa, seen, q;
-    vector<vector<int>> blossom, base;
+    int n, m, stamp = 0, head = 0, tail = 0; // n 是点数，m 是已用的点与花朵编号上界，stamp 是找 LCA 的时间戳，head、tail 是 BFS 队列首尾。
+    W inf = numeric_limits<W>::max() / 4; // inf 是不可达权值。
+    vector<vector<Edge>> e;          // e 是原点与花朵之间的最优代表边矩阵。
+    vector<W> lab;                   // lab 是原点和花朵的对偶顶标。
+    vector<int> link, slack, state;  // link 是匹配点，slack 是最松边，state 是交替树状态。
+    vector<int> rep, fa, seen, q;    // rep 是当前花朵代表，fa 是交替树父边端点。
+    vector<vector<int>> blossom;     // blossom[x] 按环序保存花朵 x 的子块。
+    vector<vector<int>> base;        // base[x][v] 是花朵 x 内含原点 v 的直接子块。
+    vector<vector<int>> adj;         // 原图正权邻接表；BFS 只扫描实际存在的边。
 
     explicit WBlossom(int n)
         : n(n), m(n), e(2 * n + 5, vector<Edge>(2 * n + 5)),
           lab(2 * n + 5), link(2 * n + 5), slack(2 * n + 5),
           state(2 * n + 5), rep(2 * n + 5), fa(2 * n + 5), seen(2 * n + 5),
-          q(2 * n + 5), blossom(2 * n + 5), base(2 * n + 5, vector<int>(2 * n + 5))
+          q(2 * n + 5), blossom(2 * n + 5), base(2 * n + 5, vector<int>(2 * n + 5)), adj(n + 1)
     {
+        // n 是原图点数；构造最多含 n 个收缩花朵的工作区。
         assert(n >= 0);
         for (int i = 1; i < (int)e.size(); i++)
         {
@@ -39,11 +43,13 @@ struct WBlossom
 
     W delta(const Edge &x) const
     {
+        // x 是边；返回它相对当前顶标的二倍松弛量。
         return lab[x.u] + lab[x.v] - x.w * 2;
     }
 
     void updateSlack(int u, int v)
     {
+        // u 是外点，v 是待更新块；保留连接 v 的最松边起点。
         if (!slack[v] || delta(e[u][v]) < delta(e[slack[v]][v]))
         {
             slack[v] = u;
@@ -52,6 +58,7 @@ struct WBlossom
 
     void setSlack(int v)
     {
+        // v 是当前块；重新寻找从外层交替树连接到 v 的最松边。
         slack[v] = 0;
         for (int u = 1; u <= n; u++)
         {
@@ -64,6 +71,7 @@ struct WBlossom
 
     void enqueue(int u)
     {
+        // u 是外层块；把其中全部原点加入交替树扫描队列。
         if (u <= n)
         {
             q[++tail] = u;
@@ -79,6 +87,7 @@ struct WBlossom
 
     void modify(int u, int w)
     {
+        // u 是块，w 是新代表；递归修改 u 内全部原点的代表。
         rep[u] = w;
         if (u > n)
         {
@@ -91,6 +100,7 @@ struct WBlossom
 
     int position(int u, int v)
     {
+        // u 是花朵，v 是其中一个直接子块；调整环向后返回 v 的偶数下标。
         auto it = find(blossom[u].begin(), blossom[u].end(), v);
         int x = it - blossom[u].begin();
         if (x & 1)
@@ -103,6 +113,7 @@ struct WBlossom
 
     void setMatch(int u, int v)
     {
+        // u、v 是两个待配对块；展开花朵 u 内部并建立对应匹配。
         link[u] = e[u][v].v;
         if (u <= n)
         {
@@ -120,6 +131,7 @@ struct WBlossom
 
     void augment(int u, int v)
     {
+        // u、v 是增广路首条边两端；沿交替树翻转匹配直到自由根。
         int x = rep[link[u]];
         setMatch(u, v);
         if (!x)
@@ -132,6 +144,7 @@ struct WBlossom
 
     int lca(int u, int v)
     {
+        // u、v 是两个外层块；返回其交替树最低公共祖先，不相交时返回 0。
         ++stamp;
         while (u || v)
         {
@@ -155,6 +168,7 @@ struct WBlossom
 
     void contract(int u, int a, int v)
     {
+        // u、v 是零紧边两端，a 是交替树公共祖先；收缩对应奇环。
         int x = n + 1, i, j;
         while (x <= m && rep[x])
         {
@@ -210,6 +224,7 @@ struct WBlossom
 
     void expand(int u)
     {
+        // u 是顶标降到零的内层花朵；按交替树方向展开。
         for (int x : blossom[u])
         {
             modify(x, x);
@@ -236,6 +251,7 @@ struct WBlossom
 
     bool onEdge(const Edge &x)
     {
+        // x 是新出现的零紧边；扩展交替树、收花或增广，增广成功返回 true。
         int u = rep[x.u], v = rep[x.v];
         if (state[v] == -1)
         {
@@ -261,6 +277,7 @@ struct WBlossom
 
     bool bfs()
     {
+        // 在当前匹配上寻找并执行一条增广路；不存在时返回 false。
         fill(state.begin() + 1, state.begin() + m + 1, -1);
         fill(slack.begin() + 1, slack.begin() + m + 1, 0);
         head = 1;
@@ -286,9 +303,9 @@ struct WBlossom
                 {
                     continue;
                 }
-                for (int v = 1; v <= n; v++)
+                for (int v : adj[u])
                 {
-                    if (e[u][v].w > 0 && rep[u] != rep[v])
+                    if (rep[u] != rep[v])
                     {
                         if (delta(e[u][v]))
                         {
@@ -338,8 +355,8 @@ struct WBlossom
             tail = 0;
             for (int i = 1; i <= m; i++)
             {
-                if (rep[i] == i && slack[i] && rep[slack[i]] != i && !delta(e[slack[i]][i]) &&
-                    onEdge(e[slack[i]][i]))
+                if (rep[i] == i && slack[i] && rep[slack[i]] != i &&
+                    !delta(e[slack[i]][i]) && onEdge(e[slack[i]][i]))
                 {
                     return true;
                 }
@@ -387,9 +404,14 @@ struct WBlossom
         }
         for (int i = 1; i <= n; i++)
         {
+            adj[i].clear();
             for (int j = 1; j <= n; j++)
             {
                 base[i][j] = i == j ? i : 0;
+                if (e[i][j].w > 0)
+                {
+                    adj[i].push_back(j);
+                }
                 if (i != j)
                 {
                     e[i][j].u = i;
