@@ -6,7 +6,7 @@
   "provenance": {
     "kind": "template_solution",
     "source": "graph/minimum_steiner_tree/main.cpp",
-    "source_sha256": "136d0cf35afebe0323d08923a3fb9120a1103a031e6c1dd72066d0ac854ebdb1"
+    "source_sha256": "faa2fbd7f2089f68845ad95a4a8f0da0a00a674e7eb4bc479ce0bf9e301c108b"
   },
   "official_reference": {
     "commit": "04c8de378bab67be926325de2871f0babb8e6451",
@@ -14,21 +14,12 @@
     "problem": "minimum_steiner_tree"
   },
   "validation": {
-    "status": "online_ac",
-    "current_source_sha256": "136d0cf35afebe0323d08923a3fb9120a1103a031e6c1dd72066d0ac854ebdb1",
+    "status": "local_only",
+    "current_source_sha256": "faa2fbd7f2089f68845ad95a4a8f0da0a00a674e7eb4bc479ce0bf9e301c108b",
     "checks": [
       "source_cxx20_compile",
       "hushuqi算法竞赛模板/tests/test_ch05_steiner.cpp"
-    ],
-    "checked_at": "2026-08-21T10:41:34.402531Z",
-    "current_source_online_verdict": "AC",
-    "current_source_submission_id": 395590,
-    "current_source_time": 0.116,
-    "current_source_memory": 14520320,
-    "current_source_submission_time": "2026-08-21T10:40:56.226685Z",
-    "current_source_is_latest": true,
-    "server_source_sha256": "136d0cf35afebe0323d08923a3fb9120a1103a031e6c1dd72066d0ac854ebdb1",
-    "note": "当前独立源码已通过 Library Checker 在线评测。"
+    ]
   },
   "submission_attempts": [
     {

@@ -415,9 +415,12 @@ signed main()
 }
 '''),
     ("graph", "shortest_path"): (
-        "5_2_008.hpp", "Shortest Path", "tests/test_ch05_shortest.cpp", r'''
+        "5_2_008.hpp", "Shortest Path", "tests/test_ch05_dijkstra_init.cpp", r'''
 signed main()
 {
+    // 无输入参数；读入有向图，输出指定两点的最短简单路径。
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
     int n, m, s, t; cin >> n >> m >> s >> t;
     vector<vector<WEdge>> g(n);
     while (m--)
@@ -425,17 +428,23 @@ signed main()
         int u, v, w; cin >> u >> v >> w;
         g[u].push_back({v, w});
     }
-    auto [d, par] = shortestPathTree(g, s);
+    auto [d, par] = shortestTree(g, s);
     if (!d[t].has_value())
     {
         cout << -1 << '\n';
         return 0;
     }
     vector<int> path;
-    for (int u = t; u != -1; u = par[u]) path.push_back(u);
+    for (int u = t; u != -1; u = par[u])
+    {
+        path.push_back(u);
+    }
     reverse(path.begin(), path.end());
     cout << *d[t] << ' ' << (int)path.size() - 1 << '\n';
-    for (int i = 1; i < (int)path.size(); i++) cout << path[i - 1] << ' ' << path[i] << '\n';
+    for (int i = 1; i < (int)path.size(); i++)
+    {
+        cout << path[i - 1] << ' ' << path[i] << '\n';
+    }
 }
 '''),
     ("graph", "k_shortest_walk"): (
@@ -578,6 +587,9 @@ signed main()
         "5_5_009.hpp", "Minimum Steiner Tree", "tests/test_ch05_steiner.cpp", r'''
 signed main()
 {
+    // 无额外参数；读入无向图与终端，输出最小权值和原边编号。
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
     int n, m; cin >> n >> m;
     Steiner st(n);
     for (int i = 0; i < m; i++)
@@ -587,11 +599,17 @@ signed main()
     }
     int k; cin >> k;
     vector<int> key(k);
-    for (int &u : key) cin >> u;
+    for (int &u : key)
+    {
+        cin >> u;
+    }
     auto ans = st.solveTree(key);
     assert(ans.has_value());
     cout << ans->first << ' ' << ans->second.size() << '\n';
-    for (int i = 0; i < (int)ans->second.size(); i++) cout << ans->second[i] << " \n"[i + 1 == (int)ans->second.size()];
+    for (int i = 0; i < (int)ans->second.size(); i++)
+    {
+        cout << ans->second[i] << " \n"[i + 1 == (int)ans->second.size()];
+    }
     if (ans->second.empty()) cout << '\n';
 }
 '''),

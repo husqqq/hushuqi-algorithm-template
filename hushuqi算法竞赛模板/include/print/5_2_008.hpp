@@ -6,28 +6,16 @@ template<class Dist = long long>
 pair<vector<optional<Dist>>, vector<int>> shortestTree(
     const vector<vector<WEdge>> &g, int s)
 {
-    // g 是非负权有向图；返回最短距离与一棵最短路径树的父节点。
+    // g 是非负权有向图，s 是源点；返回 {最短距离,父点}，源点和不可达点的父点为 -1。
     int n = g.size();
     assert(0 <= s && s < n); // 调试检查，可删。
-    auto d = dijkstraSp<Dist>(g, s);
-    vector<int> par(n, -1), vis(n);
-    queue<int> q;
-    vis[s] = 1;
-    q.push(s);
-    while (!q.empty())
+    vector<optional<Dist>> d(n);
+    vector<int> par(n, -1);
+    d[s] = 0;
+    dijkstraInit(g, d, [&](int u, const WEdge &edge)
     {
-        int u = q.front();
-        q.pop();
-        for (auto [v, w] : g[u])
-        {
-            Dist z = (Dist)w;
-            if (!vis[v] && d[v].has_value() && *d[u] + z == *d[v])
-            {
-                vis[v] = 1;
-                par[v] = u;
-                q.push(v);
-            }
-        }
-    }
-    return {d, par};
+        // u 是前驱，edge 为 {终点,边权}；严格改善时更新父点。
+        par[edge[0]] = u;
+    });
+    return {move(d), move(par)};
 }

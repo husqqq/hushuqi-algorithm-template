@@ -1,35 +1,25 @@
 #pragma once
 
-#include <bits/stdc++.h>
-using namespace std;
-#define int long long
+#include "5_2_001.hpp"
 
 struct Steiner
 {
-    struct E
-    {
-        // to 是邻点编号。
-        int to;
-        // w 是非负边权。
-        int w;
-    };
-
     // n 是图的点数。
     int n;
-    // e 是无向图邻接表。
-    vector<vector<E>> e;
+    // e[u] 每项依次为邻点、非负边权。
+    vector<vector<array<int, 2>>> e;
     // ed[i][0..2] 依次是第 i 条原边的两个端点和非负边权。
     vector<array<int, 3>> ed;
 
     Steiner(int n = 0) : n(n), e(n)
     {
-        // n 是图的点数；构造一张没有边的图。
+        // n>=0 是点数；构造一张没有边的图。
     }
 
     void add(int u, int v, int w)
     {
-        // u、v 是端点，w 是非负边权；加入一条无向边。
-        assert(w >= 0); // 调试检查，可删。
+        // u、v 是 [0,n) 内端点，w>=0；加入无向边，原边编号为插入次序，允许重边和自环，无返回值。
+        assert(0 <= u && u < n && 0 <= v && v < n && w >= 0); // 调试检查，可删。
         e[u].push_back({v, w});
         e[v].push_back({u, w});
         ed.push_back({u, v, w});
@@ -37,25 +27,26 @@ struct Steiner
 
     optional<int> solve(const vector<int> &key) const
     {
-        // key 是关键点编号列表；返回连接全部关键点的最小权值，不可连通时返回空。
-        size_t k = key.size();
+        // key 是 [0,n) 内的终端列表；返回最小连通边权和，空列表返回 0，终端不连通时返回空。
+        // 所有合并与松弛的中间和须能用 int 表示；重复终端允许，但会重复占用状态位。
+        int k = key.size();
         if (k == 0)
         {
             return 0;
         }
-        assert(k < 63); // 调试检查，可删。
-        size_t z = (size_t)1 << k;
-        vector f(z, vector<optional<int>>(n));
-        for (size_t i = 0; i < k; i++)
+        assert(k < numeric_limits<int>::digits); // 调试检查，可删。
+        int z = (int)1 << k;
+        vector f(z, vector<optional<int>>(n)); // f[s][u]：连接终端集 s 并包含 u 的最小权值。
+        for (int i = 0; i < k; i++)
         {
             assert(0 <= key[i] && key[i] < n); // 调试检查，可删。
-            f[(size_t)1 << i][key[i]] = 0;
+            f[(int)1 << i][key[i]] = 0;
         }
-        for (size_t s = 1; s < z; s++)
+        for (int s = 1; s < z; s++)
         {
-            for (size_t a = (s - 1) & s; a; a = (a - 1) & s)
+            for (int a = (s - 1) & s; a; a = (a - 1) & s)
             {
-                size_t b = s ^ a;
+                int b = s ^ a;
                 if (!b || a > b)
                 {
                     continue;
@@ -72,32 +63,10 @@ struct Steiner
                     }
                 }
             }
-            priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> q;
-            for (int u = 0; u < n; u++)
+            dijkstraInit(e, f[s], [](int, const array<int, 2> &)
             {
-                if (f[s][u])
-                {
-                    q.push({*f[s][u], u});
-                }
-            }
-            while (!q.empty())
-            {
-                auto [d, u] = q.top();
-                q.pop();
-                if (!f[s][u] || d != *f[s][u])
-                {
-                    continue;
-                }
-                for (auto [v, w] : e[u])
-                {
-                    int nd = d + w;
-                    if (!f[s][v] || nd < *f[s][v])
-                    {
-                        f[s][v] = nd;
-                        q.push({nd, v});
-                    }
-                }
-            }
+                // 仅求当前子集的最小代价，无需记录前驱。
+            });
         }
         optional<int> ans;
         for (auto x : f.back())
@@ -112,23 +81,24 @@ struct Steiner
 
     optional<pair<int, vector<int>>> solveTree(const vector<int> &key) const
     {
-        // key 是互异关键点编号；返回最小权值和所选原边编号，图不连通时返回空。
+        // key 与数值范围同 solve；返回 {最小权值, 升序且无重复的原边编号}，终端不连通时返回空。
+        // 空终端列表返回 {0,{}}；图中其余连通块不影响结果。
         int k = key.size();
         if (k == 0)
         {
             return pair<int, vector<int>>{0, {}};
         }
-        assert(k < 20); // 调试检查，可删：本算法指数依赖关键点数。
-        int lim = 1 << k;
-        vector<vector<array<int, 3>>> g(n);
+        assert(k < numeric_limits<int>::digits); // 状态数须能用 int 表示，内存另由调用者保证。
+        int lim = (int)1 << k;
+        vector<vector<array<int, 3>>> g(n); // 邻接项依次为邻点、边权、原边编号。
         for (int i = 0; i < (int)ed.size(); i++)
         {
             auto [u, v, w] = ed[i];
             g[u].push_back({v, w, i});
             g[v].push_back({u, w, i});
         }
-        vector dp(lim, vector<optional<int>>(n));
-        // pre[s][u][0] 是合并子集或前驱点，pre[s][u][1] 是边编号；-1 表示终端基态。
+        vector dp(lim, vector<optional<int>>(n)); // 与 solve 的状态相同，另记录最优转移。
+        // pre[s][u]：{子集,-1} 表示合并，{前驱点,边号} 表示松弛，{-1,-1} 表示终端基态。
         vector pre(lim, vector<array<int, 2>>(n, {-1, -1}));
         for (int i = 0; i < k; i++)
         {
@@ -157,27 +127,11 @@ struct Steiner
                     }
                 }
             }
-            priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> q;
-            for (int u = 0; u < n; u++)
+            dijkstraInit(g, dp[s], [&](int u, const array<int, 3> &edge)
             {
-                if (dp[s][u]) q.push({*dp[s][u], u});
-            }
-            while (!q.empty())
-            {
-                auto [d, u] = q.top();
-                q.pop();
-                if (!dp[s][u] || d != *dp[s][u]) continue;
-                for (auto [v, w, id] : g[u])
-                {
-                    int nd = d + w;
-                    if (!dp[s][v] || nd < *dp[s][v])
-                    {
-                        dp[s][v] = nd;
-                        pre[s][v] = {u, id};
-                        q.push({nd, v});
-                    }
-                }
-            }
+                // u 是前驱，edge 依次为终点、边权、原边编号；保存当前最优转移。
+                pre[s][edge[0]] = {u, edge[2]};
+            });
         }
         int all = lim - 1, at = -1;
         for (int u = 0; u < n; u++)
@@ -185,10 +139,10 @@ struct Steiner
             if (dp[all][u] && (at == -1 || *dp[all][u] < *dp[all][at])) at = u;
         }
         if (at == -1) return nullopt;
-        vector<bool> used(ed.size());
+        vector<bool> used(ed.size()); // 每条原边是否出现在恢复方案中。
         auto trace = [&](auto &&self, int s, int u) -> void
         {
-            // s 是待连接终端集合，u 是当前端点；标记该状态的一棵最优树边集。
+            // self 是递归自身，s 是终端子集，u 是当前端点；标记该状态的最优树边集。
             auto [a, id] = pre[s][u];
             if (a == -1) return;
             if (id == -1)

@@ -65,6 +65,27 @@ class TopicDependencyTest(unittest.TestCase):
                            capture_output=True, check=True)
             subprocess.run([str(binary)], capture_output=True, check=True)
 
+    def test_dijkstra_and_steiner_examples_share_the_documented_kernel(self):
+        chapter = (WORKSPACE / "hushuqi算法竞赛模板/05-图论.md").read_text(encoding="utf-8")
+
+        def blocks(topic):
+            section = chapter.split("### " + topic + " ", 1)[1].split("### ", 1)[0]
+            return re.findall(r"```cpp\n(.*?)\n```", section, re.S)
+
+        prefix = "#include <bits/stdc++.h>\nusing namespace std;\n#define int long long\n"
+        shared = blocks("5.2.001")[0] + "\n"
+        with tempfile.TemporaryDirectory(prefix="dijkstra-steiner-docs-") as directory:
+            for topic in ("5.2.001", "5.2.008", "5.5.009"):
+                with self.subTest(topic=topic):
+                    impl, example = blocks(topic)
+                    code = prefix + shared + (impl + "\n" if topic != "5.2.001" else "") + example
+                    source = Path(directory) / "main.cpp"
+                    binary = Path(directory) / "main.exe"
+                    source.write_text(code, encoding="utf-8")
+                    subprocess.run(["g++", "-std=c++20", "-O2", str(source), "-o", str(binary)],
+                                   capture_output=True, check=True)
+                    subprocess.run([str(binary)], capture_output=True, check=True)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1212,7 +1212,7 @@
       "title": "Minimum Steiner Tree",
       "category": "graph",
       "source": "graph/minimum_steiner_tree/main.cpp",
-      "source_sha256": "136d0cf35afebe0323d08923a3fb9120a1103a031e6c1dd72066d0ac854ebdb1",
+      "source_sha256": "faa2fbd7f2089f68845ad95a4a8f0da0a00a674e7eb4bc479ce0bf9e301c108b",
       "meta": "graph/minimum_steiner_tree/meta.json",
       "state": "template_solution"
     },
@@ -1806,7 +1806,7 @@
       "title": "Shortest Path",
       "category": "graph",
       "source": "graph/shortest_path/main.cpp",
-      "source_sha256": "13f3c949aa9b76e9cdd036a1f0333389b26e5c7bc519f4f62a8b007f91440d09",
+      "source_sha256": "458f2b8e3a3eed16f494d4387db39c9ae2a0633b121b166c167d43017832c733",
       "meta": "graph/shortest_path/meta.json",
       "state": "template_solution"
     },
