@@ -27,6 +27,7 @@ FIXED_SUPPORT = {
     "linear_algebra_field.hpp", # 32-bit Montgomery reduction
 }
 HEADING = re.compile(r"^###\s+(\d+\.\d+\.\d{3})\s+", re.MULTILINE)
+CPP_BLOCK = re.compile(r"(^```cpp[^\n]*\n)(.*?)(^```[ \t]*$)", re.MULTILINE | re.DOTALL)
 FIXED_WIDTH = re.compile(r"\b(?:u?int(?:8|16|32|64)_t)\b")
 BIT_FUNCTIONS = (
     "countr_zero", "countl_zero", "popcount", "bit_width", "bit_floor",
@@ -140,7 +141,11 @@ def transform_chapter(text: str) -> str:
         topic = match.group(1)
         # 14.1.019 is synchronized from the controlled header and the fixed Montgomery kernel.
         if topic not in FIXED_TOPICS and topic != "14.1.019":
-            section = replace_general_types(section)
+            # Type normalization belongs to copyable C++ only. Prose may need to name
+            # the fixed-width layout used by the performance header for comparison.
+            section = CPP_BLOCK.sub(
+                lambda block: block[1] + replace_general_types(block[2]) + block[3], section
+            )
             if topic == "10.1.011":
                 section = section.replace("popcount(s)", "popcount((unsigned long long)s)")
         pieces.append(section)

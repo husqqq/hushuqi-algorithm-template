@@ -15,6 +15,11 @@ SPEC = importlib.util.spec_from_file_location(
 )
 SYNC = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(SYNC)
+PRINT_SPEC = importlib.util.spec_from_file_location(
+    "generate_print_headers_test", WORKSPACE / "hushuqi算法竞赛模板/tools/generate_print_headers.py",
+)
+PRINT = importlib.util.module_from_spec(PRINT_SPEC)
+PRINT_SPEC.loader.exec_module(PRINT)
 
 
 class TopicDependencyTest(unittest.TestCase):
@@ -107,6 +112,39 @@ class TopicDependencyTest(unittest.TestCase):
                     subprocess.run(["g++", "-std=c++20", "-O2", str(source), "-o", str(binary)],
                                    capture_output=True, check=True)
                     subprocess.run([str(binary)], capture_output=True, check=True)
+
+    def test_print_type_rewrite_does_not_change_prose(self):
+        source = (
+            "### 5.7.002 test\n\n性能版以 `int8_t` 保存选择。\n\n"
+            "```cpp\nvector<int8_t> take;\n```\n"
+        )
+        result = PRINT.transform_chapter(source)
+        self.assertIn("性能版以 `int8_t` 保存选择", result)
+        self.assertIn("vector<int> take;", result)
+
+    def test_graph_corrections_are_preserved(self):
+        chapter = (WORKSPACE / "hushuqi算法竞赛模板/05-图论.md").read_text(encoding="utf-8")
+
+        def section(topic):
+            return chapter.split("### " + topic + " ", 1)[1].split("### ", 1)[0]
+
+        spfa = section("5.2.003")
+        self.assertNotIn("检查上下界", spfa)
+        self.assertIn("包括判出负环前的中间量", spfa)
+        self.assertIn("虚拟源", spfa)
+
+        blossom = section("5.7.001")
+        subset = section("5.7.002")
+        self.assertIn("[5.7.006 带权 Blossom](#57006)", blossom)
+        self.assertIn("`int8_t`", subset)
+        self.assertIn("共 $9$ 字节", subset)
+        self.assertIn("$144$、$36\\,\\mathrm{MiB}$", subset)
+
+        hopcroft = section("5.6.003")
+        self.assertIn("同一轮的增广路不必等长", hopcroft)
+        self.assertIn("私有交替尾", hopcroft)
+        self.assertIn("性能版以 `int32_t`", hopcroft)
+        self.assertIn("打印版与 Markdown 使用普通 `int`", hopcroft)
 
 
 if __name__ == "__main__":

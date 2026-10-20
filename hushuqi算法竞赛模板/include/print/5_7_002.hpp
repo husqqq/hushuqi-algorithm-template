@@ -7,7 +7,10 @@ using namespace std;
 pair<int, vector<pair<int, int>>>
 weightMatch(const vector<vector<optional<long long>>> &w)
 {
-    // w[u][v] 是边权，空值表示无边；返回最大总权和一组匹配边。
+    // w 是 0 下标对称边权矩阵，空值表示无边，对角忽略；返回最大总权和一组匹配边。
+    // 允许空匹配；每个候选权值和必须能用当前 int 表示。
+    // 改求最小总权时，仅把下方 z>dp[s] 改成 z<dp[s]，并将返回语义改为最小总权。
+    // 零初值、空匹配、take 和回溯均不变；不对边权取反，避免最小负数溢出。
     int n = w.size();
     assert(n <= 24); // 调试检查，可删：状态数必须能承受。
     for (const auto &row : w)

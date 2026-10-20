@@ -6,7 +6,9 @@ template <class Dist = long long>
 optional<vector<optional<Dist>>> spfa(
     int n, const vector<DEdge> &edges, int s)
 {
-    // n 是点数，edges 是边表，s 是源点；有可达负环时返回空。
+    // n>0 是点数，edges 是 0 下标有向边表，0<=s<n 是源点。
+    // 可达负环返回外层空值；否则返回距离表，内层空值表示不可达。
+    // 全部松弛中间和必须能用 Dist 表示，包括判出负环前的中间量。
     vector<vector<pair<int, Dist>>> e(n);
     for (auto [u, v, w] : edges)
     {
