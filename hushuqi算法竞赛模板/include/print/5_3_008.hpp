@@ -5,7 +5,8 @@
 
 int edgeConn(int n, const vector<tuple<int, int, long long>> &e)
 {
-    // e 是非负权无向边；返回全局边连通度。
+    // n>=0 是点数，e 的每项为起点、终点、非负边权；返回全局最小割权，n<=1 返回 0。
+    // 无权边统一赋 1 即得边连通度；平行边容量和与收缩容量须在 int 范围内。
     vector a(n, vector<int>(n));
     for (auto [u, v, w] : e)
     {
@@ -22,7 +23,8 @@ int edgeConn(int n, const vector<tuple<int, int, long long>> &e)
 template <class F = Flow<long long>>
 int vertexConn(const vector<vector<int>> &g)
 {
-    // g 是简单无向邻接表；返回全局点连通度。
+    // g 是下标从 0 开始的简单无向邻接表；返回最小删点数，n<=1 返回 0，完全图返回 n-1。
+    // F 是最大流类型，须支持构造 F(点数)、add(起点,终点,容量) 与 flow(源,汇)。
     int n = g.size();
     if (n <= 1)
     {

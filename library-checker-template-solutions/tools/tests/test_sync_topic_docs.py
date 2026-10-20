@@ -1,6 +1,8 @@
 """Keep dependency comments readable without duplicating explicit interface notes."""
 
 import importlib.util
+import re
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -43,6 +45,25 @@ class TopicDependencyTest(unittest.TestCase):
         result = self.snippet('#include "3_3_002.hpp"\nstruct Info {};\n')
         self.assertEqual(result.count('// 依赖 3.3.002 '), 1)
         self.assertIn('struct Info {};', result)
+
+    def test_connectivity_markdown_compiles_with_its_documented_dependencies(self):
+        chapter = (WORKSPACE / "hushuqi算法竞赛模板/05-图论.md").read_text(encoding="utf-8")
+
+        def blocks(topic):
+            section = chapter.split("### " + topic + " ", 1)[1].split("### ", 1)[0]
+            return re.findall(r"```cpp\n(.*?)\n```", section, re.S)
+
+        code = "#include <bits/stdc++.h>\nusing namespace std;\n#define int long long\n"
+        for topic in ("5.8.001", "5.8.007", "5.3.008"):
+            code += blocks(topic)[0] + "\n"
+        code += blocks("5.3.008")[1] + "\n"
+        with tempfile.TemporaryDirectory(prefix="connectivity-markdown-test-") as directory:
+            source = Path(directory) / "main.cpp"
+            binary = Path(directory) / "main.exe"
+            source.write_text(code, encoding="utf-8")
+            subprocess.run(["g++", "-std=c++20", "-O2", str(source), "-o", str(binary)],
+                           capture_output=True, check=True)
+            subprocess.run([str(binary)], capture_output=True, check=True)
 
 
 if __name__ == "__main__":
