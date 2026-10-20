@@ -17,8 +17,14 @@ DOCUMENTATION_ONLY = {
     "13_3_005.hpp", "13_3_007.hpp", "14_1_010.hpp", "14_1_011.hpp",
     "14_1_012.hpp", "14_1_013.hpp", "14_1_014.hpp", "7_1_007.hpp",
 }
-TEST_INCLUDE = re.compile(r'#include\s+"\.\./include/(?:full/|print/)?([^"/]+\.hpp)"')
+TEST_INCLUDE = re.compile(
+    r'(?m)^[ \t]*#[ \t]*(?:include[ \t]*|define[ \t]+\w+[ \t]+)'
+    r'"\.\./include/(?:full/|print/)?([^"/]+\.hpp)"'
+)
 HEADER_INCLUDE = re.compile(r'#include\s+"(?:full/)?([^"/]+\.hpp)"')
+BEHAVIOR_CHECK = re.compile(
+    r'\b(?:assert|static_assert)\s*\(|\bexit\s*\(\s*(?:[1-9]\d*|EXIT_FAILURE)\s*\)'
+)
 
 
 def main() -> None:
@@ -44,7 +50,7 @@ def main() -> None:
 
     for test in TESTS.glob("*.cpp"):
         text = test.read_text(encoding="utf-8")
-        if "assert" not in text and "static_assert" not in text:
+        if not BEHAVIOR_CHECK.search(text):
             continue
         for name in TEST_INCLUDE.findall(text):
             if name in headers:
