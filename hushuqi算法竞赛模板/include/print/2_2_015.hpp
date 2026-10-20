@@ -5,79 +5,157 @@ using namespace std;
 
 namespace mitm
 {
-struct State
+static vector<__int128> sums(const vector<int> &a, int l, int r)
 {
-    __int128 sum;            // sum 是该子集的元素和。
-    unsigned long long mask; // mask 的第 i 位表示半边内第 i 个元素是否被选。
-};
-
-vector<State> sums(const vector<int> &a, int l, int r)
-{
-    // a 是原数组，[l,r) 是一半的下标范围；返回这一半全部 2^(r-l) 个子集的和与选择掩码。
-    vector<State> v{{0, 0}};
+    // a 是原数组，[l,r) 是一半的下标范围；返回全部子集和，不保存掩码以减少常驻内存。
+    vector<__int128> v;
+    v.reserve(1ULL << (r - l));
+    v.push_back(0);
     for (int i = l; i < r; i++)
     {
         int n = v.size();
         for (int j = 0; j < n; j++)
         {
-            v.push_back({v[j].sum + a[i], v[j].mask | (1ULL << (i - l))});
+            v.push_back(v[j] + a[i]);
         }
     }
     return v;
 }
 
+static optional<unsigned long long> maskSum(const vector<int> &a, int l, int r, __int128 want)
+{
+    // a[l..r) 是至多 46 个元素的半边；按 Gray 码枚举并返回和为 want 的一个子集掩码。
+    unsigned long long count = 1ULL << (r - l);
+    __int128 sum = 0;
+    for (unsigned long long i = 0; i < count; i++)
+    {
+        unsigned long long mask = i ^ (i >> 1);
+        if (sum == want)
+        {
+            return mask;
+        }
+        if (i + 1 < count)
+        {
+            unsigned long long next = (i + 1) ^ ((i + 1) >> 1);
+            int bit = countr_zero(mask ^ next);
+            sum += (next >> bit & 1) ? a[l + bit] : -(__int128)a[l + bit];
+        }
+    }
+    return nullopt;
+}
+
 struct Result
 {
-    __int128 sum;        // sum 是所选子集的和。
-    vector<int> indices; // indices 是所选元素的原下标，升序。
+    __int128 sum;        // 46 个 64 位元素的和可能超过 64 位。
+    vector<int> indices; // 所选元素的原下标，升序。
 };
 
 optional<Result> bound(const vector<int> &a, __int128 target, bool ceil = false)
 {
     // a 至多 46 个元素且可为负；ceil=false 求不超过 target 的最大子集和，
     // ceil=true 求不小于 target 的最小子集和；返回和与下标，不存在时返回空。
-    assert(a.size() <= 46); // 调试检查，可删。
-    int k = a.size() / 2;
-    auto x = sums(a, 0, k), y = sums(a, k, a.size());
-    sort(y.begin(), y.end(), [](const State &u, const State &v) { return u.sum < v.sum; });
-    optional<Result> ans;
-    unsigned long long mx = 0, my = 0;
-    for (auto u : x)
+    if (a.size() > 46)
     {
-        // 在后半找最接近 target-u.sum 的和：it 是第一个不小于它的位置。
-        auto it = lower_bound(y.begin(), y.end(), target - u.sum,
-                              [](const State &v, __int128 s) { return v.sum < s; });
+        throw length_error("mitm::bound supports at most 46 elements");
+    }
+    __int128 mn = 0, mx = 0;
+    for (int i = 0; i < (int)a.size(); i++)
+    {
+        if (a[i] < 0)
+        {
+            mn += a[i];
+        }
+        else
+        {
+            mx += a[i];
+        }
+    }
+    auto extreme = [&](bool high)
+    {
+        Result res{high ? mx : mn, {}};
+        for (int i = 0; i < (int)a.size(); i++)
+        {
+            if (high ? a[i] > 0 : a[i] < 0)
+            {
+                res.indices.push_back(i);
+            }
+        }
+        return res;
+    };
+    if (!ceil && target < mn)
+    {
+        return nullopt;
+    }
+    if (!ceil && target >= mx)
+    {
+        return extreme(true);
+    }
+    if (ceil && target <= mn)
+    {
+        return extreme(false);
+    }
+    if (ceil && target > mx)
+    {
+        return nullopt;
+    }
+    int k = a.size() / 2;
+    auto y = sums(a, k, a.size());
+    sort(y.begin(), y.end());
+    unsigned long long count = 1ULL << k;
+    __int128 leftSum = 0, bestSum = 0, bestLeft = 0, bestRight = 0;
+    bool found = false;
+    for (unsigned long long i = 0; i < count; i++)
+    {
+        unsigned long long mask = i ^ (i >> 1);
+        // 在后半找不超过或不小于 target-leftSum 的最优和。
+        __int128 need = target - leftSum;
+        auto it = lower_bound(y.begin(), y.end(), need);
+        bool valid = true;
         if (!ceil)
         {
-            if (it == y.end() || it->sum != target - u.sum)
+            if (it == y.end() || *it != need)
             {
                 if (it == y.begin())
                 {
-                    continue;
+                    valid = false;
                 }
-                --it;
+                else
+                {
+                    --it;
+                }
             }
         }
         else if (it == y.end())
         {
-            continue;
+            valid = false;
         }
-        __int128 s = u.sum + it->sum;
-        if (!ans || (ceil ? s < ans->sum : s > ans->sum))
+        if (valid && (!found || (ceil ? leftSum + *it < bestSum : leftSum + *it > bestSum)))
         {
-            ans = Result{s, {}};
-            mx = u.mask;
-            my = it->mask;
+            found = true;
+            bestSum = leftSum + *it;
+            bestLeft = leftSum;
+            bestRight = *it;
+        }
+        if (i + 1 < count)
+        {
+            unsigned long long next = (i + 1) ^ ((i + 1) >> 1);
+            int bit = countr_zero(mask ^ next);
+            leftSum += (next >> bit & 1) ? a[bit] : -(__int128)a[bit];
         }
     }
-    if (ans)
+    if (!found)
     {
-        for (int i = 0; i < (int)a.size(); i++)
+        return nullopt;
+    }
+    auto leftMask = maskSum(a, 0, k, bestLeft);
+    auto rightMask = maskSum(a, k, a.size(), bestRight);
+    assert(leftMask && rightMask);
+    Result ans{bestSum, {}};
+    for (int i = 0; i < (int)a.size(); i++)
+    {
+        if (i < k ? (*leftMask >> i & 1) : (*rightMask >> (i - k) & 1))
         {
-            if (i < k ? (mx >> i & 1) : (my >> (i - k) & 1))
-            {
-                ans->indices.push_back(i);
-            }
+            ans.indices.push_back(i);
         }
     }
     return ans;
@@ -91,7 +169,14 @@ Result closest(const vector<int> &a, __int128 target)
     {
         return *hi;
     }
-    if (!hi || target - lo->sum <= hi->sum - target)
+    if (!hi)
+    {
+        return *lo;
+    }
+    // 无符号差值承接完整有符号 128 位范围内的距离，避免极端 target 相减溢出。
+    unsigned __int128 lowGap = (unsigned __int128)target - (unsigned __int128)lo->sum;
+    unsigned __int128 highGap = (unsigned __int128)hi->sum - (unsigned __int128)target;
+    if (lowGap <= highGap)
     {
         return *lo;
     }

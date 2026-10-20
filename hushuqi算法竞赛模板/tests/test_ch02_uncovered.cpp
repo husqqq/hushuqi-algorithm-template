@@ -58,6 +58,10 @@ namespace josephus_topic {
 #include "../include/full/2_2_013.hpp"
 }
 #undef int
+namespace mitm_topic {
+#include "../include/full/2_2_015.hpp"
+}
+#undef int
 namespace rollback_mo_topic {
 #include "../include/full/2_3_003.hpp"
 }
@@ -127,6 +131,25 @@ signed main()
     assert(inversion_topic::invMerge(vector<int>{3, 1, 2, 1}) == 4);
     assert(inversion_topic::invBit(vector<int>{3, 1, 2, 1}) == 4);
     assert((kth_topic::rangeKth({5, 1, 4, 1, 3}, {{0, 5, 3}, {1, 4, 2}, {2, 5, 1}}) == vector<ll>{3, 1, 1}));
+
+    auto negOnly = mitm_topic::mitm::bound({-5, -3}, -100);
+    auto posOnly = mitm_topic::mitm::bound({5, 3}, 100, true);
+    assert(!negOnly && !posOnly);
+    auto aboveAll = mitm_topic::mitm::bound({-5, 3, 8}, 100);
+    auto belowAll = mitm_topic::mitm::bound({-5, 3, 8}, -100, true);
+    assert(aboveAll && aboveAll->sum == 11 && aboveAll->indices == vector<ll>({1, 2}));
+    assert(belowAll && belowAll->sum == -5 && belowAll->indices == vector<ll>({0}));
+    auto emptyMitm = mitm_topic::mitm::closest({}, 7);
+    assert(emptyMitm.sum == 0 && emptyMitm.indices.empty());
+    auto overflowMitm = mitm_topic::mitm::closest(
+        {numeric_limits<ll>::max(), numeric_limits<ll>::max(),
+         numeric_limits<ll>::min(), numeric_limits<ll>::min()}, 0);
+    assert(overflowMitm.sum == 0 && overflowMitm.indices.empty());
+    auto wideMitm = mitm_topic::mitm::bound(
+        {numeric_limits<ll>::max(), numeric_limits<ll>::max()},
+        (__int128)numeric_limits<ll>::max() * 2);
+    assert(wideMitm && wideMitm->sum == (__int128)numeric_limits<ll>::max() * 2
+           && wideMitm->indices == vector<ll>({0, 1}));
 
     using dominance_topic::Point3;
     assert((dominance_topic::dom3(vector<Point3>{{1, 1, 1, 0}, {2, 1, 2, 1}, {1, 1, 1, 2}, {3, 3, 3, 3}})
