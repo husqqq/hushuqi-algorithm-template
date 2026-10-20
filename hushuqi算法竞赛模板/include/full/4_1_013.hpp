@@ -25,13 +25,16 @@ int editDist(const string &a, const string &b)
 
 int myersDist(const string &p, const string &t)
 {
-    // p 是至多 64 字节的串，t 是任意字节串；返回二者的编辑距离，与 editDist(p,t) 相同。
+    // p、t 是任意字节串；返回二者的全局编辑距离，长模式回退到滚动 DP。
     int n = p.size();
     if (!n)
     {
         return t.size();
     }
-    assert(n <= 64); // 调试检查，可删。
+    if (n > 64)
+    {
+        return p.size() < t.size() ? editDist(t, p) : editDist(p, t);
+    }
     // eq[c] 的第 i 位表示 p[i]==c；vp、vn 是 DP 当前列竖向差为 +1、-1 的位集。
     array<unsigned long long, 256> eq{};
     for (int i = 0; i < n; i++)
