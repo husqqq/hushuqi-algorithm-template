@@ -32,6 +32,9 @@ signed main()
 
     auto l = toDir(Line<int>{{1, 2}, {4, 6}});
     assert(eq(l.at(1), P{4, 6}));
+    assert((lineABC(Line<int>{{0, 0}, {2, 2}}) == array<int, 3>{1, -1, 0}));
+    assert((lineABC(Line<int>{{2, 2}, {0, 0}}) == array<int, 3>{1, -1, 0}));
+    assert((lineABC(Line<int>{{1, 3}, {4, 9}}) == array<int, 3>{2, -1, 1}));
     assert(parallel(Line<Real>{{0, 0}, {1, 1E-15L}},
                     Line<Real>{{0, 1}, {1, 1 + 2E-15L}}));
     assert(parallel(Line<int>{{0, 0}, {2, 2}}, Line<int>{{1, 0}, {3, 2}}));

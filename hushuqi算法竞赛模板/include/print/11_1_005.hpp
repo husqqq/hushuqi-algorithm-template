@@ -12,6 +12,25 @@ template <class T> struct Line
     }
 };
 
+template <class T> array<T, 3> lineABC(const Line<T> &l)
+{
+    // l 是由两个不同整数点确定的直线；返回规范化后的 {A,B,C}，满足 Ax+By+C=0。
+    static_assert(is_integral_v<T>, "lineABC requires integral coordinates");
+    assert(l.a != l.b); // 调试检查，可删。
+    T A = l.a.y - l.b.y;
+    T B = l.b.x - l.a.x;
+    T C = l.a.x * l.b.y - l.b.x * l.a.y;
+    T g = gcd(gcd(A, B), C);
+    if (g < 0) g = -g;
+    assert(g != 0); // 非退化直线的三个系数不全为零。
+    A /= g;
+    B /= g;
+    C /= g;
+    if (A < 0 || (A == 0 && B < 0) || (A == 0 && B == 0 && C < 0))
+        A = -A, B = -B, C = -C;
+    return {A, B, C};
+}
+
 struct DirLine
 {
     P p; // p 保存直线上一点。
